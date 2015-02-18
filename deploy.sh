@@ -133,19 +133,11 @@ if [ $include_alloy ]; then
 fi
 
 if [ $include_modules ]; then
-    if [ ! "$TI_MODULES" ]; then
-        if [ "$TI_ROOT" ]; then
-            TI_MODULES=${TI_ROOT}/titanium_modules
-        else
-            echo "No titanium_modules dir \$TI_MODULES and \$TI_ROOT not defined. Exiting."
-            exit 1
-        fi
-    fi
     if [ ! "$APPC_MODULES" ]; then
         if [ "$TI_ROOT" ]; then
             APPC_MODULES=${TI_ROOT}/appc_modules
         else
-            echo "No titanium_modules dir \$TI_MODULES and \$TI_ROOT not defined. Exiting."
+            echo "No appc_modules dir \$APPC_MODULES and \$TI_ROOT not defined. Exiting."
             exit 1
         fi
     fi
@@ -159,7 +151,7 @@ if [ $include_modules ]; then
     fi
     module_dirs="$APPC_MODULES/ti.map/apidoc $APPC_MODULES/ti.facebook/apidoc
                  $APPC_MODULES/ti.nfc/apidoc $APPC_MODULES/ti.newsstand/apidoc $TIZEN_MODULE
-                 $APPC_MODULES/ti.coremotion/apidoc $TI_MODULES/urlSession/apidoc
+                 $APPC_MODULES/ti.coremotion/apidoc $APPC_MODULES/ti.urlsession/apidoc
                  $APPC_MODULES/ti.touchid/apidoc"
 
     if [ $addon_guidesdir ]; then
