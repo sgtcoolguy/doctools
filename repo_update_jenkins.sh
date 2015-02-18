@@ -12,12 +12,12 @@ CORE_MOTION_DIR=$TI_ROOT/appc_modules/ti.coremotion
 FB_DIR=$TI_ROOT/appc_modules/ti.facebook
 GEOFENCE_DIR=$TI_ROOT/appc_modules/ti.geofence
 HTTPS_DIR=$TI_ROOT/appc_modules/appcelerator.https
-MOD_DIR=$TI_ROOT/titanium_modules
 MAP_DIR=$TI_ROOT/appc_modules/ti.map
 NFC_DIR=$TI_ROOT/appc_modules/ti.nfc
 NEWSSTAND_DIR=$TI_ROOT/appc_modules/ti.newsstand
 TIZEN_DIR=$TI_ROOT/titanium_mobile_tizen
 TOUCHID_DIR=$TI_ROOT/appc_modules/ti.touchid
+URL_DIR=$TI_ROOT/appc_modules/ti.urlsession
 
 ## Error handling
 fail_on_error() {
@@ -66,13 +66,12 @@ fi
 repo_update jsduck $JSDUCK_DIR origin master appcelerator
 repo_update titanium_mobile $TI_DIR origin master appcelerator
 repo_update alloy $ALLOY_DIR origin master appcelerator
-repo_update titanium_modules $MOD_DIR origin master appcelerator
 repo_update ti.coremotion $CORE_MOTION_DIR origin master appcelerator-modules
 repo_update ti.facebook $FB_DIR origin master appcelerator-modules
 repo_update ti.map $MAP_DIR origin master appcelerator-modules
 repo_update ti.nfc $NFC_DIR origin master appcelerator-modules
 repo_update ti.newsstand $NEWSSTAND_DIR origin master appcelerator-modules
 repo_update ti.touchid $TOUCHID_DIR origin master appcelerator-modules
-repo_update titanium_mobile_tizen $TIZEN_DIR origin 3_2_X appcelerator
+repo_update ti.urlsession $TOUCHID_DIR origin master appcelerator-modules
 
 echo "Repo updates completed"
