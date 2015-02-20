@@ -72,6 +72,6 @@ repo_update ti.map $MAP_DIR origin master appcelerator-modules
 repo_update ti.nfc $NFC_DIR origin master appcelerator-modules
 repo_update ti.newsstand $NEWSSTAND_DIR origin master appcelerator-modules
 repo_update ti.touchid $TOUCHID_DIR origin master appcelerator-modules
-repo_update ti.urlsession $TOUCHID_DIR origin master appcelerator-modules
+repo_update ti.urlsession $URL_DIR origin master appcelerator-modules
 
 echo "Repo updates completed"
