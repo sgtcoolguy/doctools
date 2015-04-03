@@ -4,8 +4,8 @@ VIDEO_LIST="videos.json"
 PROCESSED_VIDEO_LIST="build/videos.json"
 config="./jsduck.config"
 guidesdir="./htmlguides"
-outdir="./dist/titanium/3.0"
-title="Titanium 3.X - Appcelerator Docs"
+outdir="./dist/platform/latest"
+title="Appcelerator Platform - Appcelerator Docs"
 
 progname=$0
 
@@ -43,6 +43,8 @@ while getopts ":so:a:c:d:g:t:" opt; do
         o)
             if [ $OPTARG == "alloy" ]; then
                 include_alloy="include_alloy"
+            elif [ $OPTARG = "arrow" ]; then 
+                include_arrow="include_arrow" 
             elif [ $OPTARG = "modules" ]; then 
                 include_modules="include_modules" 
             else
@@ -127,9 +129,30 @@ if [ ! "$ALLOY" ]; then
     fi
 fi
 
+if [ ! "$ARROW" ]; then
+    if [ "$TI_ROOT" ]; then
+        ARROW=${TI_ROOT}
+    else
+        echo "No arrow dir \$ARROW and \$TI_ROOT not defined. Exiting."
+        exit 1
+    fi
+fi
+
 if [ $include_alloy ]; then
     alloyDirs="${ALLOY}/Alloy/lib ${ALLOY}/docs/apidoc ${DOCTOOLS}/add-ons
                $(find $ALLOY/Alloy/builtins -maxdepth 1 -type f ! -name moment.js)"
+fi
+
+if [ $include_arrow ]; then
+    arrowDirs="${ARROW}/arrow-orm/apidoc
+               ${ARROW}/arrow-orm/lib
+               ${ARROW}/arrow/apidoc
+               ${ARROW}/arrow/lib/engines
+               ${ARROW}/arrow/lib/api.js
+               ${ARROW}/arrow/lib/arrow.js
+               ${ARROW}/arrow/lib/block.js
+               ${ARROW}/arrow/lib/middleware.js
+               ${ARROW}/arrow/lib/router.js"
 fi
 
 if [ $include_modules ]; then
@@ -141,26 +164,16 @@ if [ $include_modules ]; then
             exit 1
         fi
     fi
-    if [ ! "$TIZEN_MODULE" ]; then
-        if [ "$TI_ROOT" ]; then
-            TIZEN_MODULE=${TI_ROOT}/titanium_mobile_tizen/modules/tizen/apidoc
-        else
-            echo "No titanium_mobile_tizen dir \$TIZEN_MODULE and \$TI_ROOT not defined. Exiting."
-            exit 1
-        fi
-    fi
     module_dirs="$APPC_MODULES/ti.map/apidoc $APPC_MODULES/ti.facebook/apidoc
                  $APPC_MODULES/ti.nfc/apidoc $APPC_MODULES/ti.newsstand/apidoc $TIZEN_MODULE
                  $APPC_MODULES/ti.coremotion/apidoc $APPC_MODULES/ti.urlsession/apidoc
                  $APPC_MODULES/ti.touchid/apidoc"
 
-    if [ $addon_guidesdir ]; then
         module_dirs+=" $APPC_MODULES/ti.geofence/apidoc $APPC_MODULES/appcelerator.https/apidoc
                        $APPC_MODULES/com.appcelerator.apm/apidoc"
-    fi
 fi
 
-python ${TI_DOCS}/docgen.py -f jsduck -o ./build $module_dirs
+node ${TI_DOCS}/docgen.js -f jsduck -o ./build/ $module_dirs
 
 if [ $addon_guidesdir ]; then
     python ./guides_merger.py --input "${guidesdir}/toc.xml" --addon "${addon_guidesdir}/toc.xml"  --output "./build/merged_guides"
@@ -182,7 +195,13 @@ if [ $addon_guidesdir ]; then
 else
     parseropts="--show_edit_button"
 fi
-python ./guides_parser.py --input "${guidesdir}/toc.xml" --output "./build/guides" $parseropts
+
+# Work around for conversion issue
+pushd $guidesdir
+find . -type f -name '*.html' -exec sed -i '' s/\&ndash\;/\-\-/g {} +
+popd
+
+node guides_parser --input "${guidesdir}/toc.xml" --output "./build/guides" $parseropts
 
 # Assume video list is pre-processed, with real thumbnails 
 cp $VIDEO_LIST $PROCESSED_VIDEO_LIST
@@ -203,16 +222,12 @@ if [ $production_build ] ; then
         bash $DOCTOOLS/jsduck2json/alloy2json.sh solr
         cp ./dist/solr_api.json $outdir/../data/solr/alloy_api.json
     fi
-    if [ -z $addon_guidesdir ]; then
-        sed -i '' 's/\"type\": \"platform\"/\"type\": \"titanium\"/g' $outdir/../data/solr/*.json
-        sed -i '' 's/\-platform\"/\-titanium\"/g' $outdir/../data/solr/*.json
-    fi
 else
     compass compile ${JSDUCK}/template/resources/sass
     TEMPLATE=${JSDUCK}/${DEBUG_TEMPLATE}
 fi
 
-ruby ${JSDUCK}/bin/jsduck --template ${TEMPLATE} $seo --output $outdir --title "$title" --config $config $alloyDirs 
+ruby ${JSDUCK}/bin/jsduck --template ${TEMPLATE} $seo --output $outdir --title "$title" --config $config $alloyDirs $arrowDirs
 
 # TIDOC-1327 Fix server errors
 cp -r "$guidesdir/images/icons" "$outdir/resources/images/."
