@@ -63,7 +63,8 @@ if [ ! -d "${TI_ROOT}/appc_modules" ]; then
     echo "making directory"
 fi
 
-repo_update jsduck $JSDUCK_DIR origin master appcelerator
+npm install .
+repo_update jsduck $JSDUCK_DIR origin standalone appcelerator
 repo_update titanium_mobile $TI_DIR origin master appcelerator
 repo_update alloy $ALLOY_DIR origin master appcelerator
 repo_update ti.coremotion $CORE_MOTION_DIR origin master appcelerator-modules
