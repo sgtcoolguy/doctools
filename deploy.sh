@@ -203,8 +203,10 @@ fi
 pushd $guidesdir
 if [ $jenkins ]; then
     find . -type f -name '*.html' -print0 | xargs -0 sed -i 's/\&ndash\;/\-\-/g'
+    find . -type f -name '*.html' -print0 | xargs -0 sed -i 's/\&mdash\;/\-\-/g'
 else
     find . -type f -name '*.html' -exec sed -i '' s/\&ndash\;/\-\-/g {} +
+    find . -type f -name '*.html' -exec sed -i '' s/\&mdash\;/\-\-/g {} +
 fi
 popd
 
