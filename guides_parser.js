@@ -43,7 +43,7 @@ function parse (node) {
 
 			mkdirDashP(dir);
 
-			dom = cheerio.load(fs.readFileSync(path.join(path.dirname(inputFile), child.$.href)), {xmlMode: true});
+			dom = cheerio.load(fs.readFileSync(path.join(path.dirname(inputFile), child.$.href)), {xmlMode: true, decodeEntities: false});
 			dom('a').each(function (i, elem) {
 				var href = elem.attribs.href;
 				if (href) {
