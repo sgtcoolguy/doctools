@@ -199,17 +199,6 @@ else
     parseropts="--show_edit_button"
 fi
 
-# Work around for conversion issue
-pushd $guidesdir
-if [ $jenkins ]; then
-    find . -type f -name '*.html' -print0 | xargs -0 sed -i 's/\&ndash\;/\-\-/g'
-    find . -type f -name '*.html' -print0 | xargs -0 sed -i 's/\&mdash\;/\-\-/g'
-else
-    find . -type f -name '*.html' -exec sed -i '' s/\&ndash\;/\-\-/g {} +
-    find . -type f -name '*.html' -exec sed -i '' s/\&mdash\;/\-\-/g {} +
-fi
-popd
-
 node guides_parser --input "${guidesdir}/toc.xml" --output "./build/guides" $parseropts
 
 # Assume video list is pre-processed, with real thumbnails 
