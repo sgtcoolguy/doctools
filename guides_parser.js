@@ -101,6 +101,8 @@ function parse (node) {
 							// Open external links in new windows/tabs
 							elem.attribs.target = '_blank';
 						}
+					} else if (href.indexOf('attachment') === 0) {
+						href = './' + href;
 					} else {
 						// Replace internal guide links to JSDuck style links
 						href = href.replace(' ', '_');
