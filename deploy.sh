@@ -176,7 +176,15 @@ if [ $include_modules ]; then
                        $APPC_MODULES/com.appcelerator.apm/apidoc"
 fi
 
-node ${TI_DOCS}/docgen.js -f jsduck -o ./build/ $module_dirs
+if [ -d "$TI_ROOT/titanium_mobile_windows" ]; then
+    pushd $TI_ROOT/titanium_mobile_windows/apidoc
+    npm install .
+    node ti_win_yaml
+    addon_win=" -a ${TI_ROOT}/titanium_mobile_windows/apidoc/Titanium "
+    popd
+fi
+
+node ${TI_DOCS}/docgen.js -f jsduck -o ./build/ $module_dirs $addon_win
 
 if [ $addon_guidesdir ]; then
     python ./guides_merger.py --input "${guidesdir}/toc.xml" --addon "${addon_guidesdir}/toc.xml"  --output "./build/merged_guides"
