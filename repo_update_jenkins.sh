@@ -17,6 +17,7 @@ NFC_DIR=$TI_ROOT/appc_modules/ti.nfc
 NEWSSTAND_DIR=$TI_ROOT/appc_modules/ti.newsstand
 TIZEN_DIR=$TI_ROOT/titanium_mobile_tizen
 TOUCHID_DIR=$TI_ROOT/appc_modules/ti.touchid
+WINDOWS_DIR=$TI_ROOT/titanium_mobile_windows
 URL_DIR=$TI_ROOT/appc_modules/ti.urlsession
 
 ## Error handling
@@ -66,6 +67,7 @@ fi
 npm install .
 repo_update jsduck $JSDUCK_DIR origin standalone appcelerator
 repo_update titanium_mobile $TI_DIR origin master appcelerator
+repo_update titanium_mobile_windows $WINDOWS_DIR origin master appcelerator
 repo_update alloy $ALLOY_DIR origin master appcelerator
 repo_update ti.coremotion $CORE_MOTION_DIR origin master appcelerator-modules
 repo_update ti.facebook $FB_DIR origin master appcelerator-modules
