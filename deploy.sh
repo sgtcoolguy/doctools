@@ -180,6 +180,8 @@ if [ -d "$TI_ROOT/titanium_mobile_windows" ]; then
     pushd $TI_ROOT/titanium_mobile_windows/apidoc
     npm install .
     node ti_win_yaml
+    ## Workaround
+    rm Titanium/UI/Picker.yml
     addon_win=" -a ${TI_ROOT}/titanium_mobile_windows/apidoc/WindowsOnly "
     addon_win+=" -a ${TI_ROOT}/titanium_mobile_windows/apidoc/Titanium "
     popd
