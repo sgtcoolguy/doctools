@@ -182,6 +182,8 @@ if [ -d "$TI_ROOT/titanium_mobile_windows" ]; then
     node ti_win_yaml
     ## Workaround
     rm Titanium/UI/Picker.yml
+    rm Titanium/Map.yml
+    rm -r Titanium/Map
     addon_win=" -a ${TI_ROOT}/titanium_mobile_windows/apidoc/WindowsOnly "
     addon_win+=" -a ${TI_ROOT}/titanium_mobile_windows/apidoc/Titanium "
     popd
