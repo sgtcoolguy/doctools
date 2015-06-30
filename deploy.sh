@@ -225,7 +225,7 @@ if [ $production_build ] ; then
 
     ## Generate Solr content
     echo "Generating Solr content for indexing..."
-    $TI_DOCS/docgen.py -f solr -o ./build $module_dirs
+    node $TI_DOCS/docgen -f solr -o ./build/ $module_dirs $addon_win
     mkdir -p $outdir/../data/solr
     cp ./build/api_solr.json $outdir/../data/solr/.
     if [ $include_alloy ]; then
