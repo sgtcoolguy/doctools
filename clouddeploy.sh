@@ -96,9 +96,9 @@ if [ $production_build ] ; then
 
     cd $DOCTOOLS
     echo "Generating Solr content for indexing..."
-    bash jsduck2json/cloud2json.sh
+    bash jsduck2json.sh cloud solr
     mkdir -p $OUT_DIR/../data/solr
-    cp ./dist/api.json $OUT_DIR/../data/solr/api_solr.json
+    cp ./dist/solr.json $OUT_DIR/../data/solr/api_solr.json
 
     (cd ${JSDUCK}; rake compress)
     TEMPLATE=${JSDUCK}/${PROD_TEMPLATE}
