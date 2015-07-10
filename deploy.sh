@@ -230,8 +230,13 @@ if [ $production_build ] ; then
     cp ./build/api_solr.json $outdir/../data/solr/.
     if [ $include_alloy ]; then
         echo "Generating Solr content for Alloy..."
-        bash $DOCTOOLS/jsduck2json/alloy2json.sh solr
-        cp ./dist/solr_api.json $outdir/../data/solr/alloy_api.json
+        bash $DOCTOOLS/jsduck2json.sh alloy solr
+        cp ./dist/solr.json $outdir/../data/solr/alloy_api.json
+    fi
+    if [ $include_arrow ]; then
+        echo "Generating Solr content for Arrow..."/
+        bash $DOCTOOLS/jsduck2json.sh arrow solr
+        cp ./dist/solr.json $outdir/../data/solr/arrow_api.json
     fi
 else
     compass compile ${JSDUCK}/template/resources/sass
