@@ -50,8 +50,8 @@ function repo_update {
 }
 
 repo_update jsduck $JSDUCK_DIR upstream master
-repo_update titanium_mobile $TI_DIR upstream 4_1_X
-repo_update alloy $ALLOY_DIR upstream 1_6_X
+repo_update titanium_mobile $TI_DIR upstream 5_0_X
+repo_update alloy $ALLOY_DIR upstream master
 repo_update com.appcelerator.apm $APM_DIR origin master
 repo_update ti.coremotione $CORE_MOTION_DIR upstream master
 repo_update ti.facebook $FB_DIR upstream master
