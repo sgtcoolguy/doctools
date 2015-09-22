@@ -148,7 +148,12 @@ fi
 
 if [ $include_arrow ]; then
     arrowDirs="${ARROW}/arrow-orm/apidoc
-               ${ARROW}/arrow-orm/lib
+               ${ARROW}/arrow-orm/lib/collection.js
+               ${ARROW}/arrow-orm/lib/connector.js
+               ${ARROW}/arrow-orm/lib/error.js
+               ${ARROW}/arrow-orm/lib/instance.js
+               ${ARROW}/arrow-orm/lib/model.js
+               ${ARROW}/arrow-orm/lib/connector/capabilities/index.js
                ${ARROW}/arrow/apidoc
                ${ARROW}/arrow/lib/engines
                ${ARROW}/arrow/lib/api.js
