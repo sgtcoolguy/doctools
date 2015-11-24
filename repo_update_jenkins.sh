@@ -11,6 +11,7 @@ if [ ! "$BRANCH" ]; then
 fi
 
 JSDUCK_DIR=$TI_ROOT/jsduck
+CLOUD_DIR=$TI_ROOT/cloud_docs
 TI_DIR=$TI_ROOT/titanium_mobile
 ALLOY_DIR=$TI_ROOT/alloy
 CORE_MOTION_DIR=$TI_ROOT/appc_modules/ti.coremotion
@@ -71,6 +72,7 @@ fi
 
 npm install .
 repo_update jsduck $JSDUCK_DIR origin standalone appcelerator
+repo_update cloud_docs $CLOUD_DIR origin $BRANCH appcelerator
 repo_update titanium_mobile $TI_DIR origin $BRANCH appcelerator
 repo_update titanium_mobile_windows $WINDOWS_DIR origin $BRANCH appcelerator
 repo_update alloy $ALLOY_DIR origin master appcelerator
