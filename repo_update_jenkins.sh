@@ -54,6 +54,7 @@ function repo_update {
         if [ "$5" = "appcelerator-modules" ]; then
             cd ${TI_ROOT}/appc_modules
         fi
+        echo "Cloning git://github.com/${5}/${1}.git"
         git clone git://github.com/${5}/${1}.git
     fi
 
