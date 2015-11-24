@@ -5,6 +5,11 @@ if [ ! "$TI_ROOT" ]; then
     exit 1
 fi
 
+if [ ! "$BRANCH" ]; then
+    echo "\$BRANCH not defined. Exiting."
+    exit 1
+fi
+
 JSDUCK_DIR=$TI_ROOT/jsduck
 TI_DIR=$TI_ROOT/titanium_mobile
 ALLOY_DIR=$TI_ROOT/alloy
@@ -66,8 +71,8 @@ fi
 
 npm install .
 repo_update jsduck $JSDUCK_DIR origin standalone appcelerator
-repo_update titanium_mobile $TI_DIR origin master appcelerator
-repo_update titanium_mobile_windows $WINDOWS_DIR origin master appcelerator
+repo_update titanium_mobile $TI_DIR origin $BRANCH appcelerator
+repo_update titanium_mobile_windows $WINDOWS_DIR origin $BRANCH appcelerator
 repo_update alloy $ALLOY_DIR origin master appcelerator
 repo_update ti.coremotion $CORE_MOTION_DIR origin master appcelerator-modules
 repo_update ti.facebook $FB_DIR origin master appcelerator-modules
