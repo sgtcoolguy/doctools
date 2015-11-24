@@ -72,7 +72,7 @@ fi
 
 npm install .
 repo_update jsduck $JSDUCK_DIR origin standalone appcelerator
-repo_update cloud_docs $CLOUD_DIR origin $BRANCH appcelerator
+repo_update cloud_docs $CLOUD_DIR origin master appcelerator
 repo_update titanium_mobile $TI_DIR origin $BRANCH appcelerator
 repo_update titanium_mobile_windows $WINDOWS_DIR origin $BRANCH appcelerator
 repo_update alloy $ALLOY_DIR origin master appcelerator
