@@ -14,7 +14,7 @@ usage() {
     echo ""
     echo "  Options:"
     echo "  -c <config_file> (i.e., jsduck_21.config for 2.1 docs build)."
-    echo "  -o <optional_project> (currently 'alloy' and 'modules' are supported)"
+    echo "  -o <optional_project> (currently 'alloy', 'modules', 'arrow' are supported)"
     echo "  -g <guides_dir> (defaults to htmlguides)."
     echo "  -a <addon_guides_dir> Specified add-on guides."
     echo "  -d <output_dir> (defaults to dist/titanium/3.0)."
@@ -142,18 +142,24 @@ if [ ! "$ARROW" ]; then
 fi
 
 if [ $include_alloy ]; then
-    alloyDirs="${ALLOY}/Alloy/lib ${ALLOY}/docs/apidoc ${DOCTOOLS}/add-ons
+	echo "**** alloy files will be parsed"
+	echo "**** ${ALLOY}/..."
+    alloyDirs="${ALLOY}/Alloy/lib 
+    		   ${ALLOY}/docs/apidoc
+    		   ${DOCTOOLS}/add-ons
                $(find $ALLOY/Alloy/builtins -maxdepth 1 -type f ! -name moment.js)"
 fi
 
 if [ $include_arrow ]; then
+	echo "**** arrow files will be parsed"
+	echo "**** ${ARROW}/..."	
     arrowDirs="${ARROW}/arrow-orm/apidoc
+               ${ARROW}/arrow-orm/lib/connector/capabilities/index.js
                ${ARROW}/arrow-orm/lib/collection.js
                ${ARROW}/arrow-orm/lib/connector.js
                ${ARROW}/arrow-orm/lib/error.js
                ${ARROW}/arrow-orm/lib/instance.js
                ${ARROW}/arrow-orm/lib/model.js
-               ${ARROW}/arrow-orm/lib/connector/capabilities/index.js
                ${ARROW}/arrow/apidoc
                ${ARROW}/arrow/lib/engines
                ${ARROW}/arrow/lib/api.js
@@ -164,20 +170,26 @@ if [ $include_arrow ]; then
 fi
 
 if [ $include_modules ]; then
+	echo "**** module files will be parsed"
     if [ ! "$APPC_MODULES" ]; then
         if [ "$TI_ROOT" ]; then
             APPC_MODULES=${TI_ROOT}/appc_modules
+            echo "**** ${TI_ROOT}/appc_modules/..."
         else
             echo "No appc_modules dir \$APPC_MODULES and \$TI_ROOT not defined. Exiting."
             exit 1
         fi
     fi
-    module_dirs="$APPC_MODULES/ti.map/apidoc $APPC_MODULES/ti.facebook/apidoc
-                 $APPC_MODULES/ti.nfc/apidoc $APPC_MODULES/ti.newsstand/apidoc $TIZEN_MODULE
-                 $APPC_MODULES/ti.coremotion/apidoc $APPC_MODULES/ti.urlsession/apidoc
+    module_dirs="$APPC_MODULES/ti.map/apidoc 
+    			 $APPC_MODULES/ti.facebook/apidoc
+                 $APPC_MODULES/ti.nfc/apidoc 
+                 $APPC_MODULES/ti.newsstand/apidoc 
+                 $APPC_MODULES/ti.coremotion/apidoc
+                 $APPC_MODULES/ti.urlsession/apidoc
                  $APPC_MODULES/ti.touchid/apidoc"
 
-        module_dirs+=" $APPC_MODULES/ti.geofence/apidoc $APPC_MODULES/appcelerator.https/apidoc
+        module_dirs+=" $APPC_MODULES/ti.geofence/apidoc
+        			   $APPC_MODULES/appcelerator.https/apidoc
                        $APPC_MODULES/com.appcelerator.apm/apidoc"
 fi
 
