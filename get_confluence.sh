@@ -31,9 +31,26 @@ function downloadJarFile() {
 
 unzipFile() {
 	date
-	echo "Unzipping $TI_ROOT/Confluence_working/$CONFLUENCE_FILE"
-	unzip -o $TI_ROOT/Confluence_working/$CONFLUENCE_FILE
-	date
+	## detect if the current directory is populated or not
+	current=${PWD}
+	if [ "$(ls -A $current)" ]; then
+		echo "current directory of $current is populated; it should be emptied. [e]mpty?"
+		## Are you sure it should be emptied?
+		read input
+		if [ $input == "empty" ] || [ $input == "e" ]; then
+			echo "Emptying $current"
+			rm -r *
+			echo "Unzipping $TI_ROOT/Confluence_working/$CONFLUENCE_FILE in $current"
+			unzip -o $TI_ROOT/Confluence_working/$CONFLUENCE_FILE
+			date		
+		else
+			echo "Quitting"
+			exit 1
+		fi
+	else
+		echo "current directory is empty; proceed."
+	fi
+	
 }
 
 if [ -s $TI_ROOT/Confluence_working/$CONFLUENCE_FILE ]; then
