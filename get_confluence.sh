@@ -5,7 +5,8 @@
 ## This script should be executed from the doctools/htmlguides 	   ##
 ## directory.													   ##
 ##																   ##
-## For more information visit 
+## For more information visit 									   ##
+## https://wiki.appcelerator.org/x/MJzBAg						   ##
 #####################################################################
 
 DATE=$(date +%Y-%m-%d)
