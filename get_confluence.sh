@@ -1,10 +1,11 @@
 #####################################################################
 ## Purpose: Get the latest version of the guide2 Confluence space  ##
-## so one can publish the latest version of the documentation from ##
-## that space.                                                     ##
+## so one can have one piece of the documentation puzzle.		   ##
 ##																   ##
 ## This script should be executed from the doctools/htmlguides 	   ##
 ## directory.													   ##
+##																   ##
+## For more information visit 
 #####################################################################
 
 DATE=$(date +%Y-%m-%d)
@@ -37,6 +38,7 @@ unzipFile() {
 		echo "current directory of $current is populated; it should be emptied. [e]mpty?"
 		## Are you sure it should be emptied?
 		read input
+		## if user requests to empty directory, empty it and unzip files
 		if [ $input == "empty" ] || [ $input == "e" ]; then
 			echo "Emptying $current"
 			rm -r *
@@ -48,7 +50,8 @@ unzipFile() {
 			exit 1
 		fi
 	else
-		echo "current directory is empty; proceeding with unzipping of $CONFLUENCE_FILE."
+		## current directory is empty; unzip files in it.
+		echo "Current directory is empty; proceeding with unzipping of $CONFLUENCE_FILE."
 		echo "Unzipping $TI_ROOT/Confluence_working/$CONFLUENCE_FILE in $current"
 		unzip -o $TI_ROOT/Confluence_working/$CONFLUENCE_FILE
 		date		
@@ -56,6 +59,8 @@ unzipFile() {
 	
 }
 
+## if the htmlguides directory is missing, add it back in
+## this may be unnecessary but it might be needed as a step for future functionality
 if [ ! -d $TI_ROOT/doctools/htmlguides ]; then
 	echo "htmlguide directory is missing. Creating that directory"
 	mkdir $TI_ROOT/doctools/htmlguides
