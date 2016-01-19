@@ -48,10 +48,18 @@ unzipFile() {
 			exit 1
 		fi
 	else
-		echo "current directory is empty; proceed."
+		echo "current directory is empty; proceeding with unzipping of $CONFLUENCE_FILE."
+		echo "Unzipping $TI_ROOT/Confluence_working/$CONFLUENCE_FILE in $current"
+		unzip -o $TI_ROOT/Confluence_working/$CONFLUENCE_FILE
+		date		
 	fi
 	
 }
+
+if [ ! -d $TI_ROOT/doctools/htmlguides ]; then
+	echo "htmlguide directory is missing. Creating that directory"
+	mkdir $TI_ROOT/doctools/htmlguides
+fi
 
 if [ -s $TI_ROOT/Confluence_working/$CONFLUENCE_FILE ]; then
 	echo "$CONFLUENCE_FILE exists. Do you wish to download it again? [y]es/[n]o/[u]nzip?"
