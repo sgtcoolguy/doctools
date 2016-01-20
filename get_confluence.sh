@@ -2,9 +2,6 @@
 ## Purpose: Get the latest version of the guide2 Confluence space  ##
 ## so one can have one piece of the documentation puzzle.		   ##
 ##																   ##
-## This script should be executed from the doctools/htmlguides 	   ##
-## directory.													   ##
-##																   ##
 ## For more information visit 									   ##
 ## https://wiki.appcelerator.org/x/MJzBAg						   ##
 #####################################################################
@@ -33,9 +30,10 @@ function downloadJarFile() {
 
 unzipFile() {
 	date
-	## detect if the current directory is populated or not
+	## detect if the htmlguides directory is populated or not
+	cd $TI_ROOT/doctools/htmlguides
 	current=${PWD}
-	if [ "$(ls -A $current)" ]; then
+	if [ "$(ls -A $TI_ROOT/doctools/htmlguides)" ]; then
 		echo "current directory of $current is populated; it should be emptied. [e]mpty?"
 		## Are you sure it should be emptied?
 		read input
@@ -60,32 +58,31 @@ unzipFile() {
 	
 }
 
-## Create a series of potentially missing directorys
+## Create a series of potentially missing directories
 ## if the htmlguides directory is missing, add it back in
-## this may be unnecessary but it might be needed as a step for future functionality
 if [ ! -d $TI_ROOT/doctools/htmlguides ]; then
 	echo "htmlguide directory is missing. Creating that directory."
 	mkdir $TI_ROOT/doctools/htmlguides
 fi
-
+## this addition of the dist/platform and dist/arrowdb directories are not necessary for the creation of the htmlguides content but this directory is wiped out from the update_modules.sh script and needs to be added back in before the doc pub can finish.
 if [ ! -d $TI_ROOT/doctools/dist/platform ]; then
 	echo "../dist/platform directory is missing. Creating that directory."
 	mkdir -p $TI_ROOT/doctools/dist/platform
 fi
-
 if [ ! -d $TI_ROOT/doctools/dist/arrowdb ]; then
 	echo "../dist/arrowdb directory is missing. Creating that directory."
 	mkdir -p $TI_ROOT/doctools/dist/arrowdb
 fi
 
 if [ -s $TI_ROOT/Confluence_working/$CONFLUENCE_FILE ]; then
-	echo "$CONFLUENCE_FILE exists. Do you wish to download it again? [y]es/[n]o/[u]nzip?"
+	echo "$CONFLUENCE_FILE exists. Do you wish to download it again or unzip the current file? [y]es/[u]nzip?"
 	read input
 	if [ $input == "yes" ] || [ $input == "y" ]; then
 		echo "Downloading today's guide2 .jar file."
 		downloadJarFile
 	elif [ $input == "unzip" ] || [ $input == "u" ]; then
-		echo "Unzipping the existing guide2 file."
+		echo "Unzipping the existing guide2 file in $TI_ROOT/doctools/htmlguides."
+		cd $TI_ROOT/doctools/htmlguides
 		unzipFile
 	else
 		Echo "Quitting"
