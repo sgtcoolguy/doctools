@@ -22,7 +22,7 @@ function downloadJarFile() {
 	## rename the downloaded .jar file to include the a human readable name
 	mv com.*.jar $CONFLUENCE_FILE
 	## If the working Confluence directory doesn't exist, create it
-	if [ -d $TI_ROOT/Confluence_working]; then
+	if [ -d $TI_ROOT/Confluence_working ]; then
 		cd $TI_ROOT
 		mkdir Confluence_working
 		cd -
