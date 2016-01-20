@@ -60,11 +60,22 @@ unzipFile() {
 	
 }
 
+## Create a series of potentially missing directorys
 ## if the htmlguides directory is missing, add it back in
 ## this may be unnecessary but it might be needed as a step for future functionality
 if [ ! -d $TI_ROOT/doctools/htmlguides ]; then
-	echo "htmlguide directory is missing. Creating that directory"
+	echo "htmlguide directory is missing. Creating that directory."
 	mkdir $TI_ROOT/doctools/htmlguides
+fi
+
+if [ ! -d $TI_ROOT/doctools/dist/platform ]; then
+	echo "../dist/platform directory is missing. Creating that directory."
+	mkdir -p $TI_ROOT/doctools/dist/platform
+fi
+
+if [ ! -d $TI_ROOT/doctools/dist/arrowdb ]; then
+	echo "../dist/arrowdb directory is missing. Creating that directory."
+	mkdir -p $TI_ROOT/doctools/dist/arrowdb
 fi
 
 if [ -s $TI_ROOT/Confluence_working/$CONFLUENCE_FILE ]; then
