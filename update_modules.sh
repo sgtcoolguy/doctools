@@ -1,0 +1,65 @@
+##########################################################################################
+##########################################################################################
+## 									Purpose of Script                                   ##
+##                                                                                      ##
+## Confirm that all necessary repos are accounted for and are current.                  ##
+##                                                                                      ##
+## Note: This script needs to be executed before the retrieval and update of the		##
+## wiki guide2 space as it will update and wipe out the doctools/htmlguides directory.  ##
+##                                                                                      ##
+## For more information visit 							   							    ##
+## https://wiki.appcelerator.org/x/dZzBAg						   						##
+##########################################################################################
+##########################################################################################
+
+date
+## create the appc_modules directory if it is missing
+if [ ! -d $TI_ROOT/appc_modules ]; then
+	echo "appc_modules directory is missing. Creating that directory."
+	mkdir $TI_ROOT/appc_modules
+fi
+
+## cd into the modules directory
+cd $TI_ROOT/appc_modules
+
+updateModules () { ## check to see if a module exists and update it
+	date
+	echo "${blue}Updating/Retrieving ${green}$2${white}"
+	if [ $1 == "apidoc" ]; then ## if the first parameter is a module
+		ACTIVE=$TI_ROOT/appc_modules/$2
+	elif [ $1 == "misc" ]; then ## if the first parameter is a repo
+		ACTIVE=$TI_ROOT/$2
+	fi
+	echo "Setting active directory to $ACTIVE"
+	if [ ! -d "$ACTIVE" ]; then ## if the repo doesn't exist, clone it
+		echo "${blue}Cloning $2${white}"
+		cd $TI_ROOT
+		pwd
+		git clone git@github.com:appcelerator/$2.git
+	else ## if the repo exists, update it
+		echo "${blue}$2 exists; updating${white}"
+		cd $ACTIVE
+		pwd
+		git clean -dfx
+		git reset --hard HEAD
+		git pull origin master
+	fi
+}
+
+## array of apidoc modules to update from their respective repos
+moduleArray=( appcelerator.apm appcelerator.https ti.cloud ti.coremotion ti.facebook ti.geofence ti.map ti.newsstand ti.nfc Ti.SafariDialog ti.touchid ti.urlsession )
+
+## array of misc repos to update
+repoArray=( alloy appc-docs appc_web_docs arrow arrow-orm cloud-docs doctools titanium_mobile titanium_mobile_windows )
+
+for i in "${moduleArray[@]}"
+do
+	echo "updating $i module"
+	updateModules apidoc $i
+done
+
+for i in "${repoArray[@]}"
+do
+	echo "updating $i repo"
+	updateModules misc $i
+done
