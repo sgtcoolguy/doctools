@@ -27,15 +27,21 @@ updateModules () { ## check to see if a module exists and update it
 	echo "${blue}Updating/Retrieving ${green}$2${white}"
 	if [ $1 == "apidoc" ]; then ## if the first parameter is a module
 		ACTIVE=$TI_ROOT/appc_modules/$2
+		GITPATH=git@github.com:appcelerator-modules
 	elif [ $1 == "misc" ]; then ## if the first parameter is a repo
 		ACTIVE=$TI_ROOT/$2
+		GITPATH=git@github.com:appcelerator
 	fi
 	echo "Setting active directory to $ACTIVE"
 	if [ ! -d "$ACTIVE" ]; then ## if the repo doesn't exist, clone it
 		echo "${blue}Cloning $2${white}"
-		cd $TI_ROOT
+		if [ $1 == "apidoc" ]; then
+			cd $ACTIVE
+		elif [ $1 == "misc" ]; then
+			cd $TI_ROOT
+		fi
 		pwd
-		git clone git@github.com:appcelerator/$2.git
+		git clone $GITPATH/$2.git
 	else ## if the repo exists, update it
 		echo "${blue}$2 exists; updating${white}"
 		cd $ACTIVE
@@ -50,7 +56,7 @@ updateModules () { ## check to see if a module exists and update it
 moduleArray=( appcelerator.apm appcelerator.https ti.cloud ti.coremotion ti.facebook ti.geofence ti.map ti.newsstand ti.nfc Ti.SafariDialog ti.touchid ti.urlsession )
 
 ## array of misc repos to update
-repoArray=( alloy appc-docs appc_web_docs arrow arrow-orm cloud-docs doctools titanium_mobile titanium_mobile_windows )
+repoArray=( alloy appc-docs appc_web_docs arrow arrow-orm cloud_docs doctools titanium_mobile titanium_mobile_windows )
 
 for i in "${moduleArray[@]}"
 do
