@@ -55,7 +55,6 @@ unzipFile() {
 		unzip -o $TI_ROOT/Confluence_working/$CONFLUENCE_FILE
 		date		
 	fi
-	
 }
 
 ## Create a series of potentially missing directories
@@ -72,6 +71,11 @@ fi
 if [ ! -d $TI_ROOT/doctools/dist/arrowdb ]; then
 	echo "../dist/arrowdb directory is missing. Creating that directory."
 	mkdir -p $TI_ROOT/doctools/dist/arrowdb
+fi
+## if the Confluence_working is missing, create it
+if [ ! -d $TI_ROOT/Confluence_working ]; then
+	echo "../Confluence_working directory is missing. Create that directory."
+	mkdir $TI_ROOT/Confluence_working
 fi
 
 if [ -s $TI_ROOT/Confluence_working/$CONFLUENCE_FILE ]; then
