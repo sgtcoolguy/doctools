@@ -1,0 +1,20 @@
+## Macro title: Redirect
+## Macro has a body: N
+## Body processing: Selected body processing option
+##
+## Developed by: Brian Immel
+## Date created: 29/01/2016
+## Installed by: Brian Immel
+##
+## @param URL:title=URL|type=string|required=true|desc=URL to redirect to.
+## @param Time:title=Time|type=int|default=10|desc=Time to redirect (in seconds). Defaults to 10 seconds.
+#set($timeOut= $paramTime + "000")
+
+<div id="redirectBox">This page will be redirected to <a href="$paramURL">$paramURL</a> in $paramTime seconds.</div>
+
+<script type="text/javascript">
+	function Redirect() {
+		window.location="$paramURL";
+	}
+	setTimeout('Redirect()', $timeOut);
+</script>
