@@ -31,6 +31,9 @@ updateModules () { ## check to see if a module exists and update it
 	elif [ $1 == "misc" ]; then ## if the first parameter is a repo
 		ACTIVE=$TI_ROOT/$2
 		GITPATH=git@github.com:appcelerator
+	elif [ $1 == "forked" ]; then ## if the first parameter is a forked repo
+		ACTIVE=$TI_ROOT/$2
+		GITHPATH=https://github.com/jawa9000/
 	fi
 	echo "Setting active directory to $ACTIVE"
 	if [ ! -d "$ACTIVE" ]; then ## if the repo doesn't exist, clone it
@@ -56,16 +59,27 @@ updateModules () { ## check to see if a module exists and update it
 moduleArray=( appcelerator.apm appcelerator.https ti.cloud ti.coremotion ti.facebook ti.geofence ti.map ti.newsstand ti.nfc Ti.SafariDialog ti.touchid ti.urlsession )
 
 ## array of misc repos to update
-repoArray=( alloy appc-docs appc_web_docs arrow arrow-orm cloud_docs doctools titanium_mobile titanium_mobile_windows )
+repoArray=( appc-docs appc_web_docs arrow arrow-orm cloud_docs doctools titanium_mobile titanium_mobile_windows )
 
+## forked repos to update
+forkedArray=( alloy )
+
+## loop through all arrays and update/clone as necessary
 for i in "${moduleArray[@]}"
 do
-	echo "updating $i module"
+	echo "Updating $i module"
 	updateModules apidoc $i
 done
 
 for i in "${repoArray[@]}"
 do
-	echo "updating $i repo"
+	echo "Updating $i repo"
 	updateModules misc $i
+done
+
+for i in "${forkedArray[@]}"
+do
+	echo "Updating $i repo"
+	updateModules forked $i
+	echo "Make sure you put in a PR for $i"
 done
