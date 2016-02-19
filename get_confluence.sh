@@ -79,13 +79,18 @@ if [ ! -d $TI_ROOT/Confluence_working ]; then
 fi
 
 if [ -s $TI_ROOT/Confluence_working/$CONFLUENCE_FILE ]; then
-	echo "$CONFLUENCE_FILE exists. Do you wish to download it again or unzip the current file? [y]es/[u]nzip?"
+	echo "$CONFLUENCE_FILE exists. Do you wish to download it again, unzip the current file, or download and unzip latest version (total package)? [d]ownload/[u]nzip/[t]otal?"
 	read input
-	if [ $input == "yes" ] || [ $input == "y" ]; then
+	if [ $input == "download" ] || [ $input == "d" ]; then
 		echo "Downloading today's guide2 .jar file."
 		downloadJarFile
 	elif [ $input == "unzip" ] || [ $input == "u" ]; then
 		echo "Unzipping the existing guide2 file in $TI_ROOT/doctools/htmlguides."
+		cd $TI_ROOT/doctools/htmlguides
+		unzipFile
+	elif [ $input == "total" ] || [ $input == "t" ]; then
+		echo "Downloading latest version of guide2 space and unzipping in $TI_ROOT/doctools/htmlguides."
+		downloadJarFile
 		cd $TI_ROOT/doctools/htmlguides
 		unzipFile
 	else
