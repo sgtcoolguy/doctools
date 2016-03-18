@@ -34,20 +34,20 @@ unzipFile() {
 	cd $TI_ROOT/doctools/htmlguides
 	current=${PWD}
 	if [ "$(ls -A $TI_ROOT/doctools/htmlguides)" ]; then
-		echo "current directory of $current is populated; it should be emptied. [e]mpty?"
+		##echo "current directory of $current is populated; it should be emptied. [e]mpty?"
 		## Are you sure it should be emptied?
-		read input
+		##read input
 		## if user requests to empty directory, empty it and unzip files
-		if [ $input == "empty" ] || [ $input == "e" ]; then
+		##if [ $input == "empty" ] || [ $input == "e" ]; then
 			echo "Emptying $current"
 			rm -r *
 			echo "Unzipping $TI_ROOT/Confluence_working/$CONFLUENCE_FILE in $current"
 			unzip -o $TI_ROOT/Confluence_working/$CONFLUENCE_FILE
 			date		
-		else
-			echo "Quitting"
-			exit 1
-		fi
+		##else
+		##	echo "Quitting"
+		##	exit 1
+		##fi
 	else
 		## current directory is empty; unzip files in it.
 		echo "Current directory is empty; proceeding with unzipping of $CONFLUENCE_FILE."
@@ -63,6 +63,12 @@ if [ ! -d $TI_ROOT/doctools/htmlguides ]; then
 	echo "htmlguide directory is missing. Creating that directory."
 	mkdir $TI_ROOT/doctools/htmlguides
 fi
+## empty the output directory of the guides
+##if [ -d $TI_ROOT/doctools/htmlguides ]; then
+##	echo "Emptying ../htmlguides directory."
+##	cd $TI_ROOT/doctools/htmlguides
+##	rm -r *
+##fi
 ## this addition of the dist/platform and dist/arrowdb directories are not necessary for the creation of the htmlguides content but this directory is wiped out from the update_modules.sh script and needs to be added back in before the doc pub can finish.
 if [ ! -d $TI_ROOT/doctools/dist/platform ]; then
 	echo "../dist/platform directory is missing. Creating that directory."
