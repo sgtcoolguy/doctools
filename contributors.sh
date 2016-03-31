@@ -15,7 +15,7 @@ date
 ## array of apidoc modules to update from their respective repos to check for contributors
 moduleArray=( appcelerator.apm appcelerator.https ti.cloud ti.coremotion ti.facebook ti.geofence ti.map ti.newsstand ti.nfc Ti.SafariDialog ti.touchid ti.urlsession )
 ## array of non-module repos (cloned) to check for contributors
-nonModuleArray=( appc-cli titanium_mobile_windows )
+nonModuleArray=( appc-cli titanium_mobile_windows appc-cli-titanium titanium )
 ## array of forked repo to check for contributors
 forkedArray=( alloy titanium_mobile )
 
