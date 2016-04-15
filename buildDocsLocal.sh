@@ -34,10 +34,10 @@ cd $TI_ROOT/doctools
 sh deploy.sh prod > messages.txt
 sh clouddeploy.sh >> messages.txt
 sh deploy.sh -o arrow -o alloy -o modules -s prod >> messages.txt
+node stripFooter.js >> message.txt
 sh clouddeploy.sh -s prod >> messages.txt
 bash clouddeploy.sh prod >> messages.txt
 bash build_platform.sh >> messages.txt
-node stripFooter.js >> message.txt
 cd $TI_ROOT/appc_web_docs
 bash ../doctools/copy_platform.sh >> messages.txt
 bash ../doctools/copy_cloud.sh >> messages.txt
