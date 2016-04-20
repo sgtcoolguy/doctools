@@ -26,7 +26,7 @@ fi
 	##rm -r *
 ##fi
 
-remove messages.txt
+rm messages.txt
 touch messages.txt
 
 ## run through the basic scripts to build the docs locally
