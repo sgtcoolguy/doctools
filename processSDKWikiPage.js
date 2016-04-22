@@ -40,7 +40,13 @@ wikiPage = CSSString + wikiPage;
 fs.writeFileSync(location + '/' + whichPage, wikiPage);
 // Rename HTML to strip out everything but the version number, ask user to add "GA" or "RC" and add .html extension
 whichPage = whichPage.slice(13,whichPage.length); // '5.1.2_Release_Note.html'
-whichPage = whichPage.substr(0,whichPage.indexOf("_")); // '5.1.2'
+if (whichPage.indexOf("Beta")) {
+	whichPage = whichPage.substr(0,whichPage.indexOf(".Beta"));
+} else if (whichPage.indexOf("RC")) {
+	whichPage = whichPage.substr(0,whichPage.indexOf(".RC"));
+} else if (whichPage.indexOf("GA")) {
+	whichPage = whichPage.substr(0,whichPage.indexOf(".GA"));
+}
 
 // Get user input on the type of release note: GA, RC, or Beta
 const readline = require('readline');
