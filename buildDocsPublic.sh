@@ -58,5 +58,6 @@ echo "If everything looks good, check in the appc_web_docs directory."
 ## open the Jenkins job pages so you can publish the docs (as needed)
 open http://devops-jenkins.appcelerator.org/job/appc_web_docs/
 open http://devops-jenkins.appcelerator.org/job/server_package_deployment/
+echo "c60fgOrunvxQnj8RY"
 
 echo "Make sure you run the update_solr.sh script after Jenkins is done."
