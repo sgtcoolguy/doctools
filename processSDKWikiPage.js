@@ -75,6 +75,6 @@ rl.on('line', (line) => {
 })
 
 function writeNMove(page,location,content) { // write out file and put in the production location
-	console.log(page + " has been processed and moved to " + location);
+	console.log(whichPage + " has been processed and moved to " + location);
 	fs.writeFileSync(location + '/' + page, content);
 }

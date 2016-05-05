@@ -1,7 +1,7 @@
 ## Purpose of script: Download a user supplied wiki page pageId, extract it's contents, and send the HTML file to a node script for content conditioning.
 ##
 ## See https://wiki.appcelerator.org/x/bK3BAg for documentation
-
+SECONDS=0
 TEMPDIR='SDK-HTMLtemp'
 cd $TI_ROOT/doctools
 echo "Removing any leftover Titanium release note HTML files"
@@ -43,3 +43,6 @@ outputDir=$TI_ROOT'/appc_web_docs/platform/release-notes' ## output directory wh
 node ../processSDKWikiPage $HTML $location $outputDir
 
 open $HTML ## open the post-processed version of the HTML file
+
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."

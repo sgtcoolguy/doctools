@@ -5,6 +5,8 @@
 ## ?															   ##
 #####################################################################
 
+SECONDS=0
+
 ## empty ../platform directory
 if [ -d $TI_ROOT/doctools/dist/platform ]; then
 	echo "Emptying ../dist/platform directory."
@@ -48,4 +50,5 @@ open -a TextWrangler messages.txt
 ## open localhost and manually review the pages
 open http://localhost
 echo "Manually check the page(s) you updated."
-
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."

@@ -4,7 +4,7 @@
 ## For more information visit 									   ##
 ## ?															   ##
 #####################################################################
-
+SECONDS=0
 ## empty ../platform directory
 if [ -d $TI_ROOT/doctools/dist/platform ]; then
 	echo "Emptying ../dist/platform directory."
@@ -60,4 +60,8 @@ open http://devops-jenkins.appcelerator.org/job/appc_web_docs/
 open http://devops-jenkins.appcelerator.org/job/server_package_deployment/
 echo "c60fgOrunvxQnj8RY"
 
-echo "Make sure you run the update_solr.sh script after Jenkins is done."
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
+
+echo "Make sure you run the update_solr.sh script after Jenkins is done:"
+echo "cd $TI_ROOT/appc_web_doc; sh update_solr.sh"
