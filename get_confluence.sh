@@ -6,6 +6,7 @@
 ## https://wiki.appcelerator.org/x/MJzBAg						   ##
 #####################################################################
 
+SECONDS=0
 DATE=$(date +%Y-%m-%d)
 CONFLUENCE_FILE=confluence_guide2-$DATE.zip
 date
@@ -108,3 +109,6 @@ else
 	downloadJarFile
 	unzipFile
 fi
+
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
