@@ -64,4 +64,4 @@ duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 
 echo "Make sure you run the update_solr.sh script after Jenkins is done:"
-echo "cd $TI_ROOT/appc_web_doc; sh update_solr.sh"
+echo "cd $TI_ROOT/appc_web_docs; sh update_solr.sh"
