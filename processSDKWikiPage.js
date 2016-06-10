@@ -8,6 +8,9 @@ var fs = require('fs');
 var whichPage = process.argv[2]; // variable for which wiki page the command line argue is passing in
 var location = process.argv[3]; // current directory where data lives
 var outputDir = process.argv[4]; // output directory to move the processed HTML file
+console.log("whichPage: " + whichPage);
+console.log("location: " + location);
+console.log("outputDir: " + outputDir);
 
 // get the output of the getSingleWiki.sh into a string, remove various elements, replace numerous elements, add some basics CSS, and save changes to file
 
@@ -39,14 +42,9 @@ wikiPage = CSSString + wikiPage;
 
 fs.writeFileSync(location + '/' + whichPage, wikiPage);
 // Rename HTML to strip out everything but the version number, ask user to add "GA" or "RC" and add .html extension
-whichPage = whichPage.slice(13,whichPage.length); // '5.1.2_Release_Note.html'
-if (whichPage.indexOf("Beta")) {
-	whichPage = whichPage.substr(0,whichPage.indexOf(".Beta"));
-} else if (whichPage.indexOf("RC")) {
-	whichPage = whichPage.substr(0,whichPage.indexOf(".RC"));
-} else if (whichPage.indexOf("GA")) {
-	whichPage = whichPage.substr(0,whichPage.indexOf(".GA"));
-}
+whichPage = whichPage.slice(13,whichPage.length); // 'Titanium_SDK_5.3.0.GA_Release_Note.html'
+whichPage = whichPage.replace(/[a-z]/gi,''); // '5.3.0.__.'
+whichPage = whichPage.substr(0,whichPage.length - 4); // '5.3.0'
 
 // Get user input on the type of release note: GA, RC, or Beta
 const readline = require('readline');

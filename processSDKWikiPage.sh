@@ -42,7 +42,10 @@ outputDir=$TI_ROOT'/appc_web_docs/platform/release-notes' ## output directory wh
 
 node ../processSDKWikiPage $HTML $location $outputDir
 
-open $HTML ## open the post-processed version of the HTML file
+## cd into output directory and open the last created file (which should be the html file just created by the node script)
+cd $outputDir
+lastFile="$(ls -tr | tail -1)"
+open $lastFile
 
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
