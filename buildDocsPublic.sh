@@ -1,9 +1,11 @@
 #####################################################################
 ## Purpose: semi-automate the documentation build process locally  ##
+## for public documentation build								   ##
 ##																   ##
 ## For more information visit 									   ##
-## ?															   ##
+## https://wiki.appcelerator.org/x/uMHBAg						   ##
 #####################################################################
+
 SECONDS=0
 ## empty ../platform directory
 if [ -d $TI_ROOT/doctools/dist/platform ]; then
@@ -55,6 +57,8 @@ open http://localhost/platform/latest/#!/guide
 echo "Manually check the page(s) you updated."
 echo "If everything looks good, check in the appc_web_docs directory."
 
+## ** consider adding an input to update the repo and commit it **
+
 ## open the Jenkins job pages so you can publish the docs (as needed)
 open http://devops-jenkins.appcelerator.org/job/appc_web_docs/
 open http://devops-jenkins.appcelerator.org/job/server_package_deployment/
@@ -63,5 +67,17 @@ echo "c60fgOrunvxQnj8RY"
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 
-echo "Make sure you run the update_solr.sh script after Jenkins is done:"
-echo "cd $TI_ROOT/appc_web_docs; sh update_solr.sh"
+echo "update solr index? [y]es?"
+read input
+if [ $input == "y" ] || [ $input == "yes" ]; then
+	SECONDS=0
+	date
+	echo "Executing update_solr.sh from the appc_web_docs directory"
+	cd $TI_ROOT/appc_web_docs
+	sh update_solr.sh
+	duration=$SECONDS
+	echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
+else
+	echo "Make sure you run the update_solr.sh script after Jenkins is done:"
+	echo "cd $TI_ROOT/appc_web_docs; sh update_solr.sh"
+fi
