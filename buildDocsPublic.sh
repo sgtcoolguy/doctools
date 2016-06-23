@@ -22,11 +22,11 @@ if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
 fi
 
 ## empty the output directory of the guides
-##if [ -d $TI_ROOT/doctools/htmlguides ]; then
-	##echo "Emptying ../htmlguides directory."
-	##cd $TI_ROOT/doctools/htmlguides
-	##rm -r *
-##fi
+if [ -d $TI_ROOT/doctools/htmlguides ]; then
+	echo "Emptying ../htmlguides directory."
+	cd $TI_ROOT/doctools/htmlguides
+	rm -r *
+fi
 
 rm messages.txt
 touch messages.txt
@@ -67,6 +67,8 @@ echo "c60fgOrunvxQnj8RY"
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 
+say "public build done"
+
 echo "update solr index? [y]es?"
 read input
 if [ $input == "y" ] || [ $input == "yes" ]; then
@@ -77,6 +79,7 @@ if [ $input == "y" ] || [ $input == "yes" ]; then
 	sh update_solr.sh
 	duration=$SECONDS
 	echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
+	say "solr index update done"
 else
 	echo "Make sure you run the update_solr.sh script after Jenkins is done:"
 	echo "cd $TI_ROOT/appc_web_docs; sh update_solr.sh"

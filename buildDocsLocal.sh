@@ -22,11 +22,11 @@ if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
 fi
 
 ## empty the output directory of the guides
-##if [ -d $TI_ROOT/doctools/htmlguides ]; then
-	##echo "Emptying ../htmlguides directory."
-	##cd $TI_ROOT/doctools/htmlguides
-	##rm -r *
-##fi
+if [ -d $TI_ROOT/doctools/htmlguides ]; then
+	echo "Emptying ../htmlguides directory."
+	cd $TI_ROOT/doctools/htmlguides
+	rm -r *
+fi
 
 rm messages.txt
 touch messages.txt
@@ -52,3 +52,5 @@ open http://localhost
 echo "Manually check the page(s) you updated."
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
+
+say "local build done"
