@@ -22,11 +22,11 @@ if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
 fi
 
 ## empty the output directory of the guides
-if [ -d $TI_ROOT/doctools/htmlguides ]; then
-	echo "Emptying ../htmlguides directory."
-	cd $TI_ROOT/doctools/htmlguides
-	rm -r *
-fi
+##if [ -d $TI_ROOT/doctools/htmlguides ]; then
+##	echo "Emptying ../htmlguides directory."
+##	cd $TI_ROOT/doctools/htmlguides
+##	rm -r *
+##fi
 
 rm messages.txt
 touch messages.txt
@@ -68,6 +68,9 @@ duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 
 say "public build done"
+
+echo "If this is a GA release, don't forget to generate the HTML version of the release note."
+open https://wiki.appcelerator.org/display/~bimmel/Modifying+and+Cleaning+Up+SDK+Release+Note+-+HTML+Version
 
 echo "update solr index? [y]es?"
 read input
