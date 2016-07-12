@@ -3,9 +3,10 @@
 ## See https://wiki.appcelerator.org/x/bK3BAg for documentation
 SECONDS=0
 TEMPDIR='SDK-HTMLtemp'
-cd $TI_ROOT/doctools
+cd $TI_ROOT/doctools/$TEMPDIR ##/Users/bimmel/Documents/Repositories/doctools/SDK-HTMLtemp
 echo "Removing any leftover Titanium release note HTML files"
-rm Titanium_SDK*.html -r
+rm Titanium_SDK*.html
+cd $TI_ROOT/doctools
 
 pageId = $1 ## the only argument this script takes is the pageId of the wiki page you are trying to retrieve and process
 
