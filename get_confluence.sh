@@ -65,11 +65,11 @@ if [ ! -d $TI_ROOT/doctools/htmlguides ]; then
 	mkdir $TI_ROOT/doctools/htmlguides
 fi
 ## empty the output directory of the guides
-##if [ -d $TI_ROOT/doctools/htmlguides ]; then
-##	echo "Emptying ../htmlguides directory."
-##	cd $TI_ROOT/doctools/htmlguides
-##	rm -r *
-##fi
+if [ -d $TI_ROOT/doctools/htmlguides ]; then
+	echo "Emptying ../htmlguides directory."
+	cd $TI_ROOT/doctools/htmlguides
+	rm -r *
+fi
 ## this addition of the dist/platform and dist/arrowdb directories are not necessary for the creation of the htmlguides content but this directory is wiped out from the update_modules.sh script and needs to be added back in before the doc pub can finish.
 if [ ! -d $TI_ROOT/doctools/dist/platform ]; then
 	echo "../dist/platform directory is missing. Creating that directory."
