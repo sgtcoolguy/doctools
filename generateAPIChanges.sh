@@ -17,9 +17,9 @@ SECONDS=0
 ROOT="/Users/bimmel/temp_repos"
 
 echo "Enter the prior and current versions to generate API change"
-echo "Previous version: "
+echo "Previous version: " ## 5.2.0
 read previous
-echo "Current version: "
+echo "Current version: " ## 5.3.2 (version higher than the previous)
 read current
 
 if [[ -z $previous || -z $current ]]; then
@@ -53,14 +53,13 @@ if [ -f $ROOT/titanium_mobile/dist/*.html ]; then
 fi
 
 ## generate API change report
-echo "Generating API change report from $previous to $current"
+echo "Looking for API changes from $previous to $current"
 cd $ROOT/titanium_mobile/apidoc
-node docgen -f changes --start $previous --end $current
+node docgen -f changes --start $previous --end $current > $ROOT/report.txt
 
-## open the newly generated API change report
+grep 'No API changes found.' $ROOT/report.txt
 open $ROOT/titanium_mobile/dist/*.html
-
-say "API change report generated. End of line."
+say "API change scan complete. End of line."
 
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
