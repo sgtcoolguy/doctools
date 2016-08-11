@@ -16,50 +16,85 @@ SECONDS=0
 
 ROOT="/Users/bimmel/temp_repos"
 
+## Ask user for previous and current versions to generate report on
 echo "Enter the prior and current versions to generate API change"
 echo "Previous version: " ## 5.2.0
 read previous
-echo "Current version: " ## 5.3.2 (version higher than the previous)
+echo "Enter the target version plus 0.0.1 so that the current version is included in the report."
+echo "Current version (+0.0.1): " ## 5.3.2 (version higher than the previous)
 read current
 
+
+## Check to see if user entered in numbers for both inputs
 if [[ -z $previous || -z $current ]]; then
 	echo "You must enter both a previous and current version for this script to work."
+	echo -e "\a\a"
 	exit 1
 fi
 
-## if the titanium_mobile repo isn't present, go get it; otherwise, update it
+## Repo fetch and/or update
+## If the titanium_mobile repo isn't present, go get it; otherwise, attempt to update it
 if [ ! -d $ROOT/titanium_mobile ]; then
-	echo "titanium_mobile repo wasn't found; fetching it now."
+	echo "\nTitanium_mobile repo wasn't found; fetching it now."
 	cd $ROOT
 	git clone https://github.com/appcelerator/titanium_mobile.git
 else
-	echo "Updating titanium_mobile repo."
+	echo "\nUpdating titanium_mobile repo."
 	cd $ROOT/titanium_mobile
 	git fetch origin master
 fi
 
-## check to see in pagedown npm module has been installed
+## If the Titanium_mobile_windows repo isn't present, go get it; otherwise, attempt to update it
+if [ ! -d $ROOT/titanium_mobile_windows ]; then
+	echo "\nTitanium_mobile_windows repo wasn't found; fetching it now."
+	cd $ROOT
+	git clone https://github.com/appcelerator/titanium_mobile_windows.git
+else
+	echo "\nUpdating titanium_mobile_windows repo."
+	cd $ROOT/titanium_mobile_windows
+	git fetch origin master
+fi
+
+
+## Check for select NPM modules
+## Check to see in pagedown NPM module has been installed
 if [ ! -d $ROOT/titanium_mobile/node_modules/pagedown ]; then
-	echo "The pagedown NPM module was not found. Installing it now."
+	echo "\nThe pagedown NPM module was not found. Installing it now."
 	cd $ROOT/titanium_mobile
 	npm install pagedown
 fi
 
-## remove previous API change reports
-if [ -f $ROOT/titanium_mobile/dist/*.html ]; then
-	echo "Removing previous API change reports."
-	cd $ROOT/titanium_mobile/dist/
+## Confirm js-yaml is installed, if not, get it
+if [ ! -d $ROOT/titanium_mobile/node_modules/js-yaml ]; then
+	echo "\nThe ys-yaml NPM module was not found. Installing it now."
+	cd $ROOT/titanium_mobile
+	npm install js-yaml
+fi
+
+
+## Remove previous API change reports
+if [ -d $ROOT/titanium_mobile/dist/ ]; then
+	echo "\nRemoving old API change reports from $ROOT/titanium_mobile/dist"
+	cd $ROOT/titanium_mobile/dist
 	rm *.html
 fi
 
-## generate API change report
-echo "Looking for API changes from $previous to $current"
-cd $ROOT/titanium_mobile/apidoc
-node docgen -f changes --start $previous --end $current > $ROOT/report.txt
 
-grep 'No API changes found.' $ROOT/report.txt
-open $ROOT/titanium_mobile/dist/*.html
-say "API change scan complete. End of line."
+## Generate API change report
+echo "Looking for API changes from version $previous to $current"
+cd $ROOT/titanium_mobile/apidoc
+node docgen -f changes --start $previous --end $current -a $ROOT/titanium_mobile_windows/apidoc/Titanium
+
+
+## Open API report if one was generated
+if [ -f $ROOT/titanium_mobile/dist/*.html ]; then
+	open $ROOT/titanium_mobile/dist/*.html
+	say "API change scan complete. End of line."
+else
+	echo "\nNo API changes between versions $previous and $current."
+	say "No API changes between $previous and $current. End of line"
+fi
+
 
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
