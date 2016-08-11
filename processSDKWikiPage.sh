@@ -2,7 +2,10 @@
 ##
 ## See https://wiki.appcelerator.org/x/bK3BAg for documentation
 SECONDS=0
+
+## empty any leftover Titanium release note files in temp dir
 TEMPDIR='SDK-HTMLtemp'
+echo $TI_ROOT/doctools/$TEMPDIR
 cd $TI_ROOT/doctools/$TEMPDIR ##/Users/bimmel/Documents/Repositories/doctools/SDK-HTMLtemp
 echo "Removing any leftover Titanium release note HTML files"
 rm Titanium_SDK*.html
