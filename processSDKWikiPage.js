@@ -6,6 +6,7 @@
 var fs = require('fs');
 
 var whichPage = process.argv[2]; // variable for which wiki page the command line argue is passing in
+var whichPage2 = whichPage;
 var location = process.argv[3]; // current directory where data lives
 var outputDir = process.argv[4]; // output directory to move the processed HTML file
 console.log("whichPage: " + whichPage);
@@ -22,6 +23,7 @@ var firstLine = wikiPage.indexOf('<?xml version="1.0" encoding="UTF-8" ?>'); //0
 var bodyLine = wikiPage.indexOf('<h2 class="heading ">'); // first line of page content
 wikiPage = wikiPage.slice(bodyLine,wikiPage.length);
 
+
 // Note: these two arrays are order dependent. If you add/remove anything from one array, be sure to match it in the other.
 // Find/Replace content in the page you wish to process by listing the item you wish to find in the replaceThis array with the new item in the withThis array.
 var replaceThis = ['<h2 class="heading "><span>','</span></h2>','<h3 class="heading ">','</h3>','<h2><span>','</span></h2>','<li class=" ">    <p  >','</p>\n</li>','<p  >','<h4','</h4>','<h5','</h5>','<div xmlns="http://www.w3.org/1999/xhtml" class="confbox programlisting scroll-unprocessed">','<div class="defaultnew syntaxhighlighter">',' class="plain"',' class="line"',' class="value"',' class="external-link external-link"',' class="section section-3 "',' class=" "','    </p>','    </li>',' class="toc-indentation "','  class="document-link "','</p>\n<ul',' class="section section-4 "',' class="section section-5 "',' class="heading "',' class="comments"',' class="keyword"','<td  class="confluenceTh"','<li class="li1 ">    <p>','</p>\n<ul>','    <p  class="p1">',' class="section section-2 "','<h3><span>','</span></h3>','  class="confluenceTh" rowspan="1" colspan="1"','  class="confluenceTd" rowspan="1" colspan="1"',' class="confluenceTable"'];
@@ -31,6 +33,7 @@ for (var i = 0; i < replaceThis.length; i++) { // loop through arrays and find/r
 	var re = new RegExp(replaceThis[i], 'g');
 	wikiPage = wikiPage.replace(re, withThis[i]);
 }
+
 
 var footer = wikiPage.indexOf('<div class="footer">'); // ~'3460'
 var nearEnd = wikiPage.indexOf('<div class="footer">');
@@ -45,6 +48,10 @@ fs.writeFileSync(location + '/' + whichPage, wikiPage);
 whichPage = whichPage.slice(13,whichPage.length); // 'Titanium_SDK_5.3.0.GA_Release_Note.html'
 whichPage = whichPage.replace(/[a-z]/gi,''); // '5.3.0.__.'
 whichPage = whichPage.substr(0,whichPage.length - 4); // '5.3.0'
+
+// Fix absolute links in the ToC with relative links
+var replaceToCLinks = new RegExp('href="' + whichPage2, 'g'); // 'Titanium_SDK_5.4.0.GA_Release_Note.html'
+wikiPage = wikiPage.replace(replaceToCLinks, 'href="');
 
 // Get user input on the type of release note: GA, RC, or Beta
 const readline = require('readline');
