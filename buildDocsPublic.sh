@@ -21,13 +21,6 @@ if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
 	rm -r *
 fi
 
-## empty the output directory of the guides
-##if [ -d $TI_ROOT/doctools/htmlguides ]; then
-##	echo "Emptying ../htmlguides directory."
-##	cd $TI_ROOT/doctools/htmlguides
-##	rm -r *
-##fi
-
 rm messages.txt
 touch messages.txt
 
