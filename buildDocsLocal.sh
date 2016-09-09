@@ -21,22 +21,31 @@ if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
 	rm -r *
 fi
 
-## empty the output directory of the guides
-if [ -d $TI_ROOT/doctools/htmlguides ]; then
-	echo "Emptying ../htmlguides directory."
-	cd $TI_ROOT/doctools/htmlguides
-	rm -r *
-fi
-
+cd $TI_ROOT/doctools
 rm messages.txt
 touch messages.txt
 
+## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
+
+## Install npm js-yaml and pagedown in the titanium_mobile/apidoc (as it may have been wiped out from pulling a fresh copy of the repo)
+echo "Confirming npm modules ys-yaml and pagedown are installed in $TI_ROOT/titanium_mobile/apidoc"
+cd $TI_ROOT/titanium_mobile/apidoc
+npm install js-yaml
+npm install pagedown
+
+## Install npm cheerio, xml2js, and shelljs in the doctools directory (in case it was wiped out by a result repo update)
+echo "Confirming npm modules cheerio, xml2js, and shelljs are installed in $TI_ROOT/doctools"
+cd $TI_ROOT/doctools
+npm install cheerio
+npm install xml2js
+npm install shelljs
+
 ## run through the basic scripts to build the docs locally
+
 cd $TI_ROOT/doctools
 sh deploy.sh prod > messages.txt
 sh clouddeploy.sh >> messages.txt
 sh deploy.sh -o arrow -o alloy -o modules -s prod >> messages.txt
-node stripFooter.js >> message.txt
 sh clouddeploy.sh -s prod >> messages.txt
 bash clouddeploy.sh prod >> messages.txt
 bash build_platform.sh >> messages.txt
@@ -54,3 +63,5 @@ duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 
 say "local build done"
+
+#Error: /Users/bimmel/Documents/Repositories/doctools/build/guides/guides.json is not a valid JSON file
