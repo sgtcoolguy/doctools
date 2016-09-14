@@ -24,18 +24,32 @@ fi
 rm messages.txt
 touch messages.txt
 
+## ask if the repos should be updated. If not, check on the npm modules anyway
+printf "update repos? [y]es?"
+read -r input1
+
+cd $TI_ROOT/doctools
+if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
+	echo "Updating repos.\n"
+	sh update_modules.sh
+else
+	## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
+	echo "Repo update skipped.\n Checking status of NPM modules.\n"
+	sh updateNPMModules.sh
+fi
+
 ## run through the basic scripts to build the docs locally
 cd $TI_ROOT/doctools
-sh deploy.sh prod > messages.txt
-sh clouddeploy.sh >> messages.txt
-sh deploy.sh -o arrow -o alloy -o modules -s prod >> messages.txt
-node stripFooter.js >> message.txt
-sh clouddeploy.sh -s prod >> messages.txt
-bash clouddeploy.sh prod >> messages.txt
-bash build_platform.sh >> messages.txt
+sh deploy.sh prod 2> messages.txt
+sh clouddeploy.sh 2>> messages.txt
+sh deploy.sh -o arrow -o alloy -o modules -s prod 2>> messages.txt
+node stripFooter.js 2>> message.txt
+sh clouddeploy.sh -s prod 2>> messages.txt
+bash clouddeploy.sh prod 2>> messages.txt
+bash build_platform.sh 2>> messages.txt
 cd $TI_ROOT/appc_web_docs
-bash ../doctools/copy_platform.sh >> messages.txt
-bash ../doctools/copy_cloud.sh >> messages.txt
+bash ../doctools/copy_platform.sh 2>> messages.txt
+bash ../doctools/copy_cloud.sh 2>> messages.txt
 
 ## open the message.txt file and you need to manually search for error messages
 open -a TextWrangler messages.txt
@@ -47,8 +61,7 @@ open http://localhost/platform/latest/#!/api
 open http://localhost/arrowdb/latest/
 open http://localhost/arrowdb/latest/#!/api
 open http://localhost/platform/latest/#!/guide
-echo "Manually check the page(s) you updated."
-echo "If everything looks good, check in the appc_web_docs directory."
+echo "Manually check the page(s) you updated.\nIf everything looks good, check in the appc_web_docs directory."
 
 ## ** consider adding an input to update the repo and commit it **
 
@@ -65,9 +78,9 @@ say "public build done"
 echo "If this is a GA release, don't forget to generate the HTML version of the release note."
 open https://wiki.appcelerator.org/display/~bimmel/Modifying+and+Cleaning+Up+SDK+Release+Note+-+HTML+Version
 
-echo "update solr index? [y]es?"
-read input
-if [ $input == "y" ] || [ $input == "yes" ]; then
+printf "update solr index? [y]es?"
+read -r input2
+if [ $input2 == "y" ] || [ $input2 == "yes" ]; then
 	SECONDS=0
 	date
 	echo "Executing update_solr.sh from the appc_web_docs directory"
@@ -77,6 +90,5 @@ if [ $input == "y" ] || [ $input == "yes" ]; then
 	echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 	say "solr index update done"
 else
-	echo "Make sure you run the update_solr.sh script after Jenkins is done:"
-	echo "cd $TI_ROOT/appc_web_docs; sh update_solr.sh"
+	echo "Make sure you run the update_solr.sh script after Jenkins is done:\ncd $TI_ROOT/appc_web_docs; sh update_solr.sh"
 fi
