@@ -91,7 +91,6 @@ printf "update solr index? [y]es?"
 read -r input3
 if [ $input3 == "y" ] || [ $input3 == "yes" ]; then
 	SECONDS=0
-	date
 	echo "Executing update_solr.sh from the appc_web_docs directory"
 	cd $TI_ROOT/appc_web_docs
 	sh update_solr.sh
