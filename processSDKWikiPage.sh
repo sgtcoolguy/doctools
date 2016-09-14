@@ -25,6 +25,8 @@ REST_URL=$URL$schemeId$rootPageId$1
 echo "Getting wiki page"
 wget --content-disposition "$REST_URL&os_username=$CONFLUENCE_USERNAME&os_password=$CONFLUENCE_PASSWORD"
 
+## ** there should be a failsafe here in case the wget fails to retrieve anything
+
 ## create two temporary directory: one for the extract HTML file and one for the unzipped content
 echo "Moving wiki page contents into temp directory"
 mkdir $TEMPDIR
