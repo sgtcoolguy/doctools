@@ -25,20 +25,19 @@ cd $TI_ROOT/doctools
 rm messages.txt
 touch messages.txt
 
-## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
+## ask if the repos should be updated. If not, check on the npm modules anyway
+printf "update repos? [y]es?"
+read -r input1
 
-## Install npm js-yaml and pagedown in the titanium_mobile/apidoc (as it may have been wiped out from pulling a fresh copy of the repo)
-echo "Confirming npm modules ys-yaml and pagedown are installed in $TI_ROOT/titanium_mobile/apidoc"
-cd $TI_ROOT/titanium_mobile/apidoc
-npm install js-yaml
-npm install pagedown
-
-## Install npm cheerio, xml2js, and shelljs in the doctools directory (in case it was wiped out by a result repo update)
-echo "Confirming npm modules cheerio, xml2js, and shelljs are installed in $TI_ROOT/doctools"
 cd $TI_ROOT/doctools
-npm install cheerio
-npm install xml2js
-npm install shelljs
+if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
+	echo "Updating repos.\n"
+	sh update_modules.sh
+else
+	## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
+	echo "Repo update skipped.\n Checking status of NPM modules.\n"
+	sh updateNPMModules.sh
+fi
 
 ## run through the basic scripts to build the docs locally
 
