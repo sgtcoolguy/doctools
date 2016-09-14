@@ -12,7 +12,8 @@
 ##########################################################################################
 ##########################################################################################
 
-date
+SECONDS=0
+
 ## create the appc_modules directory if it is missing
 if [ ! -d $TI_ROOT/appc_modules ]; then
 	echo "appc_modules directory is missing. Creating that directory."
@@ -83,3 +84,11 @@ do
 	updateModules forked $i
 	echo "Make sure you put in a PR for $i"
 done
+
+## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
+sh updateNPMModules.sh
+
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
+
+say "Modules update complete"
