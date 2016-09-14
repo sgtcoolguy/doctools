@@ -21,9 +21,6 @@ if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
 	rm -r *
 fi
 
-rm messages.txt
-touch messages.txt
-
 ## ask if the repos should be updated. If not, check on the npm modules anyway
 printf "update repos? [y]es?"
 read -r input1
@@ -37,6 +34,9 @@ else
 	echo "Repo update skipped.\n Checking status of NPM modules.\n"
 	sh updateNPMModules.sh
 fi
+
+rm messages.txt
+touch messages.txt
 
 ## run through the basic scripts to build the docs locally
 cd $TI_ROOT/doctools
@@ -75,12 +75,21 @@ echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 
 say "public build done"
 
-echo "If this is a GA release, don't forget to generate the HTML version of the release note."
-open https://wiki.appcelerator.org/display/~bimmel/Modifying+and+Cleaning+Up+SDK+Release+Note+-+HTML+Version
-
-printf "update solr index? [y]es?"
+printf "Generate an HTML version of the release not (if this is for a SDK release)? [y]es?"
 read -r input2
 if [ $input2 == "y" ] || [ $input2 == "yes" ]; then
+	printf "What is the Wiki page ID number?"
+	read -r pageIDNumber
+	if [ $pageIDNumber ]; then
+		sh processSDKWikiPage.sh $pageIDNumber
+	else
+		echo "You must enter a page id number to generate the HTML version of the SDK release note.\nIf you still need to generate one, manually run processSDKWikiPage.sh."
+	fi
+fi
+
+printf "update solr index? [y]es?"
+read -r input3
+if [ $input3 == "y" ] || [ $input3 == "yes" ]; then
 	SECONDS=0
 	date
 	echo "Executing update_solr.sh from the appc_web_docs directory"
