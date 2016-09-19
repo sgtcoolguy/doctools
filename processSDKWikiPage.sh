@@ -52,6 +52,7 @@ node ../processSDKWikiPage $HTML $location $outputDir
 cd $outputDir
 lastFile="$(ls -tr | tail -1)"
 open $lastFile
+open -a TextWrangler $lastFile
 
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
