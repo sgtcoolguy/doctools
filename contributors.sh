@@ -9,7 +9,7 @@
 ##########################################################################################
 ##########################################################################################
 
-
+SECONDS=0
 date
 
 ## array of apidoc modules to update from their respective repos to check for contributors
@@ -58,6 +58,8 @@ else
 	## loop through the moduleArray and get contributors
 	for i in "${moduleArray[@]}"
 	do
+		echo ""
+		echo ""
 		echo "Getting contributors for $i"
 		cd $TI_ROOT/appc_modules/$i
 		echo "$i contributors:" >>  $TI_ROOT/SDK-contributors.txt
@@ -85,4 +87,9 @@ else
 	done
 fi
 
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
+
 say "Contributor list complete"
+
+open -a TextWrangler $TI_ROOT/SDK-contributors.txt

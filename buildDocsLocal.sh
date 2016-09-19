@@ -5,8 +5,7 @@
 ## ?															   ##
 #####################################################################
 
-
-
+SECONDS=0
 
 ## empty ../platform directory
 if [ -d $TI_ROOT/doctools/dist/platform ]; then
@@ -15,7 +14,6 @@ if [ -d $TI_ROOT/doctools/dist/platform ]; then
 	rm -r *	
 fi
 
-
 ## empty ../arrowdb directory
 if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
 	echo "Emptying ../dist/arrowdb directory."
@@ -23,15 +21,26 @@ if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
 	rm -r *
 fi
 
+cd $TI_ROOT/doctools
+rm messages.txt
+touch messages.txt
 
-## empty the output directory of the guides
-##if [ -d $TI_ROOT/doctools/htmlguides ]; then
-	##echo "Emptying ../htmlguides directory."
-	##cd $TI_ROOT/doctools/htmlguides
-	##rm -r *
-##fi
+## ask if the repos should be updated. If not, check on the npm modules anyway
+printf "update repos? [y]es?"
+read -r input1
+
+cd $TI_ROOT/doctools
+if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
+	echo "Updating repos.\n"
+	sh update_modules.sh
+else
+	## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
+	echo "Repo update skipped.\n Checking status of NPM modules.\n"
+	sh updateNPMModules.sh
+fi
 
 ## run through the basic scripts to build the docs locally
+
 cd $TI_ROOT/doctools
 sh deploy.sh prod > messages.txt
 sh clouddeploy.sh >> messages.txt
@@ -49,4 +58,9 @@ open -a TextWrangler messages.txt
 ## open localhost and manually review the pages
 open http://localhost
 echo "Manually check the page(s) you updated."
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 
+say "local build done"
+
+#Error: /Users/bimmel/Documents/Repositories/doctools/build/guides/guides.json is not a valid JSON file

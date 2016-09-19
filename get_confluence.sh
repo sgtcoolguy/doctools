@@ -6,6 +6,7 @@
 ## https://wiki.appcelerator.org/x/MJzBAg						   ##
 #####################################################################
 
+SECONDS=0
 DATE=$(date +%Y-%m-%d)
 CONFLUENCE_FILE=confluence_guide2-$DATE.zip
 date
@@ -64,11 +65,11 @@ if [ ! -d $TI_ROOT/doctools/htmlguides ]; then
 	mkdir $TI_ROOT/doctools/htmlguides
 fi
 ## empty the output directory of the guides
-##if [ -d $TI_ROOT/doctools/htmlguides ]; then
-##	echo "Emptying ../htmlguides directory."
-##	cd $TI_ROOT/doctools/htmlguides
-##	rm -r *
-##fi
+if [ -d $TI_ROOT/doctools/htmlguides ]; then
+	echo "Emptying ../htmlguides directory."
+	cd $TI_ROOT/doctools/htmlguides
+	rm -r *
+fi
 ## this addition of the dist/platform and dist/arrowdb directories are not necessary for the creation of the htmlguides content but this directory is wiped out from the update_modules.sh script and needs to be added back in before the doc pub can finish.
 if [ ! -d $TI_ROOT/doctools/dist/platform ]; then
 	echo "../dist/platform directory is missing. Creating that directory."
@@ -108,3 +109,6 @@ else
 	downloadJarFile
 	unzipFile
 fi
+
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."

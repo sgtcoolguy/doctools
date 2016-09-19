@@ -1,11 +1,15 @@
 ## Purpose of script: Download a user supplied wiki page pageId, extract it's contents, and send the HTML file to a node script for content conditioning.
 ##
 ## See https://wiki.appcelerator.org/x/bK3BAg for documentation
+SECONDS=0
 
+## empty any leftover Titanium release note files in temp dir
 TEMPDIR='SDK-HTMLtemp'
-cd $TI_ROOT/doctools
+echo $TI_ROOT/doctools/$TEMPDIR
+cd $TI_ROOT/doctools/$TEMPDIR ##/Users/bimmel/Documents/Repositories/doctools/SDK-HTMLtemp
 echo "Removing any leftover Titanium release note HTML files"
-rm Titanium_SDK*.html -r
+rm Titanium_SDK*.html
+cd $TI_ROOT/doctools
 
 pageId = $1 ## the only argument this script takes is the pageId of the wiki page you are trying to retrieve and process
 
@@ -20,6 +24,8 @@ REST_URL=$URL$schemeId$rootPageId$1
 
 echo "Getting wiki page"
 wget --content-disposition "$REST_URL&os_username=$CONFLUENCE_USERNAME&os_password=$CONFLUENCE_PASSWORD"
+
+## ** there should be a failsafe here in case the wget fails to retrieve anything
 
 ## create two temporary directory: one for the extract HTML file and one for the unzipped content
 echo "Moving wiki page contents into temp directory"
@@ -42,4 +48,11 @@ outputDir=$TI_ROOT'/appc_web_docs/platform/release-notes' ## output directory wh
 
 node ../processSDKWikiPage $HTML $location $outputDir
 
-open $HTML ## open the post-processed version of the HTML file
+## cd into output directory and open the last created file (which should be the html file just created by the node script)
+cd $outputDir
+lastFile="$(ls -tr | tail -1)"
+open $lastFile
+open -a TextWrangler $lastFile
+
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
