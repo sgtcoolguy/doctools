@@ -44,6 +44,7 @@ sh deploy.sh prod 2> messages.txt
 sh clouddeploy.sh 2>> messages.txt
 sh deploy.sh -o arrow -o alloy -o modules -s prod 2>> messages.txt
 node stripFooter.js 2>> message.txt
+node redirects.js 2>> message.txt
 sh clouddeploy.sh -s prod 2>> messages.txt
 bash clouddeploy.sh prod 2>> messages.txt
 bash build_platform.sh 2>> messages.txt
