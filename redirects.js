@@ -1,6 +1,6 @@
 /*
 	Purpose: Add redirects to the guide pages of docs.appcelerator.com as the redirect macro does not translate from Confluence to HTML pages.
-	See ???? for more details
+	See https://wiki.appcelerator.org/x/bAHZAg for more details
 */
 var fs = require('fs');
 var cheerio = require('cheerio');
