@@ -51,6 +51,8 @@ bash build_platform.sh >> messages.txt
 cd $TI_ROOT/appc_web_docs
 bash ../doctools/copy_platform.sh >> messages.txt
 bash ../doctools/copy_cloud.sh >> messages.txt
+cd $TI_ROOT/doctools
+node appendTitles.js >> messages.txt
 
 ## open the message.txt file and you need to manually search for error messages
 #open -a TextWrangler messages.txt
