@@ -12,8 +12,8 @@ var redirect = ["Performance"]; // array of guide pages that need a redirect
 var redirectTarget = ["Appcelerator_Performance_Management"]; // array of target pages
 
 // guide pages that need redirection externally
-var redirectWiki = ["Titanium SDK Open Source Attribution Notice"]; // array of guide pages that needs to be redirected externally
-var redirectExternalTarget = ["http://www.appcelerator.com/opensource/"]; // array of external target pages
+var redirectWiki = ["Titanium SDK Open Source Attribution Notice","Titanium Studio Open Source Attribution Notice"]; // array of guide pages that needs to be redirected externally
+var redirectExternalTarget = ["http://www.appcelerator.com/opensource/","http://www.appcelerator.com/opensource/"]; // array of external target pages
 
 for (i in fileNames) { // loop through each HTML file
 	// internal redirects
