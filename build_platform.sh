@@ -8,7 +8,7 @@ mkdir -p $outdir
 echo $outdir
 cd $TI_ROOT/doctools
 sh deploy.sh -o alloy -o modules -o arrow -g htmlguides -d $outdir -t "Appcelerator Platform - Appcelerator Docs" prod
-rm -rf ~/Sites/platform/latest
-rm -rf ~/Sites/platform/landing
-cp -rf $outdir ~/Sites/platform/latest
-cp -rf $TI_ROOT/appc_web_docs/platform/landing ~/Sites/platform/.
+rm -rf ~/Sites/platform/latest ## this directory doesn't exist nor has it in some time
+rm -rf ~/Sites/platform/landing ## this directory doesn't exist nor has it in some time
+cp -rf $outdir ~/Sites/platform/latest ## the cp target directory doesn't exist nor has it for some time
+cp -rf $TI_ROOT/appc_web_docs/platform/landing ~/Sites/platform/. ## the cp target directory doesn't exist nor has it for some time
