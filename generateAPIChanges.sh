@@ -16,13 +16,27 @@ SECONDS=0
 
 ROOT="/Users/bimmel/temp_repos"
 
+printf "Which branch of titanium_mobile should do you need to be on? " ## 6_0_x
+read -r branch
+if [[ -z $branch ]]; then
+	echo "You must enter a branch to pull the data from."
+	echo -e "\a\a"
+	exit 1
+else
+	cd $ROOT/titanium_mobile
+	echo "Checking out $branch"
+	git checkout $branch
+	echo "Getting $branch commits"
+	git pull
+fi
+
 ## Ask user for previous and current versions to generate report on
-echo "Enter the prior and current versions to generate API change"
-echo "Previous version: " ## 5.2.0
-read previous
+echo "Enter the prior and current versions to generate API change."
+printf "Previous version: "
+read -r previous
 echo "Enter the target version plus 0.0.1 so that the current version is included in the report."
-echo "Current version (+0.0.1): " ## 5.3.2 (version higher than the previous)
-read current
+printf "Current version (+0.0.1): " ## 5.3.2 (version higher than the previous)
+read -r current
 
 
 ## Check to see if user entered in numbers for both inputs
@@ -85,10 +99,15 @@ echo "Looking for API changes from version $previous to $current"
 cd $ROOT/titanium_mobile/apidoc
 node docgen -f changes --start $previous --end $current -a $ROOT/titanium_mobile_windows/apidoc/Titanium
 
+## rename HTML file to reflect what was requested
+cd $ROOT/titanium_mobile/dist
+FILENAME=$previous-${current}_changes.html
+mv *.html $FILENAME
+
 
 ## Open API report if one was generated
-if [ -f $ROOT/titanium_mobile/dist/*.html ]; then
-	open $ROOT/titanium_mobile/dist/*.html
+if [ -f $ROOT/titanium_mobile/dist/$FILENAME ]; then
+	open $ROOT/titanium_mobile/dist/$FILENAME
 	say "API change scan complete. End of line."
 else
 	echo "\nNo API changes between versions $previous and $current."

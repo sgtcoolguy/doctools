@@ -35,6 +35,7 @@ else
 	sh updateNPMModules.sh
 fi
 
+cd $TI_ROOT/doctools
 rm messages.txt
 touch messages.txt
 

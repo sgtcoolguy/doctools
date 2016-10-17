@@ -49,11 +49,11 @@ function repo_update {
     fi
 }
 
-repo_update jsduck $JSDUCK_DIR upstream master
+#repo_update jsduck $JSDUCK_DIR upstream master
 repo_update titanium_mobile $TI_DIR upstream 5_5_X ## update the target stream whenever this is a new major or minor version
 repo_update alloy $ALLOY_DIR upstream master
 repo_update com.appcelerator.apm $APM_DIR origin master
-repo_update ti.coremotione $CORE_MOTION_DIR upstream master
+repo_update ti.coremotion $CORE_MOTION_DIR upstream master
 repo_update ti.facebook $FB_DIR upstream master
 repo_update ti.geofence $GEOFENCE_DIR origin master
 repo_update appcelerator.https $HTTPS_DIR upstream master
