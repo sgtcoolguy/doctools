@@ -50,7 +50,7 @@ function repo_update {
 }
 
 #repo_update jsduck $JSDUCK_DIR upstream master
-repo_update titanium_mobile $TI_DIR upstream 5_5_X ## update the target stream whenever this is a new major or minor version
+repo_update titanium_mobile $TI_DIR upstream master ## update the target stream whenever this is a new major or minor version
 repo_update alloy $ALLOY_DIR upstream master
 repo_update com.appcelerator.apm $APM_DIR origin master
 repo_update ti.coremotion $CORE_MOTION_DIR upstream master

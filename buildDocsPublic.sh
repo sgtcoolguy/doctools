@@ -21,19 +21,21 @@ if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
 	rm -r *
 fi
 
+## because the user is updating which branch to pull titanium_mobile from, this causes branch switching in other processes.
+## This should only be used for generating API changes. **** change the generateAPIChanges.sh script accordingly
 ## ask if the repos should be updated. If not, check on the npm modules anyway
-printf "update repos? [y]es?"
-read -r input1
+#printf "update repos? [y]es?"
+#read -r input1
 
-cd $TI_ROOT/doctools
-if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
-	echo "Updating repos.\n"
-	sh update_modules.sh
-else
-	## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
-	echo "Repo update skipped.\n Checking status of NPM modules.\n"
-	sh updateNPMModules.sh
-fi
+#cd $TI_ROOT/doctools
+#if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
+#	echo "Updating repos.\n"
+#	sh update_modules.sh
+#else
+#	## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
+#	echo "Repo update skipped.\n Checking status of NPM modules.\n"
+#	sh updateNPMModules.sh
+#fi
 
 cd $TI_ROOT/doctools
 rm messages.txt
