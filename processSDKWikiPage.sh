@@ -42,7 +42,7 @@ echo "Empty temp directory"
 rm -r *
 cd ../
 rmdir temp
-HTML=Titanium_SDK*.html ## grab the allegedly only HTML in this directory. 
+HTML=Titanium_SDK*.html ## grab the allegedly only HTML in this directory.
 location=$(pwd) ## get current path so the node script knows where to pull data from
 outputDir=$TI_ROOT'/appc_web_docs/platform/release-notes' ## output directory where the processed HTML will be moved to
 
@@ -52,7 +52,7 @@ node ../processSDKWikiPage $HTML $location $outputDir
 cd $outputDir
 lastFile="$(ls -tr | tail -1)"
 open $lastFile
-open -a TextWrangler $lastFile
+open -a Atom $lastFile
 
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
