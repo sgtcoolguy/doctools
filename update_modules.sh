@@ -1,14 +1,14 @@
 ##########################################################################################
 ##########################################################################################
-## 									Purpose of Script                                   ##
+## 									Purpose of Script                                                   ##
 ##                                                                                      ##
 ## Confirm that all necessary repos are accounted for and are current.                  ##
 ##                                                                                      ##
-## Note: This script needs to be executed before the retrieval and update of the		##
+## Note: This script needs to be executed before the retrieval and update of the        ##
 ## wiki guide2 space as it will update and wipe out the doctools/htmlguides directory.  ##
 ##                                                                                      ##
-## For more information visit 							   							    ##
-## https://wiki.appcelerator.org/x/dZzBAg						   						##
+## For more information visit                                                           ##
+## https://wiki.appcelerator.org/x/dZzBAg                                               ##
 ##########################################################################################
 ##########################################################################################
 
@@ -24,7 +24,6 @@ fi
 cd $TI_ROOT/appc_modules
 
 updateModules () { ## check to see if a module exists and update it
-	date
 	echo "${blue}Updating/Retrieving ${green}$2${white}"
 	if [ $1 == "apidoc" ]; then ## if the first parameter is a module
 		ACTIVE=$TI_ROOT/appc_modules/$2
@@ -38,7 +37,7 @@ updateModules () { ## check to see if a module exists and update it
 	fi
 	echo "Setting active directory to $ACTIVE"
 	if [ ! -d "$ACTIVE" ]; then ## if the repo doesn't exist, clone it
-		echo "${blue}Cloning $2${white}"
+		echo "Cloning $2"
 		if [ $1 == "apidoc" ]; then
 			cd $ACTIVE
 		elif [ $1 == "misc" ]; then
@@ -47,9 +46,8 @@ updateModules () { ## check to see if a module exists and update it
 		pwd
 		git clone $GITPATH/$2.git
 	else ## if the repo exists, update it
-		echo "${blue}$2 exists; updating${white}"
+		echo "$2 exists; updating"
 		cd $ACTIVE
-		pwd
 		git clean -dfx
 		git reset --hard HEAD
 		git pull origin master

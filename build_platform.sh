@@ -1,7 +1,7 @@
 if [ ! $TI_ROOT ]; then
     echo "Error: \$TI_ROOT not defined!  Exiting..."
 fi
-sh repo_update.sh
+#sh repo_update.sh
 outdir=$TI_ROOT/doctools/dist/platform/latest
 rm -rf $outdir
 mkdir -p $outdir
