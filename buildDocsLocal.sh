@@ -11,7 +11,7 @@ SECONDS=0
 if [ -d $TI_ROOT/doctools/dist/platform ]; then
 	echo "Emptying ../dist/platform directory."
 	cd $TI_ROOT/doctools/dist/platform
-	rm -r *	
+	rm -r *
 fi
 
 ## empty ../arrowdb directory
@@ -29,15 +29,15 @@ touch messages.txt
 printf "update repos? [y]es?"
 read -r input1
 
-cd $TI_ROOT/doctools
-if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
-	echo "Updating repos.\n"
-	sh update_modules.sh
-else
-	## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
-	echo "Repo update skipped.\n Checking status of NPM modules.\n"
-	sh updateNPMModules.sh
-fi
+#cd $TI_ROOT/doctools
+#if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
+#	echo "Updating repos.\n"
+#	sh update_modules.sh
+#else
+#	## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
+#	echo "Repo update skipped.\n Checking status of NPM modules.\n"
+#	sh updateNPMModules.sh
+#fi
 
 ## run through the basic scripts to build the docs locally
 cd $TI_ROOT/doctools
