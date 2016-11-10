@@ -1,9 +1,9 @@
 #####################################################################
 ## Purpose: Get the latest version of the guide2 Confluence space  ##
-## so one can have one piece of the documentation puzzle.		   ##
-##																   ##
-## For more information visit 									   ##
-## https://wiki.appcelerator.org/x/MJzBAg						   ##
+## so one can have one piece of the documentation puzzle.          ##
+##                                                                 ##
+## For more information visit                                      ##
+## https://wiki.appcelerator.org/x/MJzBAg                          ##
 #####################################################################
 
 SECONDS=0
@@ -30,31 +30,19 @@ function downloadJarFile() {
 }
 
 unzipFile() {
-	date
 	## detect if the htmlguides directory is populated or not
 	cd $TI_ROOT/doctools/htmlguides
 	current=${PWD}
 	if [ "$(ls -A $TI_ROOT/doctools/htmlguides)" ]; then
-		##echo "current directory of $current is populated; it should be emptied. [e]mpty?"
-		## Are you sure it should be emptied?
-		##read input
-		## if user requests to empty directory, empty it and unzip files
-		##if [ $input == "empty" ] || [ $input == "e" ]; then
 			echo "Emptying $current"
 			rm -r *
 			echo "Unzipping $TI_ROOT/Confluence_working/$CONFLUENCE_FILE in $current"
 			unzip -o $TI_ROOT/Confluence_working/$CONFLUENCE_FILE
-			date		
-		##else
-		##	echo "Quitting"
-		##	exit 1
-		##fi
 	else
 		## current directory is empty; unzip files in it.
 		echo "Current directory is empty; proceeding with unzipping of $CONFLUENCE_FILE."
 		echo "Unzipping $TI_ROOT/Confluence_working/$CONFLUENCE_FILE in $current"
 		unzip -o $TI_ROOT/Confluence_working/$CONFLUENCE_FILE
-		date		
 	fi
 }
 
@@ -86,8 +74,8 @@ if [ ! -d $TI_ROOT/Confluence_working ]; then
 fi
 
 if [ -s $TI_ROOT/Confluence_working/$CONFLUENCE_FILE ]; then
-	echo "$CONFLUENCE_FILE exists. Do you wish to download it again, unzip the current file, or download and unzip latest version (total package)? [d]ownload/[u]nzip/[t]otal?"
-	read input
+	printf "$CONFLUENCE_FILE exists. Do you wish to download it again, unzip the current file, or download and unzip latest version (total package)? [d]ownload/[u]nzip/[t]otal?"
+	read -r input
 	if [ $input == "download" ] || [ $input == "d" ]; then
 		echo "Downloading today's guide2 .jar file."
 		downloadJarFile
