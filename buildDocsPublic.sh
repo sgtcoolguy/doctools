@@ -1,9 +1,9 @@
 #####################################################################
 ## Purpose: semi-automate the documentation build process locally  ##
-## for public documentation build								   ##
-##																   ##
-## For more information visit 									   ##
-## https://wiki.appcelerator.org/x/uMHBAg						   ##
+## for public documentation build	                                 ##
+##                                                                 ##
+## For more information visit                                      ##
+## https://wiki.appcelerator.org/x/uMHBAg                          ##
 #####################################################################
 
 SECONDS=0
@@ -11,7 +11,7 @@ SECONDS=0
 if [ -d $TI_ROOT/doctools/dist/platform ]; then
 	echo "Emptying ../dist/platform directory."
 	cd $TI_ROOT/doctools/dist/platform
-	rm -r *	
+	rm -r *
 fi
 
 ## empty ../arrowdb directory
@@ -30,7 +30,7 @@ fi
 #cd $TI_ROOT/doctools
 #if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
 #	echo "Updating repos.\n"
-#	sh update_modules.sh
+#	sh update_modules.sh ## this will 'reset' doctools directory which means it will remove the htmlguides directory
 #else
 #	## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
 #	echo "Repo update skipped.\n Checking status of NPM modules.\n"
@@ -46,7 +46,7 @@ printf "Is this a SDK major or minor change? [y]es?"
 read -r input3
 if [ $input3 == "y" ] || [ $input3 == "yes" ]; then
 	echo "You will need to update the upstream for the git pull for the SDK in the repo_update.sh file"
-	open -a TextWrangler $TI_ROOT/doctools/repo_update.sh
+	open -a Atom $TI_ROOT/doctools/repo_update.sh
 else
 	echo "Invalid option. If the SDK version isn't a major or minor change, then there is nothing to change in the repo_update.sh file"
 fi
@@ -68,7 +68,7 @@ cd $TI_ROOT/doctools
 node appendTitles.js >> messages.txt
 
 ## open the message.txt file and you need to manually search for error messages
-#open -a TextWrangler messages.txt
+#open -a Atom messages.txt
 
 ## open localhost and manually review the pages
 open http://localhost
