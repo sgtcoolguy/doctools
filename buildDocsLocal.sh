@@ -28,16 +28,15 @@ touch messages.txt
 ## ask if the repos should be updated. If not, check on the npm modules anyway
 printf "update repos? [y]es?"
 read -r input1
+cd $TI_ROOT/doctools
+if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
+	echo "Updating repos.\n"
+	sh update_modules.sh ## update various modules needed by the API docs portion of the stripFooter
+	sh build_htmlguide.sh ## rebuild the htmlguide directory and it's content
+i
 
-#cd $TI_ROOT/doctools
-#if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
-#	echo "Updating repos.\n"
-#	sh update_modules.sh
-#else
-#	## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
-#	echo "Repo update skipped.\n Checking status of NPM modules.\n"
-#	sh updateNPMModules.sh
-#fi
+echo "Checking status of NPM modules.\n"
+sh updateNPMModules.sh ## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
 
 ## run through the basic scripts to build the docs locally
 cd $TI_ROOT/doctools
@@ -56,7 +55,7 @@ cd $TI_ROOT/doctools
 node appendTitles.js >> messages.txt
 
 ## open the message.txt file and you need to manually search for error messages
-#open -a TextWrangler messages.txt
+#open -a Atom messages.txt
 
 ## open localhost and manually review the pages
 open http://localhost
