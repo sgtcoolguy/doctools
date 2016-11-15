@@ -9,9 +9,7 @@
 ## https://wiki.appcelerator.org/x/U7bBAg						   																	##
 ##########################################################################################
 ##########################################################################################
-## write a script to update the temporary copy of titanium_mobile, npm pagedown, and run API changes script (with arguments), and open the report to generate the API changes from version to version of the SDK releases.
 
-date
 SECONDS=0
 
 ROOT="/Users/bimmel/temp_repos"
