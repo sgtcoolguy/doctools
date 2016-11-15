@@ -21,25 +21,24 @@ if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
 	rm -r *
 fi
 
-## because the user is updating which branch to pull titanium_mobile from, this causes branch switching in other processes.
-## This should only be used for generating API changes. **** change the generateAPIChanges.sh script accordingly
-## ask if the repos should be updated. If not, check on the npm modules anyway
-#printf "update repos? [y]es?"
-#read -r input1
-
-#cd $TI_ROOT/doctools
-#if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
-#	echo "Updating repos.\n"
-#	sh update_modules.sh ## this will 'reset' doctools directory which means it will remove the htmlguides directory
-#else
-#	## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
-#	echo "Repo update skipped.\n Checking status of NPM modules.\n"
-#	sh updateNPMModules.sh
-#fi
-
 cd $TI_ROOT/doctools
 rm messages.txt
 touch messages.txt
+
+## because the user is updating which branch to pull titanium_mobile from, this causes branch switching in other processes.
+## This should only be used for generating API changes. **** change the generateAPIChanges.sh script accordingly
+## ask if the repos should be updated. If not, check on the npm modules anyway
+printf "update repos? [y]es?"
+read -r input1
+cd $TI_ROOT/doctools
+if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
+	echo "Updating repos.\n"
+	sh update_modules.sh ## update various modules needed by the API docs portion of the stripFooter
+	sh build_htmlguide.sh ## rebuild the htmlguide directory and it's content
+fi
+
+echo "Checking status of NPM modules.\n"
+sh updateNPMModules.sh ## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
 
 ## ask user if this is an SDK major or minor change. If it is, the repo_update.sh script must be updated to ensure we are pulling from the correct stream
 printf "Is this a SDK major or minor change? [y]es?"
