@@ -1,6 +1,16 @@
+#####################################################################
+## Purpose: automatically rebuilds the .../doctools/htmlguides     ##
+## directory. Typically used within other scripts.                 ##
+##                                                                 ##
+## For more information visit                                      ##
+## https://wiki.appcelerator.org/x/kAfjAg                          ##
+#####################################################################
+
 htmlguides=$TI_ROOT/doctools/htmlguides ## set htmlguides path
 confluenceDir=$TI_ROOT/Confluence_working ## set confluence_working path
 CONFLUENCE_FILE=$(ls $confluenceDir | tail -n 1) ## get the newest confluence zip file (in theory)
+
+cd $TI_ROOT/doctools
 
 ## if the htmlguides directory is missing, add it back in
 if [ ! -d $htmlguides ]; then

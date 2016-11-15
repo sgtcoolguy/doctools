@@ -1,11 +1,11 @@
 ##########################################################################################
 ##########################################################################################
-## 									Purpose of Script                                   ##
+## 									Purpose of Script                                                   ##
 ##                                                                                      ##
 ## Generate a list of contributors for major and minor SDK releases.                    ##
 ##                                                                                      ##
-## For more information visit 							   							    ##
-## https://wiki.appcelerator.org/x/g6vBAg						   						##
+## For more information visit                                                           ##
+## https://wiki.appcelerator.org/x/g6vBAg                                               ##
 ##########################################################################################
 ##########################################################################################
 
@@ -21,12 +21,12 @@ forkedArray=( alloy titanium_mobile )
 
 
 echo "Enter months/weeks/days ago of last SDK release."
-echo "month(s): "
-read months
-echo "week(s): "
-read weeks
-echo "day(s): "
-read days
+printf "month(s): "
+read -r months
+printf "week(s): "
+read -r weeks
+printf "day(s): "
+read -r days
 
 if [ ! -f $TI_ROOT/SDK-contributors.txt ]; then
 	echo "SDK-contributors.txt does not exist. Create it now."
@@ -39,7 +39,7 @@ else
 	date >> $TI_ROOT/SDK-contributors.txt
 	echo "Pulling from $months months, $weeks weeks, and $days days ago."  >> $TI_ROOT/SDK-contributors.txt
 	echo "" >> $TI_ROOT/SDK-contributors.txt
-	
+
 	## loop through the nonModuleArray and get contributors
 	for i in "${nonModuleArray[@]}"
 	do
@@ -54,7 +54,7 @@ else
 		echo "" >>  $TI_ROOT/SDK-contributors.txt
 		echo "" >>  $TI_ROOT/SDK-contributors.txt
 	done
-	
+
 	## loop through the moduleArray and get contributors
 	for i in "${moduleArray[@]}"
 	do
@@ -71,7 +71,7 @@ else
 		echo "" >>  $TI_ROOT/SDK-contributors.txt
 		echo "" >>  $TI_ROOT/SDK-contributors.txt
 	done
-		
+
 	## Loop through the forkedArray and get contributors
 	for i in "${forkedArray[@]}"
 	do
@@ -92,4 +92,4 @@ echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 
 say "Contributor list complete"
 
-open -a TextWrangler $TI_ROOT/SDK-contributors.txt
+open -a Atom $TI_ROOT/SDK-contributors.txt
