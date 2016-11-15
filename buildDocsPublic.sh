@@ -67,7 +67,7 @@ cd $TI_ROOT/doctools
 node appendTitles.js >> messages.txt
 
 ## open the message.txt file and you need to manually search for error messages
-#open -a Atom messages.txt
+open -a Atom messages.txt
 
 ## open localhost and manually review the pages
 open http://localhost
