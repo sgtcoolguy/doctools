@@ -28,14 +28,16 @@ touch messages.txt
 printf "update repos? [y]es?"
 read -r input1
 cd $TI_ROOT/doctools
-if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
+if [ $input1 == "y" ] || [ $input1 == "yes" ]; then
 	echo "Updating repos.\n"
 	sh update_modules.sh ## update various modules needed by the API docs portion of the stripFooter
 	sh build_htmlguide.sh ## rebuild the htmlguide directory and it's content
-i
+else
+	echo "skipping repo update."
+fi
 
 echo "Checking status of NPM modules.\n"
-sh updateNPMModules.sh ## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
+#sh updateNPMModules.sh ## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
 
 ## run through the basic scripts to build the docs locally
 cd $TI_ROOT/doctools
