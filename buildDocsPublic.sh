@@ -61,21 +61,11 @@ sh clouddeploy.sh -s prod 2>> messages.txt
 bash clouddeploy.sh prod 2>> messages.txt
 bash build_platform.sh 2>> messages.txt
 cd $TI_ROOT/appc_web_docs
-<<<<<<< HEAD
-bash ../doctools/copy_platform.sh >> messages.txt
-bash ../doctools/copy_cloud.sh >> messages.txt
-cd $TI_ROOT/doctools
-node appendTitles.js >> messages.txt
 
 ## open the message.txt file and you need to manually search for error messages
 open -a Atom messages.txt
-=======
 bash ../doctools/copy_platform.sh 2>> messages.txt
 bash ../doctools/copy_cloud.sh 2>> messages.txt
-
-## open the message.txt file and you need to manually search for error messages
-open -a TextWrangler messages.txt
->>>>>>> parent of cc0ac7d... Swapped 2>> for >>
 
 ## open localhost and manually review the pages
 open http://localhost
