@@ -42,23 +42,9 @@ echo "Checking status of NPM modules.\n"
 ## run through the basic scripts to build the docs locally
 cd $TI_ROOT/doctools
 sh deploy.sh prod > messages.txt
-<<<<<<< HEAD
-sh clouddeploy.sh >> messages.txt
-sh deploy.sh -o arrow -o alloy -o modules -s prod >> messages.txt
-#node stripFooter.js >> message.txt ## not 100% necessary if building for test reasons
-#node redirects.js >> message.txt ## not 100% necessary if building for test reasons
-sh clouddeploy.sh -s prod >> messages.txt
-bash clouddeploy.sh prod >> messages.txt
-bash build_platform.sh >> messages.txt
-cd $TI_ROOT/appc_web_docs
-bash ../doctools/copy_platform.sh >> messages.txt
-bash ../doctools/copy_cloud.sh >> messages.txt
-cd $TI_ROOT/doctools
-#node appendTitles.js >> messages.txt ## not 100% necessary if building for test reasons
-
 ## open the message.txt file and you need to manually search for error messages
 #open -a Atom messages.txt
-=======
+
 sh clouddeploy.sh 2>> messages.txt
 sh deploy.sh -o arrow -o alloy -o modules -s prod 2>> messages.txt
 node stripFooter.js 2>> message.txt
@@ -72,7 +58,6 @@ bash ../doctools/copy_cloud.sh 2>> messages.txt
 
 ## open the message.txt file and you need to manually search for error messages
 open -a TextWrangler messages.txt
->>>>>>> parent of cc0ac7d... Swapped 2>> for >>
 
 ## open localhost and manually review the pages
 open http://localhost
