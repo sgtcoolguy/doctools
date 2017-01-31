@@ -9,8 +9,7 @@ var fileNames = shell.ls('../appc_web_docs/platform/release-notes/*.html'); // g
 for (i in fileNames) {
 	if (fileNames[i] != "../appc_web_docs/platform/release-notes/latest.html") { // skip this file, otherwise, process the files
 		var page = fs.readFileSync(fileNames[i]).toString(); // put file into a string
-		var titleLocation = page.indexOf('<title>');
-		if (titleLocation > -1) { // title already exists, skip it
+		if (page.indexOf('<title>' > -1) { // title already exists, skip it
 			console.log("title element already exists on " + fileNames[i] + ". Skipping.");
 		} else { // check for the document for a h1 or h2
 			var head1Start = page.indexOf('<h1>') + 4; // Find the first h1 element
@@ -20,7 +19,7 @@ for (i in fileNames) {
 				var titleElement = "<title>" + page.slice(head2Start,page.indexOf('</h2>')) + "</title>\n";
 			} else if (head1Start > 0) {
 				console.log("Pulling the title from the head1 element for " + fileNames[i]);
-				var titleElement = "<title>" + page.slice(head1Start,page.indexOf('</h1>')) + "</title>\n";				
+				var titleElement = "<title>" + page.slice(head1Start,page.indexOf('</h1>')) + "</title>\n";
 			}
 			page = titleElement + page;
 			fs.writeFileSync(fileNames[i], page);
