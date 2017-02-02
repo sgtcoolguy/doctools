@@ -24,7 +24,7 @@ usage() {
 }
 
 while getopts ":so:a:c:d:g:t:j:" opt; do
-    case $opt in 
+    case $opt in
         a)
             if [ "$OPTARG" ]; then
                 addon_guidesdir=$OPTARG
@@ -43,10 +43,10 @@ while getopts ":so:a:c:d:g:t:j:" opt; do
         o)
             if [ $OPTARG == "alloy" ]; then
                 include_alloy="include_alloy"
-            elif [ $OPTARG = "arrow" ]; then 
-                include_arrow="include_arrow" 
-            elif [ $OPTARG = "modules" ]; then 
-                include_modules="include_modules" 
+            elif [ $OPTARG = "arrow" ]; then
+                include_arrow="include_arrow"
+            elif [ $OPTARG = "modules" ]; then
+                include_modules="include_modules"
             else
                 echo "Unknown optional project, $OPTARG">&2
                 usage
@@ -58,10 +58,10 @@ while getopts ":so:a:c:d:g:t:j:" opt; do
                 guidesdir=$OPTARG
             fi
             ;;
-        s)  
+        s)
             seo="--seo"
             ;;
-        t) 
+        t)
             if [ "$OPTARG" ]; then
                 title="$OPTARG"
             fi
@@ -69,7 +69,7 @@ while getopts ":so:a:c:d:g:t:j:" opt; do
         j)
             jenkins="jenkins"
             ;;
-        \?) 
+        \?)
              echo "Invalid option: -$OPTARG">&2
              usage
              exit 1
@@ -144,7 +144,7 @@ fi
 if [ $include_alloy ]; then
 	echo "**** alloy files will be parsed"
 	echo "**** ${ALLOY}/..."
-    alloyDirs="${ALLOY}/Alloy/lib 
+    alloyDirs="${ALLOY}/Alloy/lib
     		   ${ALLOY}/docs/apidoc
     		   ${DOCTOOLS}/add-ons
                $(find $ALLOY/Alloy/builtins -maxdepth 1 -type f ! -name moment.js)"
@@ -152,7 +152,7 @@ fi
 
 if [ $include_arrow ]; then
 	echo "**** arrow files will be parsed"
-	echo "**** ${ARROW}/..."	
+	echo "**** ${ARROW}/..."
     arrowDirs="${ARROW}/arrow-orm/apidoc
                ${ARROW}/arrow-orm/lib/connector/capabilities/index.js
                ${ARROW}/arrow-orm/lib/collection.js
@@ -180,10 +180,10 @@ if [ $include_modules ]; then
             exit 1
         fi
     fi
-    module_dirs="$APPC_MODULES/ti.map/apidoc 
+    module_dirs="$APPC_MODULES/ti.map/apidoc
     			 $APPC_MODULES/ti.facebook/apidoc
-                 $APPC_MODULES/ti.nfc/apidoc 
-                 $APPC_MODULES/ti.newsstand/apidoc 
+                 $APPC_MODULES/ti.nfc/apidoc
+                 $APPC_MODULES/ti.newsstand/apidoc
                  $APPC_MODULES/ti.coremotion/apidoc
                  $APPC_MODULES/ti.urlsession/apidoc
                  $APPC_MODULES/ti.touchid/apidoc
@@ -207,10 +207,19 @@ if [ -d "$TI_ROOT/titanium_mobile_windows" ]; then
     popd
 fi
 
+echo "starting node ${TI_DOCS}/docgen.js -f jsduck -o ./build/ $module_dirs $addon_win\n"
 node ${TI_DOCS}/docgen.js -f jsduck -o ./build/ $module_dirs $addon_win
 
 if [ $addon_guidesdir ]; then
+    echo "starting $addon_guidesdir\n"
+    echo "$addon_guidesdir routine is running."
     python ./guides_merger.py --input "${guidesdir}/toc.xml" --addon "${addon_guidesdir}/toc.xml"  --output "./build/merged_guides"
+    if [ -a guides_merger.py ]; then
+      echo "guides_merger.py found"
+    else
+      echo "NOT FOUND"
+    fi
+    python .guides_merger.py --Help
 
     ## Workaround for new Confluence plug-in
     #cp -r $guidesdir/attachments_* ./build/merged_guides/.
@@ -230,14 +239,16 @@ else
     parseropts="--show_edit_button"
 fi
 
+echo "starting node guides_parser --input "${guidesdir}/toc.xml" --output "./build/guides" $parseropts\n"
 node guides_parser --input "${guidesdir}/toc.xml" --output "./build/guides" $parseropts
 
-# Assume video list is pre-processed, with real thumbnails 
+# Assume video list is pre-processed, with real thumbnails
 cp $VIDEO_LIST $PROCESSED_VIDEO_LIST
-# After updating video list, add thumbnails manually using the video_thumbs command: 
+# After updating video list, add thumbnails manually using the video_thumbs command:
 #    python ./video_thumbs.py --input $VIDEO_LIST --output $PROCESSED_VIDEO_LIST
 
 if [ $production_build ] ; then
+    echo "starting $production_build\n"
     (cd ${JSDUCK}; rake compress)
     TEMPLATE=${JSDUCK}/${PROD_TEMPLATE}
 
@@ -261,6 +272,7 @@ else
     TEMPLATE=${JSDUCK}/${DEBUG_TEMPLATE}
 fi
 
+echo "starting ruby ${JSDUCK}/bin/jsduck --template ${TEMPLATE} $seo --output $outdir --title "$title" --config $config $alloyDirs $arrowDirs\n"
 ruby ${JSDUCK}/bin/jsduck --template ${TEMPLATE} $seo --output $outdir --title "$title" --config $config $alloyDirs $arrowDirs
 
 # TIDOC-1327 Fix server errors
