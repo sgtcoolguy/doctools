@@ -1,16 +1,16 @@
 ##########################################################################################
 ##########################################################################################
-## 									Purpose of Script                                   ##
+## 									Purpose of Script                                                   ##
 ##                                                                                      ##
 ## Confirm all necessary npm modules are installed for various directories as they      ##
 ## relate to the doctools and titanium_mobile directories as needed for various doc     ##
-## scripts.																				##
+## scripts.                                                                             ##
 ##                                                                                      ##
-## Note: This script is usually executed by other scripts. It can be ran in a 			##
-## stand-alone mode it normally isn't.													##
+## Note: This script is usually executed by other scripts. It can be ran in a 			    ##
+## stand-alone mode it normally isn't.                                                  ##
 ##                                                                                      ##
-## For more information visit 							   							    ##
-## https://wiki.appcelerator.org/x/qdPBAg						   						##
+## For more information visit 							   							                            ##
+## https://wiki.appcelerator.org/x/qdPBAg						   						                      ##
 ##########################################################################################
 
 SECONDS=0
