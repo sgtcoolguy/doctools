@@ -6,22 +6,31 @@
 ## https://wiki.appcelerator.org/x/uMHBAg                          ##
 #####################################################################
 
+## variables
+DOCTOOLS=$TI_ROOT/doctools
+PLATFORM=$DOCTOOLS/dist/platform
+ARROWDB=$DOCTOOLS/dist/arrowdb
+APPCWEBDOCS=$TI_ROOT/appc_web_docs
+
+bold=$(tput bold) # bold formatting
+normal=$(tput sgr0) #normal formatting
+
 SECONDS=0
 ## empty ../platform directory
-if [ -d $TI_ROOT/doctools/dist/platform ]; then
-	echo "Emptying ../dist/platform directory."
-	cd $TI_ROOT/doctools/dist/platform
+if [ -d $PLATFORM ]; then
+	echo "Emptying $PLATFORM directory."
+	cd $PLATFORM
 	rm -r *
 fi
 
 ## empty ../arrowdb directory
-if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
-	echo "Emptying ../dist/arrowdb directory."
-	cd $TI_ROOT/doctools/dist/arrowdb
+if [ -d $ARROWDB ]; then
+	echo "Emptying $ARROWDB directory."
+	cd $ARROWDB
 	rm -r *
 fi
 
-cd $TI_ROOT/doctools
+cd $DOCTOOLS
 rm messages.txt
 touch messages.txt
 
@@ -30,7 +39,7 @@ touch messages.txt
 ## ask if the repos should be updated. If not, check on the npm modules anyway
 printf "update repos? [y]es?"
 read -r input1
-cd $TI_ROOT/doctools
+cd $DOCTOOLS
 if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
 	echo "Updating repos.\n"
 	sh update_modules.sh ## update various modules needed by the API docs portion of the stripFooter
@@ -38,20 +47,20 @@ if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
 fi
 
 echo "Checking status of NPM modules.\n"
-sh updateNPMModules.sh ## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
+#sh updateNPMModules.sh ## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
 
 ## ask user if this is an SDK major or minor change. If it is, the repo_update.sh script must be updated to ensure we are pulling from the correct stream
 printf "Is this a SDK major or minor change? [y]es?"
 read -r input3
 if [ $input3 == "y" ] || [ $input3 == "yes" ]; then
 	echo "You will need to update the upstream for the git pull for the SDK in the repo_update.sh file"
-	open -a Atom $TI_ROOT/doctools/repo_update.sh
+	open -a Atom $DOCTOOLS/repo_update.sh
 else
 	echo "Invalid option. If the SDK version isn't a major or minor change, then there is nothing to change in the repo_update.sh file"
 fi
 
 ## run through the basic scripts to build the docs locally
-cd $TI_ROOT/doctools
+cd $DOCTOOLS
 sh deploy.sh prod 2> messages.txt
 sh clouddeploy.sh 2>> messages.txt
 sh deploy.sh -o arrow -o alloy -o modules -s prod 2>> messages.txt
@@ -60,7 +69,7 @@ node redirects.js 2>> message.txt
 sh clouddeploy.sh -s prod 2>> messages.txt
 bash clouddeploy.sh prod 2>> messages.txt
 bash build_platform.sh 2>> messages.txt
-cd $TI_ROOT/appc_web_docs
+cd $APPCWEBDOCS
 
 ## open the message.txt file and you need to manually search for error messages
 open -a Atom messages.txt
@@ -105,11 +114,11 @@ read -r input3
 if [ $input3 == "y" ] || [ $input3 == "yes" ]; then
 	SECONDS=0
 	echo "Executing update_solr.sh from the appc_web_docs directory"
-	cd $TI_ROOT/appc_web_docs
+	cd $APPCWEBDOCS
 	sh update_solr.sh
 	duration=$SECONDS
 	echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 	say "solr index update done"
 else
-	echo "Make sure you run the update_solr.sh script after Jenkins is done:\ncd $TI_ROOT/appc_web_docs; sh update_solr.sh"
+	echo "Make sure you run the update_solr.sh script after Jenkins is done:\ncd $APPCWEBDOCS; sh update_solr.sh"
 fi
