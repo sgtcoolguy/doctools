@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2015 Appcelerator, Inc. All Rights Reserved.
  * Licensed under the terms of the Apache Public License.
- * 
+ *
  * Script to convert Wiki-exported content for JSDuck site.
  */
 var cheerio = require('cheerio'),
@@ -35,6 +35,9 @@ function parse (node) {
 	var rv = [];
 	for (var x = 0; x < node.length; x++) {
 		var child = node[x];
+		//console.log("child" + child);
+		//console.log("child href:" + child.$.href)
+		//if (true) {
 		if (child.$.href.indexOf('#') === -1) {
 			var res = {},
 				dom = null,
@@ -42,8 +45,16 @@ function parse (node) {
 				dir = path.join(outputDir, 'guides', shortname);
 
 			mkdirDashP(dir);
+			//console.log(path.join(path.dirname(inputFile), child.$.href));
+			//try {
+					dom = cheerio.load(fs.readFileSync(path.join(path.dirname(inputFile), child.$.href)), {xmlMode: true, decodeEntities: false});
+			//} catch (e) {
+				//console.log(e);
+			//} finally {
 
-			dom = cheerio.load(fs.readFileSync(path.join(path.dirname(inputFile), child.$.href)), {xmlMode: true, decodeEntities: false});
+			//}
+
+
 			dom('a').each(function (i, elem) {
 				var href = elem.attribs.href;
 				if (href) {
@@ -95,7 +106,7 @@ function parse (node) {
 								}
 							});
 							if (!inList) {
-								console.warn('Unconverted wiki link: ' + href);							
+								console.warn('Unconverted wiki link: ' + href);
 							}
 						} else {
 							// Open external links in new windows/tabs
@@ -111,21 +122,25 @@ function parse (node) {
 					elem.attribs.href = href;
 				}
 			});
-			
+
 			dom('link').each(function (i, elem) {
 				if (elem.attribs.href) {
 					delete elem.attribs.href;
 				}
 			});
-			
+
 			if (showEditButton) {
 				if (dom('.content')) {
 					var id = dom('.content').attr('id'),
 						wiki_url = 'https://wiki.appcelerator.org/pages/editpage.action?pageId=' + id;
+						// Fix for TIDOC-2718
+						if (wiki_url.indexOf('src-') >= 0) { // if wiki_url contains 'src-'
+							wiki_url = wiki_url.replace('src-',''); // remove 'src-' from the wiki_url
+						}
 					dom('.content').after('<a id="editButton" href = "' + wiki_url + '"><span>Edit</span></a>');
 				}
 			}
-			
+
 			fs.writeFileSync(path.join(dir, 'README.html'), dom.html());
 
 			res.name = shortname;
@@ -136,9 +151,11 @@ function parse (node) {
 					delete res.items;
 				}
 			}
+			//console.log(res);
 			rv.push(res);
 		}
 	}
+	//console.log(rv);
 	return rv;
 }
 
