@@ -7,57 +7,67 @@
 
 SECONDS=0
 ## empty ../platform directory
-if [ -d $TI_ROOT/doctools/dist/platform ]; then
-	echo "Emptying ../dist/platform directory."
-	cd $TI_ROOT/doctools/dist/platform
-	rm -r *
-fi
+#if [ -d $TI_ROOT/doctools/dist/platform ]; then
+#	echo "Emptying ../dist/platform directory."
+#	cd $TI_ROOT/doctools/dist/platform
+#	rm -r *
+#fi
 
 ## empty ../arrowdb directory
-if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
-	echo "Emptying ../dist/arrowdb directory."
-	cd $TI_ROOT/doctools/dist/arrowdb
-	rm -r *
-fi
+#if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
+#	echo "Emptying ../dist/arrowdb directory."
+#	cd $TI_ROOT/doctools/dist/arrowdb
+#	rm -r *
+#fi
 
 cd $TI_ROOT/doctools
 rm messages.txt
 touch messages.txt
 
 ## ask if the repos should be updated. If not, check on the npm modules anyway
-printf "update repos? [y]es?"
-read -r input1
-cd $TI_ROOT/doctools
-if [ $input1 == "y" ] || [ $input1 == "yes" ]; then
-	echo "Updating repos.\n"
-	sh update_modules.sh ## update various modules needed by the API docs portion of the stripFooter
-	sh build_htmlguide.sh ## rebuild the htmlguide directory and it's content
-else
-	echo "skipping repo update."
-fi
+#printf "update repos? [y]es?"
+#read -r input1
+#cd $TI_ROOT/doctools
+#if [ $input1 == "y" ] || [ $input1 == "yes" ]; then
+#	echo "Updating repos.\n"
+#	sh update_modules.sh ## update various modules needed by the API docs portion of the stripFooter
+#else
+#	echo "skipping repo update."
+#fi
 
-echo "Checking status of NPM modules.\n"
+## assume the wiki content has been downloaded and it is ready to be used to build the htmlguide directory
+#sh build_htmlguide.sh ## rebuild the htmlguide directory and it's content
+
+#echo "Checking status of NPM modules.\n"
 #sh updateNPMModules.sh ## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
 
 ## run through the basic scripts to build the docs locally
 cd $TI_ROOT/doctools
-sh deploy.sh prod > messages.txt
+echo "moved into $TI_ROOT/doctools\n"
+echo "starting deploy.sh prod script\n"
+sh deploy.sh prod #> messages.txt
+echo "starting sh clouddeploy.sh\n"
+sh clouddeploy.sh >> messages.txt
+echo "starting sh deploy.sh -o arrow -o alloy -o modules -s prod\n"
+sh deploy.sh -o arrow -o alloy -o modules -s prod >> messages.txt
+#node stripFooter.js >> message.txt ## not 100% necessary if building for test reasons
+#node redirects.js >> message.txt ## not 100% necessary if building for test reasons
+echo "starting sh clouddeploy.sh -s prod\n"
+sh clouddeploy.sh -s prod >> messages.txt
+echo "starting bash clouddeploy.sh prod\n"
+bash clouddeploy.sh prod >> messages.txt
+echo "starting bash build_platform.sh\n"
+bash build_platform.sh >> messages.txt
+cd $TI_ROOT/appc_web_docs
+echo "starting bash ../doctools/copy_platform.sh\n"
+bash ../doctools/copy_platform.sh >> messages.txt
+echo "starting bash ../doctools/copy_cloud.sh\n"
+bash ../doctools/copy_cloud.sh >> messages.txt
+cd $TI_ROOT/doctools
+#node appendTitles.js >> messages.txt ## not 100% necessary if building for test reasons
+
 ## open the message.txt file and you need to manually search for error messages
 #open -a Atom messages.txt
-
-sh clouddeploy.sh 2>> messages.txt
-sh deploy.sh -o arrow -o alloy -o modules -s prod 2>> messages.txt
-node stripFooter.js 2>> message.txt
-node redirects.js 2>> message.txt
-sh clouddeploy.sh -s prod 2>> messages.txt
-bash clouddeploy.sh prod 2>> messages.txt
-bash build_platform.sh 2>> messages.txt
-cd $TI_ROOT/appc_web_docs
-bash ../doctools/copy_platform.sh 2>> messages.txt
-bash ../doctools/copy_cloud.sh 2>> messages.txt
-
-## open the message.txt file and you need to manually search for error messages
-open -a TextWrangler messages.txt
 
 ## open localhost and manually review the pages
 open http://localhost
