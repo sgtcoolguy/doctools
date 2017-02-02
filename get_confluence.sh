@@ -10,6 +10,9 @@ SECONDS=0
 DATE=$(date +%Y-%m-%d)
 CONFLUENCE_FILE=confluence_guide2-$DATE.zip
 date
+DOCTOOLSDIR=$TI_ROOT/doctools
+HTMLGUIDESDIR=$DOCTOOLSDIR/htmlguides
+WORKINGDIR=$TI_ROOT/Confluence_working
 
 ## function to download guide2 confluence space
 function downloadJarFile() {
@@ -20,74 +23,83 @@ function downloadJarFile() {
 	## rename the downloaded .jar file to include the a human readable name
 	mv com.*.jar $CONFLUENCE_FILE
 	## If the working Confluence directory doesn't exist, create it
-	if [ -d $TI_ROOT/Confluence_working ]; then
+	if [ -d $WORKINGDIR ]; then
 		cd $TI_ROOT
 		mkdir Confluence_working
 		cd -
 	fi
 	## move .jar file to working directory
-	mv $CONFLUENCE_FILE $TI_ROOT/Confluence_working
+	mv $CONFLUENCE_FILE $WORKINGDIR
 }
 
 unzipFile() {
 	## detect if the htmlguides directory is populated or not
-	cd $TI_ROOT/doctools/htmlguides
+	cd $HTMLGUIDESDIR
 	current=${PWD}
-	if [ "$(ls -A $TI_ROOT/doctools/htmlguides)" ]; then
+	if [ "$(ls -A $HTMLGUIDESDIR)" ]; then
 			echo "Emptying $current"
 			rm -r *
-			echo "Unzipping $TI_ROOT/Confluence_working/$CONFLUENCE_FILE in $current"
-			unzip -o $TI_ROOT/Confluence_working/$CONFLUENCE_FILE
+			echo "Unzipping $WORKINGDIR/$CONFLUENCE_FILE in $current"
+			unzip -o $WORKINGDIR/$CONFLUENCE_FILE
 	else
 		## current directory is empty; unzip files in it.
 		echo "Current directory is empty; proceeding with unzipping of $CONFLUENCE_FILE."
-		echo "Unzipping $TI_ROOT/Confluence_working/$CONFLUENCE_FILE in $current"
-		unzip -o $TI_ROOT/Confluence_working/$CONFLUENCE_FILE
+		echo "Unzipping $WORKINGDIR/$CONFLUENCE_FILE in $current"
+		unzip -o $WORKINGDIR/$CONFLUENCE_FILE
 	fi
+}
+
+parse_xml() {
+	#cd $DOCTOOLSDIR
+	## parse the $TI_ROOT/doctools/htmlguides/toc.xml file for items related to TIDOC-2718
+	#node $DOCTOOLSDIR/parse_xml $HTMLGUIDESDIR toc.xml
+	echo "Parsing $HTMLGUIDESDIR/toc.xml"
 }
 
 ## Create a series of potentially missing directories
 ## if the htmlguides directory is missing, add it back in
-if [ ! -d $TI_ROOT/doctools/htmlguides ]; then
+if [ ! -d $HTMLGUIDESDIR ]; then
 	echo "htmlguide directory is missing. Creating that directory."
-	mkdir $TI_ROOT/doctools/htmlguides
+	mkdir $HTMLGUIDESDIR
 fi
 ## empty the output directory of the guides
-if [ -d $TI_ROOT/doctools/htmlguides ]; then
+if [ -d $HTMLGUIDESDIR ]; then
 	echo "Emptying ../htmlguides directory."
-	cd $TI_ROOT/doctools/htmlguides
+	cd $HTMLGUIDESDIR
 	rm -r *
 fi
 ## this addition of the dist/platform and dist/arrowdb directories are not necessary for the creation of the htmlguides content but this directory is wiped out from the update_modules.sh script and needs to be added back in before the doc pub can finish.
-if [ ! -d $TI_ROOT/doctools/dist/platform ]; then
+if [ ! -d $DOCTOOLSDIR/dist/platform ]; then
 	echo "../dist/platform directory is missing. Creating that directory."
-	mkdir -p $TI_ROOT/doctools/dist/platform
+	mkdir -p $DOCTOOLSDIR/dist/platform
 fi
-if [ ! -d $TI_ROOT/doctools/dist/arrowdb ]; then
+if [ ! -d $DOCTOOLSDIR/dist/arrowdb ]; then
 	echo "../dist/arrowdb directory is missing. Creating that directory."
-	mkdir -p $TI_ROOT/doctools/dist/arrowdb
+	mkdir -p $DOCTOOLSDIR/dist/arrowdb
 fi
 ## if the Confluence_working is missing, create it
-if [ ! -d $TI_ROOT/Confluence_working ]; then
+if [ ! -d $WORKINGDIR ]; then
 	echo "../Confluence_working directory is missing. Create that directory."
-	mkdir $TI_ROOT/Confluence_working
+	mkdir $WORKINGDIR
 fi
 
-if [ -s $TI_ROOT/Confluence_working/$CONFLUENCE_FILE ]; then
+if [ -s $WORKINGDIR/$CONFLUENCE_FILE ]; then
 	printf "$CONFLUENCE_FILE exists. Do you wish to download it again, unzip the current file, or download and unzip latest version (total package)? [d]ownload/[u]nzip/[t]otal?"
 	read -r input
 	if [ $input == "download" ] || [ $input == "d" ]; then
 		echo "Downloading today's guide2 .jar file."
 		downloadJarFile
 	elif [ $input == "unzip" ] || [ $input == "u" ]; then
-		echo "Unzipping the existing guide2 file in $TI_ROOT/doctools/htmlguides."
-		cd $TI_ROOT/doctools/htmlguides
+		echo "Unzipping the existing guide2 file in $HTMLGUIDESDIR."
+		cd $HTMLGUIDESDIR
 		unzipFile
+		parse_xml
 	elif [ $input == "total" ] || [ $input == "t" ]; then
-		echo "Downloading latest version of guide2 space and unzipping in $TI_ROOT/doctools/htmlguides."
+		echo "Downloading latest version of guide2 space and unzipping in $HTMLGUIDESDIR."
 		downloadJarFile
-		cd $TI_ROOT/doctools/htmlguides
+		cd $HTMLGUIDESDIR
 		unzipFile
+		parse_xml
 	else
 		Echo "Quitting"
 	fi
@@ -96,6 +108,7 @@ else
 	## download .jar file into a working directory outside of htmlguides directory
 	downloadJarFile
 	unzipFile
+	parse_xml
 fi
 
 duration=$SECONDS
