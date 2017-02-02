@@ -26,7 +26,12 @@ if [ "$(ls -A $htmlguides)" ]; then
  rm -r *
  echo "Unzipping $confluenceDir/$CONFLUENCE_FILE in $htmlguides"
  unzip -o $TI_ROOT/Confluence_working/$CONFLUENCE_FILE
+ #cd $TI_ROOT/doctools
+ #node parse_xml $TI_ROOT/doctools/htmlguides toc.xml
 else ## current directory is empty; unzip files in it.
  echo "$htmlguides directory is empty; proceeding with unzipping of $TI_ROOT/Confluence_working/$CONFLUENCE_FILE."
  unzip -o $TI_ROOT/Confluence_working/$CONFLUENCE_FILE
+ #node parse_xml $TI_ROOT/doctools/htmlguides toc.xml
+ #cd $TI_ROOT/doctools
+ #node parse_xml $TI_ROOT/doctools/htmlguides toc.xml
 fi
