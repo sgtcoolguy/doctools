@@ -1,6 +1,8 @@
 var fs = require('fs');
 var location = process.argv[2]; // location of file to be processed
 var filename = process.argv[3]; // file to be processed (toc.xml)
+//var location = "."; // location of file to be processed
+//var filename = "toc.xml"; // file to be processed (toc.xml)
 //console.log("location: " + location);
 //console.log("filename: " + filename);
 //console.log(location + "/" + filename);
@@ -15,6 +17,7 @@ var whitespace = /^\s+|\s+$|\s+(?=\s)/g; // regex match to find whitespace
 var content = fs.readFileSync(location + "/" + filename).toString();
 content = content.replace(anchors, '"'); // find anything that has an anchor link (#) and onward and replace it with the closing quotes and bracket
 content = content.replace(whitespace, "\n"); // remove whitespace
+console.log(content);
 //fs.writeFileSync(location + "/" + filename, content);
 
 var splitter = /<topic.*">/g; // will need to add "</topic>" back into the final output
@@ -52,6 +55,7 @@ for (i in contentArray) {
 
 // function to build objects for each element in the contentArray array
 //function Objects(id, type, href, parent, content) {
+/*
 function Objects(id, type, href, content) {
   this.id = id;
   this.type = type;
@@ -59,8 +63,8 @@ function Objects(id, type, href, content) {
   //this.parent = parent;
   this.content = content;
 }
-
-var myObj = []; // array to collect all objects that will be generated while looping through the contentArray
+*/
+//var myObj = []; // array to collect all objects that will be generated while looping through the contentArray
 
 
 /*
@@ -85,7 +89,7 @@ var myObj = []; // array to collect all objects that will be generated while loo
 // in this mini set, get the href of the parent topic element
 // if any of the following elements have the same href, don't copy it to the clean object
 
-var contentArray = [];
+//var contentArray = [];
 /*
 contentArray = [
   '<topic label="top parent" href="Top.html">',
@@ -111,6 +115,8 @@ contentArray = [
   '</topic>'
 ];
 */
+
+/*
 contentArray = [
   '<topic label="Appcelerator Documentation and Guides" href="Home.html">',
     '<topic label="Quick Start" href="Home.html" />',
@@ -133,9 +139,10 @@ contentArray = [
     '<topic label="Next Steps" href="Quick_Start.html" />',
   '</topic>',
 ];
+*/
 
 // **** pick up here!
-// okay, I have a duplicate removal system in place name. I need to figure out how to pair the closing topic elements
+// okay, I have a duplicate removal system in place now. I need to figure out how to pair the closing topic elements
 // with their opening topic elements.
 // Or do I? I think the output of the current system is pretty close to being finished.
 // Try a small sample of the actual toc.xml file, run it through this system, and render it to the localhost
@@ -149,7 +156,8 @@ for (var i = 0; i < contentArray.length; i++) { // convert the contentArray into
   var href = "n/a"; // default the href value to 'n/a'
   var parent = "none"; // set the parent value to none by default
   var content = contentArray[i]; // pull in the original line into this key
-
+}
+/*
   if (contentArray[i].indexOf('<topic') > -1 && contentArray[i].indexOf('.html">') > -1) { // open topic element
     type = "topic-open";
     var start = contentArray[i].indexOf('href="') + 6;
@@ -175,6 +183,7 @@ for (var i = 0; i < contentArray.length; i++) { // convert the contentArray into
       }
     }
     */
+/*
   } else if (contentArray[i].indexOf('<topic') > -1 && contentArray[i].indexOf('" />') > -1) { // self-closing topic element
     type = "topic-closed";
     var start = contentArray[i].indexOf('href="') + 6;
@@ -189,6 +198,7 @@ for (var i = 0; i < contentArray.length; i++) { // convert the contentArray into
       console.log("Current object(" + i + ") is a child of object id " + parent);
     }
     */
+    /*
   } else if (contentArray[i].indexOf('<?xml') > -1) { // xml element
     type = "xml";
   } else if (contentArray[i].indexOf('<toc') > -1) { // toc element
