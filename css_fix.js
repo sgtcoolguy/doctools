@@ -1,4 +1,5 @@
-// find and replace {list-style:lower-alpha inside} with {list-style:lower-alpha} in *.css
+// find and replace {list-style:lower-alpha inside} with {list-style:lower-alpha} in app*.css
+// For more information visit https://wiki.appcelerator.org/x/jQ-uAg
 console.log("Running css_fix.js script.");
 
 var fs = require('fs');
