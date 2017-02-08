@@ -50,8 +50,8 @@ echo "starting sh clouddeploy.sh\n"
 sh clouddeploy.sh >> messages.txt
 echo "starting sh deploy.sh -o arrow -o alloy -o modules -s prod\n"
 sh deploy.sh -o arrow -o alloy -o modules -s prod >> messages.txt
-#node stripFooter.js >> message.txt ## not 100% necessary if building for test reasons
-#node redirects.js >> message.txt ## not 100% necessary if building for test reasons
+node stripFooter.js >> message.txt ## not 100% necessary if building for test reasons
+node redirects.js >> message.txt ## not 100% necessary if building for test reasons
 echo "starting sh clouddeploy.sh -s prod\n"
 sh clouddeploy.sh -s prod >> messages.txt
 echo "starting bash clouddeploy.sh prod\n"
@@ -64,10 +64,11 @@ bash ../doctools/copy_platform.sh >> messages.txt
 echo "starting bash ../doctools/copy_cloud.sh\n"
 bash ../doctools/copy_cloud.sh >> messages.txt
 cd $TI_ROOT/doctools
-#node appendTitles.js >> messages.txt ## not 100% necessary if building for test reasons
+node appendTitles.js >> messages.txt ## not 100% necessary if building for test reasons
+sh css_fix.sh ## See TIDOC-2739
 
 ## open the message.txt file and you need to manually search for error messages
-#open -a Atom messages.txt
+open -a Atom messages.txt
 
 ## open localhost and manually review the pages
 open http://localhost
