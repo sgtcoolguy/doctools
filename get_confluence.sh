@@ -16,8 +16,6 @@ WORKINGDIR=$TI_ROOT/Confluence_working
 
 ## function to download guide2 confluence space
 function downloadJarFile() {
-	CONFLUENCE_USERNAME='doc-robot'
-	CONFLUENCE_PASSWORD='szE8U9OWiJmVsfuCEQCMAgYwHokRrkqowyixe5HLqwzPUJOziy'
 	REST_URL='https://wiki.appcelerator.org/rest/scroll-eclipsehelp/1.0/sync-export?exportSchemeId=guides2-7F0000010146EBA9ABDB43844FCF8B50&rootPageId=29004729'
 	wget --content-disposition "$REST_URL&os_username=$CONFLUENCE_USERNAME&os_password=$CONFLUENCE_PASSWORD"
 	## rename the downloaded .jar file to include the a human readable name
