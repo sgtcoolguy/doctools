@@ -16,8 +16,6 @@
 ##########################################################################################
 
 
-say "cleaning CSS"
-
 FILE=$(ls $TI_ROOT/appc_web_docs/platform/latest/resources/css/app*.css) # grab the only CSS that starts with 'app'
 
 if [ -e $FILE ]; then
