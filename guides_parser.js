@@ -160,12 +160,13 @@ function parse (node) {
 }
 
 function cliUsage() {
-	console.log('Usage: node guides_parser --input htmguildes/toc.xml --output ./build/guides/ [--show_edit_button]');
+	console.log('Usage: node guides_parser --input htmlguides/toc.xml --output ./build/guides/ [--show_edit_button]');
 }
 
 // Start of Main Flow
 if ((argc = process.argv.length) > 2) {
 	for (var x = 2; x < argc; x++) {
+		//console.log("argument: " + process.argv[x]);
 		switch (process.argv[x]) {
 			case "--input":
 				if (++x >= argc) {
