@@ -145,8 +145,8 @@ if [ $include_alloy ]; then
 	echo "**** alloy files will be parsed"
 	echo "**** ${ALLOY}/..."
     alloyDirs="${ALLOY}/Alloy/lib
-    		   ${ALLOY}/docs/apidoc
-    		   ${DOCTOOLS}/add-ons
+    		       ${ALLOY}/docs/apidoc
+    		       ${DOCTOOLS}/add-ons
                $(find $ALLOY/Alloy/builtins -maxdepth 1 -type f ! -name moment.js)"
 fi
 
@@ -181,7 +181,7 @@ if [ $include_modules ]; then
         fi
     fi
     module_dirs="$APPC_MODULES/ti.map/apidoc
-    			 $APPC_MODULES/ti.facebook/apidoc
+    			       $APPC_MODULES/ti.facebook/apidoc
                  $APPC_MODULES/ti.nfc/apidoc
                  $APPC_MODULES/ti.newsstand/apidoc
                  $APPC_MODULES/ti.coremotion/apidoc
@@ -190,9 +190,9 @@ if [ $include_modules ]; then
                  $APPC_MODULES/Ti.SafariDialog/apidoc
                  $APPC_MODULES/appcelerator.apm/apidoc"
 
-        module_dirs+=" $APPC_MODULES/ti.geofence/apidoc
-        			   $APPC_MODULES/appcelerator.https/apidoc
-                       $APPC_MODULES/com.appcelerator.apm/apidoc"
+    module_dirs+=" $APPC_MODULES/ti.geofence/apidoc
+      		         $APPC_MODULES/appcelerator.https/apidoc
+                   $APPC_MODULES/com.appcelerator.apm/apidoc"
 fi
 
 if [ -d "$TI_ROOT/titanium_mobile_windows" ]; then
