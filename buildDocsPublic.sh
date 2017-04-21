@@ -91,7 +91,9 @@ echo "Manually check the page(s) you updated.\nIf everything looks good, check i
 ## open the Jenkins job pages so you can publish the docs (as needed)
 open http://devops-jenkins.appcelerator.org/job/appc_web_docs/
 open http://devops-jenkins.appcelerator.org/job/server_package_deployment/
-echo "Jenkins password: $JENKINS_PASSWORD"
+#echo "Jenkins password: $JENKINS_PASSWORD"
+echo "Grab your Jenkins password"
+editBash
 
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
