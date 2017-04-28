@@ -109,12 +109,23 @@ else
 	parse_xml
 fi
 
+printf "Do you need to edit ../doctools/toc.xml?"
+read -r edit
+if [ $edit == "yes" ] || [ $edit == "y" ]; then
+	open $DOCTOOLSDIR/toc.xml
+else
+	echo "Skip opening/editing $DOCTOOLSDIR/toc.xml"
+fi
+
 ## temp fix to copy the ../doctools/toc.xml to ../doctools/htmlguides/
 printf "Copy ../doctools/toc.xml to ../doctools/htmlguides/?"
 read -r copy
-if [ $copy == "yes" ] || [ $copy == "d" ]; then
+if [ $copy == "yes" ] || [ $copy == "y" ]; then
 	echo "copying ../doctools/toc.xml to ../doctools/htmlguides/"
 	cp $DOCTOOLSDIR/toc.xml $HTMLGUIDESDIR/
+else
+	echo "If you need to update the $HTMLGUIDESDIR/toc.xml file, do it before"
+	echo "executing the documentation build script."
 fi
 
 duration=$SECONDS
