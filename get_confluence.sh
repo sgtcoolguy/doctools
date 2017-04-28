@@ -109,5 +109,13 @@ else
 	parse_xml
 fi
 
+## temp fix to copy the ../doctools/toc.xml to ../doctools/htmlguides/
+printf "Copy ../doctools/toc.xml to ../doctools/htmlguides/?"
+read -r copy
+if [ $copy == "yes" ] || [ $copy == "d" ]; then
+	echo "copying ../doctools/toc.xml to ../doctools/htmlguides/"
+	cp $DOCTOOLSDIR/toc.xml $HTMLGUIDESDIR/
+fi
+
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
