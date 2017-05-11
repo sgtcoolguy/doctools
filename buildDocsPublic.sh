@@ -44,6 +44,8 @@ if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
 	echo "Updating repos.\n"
 	sh update_modules.sh ## update various modules needed by the API docs portion of the stripFooter
 	sh build_htmlguide.sh ## rebuild the htmlguide directory and it's content
+else
+	echo "Skipping updating the repos."
 fi
 
 echo "Checking status of NPM modules.\n"
@@ -91,9 +93,9 @@ echo "Manually check the page(s) you updated.\nIf everything looks good, check i
 ## open the Jenkins job pages so you can publish the docs (as needed)
 open http://devops-jenkins.appcelerator.org/job/appc_web_docs/
 open http://devops-jenkins.appcelerator.org/job/server_package_deployment/
-#echo "Jenkins password: $JENKINS_PASSWORD"
+
+open -a Atom ~/.bash_profile
 echo "Grab your Jenkins password"
-editBash
 
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
