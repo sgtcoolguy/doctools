@@ -109,6 +109,8 @@ else
 	parse_xml
 fi
 
+say 'Download complete'
+
 printf "Do you need to edit ../doctools/toc.xml?"
 read -r edit
 if [ $edit == "yes" ] || [ $edit == "y" ]; then
