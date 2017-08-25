@@ -19,8 +19,8 @@ bold=$(tput bold)
 normal=$(tput sgr0)
 #mobile=( js-yaml@3.6.1 pagedown@1.1.0 cheerio@0.22.0 xml2js@0.4.17 ) ## npm modules necessary for titanium_mobile directory ## ** js-yaml 3.6.1 is invalid?
 #mobile=( js-yaml@3.7.0 colors@0.6.2 ejs@1.0.0 node-appc@0.2.14 pagedown@1.1.0 cheerio@0.22.0 xml2js@0.4.17 ) ## npm modules necessary for titanium_mobile directory ## ** js-yaml 3.7.0 is invalid?
-mobile=( js-yaml@3.2.2 colors@0.6.2 ejs@1.0.0 node-appc@0.2.14 pagedown@1.1.0 cheerio@0.22.0 xml2js@0.4.17 ) ## npm modules necessary for titanium_mobile directory
-doctools=( cheerio@0.19.0 pagedown@1.1.0 xml2js@0.4.17 html-entities@1.1.3 glob@7.1.0 shelljs@0.7.4 ) ## npm modules necessary for doctools directory
+mobile=( js-yaml@3.2.2 colors@0.6.2 ejs@1.0.0 node-appc@0.2.14 pagedown@1.1.0 cheerio@0.22.0 xml2js@0.4.17 ejs ) ## npm modules necessary for titanium_mobile directory
+doctools=( cheerio@0.19.0 pagedown@1.1.0 xml2js@0.4.17 html-entities@1.1.3 glob@7.1.0 shelljs@0.7.4 ejs ) ## npm modules necessary for doctools directory
 jsduck=( html-entities@1.2.0 ) ## npm modules necessary for jsduck
 
 getNPMs () { ## check to see if a NPM modules is missing and install it if it is missing
