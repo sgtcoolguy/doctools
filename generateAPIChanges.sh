@@ -14,7 +14,7 @@ SECONDS=0
 
 ROOT="/Users/bimmel/temp_repos"
 
-printf "Which branch of titanium_mobile should do you need to be on? " ## 6_0_x
+printf "Which branch of titanium_mobile should do you need to be on? (#_#_X)" ## 6_0_x
 read -r branch
 if [[ -z $branch ]]; then
 	echo "You must enter a branch to pull the data from."
@@ -47,10 +47,10 @@ fi
 
 ## Ask user for previous and current versions to generate report on
 echo "Enter the prior and current versions to generate API change."
-printf "Previous version: "
+printf "Previous version (#.#.#): "
 read -r previous
 echo "Enter the target version plus 0.0.1 so that the current version is included in the report."
-printf "Current version (+0.0.1): " ## 5.3.2 (version higher than the previous)
+printf "Current version (+0.0.1)(#.#.#): " ## 5.3.2 (version higher than the previous)
 read -r current
 
 ## Check to see if user entered in numbers for both inputs
@@ -60,20 +60,58 @@ if [[ -z $previous || -z $current ]]; then
 	exit 1
 fi
 
+## array of apidoc modules to update from their respective repos
+npmModules=( pagedown js-yaml node-appc colors ejs )
+
+npmUpdate () { ## check to see if a module exists and update it
+	echo "Updating/Installing $1 npm module"
+	if [ ! -d $ROOT/titanium_mobile/node_modules/$1 ]; then
+		echo "\nThe $1 NPM module was not found. Installing it now."
+		cd $ROOT/titanium_mobile
+		npm install $1
+	fi
+}
+
+for i in "${npmModules[@]}"
+do
+	npmUpdate $i
+done
+
 ## Check for select NPM modules
 ## Check to see in pagedown NPM module has been installed
-if [ ! -d $ROOT/titanium_mobile/node_modules/pagedown ]; then
-	echo "\nThe pagedown NPM module was not found. Installing it now."
-	cd $ROOT/titanium_mobile
-	npm install pagedown
-fi
+#if [ ! -d $ROOT/titanium_mobile/node_modules/pagedown ]; then
+#	echo "\nThe pagedown NPM module was not found. Installing it now."
+#	cd $ROOT/titanium_mobile
+#	npm install pagedown
+#fi
 
 ## Confirm js-yaml is installed, if not, get it
-if [ ! -d $ROOT/titanium_mobile/node_modules/js-yaml ]; then
-	echo "\nThe ys-yaml NPM module was not found. Installing it now."
-	cd $ROOT/titanium_mobile
-	npm install js-yaml
-fi
+#if [ ! -d $ROOT/titanium_mobile/node_modules/js-yaml ]; then
+#	echo "\nThe ys-yaml NPM module was not found. Installing it now."
+#	cd $ROOT/titanium_mobile
+#	npm install js-yaml
+#fi
+
+## Confirm node-appc is installed, if not, get it
+#if [ ! -d $ROOT/titanium_mobile/node_modules/node-appc ]; then
+#	echo "\nThe node-appc NPM module was not found. Installing it now."
+#	cd $ROOT/titanium_mobile
+#	npm install node-appc
+#fi
+
+## Confirm colors is installed, if not, get it
+#if [ ! -d $ROOT/titanium_mobile/node_modules/colors ]; then
+#	echo "\nThe colors NPM module was not found. Installing it now."
+#	cd $ROOT/titanium_mobile
+#	npm install colors
+#fi
+
+## Confirm ejs is installed, if not, get it
+#if [ ! -d $ROOT/titanium_mobile/node_modules/ejs ]; then
+#	echo "\nThe ejs NPM module was not found. Installing it now."
+#	cd $ROOT/titanium_mobile
+#	npm install ejs
+#fi
 
 ## Remove previous API change reports
 if [ -d $ROOT/titanium_mobile/dist/ ]; then
