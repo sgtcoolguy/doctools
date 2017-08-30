@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Custom Objects and Fields</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-49153774" class="content">
+                        <h1>Custom Objects and Fields</h1>
+    <p>This document provides information about custom objects and field, how to create custom objects, adding and removing custom fields, and supported data types.    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Custom_Objects_and_Fields.html#src-49153774_CustomObjectsandFields-Customobjectsandcustomfields">Custom objects and custom fields</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Custom_Objects_and_Fields.html#src-49153774_CustomObjectsandFields-Creatingcustomobjects">Creating custom objects</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Custom_Objects_and_Fields.html#src-49153774_CustomObjectsandFields-Addingcustomfieldstopredefinedobjects">Adding custom fields to predefined objects</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Custom_Objects_and_Fields.html#src-49153774_CustomObjectsandFields-Supporteddatatypes">Supported data types</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Custom_Objects_and_Fields.html#src-49153774_CustomObjectsandFields-Indexingsizelimitforcustomobjectsandfields">Indexing size limit for custom objects and fields</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Custom_Objects_and_Fields.html#src-49153774_CustomObjectsandFields-Geographiccoordinatesincustomfields">Geographic coordinates in custom fields</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Custom_Objects_and_Fields.html#src-49153774_CustomObjectsandFields-Removeafield">Remove a field</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Custom_Objects_and_Fields.html#src-49153774_CustomObjectsandFields-Queryingcustomfields">Querying custom fields</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Custom_Objects_and_Fields.html#src-49153774_CustomObjectsandFields-Availability">Availability</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Custom_Objects_and_Fields.html#src-49153774_CustomObjectsandFields-iOS">iOS</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-49153774_CustomObjectsandFields-Customobjectsandcustomfields">
+        <h2 class="heading "><span>Custom objects and custom fields</span></h2>
+    <p>Mobile Backend Services (MBS) provides many types of commonly used predefined objects such as <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Users">Users</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Photos">Photos</a>. However, you may want to create custom data types or store custom fields on predefined MBS objects. Custom Objects and Custom Data Fields provide your application with this ability.    </p>
+    </div>
+    <div class="section section-2 " id="src-49153774_CustomObjectsandFields-Creatingcustomobjects">
+        <h2 class="heading "><span>Creating custom objects</span></h2>
+    <p>If you would like to create custom objects with a custom object type, please refer to <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/CustomObjects">CustomObjects</a> to get a list of API calls that can be used to create and access custom objects.    </p>
+    </div>
+    <div class="section section-2 " id="src-49153774_CustomObjectsandFields-Addingcustomfieldstopredefinedobjects">
+        <h2 class="heading "><span>Adding custom fields to predefined objects</span></h2>
+    <p>If you would like to store additional custom data into any predefined MBS objects, you can simply pass in JSON encoded custom_fields. Any number of custom fields can be specified for an instance of a predefined object.    </p>
+    <p>For example, if you are using the Users API and want to store the age and favorite color of each user, simply include JSON encoding of custom_fields    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">custom_fields=&apos;{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;age&quot;</code><code class="plain">: 23,</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;favorite_color&quot;</code><code class="plain">: </code><code class="string">&quot;blue&quot;</code></div>
+<div class="line"><code class="plain">}&apos;</code></div>
+</div>
+    </div>
+    <p>For example, to associate the above custom fields in user create    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ curl -b cookies.txt -c cookies.txt -X POST --data-urlencode </code><code class="string">&quot;email=john.smith@company.com&quot;</code><code class="plain"> --data-urlencode </code></div>
+<div class="line"><code class="string">&quot;role=teacher&quot;</code><code class="plain"> --data-urlencode </code><code class="string">&quot;first_name=John&quot;</code><code class="plain"> --data-urlencode </code><code class="string">&quot;last_name=Smith&quot;</code><code class="plain"> --data-urlencode </code></div>
+<div class="line"><code class="string">&quot;password=pass&quot;</code><code class="plain"> --data-urlencode </code><code class="string">&quot;password_confirmation=pass&quot;</code><code class="plain"> --data-urlencode &apos;custom_fields={</code><code class="string">&quot;age&quot;</code><code class="plain">:23, </code></div>
+<div class="line"><code class="string">&quot;favorite_color&quot;</code><code class="plain">:</code><code class="string">&quot;blue&quot;</code><code class="plain">}&apos; https:</code><code class="comments">//api.cloud.appcelerator.com/v1/users/create.json?key=&lt;YOUR APP APP KEY&gt;</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;meta&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;status&quot;</code><code class="plain">: </code><code class="string">&quot;ok&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;code&quot;</code><code class="plain">: 200,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;method_name&quot;</code><code class="plain">: </code><code class="string">&quot;createUser&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;session_id&quot;</code><code class="plain">: </code><code class="string">&quot;xdqCplQqcXBq8WW1ir9nzq5U4nE&quot;</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;users&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;4ec5907bd9ca72020c000005&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;first_name&quot;</code><code class="plain">: </code><code class="string">&quot;John&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;last_name&quot;</code><code class="plain">: </code><code class="string">&quot;Smith&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;created_at&quot;</code><code class="plain">: </code><code class="string">&quot;2011-11-17T22:53:48+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;updated_at&quot;</code><code class="plain">: </code><code class="string">&quot;2011-11-17T22:53:48+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;external_accounts&quot;</code><code class="plain">: [</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">        ],</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;role&quot;</code><code class="plain">: </code><code class="string">&quot;teacher&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;email&quot;</code><code class="plain">: </code><code class="string">&quot;john.smith@company.com&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;age&quot;</code><code class="plain">: 23,</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;favorite_color&quot;</code><code class="plain">: </code><code class="string">&quot;blue&quot;</code></div>
+<div class="line"><code class="plain">        },</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;stats&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;photos&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;total_count&quot;</code><code class="plain">: 0</code></div>
+<div class="line"><code class="plain">          },</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;storage&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;used&quot;</code><code class="plain">: 0</code></div>
+<div class="line"><code class="plain">          }</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">      }</code></div>
+<div class="line"><code class="plain">    ]</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Custom Data are returned in the <tt class=" ">custom_fields</tt> JSON response field in the type that was specified. Attempting to define custom fields using invalid types or an incorrect naming convention will be silently ignored.    </p>
+    </div>
+    <div class="section section-2 " id="src-49153774_CustomObjectsandFields-Supporteddatatypes">
+        <h2 class="heading "><span>Supported data types</span></h2>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Example    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Boolean    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>true or false    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>String    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;blue&quot;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Number    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>23 or 1.234    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Date    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;2011-11-02 17:07:37 -0700&quot;. If a string value matches date format &quot;yyyy-mm-dd hh:mm:ss+zzzz&quot; or &quot;yyyy-mm-ddThh:mm:ss+zzzz&quot;, it will be converted to Date type on the API Builder backend    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>You could also store more complex data types such as Array and Hash. Hash and Array can be embedded into each other. Currently, data stored inside a Hash is not queryable.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Example    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Hash    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>{&quot;age&quot;:23,&quot;scores&quot;:{&quot;math&quot;:90, &quot;physics&quot;:100}, &quot;my_favorite_colors&quot;:[&quot;blue&quot;,&quot;red&quot;]}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Array    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[&quot;nissan&quot;, &quot;honda&quot;] or [2006, 2008], [{&quot;age&quot;:28}, {&quot;color&quot;:&quot;blue&quot;}]    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-49153774_CustomObjectsandFields-Indexingsizelimitforcustomobjectsandfields">
+        <h2 class="heading "><span>Indexing size limit for custom objects and fields</span></h2>
+    <p>To support efficient data query operations, MBS indexes the field names and values of each custom object, or custom fields you add to a predefined object. For example, suppose you create a custom object, <tt class=" ">cars</tt>, with the fields <tt class=" ">make</tt> and <tt class=" ">model</tt>. Mobile Backend Services will create two index entries in the MongoDB database, one for each field. The total size of an index entry, including meta-data added by MBS, must be less than <strong class=" ">1024 bytes</strong> (1KB).    </p>
+    <p>If a custom field&apos;s name or value exceeds this size, then no index entry for that field is created. Consequently, if you run a custom <a class="external-link " href="https://wiki.appcelerator.org/display/~lbadenhop/Search+and+Query+APIs">query</a> against that field, nothing will be returned.    </p>
+    <p>For instance, in the previous example, suppose the string value assigned to <tt class=" ">model</tt> was greater than 1KB. If you queried the <tt class=" ">cars</tt> collection for objects whose <tt class=" ">model</tt> matched that value, no objects would be returned:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">Cloud.Objects.query({</code></div>
+<div class="line"><code class="plain">    classname: </code><code class="string">&apos;cars&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    where: {</code></div>
+<div class="line"><code class="plain">        make: {</code></div>
+<div class="line"><code class="plain">          $regex:</code><code class="string">&quot;^That Really Long Model Name*&quot;</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}, </code><code class="keyword">function</code><code class="plain"> (e) {</code></div>
+<div class="line"><code class="plain">      </code><code class="keyword">if</code><code class="plain"> (e.success) {</code></div>
+<div class="line"><code class="plain">        console.log(e.cars.length); </code><code class="comments">// 0</code></div>
+<div class="line"><code class="plain">      }</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-49153774_CustomObjectsandFields-Geographiccoordinatesincustomfields">
+        <h2 class="heading "><span>Geographic coordinates in custom fields</span></h2>
+    <p>To enable geographical search, there is a predefined custom field, <tt class=" ">coordinates</tt>, for optionally storing geographic coordinates. The <tt class=" ">coordinates</tt> field can store a single location as an array ( <tt class=" ">[longitude, latitude]</tt> ) or multiple locations as an array of arrays ( <tt class=" ">[[longitude1,latitude1], [longitude2, latitude2]]</tt> ). So for the above example, to store location information about the user, we might have:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">custom_fields = &apos;{ </code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;color&quot;</code><code class="plain">: </code><code class="string">&quot;blue&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;age&quot;</code><code class="plain">: 23,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;coordinates&quot;</code><code class="plain">: [-122.1, 37.1] </code></div>
+<div class="line"><code class="plain">}&apos;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-49153774_CustomObjectsandFields-Removeafield">
+        <h2 class="heading "><span>Remove a field</span></h2>
+    <p>If you wish to remove a custom field during update, simply set the field value to null.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;age&quot;</code><code class="plain">: </code><code class="keyword">null</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-49153774_CustomObjectsandFields-Queryingcustomfields">
+        <h2 class="heading "><span>Querying custom fields</span></h2>
+    <p>Data stored in custom fields other than Array and Hash can be queried together with predefined fields. Please refer to <a class="document-link " href="Search_and_Query_APIs.html">Query</a> for more information. If you define a custom field name that is the same as one of the predefined fields, you will be able to store and retrieve it but you won&apos;t be able to query on it since the query action would be performed on the predefined field instead. For example, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Users">Users</a> has a predefined field called <tt class=" ">first_name</tt>, if you define a custom field also called <tt class=" ">first_name</tt>, when you try to query first_name. it will only query against the predefined <tt class=" ">first_name</tt> field.    </p>
+    </div>
+    <div class="section section-2 " id="src-49153774_CustomObjectsandFields-Availability">
+        <h2 class="heading "><span>Availability</span></h2>
+    <p>The following MBS objects allow you to add one or more extra data fields during <tt class=" ">create</tt> and <tt class=" ">update</tt> actions:    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Chats-method-create">Chats.create</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Checkins-method-create">Checkins.create</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/PhotoCollections-method-create">PhotoCollections.create</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/PhotoCollections-method-update">update</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Events-method-create">Events.create</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Events-method-update">update</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Files-method-create">Files.create</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Files-method-update">update</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Messages-method-create">Messages.create</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Photos-method-create">Photos.create</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Photos-method-update">update</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Places-method-create">Places.create</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Places-method-update">update</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Posts-method-create">Posts.create</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Posts-method-update">update</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Reviews-method-create">Reviews.create</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Reviews-method-update">update</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Statuses-method-create">Statuses.create</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Users-method-create">Users.create</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Users-method-update">update</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-49153774_CustomObjectsandFields-iOS">
+        <h2 class="heading "><span>iOS</span></h2>
+    <p>If you are using the <a class="document-link " href="Appcelerator_Platform_Services_SDK_for_iOS_Mobile_Backend_Services.html">iOS APS SDK</a>, to create an object&apos;s custom fields use an NSDictionary to construct the custom data you want to associate with the object.    </p>
+    <p>The following table lists the data types you can define with the iOS APS SDK:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Example    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>iOS Class    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>String    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;blue&quot;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NString    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Number    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>123 or 1.234    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[NSNumber numberWithInt:] or [NSNumber numberWithDouble:]    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Boolean    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>true or false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[NSNumber numberWithBool:]    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Date    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;2011-11-02 17:07:37 -0700&quot;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSString    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Hash    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>{&quot;age&quot;: 23, &quot;color&quot;: &quot;blue&quot;}    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSDictionary    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Array    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[123, 234] or [&quot;mike&quot;, &quot;joe&quot;]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSArray    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Geo coordinates    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[lng, lat], e.g. [122.33, 37.48]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSArray with two NSNumber elements    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>For example, if you want to create a user with custom fields, such as eye_color, enrolled_at, etc., you can put all the custom fields in an NSDictionary.    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">NSMutableDictionary *customFields = [NSMutableDictionary dictionary];</code></div>
+<div class="line"><code class="plain">[customFields setObject:@</code><code class="string">&quot;brown&quot;</code><code class="plain"> forKey:@</code><code class="string">&quot;eye_color&quot;</code><code class="plain">]; </code><code class="comments">// set a string</code></div>
+<div class="line"><code class="plain">[customFields setObject:@</code><code class="string">&quot;2011-11-02 17:07:37 -0700&quot;</code><code class="plain"> forKey:@</code><code class="string">&quot;enrolled_at&quot;</code><code class="plain">]; </code><code class="comments">// set a date</code></div>
+<div class="line"><code class="plain">[customFields setObject:[NSNumber numberWithInt:23] forKey:@</code><code class="string">&quot;age&quot;</code><code class="plain">]; </code><code class="comments">// set a number</code></div>
+<div class="line"><code class="plain">[customFields setObject:[NSNumber numberWithBool:</code><code class="keyword">true</code><code class="plain">] forKey:@</code><code class="string">&quot;student&quot;</code><code class="plain">]; </code><code class="comments">// set a boolean</code></div>
+<div class="line"><code class="plain">[customFields setObject:[NSArray arrayWithObjects:@</code><code class="string">&quot;hiking&quot;</code><code class="plain">, @</code><code class="string">&quot;reading&quot;</code><code class="plain">, nil] forKey:@</code><code class="string">&quot;hobby&quot;</code><code class="plain">]; </code><code class="comments">// set an array</code></div>
+<div class="line"><code class="plain">[customFields setObject:[NSDictionary dictionaryWithObjectsAndKeys:@</code><code class="string">&quot;cookies&quot;</code><code class="plain">, @</code><code class="string">&quot;favorite&quot;</code><code class="plain">, nil] </code></div>
+<div class="line"><code class="plain">forKey:@</code><code class="string">&quot;others&quot;</code><code class="plain">];</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">NSMutableDictionary *params = [NSMutableDictionary dictionary];</code></div>
+<div class="line"><code class="plain">[params setObject:@</code><code class="string">&quot;john@usc.com&quot;</code><code class="plain"> forKey:@</code><code class="string">&quot;email&quot;</code><code class="plain">];</code></div>
+<div class="line"><code class="plain">[params setObject:@</code><code class="string">&quot;John&quot;</code><code class="plain"> forKey:@</code><code class="string">&quot;first_name&quot;</code><code class="plain">];</code></div>
+<div class="line"><code class="plain">[params setObject:@</code><code class="string">&quot;Woo&quot;</code><code class="plain"> forKey:@</code><code class="string">&quot;last_name&quot;</code><code class="plain">];</code></div>
+<div class="line"><code class="plain">[params setObject:@</code><code class="string">&quot;pass&quot;</code><code class="plain"> forKey:@</code><code class="string">&quot;password&quot;</code><code class="plain">];</code></div>
+<div class="line"><code class="plain">[params setObject:@</code><code class="string">&quot;pass&quot;</code><code class="plain"> forKey:@</code><code class="string">&quot;password_confirmation&quot;</code><code class="plain">];</code></div>
+<div class="line"><code class="plain">[params setObject:customFields forKey:@</code><code class="string">&quot;custom_fields&quot;</code><code class="plain">]; </code><code class="comments">// add custom fields</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">[APSUsers create:params withBlock:^(APSResponse *e){</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (e.success) {</code></div>
+<div class="line"><code class="plain">        NSArray *users = [e.response valueForKey:@</code><code class="string">&quot;users&quot;</code><code class="plain">];</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> ([users count] == 1) {</code></div>
+<div class="line"><code class="plain">            NSDictionary *user = users[0];</code></div>
+<div class="line"><code class="plain">            NSLog(@</code><code class="string">&quot;Successfully registered user %@&quot;</code><code class="plain">, [user valueForKey:@</code><code class="string">&quot;email&quot;</code><code class="plain">]);</code></div>
+<div class="line"><code class="plain">            NSLog(@</code><code class="string">&quot;custom fields are %@&quot;</code><code class="plain">, [user valueForKey:@</code><code class="string">&quot;custom_fields&quot;</code><code class="plain">]);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">        [[[UIAlertView alloc] initWithTitle:@</code><code class="string">&quot;Error&quot;</code><code class="plain"> message:e.errorMessage delegate:nil </code></div>
+<div class="line"><code class="plain">cancelButtonTitle:@</code><code class="string">&quot;OK&quot;</code><code class="plain"> otherButtonTitles:nil] show];</code></div>
+<div class="line"><code class="plain">    }</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>If you would like to use your own custom data type, you need to provide a class method to JSON encode the data of your object.    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">@interface MyObject : NSObject</code></div>
+<div class="line"><code class="plain">  @property NSString *color;</code></div>
+<div class="line"><code class="plain">  @property NSNumber *mileage;</code></div>
+<div class="line"><code class="plain">@end</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">@implementation MyObject</code></div>
+<div class="line"><code class="comments">/*!</code></div>
+<div class="line"><code class="comments"> Converts the object to an encodable JSON object.</code></div>
+<div class="line"><code class="comments"> @return Object encodable as JSON, such as a NSDictionary or NSArray.</code></div>
+<div class="line"><code class="comments"> */</code></div>
+<div class="line"><code class="plain">- (id)toJSON</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> [NSDictionary dictionaryWithObjectsAndKeys:self.color, @</code><code class="string">&quot;color&quot;</code><code class="plain">, self.mileage, @</code><code class="string">&quot;mileage&quot;</code><code class="plain">, nil];</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain">@end</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">MyObject *object = [[MyObject alloc] init];</code></div>
+<div class="line"><code class="plain">object.color = @</code><code class="string">&quot;green&quot;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">object.mileage = [NSNumber numberWithDouble:23.3];</code></div>
+<div class="line"><code class="plain">NSMutableDictionary *customFields = [NSMutableDictionary dictionary];</code></div>
+<div class="line"><code class="plain">[customFields setObject:[object toJSON] forKey:@</code><code class="string">&quot;MyObject&quot;</code><code class="plain">];</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>    </p>
+    <p>    </p>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

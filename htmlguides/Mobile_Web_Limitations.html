@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Mobile Web Limitations</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30084659" class="content">
+                        <h1>Mobile Web Limitations</h1>
+    <p>Titanium Mobile Web apps run within the browser environment on the user&apos;s handset or tablet. Because of this, your Mobile Web apps are unavoidably limited by the environments provided by those browsers. The following limitations are a mix of Titanium limitations and a larger collection of general limitations for any web app.    </p>
+    <p><strong class=" ">Overall</strong>    </p>
+<ul class=" "><li class=" ">    <p>You cannot use as variable names any words that exist in the JavaScript environment of the browser. So words like window, document, navigator, debugger, class, and so forth. In other words, you can&apos;t use any name that exists in the HTML DOM or JavaScript language as variable names. See for example <a class="external-link external-link" href="http://developer.mozilla.org/en/JavaScript/Reserved_Words">http://developer.mozilla.org/en/JavaScript/Reserved_Words</a>    </p>
+</li></ul>    <p><strong class=" ">Files and Local Storage</strong>    </p>
+<ul class=" "><li class=" ">    <p>Many browsers limit the amount of data (usually around 5MB) we can store in the browser&apos;s local storage. This limits the data, file storage, and database storage that can be used by your app. These are some of the components that consume that local storage:    </p>
+<ul class=" "><li class=" ">    <p>Analytics system - Stores the machine id (mid)    </p>
+</li><li class=" ">    <p>Loader system - Caches modules and static resources (caching such resources is optional, though)    </p>
+</li><li class=" ">    <p>Ti.App.Properties - Stores all properties, including those from the tiapp.xml    </p>
+</li><li class=" ">    <p>Ti.Filesystem - Any file storage your app might perform    </p>
+</li><li class=" ">    <p>Ti.UI.Clipboard - Temporary storage of data placed on the clipboard    </p>
+</li></ul></li><li class=" ">    <p>Ti.Filesystem can see all files in the Resources (web root) folder on the web server except <tt class=" ">index.html</tt> and <tt class=" ">titanium/filesystem.registry</tt>.    </p>
+</li><li class=" ">    <p>If Ti.Filesystem.getFile() is called with a relative path (i.e. &quot;myimage.jpg&quot;), the Resource directory path is automatically prepended to the path.    </p>
+</li><li class=" ">    <p>Files with a mime type application/* image/*, audio/*, or video/* are automatically handled as &quot;binary&quot; where the data internally is stored Base64 encoded.    </p>
+</li></ul>    <p><strong class=" ">Loader</strong>    </p>
+<ul class=" "><li class=" ">    <p>Module IDs must NOT begin with a forward slash (so <tt class=" ">require(&apos;foo&apos;)</tt> <i class=" ">not</i> <tt class=" ">require(&apos;/foo&apos;)</tt>). Paths are relative to the app&apos;s Resources directory.    </p>
+</li><li class=" ">    <p>Modules including Titanium APIs cannot be named &quot;require&quot;, &quot;exports&quot;, or &quot;module&quot;    </p>
+</li><li class=" ">    <p>Titanium APIs must NOT contain properties named &quot;constructor&quot;, &quot;properties&quot;, &quot;constants&quot;, or &quot;declaredClass&quot;    </p>
+</li><li class=" ">    <p>You cannot call Ti.include() with a relative path from an async/callback function    </p>
+</li></ul>    <p><strong class=" ">Media, Blobs, and Codec</strong>    </p>
+<ul class=" "><li class=" ">    <p>With a Ti.Blob containing an image, the width and height are zero until the image is loaded which happens after a reflow. Either wait for a reflow or set a timeout with a callback before using the width and height.    </p>
+</li><li class=" ">    <p>With Ti.Codec, all buffers are treated as little endian. Furthermore, the &quot;position&quot; argument for encodeNumber() and decodeNumber() is unsupported    </p>
+</li><li class=" ">    <p>Video and audio codec support varies by browser    </p>
+</li></ul>    <p><strong class=" ">Geolocation</strong>    </p>
+<ul class=" "><li class=" ">    <p>Using Ti.Geolocation requires a browser that implements the Geolocation API.    </p>
+</li><li class=" ">    <p>Ti.Geolocation requires the end-user to allow browser to locate the user.    </p>
+</li></ul>    <p><strong class=" ">Ti.Gesture</strong>    </p>
+<ul class=" "><li class=" ">    <p>Requires a device with an accelerometer plus a browser that implements an API for access to sensor data.    </p>
+</li><li class=" ">    <p>Requires a device with a gyroscope plus a browser that implements an API for access to sensor data.    </p>
+</li></ul>    <p><strong class=" ">Networking</strong>    </p>
+<ul class=" "><li class=" ">    <p>Uses the navigator.online flag to detect state of connectivity.    </p>
+</li><li class=" ">    <p>Determining the network type is supported only on Android.    </p>
+</li><li class=" ">    <p>You can access cross-domain resources by either:    </p>
+<ul class=" "><li class=" ">    <p>Enabling CORS header support on the remote web server    </p>
+</li><li class=" ">    <p>Configuring a proxy and defining a custom <tt class=" ">Ti.Network.httpURLFormatter</tt>.    </p>
+</li></ul></li></ul>    <p><strong class=" ">Ti.Platform</strong>    </p>
+<ul class=" "><li class=" ">    <p>Several read-only properties are unavailable:    </p>
+<ul class=" "><li class=" ">    <p>address    </p>
+</li><li class=" ">    <p>architecture    </p>
+</li><li class=" ">    <p>availableMemory    </p>
+</li><li class=" ">    <p>macaddress    </p>
+</li><li class=" ">    <p>model    </p>
+</li><li class=" ">    <p>netmask    </p>
+</li><li class=" ">    <p>processorCount    </p>
+</li><li class=" ">    <p>username    </p>
+</li></ul></li></ul>    <p><strong class=" ">Ti.UI</strong>    </p>
+<ul class=" "><li class=" ">    <p>Radial background gradients do not support an end point.    </p>
+</li></ul>    <p><strong class=" ">Ti.UI.EmailDialog</strong>    </p>
+<ul class=" "><li class=" ">    <p>Some browsers limit the maximum size of a mailto: URL to 2000 characters which includes all email addresses, subject, and body    </p>
+<ul class=" "><li class=" ">    <p>In our testing, this works fine with the Android web browser and iPhone&apos;s Safari on iPhone/iPad. It also works fine on desktop Firefox, Chrome, and Safari.    </p>
+</li></ul></li><li class=" ">    <p>Some e-mail clients do not properly unescape HTML entities:    </p>
+<ul class=" "><li class=" ">    <p>True for Outlook, Mozilla Thunderbird, and Android mail app.    </p>
+</li><li class=" ">    <p>iPhone and iPad work as expected.    </p>
+</li><li class=" ">    <p>We recommend either leave &quot;html&quot; parameter false or only true for iPhone/iPad.    </p>
+</li></ul></li><li class=" ">    <p>There is no way to detect failure or cancelling of sending an email.    </p>
+</li></ul>    <p><strong class=" ">Ti.UI.WebView</strong>    </p>
+<ul class=" "><li class=" ">    <p>The following do NOT work for cross-domain URLs:    </p>
+<ul class=" "><li class=" ">    <p>evalJS()    </p>
+</li><li class=" ">    <p>goBack()    </p>
+</li><li class=" ">    <p>goForward()    </p>
+</li><li class=" ">    <p>Ti.API.* and Ti.App.* bridge    </p>
+</li><li class=" ">    <p>&quot;beforeload&quot; event    </p>
+</li></ul></li><li class=" ">    <p>There is no way to detect if a page fails to load in the WebView, so the &quot;error&quot; event is never fired.    </p>
+</li><li class=" ">    <p>The <tt class=" ">stopLoading()</tt> function generally does not work:    </p>
+<ul class=" "><li class=" ">    <p>In some browsers, it will stop all WebViews from loading, which shouldn&apos;t be a huge deal.    </p>
+</li><li class=" ">    <p>Use <tt class=" ">stopLoading(true)</tt> to do a hard reset to force the WebView to be destroyed.    </p>
+</li></ul></li><li class=" ">    <p>Touch events are generally ignored.    </p>
+</li><li class=" ">    <p>You will never be able to load a cross-domain resource that returns the HTTP header X-Frame-Options with the value SAMEORIGIN.    </p>
+</li><li class=" ">    <p>When setting the contents of the WebView via the <tt class=" ">html</tt> or <tt class=" ">data</tt> properties, the <tt class=" ">onload</tt> event will never fire since the WebView is loaded prior to injecting the new content.    </p>
+</li></ul>        </div>
+    
+        
+    </div>
+</body>
+</html>

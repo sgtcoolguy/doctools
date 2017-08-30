@@ -1,0 +1,1736 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TDoc Specification</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-29004748" class="content">
+                        <h1>TDoc Specification</h1>
+    <p>    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p>To see an example of this spec in use, check out the documentation for <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/apidoc/Titanium/UI/View.yml" target="_blank"><tt class=" ">Titanium.UI.View</tt></a>.    </p>
+    </div>
+        <p><strong class=" ">Contents</strong>    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Goals">Goals</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Definitions">Definitions</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ProposedDocumentationSpecification">Proposed Documentation Specification</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-YAML">YAML</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-JustificationforchoosingYAML">Justification for choosing YAML</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Alternatives">Alternatives</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ToolSupport">Tool Support</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-SignificantWhitespace">Significant Whitespace</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Precedent">Precedent</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-DataTypes">Data Types</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-SimpleDataTypes">Simple Data Types</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-CompoundDataTypes">Compound Data Types</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Arrays">Arrays</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Pseudo-Types">Pseudo-Types</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Inheritance">Inheritance</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-FoldersandFiles">Folders and Files</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-FileExtension">File Extension</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_safe-id-VERvY1NwZWNpZmljYXRpb24tVGhyZWVOZXdEb2N1bWVudGF0aW9uRmlsZXM6UHJveHkueW1sLE1vZHVsZS55bWxhbmRFdmVudC55bWw">Three New Documentation Files: Proxy.yml, Module.yml and Event.yml</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-IndentationWithinFiles">Indentation Within Files</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ANoteAboutIndentationinSequences">A Note About Indentation in Sequences</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-DocumentationofTypes">Documentation of Types</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-YAMLSpecificationforTypeDocumentation">YAML Specification for Type Documentation</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ATypeDocumentationisaYAMLDocument">A Type Documentation is a YAML Document</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ValidKeysintheDocumentationofaType">Valid Keys in the Documentation of a Type</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-MethodSpecification">Method Specification</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-MethodParameterSpecification">Method Parameter Specification</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-MethodDocumentationDefinitions">Method Documentation Definitions</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-PropertySpecification">Property Specification</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-EventSpecification">Event Specification</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-EventListenerObjectPropertySpecification">Event Listener Object Property Specification</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Free-FormTextValues">Free-Form Text Values</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ShortOne-Liners">Short One-Liners</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-MultilinewithFolding">Multiline with Folding</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-PreservingLineBreaksandInsertingCodeBlocks">Preserving Line Breaks and Inserting Code Blocks</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-LanguageofCodeBlocks">Language of Code Blocks</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ReferringtoExternalFiles">Referring to External Files</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-CodeExamples">Code Examples</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-DocumentingCallbacks">Documenting Callbacks</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-DocumentingObjectLiteralsandInterfaces">Documenting Object Literals and Interfaces</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ObjectLiterals">Object Literals</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Interfaces">Interfaces</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_safe-id-VERvY1NwZWNpZmljYXRpb24tU29sdXRpb246UHNldWRvLVR5cGVz">Solution: Pseudo-Types</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Pseudo-TypesUsefultoJustOneTitaniumType">Pseudo-Types Useful to Just One Titanium Type</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Pseudo-TypesUsefultoaSingleModule">Pseudo-Types Useful to a Single Module</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Pseudo-TypesUsefulinMultipleModules">Pseudo-Types Useful in Multiple Modules</a>    </p>
+</li></ul></li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Intra-DocumentationLinks">Intra-Documentation Links</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-TypeSpecificationsDoNotNeedBackticks">Type Specifications Do Not Need Backticks</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-MarkdownLinksinFree-FormTextValues">Markdown Links in Free-Form Text Values</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Real-WorldExample">Real-World Example</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-29004748_TDocSpecification-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>Titanium Mobile needs a richer documentation specification, particularly to capture more metadata and make it available both to our SDK users who browse the online documentation and to other software such as Studio&apos;s content assist feature.    </p>
+    <p>This document introduces a new SDK documentation specification based on YAML, which offers a well-structured yet still readable format.    </p>
+    <p>Though the primary driver was a new Titanium <strong class=" ">Mobile</strong> SDK documentation format, the goal here is also to create a specification that can be applied to Titanium Desktop as well, in addition to Titanium modules that are external to the Mobile SDK and Desktop SDK code bases, including those created by third-party developers.    </p>
+    </div>
+    <div class="section section-2 " id="src-29004748_TDocSpecification-Goals">
+        <h2 class="heading "><span>Goals</span></h2>
+    <p>The goals of the new documentation format are:    </p>
+<ul class=" "><li class=" ">    <p>Support rich metadata for all API members, including platform support, versioning, and deprecation information.    </p>
+</li><li class=" ">    <p>Provide an inheritance mechanism for documentation.    </p>
+</li><li class=" ">    <p>Allow documentation of object literals used as properties, method parameters, and in events and callbacks.    </p>
+</li><li class=" ">    <p>Support documenting callback arguments.    </p>
+</li><li class=" ">    <p>As much as possible, take advantage of standard libraries for parsing and formatting.    </p>
+</li><li class=" ">    <p>Generate documentation as well as content assist files.    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-29004748_TDocSpecification-Definitions">
+        <h2 class="heading "><span>Definitions</span></h2>
+<ul class=" "><li class=" ">    <p>TDoc - The file extension used for the previous API documentation files was &quot;tdoc&quot;; several such files (one per module or proxy). Because of this file extension, the documents themselves are often called simply &quot;TDocs&quot; in our &quot;Titanium vernacular.&quot;    </p>
+</li><li class=" ">    <p>Code Assist or Content Assist - The feature of Studio which provides pop-up help to help you complete your code statements.    </p>
+</li><li class=" ">    <p>JSCA - &quot;JSON for Studio Content Assist&quot;. JSCA files contain the JSON which feeds the content assist available to developers using Studio. The requirement to generate JSCA from the documentation is one of the drivers behind this spec.    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/apidoc/docgen.py" target="_blank">docgen.py</a> - The script that generates the HTML, JSON (&quot;classic&quot;) and JSCA versions of our documentation by first parsing our existing TDocs.    </p>
+</li><li class=" ">    <p>YAML - <a class="external-link external-link" href="http://yaml.org" target="_blank">YAML Ain&apos;t Markup Language</a>. &quot;YAML is a human-readable data serialization format&quot; (Wikipedia).    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-29004748_TDocSpecification-ProposedDocumentationSpecification">
+        <h2 class="heading "><span>Proposed Documentation Specification</span></h2>
+    <div class="section section-3 " id="src-29004748_TDocSpecification-YAML">
+        <h3 class="heading "><span>YAML</span></h3>
+    <p>The documentation shall be based on YAML. &quot;Free-form text&quot; property values in the YAML &#x2013; such as method descriptions and code examples &#x2013; will be parsed as <i class=" ">standard</i> Markdown, however. The emphasis on <i class=" ">standard</i> is made so as to indicate that non-standard &quot;Appcelerator Markdown&quot; will be avoided, meaning fenced code (~~~) is out. The goal here is that anyone can parse our documents.    </p>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-JustificationforchoosingYAML">
+        <h4 class="heading "><span>Justification for choosing YAML</span></h4>
+    <p>The choice of YAML could prove controversial, as YAML has its lovers and haters. Therefore we include this separate justification section just for YAML.    </p>
+    <p>Many other projects don&apos;t need to make this choice of a separate &quot;documentation language&quot; because they can rely on their documentation being generated automatically via their code comments (Javadoc, etc.) The Titanium Mobile SDK has no single canonical code base because there are separate implementations for each platform. Therefore code comments cannot be relied upon for documentation.    </p>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-Alternatives">
+        <h5 class="heading "><span>Alternatives</span></h5>
+    <p>XML, JSON, Markdown and YAML are common choices when external (outside-the-code) documentation is necessary. Let&apos;s look at these alternatives head-to-head with YAML:    </p>
+<ul class=" "><li class=" ">    <p>XML versus YAML: Even for someone who doesn&apos;t like YAML, this could probably be characterized as &quot;which do you hate more/less&quot;. XML is quite unpopular these days as the busy-ness and clutter of opening and closing tags seems less necessary given other structured-data standards such as JSON and YAML.    </p>
+</li><li class=" ">    <p>JSON versus YAML: JSON and YAML are fairly similar. In the arena of clutter, JSON was a huge improvement over XML, as-is YAML an improvement over JSON. YAML, for example, removes most of the curly braces and quotation marks that distract you while viewing JSON.    </p>
+</li><li class=" ">    <p>Markdown versus YAML: &quot;<a class="external-link external-link" href="http://daringfireball.net/projects/markdown/" target="_blank">Markdown</a> is a text-to-HTML conversion tool for web <i class=" ">writers</i>.&quot; We&apos;ve italicized <i class=" ">writers</i> here to emphasize the fact that Markdown is really meant for writing top-down articles (blog posts, free-form documentation pages, etc.) as opposed to structured documentation. It is, in fact, relatively parseable, as our existing TDoc specification has shown. However, the more you want to annotate it with structured data outside of the free-form text that it caters to, the more unwieldy it becomes. You start inventing ways to delimit parseable data, such as by surrounding certain pieces of text with square brackets or some other braces. We&apos;ve been through this with the existing TDoc specification and <a class="external-link external-link" href="https://github.com/mootools/mootools-core/raw/master/Docs/Core/Core.md" target="_blank">we are not alone</a>. When adding more and more annotations &#x2013; as we wish to do with this new specification &#x2013; it becomes difficult to choose how to mark up the annotations.    </p>
+</li></ul>    <p>Our solution is to use the strengths of YAML &#x2013; structured data representation &#x2013; as our primary means of documentation, and to use Markdown&apos;s strength &#x2013; easy text formatting &#x2013; where it&apos;s applicable, namely in the &quot;free form text&quot; YAML properties such as a method&apos;s description or a code example.    </p>
+    </div>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-ToolSupport">
+        <h5 class="heading "><span>Tool Support</span></h5>
+    <p>[Insert Your Favorite Programming Language] has a YAML library with which our new TDocs will be instantly parseable.    </p>
+    <p>Additionally, [Insert Your Favorite Editor] offers YAML enhancements either natively or with plugins. Admittedly, if your favorite editor is Windows Notepad or OS X&apos;s TextEdit, there probably is no enhancement available for YAML. But if you&apos;re using <a class="external-link external-link" href="http://www.google.com/search?q=eclipse+yaml" target="_blank">Eclipse</a>, <a class="external-link external-link" href="https://github.com/textmate/yaml.tmbundle" target="_blank">TextMate</a>, <a class="external-link external-link" href="http://www.google.com/search?q=vim+yaml" target="_blank">Vim</a> or another well-supported programmer&apos;s editor, you should have no problem finding enhancements for YAML. The fact is, however, that simple indentation support is all you need to effectively write YAML.    </p>
+    </div>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-SignificantWhitespace">
+        <h5 class="heading "><span>Significant Whitespace</span></h5>
+    <p>This will be a concern to some: in YAML, <a class="external-link external-link" href="http://www.yaml.org/spec/1.2/spec.html#id2777534" target="_blank">indentation is meaningful</a>, similar to Python, though the tab character is not allowed as indentation in YAML, so the tab-versus-spaces ambiguity that Python suffers from is not relevant in YAML.    </p>
+    <p>Given that we are all capable of writing well-indented code, and given that most text editors will have enhancements for YAML, we do not believe YAML&apos;s whitespace rules should be a hinderance to its acceptance.    </p>
+    </div>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-Precedent">
+        <h5 class="heading "><span>Precedent</span></h5>
+    <p>There is precedent within the Titanium family for YAML: the Titanium Desktop SDK documentation is in YAML.    </p>
+    </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-29004748_TDocSpecification-DataTypes">
+        <h3 class="heading "><span>Data Types</span></h3>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-SimpleDataTypes">
+        <h4 class="heading "><span>Simple Data Types</span></h4>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Notes    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Boolean    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Number    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Open to discussion as to whether more specific numeric types &#x2013; int, float, etc. &#x2013; are needed. JSCA, for example, only supports Number    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>String    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Date    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Loosely defined here as a Javascript <tt class=" ">Date</tt>    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-CompoundDataTypes">
+        <h4 class="heading "><span>Compound Data Types</span></h4>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Notes    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Object    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Please don&apos;t misuse. We wish to emphasize the use of strong types.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Titanium.XX.XX    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>This is shorthand to signify the types that are defined within the documentation. In fact, they don&apos;t have to be the <tt class=" ">Titanium.XX</tt> namespace; any fully-qualified name defined within the set of documentation being parsed can be used as a type name. But since this specification will first be used for Titanium Mobile, <tt class=" ">Titanium.XX</tt> is used here as the example.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Dictionary&lt;[type]&gt;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A special type+syntax indicating a dictionary &#x2013; i.e., an object literal &#x2013; whose members can be the properties of the specified [type]. Example: <tt class=" ">Dictionary&lt;Titanium.UI.Window&gt;</tt>. You might use this if you provide your own documentation for a proxy-creation method such as <tt class=" ">Titanium.UI.createWindow</tt> rather than rely on the auto-generated documentation for proxy-creation methods. In that case, you would use <tt class=" ">Dictionary&lt;Titanium.UI.Window&gt;</tt> for the type of the single parameter that <tt class=" ">createWindow</tt> takes.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Callback&lt;[type]&gt;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A special type+syntax indicating a function used as a callback, whose single callback argument (the info passed to the callback) is of type [type], where [type] can be a type that you define elsewhere. We&apos;ll see examples of this in the special section on <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-DocumentingCallbacks">callbacks</a>. The angle bracket notation is optional: <tt class=" ">Callback</tt> by itself signifies simply a function that gets called, with no precise information concerning what is passed to it, if anything.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-Arrays">
+        <h4 class="heading "><span>Arrays</span></h4>
+    <p>Arrays shall be specified as follows:    </p>
+    <p><tt class=" ">Array&lt;[type]&gt;</tt>    </p>
+    <p>Examples:    </p>
+    <p><tt class=" ">Array&lt;Object&gt;</tt><br><tt class=" ">Array&lt;String&gt;</tt><br><tt class=" ">Array&lt;Titanium.UI.View&gt;</tt>    </br></br></p>
+    </div>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-Pseudo-Types">
+        <h4 class="heading "><span>Pseudo-Types</span></h4>
+    <p>Additionally, other &quot;pseudo-types&quot; (for lack of a better term) may be defined inside the documents as stand-ins for things like callback arguments, object literals that are passed as parameters, or objects that implement a particular interface. We&apos;ll see examples of this in the special sections on <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-DocumentingCallbacks">callbacks</a> and <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-DocumentingObjectLiteralsandInterfaces">object literals and interfaces</a>.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-29004748_TDocSpecification-Inheritance">
+        <h3 class="heading "><span>Inheritance</span></h3>
+    <p>The specification supports what might be called &quot;multiple documentation inheritance&quot;, whereby a Titanium type that is being documented (i.e., a proxy or module) has an <tt class=" ">extends</tt> property that can be set to a single qualified type name or an array of type names, thereby giving the child type all of the method, property and event documentation defined in the super types. Example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">---</code></div>
+<div class="line"><code class="plain">name: Titanium.UI.Window</code></div>
+<div class="line"><code class="keyword">extends</code><code class="plain">: Titanium.UI.View</code></div>
+</div>
+    </div>
+    <p>The example indicates that <tt class=" ">Titanium.UI.Window</tt> shall inherit all of the method, property and event documentation of the <tt class=" ">Titanium.UI.View</tt> type.    </p>
+    <p>If a type documentation includes methods, properties or events that are already defined in its super type(s), the child type&apos;s documentation will be used. To put it another way: the lowest-level, most specific documentation wins.    </p>
+    </div>
+    <div class="section section-3 " id="src-29004748_TDocSpecification-FoldersandFiles">
+        <h3 class="heading "><span>Folders and Files</span></h3>
+    <p>Each Titanium type being documented shall have its own file, which is identical to the existing TDoc standard.    </p>
+    <p>The folder structure shall remain as it is in the existing TDoc standard, whereby each module gets its own folder. The folders shall be hierarchical, following the module namespaces. Example: Titanium.UI.Android documentation goes in <tt class=" ">/Titanium/UI/Android/</tt>. The module and its contained proxies shall be documented in files residing at the same folder level, just as today. Example: <tt class=" ">/Titanium/UI/UI.yml</tt> is a module documentation file, and <tt class=" ">/Titanium/UI/Window.yml</tt> is the Window proxy documentation file.    </p>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-FileExtension">
+        <h4 class="heading "><span>File Extension</span></h4>
+    <p>The file extension for documentation files shall be <tt class=" ">.yml</tt>, replacing the previous <tt class=" ">.tdoc</tt> extension. <tt class=" ">.yml</tt> is standard for YAML files.    </p>
+    </div>
+    <div class="section section-4 " id="src-29004748_safe-id-VERvY1NwZWNpZmljYXRpb24tVGhyZWVOZXdEb2N1bWVudGF0aW9uRmlsZXM6UHJveHkueW1sLE1vZHVsZS55bWxhbmRFdmVudC55bWw">
+        <h4 class="heading "><span>Three New Documentation Files: Proxy.yml, Module.yml and Event.yml</span></h4>
+    <p>The existing TDoc generation script (docgen.py) puts in standard proxy and module methods, properties and events into proxy and module types at runtime. This will change such that the files <tt class=" ">/Titanium/Proxy.yml</tt> and <tt class=" ">/Titanium/Module.yml</tt> will be created and will contain documentation just like any other type. Other types can then extend the proxy and module documentation by referring to them as <tt class=" ">Titanium.Proxy</tt> and <tt class=" ">Titanium.Module</tt>.    </p>
+    <p>Additionally, the existing script tacks on the standard <tt class=" ">source</tt> and <tt class=" ">type</tt> parameters to event objects. This will change such that the file <tt class=" ">/Titanium/Event.yml</tt> will exist and contain a simple type definition for those two properties.    </p>
+    </div>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-IndentationWithinFiles">
+        <h4 class="heading "><span>Indentation Within Files</span></h4>
+    <p>Indentation within the .yml files should be four characters. YAML does not allow the tab character for indentation, so the indentation must be four <i class=" ">space</i> characters.    </p>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-ANoteAboutIndentationinSequences">
+        <h5 class="heading "><span>A Note About Indentation in Sequences</span></h5>
+    <p>You will notice in our samples that we often use &quot;<a class="external-link external-link" href="http://www.yaml.org/spec/1.2/spec.html#id2759963" target="_blank">block sequences</a>&quot; for our API documentation. The &quot;methods&quot; collection here in this very simple example shows a block sequence:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">methods:</code></div>
+<div class="line"><code class="plain">  - name: myMethod</code></div>
+<div class="line"><code class="plain">    description: My method.</code></div>
+<div class="line"><code class="plain">  - name: yourMethod</code></div>
+<div class="line"><code class="plain">    description: Your method</code></div>
+</div>
+    </div>
+    <p>The dash that is used to indicate the start of a block sequence entry <i class=" ">is part of the indentation</i>. So whereas it may look like the example is using two levels of two-character indentation, it&apos;s in fact using one level of four-character indentation; it&apos;s just that part of the indentation &#x2013; the dash &#x2013; is meaningful.    </p>
+    </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-29004748_TDocSpecification-DocumentationofTypes">
+        <h3 class="heading "><span>Documentation of Types</span></h3>
+    <p>This section details the documentation of <i class=" ">types</i>, which are the highest-level documented artifacts. A type can be, for example, a Titanium module (<tt class=" ">Titanium.UI</tt>) or a Titanium proxy (<tt class=" ">Titanium.UI.Window</tt>).    </p>
+    <p>Types shall be documented in their own files, just as they are in the current TDoc specification. This is not a YAML requirement, but rather a convention that shall be followed.    </p>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-YAMLSpecificationforTypeDocumentation">
+        <h4 class="heading "><span>YAML Specification for Type Documentation</span></h4>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-ATypeDocumentationisaYAMLDocument">
+        <h5 class="heading "><span>A Type Documentation is a YAML Document</span></h5>
+    <p>Types shall be documented in a YAML &quot;document&quot;. YAML marks the beginning of a document with &quot;---&quot; on a line. So that shall be the first line of the type documentation&apos;s .yml file, excepting any comment lines (lines beginning with <tt class=" ">#</tt>) which can and may be placed before it.    </p>
+    <p>Throughout this document we will add to an example <tt class=" ">.yml</tt> file that adheres to our specification. The example will document the fictitious <tt class=" ">Titanium.Do.Hicky</tt> type. So far, we have the following:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Hicky.yml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Hicky.yml">
+<div class="line"><code class="plain"># Documentation of Titanium.Do.Hicky</code></div>
+<div class="line"><code class="plain">---</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-ValidKeysintheDocumentationofaType">
+        <h5 class="heading "><span>Valid Keys in the Documentation of a Type</span></h5>
+    <p>These are the keys (i.e., YAML properties/members) which are valid in the documentation of a Type. The order of these keys is not relevant to YAML, however this a suggested order. By convention, the <tt class=" ">name</tt>, <tt class=" ">description</tt>, <tt class=" ">platforms</tt>, <tt class=" ">extends</tt> and <tt class=" ">since</tt> keys should be defined first (i.e., appear at the top of the document).    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Key    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Notes    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Example    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>name    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A fully-qualified name for the type    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">name: Titanium.Do.Hicky</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>summary    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A short, &quot;one-liner&quot; summary of the type, in Markdown format. Keep it short, as it will often be generated next to the type name in lists, for example. Deeper information about the type should go into the <tt class=" ">description</tt> property. <strong class=" ">Please start summaries with a capital letter and end with a period.</strong>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">summary: View which automatically renders as an octagon.</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>description    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) Free-form , longer format text description of the Type, in Markdown format, or &quot;file:&quot; followed by the name of a file which contains the description. If an external file is used, the contents should be in Markdown format and the file extension should be <tt class=" ">.md</tt>.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>See <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Free-FormTextValues">#Free-Form Text Values</a> below.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>createable    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) Applicable only to &quot;proxy&quot; types (types having <tt class=" ">Titanium.Proxy</tt> as an ancestor). This indicates whether a standard <tt class=" ">createXXXX</tt> method is supported to create an instance of the proxy from the module in which it is located. The default is <tt class=" ">true</tt> since almost all proxies can be created in that way.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">createable: false</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>platforms    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) Array of supported platforms. If missing, it is to be assumed that all platforms are supported. Note that <tt class=" ">ipad</tt> is its own platform. As the example shows, a simple YAML array syntax is to enclose a comma-separated list in square brackets.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">platforms: [android, iphone, ipad]</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>extends    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Either a single fully-qualified type name, or an array of fully-qualified type names from which the documented Type inherits.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">extends: Titanium.UI.View</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>excludes    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). For excluding inherited methods, properties or events. Can have one or more of these members: <tt class=" ">methods</tt>, <tt class=" ">properties</tt>, <tt class=" ">events</tt>. Each of those is an array of strings indicating which methods (or properties, or events) to exclude.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">excludes: {methods: [add, remove], events: [click]</tt>}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>since    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Indicates in which Titanium version the Type first appeared. Either a single value if the Type appeared at the same time on all platforms, or a dictionary object with keys per platform and values containing the relevant version number. NOTE: YAML will interpret values such as <tt class=" ">0.8</tt> as numbers, which can lead to parser libraries ending up with values such as <tt class=" ">0.800000000001</tt> because of floating points. Enclose version numbers in full-quotations so as to avoid this.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">since: &quot;0.8&quot;</tt> or <tt class=" ">since: {android: &quot;1.6.0&quot;, iphone: &quot;0.8&quot;, ipad: &quot;1.4.2&quot;</tt>}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>deprecated    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) A simple dictionary object with keys <tt class=" ">since</tt>, <tt class=" ">removed</tt> and <tt class=" ">notes</tt>. <tt class=" ">since</tt> and <tt class=" ">removed</tt> values should hold Titanium version numbers indicating since when the type was deprecated and when (if ever) it will be removed. <tt class=" ">since</tt> should always be present. <tt class=" ">removed</tt> is optional. <tt class=" ">notes</tt>, which is also optional, can hold free-form text and should especially emphasize which alternative type to use in place of the deprecated type, if any.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">deprecated: {since: &quot;1.6.0&quot;, removed: &quot;1.8.0&quot;, notes: &quot;Use &lt;Titanium.Do.Hicky2&gt; instead&quot;</tt>}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>osver    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Can be used to specify operating system version number requirements for the given type. This should be a dictionary with keys for each OS whose version needs to be specified (ios/android). The key values should then also be dictionaries with the keys <tt class=" ">min</tt>, <tt class=" ">max</tt> and/or <tt class=" ">versions</tt>, each of which is optional. <tt class=" ">min</tt> and <tt class=" ">max</tt> should have stringified version numbers, whereas <tt class=" ">versions</tt>, if present, should be an array of stringified version numbers.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">osver: {android: {min: &quot;2.1&quot;</tt>}} or <tt class=" ">osver: {ios: {max: &quot;3.2&quot;</tt>}} or <tt class=" ">osver: {android: {versions: [&quot;1.6&quot;, &quot;2.1&quot;]</tt>}}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>examples    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). An array of objects wherein each element has <tt class=" ">title</tt> and <tt class=" ">example</tt> properties. The <tt class=" ">title</tt> property should briefly describe the particular example. The <tt class=" ">example</tt> property should be a free-form text block in Markdown format for showing code examples, or &quot;file:&quot; followed by the name of a file which contains the code examples. If an external file is used, the contents should be in Markdown format and the file extension should be <tt class=" ">.md</tt>. In the text block or external file, the blocks of code themselves should be indented four spaces to follow the Markdown standard and guarantee that generated HTML will include &lt;pre&gt; and &lt;code&gt; tags. So-called &quot;fenced code blocks&quot; (~~~) are not supported, as they are non-standard and not all Markdown parsers support them.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>See <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-CodeExamples">#Code Examples</a> below.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>methods    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). An array of method definitions describing the type&apos;s methods.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>See <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-MethodSpecification">#Method Specification</a> below.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>properties    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). An array of property definitions describing the type&apos;s methods.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>See <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-PropertySpecification">#Property Specification</a> below.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>events    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). An array of event definitions describing the type&apos;s events.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>See <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-EventSpecification">#Event Specification</a> below.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Our running example so far:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Hicky.yml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Hicky.yml">
+<div class="line"><code class="plain"># Documentation of Titanium.Do.Hicky</code></div>
+<div class="line"><code class="plain">---</code></div>
+<div class="line"><code class="plain">name: Titanium.Do.Hicky</code></div>
+<div class="line"><code class="plain">summary: A view which automatically renders as an octagon.</code></div>
+<div class="line"><code class="plain">platforms: [android, ipad, iphone]</code></div>
+<div class="line"><code class="keyword">extends</code><code class="plain">: Titanium.UI.View</code></div>
+<div class="line"><code class="plain">since: {android: </code><code class="string">&quot;1.6.0&quot;</code><code class="plain">, iphone: </code><code class="string">&quot;0.8&quot;</code><code class="plain">, ipad: </code><code class="string">&quot;1.4.0&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain"># We could also just </code><code class="keyword">do</code><code class="plain"> </code><code class="keyword">this</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> all platforms got the type at the same time:</code></div>
+<div class="line"><code class="plain"># since: </code><code class="string">&quot;0.8&quot;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">description: It&apos;s important *not* to use </code><code class="keyword">this</code><code class="plain"> view on a scrollview!  Behavior there is undefined!</code></div>
+<div class="line"><code class="plain"># We could also have specified that the description is in an external file, like </code><code class="keyword">this</code><code class="plain">:</code></div>
+<div class="line"><code class="plain"># description: file:Hicky_description.md</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">examples:</code></div>
+<div class="line"><code class="plain">  - title: Put a Hicky on a Window</code></div>
+<div class="line"><code class="plain">    example: </code></div>
+<div class="line"><code class="plain">        The following example shows putting a Hicky directly on a window:</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">            var win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;#ccc&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">            win.add(Ti.Do.createHicky());</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain"># In following sections we&apos;ll show ...</code></div>
+<div class="line"><code class="plain"># methods: ...</code></div>
+<div class="line"><code class="plain"># properties: ...</code></div>
+<div class="line"><code class="plain"># events: ...</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-MethodSpecification">
+        <h5 class="heading "><span>Method Specification</span></h5>
+    <p>As noted above, the type documentation includes a <tt class=" ">methods</tt> key, which is described as an array of method documentation definitions. This section describes the method documentation specification, then shows an example of putting multiple method documentation definitions together to form a YAML array (more accurately a <a class="external-link external-link" href="http://www.yaml.org/spec/1.2/spec.html#id2760193" target="_blank">Sequence of Mappings</a>).    </p>
+    <p>A single method documentation definition may contain the following keys:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Key    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Notes    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Examples    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>name    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The method name.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">name: doSomething</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>summary    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A short, &quot;one-liner&quot; summary of the method, in Markdown format. Keep it short, as it will often be generated next to the method name in lists, for example. Deeper information about the method should go into the <tt class=" ">description</tt> property. <strong class=" ">Please start summaries with a capital letter and end with a period.</strong>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">summary: Does something on the view.</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>description    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) Free-form , longer format text description of the method, in Markdown format, or &quot;file:&quot; followed by the name of a file which contains the description. If an external file is used, the contents should be in Markdown format and the file extension should be <tt class=" ">.md</tt>.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>See <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Free-FormTextValues">#Free-Form Text Values</a> below.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>returns    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). A dictionary object with <tt class=" ">type</tt> and <tt class=" ">description</tt> keys and their values. The <tt class=" ">description</tt> key is optional. The <tt class=" ">type</tt> key&apos;s value should be a <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-DataTypes">type identifier</a>. If it is possible for the method to return different types, set this to an array of these dictionaries. This key is <strong class=" ">optional</strong> in the sense that if it is missing, then it is assumed that there is no return value. There is no need to specify <tt class=" ">void</tt> return types.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">returns: {type: &quot;String&quot;, description: &quot;The system&apos;s locale&quot;</tt>} or, in the case of multiple possible return types, <tt class=" ">returns: [{type: &quot;String&quot;, description: &quot;The system&apos;s locale&quot;}, {type: &quot;Object&quot;, description: &quot;A locale object&quot;}]</tt>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>platforms    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Identical to the <tt class=" ">platforms</tt> key defined in the <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ValidKeysintheDocumentationofaType">Valid Keys in the Documentation of a Type</a> section, but applied here to a method. This is <strong class=" ">optional</strong>. If missing it is assume that the value would be the same as the type&apos;s <tt class=" ">platforms</tt> value.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">platforms: [android, iphone, ipad]</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>since    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Identical to the <tt class=" ">since</tt> key defined in the <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ValidKeysintheDocumentationofaType">Valid Keys in the Documentation of a Type</a> section, but applied here to a method. This is <strong class=" ">optional</strong>. If missing, it is assumed that the value would be the same as the type&apos;s <tt class=" ">since</tt> value.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">since: &quot;0.8&quot;</tt> or <tt class=" ">since: {android: &quot;1.6.0&quot;, iphone: &quot;0.8&quot;, ipad: &quot;1.4.2&quot;</tt>}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>deprecated    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) A simple dictionary object with keys <tt class=" ">since</tt>, <tt class=" ">removed</tt> and <tt class=" ">notes</tt>. <tt class=" ">since</tt> and <tt class=" ">removed</tt> values should hold Titanium version numbers indicating since when the method was deprecated and when (if ever) it will be removed. <tt class=" ">since</tt> should always be present. <tt class=" ">removed</tt> is optional. <tt class=" ">notes</tt>, which is also optional, can hold free-form text and should especially emphasize which alternative method to use in place of the deprecated method, if any.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">deprecated: {since: &quot;1.6.0&quot;, removed: &quot;1.8.0&quot;, notes: &quot;Use &lt;Titanium.Do.Hicky.doThat&gt; instead.&quot;</tt>}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>osver    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Can be used to specify operating system version number requirements for the given method. This should be a dictionary with keys for each OS whose version needs to be specified (ios/android). The key values should then also be dictionaries with the keys <tt class=" ">min</tt>, <tt class=" ">max</tt> and/or <tt class=" ">versions</tt>, each of which is optional. <tt class=" ">min</tt> and <tt class=" ">max</tt> should have stringified version numbers, whereas <tt class=" ">versions</tt>, if present, should be an array of stringified version numbers.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">osver: {android: {min: &quot;2.1&quot;</tt>}} or <tt class=" ">osver: {ios: {max: &quot;3.2&quot;</tt>}} or <tt class=" ">osver: {android: {versions: [&quot;1.6&quot;, &quot;2.1&quot;]</tt>}}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>examples    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Identical to the <tt class=" ">examples</tt> key defined in the <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ValidKeysintheDocumentationofaType">Valid Keys in the Documentation of a Type</a> section, but in this case to show examples specifically for the method.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>See <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-CodeExamples">#Code Examples</a> below.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>parameters    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). An array of parameter definitions documenting the method parameters.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>See <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-MethodParameterSpecification">#Method Parameter Specification</a> below.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div class="section section-6 " id="src-29004748_TDocSpecification-MethodParameterSpecification">
+        <h6 class="heading "><span>Method Parameter Specification</span></h6>
+    <p>A method may, of course, have zero or more parameters. This section is the specification for a method parameter documentation definition.    </p>
+    <p>The valid keys are:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Key    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Notes    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Examples    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>name    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The parameter name.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">name: x</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>summary    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A short, &quot;one-liner&quot; summary of the parameter, in Markdown format. Keep it short, as it will often be generated next to the parameter name in lists, for example. Deeper information about the parameter should go into the <tt class=" ">description</tt> property. <strong class=" ">Please start summaries with a capital letter and end with a period.</strong>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">summary: type of thing.</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>type    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A data type specifier indicating the type of the parameter, or an array of data type specifiers in case multiple types are allowed for the parameter. A view dimension is a typical use-case for the latter, since we support numeric values (interpreted as pixels) or string values (&quot;auto&quot;, &quot;10dp&quot;, etc.).    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">type: Number</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>optional    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) Whether the parameter is optional. Default is false.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">optional: true</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>repeatable    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) Whether the parameter is repeatable. Default is false. Setting to true means the parameter becomes a &quot;varargs&quot; parameter (and therefore the method becomes variadic), similar to the use of ellipses in C or Java. (Java example: <tt class=" ">void myMethod(String... args)</tt> ).    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">repeatable: true</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>default    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) Describes the default value for the parameter; useful if the parameter is optional.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">default: 0</tt> or <tt class=" ">default: The device&apos;s default locale</tt> or <tt class=" ">default: &lt;Titanium.Codec.CHARSET_UTF8&gt;</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>constants    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Array of Titanium constant values the parameter can take. You can use a wildcard character at the end of the value to match more than one constant    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">constants: [ Titanium.UI.LANDSCAPE_*, Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT]</tt>    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-6 " id="src-29004748_TDocSpecification-MethodDocumentationDefinitions">
+        <h6 class="heading "><span>Method Documentation Definitions</span></h6>
+    <p>So far this section has concentrated on the specification for a single method&apos;s documentation. Of course, a type will most often have multiple methods that need to be documented, and therefore the type documentation specification&apos;s <tt class=" ">methods</tt> key expects an array of method documentation definitions, or, more accurately, what YAML calls a &quot;Sequence of Mappings&quot;. Similarly, each method may have 0 or more parameters, therefore a sequence of parameter documentation definitions is also required for the method specification&apos;s <tt class=" ">parameters</tt> key. It&apos;s quite simple to put multiple definitions together in a sequence in YAML. This shows how it is done, both for methods and parameters:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">methods:</code></div>
+<div class="line"><code class="plain">  - name: doSomething</code></div>
+<div class="line"><code class="plain">    summary: This method, when called, will </code><code class="keyword">do</code><code class="plain"> something.</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;0.8&quot;</code></div>
+<div class="line"><code class="plain">    platforms: [android, iphone, ipad]</code></div>
+<div class="line"><code class="plain">    returns: {type: </code><code class="string">&quot;String&quot;</code><code class="plain">, description: </code><code class="string">&quot;The thing done.&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    parameters:</code></div>
+<div class="line"><code class="plain">      - name: x</code></div>
+<div class="line"><code class="plain">        summary: The x-axis value</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">      - name: y</code></div>
+<div class="line"><code class="plain">        summary: The y-axis value</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">  - name: multiply</code></div>
+<div class="line"><code class="plain">    summary: Multiplies two factors and returns product.</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;0.8&quot;</code></div>
+<div class="line"><code class="plain">    platforms: [android, iphone, ipad]</code></div>
+<div class="line"><code class="plain">    returns: {type: </code><code class="string">&quot;Number&quot;</code><code class="plain">, description: </code><code class="string">&quot;The multiplication result&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    parameters:</code></div>
+<div class="line"><code class="plain">      - name: num1</code></div>
+<div class="line"><code class="plain">        description: First factor.</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">	  - name: num2</code></div>
+<div class="line"><code class="plain">        description: Second factor.</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+</div>
+    </div>
+    <p>As the example shows, a sequence that is a value of a key is indented, and a dash indicates the beginning of an element in the sequence, followed by the keys and values for that element.    </p>
+    <p>Our running example so far:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Hicky.yml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Hicky.yml">
+<div class="line"><code class="plain"># Documentation of Titanium.Do.Hicky</code></div>
+<div class="line"><code class="plain">---</code></div>
+<div class="line"><code class="plain">name: Titanium.Do.Hicky</code></div>
+<div class="line"><code class="plain">summary: A view which automatically renders as an octagon.</code></div>
+<div class="line"><code class="plain">platforms: [android, ipad, iphone]</code></div>
+<div class="line"><code class="keyword">extends</code><code class="plain">: Titanium.UI.View</code></div>
+<div class="line"><code class="plain">since: {android: </code><code class="string">&quot;1.6.0&quot;</code><code class="plain">, iphone: </code><code class="string">&quot;0.8&quot;</code><code class="plain">, ipad: </code><code class="string">&quot;1.4.0&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain"># We could also just </code><code class="keyword">do</code><code class="plain"> </code><code class="keyword">this</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> all platforms got the type at the same time:</code></div>
+<div class="line"><code class="plain"># since: </code><code class="string">&quot;0.8&quot;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">description: It&apos;s important *not* to use </code><code class="keyword">this</code><code class="plain"> view on a scrollview!  Behavior there is undefined!</code></div>
+<div class="line"><code class="plain"># We could also have specified that the description is in an external file, like </code><code class="keyword">this</code><code class="plain">:</code></div>
+<div class="line"><code class="plain"># description: file:Hicky_description.md</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">examples:</code></div>
+<div class="line"><code class="plain">  -  title: Put a Hicky on a Window</code></div>
+<div class="line"><code class="plain">     example: |</code></div>
+<div class="line"><code class="plain">         The following example shows putting a Hicky directly on a window:</code></div>
+<div class="line"><code class="plain">         </code></div>
+<div class="line"><code class="plain">             var win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;#ccc&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">             win.add(Ti.Do.createHicky());</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">methods:</code></div>
+<div class="line"><code class="plain">  - name: doSomething</code></div>
+<div class="line"><code class="plain">    summary: This method, when called, will </code><code class="keyword">do</code><code class="plain"> something.</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;0.8&quot;</code></div>
+<div class="line"><code class="plain">    platforms: [android, iphone, ipad]</code></div>
+<div class="line"><code class="plain">    returns: {type: </code><code class="string">&quot;String&quot;</code><code class="plain">, description: </code><code class="string">&quot;The thing done&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    parameters:</code></div>
+<div class="line"><code class="plain">      - name: x</code></div>
+<div class="line"><code class="plain">        summary: The x-axis value</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">      - name: y</code></div>
+<div class="line"><code class="plain">        summary: The y-axis value</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">  - name: multiply</code></div>
+<div class="line"><code class="plain">    summary: Multiplies two factors and returns product.</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;0.8&quot;</code></div>
+<div class="line"><code class="plain">    platforms: [android, iphone, ipad]</code></div>
+<div class="line"><code class="plain">    returns: {type: </code><code class="string">&quot;Number&quot;</code><code class="plain">, description: </code><code class="string">&quot;The multiplication result&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    parameters:</code></div>
+<div class="line"><code class="plain">      - name: num1</code></div>
+<div class="line"><code class="plain">        summary: First factor.</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">      - name: num2</code></div>
+<div class="line"><code class="plain">        summary: Second factor.</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain"># In following sections we&apos;ll show ...</code></div>
+<div class="line"><code class="plain"># properties: ...</code></div>
+<div class="line"><code class="plain"># events: ...</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-PropertySpecification">
+        <h5 class="heading "><span>Property Specification</span></h5>
+    <p>The type documentation includes a <tt class=" ">properties</tt> key, which is described as an array of property documentation definitions. This section describes the property documentation specification.    </p>
+    <p>*<strong class=" ">NOTE</strong><strong class=" ">: Do **not</strong>* create method documentation for getters/setters for a property. Only create the documentation for the property, and the getters and setters will be documented automatically in our documentation scripts (such as the script that generates our HTML-based API documentation on the developer.appcelerator.com site.) If a property does not have a getter/setter method, use <tt class=" ">accessors: false</tt> in the property documentation.    </p>
+    <p>A single property documentation definition may contain the following keys:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Key    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Notes    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Examples    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>name    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The property name.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">name: x</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>summary    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A short, &quot;one-liner&quot; summary of the property, in Markdown format. Keep it short, as it will often be generated next to the property name in lists, for example. Deeper information about the property should go into the <tt class=" ">description</tt> property. <strong class=" ">Please start summaries with a capital letter and end with a period.</strong>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">summary: X-axis of the dohicky.</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>description    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) Free-form , longer format text description of the property, in Markdown format, or &quot;file:&quot; followed by the name of a file which contains the description. If an external file is used, the contents should be in Markdown format and the file extension should be <tt class=" ">.md</tt>.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>See <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Free-FormTextValues">#Free-Form Text Values</a> below.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>type    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A data type specifier indicating the type of the parameter, or an array of data type specifiers in case multiple types are allowed for the parameter. A view dimension is a typical use-case for the latter, since we support numeric values (interpreted as pixels) or string values (&quot;auto&quot;, &quot;10dp&quot;, etc.).    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">type: Number</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>platforms    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Identical to the <tt class=" ">platforms</tt> key defined in the <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ValidKeysintheDocumentationofaType">Valid Keys in the Documentation of a Type</a> section, but applied here to a property.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">platforms: [android, iphone, ipad]</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>since    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Identical to the <tt class=" ">since</tt> key defined in the <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ValidKeysintheDocumentationofaType">Valid Keys in the Documentation of a Type</a> section, but applied here to a property.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">since: &quot;0.8&quot;</tt> or <tt class=" ">since: {android: &quot;1.6.0&quot;, iphone: &quot;0.8&quot;, ipad: &quot;1.4.2&quot;</tt>}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>deprecated    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) A simple dictionary object with keys <tt class=" ">since</tt>, <tt class=" ">removed</tt> and <tt class=" ">notes</tt>. <tt class=" ">since</tt> and <tt class=" ">removed</tt> values should hold Titanium version numbers indicating since when the property was deprecated and when (if ever) it will be removed. <tt class=" ">since</tt> should always be present. <tt class=" ">removed</tt> is optional. <tt class=" ">notes</tt>, which is also optional, can hold free-form text and should especially emphasize which alternative property to use in place of the deprecated property, if any.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">deprecated: {since: &quot;1.6.0&quot;, removed: &quot;1.8.0&quot;, notes: &quot;Use &lt;Titanium.Do.Hicky.backgroundColor&gt; instead.&quot;</tt>}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>osver    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Can be used to specify operating system version number requirements for the given property. This should be a dictionary with keys for each OS whose version needs to be specified (ios/android). The key values should then also be dictionaries with the keys <tt class=" ">min</tt>, <tt class=" ">max</tt> and/or <tt class=" ">versions</tt>, each of which is optional. <tt class=" ">min</tt> and <tt class=" ">max</tt> should have stringified version numbers, whereas <tt class=" ">versions</tt>, if present, should be an array of stringified version numbers.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">osver: {android: {min: &quot;2.1&quot;</tt>}} or <tt class=" ">osver: {ios: {max: &quot;3.2&quot;</tt>}} or <tt class=" ">osver: {android: {versions: [&quot;1.6&quot;, &quot;2.1&quot;]</tt>}}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>examples    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Identical to the <tt class=" ">examples</tt> key defined in the <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ValidKeysintheDocumentationofaType">Valid Keys in the Documentation of a Type</a> section, but in this case to show examples specifically for the property.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>See <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-CodeExamples">#Code Examples</a> below.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>permission    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). One of <tt class=" ">read-only</tt>, <tt class=" ">write-only</tt> or <tt class=" ">read-write</tt>. If missing, the value is assumed to be <tt class=" ">read-write</tt>.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">permission: read-only</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>availability    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). When the property can be written to, in the sense that some of our proxy properties can only be set in the dictionary object passed to a <tt class=" ">createXXX({...})</tt> method. Valid values here are <tt class=" ">always</tt>, <tt class=" ">creation</tt> and <tt class=" ">not-creation</tt>. <tt class=" ">creation</tt> means it can (or should &#x2013; this is a cue to the SDK user) only be set in the dictionary object passed to <tt class=" ">createXXX({...})</tt>, whereas <tt class=" ">not-creation</tt> means it can only be set directly on the proxy object and <i class=" ">not</i> via the <tt class=" ">createXXX({...})</tt> method. If missing, the value is assumed to be <tt class=" ">always</tt>.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">availability: always</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>accessors    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Whether a getter and setter method exist for the property (true/false, default true).    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">accessors: false</tt> to indicate that there is no setter/getter for the property.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>optional    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Whether it&apos;s considered optional to have the property set in the object. The default is <tt class=" ">true</tt> (i.e., not every object property needs to have a value). There may be cases where it is useful to set this to <tt class=" ">false</tt> to indicate that a value is required, for example when passing an object (see pseudo-object discussion below) as a paramater to a method.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">optional: false</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>value    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). The fixed value of the property. Particularly useful to express that something is a constant, such as by setting <tt class=" ">permission: read-only</tt> and by setting a <tt class=" ">value</tt>.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">value: 0</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>default    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). The default value of a property. You can use this to set a specific value (such as 0) or free text explaining how the default value is determined.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">default: 0</tt> or <tt class=" ">default: &lt;Titanium.Codec.CHARSET_UTF8&gt;</tt> or <tt class=" ">default: The device&apos;s current locale</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>constants    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Array of Titanium constant values the property can be assigned. You can use a wildcard character at the end of the value to match more than one constant    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">constants: [ Titanium.UI.LANDSCAPE_*, Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT]</tt>    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Multiple property documentation definitions can be put together into a YAML sequence by following the same syntax as for <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ArrayofMethodDocumentationDefinitions">multiple methods</a>.    </p>
+    <p>Our running example so far, which includes a sequence of property definitions:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Hicky.yml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Hicky.yml">
+<div class="line"><code class="plain"># Documentation of Titanium.Do.Hicky</code></div>
+<div class="line"><code class="plain">---</code></div>
+<div class="line"><code class="plain">name: Titanium.Do.Hicky</code></div>
+<div class="line"><code class="plain">summary: A view which automatically renders as an octagon.</code></div>
+<div class="line"><code class="plain">platforms: [android, ipad, iphone]</code></div>
+<div class="line"><code class="keyword">extends</code><code class="plain">: Titanium.UI.View</code></div>
+<div class="line"><code class="plain">since: {android: </code><code class="string">&quot;1.6.0&quot;</code><code class="plain">, iphone: </code><code class="string">&quot;0.8&quot;</code><code class="plain">, ipad: </code><code class="string">&quot;1.4.0&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain"># We could also just </code><code class="keyword">do</code><code class="plain"> </code><code class="keyword">this</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> all platforms got the type at the same time:</code></div>
+<div class="line"><code class="plain"># since: </code><code class="string">&quot;0.8&quot;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">description: It&apos;s important *not* to use </code><code class="keyword">this</code><code class="plain"> view on a scrollview!  Behavior there is undefined!</code></div>
+<div class="line"><code class="plain"># We could also have specified that the description is in an external file, like </code><code class="keyword">this</code><code class="plain">:</code></div>
+<div class="line"><code class="plain"># description: file:Hicky_description.md</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">examples:</code></div>
+<div class="line"><code class="plain">  - title: Put a Hicky on a Window</code></div>
+<div class="line"><code class="plain">    example: |</code></div>
+<div class="line"><code class="plain">        The following example shows putting a Hicky directly on a window:</code></div>
+<div class="line"><code class="plain">        </code></div>
+<div class="line"><code class="plain">            var win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;#ccc&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">            win.add(Ti.Do.createHicky());</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">methods:</code></div>
+<div class="line"><code class="plain">  - name: doSomething</code></div>
+<div class="line"><code class="plain">    summary: This method, when called, will </code><code class="keyword">do</code><code class="plain"> something.</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;0.8&quot;</code></div>
+<div class="line"><code class="plain">    platforms: [android, iphone, ipad]</code></div>
+<div class="line"><code class="plain">    returns: {type: </code><code class="string">&quot;String&quot;</code><code class="plain">, description: </code><code class="string">&quot;The thing done.&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    parameters:</code></div>
+<div class="line"><code class="plain">      - name: x</code></div>
+<div class="line"><code class="plain">        summary: The x-axis value</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">      - name: y</code></div>
+<div class="line"><code class="plain">        summary: The y-axis value</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">  - name: multiply</code></div>
+<div class="line"><code class="plain">    summary: Multiplies two factors and returns product.</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;0.8&quot;</code></div>
+<div class="line"><code class="plain">    platforms: [android, iphone, ipad]</code></div>
+<div class="line"><code class="plain">    returns: {type: </code><code class="string">&quot;Number&quot;</code><code class="plain">, description: </code><code class="string">&quot;The multiplication result&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    parameters:</code></div>
+<div class="line"><code class="plain">      - name: num1</code></div>
+<div class="line"><code class="plain">        summary: First factor.</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">      - name: num2</code></div>
+<div class="line"><code class="plain">        summary: Second factor.</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">properties:</code></div>
+<div class="line"><code class="plain">  - name: x</code></div>
+<div class="line"><code class="plain">    summary: The x-axis value.</code></div>
+<div class="line"><code class="plain">    type: Number</code></div>
+<div class="line"><code class="plain">    availability: always</code></div>
+<div class="line"><code class="plain">    permission: read-write</code></div>
+<div class="line"><code class="plain">  - name: y</code></div>
+<div class="line"><code class="plain">    summary: The y-axis value.</code></div>
+<div class="line"><code class="plain">    type: Number</code></div>
+<div class="line"><code class="plain">  - name: z</code></div>
+<div class="line"><code class="plain">    summary: The z-axis value.</code></div>
+<div class="line"><code class="plain">    type: Number</code></div>
+<div class="line"><code class="plain">    platforms: [ipad]</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;1.4.0&quot;</code></div>
+<div class="line"><code class="plain">    deprecated:</code></div>
+<div class="line"><code class="plain">        since: </code><code class="string">&quot;1.6.0&quot;</code></div>
+<div class="line"><code class="plain">        removed: </code><code class="string">&quot;1.8.0&quot;</code></div>
+<div class="line"><code class="plain">        notes: Use &lt;Titanium.Do.Hicky.zz&gt; instead.</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain"># In following sections we&apos;ll show ...</code></div>
+<div class="line"><code class="plain"># events: ...</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-EventSpecification">
+        <h5 class="heading "><span>Event Specification</span></h5>
+    <p>The type documentation includes a <tt class=" ">events</tt> key, which is described as an array of event documentation definitions. This section describes the event documentation specification.    </p>
+    <p>A single event documentation definition may contain the following keys:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Key    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Notes    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Examples    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>name    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The event name.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">name: flummered</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>summary    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A short, &quot;one-liner&quot; summary of the event, in Markdown format. Keep it short, as it will often be generated next to the event name in lists, for example. Deeper information about the event should go into the <tt class=" ">description</tt> property. <strong class=" ">Please start summaries with a capital letter and end with a period.</strong>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">summary: Fires when something happens.</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>description    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) Free-form , longer format text description of the event, in Markdown format, or &quot;file:&quot; followed by the name of a file which contains the description. If an external file is used, the contents should be in Markdown format and the file extension should be <tt class=" ">.md</tt>.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>See <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Free-FormTextValues">#Free-Form Text Values</a> below.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>extends    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Either a single fully-qualified type name, or an array of fully-qualified type names from which the event object inherits. As a convenience, this can be omitted and it will then be assumed that the event object extends <tt class=" ">Titanium.Event</tt>, which only contains the standard <tt class=" ">type</tt> and <tt class=" ">source</tt> properties.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">extends: Titanium.Event</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>platforms    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Identical to the <tt class=" ">platforms</tt> key defined in the <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ValidKeysintheDocumentationofaType">Valid Keys in the Documentation of a Type</a> section, but applied here to an event.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">platforms: [android, iphone, ipad]</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>since    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Identical to the <tt class=" ">since</tt> key defined in the <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ValidKeysintheDocumentationofaType">Valid Keys in the Documentation of a Type</a> section, but applied here to an event.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">since: &quot;0.8&quot;</tt> or <tt class=" ">since: {android: &quot;1.6.0&quot;, iphone: &quot;0.8&quot;, ipad: &quot;1.4.2&quot;</tt>}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>deprecated    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) A simple dictionary object with keys <tt class=" ">since</tt>, <tt class=" ">removed</tt> and <tt class=" ">notes</tt>. <tt class=" ">since</tt> and <tt class=" ">removed</tt> values should hold Titanium version numbers indicating since when the event was deprecated and when (if ever) it will be removed. <tt class=" ">since</tt> should always be present. <tt class=" ">removed</tt> is optional. <tt class=" ">notes</tt>, which is also optional, can hold free-form text and should especially emphasize which alternative event to use in place of the deprecated event, if any.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">deprecated: {since: &quot;1.6.0&quot;, removed: &quot;1.8.0&quot;, notes: &quot;Use &lt;Titanium.Do.Hicky.flummered2&gt; instead.&quot;</tt>}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>osver    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Can be used to specify operating system version number requirements for the given event. This should be a dictionary with keys for each OS whose version needs to be specified (ios/android). The key values should then also be dictionaries with the keys <tt class=" ">min</tt>, <tt class=" ">max</tt> and/or <tt class=" ">versions</tt>, each of which is optional. <tt class=" ">min</tt> and <tt class=" ">max</tt> should have stringified version numbers, whereas <tt class=" ">versions</tt>, if present, should be an array of stringified version numbers.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">osver: {android: {min: &quot;2.1&quot;</tt>}} or <tt class=" ">osver: {ios: {max: &quot;3.2&quot;</tt>}} or <tt class=" ">osver: {android: {versions: [&quot;1.6&quot;, &quot;2.1&quot;]</tt>}}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>properties    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). A sequence of <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-EventListenerObjectPropertySpecification">event listener object property definitions</a> which describe the properties in the event object passed to a listener for this event.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>See <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-EventListenerObjectPropertySpecification">#Event Listener Object Property Specification</a>.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Multiple event documentation definitions can be put together into a YAML sequence by following the same syntax as for <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ArrayofMethodDocumentationDefinitions">multiple methods</a>.    </p>
+    <p>Our running example so far, which includes a sequence of event definitions:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Hicky.yml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Hicky.yml">
+<div class="line"><code class="plain"># Documentation of Titanium.Do.Hicky</code></div>
+<div class="line"><code class="plain">---</code></div>
+<div class="line"><code class="plain">name: Titanium.Do.Hicky</code></div>
+<div class="line"><code class="plain">summary: A view which automatically renders as an octagon.</code></div>
+<div class="line"><code class="plain">platforms: [android, ipad, iphone]</code></div>
+<div class="line"><code class="keyword">extends</code><code class="plain">: Titanium.UI.View</code></div>
+<div class="line"><code class="plain">since: {android: </code><code class="string">&quot;1.6.0&quot;</code><code class="plain">, iphone: </code><code class="string">&quot;0.8&quot;</code><code class="plain">, ipad: </code><code class="string">&quot;1.4.0&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain"># We could also just </code><code class="keyword">do</code><code class="plain"> </code><code class="keyword">this</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> all platforms got the type at the same time:</code></div>
+<div class="line"><code class="plain"># since: </code><code class="string">&quot;0.8&quot;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">description: It&apos;s important *not* to use </code><code class="keyword">this</code><code class="plain"> view on a scrollview!  Behavior there is undefined!</code></div>
+<div class="line"><code class="plain"># We could also have specified that the description is in an external file, like </code><code class="keyword">this</code><code class="plain">:</code></div>
+<div class="line"><code class="plain"># description: file:Hicky_description.md</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">examples:</code></div>
+<div class="line"><code class="plain">  - title: Put a Hicky on a Window</code></div>
+<div class="line"><code class="plain">    example: |</code></div>
+<div class="line"><code class="plain">        The following example shows putting a Hicky directly on a window:</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">            var win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;#ccc&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">            win.add(Ti.Do.createHicky());</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">methods:</code></div>
+<div class="line"><code class="plain">  - name: doSomething</code></div>
+<div class="line"><code class="plain">    summary: This method, when called, will </code><code class="keyword">do</code><code class="plain"> something.</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;0.8&quot;</code></div>
+<div class="line"><code class="plain">    platforms: [android, iphone, ipad]</code></div>
+<div class="line"><code class="plain">    returns: {type: </code><code class="string">&quot;String&quot;</code><code class="plain">, description: </code><code class="string">&quot;The thing done.&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    parameters:</code></div>
+<div class="line"><code class="plain">      - name: x</code></div>
+<div class="line"><code class="plain">        summary: The x-axis value</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">      - name: y</code></div>
+<div class="line"><code class="plain">        summary: The y-axis value</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">  - name: multiply</code></div>
+<div class="line"><code class="plain">    summary: Multiplies two factors and returns product.</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;0.8&quot;</code></div>
+<div class="line"><code class="plain">    platforms: [android, iphone, ipad]</code></div>
+<div class="line"><code class="plain">    returns: {type: </code><code class="string">&quot;Number&quot;</code><code class="plain">, description: </code><code class="string">&quot;The multiplication result&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    parameters:</code></div>
+<div class="line"><code class="plain">      - name: num1</code></div>
+<div class="line"><code class="plain">        summary: First factor.</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">      - name: num2</code></div>
+<div class="line"><code class="plain">        summary: Second factor.</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">properties:</code></div>
+<div class="line"><code class="plain">  - name: x</code></div>
+<div class="line"><code class="plain">    summary: The x-axis value.</code></div>
+<div class="line"><code class="plain">    type: Number</code></div>
+<div class="line"><code class="plain">    availability: always</code></div>
+<div class="line"><code class="plain">    permission: read-write</code></div>
+<div class="line"><code class="plain">  - name: y</code></div>
+<div class="line"><code class="plain">    summary: The y-axis value.</code></div>
+<div class="line"><code class="plain">    type: Number</code></div>
+<div class="line"><code class="plain">  - name: z</code></div>
+<div class="line"><code class="plain">    summary: The z-axis value.</code></div>
+<div class="line"><code class="plain">    type: Number</code></div>
+<div class="line"><code class="plain">    platforms: [ipad]</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;1.4.0&quot;</code></div>
+<div class="line"><code class="plain">    deprecated:</code></div>
+<div class="line"><code class="plain">        since: </code><code class="string">&quot;1.6.0&quot;</code></div>
+<div class="line"><code class="plain">        removed: </code><code class="string">&quot;1.8.0&quot;</code></div>
+<div class="line"><code class="plain">        notes: Use &lt;Titanium.Do.Hicky.zz&gt; instead. </code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">events:</code></div>
+<div class="line"><code class="plain">  - name: flubbered</code></div>
+<div class="line"><code class="plain">    summary: Event occurs when the Hicky is flubbered.</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;1.4.0&quot;</code></div>
+<div class="line"><code class="plain">    properties:</code></div>
+<div class="line"><code class="plain">	  - name: flubtime</code></div>
+<div class="line"><code class="plain">		summary: the time at which Hicky was flubbered.</code></div>
+<div class="line"><code class="plain">		type: Date</code></div>
+<div class="line"><code class="plain">	  - name: x</code></div>
+<div class="line"><code class="plain">		summary: the x-axis position on which the flubber occurred.</code></div>
+<div class="line"><code class="plain">		type: Number</code></div>
+<div class="line"><code class="plain">	  - name: y</code></div>
+<div class="line"><code class="plain">		summary: the y-axis position on which the flubber occurred.</code></div>
+<div class="line"><code class="plain">		type: Number</code></div>
+<div class="line"><code class="plain">  - name: zinkered</code></div>
+<div class="line"><code class="plain">    summary: An event that happens </code><code class="keyword">if</code><code class="plain"> the Hicky is zinkered.</code></div>
+<div class="line"><code class="plain">    properties:</code></div>
+<div class="line"><code class="plain">      - name: zinkerText</code></div>
+<div class="line"><code class="plain">        summary: The zinker text message.</code></div>
+<div class="line"><code class="plain">        type: String</code></div>
+</div>
+    </div>
+    <div class="section section-6 " id="src-29004748_TDocSpecification-EventListenerObjectPropertySpecification">
+        <h6 class="heading "><span>Event Listener Object Property Specification</span></h6>
+    <p>Each event contains a <tt class=" ">properties</tt> sequence. This section describes the specification for each member of that sequence. We refer to them as &quot;Event Listener Object Properties&quot; because they are properties of the single object that gets passed to all event listeners in Titanium. These objects are often given the parameter name <tt class=" ">e</tt>, though that is not a requirement, such as in this example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">button.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">	Titanium.API.info(</code><code class="string">&apos;Event source: &apos;</code><code class="plain"> + e.source);</code></div>
+<div class="line"><code class="plain">	Titanium.API.info(</code><code class="string">&apos;Event type: &apos;</code><code class="plain"> + e.type);</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    <p>In that example, the <tt class=" ">source</tt> and <tt class=" ">type</tt> are what we are calling &quot;event listener object properties&quot; here.    </p>
+    <p>A single event listener object property documentation definition may contain the following keys:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Key    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Notes    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Examples    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>name    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The property name.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">name: x</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>summary    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A short, &quot;one-liner&quot; summary of the property, in Markdown format. <strong class=" ">Please start summaries with a capital letter and end with a period.</strong>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">summary: The x point of the event in receiving view coordinates.</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>type    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A data type specifier indicating the type of the property, or an array of data type specifiers in case multiple types are allowed for the property. A view dimension is a typical use-case for the latter, since we support numeric values (interpreted as pixels) or string values (&quot;auto&quot;, &quot;10dp&quot;, etc.).    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">type: Number</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>platforms    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Identical to the <tt class=" ">platforms</tt> key defined in the <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ValidKeysintheDocumentationofaType">Valid Keys in the Documentation of a Type</a> section, but applied here to an event listener object property.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">platforms: [android, iphone, ipad]</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>deprecated    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>) A simple dictionary object with keys <tt class=" ">since</tt> and <tt class=" ">removed</tt>, whose values should hold Titanium version numbers indicating since when the property was deprecated and when (if ever) it will be removed. <tt class=" ">since</tt> should always be present. <tt class=" ">removed</tt> is optional.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">deprecated: {since: &quot;1.6.0&quot;, removed: &quot;1.8.0&quot;</tt>}    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>constants    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>(<strong class=" ">Optional</strong>). Array of Titanium constant values the property can be assigned. You can use a wildcard character at the end of the value to match more than one constant    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">constants: [ Titanium.UI.LANDSCAPE_*, Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT]</tt>    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>For examples, see the YAML sample above in the <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-EventSpecification">#Event Specification</a>.    </p>
+    </div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-Free-FormTextValues">
+        <h4 class="heading "><span>Free-Form Text Values</span></h4>
+    <p>Four of the YAML keys described in previous sections &#x2013; <tt class=" ">summary</tt>, <tt class=" ">description</tt>, the <tt class=" ">example</tt> property of each member of an <tt class=" ">examples</tt> array, and the <tt class=" ">notes</tt> property in a <tt class=" ">deprecated</tt> entry &#x2013; accept free-form text which will be processed by our scripts as Markdown. This section describes valid approaches to entering free-form text as values for YAML keys.    </p>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-ShortOne-Liners">
+        <h5 class="heading "><span>Short One-Liners</span></h5>
+    <p>For relatively short text blocks, simply type the text right after the key:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">summary: This method does </code><code class="keyword">this</code><code class="plain"> and that.</code></div>
+</div>
+    </div>
+    <p>By convention, the <tt class=" ">summary</tt> key (for types, methods, method parameters, properties and events) should be a single line, relatively short blurb like the example shown above. Please adhere to this, as these short one-liners will often appear next to the type/method/property/event name in lists.    </p>
+    <p>Also, although these are short one-liners and may not be grammatical sentences, please treat them as sentences for purposes of capitalization and punctuation: start with a capital letter and end with a period!    </p>
+    </div>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-MultilinewithFolding">
+        <h5 class="heading "><span>Multiline with Folding</span></h5>
+    <p>Line-breaks can be used for longer text blocks in order to make the YAML itself more readable. The second and following lines need to be indented one level from the key. The parser will fold the line breaks and remove the indentation spaces:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">description: Now is the time</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">for</code><code class="plain"> all good men</code></div>
+<div class="line"><code class="plain">    to come to the aid</code></div>
+<div class="line"><code class="plain">    of their country.</code></div>
+</div>
+    </div>
+    <p>The parser will convert that key value to <tt class=" ">Now is the time for all good men to come to the aid of their country.</tt>    </p>
+    </div>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-PreservingLineBreaksandInsertingCodeBlocks">
+        <h5 class="heading "><span>Preserving Line Breaks and Inserting Code Blocks</span></h5>
+    <p>When line-breaks are relevant, free-form text block values can take advantage of the YAML vertical bar syntax which preserves line-breaks. The vertical bar is followed by a new line, and then the text block should be indented by one level. The line-breaks in the text block will be preserved. This is the approach that should be taken for the <tt class=" ">examples</tt> key value, since it will most likely contain separate code blocks:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">examples:</code></div>
+<div class="line"><code class="plain">  - title: Order of Operations</code></div>
+<div class="line"><code class="plain">    example: |</code></div>
+<div class="line"><code class="plain">        The `doSomethingElse` method should always be called *after* the `doSomething` method:</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">            var result = doSomething();</code></div>
+<div class="line"><code class="plain">            doSomethingElse();</code></div>
+</div>
+    </div>
+    <p>Note that the actual code block is preceded by an empty line and then indented by at least four spaces, as the Markdown standard specifies.    </p>
+    <div class="section section-6 " id="src-29004748_TDocSpecification-LanguageofCodeBlocks">
+        <h6 class="heading "><span>Language of Code Blocks</span></h6>
+    <p>All code blocks are assumed to be Javascript, unless the language is specified using this technique:    </p>
+<ul class=" "><li class=" ">    <p>The first line of the indented code block should be a comment (using whatever single-line comment syntax the language uses) containing {{<tt class=" ">language:[language]</tt>}}.    </p>
+</li><li class=" ">    <p><tt class=" ">[language]</tt> should be one of the &quot;Short names&quot; values specified by <a class="external-link external-link" href="http://pygments.org/docs/lexers/" target="_blank">Pygments</a>, since that is a very popular syntax highlighter, and syntax highlighting is very likely the most common why someone would be interested in this information.    </p>
+</li></ul>    <p>Examples:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">example: |</code></div>
+<div class="line"><code class="plain">    Here is a Javascript example:</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">        var x = y;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    Here is a Java example:</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">        </code><code class="comments">// {{language:java}}</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">int</code><code class="plain"> x = </code><code class="value">0</code><code class="plain">;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    Here is an Objective-C example:</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">        </code><code class="comments">// {{language:obj-c}}</code></div>
+<div class="line"><code class="plain">        - (id)init</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> self;</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    Here is a Python example:</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">        # {{language:python}}</code></div>
+<div class="line"><code class="plain">        def doNothing():</code></div>
+<div class="line"><code class="plain">            pass</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-ReferringtoExternalFiles">
+        <h5 class="heading "><span>Referring to External Files</span></h5>
+    <p>Particularly, long free-form text blocks can optionally be placed in an external Markdown file by entering <tt class=" ">file:filename.md</tt>    </p>
+    <p>For example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">description: file:Hicky_description.md</code></div>
+</div>
+    </div>
+    <p>This is not part of the YAML specification; it is a convenience that our own scripts will recognize.    </p>
+    <p>The external file must be placed in the same folder as the <tt class=" ">.yml</tt> file.    </p>
+    <p>By convention, the <tt class=" ">summary</tt> key value, which we prefer to be a relatively short one-liner, should not use this <tt class=" ">file:</tt> convenience.    </p>
+    <p>By convention, the filename should be in the form of <tt class=" ">[type name]_[method/property name]_[key name].md</tt>. For example, if the file contains an <tt class=" ">example</tt> for the <tt class=" ">doSomething</tt> method of the <tt class=" ">Hicky</tt> type, the filename should be <tt class=" ">Hicky_doSomething_example.md</tt>. If the file is for a key value of the type itself, rather than one of its methods or properties, the filename should simply be in the form of <tt class=" ">[type name]_[key name].md</tt>, such as <tt class=" ">Hicky_example.md</tt>.    </p>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-CodeExamples">
+        <h4 class="heading "><span>Code Examples</span></h4>
+    <p>The <tt class=" ">examples</tt> property for type, method and property definitions is actually an array (tuple); i.e., you can have multiple examples &#x2013; each with their own title &#x2013; per type/method/porperty. Each member of the array should contain:    </p>
+<ul class=" "><li class=" ">    <p>A <tt class=" ">title</tt> property, which is a brief description of the particular example;    </p>
+</li><li class=" ">    <p>An <tt class=" ">example</tt> property, which is free-form text (as described in the previous section) wherein you can put both explanatory text and any code blocks. This is parsed as Markdown, so simply indent each code block by another four characters for the Markdown processor to recognize it as code.    </p>
+</li></ul>    <p>Note that you should put the vertical bar (|) at the start of the <tt class=" ">example</tt> value, followed by a line break and indentation. This is so that any further indentation that you do, such as for code blocks, is preserved.    </p>
+    <p>Example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">examples:</code></div>
+<div class="line"><code class="plain">  - title: Calling doSomething from a Callback</code></div>
+<div class="line"><code class="plain">    example: |</code></div>
+<div class="line"><code class="plain">        This shows how to properly call `doSomething` from a callback:</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">            function myCallback() {</code></div>
+<div class="line"><code class="plain">                doSomething();</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">  - title: Calling doSomething from a View</code></div>
+<div class="line"><code class="plain">    example: |</code></div>
+<div class="line"><code class="plain">        To properly invoke `doSomething`from a view, be sure to </code><code class="keyword">do</code><code class="plain"> it as follows:</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">            view.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, function(){doSomething();});</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-DocumentingCallbacks">
+        <h4 class="heading "><span>Documenting Callbacks</span></h4>
+    <p>Documentation for callbacks is tricky. The place in documentation where a callback is relevant is usually as a parameter to a method call. At that point, the only thing that is relevant is that it is a callable function. But the most interesting thing about a callback is the parameter that is passed <i class=" ">back</i> to it when it is called.    </p>
+    <p>For example, <a class="external-link external-link" href="#!/api/Titanium.Media-method-takeScreenshot">Titanium.Media.takeScreenshot</a> takes a single parameter, a callback function. The documentation could easily be something like this:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">name: takeScreenshot</code></div>
+<div class="line"><code class="plain">parameters:</code></div>
+<div class="line"><code class="plain">  - name: callback</code></div>
+<div class="line"><code class="plain">    type: Function</code></div>
+</div>
+    </div>
+    <p>That&apos;s awkward, because it does not give any information about what the callback function should look for and evaluate when it gets called. All of our callbacks use the simple pattern of taking a single parameter which is an object literal whose relevant members can then be evaluated by the callback function. The problem is, those relevant object members vary. For the callback invoked at the completion of <tt class=" ">Titanium.Media.takeScreenshot</tt>, the relevant member of the object literal which is passed back is <tt class=" ">media</tt>. <tt class=" ">Titanium.Geolocation.reverseGeocoder</tt>, on the other hand, sends an object literal with several members to its callback, among them <tt class=" ">street</tt>, <tt class=" ">city</tt> and <tt class=" ">country</tt>.    </p>
+    <p>We have created the following syntax to indicate a particular type of callback, meaning a callback that accepts an object literal that is documented as having particular properties:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">type: Callback&lt;[type]&gt;</code></div>
+</div>
+    </div>
+    <p><tt class=" ">[type]</tt> should be replaced with the name of a type that you document simply for purposes of documenting this callback parameter. These can perhaps be thought of as <i class=" ">pseudo-types</i>, in the sense that they are only &quot;being documented for the documentation&quot;, or to make the documentation complete.    </p>
+    <p>The next section, <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-DocumentingObjectLiteralsandInterfaces">#Documenting Object Literals and Interfaces</a>, describes how to document these <i class=" ">pseudo-types</i>. For the time being, imagine you have defined a <i class=" ">pseudo-type</i> named <tt class=" ">ScreenshotResult</tt> to be used with the callback for <tt class=" ">Titanium.Media.takeScreenshot</tt>. In that case, the documentation for the parameters of <tt class=" ">takeScreenshot</tt> would look like this:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">name: takeScreenshot</code></div>
+<div class="line"><code class="plain">parameters:</code></div>
+<div class="line"><code class="plain">  - name: callback</code></div>
+<div class="line"><code class="plain">    type: Callback&lt;ScreenshotResult&gt;</code></div>
+</div>
+    </div>
+    <p>Note: If a callback is called without parameters, it can be specified simply with <tt class=" ">Callback</tt>, i.e., without the angle-bracketed type specifier.    </p>
+    </div>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-DocumentingObjectLiteralsandInterfaces">
+        <h4 class="heading "><span>Documenting Object Literals and Interfaces</span></h4>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-ObjectLiterals">
+        <h5 class="heading "><span>Object Literals</span></h5>
+    <p>As the section on <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-DocumentingCallbacks">#Documenting Callbacks</a> shows, there are some occasions when we wish to provide &quot;strongly-typed documentation&quot; for what are actually simple Javascript object literals with Java <tt class=" ">HashMap</tt> or Objective-C <tt class=" ">NSDictionary</tt> instances behind them. The single parameter accepted by callbacks is one good example; in that case, we wish to document which properties can be expected in the object literal passed to the callback, what data types should be expected for those properties, etc.    </p>
+    <p>Another example is <a class="external-link external-link" href="#!/api/Titanium.Media-method-openPhotoGallery">Titanium.Media.openPhotoGallery</a>, which takes a single argument: an object literal that should contain several properties. If you look at the existing documentation for that method&apos;s single parameter, you will see that it is just a bunch of text describing what should go into the object literal; this is not useful for automated tools and utilities, such as the Code Assist feature of Studio. We would rather have structured documentation for this object literal.    </p>
+    </div>
+    <div class="section section-5 " id="src-29004748_TDocSpecification-Interfaces">
+        <h5 class="heading "><span>Interfaces</span></h5>
+    <p>Similarly, parts of our API might accept properties or parameters that don&apos;t necessarily need to be instances of specific proxies but rather must implement a particular interface. One might think of this as a kind of &quot;<a class="external-link external-link" href="http://en.wikipedia.org/wiki/Duck_typing" target="_blank">duck typing</a>&quot;. An upcoming example of this can be seen in our new <a class="document-link " href="#!/guide/Stream_Spec">Stream specification</a>, in which two Titanium types &#x2013; file streams and socket streams &#x2013; implement a Stream interface. From the documentation perspective, there should be no need for stream-related methods and properties to be documented for both of those types. Instead, a generic stream type should be documented just once so that the documentation definitions for file streams and socket streams can simply extend it, and so that any method parameters or properties throughout the rest of our API which accept streams can have their <tt class=" ">type</tt> key set to the special documented type.    </p>
+    </div>
+    <div class="section section-5 " id="src-29004748_safe-id-VERvY1NwZWNpZmljYXRpb24tU29sdXRpb246UHNldWRvLVR5cGVz">
+        <h5 class="heading "><span>Solution: Pseudo-Types</span></h5>
+    <p>To provide &quot;strongly typed documentation&quot; for these object literals and shared interfaces, simply document them as their own types. One might call these <i class=" ">pseudo-types</i>, in the sense that they are documentation-only types, not types that are truly instantiable in code. The names of these pseudo-types will not be presented in the online documentation; they are here solely so that scripts &#x2013; such as our scripts that will generate the online documentation and the Content Assist JSCA file &#x2013; can determine the attributes which are expected in an object used as a property or method parameter.    </p>
+    <div class="section section-6 " id="src-29004748_TDocSpecification-Pseudo-TypesUsefultoJustOneTitaniumType">
+        <h6 class="heading "><span>Pseudo-Types Useful to Just One Titanium Type</span></h6>
+    <p>Some of these <i class=" ">pseudo-types</i> might be useful only to one Titanium type being documented. An example of this is the object that gets passed to <tt class=" ">Titanium.Media.openPhotoGallery</tt>: there is no other part of the Titanium Mobile SDK which cares about that object. In such cases, you should document the pseudo-type in the same file in which you are documenting the main type.    </p>
+    <p>With YAML, you can document multiple types in a single documentation file simply by starting a new &quot;document&quot;. You&apos;ll recall from <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-ATypeDocumentationisaYAMLDocument">#A Type Documentation is a YAML Document</a> that a new document begins with three dashes (---) alone on a line. So if you wish to write documentation for a pseudo-type that is only used in one place, you can simply start a new YAML document at the bottom of the file.    </p>
+    <p>Using our running example type <tt class=" ">Titanium.Do.Hicky</tt>, we can document a method, <tt class=" ">adjustFlubber</tt>, which accepts a dictionary object (or &quot;object literal&quot;) as a parameter. The object should have the properties <tt class=" ">x</tt> and <tt class=" ">y</tt>, which are coordinates, and <tt class=" ">callback</tt>, which is a function that will be called upon completion. The callback accepts an object that has <tt class=" ">success</tt> and <tt class=" ">error</tt> members. The documentation definition might look like this:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># MAIN TYPE (a user-facing Titanium type) being documented in </code><code class="keyword">this</code><code class="plain"> file.</code></div>
+<div class="line"><code class="plain">---</code></div>
+<div class="line"><code class="plain">name: Titanium.Do.Hicky</code></div>
+<div class="line"><code class="plain">summary: A view which automatically renders as an octagon.</code></div>
+<div class="line"><code class="plain">platforms: [android, ipad, iphone]</code></div>
+<div class="line"><code class="keyword">extends</code><code class="plain">: Titanium.UI.View</code></div>
+<div class="line"><code class="plain">since: {android: </code><code class="string">&quot;1.6.0&quot;</code><code class="plain">, iphone: </code><code class="string">&quot;0.8&quot;</code><code class="plain">, ipad: </code><code class="string">&quot;1.4.0&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">(etc., etc., etc.)</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">methods:</code></div>
+<div class="line"><code class="plain">  - name: adjustFlubber</code></div>
+<div class="line"><code class="plain">    summary: Does an async adjustment of a flubber.</code></div>
+<div class="line"><code class="plain">    parameters:</code></div>
+<div class="line"><code class="plain">      - name: options</code></div>
+<div class="line"><code class="plain">        summary: flubber adjustment options</code></div>
+<div class="line"><code class="plain">        type: FlubberAdjustmentSpec</code></div>
+<div class="line"><code class="plain">(etc., etc., etc.)</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain"># NEW DOCUMENT (in same file) to describe pseudo type FlubberAdjustmentSpec</code></div>
+<div class="line"><code class="plain">---</code></div>
+<div class="line"><code class="plain">name: FlubberAdjustmentSpec</code></div>
+<div class="line"><code class="plain">summary: Specification </code><code class="keyword">for</code><code class="plain"> a flubber adjustment</code></div>
+<div class="line"><code class="plain">platforms: [android, ipad, iphone]</code></div>
+<div class="line"><code class="plain">since: {android: </code><code class="string">&quot;1.6.0&quot;</code><code class="plain">, iphone: </code><code class="string">&quot;0.8&quot;</code><code class="plain">, ipad: </code><code class="string">&quot;1.4.0&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">properties:</code></div>
+<div class="line"><code class="plain">  - name: x</code></div>
+<div class="line"><code class="plain">    summary: desired </code><code class="keyword">new</code><code class="plain"> x-axis value</code></div>
+<div class="line"><code class="plain">    type: Number</code></div>
+<div class="line"><code class="plain">  - name: y</code></div>
+<div class="line"><code class="plain">    summary: desired </code><code class="keyword">new</code><code class="plain"> y-axis value</code></div>
+<div class="line"><code class="plain">    type: Number</code></div>
+<div class="line"><code class="plain">  - name: callback</code></div>
+<div class="line"><code class="plain">    summary: function will be called when adjustment has finished.</code></div>
+<div class="line"><code class="plain">    type: Callback&lt;FlubberAdjustmentResult&gt;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain"># NEW DOCUMENT (in same file) to describe pseudo type FlubberAdjustmentResult</code></div>
+<div class="line"><code class="plain">---</code></div>
+<div class="line"><code class="plain">name: FlubberAdjustmentResult</code></div>
+<div class="line"><code class="plain">summary: Object with properties describing the result of flubber adjustment.</code></div>
+<div class="line"><code class="plain">platforms: [android, ipad, iphone]</code></div>
+<div class="line"><code class="plain">since: {android: </code><code class="string">&quot;1.6.0&quot;</code><code class="plain">, iphone: </code><code class="string">&quot;0.8&quot;</code><code class="plain">, ipad: </code><code class="string">&quot;1.4.0&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">properties:</code></div>
+<div class="line"><code class="plain">  - name: success</code></div>
+<div class="line"><code class="plain">    summary: indicates success/failure</code></div>
+<div class="line"><code class="plain">    type: Boolean</code></div>
+<div class="line"><code class="plain">  - name: error</code></div>
+<div class="line"><code class="plain">    summary: error string that will be set </code><code class="keyword">if</code><code class="plain"> success==</code><code class="keyword">false</code></div>
+<div class="line"><code class="plain">    type: String</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-6 " id="src-29004748_TDocSpecification-Pseudo-TypesUsefultoaSingleModule">
+        <h6 class="heading "><span>Pseudo-Types Useful to a Single Module</span></h6>
+    <p>If a <i class=" ">pseudo-type</i> has applicability beyond a single type definition, it should go in its own file. If it&apos;s applicable only to types which are all in the same module, it can go in the same folder as the module but in its own file (e.g., <tt class=" ">Titanium/Do/FlubberAdjustmentResult.yml</tt>.    </p>
+    <p>The real-world example documentation for <a class="external-link external-link" href="https://gist.github.com/e6afc266f09188a73756" target="_blank"><tt class=" ">Titanium.UI.View</tt></a> also contains some pseudo-type defintions near the botttom of the file.    </p>
+    </div>
+    <div class="section section-6 " id="src-29004748_TDocSpecification-Pseudo-TypesUsefulinMultipleModules">
+        <h6 class="heading "><span>Pseudo-Types Useful in Multiple Modules</span></h6>
+    <p>If a <i class=" ">pseudo-type</i> is useful in multiple modules, it should go in a <tt class=" ">common/</tt> folder which is at the root of the documentation directories, i.e., as a sibling to <tt class=" ">Titanium/</tt>. One example of this is the documentation definition for the Stream interface described in <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Interfaces">#Interfaces</a> above. In that case, a file in <tt class=" ">common/</tt> should exist &#x2013; perhaps <tt class=" ">common/TiStream.yml</tt> &#x2013; with contents similar to this example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">TiStream.yml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="TiStream.yml">
+<div class="line"><code class="plain"># TiStream.yml - Documents common Stream </code><code class="keyword">interface</code><code class="plain"> used</code></div>
+<div class="line"><code class="plain"># in multiple Titanium modules.</code></div>
+<div class="line"><code class="plain">---</code></div>
+<div class="line"><code class="plain">name: TiStream</code></div>
+<div class="line"><code class="plain">summary: Titanium Stream </code><code class="keyword">interface</code></div>
+<div class="line"><code class="plain">since: </code><code class="string">&quot;1.7.0&quot;</code></div>
+<div class="line"><code class="plain">methods:</code></div>
+<div class="line"><code class="plain">  - name: read</code></div>
+<div class="line"><code class="plain">    summary: reads buffer.length amount of data from stream into buffer.</code></div>
+<div class="line"><code class="plain">    returns: {type: </code><code class="string">&quot;Number&quot;</code><code class="plain">, description: </code><code class="string">&quot;Count of bytes read&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    parameters:</code></div>
+<div class="line"><code class="plain">      - name: buffer</code></div>
+<div class="line"><code class="plain">        summary: Buffer into which read bytes will be placed.</code></div>
+<div class="line"><code class="plain">        type: Titanium.Buffer</code></div>
+<div class="line"><code class="plain">  - name: read</code></div>
+<div class="line"><code class="plain">    summary: reads </code><code class="string">&quot;length&quot;</code><code class="plain"> number of bytes into </code><code class="string">&quot;buffer&quot;</code><code class="plain"> starting at </code><code class="string">&quot;offset&quot;</code><code class="plain"> in stream.</code></div>
+<div class="line"><code class="plain">    returns: {type: </code><code class="string">&quot;Number&quot;</code><code class="plain">, description: </code><code class="string">&quot;Count of bytes read&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    parameters:</code></div>
+<div class="line"><code class="plain">      - name: buffer</code></div>
+<div class="line"><code class="plain">        summary: Buffer into which read bytes will be placed.</code></div>
+<div class="line"><code class="plain">        type: Titanium.Buffer</code></div>
+<div class="line"><code class="plain">      - name: offset</code></div>
+<div class="line"><code class="plain">        summary: Offset in stream at which to start read</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain">      - name: length</code></div>
+<div class="line"><code class="plain">        summary: Number of bytes to read</code></div>
+<div class="line"><code class="plain">        type: Number</code></div>
+<div class="line"><code class="plain"># ETC ETC</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-29004748_TDocSpecification-Intra-DocumentationLinks">
+        <h3 class="heading "><span>Intra-Documentation Links</span></h3>
+    <p>Our current TDocs support automatic linking within the documentation, either using backticks or double square brackets. The convenience of automatic linking will continue with the adoption of this new specification, however backticks and square brackets will no longer be used, as described in the following sub-sections.    </p>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-TypeSpecificationsDoNotNeedBackticks">
+        <h4 class="heading "><span>Type Specifications Do Not Need Backticks</span></h4>
+    <p>When a type is specified (such as a return type, a method parameter type or a property type), and the specified type is documented in our documentation .yml files, our scripts will handle linking to the type automatically. There is no need to use backticks in this case. <strong class=" ">Do not use backticks in this case!</strong>    </p>
+    <p><strong class=" ">Incorrect:</strong>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">parameters:</code></div>
+<div class="line"><code class="plain">  - name: view</code></div>
+<div class="line"><code class="plain">    type: `Titanium.UI.View` # WRONG!</code></div>
+</div>
+    </div>
+    <p><strong class=" ">Correct:</strong>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">parameters:</code></div>
+<div class="line"><code class="plain">  - name: view</code></div>
+<div class="line"><code class="plain">    type: Titanium.UI.View</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-29004748_TDocSpecification-MarkdownLinksinFree-FormTextValues">
+        <h4 class="heading "><span>Markdown Links in Free-Form Text Values</span></h4>
+    <p>As <a class="document-link " href="#!/guide/TDoc_Specification-section-src-29004748_TDocSpecification-Free-FormTextValues">explained earlier</a>, a few of the documentation YAML key values accept free-form text which is treated as Markdown. Backticks and double-brackets will no longer be used within these text blocks as indicators that links to type documentation should automatically be generated. Instead, Markdown shall be followed more closely. In Markdown, the backtick has no meaning with respect to linking &#x2013; nor does a set of double square brackets.    </p>
+    <p>Instead, use one of these two Markdown standards:    </p>
+<ul class=" "><li class=" ">    <p>Angle brackets, if you don&apos;t need any custom text for the link. Example: <tt class=" ">&lt;Titanium.UI.View&gt;</tt> becomes a link with &quot;Titanium.UI.View&quot; as the link text and the reference being the appropriate address to the <tt class=" ">Titanium.UI.View</tt> documentation.    </p>
+</li></ul><ul class=" "><li class=" ">    <p>The standard, most common Markdown &quot;inline link&quot; syntax. Example: <tt class=" ">[Your custom link text here](Titanium.UI.View)</tt> becomes a link with &quot;Your custom link text here&quot; as the link text and the reference being the appropriate address to the <tt class=" ">Titanium.UI.View</tt> documentation.    </p>
+</li></ul>    <p>Our scripts will then evaluate the link and if the link value precisely matches the full, namespace-qualified name of a documented type, then the script will know to generate the link to the type&apos;s documentation.    </p>
+    <p><strong class=" ">Incorrect:</strong>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">example: The following code shows how easy it is to get a [View](`Titanium.UI.View`): # WRONG!</code></div>
+<div class="line"><code class="plain"># ...</code></div>
+<div class="line"><code class="plain">description: This type is often used in conjunction with `Titanium.UI.2DMatrix`. # WRONG!</code></div>
+<div class="line"><code class="plain"># ...</code></div>
+<div class="line"><code class="plain">description: This type is often used in conjunction with [[Titanium.UI.2DMatrix]]. # WRONG</code></div>
+</div>
+    </div>
+    <p><strong class=" ">Correct:</strong>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">example: The following code shows how easy it is to get a [View](Titanium.UI.View):</code></div>
+<div class="line"><code class="plain"># ...</code></div>
+<div class="line"><code class="plain">description: This type is often used in conjunction with &lt;Titanium.UI.2DMatrix&gt;.</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-29004748_TDocSpecification-Real-WorldExample">
+        <h2 class="heading "><span>Real-World Example</span></h2>
+    <p>For purposes of a real-world example, <a class="external-link external-link" href="https://gist.github.com/e6afc266f09188a73756" target="_blank"><tt class=" ">Titanium.UI.View</tt></a> was documented following this proposed specification.    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=29004748"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sockets</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-29004824" class="content">
+                        <h1>Sockets</h1>
+    <div class="section section-2 " id="src-29004824_Sockets-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Sockets.html#src-29004824_Sockets-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Sockets.html#src-29004824_Sockets-SocketsExplained">Sockets Explained</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Sockets.html#src-29004824_Sockets-UsageExamples">Usage Examples</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-29004824_Sockets-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>Support for listening and connecting sockets via TCP will allow application developers to incorporate lower level network logic into their applications.    </p>
+    </div>
+    <div class="section section-2 " id="src-29004824_Sockets-SocketsExplained">
+        <h2 class="heading "><span>Sockets Explained</span></h2>
+    <p><a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.Network.Socket.TCP">Titanium.Network.Socket.TCP</a> implements the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.Stream">Titanium.Stream</a> interface and therefore relies on <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.Buffer">Titanium.Buffer</a>.    </p>
+    <p>Socket operations are generally asynchronous and therefore socket callbacks are core to how one operation flows into the next. For example, when connecting to a remote host, you wait until the <tt class=" ">connected</tt> callback is invoked and initiate read and write operations from inside that callback.    </p>
+    <p>Once a socket is connected, IO operations leave the scope of <tt class=" ">Ti.Network.Socket</tt> and move into the realm of general Stream IO. Again, because sockets are naturally asynchronous, IO interactions with them should generally be conducted through the <tt class=" ">Ti.Stream</tt> module. Lastly, while sockets can be an extremely powerful part of your developer tool box, network programming is non-trivial and investigation into the basics of how BSD sockets work is suggested.    </p>
+    </div>
+    <div class="section section-2 " id="src-29004824_Sockets-UsageExamples">
+        <h2 class="heading "><span>Usage Examples</span></h2>
+    <p>The following code excerpt creates a socket and connects to a remote server. When the socket connects, a callback function is invoked to interact with the socket. The callback function is shown in the next excerpt.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">//Create a socket, connect to another listening socket locally, write some data and then enter read loop</code></div>
+<div class="line"><code class="plain">var connectSocket = Ti.Network.Socket.createTCP({</code></div>
+<div class="line"><code class="plain">    host: </code><code class="string">&apos;google.com&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    port: </code><code class="value">80</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    connected: function(e) {</code></div>
+<div class="line"><code class="plain">        Ti.API.info(</code><code class="string">&quot;Socket &lt;&quot;</code><code class="plain"> + e.socket + </code><code class="string">&quot;&gt; connected to host &lt;&quot;</code><code class="plain"> + e.socket.host + </code><code class="string">&quot;&gt;&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        postConnect();</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    error: function(e) {</code></div>
+<div class="line"><code class="plain">        Ti.API.error(</code><code class="string">&quot;Socket &lt;&quot;</code><code class="plain"> + e.socket + </code><code class="string">&quot;&gt; encountered error when connecting&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        Ti.API.error(</code><code class="string">&quot; error code &lt;&quot;</code><code class="plain"> + e.errorCode + </code><code class="string">&quot;&gt;&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        Ti.API.error(</code><code class="string">&quot; error description &lt;&quot;</code><code class="plain"> + e.error + </code><code class="string">&quot;&gt;&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">connectSocket.connect();</code></div>
+</div>
+    </div>
+    <p>The following code excerpt shows the <tt class=" ">postConnect</tt> function used in the previous excerpt. It writes a message to the socket and then enters a read loop, reading data from the socket until the socket is closed.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">function postConnect()</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">try</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// write some data</code></div>
+<div class="line"><code class="plain">        var outData = Ti.createBuffer({value:</code><code class="string">&quot;Howdy remote socket! How are you?&quot;</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">        var bytesWritten = connectSocket.write(outData);</code></div>
+<div class="line"><code class="plain">        Ti.API.info(</code><code class="string">&quot;&lt;&quot;</code><code class="plain"> + bytesWritten + </code><code class="string">&quot;&gt; bytes written to socket&quot;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">        </code><code class="comments">// start read loop</code></div>
+<div class="line"><code class="plain">        var readBuffer = Ti.createBuffer({length:</code><code class="value">1024</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">        var bytesRead = </code><code class="value">0</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">while</code><code class="plain"> ((bytesRead = connectSocket.read(readBuffer)) &gt; -</code><code class="value">1</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">            var stringData = Ti.Codec.decodeString({source: readBuffer, length: bytesRead });</code></div>
+<div class="line"><code class="plain">            Ti.API.info(</code><code class="string">&quot;received &lt;&quot;</code><code class="plain"> + bytesRead + </code><code class="string">&quot;&gt; bytes of data. String representation of data is &lt;&quot;</code><code class="plain"> + stringData + </code><code class="string">&quot;&gt;&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">            readBuffer.clear(); </code><code class="comments">// clear the buffer before the next read</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">        Ti.API.info(</code><code class="string">&quot;socket has closed&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        connectSocket.close(); </code><code class="comments">// close the socket on our end</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    } </code><code class="keyword">catch</code><code class="plain"> (e) {</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// IO error on socket. socket is closed and connectSocket.error is called</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>The following sample creates a listening socket &#x2013; in this case, listening on the loopback address, which can be used for communicating with other processes on the same device. iOS also supports Ti.Platform.address (the address of the WiFi interface). Android supports only the loopback address.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">//Create a socket and listen for incoming connections</code></div>
+<div class="line"><code class="plain">var listenSocket = Ti.Network.Socket.createTCP({</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Hostname to listen on/connect to. </code></div>
+<div class="line"><code class="plain">    host: </code><code class="string">&apos;127.0.0.1&apos;</code></div>
+<div class="line"><code class="plain">    port: </code><code class="value">40404</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    accepted: function(e) {</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// this where you would usually store the e.inbound value somewhere else so it can be used for</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// read / write operations elsewhere in the app</code></div>
+<div class="line"><code class="plain">        Ti.API.info(</code><code class="string">&quot;Listening socket &lt;&quot;</code><code class="plain"> + e.socket + </code><code class="string">&quot;&gt; accepted incoming connection &lt;&quot;</code><code class="plain"> + e.inbound + </code><code class="string">&quot;&gt;&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        e.inbound.close(); </code><code class="comments">// close the accepted socket</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    error: function(e) {</code></div>
+<div class="line"><code class="plain">        Ti.API.error(</code><code class="string">&quot;Socket &lt;&quot;</code><code class="plain"> + e.socket + </code><code class="string">&quot;&gt; encountered error when listening&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        Ti.API.error(</code><code class="string">&quot; error code &lt;&quot;</code><code class="plain"> + e.errorCode + </code><code class="string">&quot;&gt;&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        Ti.API.error(</code><code class="string">&quot; error description &lt;&quot;</code><code class="plain"> + e.error + </code><code class="string">&quot;&gt;&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="comments">// Starts listening for connections, does not accept them.</code></div>
+<div class="line"><code class="plain">listenSocket.listen(); </code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Tells socket to accept the next inbound connection. Asynchronous.</code></div>
+<div class="line"><code class="comments">// listenSocket.accepted callback is invoked when a connection is actually accepted.</code></div>
+<div class="line"><code class="plain">listenSocket.accept();</code></div>
+</div>
+    </div>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

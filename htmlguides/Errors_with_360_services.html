@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Troubleshooting enabling SOASTA</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-37544620" class="content">
+                        <h1>Troubleshooting enabling SOASTA</h1>
+    <p>Along with the Studio log, after enabling Debug level, go to All in Preferences &gt; Troubleshooting and then recreate the scenario.    </p>
+    <p>When a project has to be enabled for test module, the following steps are performed by Studio    </p>
+<ul class=" "><li class=" ">    <p>Studio downloads the latest version of SOASTA plugin:    </p>
+<ul class=" "><li class=" ">    <p>It verifies whether the latest version of test plugin is already available under plugins folder of Titanium SDK Root (default is /Users/&lt;user&gt;/Library/Application Support/Titanium/plugins). If the latest version is not available, then it downloads the latest test plugin to plugins folder of Titanium SDK root.    </p>
+</li><li class=" ">    <p>The URL is available in &apos;Test Service Host/URL&apos; of Diagnostic tests, but the default url is <a class="external-link external-link" href="http://appctest-2.appcelerator.com/concerto/downloads/mobile/MakeAppTouchTestable.zip">http://appctest-2.appcelerator.com/concerto/downloads/mobile/MakeAppTouchTestable.zip</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://appctest-2.appcelerator.com/concerto/downloads/mobile/MakeAppTouchTestable.zip">T</a>he diagnostic tests also indicate whether the latest version of Soasta plugin is installed on the machine, something similar to : Test Service Module Required version: 6937.16. Is Installed: false    </p>
+</li><li class=" ">    <p>If the download of test plugin fails due to network connectivity or proxy issues, then it can be verified whether the latest version is available under /Users/&lt;user&gt;/Library/Application Support/Titanium/plugins/<a class="external-link external-link" href="http://com.appcelerator.test/versions">com.appcelerator.test/versions</a>    </p>
+</li></ul></li><li class=" ">    <p>Execute a jar file to enable the app with the latest version of SOASTA plugin :    </p>
+<ul class=" "><li class=" ">    <p>If the latest version is available, then the failure would have happened while enabling the app with soasta plugin. The Studio log contains a command similar to    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">/System/Library/Java/JavaVirtualMachines/</code><code class="value">1.6</code><code class="plain">.</code><code class="value">0</code><code class="plain">.jdk/Contents/Home/bin/java</code><code class="string">&quot; &quot;</code><code class="plain">-jar</code><code class="string">&quot; &quot;</code><code class="plain">/Users/&lt;user&gt;/Library/Application Support/Titanium/plugins/com.appcelerator.test/versions/</code><code class="value">6937.16</code><code class="plain">/MakeAppTouchTestable/MakeAppTouchTestable.jar</code><code class="string">&quot; &quot;</code><code class="plain">-project</code><code class="string">&quot; &quot;</code><code class="plain">/path/to/project</code><code class="string">&quot; &quot;</code><code class="plain">-url</code><code class="string">&quot; &quot;</code><code class="plain">https:</code><code class="comments">//appctest-2.appcelerator.com/concerto&quot; &quot;-username&quot; &quot;user@appcelerator.com/id&quot; &quot;-password&quot; &quot;**********&quot; &quot;-appobjectname&quot; &quot;project_guid&quot; &quot;-overwriteapp</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Copy the command from the Studio log and then fill in the password param with original password and get the output of that command on terminal. This would help us to determine the root cause of the failure.    </p>
+</li></ul></li></ul>    <p>    </p>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

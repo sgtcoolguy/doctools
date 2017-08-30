@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dynamic Styles</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-37530415" class="content">
+                        <h1>Dynamic Styles</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Dynamic_Styles-section-src-37530415_DynamicStyles-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Dynamic_Styles-section-src-37530415_DynamicStyles-DefineClassStyles">Define Class Styles </a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Dynamic_Styles-section-src-37530415_DynamicStyles-GenerateaDynamicStyle">Generate a Dynamic Style</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Dynamic_Styles-section-src-37530415_DynamicStyles-ModifyTSSClasses">Modify TSS Classes</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Dynamic_Styles-section-src-37530415_DynamicStyles-Autostyle">Autostyle</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-37530415_DynamicStyles-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p>Since Alloy 1.2.0, Alloy supports changing styles dynamically or during runtime.  There are two methods to support dynamic styling in Alloy.  You can either generate a dynamic style dictionary that can be passed to <tt class=" ">applyProperties</tt> or a create method, or modify TSS class styles to an existing component on the fly.    </p>
+    <p>Before reading this guide, review <a class="document-link " href="#!/guide/Alloy_Styles_and_Themes">Alloy Styles and Themes</a> to learn the basics about TSS files and styles.    </p>
+    </div>
+    <div class="section section-2 " id="src-37530415_DynamicStyles-DefineClassStyles">
+        <h2 class="heading "><span>Define Class Styles</span></h2>
+    <p>Before using either method, you need to create class styles in the TSS files, either in the global style file or in the individual TSS files.  For example, suppose you have the following styles defined:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/styles/app.tss</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/styles/app.tss">
+<div class="line"><code class="string">&quot;.bluetext&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">	color: </code><code class="string">&apos;blue&apos;</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;.orangetext&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">	color: </code><code class="string">&apos;orange&apos;</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;.shadow&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">	shadowColor: </code><code class="string">&apos;#88f&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	shadowOffset: {x:</code><code class="value">1</code><code class="plain">,y:</code><code class="value">3</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;.ldpi&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">	font: {fontSize: </code><code class="string">&apos;9dp&apos;</code><code class="plain">, fontWeight: </code><code class="string">&apos;normal&apos;</code><code class="plain"> }</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;.mdpi&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">	font: {fontSize: </code><code class="string">&apos;12dp&apos;</code><code class="plain">, fontWeight: </code><code class="string">&apos;normal&apos;</code><code class="plain"> }</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;.hdpi&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">	font: {fontSize: </code><code class="string">&apos;18dp&apos;</code><code class="plain">, fontWeight: </code><code class="string">&apos;bold&apos;</code><code class="plain"> }</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;.xhdpi&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">	font: {fontSize: </code><code class="string">&apos;24dp&apos;</code><code class="plain">, fontWeight: </code><code class="string">&apos;bold&apos;</code><code class="plain"> }</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;Label&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">	font: {fontSize: </code><code class="string">&apos;14dp&apos;</code><code class="plain">, fontWeight: </code><code class="string">&apos;normal&apos;</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">	shadow : {},</code></div>
+<div class="line"><code class="plain">	color : </code><code class="string">&apos;black&apos;</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;.rude_button&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">	title: </code><code class="string">&apos;Go Away&apos;</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;.nice_button&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">	title: </code><code class="string">&apos;Please Close&apos;</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;Button&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">    width: Ti.UI.SIZE,</code></div>
+<div class="line"><code class="plain">    height: Ti.UI.SIZE</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="string">&quot;.tiny_win&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">	height: </code><code class="string">&apos;150dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	width: </code><code class="string">&apos;200dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	backgroundColor: </code><code class="string">&apos;blue&apos;</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;.big_win&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">	height: </code><code class="string">&apos;300dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	width: </code><code class="string">&apos;400dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	backgroundColor: </code><code class="string">&apos;red&apos;</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>The previous style sheet defines various class and markup element styles for labels, buttons and windows.  Alloy assigns a priority for each class, based on its order in the TSS file.  Styles listed first receive a lower priority than ones listed afterwards.  For example, if both the ldpi and hdpi classes are assigned to a label, since hdpi is after ldpi, the label text is 24 dp not 9 dp.  Since the Label size of 14 dp is a markup element style and even though it appears after the class styles, it does not have a higher priority number since class styles have higher precedence over markup element styles. The label is still 24 dp not 14 dp.  Properties define inline in the markup and TSS id styles still take precedence over class styles.    </p>
+    </div>
+    <div class="section section-2 " id="src-37530415_DynamicStyles-GenerateaDynamicStyle">
+        <h2 class="heading "><span>Generate a Dynamic Style</span></h2>
+    <p>To generate a dynamic style, use the controller&apos;s <tt class=" ">createStyle</tt> method by passing it a dictionary with TSS classes.  You can optionally add additional properties inline specific to the component.  This method returns a dictionary that can be passed to the view object&apos;s <tt class=" ">applyProperties</tt> method or a create view object method, such as <tt class=" ">Ti.UI.createView</tt>.    </p>
+    <p>You can use the controller&apos;s <tt class=" ">UI.create</tt> method to create a view component that is dynamically styled by passing it the name of the object as the first parameter and a dictionary with TSS classes as the second parameter.  The object name can either be the element name, such as <tt class=" ">Button</tt>, or the full API name, such as <tt class=" ">Ti.UI.Button</tt>.  You can optionally add additional properties inline specific to the component with the second parameter.    </p>
+    <p>For example, suppose that the following view-controller is defined in an Alloy project.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/views/dialog.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/dialog.xml">
+<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
+<div class="line"><code class="plain">    &lt;Window id=</code><code class="string">&quot;win&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Button id=</code><code class="string">&quot;button&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;doClick&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/Window&gt;</code></div>
+<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+</div>
+    </div>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/dialog.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/dialog.js">
+<div class="line"><code class="plain">function doClick(e) {</code></div>
+<div class="line"><code class="plain">    $.win.close();</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">args = arguments[</code><code class="value">0</code><code class="plain">] || {};</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (args.button) {</code></div>
+<div class="line"><code class="plain">    var style = $.createStyle({</code></div>
+<div class="line"><code class="plain">        classes: args.button,</code></div>
+<div class="line"><code class="plain">        apiName: </code><code class="string">&apos;Button&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        color: </code><code class="string">&apos;blue&apos;</code></div>
+<div class="line"><code class="plain">    });</code></div>
+<div class="line"><code class="plain">    $.button.applyProperties(style);</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (args.win) {</code></div>
+<div class="line"><code class="plain">    var style = $.createStyle({</code></div>
+<div class="line"><code class="plain">        classes: args.win,</code></div>
+<div class="line"><code class="plain">        apiName: </code><code class="string">&apos;Window&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Since backgroundColor is defined inline, this overrides the class style</code></div>
+<div class="line"><code class="plain">        backgroundColor: </code><code class="string">&apos;white&apos;</code></div>
+<div class="line"><code class="plain">    });	</code></div>
+<div class="line"><code class="plain">    $.win.applyProperties(style);</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (args.label) {</code></div>
+<div class="line"><code class="plain">    args.label.top = </code><code class="value">10</code></div>
+<div class="line"><code class="plain">    var label = $.UI.create(</code><code class="string">&quot;Label&quot;</code><code class="plain">, args.label);</code></div>
+<div class="line"><code class="plain">    $.win.add(label);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>Then, create an instance of this view-controller:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/index.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
+<div class="line"><code class="plain">var args = {};</code></div>
+<div class="line"><code class="plain">args.button = [</code><code class="string">&apos;rude_button&apos;</code><code class="plain">];</code></div>
+<div class="line"><code class="plain">args.win = [</code><code class="string">&apos;tiny_win&apos;</code><code class="plain">];</code></div>
+<div class="line"><code class="plain">args.label = {</code></div>
+<div class="line"><code class="plain">    classes: [</code><code class="string">&apos;hdpi&apos;</code><code class="plain">, </code><code class="string">&apos;shadow&apos;</code><code class="plain">],</code></div>
+<div class="line"><code class="plain">    text: </code><code class="string">&apos;No zombies allowed!&apos;</code></div>
+<div class="line"><code class="plain">};</code></div>
+<div class="line"><code class="plain">Alloy.createController(</code><code class="string">&apos;dialog&apos;</code><code class="plain">, args).getView().open();&#xA0;</code></div>
+</div>
+    </div>
+    <p>In this example, the index view-controller passes specific classes for the dialog view-controller to use.  In the dialog-view controller, for the button and window, it uses the passed classes to generate styles with the <tt class=" ">createStyle</tt> method and update the styles of the components with the <tt class=" ">applyProperties</tt> method.  The dialog controller defines extra properties to apply in the dictionary.  The background color of the <tt class=" ">tiny_win</tt> class is overridden by the inline property defined in the dictionary, making the window white not blue.  For the label, the dialog-view controller uses the passed dictionary to generate a label object with the <tt class=" ">UI.create</tt> method and adds it to the window.    </p>
+    <p>In this example, the dialog controller code is not necessary.  The dialog can be generated and styled outside the view-controller.  The following code using only the previous XML markup is equivalent to what the previous two controllers are doing:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/index.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
+<div class="line"><code class="plain">var dialog = Alloy.createController(</code><code class="string">&apos;dialog&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var style = dialog.createStyle({</code></div>
+<div class="line"><code class="plain">    classes: </code><code class="string">&apos;rude_button&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    apiName: </code><code class="string">&apos;Button&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    color: </code><code class="string">&apos;blue&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">dialog.button.applyProperties(style);</code></div>
+<div class="line"><code class="plain">style = dialog.createStyle({</code></div>
+<div class="line"><code class="plain">    classes: </code><code class="string">&apos;tiny_win&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    apiName: </code><code class="string">&apos;Window&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    backgroundColor: </code><code class="string">&apos;white&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">dialog.win.applyProperties(style);</code></div>
+<div class="line"><code class="plain">style = {</code></div>
+<div class="line"><code class="plain">    top: </code><code class="value">10</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    text: </code><code class="string">&apos;No zombies allowed!&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    classes: </code><code class="string">&apos;hdpi shadow&apos;</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain">var label = dialog.UI.create(</code><code class="string">&apos;Label&apos;</code><code class="plain">, style);</code></div>
+<div class="line"><code class="plain">dialog.win.add(label);</code></div>
+<div class="line"><code class="plain">dialog.getView().open();</code></div>
+</div>
+    </div>
+    <p>Note that code outside of the dialog view-controller is using the instance variable name <tt class=" ">dialog</tt> to make the API calls with the <tt class=" ">createStyle</tt> and <tt class=" ">UI.create</tt> methods rather than the <tt class=" ">$</tt> variable, which is used when making controller API calls inside its self view-controller.    </p>
+    </div>
+    <div class="section section-2 " id="src-37530415_DynamicStyles-ModifyTSSClasses">
+        <h2 class="heading "><span>Modify TSS Classes</span></h2>
+    <p>To modify the TSS classes of an object that has already been created, use the controller&apos;s <tt class=" ">addClass</tt>, <tt class=" ">removeClass</tt> and <tt class=" ">resetClass</tt> methods, which adds, removes or resets the TSS classes of a view object, respectively.  Pass a reference to the view object as the first parameter, then pass the classes to add or remove as an array or space-separated string as the second parameter.  You can optionally specify inline properties related to the component to modify as an optional third parameter.  As the classes are modified using these API calls, the view is automatically updated.  For example, the following code is equivalent to the previous example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/index.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
+<div class="line"><code class="plain">var dialog = Alloy.createController(</code><code class="string">&apos;dialog&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">dialog.addClass(dialog.win, </code><code class="string">&apos;tiny_win&apos;</code><code class="plain">, {backgroundColor:</code><code class="string">&apos;white&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">dialog.addClass(dialog.button, </code><code class="string">&apos;rude_button&apos;</code><code class="plain">, {color: </code><code class="string">&apos;blue&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">var style = {</code></div>
+<div class="line"><code class="plain">    top: </code><code class="value">10</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    text: </code><code class="string">&apos;No zombies allowed!&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    classes: </code><code class="string">&apos;hdpi shadow&apos;</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain">var label = dialog.UI.create(</code><code class="string">&apos;Label&apos;</code><code class="plain">, style);</code></div>
+<div class="line"><code class="plain">dialog.getView().open();</code></div>
+</div>
+    </div>
+    <p>Later on, you can change the classes.  The following code removes all classes from the button object, then adds the nice_button, orangetext and hdpi classes:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">dialog.resetClass(dialog.button, </code><code class="string">&apos;nice_button orangetext hdpi&apos;</code><code class="plain">);</code></div>
+</div>
+    </div>
+    <p>To take advantage of these APIs, you need to enable <a class="document-link " href="#!/guide/Dynamic_Styles-section-src-37530415_DynamicStyles-Autostyle">autostyle</a> for the components or else the view may not update properly.    </p>
+    </div>
+    <div class="section section-2 " id="src-37530415_DynamicStyles-Autostyle">
+        <h2 class="heading "><span>Autostyle</span></h2>
+    <p>A view component with autostyle enabled has its TSS classes stored with the view object. Autostyle is necessary to take full advantage of the <tt class=" ">addClass()</tt>, <tt class=" ">removeClass()</tt> and <tt class=" ">resetClass()</tt> classes to properly update the view as classes are removed and added. There is a small performance overhead for using this feature and should only be enabled on components that use this feature.  By default, autostyle is disabled.    </p>
+    <p>To better understand when and why this feature is useful, consider the following XML view, TSS file and view-controller code:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/styles/index.tss</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/styles/index.tss">
+<div class="line"><code class="string">&quot;.coloronly&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">    color: </code><code class="string">&apos;red&apos;</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;.colorsize&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">    color: </code><code class="string">&apos;blue&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    font: {fontSize: </code><code class="string">&apos;24dp&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;Label&quot;</code><code class="plain"> : {</code></div>
+<div class="line"><code class="plain">    color: </code><code class="string">&apos;black&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    font: {fontSize: </code><code class="string">&apos;12dp&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>The view-controller calls <tt class=" ">$.addClass()</tt> to add two classes to the <tt class=" ">label</tt> object, then calls <tt class=" ">removeClass()</tt> twice, removing a class each time. The result of each method call is show as a comment next to the associated line of code.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/index.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
+<div class="line"><code class="plain">$.addClass($.label, </code><code class="string">&quot;coloronly colorsize&quot;</code><code class="plain">); </code><code class="comments">// --&gt; appears blue and 24dp</code></div>
+<div class="line"><code class="plain">$.removeClass($.label, </code><code class="string">&quot;colorsize&quot;</code><code class="plain">); </code><code class="comments">// --&gt; appears red and 24dp</code></div>
+<div class="line"><code class="plain">$.removeClass($.label, </code><code class="string">&quot;coloronly&quot;</code><code class="plain">); </code><code class="comments">// --&gt; appears red and 24dp</code></div>
+</div>
+    </div>
+    <p>Even though the classes are removed, the view does not update as expected. For the first remove statement, the color updates correctly but not the font size. For the second remove statement, neither the color nor the size updates correctly even though markup element class defines these properties.    </p>
+    <p>To workaround the first issue, you could create a default class that defines all possible properties you will modify and apply it first. To workaround the second issue, you could either define the same properties for each class, or pass in the optional inline properties. Or you can enable autostyling and the styles in the view update as expected, without these issues.    </p>
+    <p>To enable autostyle, set the <tt class=" ">autoStyle</tt> attribute to <tt class=" ">true</tt> either in the XML markup or the <tt class=" ">config.json</tt> file. You can enable autostyle for a individual component, for all components in a controller, or for all controllers in a project.    </p>
+<ul class=" "><li class=" ">    <p>To enable autostyle for an individual component, set the <strong class=" ">autoStyle</strong> attribute to true on the XML tag (for example, <tt class=" ">&lt;View autoStyle=&quot;true&quot;&gt;).</tt>    </p>
+</li><li class=" ">    <p>To enable autostyle for components in a controller, set the <strong class=" ">autoStyle</strong> attribute to true on the root &lt;<tt class=" ">Alloy/&gt;</tt> tag (for example, <tt class=" ">&lt;Alloy autoStyle=&quot;true&quot;&gt;</tt><tt class=" ">).</tt>    </p>
+</li><li class=" ">    <p>To enable autostyle for all controllers in an Alloy project, set the <strong class=" ">autoStyle</strong> field to true in the <tt class=" ">config.json</tt> file, for example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/config.json</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/config.json">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;autoStyle&quot;</code><code class="plain">: </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>    </p>
+    <p>    </p>
+    <p>    </p>
+</li></ul>    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=37530415"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

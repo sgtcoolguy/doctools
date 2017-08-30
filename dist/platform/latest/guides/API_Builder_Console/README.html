@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>API Builder Console</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-43311120" class="content">
+                        <h1>API Builder Console</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-Configuration">Configuration</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-APIBuilder">API Builder</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-APIDocs">API Docs</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-APIBuilderAPIandSwagger">API Builder API and Swagger</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-APIBuilderprojectSwagger">API Builder project Swagger</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-IndividualAPIs">Individual APIs</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-Build">Build</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-ModelType">Model Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-ModelName">Model Name</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-ModelType.1">Model Type</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-ConditionalSteps">Conditional Steps</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-ModelFields">Model Fields</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-AddNewFields">Add New Fields</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-ModelFieldsTable">Model Fields Table</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-JoinProperties">Join Properties</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-OptionalProperties">Optional Properties</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-ReviewandTest">Review and Test</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-Examples">Examples</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-Data">Data</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Console-section-src-43311120_APIBuilderConsole-Logs">Logs</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-43311120_APIBuilderConsole-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p>Use the API Builder Console to help you create your API Builder application and manage data in your application.    </p>
+    <p>By default, when you create a new project and run it locally, the admin console is enabled by default and available using the <tt class=" ">console</tt> path, that is, <tt class=" ">http://localhost:8080/console</tt>. Navigate to the admin console in your web browser.    </p>
+    </div>
+    <div class="section section-2 " id="src-43311120_APIBuilderConsole-Configuration">
+        <h2 class="heading "><span>Configuration</span></h2>
+    <p>To configure access to the API Builder Console, open the project&apos;s <tt class=" ">./conf/default.js</tt> file and edit the <tt class=" ">admin</tt> key. The <tt class=" ">admin</tt> key is a dictionary of key-value pairs that control the access to the API Builder Console, such as restricting which users or organizations can access the Admin console or the name of the Admin console endpoint.    </p>
+    <p>The <tt class=" ">admin</tt> dictionary can contain the following keys:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Key    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Default    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>allowedHosts    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Array&lt;String&gt;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>-    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>When the application is in production, restrict access to the admin console to the specified hosts.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>apiDocPrefix    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>String    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">/apidoc</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Path to access the generated API docs.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>css    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Array&lt;String&gt;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>-    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CSS files to inject to customize the styling of the Admin Console and API docs. Files must be relative to <tt class=" ">./web/public/</tt> folder or absolute URLs.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1">customHTMLErrorPage    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>String    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>-    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>HTML content to display for unauthorized access (HTTP 401 error code).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>disableAuth    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Boolean    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Set to <tt class=" ">true</tt> to disable authorization to access the admin console.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>disableAPIDoc    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Boolean    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Set to <tt class=" ">true</tt> to not display the generated API Docs.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1">enableAdminInProduction    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Boolean    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>true    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Set to <tt class=" ">true</tt> to enable the admin console in the production environment.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>enabled    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Boolean    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>true    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Set to <tt class=" ">true</tt> to enable the admin console.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>js    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Array&lt;String&gt;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>-    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>JavaScript files to inject to customize the styling of the Admin Console and API docs. Files must be relative to <tt class=" ">./web/public/</tt> folder or absolute URLs.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>prefix    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>String    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">/arrow</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Path to access the admin console.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1">validEmails    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Array&lt;String&gt;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>developer&apos;s e-mail address    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>When the application is in production, restrict access to the admin console to the specified accounts.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1">validOrgs    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Array&lt;Number&gt;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>developer&apos;s organization    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>When the application is in production, restrict access to the admin console to the specified organizations.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p><strong class=" ">Example:</strong>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">./conf/default.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./conf/default.js">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  admin: {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// control whether the admin website is available</code></div>
+<div class="line"><code class="plain">    enabled: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="comments">// the prefix to the admin website</code></div>
+<div class="line"><code class="plain">    prefix: </code><code class="string">&apos;/arrow&apos;</code><code class="plain">,</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="comments">// the prefix for the public apidocs website</code></div>
+<div class="line"><code class="plain">    apiDocPrefix: </code><code class="string">&apos;/apidoc&apos;</code><code class="plain">,</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="comments">// if you set disableAuth, in production only your API docs will show up</code></div>
+<div class="line"><code class="plain">    disableAuth: </code><code class="keyword">false</code><code class="plain">,</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="comments">// if you set disableAPIDoc, you APIs docs will not show up (regardless of disableAuth)</code></div>
+<div class="line"><code class="plain">    disableAPIDoc: </code><code class="keyword">false</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// set to true to allow the admin website to be accessed in production. however, you will still need a</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// login unless disableAuth is false. if you set this to false, the admin website will not be enabled</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// when in production (still respects enabled above)</code></div>
+<div class="line"><code class="plain">    enableAdminInProduction: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="comments">// set the email addresses you want to enable while in production</code></div>
+<div class="line"><code class="plain">    validEmails: [</code><code class="string">&quot;jsmith@foo.com&quot;</code><code class="plain">],</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="comments">// set the organization ids you want to enable while in production</code></div>
+<div class="line"><code class="plain">    validOrgs: [</code><code class="value">199546299</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// custom error page for unauthorized access (HTTP 401 error code)</code></div>
+<div class="line"><code class="plain">    customHTMLErrorPage: </code><code class="string">&apos;&lt;p&gt;No, no, no...&lt;/p&gt;&apos;</code><code class="plain">,</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="comments">// set the list of IP addresses, IP ranges and hostnames from which connections to the admin interfaces </code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// will be accepted</code></div>
+<div class="line"><code class="plain">    allowedHosts: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&apos;127.0.0.1&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&apos;myhost.axawy.com&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&apos;10.1.1.1/24&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    ]</code></div>
+<div class="line"><code class="plain">  }&#xA0;</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43311120_APIBuilderConsole-APIBuilder">
+        <h2 class="heading "><span>API Builder</span></h2>
+    <p>The  <strong class=" ">API Builder</strong> tab provides a getting started guide that you can reference to help you write your  API Builder application. Click the heading in the left navigation to jump between topics.    </p>
+    <p>    <img src="images/download/attachments/43311120/ArrowTab.png" alt="images/download/attachments/43311120/ArrowTab.png" class="confluence-embedded-image confluence-content-image-border">
+        </img></p>
+    <p>    </p>
+    </div>
+    <div class="section section-2 " id="src-43311120_APIBuilderConsole-APIDocs">
+        <h2 class="heading "><span>API Docs</span></h2>
+    <p>The <strong class=" ">API Docs</strong> tab in the API Builder Console contains generated docs of your API Builder application APIs including how to call the API, multiple examples and the ability to test the APIs. The generated docs use the information in the <tt class=" ">description</tt> fields of your JavaScript definition files to fill in some of the information.    </p>
+    <p>    <img src="images/download/attachments/43311120/APIDocsTab.png" alt="images/download/attachments/43311120/APIDocsTab.png" class="confluence-embedded-image confluence-content-image-border">
+        </img></p>
+    <p>Use the left navigation to jump between the different components of the API Builder application and the overview section.    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">Overview</strong>: Provides general information about using the APIs.    </p>
+</li><li class=" ">    <p><strong class=" ">APIs</strong>: Lists all model APIs and custom APIs defined in the application. The APIs are listed by API group name or model name. To the left of the API is a tab group containing examples of invoking the API from different clients. Below the API is an API test section. Enter parameters to invoke on the API, select a response format, then click <strong class=" ">Execute</strong>.    </p>
+</li><li class=" ">    <p><strong class=" ">Models</strong>: Lists all models the application defines and models supplied by the connectors. Click on a model to get more information about it, including its fields.    </p>
+</li><li class=" ">    <p><strong class=" ">Blocks</strong>: Lists all blocks the application defines. Click on a block to get more information about it, including which APIs or Models use them.    </p>
+</li><li class=" ">    <p><strong class=" ">Connectors</strong>: Lists all connectors included in the application. Click on a connector to get more information about it, including which models use it.    </p>
+</li></ul>    <p>Note that the public API Docs endpoint  (<tt class=" ">/apidocs/</tt> by default) will only include the <strong class=" ">Overview</strong> section without the <strong class=" ">Authentication</strong> section and the <strong class=" ">APIs</strong> section, including the examples, but without the ability to test them through the console.    </p>
+    </div>
+    <div class="section section-2 " id="src-43311120_APIBuilderConsole-APIBuilderAPIandSwagger">
+        <h2 class="heading "><span>API Builder  API and Swagger</span></h2>
+    <p>API Builder APIs contain a <a class="external-link external-link" href="http://swagger.io/" target="_blank">Swagger</a> definition that can be used to programmatically import APIs using tools such as <a class="external-link external-link" href="https://www.axway.com/en/enterprise-solutions/api-management#tablist1-tab1" target="_blank">Axway API Manager</a>.    </p>
+    <div class="section section-3 " id="src-43311120_APIBuilderConsole-APIBuilderprojectSwagger">
+        <h3 class="heading "><span>API Builder  project Swagger</span></h3>
+    <p>Your API Builder project Swagger file describes all of the APIs in the project that can be accessed via the following URL:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">https:</code><code class="comments">//&lt;SUB_DOMAIN_TOKEN&gt;.cloudapp-enterprise.appcelerator.com/apidoc/swagger.json</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-43311120_APIBuilderConsole-IndividualAPIs">
+        <h3 class="heading "><span>Individual APIs</span></h3>
+    <p>Each API also has a separate Swagger definition associated with the API itself. This is convenient if you only need access to one API and not expose the entire API set by your API Builder project.    </p>
+    <p>For example, if you have a model and associated APIs for an <i class=" ">account</i> as follows:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var Model = Arrow.Model.reduce(</code><code class="string">&apos;appc.salesforce/Account&apos;</code><code class="plain">, </code><code class="string">&apos;Account&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        Name: {</code></div>
+<div class="line"><code class="plain">            type: String,</code></div>
+<div class="line"><code class="plain">            description: </code><code class="string">&apos;Account Name&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            maxlength: </code><code class="value">255</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            required: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            optional: </code><code class="keyword">false</code></div>
+<div class="line"><code class="plain">        },</code></div>
+<div class="line"><code class="plain">        Type: {</code></div>
+<div class="line"><code class="plain">            type: String,</code></div>
+<div class="line"><code class="plain">            description: </code><code class="string">&apos;Account Type&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            maxlength: </code><code class="value">40</code></div>
+<div class="line"><code class="plain">        },</code></div>
+<div class="line"><code class="plain">        Phone: {</code></div>
+<div class="line"><code class="plain">            type: String,</code></div>
+<div class="line"><code class="plain">            description: </code><code class="string">&apos;Account Phone&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            maxlength: </code><code class="value">40</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    actions: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&apos;create&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&apos;read&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&apos;update&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&apos;delete&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&apos;deleteAll&apos;</code></div>
+<div class="line"><code class="plain">    ]</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">module.exports = Model;</code></div>
+</div>
+    </div>
+    <p>The API documentation for this API can be found via this URL:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">https:</code><code class="comments">//&lt;SUB_DOMAIN_TOKEN&gt;.cloudapp-enterprise.appcelerator.com/apidoc/docs.html?apis/account.html</code></div>
+</div>
+    </div>
+    <p>The Swagger definition for the <i class=" ">account</i> can be found here:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">https:</code><code class="comments">//&lt;SUB_DOMAIN_TOKEN&gt;.cloudapp-enterprise.appcelerator.com/apidoc/docs.json?apis/account</code></div>
+</div>
+    </div>
+    <p>Swagger files for the API Builder project and individual APIs can be found on the Github page <a class="external-link external-link" href="https://gist.github.com/lbrenman/0df7270473498e31dc9b817bb152d723" target="_blank">API Builder API Swagger Interface</a>.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43311120_APIBuilderConsole-Build">
+        <h2 class="heading "><span>Build</span></h2>
+    <p>The <strong class=" ">Build </strong>tab lets you create new models. The model build process involves the following steps:    </p>
+<ol class=" "><li class=" ">    <p>Name your model and select the model type.    </p>
+</li><li class=" ">    <p>Add fields to your model.    </p>
+</li><li class=" ">    <p>Configure the model.    </p>
+</li></ol>    <p>Note that you may only build models when executing the project locally (in development). The build console will not work in production even if you enable the admin console in production.    </p>
+    <div class="section section-3 " id="src-43311120_APIBuilderConsole-ModelType">
+        <h3 class="heading "><span>Model Type</span></h3>
+    <p>In the Model Type step, enter a name for your model and select a model type. For reduced or extended models, you will need to select the parent model to base your model. For empty or schema-less models, you will need to select a connector to persist data to. When you are done, click <strong class=" ">Next</strong> in the top navigation to continue.<br>    <img src="images/download/attachments/43311120/NewModel.png" alt="images/download/attachments/43311120/NewModel.png" class="confluence-embedded-image confluence-content-image-border">
+        </img></br></p>
+    <div class="section section-4 " id="src-43311120_APIBuilderConsole-ModelName">
+        <h4 class="heading "><span>Model Name</span></h4>
+    <p>Enter a name for your model. The name must be unique for all of the application&apos;s models.    </p>
+    </div>
+    <div class="section section-4 " id="src-43311120_APIBuilderConsole-ModelType.1">
+        <h4 class="heading "><span>Model Type</span></h4>
+    <p>Select a model type:    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">Empty and Schema-less</strong> <strong class=" "> model</strong>: create a new model not based on an existing model, where you will need to define the fields and select a connector to persist data to.    </p>
+</li><li class=" ">    <p><strong class=" ">Extend an existing model</strong>: create a new model based off an existing model. The model will inherit all of the existing fields from the source model. You may also add new fields to the model. You will need to select the source model to base the model on.    </p>
+</li><li class=" ">    <p><strong class=" ">Reduce an existing model</strong>: create a new model based off an existing model. Select fields from the source model to inherit and add new fields to the model. You will need to select the source model to base the model on.    </p>
+</li><li class=" ">    <p><strong class=" ">Composite model (no join)</strong>: create a new model by combining two or more models together. The model data will not be joined together but present as one model.    </p>
+</li><li class=" ">    <p><strong class=" ">Composite model (join)</strong>: create a new model by combining two or more models together. You will need to define a join operation to combine the model data together.    </p>
+</li></ul>    </div>
+    <div class="section section-4 " id="src-43311120_APIBuilderConsole-ConditionalSteps">
+        <h4 class="heading "><span>Conditional Steps</span></h4>
+    <p>The following steps appear when selecting certain models types.    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">Connect </strong>&#x2013; select the connector to persist data to for empty or schema-less models.    </p>
+</li><li class=" ">    <p><strong class=" ">Source model</strong> &#x2013; select the model to inherit fields from for extended or reduced model type.    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-3 " id="src-43311120_APIBuilderConsole-ModelFields">
+        <h3 class="heading "><span>Model Fields</span></h3>
+    <p>Depending on the model type, you can either create new fields or select inherited fields to add. After you add the fields, you can configure them by changing properties or adding validation or return logic. When you are done, click <strong class=" ">Next</strong> in the top navigation to continue.    </p>
+    <p>    <img src="images/download/attachments/43311120/ModelFields.png" alt="images/download/attachments/43311120/ModelFields.png" class="confluence-embedded-image confluence-content-image-border">
+        </img></p>
+    <div class="section section-4 " id="src-43311120_APIBuilderConsole-AddNewFields">
+        <h4 class="heading "><span>Add New Fields</span></h4>
+    <p>For all models, you can add fields by entering a name for the field, selecting the data type, and clicking <strong class=" ">Add Field</strong>.    </p>
+    <p>For <u class=" ">reduced models</u>, click the <strong class=" ">View Fields</strong> button to open a dialog that presents the source model&apos;s fields. Select the fields you want to include in the model, the click <strong class=" ">Add Fields</strong>.    </p>
+    <p>For <u class=" ">composite models</u>, you may add three different kinds of fields. Select:    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">Select single field from existing model </strong>to include a model field in the composite mode. Enter a model name and field name of the model, then click <strong class=" ">Add Field</strong>.    </p>
+</li><li class=" ">    <p><strong class=" ">Map new field to entire model</strong> to map the entire model instance to a field name in the composite model. Enter a field name and a model name, and select the data type, then click <strong class=" ">Add Field</strong>.    </p>
+</li><li class=" ">    <p><strong class=" ">Create new field</strong> to add a new field to the composite model. Enter a field name, select a data type, then click <strong class=" ">Add Field</strong>.    </p>
+</li></ul>    <p>If you are creating a composite model, you must add fields from at least two different models.    </p>
+    </div>
+    <div class="section section-4 " id="src-43311120_APIBuilderConsole-ModelFieldsTable">
+        <h4 class="heading "><span>Model Fields Table</span></h4>
+    <p>Once you have added all your model fields, you can modify them by changing properties or adding custom logic to them. Note that for extended models, you may only rename them, that is, map a different name to the source model field.    </p>
+    <p>To remove a field, click the red box next to the field name.    </p>
+    <p>If the name of the field is underlined, the field is inherited and you can rename it. Click the field name to rename the field, that is, map a different name to the source model field.    </p>
+    <p>To modify a field, click the field, then:    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">Field Description</strong> &#x2013; enter a description for the field, which appears in the generated API docs.    </p>
+</li><li class=" ">    <p><strong class=" ">Field Default Value</strong> &#x2013; enter a default value for the field.    </p>
+</li><li class=" ">    <p><strong class=" ">Custom Field</strong> &#x2013; enable if the field does not exist in the connector&apos;s datasource and is derived from another field.    </p>
+</li><li class=" ">    <p><strong class=" ">Field value is required</strong> &#x2013; enable to indicate that the field is required to create a new model.    </p>
+</li><li class=" ">    <p><strong class=" ">Field value is readonly</strong> &#x2013; enabled to indicate that the field is read-only, that is, it cannot be modified using the model APIs.    </p>
+</li><li class=" ">    <p><strong class=" ">Custom Validation </strong>&#x2013; click to add custom logic to validate the field.    </p>
+</li><li class=" ">    <p><strong class=" ">Custom Request Value </strong>&#x2013; click to add custom logic to process the field data before the connector gets it.    </p>
+</li><li class=" ">    <p><strong class=" ">Custom Response Value </strong>&#x2013; click to add custom logic to process the field data before the client gets it.    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-3 " id="src-43311120_APIBuilderConsole-JoinProperties">
+        <h3 class="heading "><span>Join Properties</span></h3>
+    <p>If you are creating a composite model with a join operation, you will need to complete the <strong class=" ">Join Properties</strong> step. In the Join Properties step, you must specify the join operation(s). To specify a join operation, select the parent model, the join operation, then the child model to join to the parent model.    </p>
+<ol class=" "><li class=" ">    <p>In <strong class=" ">Define the Parent Model</strong>, enter the name of the parent model, enter the name of the field in the parent model to execute the join on, and then select the join operation. Select either <strong class=" ">Inner Join</strong> or <strong class=" ">Outer Join</strong>. In an inner join, all parent records will be returned if there is a match or not. In an outer join, only parent records that match the child records will be returned.    </p>
+</li><li class=" ">    <p>In <strong class=" ">Add Child Models</strong>, enter the name of the child model to join with the parent model data and the name of the child field to match with the parent field.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">Add Join</strong>.    </p>
+</li></ol>    <p>The Join Operation will be added to the Joins table below. To remove a join operation, click the red box next to it.    </p>
+    <p>Click <strong class=" ">Next</strong> in the top navigation to continue.    </p>
+    <p>    <img src="images/download/attachments/43311120/JoinProperties.png" alt="images/download/attachments/43311120/JoinProperties.png" class="confluence-embedded-image confluence-content-image-border">
+        </img></p>
+    </div>
+    <div class="section section-3 " id="src-43311120_APIBuilderConsole-OptionalProperties">
+        <h3 class="heading "><span>Optional Properties</span></h3>
+    <p>In the <strong class=" ">Optional Properties</strong> step, you may modify the model&apos;s return parameters or select which APIs to enable for the model.    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">Single Row Response Key &#x2013; </strong>enter the name of the property to use in the response for a single record.    </p>
+</li><li class=" ">    <p><strong class=" ">Multi-Row Response Key</strong>&#x2013; enter the name of the properties to use in the response for an array of records.    </p>
+</li><li class=" ">    <p><strong class=" ">Generate API endpoints for these methods</strong> &#x2013; enable or disable the options to select which APIs to enable or disable for the model.    </p>
+</li></ul>    <p>Click <strong class=" ">Next</strong> in the top navigation to continue.    </p>
+    <p>    <img src="images/download/attachments/43311120/OptionalProperties.png" alt="images/download/attachments/43311120/OptionalProperties.png" class="confluence-embedded-image confluence-content-image-border">
+        </img></p>
+    </div>
+    <div class="section section-3 " id="src-43311120_APIBuilderConsole-ReviewandTest">
+        <h3 class="heading "><span>Review and Test</span></h3>
+    <p>In the Review &amp; Test step, you can review the code that will be generated for the model. Click <strong class=" ">Save Model</strong>.    </p>
+    <p>Note that you may need to restart the API Builder application after creating a new model.    </p>
+    </div>
+    <div class="section section-3 " id="src-43311120_APIBuilderConsole-Examples">
+        <h3 class="heading "><span>Examples</span></h3>
+    <p><strong class=" ">Example 1: Create a Schema-less Model</strong>    </p>
+    <p>To create a schema-less model, a model not based on a previously created model, select a connector to persist the data to and define the fields you want to include in your model.    </p>
+    <p><strong class=" ">Step 1: Model Type</strong>    </p>
+<ol class=" "><li class=" ">    <p>In the <strong class=" ">Model Name</strong> text field, enter a name for the model.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Model Type</strong> drop-down, select <strong class=" ">Empty or Schema-less model</strong>.    </p>
+</li><li class=" ">    <p>In<strong class=" "> </strong>the<strong class=" "> Connector</strong> drop-down, select a connector to persist data to.    </p>
+</li><li class=" ">    <p>In the top navigation, click <strong class=" ">Next</strong>.    </p>
+</li></ol>    <p><strong class=" "> <strong class=" ">Step 2: Model Fields</strong> <br> </br></strong>    </p>
+<ol class=" "><li class=" ">    <p>To add new fields, enter a field name, select the field data type, then click <strong class=" ">Add Fields</strong>.    </p>
+</li><li class=" ">    <p>In the top navigation, click <strong class=" ">Next</strong>.    </p>
+</li></ol>    <p><strong class=" "> <strong class=" ">Step 3: Optional Properties</strong> <br> </br></strong>    </p>
+<ol class=" "><li class=" ">    <p>Configure optional attributes for your model.    </p>
+</li><li class=" ">    <p>In the top navigation, click <strong class=" ">Next</strong>.    </p>
+</li></ol>    <p><strong class=" "> <strong class=" ">Step 4: Review &amp; Test</strong> <br> </br></strong>    </p>
+<ol class=" "><li class=" ">    <p>Click<strong class=" "> Save Model</strong>.    </p>
+</li></ol>    <p>The following examples create a new <tt class=" ">book</tt> model by defining its own fields, which uses the memory connector.<strong class=" "> <br> </br></strong>    </p>
+    <p>    <img src="images/download/attachments/43311120/schemalessmodel.gif" alt="images/download/attachments/43311120/schemalessmodel.gif" class="confluence-embedded-image">
+        </img></p>
+    <p><strong class=" ">Example 2: Reduce a Model</strong>    </p>
+    <p>To create a reduced model, select a source model, select the fields you want to inherit from the source model and optionally add more fields.    </p>
+    <p><strong class=" ">Step 1: Model Type</strong>    </p>
+<ol class=" "><li class=" ">    <p>In the <strong class=" ">Model Name</strong> field, enter a name for the model.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Model Type</strong> drop-down, select <strong class=" ">Reduce an Existing Model</strong>.    </p>
+</li><li class=" ">    <p>In<strong class=" "> Source Model, </strong>enter a name of an existing model to inherit fields from.    </p>
+</li><li class=" ">    <p>In the top navigation, click <strong class=" ">Next</strong>.    </p>
+</li></ol>    <p><strong class=" "> <strong class=" ">Step 2: Model Fields</strong> <br> </br></strong>    </p>
+<ol class=" "><li class=" ">    <p>To add inherited fields, click<strong class=" "> View Fields,</strong> select the fields you want to use, then click<strong class=" "> Add Fields</strong>.    </p>
+</li><li class=" ">    <p>To add new fields, enter a field name, select the field data type, then click <strong class=" ">Add Fields</strong>.    </p>
+</li><li class=" ">    <p>In the top navigation, click <strong class=" ">Next</strong>.    </p>
+</li></ol>    <p><strong class=" "> <strong class=" ">Step 3: Optional Properties</strong> <br> </br></strong>    </p>
+<ol class=" "><li class=" ">    <p>Configure optional attributes for your model.    </p>
+</li><li class=" ">    <p>In the top navigation, click <strong class=" ">Next</strong>.    </p>
+</li></ol>    <p><strong class=" "> <strong class=" ">Step 4: Review &amp; Test</strong> <br> </br></strong>    </p>
+<ol class=" "><li class=" ">    <p>Click<strong class=" "> Save Model</strong>.    </p>
+</li></ol>    <p>The following example creates a new model called <tt class=" ">author</tt> by reducing an existing model called <tt class=" ">user</tt>. The author model only uses the <tt class=" ">first_name</tt> and <tt class=" ">last_name</tt> fields.    </p>
+    <p>    <img src="images/download/attachments/43311120/reducemodel.gif" alt="images/download/attachments/43311120/reducemodel.gif" class="confluence-embedded-image">
+        </img></p>
+    <p>    </p>
+    <p><strong class=" ">Example 3: Composite Model with a Join Operation</strong>    </p>
+    <p>To create a composite model, add fields from two or more models, then define a join operation to combine record data from the models.    </p>
+    <p><strong class=" ">Step 1: Model Type</strong>    </p>
+<ol class=" "><li class=" ">    <p>In the <strong class=" ">Model Name</strong> text field, enter the <tt class=" ">library</tt> for the model name.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Model Type</strong> drop-down, select <strong class=" ">Composite model (join)</strong>.    </p>
+</li><li class=" ">    <p>In the top navigation, click <strong class=" ">Next</strong>.    </p>
+</li></ol>    <p><strong class=" ">Step 2: Model Fields</strong>    </p>
+<ol class=" "><li class=" ">    <p>To add an existing field from a model, select Select single field from existing model, enter the model name in the <strong class=" ">Field Source Model</strong> text field, enter the field to include in the <strong class=" ">Model Field</strong> text field, then click <strong class=" ">Add Field</strong>.    </p>
+</li><li class=" ">    <p>To add the entire model object as a field, select <strong class=" ">Map new field to entire model</strong>, enter the model name in the<strong class=" "> Field Source Model</strong> text field, enter the field name in the <strong class=" ">Field Name</strong> text field, select the data type from the <strong class=" ">Data Type</strong> drop-down, then click <strong class=" ">Add Field</strong>.    </p>
+</li><li class=" ">    <p>To add an existing field from a model, select Select single field from existing model, enter the model name in the <strong class=" ">Field Source Model</strong> text field, enter the field to include in the <strong class=" ">Model Field</strong> text field, then click <strong class=" ">Add Field</strong>.    </p>
+</li><li class=" ">    <p>In the top navigation, click <strong class=" ">Next</strong>.<strong class=" "><br> </br></strong>    </p>
+</li></ol>    <p><strong class=" ">Step 3: Join Properties</strong>    </p>
+<ol class=" "><li class=" ">    <p>Enter the name of the parent in the <strong class=" ">Parent Model</strong> text field, enter the field to join in the<strong class=" "> Join Field</strong> text field, then select a join type from the <strong class=" ">Join Type</strong> drop-down.    </p>
+</li><li class=" ">    <p>Enter the name of the model to join with the parent model in the <strong class=" ">Child Model</strong> text field, enter the field name to join with the parent model in the <strong class=" ">Join Property</strong> text field, then click <strong class=" ">Add Join</strong>.    </p>
+</li><li class=" ">    <p>In the top navigation, click <strong class=" ">Next</strong>.    </p>
+</li></ol>    <p><strong class=" ">Step 4: Optional Properties</strong>    </p>
+<ol class=" "><li class=" ">    <p>Configure optional attributes for your model.    </p>
+</li><li class=" ">    <p>In the top navigation, click <strong class=" ">Next</strong>.    </p>
+</li></ol>    <p><strong class=" ">Step 5: Review &amp; Test</strong>    </p>
+<ol class=" "><li class=" ">    <p>Click<strong class=" "> Save Model</strong>.    </p>
+</li></ol>    <p>The following example creates a new composite model by combining the previous two models (<tt class=" ">author</tt> and <tt class=" ">book</tt>). The composite model will join the two models based on the author ID. The record will return the author&apos;s first name and last name, and the entire book record as an object. The model will only allow read operations.<strong class=" "> <br> </br></strong>    </p>
+    <p><strong class=" ">     <img src="images/download/attachments/43311120/compositemodel.gif" alt="images/download/attachments/43311120/compositemodel.gif" class="confluence-embedded-image">
+ <br> </br></img></strong>    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43311120_APIBuilderConsole-Data">
+        <h2 class="heading "><span>Data</span></h2>
+    <p>The <strong class=" ">Data</strong> tab lets you manage the application&apos;s model data. You can add, change, delete, and search for model records.    </p>
+    <p>    <img src="images/download/attachments/43311120/DataTab.png" alt="images/download/attachments/43311120/DataTab.png" class="confluence-embedded-image confluence-content-image-border">
+        </img></p>
+    <p><strong class=" ">To add a new model</strong>:    </p>
+<ol class=" "><li class=" ">    <p>Select the model in the left navigation.    </p>
+</li><li class=" ">    <p>Click the <strong class=" ">+ New</strong> button.    </p>
+</li><li class=" ">    <p>Input the model data.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">Save</strong>.    </p>
+</li></ol>    <p><strong class=" ">To change a model record</strong>:    </p>
+<ol class=" "><li class=" ">    <p>Select the model in the left navigation.    </p>
+</li><li class=" ">    <p>Click the record to modify.    </p>
+</li><li class=" ">    <p>Modify the data.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">Save</strong>.    </p>
+</li></ol>    <p>To delete a model record:    </p>
+<ol class=" "><li class=" ">    <p>Select the model in the left navigation.    </p>
+</li><li class=" ">    <p>Click the record to delete.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">Delete</strong>.    </p>
+</li></ol>    <p>To search for a record, enter a search term in the search bar at the top to filter the table or click Advanced to restrict the search to a specific model field. Use the <strong class=" ">Clear Filter</strong> button to reset the search filter.    </p>
+    </div>
+    <div class="section section-2 " id="src-43311120_APIBuilderConsole-Logs">
+        <h2 class="heading "><span>Logs</span></h2>
+    <p>The <strong class=" ">Logs</strong> tab lets you review user access log, which also includes requests initiated from the API Builder Console.    </p>
+    <p>    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=43311120"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

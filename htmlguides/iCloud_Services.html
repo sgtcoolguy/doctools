@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>iCloud Services</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-40927727" class="content">
+                        <h1>iCloud Services</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="iCloud_Services.html#src-40927727_iCloudServices-Introduction">Introduction</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="iCloud_Services.html#src-40927727_iCloudServices-AppleBestPractices">Apple Best Practices</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="iCloud_Services.html#src-40927727_iCloudServices-SetupaDistributionProfilewithiCloudServices">Setup a Distribution Profile with iCloud Services</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="iCloud_Services.html#src-40927727_iCloudServices-RegisteranAppID">Register an App ID</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="iCloud_Services.html#src-40927727_iCloudServices-DisableiCloudBackup">Disable iCloud Backup</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="iCloud_Services.html#src-40927727_iCloudServices-PerformaManualBackup">Perform a Manual Backup</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="iCloud_Services.html#src-40927727_iCloudServices-TestRestoringaniCloudBackup">Test Restoring an iCloud Backup</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="iCloud_Services.html#src-40927727_iCloudServices-FurtherReadingandReferences">Further Reading and References</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-40927727_iCloudServices-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p>Titanium applications running on iOS devices can backup data to Apple&apos;s iCloud service.  By default, iOS schedules to backup application data to iCloud once a day if the device is plugged in, inactive and has an internet connection.  Only files saved in the <tt class=" ">applicationDataDirectory</tt> and <tt class=" ">applicationSupportDirectory</tt> directories are saved unless you specifically set the <tt class=" ">remoteBackup</tt> property on the file to false.  Files in the Resources (app bundle), Cache and tmp directories are not backed up.  If you want to backup a file to iCloud, make sure it is in the data directory.    </p>
+    <p>To use iCloud&apos;s backup feature, you need to setup a distribution profile with iCloud services enabled, then package your application using the distribution profile.    </p>
+    <div class="section section-3 " id="src-40927727_iCloudServices-AppleBestPractices">
+        <h3 class="heading "><span>Apple Best Practices</span></h3>
+    <p>Apple recommends that only files created by users or data that cannot be recreated by the application should be backed up, to save time uploading data and iCloud storage space.  Use the application&apos;s data directory (called the <tt class=" ">Document</tt> directory in the iOS filesystem) to store user data and critical files.    </p>
+    <p>If a file can be downloaded or recreated by the application, the application should disable backing up that file.  Apple recommends using the application support directory (called the <tt class=" ">Library/Application Support</tt> directory in the iOS filesystem) to store downloaded content and data that the application can recreate.  Since, by default, files in the application support directory are backed up, you need to explicitly disable backing them up if needed.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-40927727_iCloudServices-SetupaDistributionProfilewithiCloudServices">
+        <h2 class="heading "><span>Setup a Distribution Profile with iCloud Services</span></h2>
+    <p>To use the iCloud service, you need to create a Distribution Profile, which requires a Distribution Certificate and an App ID with iCloud services enabled.  If you have created a Distribution Profile before, the only difference is you need to create an Explicit App ID with the iCloud services enabled.    </p>
+    <div class="section section-3 " id="src-40927727_iCloudServices-RegisteranAppID">
+        <h3 class="heading "><span>Register an App ID</span></h3>
+    <p>You need to register an App ID for your application.    </p>
+<ol class=" "><li class=" ">    <p>Log in to the <a class="external-link external-link" href="https://developer.apple.com/membercenter/">Apple Developer Member Center</a> as the Team Agent or Admin.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">Certificates, Identifiers &amp; Profiles</strong>.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">Identifiers</strong>, then click the add (<strong class=" ">+</strong>) button near the top-right corner.    </p>
+</li><li class=" ">    <p>Under <strong class=" ">App ID Description</strong>, enter a value in the <strong class=" ">Name</strong> field.    </p>
+</li><li class=" ">    <p>Select the <strong class=" ">App ID Prefix</strong> to use. (You cannot use a Wildcard App ID for an application with push notifications.)    </p>
+</li><li class=" ">    <p>In the the <strong class=" ">App ID Suffix</strong> section, select <strong class=" ">Explicit App ID</strong> and enter your application&apos;s ID. This is the value of the <tt class=" ">&lt;id&gt;</tt> element in your project&apos;s <tt class=" ">tiapp.xml</tt> file.    </p>
+</li><li class=" ">    <p>Under <strong class=" ">App Services</strong>, check the <strong class=" ">iCloud</strong> checkbox.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">Continue</strong>, <strong class=" ">Submit</strong>, and <strong class=" ">Done</strong> to complete the process.    </p>
+</li></ol>    <p>After creating your App ID, follow the directions from <a class="document-link " href="Distributing_iOS_apps.html">Distributing iOS apps</a> to create your Distribution Certificate and Distribution Profile, then use the certificate and profile to package your application.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-40927727_iCloudServices-DisableiCloudBackup">
+        <h2 class="heading "><span>Disable iCloud Backup</span></h2>
+    <p>By default, files in the <tt class=" ">applicationDataDirectory</tt> and <tt class=" ">applicationSupportDirectory</tt> directories are backed up to iCloud unless you set the <tt class=" ">remoteBackup</tt> property of the file to false.  The file needs to exist before setting the property.  Setting the <tt class=" ">remoteBackup</tt> property to false also disables backing up the file using iTunes.  iTunes backs up the application data locally.    </p>
+    <p>For example, to disable backing up the entire application support directory, you need to recursively set the property on every file in the folder and its subfolders.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">function walk(folder) {</code></div>
+<div class="line"><code class="plain">    var dir = Ti.Filesystem.getFile(folder);</code></div>
+<div class="line"><code class="plain">    var dir_files = dir.getDirectoryListing();</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">for</code><code class="plain"> (var i = </code><code class="value">0</code><code class="plain">; i &lt; dir_files.length; i++) {</code></div>
+<div class="line"><code class="plain">        var file = Ti.Filesystem.getFile(folder, dir_files[i]);</code></div>
+<div class="line"><code class="plain">        file.remoteBackup = </code><code class="keyword">false</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">        var nativePath = file.nativePath;</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Subfolder not a file</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (nativePath.lastIndexOf(</code><code class="string">&apos;/&apos;</code><code class="plain">) == nativePath.length - </code><code class="value">1</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">            walk(file.nativePath);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain">walk(Ti.Filesystem.applicationSupportDirectory);</code></div>
+</div>
+    </div>
+    <p>Database files created using the Titanium.Database API are not stored in the data or application support directories.  To disable backing up a database file, use the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.Database.DB-property-file"><tt class=" ">file</tt></a> property after opening a database to access the database file, then set the <tt class=" ">remoteBackup</tt> property on the database file to false.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var db = Ti.Database.open(</code><code class="string">&apos;foostore&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">db.file.remoteBackup = </code><code class="keyword">false</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-40927727_iCloudServices-PerformaManualBackup">
+        <h2 class="heading "><span>Perform a Manual Backup</span></h2>
+    <p>If you do not want to wait for iOS to backup your files, you can manually perform a backup.  To perform a manual backup to iCloud, on the iOS device:    </p>
+<ol class=" "><li class=" ">    <p>Open <strong class=" ">Settings.</strong>    </p>
+</li><li class=" ">    <p>Navigate to <strong class=" ">iCloud</strong> &gt; <strong class=" ">Storage &amp; Backup.</strong>    </p>
+</li><li class=" ">    <p>Make sure <strong class=" ">iCloud Backup</strong> is switched on.    </p>
+</li><li class=" ">    <p>Tap <strong class=" ">Backup Now</strong>.    </p>
+</li></ol>    <p>To check how much space the backup uses:    </p>
+<ol class=" "><li class=" ">    <p>Open <strong class=" ">Settings.</strong>    </p>
+</li><li class=" ">    <p>Navigate to <strong class=" ">iCloud</strong> &gt; <strong class=" ">Storage &amp; Backup </strong>&gt; <strong class=" ">Manage Storage</strong>.    </p>
+</li><li class=" ">    <p>Tap <strong class=" ">This Device</strong>.    </p>
+</li></ol>    <p>The device displays an itemized list of how much iCloud storage space each application uses.    </p>
+    </div>
+    <div class="section section-2 " id="src-40927727_iCloudServices-TestRestoringaniCloudBackup">
+        <h2 class="heading "><span>Test Restoring an iCloud Backup</span></h2>
+    <p>To test restoring an iCloud backup, you need to reset your device and erase the application settings and content.  After the reset, during the &quot;Set Up iPhone&quot;<i class=" "> </i>step of the iOS Setup Assistant, select to <strong class=" ">Restore from iCloud Backup</strong> and choose a previous device backup to start restoring your device.    </p>
+    <p>Before proceeding make sure have a current backup of your device.  See the previous section to perform a manual backup.    </p>
+<ol class=" "><li class=" ">    <p>Open <strong class=" ">Settings</strong>.    </p>
+</li><li class=" ">    <p>Navigate to <strong class=" ">General</strong> &gt; <strong class=" ">Reset</strong>.    </p>
+</li><li class=" ">    <p>Tap <strong class=" ">Erase all settings and content</strong>.  A dialog appears asking you to confirm your selection.  After confirming, the device will reset.    </p>
+</li><li class=" ">    <p>After the device resets, the iOS Setup Assistant appears.  Follow the initial steps to select your language, region, etc.    </p>
+</li><li class=" ">    <p>Once you have come to the &quot;Set Up iPhone&quot; step, tap <strong class=" ">Restore from iCloud Backup</strong>.    </p>
+</li><li class=" ">    <p>In the &quot;Choose backup&quot; step, select the backup to use to restore your device.    </p>
+</li></ol>    <p>iOS will start restoring your device based on the backup chosen.    </p>
+    </div>
+    <div class="section section-2 " id="src-40927727_iCloudServices-FurtherReadingandReferences">
+        <h2 class="heading "><span>Further Reading and References</span></h2>
+    <p><a class="external-link external-link" href="https://developer.apple.com/icloud/documentation/data-storage/index.html">iOS Data Storage Guidelines</a>    </p>
+    <p><a class="external-link external-link" href="https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/PerformanceTuning/PerformanceTuning.html#//apple_ref/doc/uid/TP40007072-CH8-SW9">iOS App Programming Guide: App Backup Best Practices</a>    </p>
+    <p><a class="external-link external-link" href="http://support.apple.com/kb/HT1766">Back up and restore your iOS device with iCloud or iTunes</a>    </p>
+    <p><a class="external-link external-link" href="http://support.apple.com/kb/ht2109">Transfer content from an iPhone, iPad, or iPod touch to a new device</a>    </p>
+    <p>    </p>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

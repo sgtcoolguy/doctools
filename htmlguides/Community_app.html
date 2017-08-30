@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Community app</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30085499" class="content">
+                        <h1>Community app</h1>
+    <p>This document contains information on where to download the community app and overview of core concepts and conventions.    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Community_app.html#src-30085499_Communityapp-Download">Download</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Community_app.html#src-30085499_Communityapp-CoreConceptsandConventions">Core Concepts and Conventions</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Community_app.html#src-30085499_Communityapp-CommonJSpattern">CommonJS pattern</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Community_app.html#src-30085499_Communityapp-Globalnamespace">Global namespace</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Community_app.html#src-30085499_Communityapp-Platformbuilddirectories">Platform build directories</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Community_app.html#src-30085499_Communityapp-Wrappingproxyobjects">Wrapping proxy objects</a>    </p>
+</li></ul></li></ul>    <div class="section section-2 " id="src-30085499_Communityapp-Download">
+        <h2 class="heading "><span>Download</span></h2>
+    <p>You can download the project from this GitHub repo: <a class="external-link external-link" href="https://github.com/appcelerator-titans/App">https://github.com/appcelerator-titans/App</a>.    </p>
+    <p><strong class=" ">As of this writing, the repo was structured such that you cannot directly import it into Studio</strong> (via the Import &gt; GitHub repo option). This is because the repo includes additional files, such as source graphics, which requires an extra level of directory structure. So, download the zip and import the Community directory into Studio.    </p>
+    </div>
+    <div class="section section-2 " id="src-30085499_Communityapp-CoreConceptsandConventions">
+        <h2 class="heading "><span>Core Concepts and Conventions</span></h2>
+    <p>This app features a number of Titanium current-practices, including:    </p>
+<ul class=" "><li class=" ">    <p>A CommonJS modules pattern    </p>
+</li><li class=" ">    <p>Minimal additions to the global namespace    </p>
+</li><li class=" ">    <p>Heavy use of the platform build directories to create user experiences tailored to the user&apos;s operating system    </p>
+</li><li class=" ">    <p>Wrapping of proxies to avoid the need to extend the Titanium objects    </p>
+</li></ul>    <p>This app is not a template for new projects. It is a living app, one that is in constant development by our Development Relations team. We encourage you to pull ideas from the app rather than specific code.    </p>
+    <div class="section section-3 " id="src-30085499_Communityapp-CommonJSpattern">
+        <h3 class="heading "><span>CommonJS pattern</span></h3>
+    <p>Appcelerator&apos;s recommended practice is to implement app functionality as a set of CommonJS modules. These modules can represent UI components, factories for app components, or functional libraries (such as a network or database library). The Community app makes extensive use of modules.    </p>
+    </div>
+    <div class="section section-3 " id="src-30085499_Communityapp-Globalnamespace">
+        <h3 class="heading "><span>Global namespace</span></h3>
+    <p>As outlined elsewhere in these guides, JavaScript has limited notion of scope. You&apos;re asking for a world of hurt if you go dumping a lot of variables into the global scope. This app adds a single variable to the global scope. And with slight modification could even eliminate that.    </p>
+    <p>A common use for the global namespace in Titanium apps is as a storehouse for &quot;session&quot; data that must be passed between portions of your app. With the CommonJS pattern, modules have their own global namespace and don&apos;t have access to the app&apos;s global space. This is a similar challenge faced by multi-context apps. The Community app doesn&apos;t have a specific need for passing such data. Common solutions for this problem center around creating an object and passing it to each module as needed.    </p>
+    <p>For example, you could create a single global App object to which you may append objects as needed. While there may be times when another global object is needed, everything will be placed in this namespace and documented in order to stay organized and avoid conflicts. e.g. App.livedata = {}; could be the home of transient session data for this app.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var App = {}; </code><code class="comments">// app to which you&apos;ll store objects, properties, &amp; session data</code></div>
+<div class="line"><code class="plain">var someComponent = require(</code><code class="string">&apos;foo&apos;</code><code class="plain">).init(App); </code><code class="comments">// pass the object into the module</code></div>
+<div class="line"><code class="plain">someComponent.doSomething(App.livedata.someProperty); </code><code class="comments">// or pass a specific property to a method</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30085499_Communityapp-Platformbuilddirectories">
+        <h3 class="heading "><span>Platform build directories</span></h3>
+    <p>The Community app makes heavy use of an under-appreciated feature of Titanium: the platform build directories. Titanium supports an overrides system by which you can provide platform-specific files that will be used in place of those in the main Resources branch. Here&apos;s the app.js:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">//do any global bootstrapping - none needed now</code></div>
+<div class="line"><code class="comments">//..</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">//platform-specific UI bootstrap</code></div>
+<div class="line"><code class="plain">var app = require(</code><code class="string">&apos;/ui/bootstrap&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">app.launch();</code></div>
+</div>
+    </div>
+    <p>But when you look at the Resources/ui folder, you won&apos;t find a file named bootstrap.js. That&apos;s because there are platform-specific versions of that file as shown in this screenshot.    </p>
+    <p>    <img src="images/download/attachments/30085499/Screen_Shot_2012-03-23_at_9.14.41_AM.png" alt="images/download/attachments/30085499/Screen_Shot_2012-03-23_at_9.14.41_AM.png" class="confluence-embedded-image confluence-content-image-border">
+        </p>
+    <p>Platform build directories (overrides) eliminate the need for {{if(platform) // do this }} type branching in your code. Instead, all the platform-specific code is merged into your project at build time. This can increase execution performance and reduce code complexity. Of course, those benefits come with two costs: slightly longer build time, plus the need to manage multiple versions of files. In this app&apos;s case, the UI on each platform varies and takes specific advantage of platform-specific conventions. So the benefit outweigh the costs.    </p>
+    </div>
+    <div class="section section-3 " id="src-30085499_Communityapp-Wrappingproxyobjects">
+        <h3 class="heading "><span>Wrapping proxy objects</span></h3>
+    <p>A key gotcha that we try to point out frequently is that you should not extend or override any of the Titanium proxy objects (e.g. a table row object, view, or something like Ti.App). While JavaScript is very flexible, the underlying native languages are not. Neither is the bridge between JavaScript and nativeland. Adding a property or two to a proxy is probably okay, adding objects or methods is likely to cause your app to crash.    </p>
+    <p>Still, there are times when it&apos;s so hard to resist storing some data in a proxy. For that, we suggest you wrap proxies in standard JavaScript objects and extend those JavaScript objects. The Community app does this. See the /ui/components.js for example code. Here&apos;s an excerpt:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">function Component(</code><code class="comments">/*Titanium Proxy Object*/</code><code class="plain"> tiView) {</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">this</code><code class="plain">.viewProxy = tiView;</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">//Wrappers for common Titanium view construction functions</code></div>
+<div class="line"><code class="plain">Component.prototype.add = function(tiChildView) {</code></div>
+<div class="line"><code class="plain">	var v = tiChildView.viewProxy||tiChildView;</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">this</code><code class="plain">.viewProxy.add(v);</code></div>
+<div class="line"><code class="plain">};</code></div>
+<div class="line"><code class="comments">// ... lots more here</code></div>
+</div>
+    </div>
+    <p>The other modules could then call on this component object to wrap Titanium proxies, like this:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var ui = require(</code><code class="string">&apos;/ui/components&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var myview = </code><code class="keyword">new</code><code class="plain"> ui.Component(</code><code class="keyword">new</code><code class="plain"> ui.View({</code></div>
+<div class="line"><code class="plain">     height:</code><code class="value">44</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     top:</code><code class="value">0</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     backgroundImage:</code><code class="string">&apos;/images/sliver.png&apos;</code></div>
+<div class="line"><code class="plain">}));</code></div>
+<div class="line"><code class="plain">myview.someMethod = function() {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// do stuff here</code></div>
+<div class="line"><code class="plain">};</code></div>
+</div>
+    </div>
+    <p>Because these wrapped objects have a slightly different interface (different methods &amp; properties) than the standard objects they represent, you probably want to use them only when required.    </p>
+    </div>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

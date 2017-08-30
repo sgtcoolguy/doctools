@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ListView</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-41845750" class="content">
+                        <h1>ListView</h1>
+    <p>Demonstrate basic use of the ListView element to create vertically scrolling lists of items.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
+            <div class="title">App Folder Location</div>
+            <p>alloy/test/apps/<strong class=" ">ui/listview</strong>    </p>
+    </div>
+        <p>The sample demonstrates basic <a class="external-link external-link" href="#!/api/Titanium.UI.ListView">ListView</a> use with a single <a class="external-link external-link" href="#!/api/Titanium.UI.ListViewSection">ListViewSection</a>, using multiple ListViewSections with header and footer views, and using custom item templates to customize the content and layout of individual list items within the same ListView.    </p>
+    <p>    <img src="images/download/attachments/41845750/listviews.png" alt="images/download/attachments/41845750/listviews.png" class="confluence-embedded-image" width="500">
+        </img></p>
+    <div class="section section-2 " id="src-41845750_ListView-Basic">
+        <h2 class="heading "><span>Basic</span></h2>
+    <p>A basic list view consists of &lt;<a class="external-link external-link" href="#!/api/Titanium.UI.ListView">ListView</a>&gt; element that containing one or more &lt;<a class="external-link external-link" href="#!/api/Titanium.UI.ListSection">ListSection</a>&gt; elements that, in turn, contain one or more &lt;<a class="external-link external-link" href="#!/api/Titanium.UI.ListItem">ListItem</a>&gt; elements, as shown below. To handle events, you define an <tt class=" ">onClick</tt> handler on the ListView itself.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/views/basic.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/basic.xml">
+<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
+<div class="line"><code class="plain">    &lt;Tab title=</code><code class="string">&quot;basic&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Window title=</code><code class="string">&quot;basic&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;ListView id=</code><code class="string">&quot;list&quot;</code><code class="plain"> onItemclick=</code><code class="string">&quot;onItemClick&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;ListSection&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 4&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 5&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 6&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 7&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 8&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 9&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 10&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/ListSection&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/ListView&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/Window&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/Tab&gt;</code></div>
+<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+</div>
+    </div>
+    <p>To determine which item is selected in a ListView, the view-controller first determines which ListViewSection contains the selected item from the <a class="external-link external-link" href="#!/api/Titanium.UI.ListView-event-itemclick">itemclick</a> event&apos;s <tt class=" ">sectionIndex</tt> property. To get the selected item, it then calls the corresponding section&apos;s <a class="external-link external-link" href="#!/api/Titanium.UI.ListSection-method-getItemAt">getItemAt()</a> method, passing it the <tt class=" ">itemclick</tt> event&apos;s <tt class=" ">itemIndex</tt> property.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/basic.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/basic.js">
+<div class="line"><code class="plain">function onItemClick(e) {</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// get the clicked section</code></div>
+<div class="line"><code class="plain">	var section = $.list.sections[e.sectionIndex];</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// get the clicked item from that section</code></div>
+<div class="line"><code class="plain">	var item = section.getItemAt(e.itemIndex);</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// print the item&apos;s title</code></div>
+<div class="line"><code class="plain">	Ti.API.info(</code><code class="string">&apos;itemclick: &apos;</code><code class="plain"> + item.properties.title);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p>You can also detect click events on views within an item template, as discussed in <a class="document-link unresolved" href="#!/guide/ListView-section-src-41845750">Handling Events on Template Views</a>.    </p>
+    </div>
+        </div>
+    <div class="section section-2 " id="src-41845750_ListView-Sections">
+        <h2 class="heading "><span>Sections</span></h2>
+    <p>A single can define multiple ListSections, each with optional header and footer views.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
+<div class="line"><code class="plain">    &lt;Tab title=</code><code class="string">&quot;sections&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Window title=</code><code class="string">&quot;sections&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;ListView id=</code><code class="string">&quot;list&quot;</code><code class="plain"> onItemclick=</code><code class="string">&quot;onItemClick&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;HeaderView&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;Label backgroundColor=</code><code class="string">&quot;#a88&quot;</code><code class="plain">&gt;headerView&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/HeaderView&gt;</code></div>
+<div class="line"><code class="plain">                &lt;FooterView&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;Label backgroundColor=</code><code class="string">&quot;#8a8&quot;</code><code class="plain">&gt;footerView&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/FooterView&gt;</code></div>
+<div class="line"><code class="plain">                &lt;ListSection headerTitle=</code><code class="string">&quot;title 1&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/ListSection&gt;</code></div>
+<div class="line"><code class="plain">                &lt;ListSection&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;HeaderView&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;Label backgroundColor=</code><code class="string">&quot;#a88&quot;</code><code class="plain">&gt;headerView&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/HeaderView&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;FooterView&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;Label backgroundColor=</code><code class="string">&quot;#8a8&quot;</code><code class="plain">&gt;footerView&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/FooterView&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/ListSection&gt;</code></div>
+<div class="line"><code class="plain">                &lt;ListSection headerTitle=</code><code class="string">&quot;title 3&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/ListSection&gt;</code></div>
+<div class="line"><code class="plain">                &lt;ListSection headerTitle=</code><code class="string">&quot;title 4&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem title=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/ListSection&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/ListView&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/Window&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/Tab&gt;</code></div>
+<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-41845750_ListView-Templates">
+        <h2 class="heading "><span>Templates</span></h2>
+    <p>    <span style="color: #222222;">
+In Alloy, a &lt;ListItem/&gt; element is a combination of a     </span>
+<a class="external-link external-link" href="#!/api/ListDataItem">ListDataItem</a>, which specifies the data for the item to display,     <span style="color: #222222;">
+and an     </span>
+<a class="external-link external-link" href="#!/api/ItemTemplate">ItemTemplate</a>, which specifies how that data should be displayed. If no template is specified, the <a class="external-link external-link" href="#!/api/Titanium.UI-property-LIST_ITEM_TEMPLATE_DEFAULT">default list item template</a> is used.    </p>
+    <p>In the sample app, the &lt;ListView/&gt; defines three &lt;ItemTemplate/&gt; elements named &quot;template1&quot;, &quot;template2&quot;, and &quot;requiredTemplate&quot;one of which is required from an external XML file. The ListView element&apos;s <tt class=" ">defaultItemTemplate</tt> attribute is set to &quot;template1&quot;, so it will be used if no template is specified.    </p>
+    <p>The single &lt;ListSection&gt; element contains three &lt;ListItem/&gt; elements. The first one doesn&apos;t specify a template, so the default template (&quot;template1&quot;) is applied; the second ListItem is required from an external file (app/views/listItem.xml) and specifies &quot;template2&quot; as its template; the third &lt;ListItem/&gt; specifies &quot;requiredTemplate&quot; as its template.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
+<div class="line"><code class="plain">    &lt;Tab title=</code><code class="string">&quot;templates&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Window title=</code><code class="string">&quot;templates&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;ListView id=</code><code class="string">&quot;list&quot;</code><code class="plain"> defaultItemTemplate=</code><code class="string">&quot;template1&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;Templates&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ItemTemplate name=</code><code class="string">&quot;template1&quot;</code><code class="plain"> height=</code><code class="string">&quot;100&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;ImageView bindId=</code><code class="string">&quot;image&quot;</code><code class="plain"> id=</code><code class="string">&quot;image&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;Label bindId=</code><code class="string">&quot;label&quot;</code><code class="plain"> id=</code><code class="string">&quot;label1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/ItemTemplate&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ItemTemplate name=</code><code class="string">&quot;template2&quot;</code><code class="plain"> height=</code><code class="string">&quot;50&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;Label bindId=</code><code class="string">&quot;label&quot;</code><code class="plain"> </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;labels&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/ItemTemplate&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;Require src=</code><code class="string">&quot;itemTemplate&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/Templates&gt;</code></div>
+<div class="line"><code class="plain">                &lt;ListSection&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem image:image=</code><code class="string">&quot;/images/appc.png&quot;</code><code class="plain"> label:text=</code><code class="string">&quot;this is some text&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;Require src=</code><code class="string">&quot;listItem&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;ListItem template=</code><code class="string">&quot;requiredTemplate&quot;</code><code class="plain"> leftImage:image=</code><code class="string">&quot;/images/alien.png&quot;</code><code class="plain"> rightImage:image=</code><code class="string">&quot;/images/up.png&quot;</code><code class="plain"> title:text=</code><code class="string">&quot;Alien&quot;</code><code class="plain"> subtitle:text=</code><code class="string">&quot;In space, no one can hear you scream&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/ListSection&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/ListView&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/Window&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/Tab&gt;</code></div>
+<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+</div>
+    </div>
+    <p>In addition to the &lt;ListItem&gt; elements declared in the XML, the templates.xml view-controller programmatically add items to the ListViewSection, conditionally applying either &quot;requiredTemplate&quot; or &quot;template1&quot; to each item.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p>It&apos;s important to note that this code does not generate list items directly, but rather just updates the data <a class="external-link external-link" href="#!/api/Titanium.UI.ListSection-property-items">items</a> array of the ListViewSection. The actual rendering of list items is left to the native control, based on the current scroll position. In this way, a ListView can display very large number of items without compromising performance.    </p>
+    </div>
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/templates.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/templates.js">
+<div class="line"><code class="plain">var IMAGES = [</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&apos;/images/alien.png&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&apos;/images/predator.png&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&apos;/images/pod.png&apos;</code></div>
+<div class="line"><code class="plain">];</code></div>
+<div class="line"><code class="plain">var moreItems = [];</code></div>
+<div class="line"><code class="plain">var lastPos = </code><code class="string">&apos;left&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">var imageCtr = </code><code class="value">0</code><code class="plain">;</code></div>
+<div class="line"><code class="keyword">for</code><code class="plain"> (var i = </code><code class="value">0</code><code class="plain">; i &lt; </code><code class="value">1023</code><code class="plain">; i++) {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// gradual increase to red</code></div>
+<div class="line"><code class="plain">    var hex = (i%</code><code class="value">256</code><code class="plain">).toString(</code><code class="value">16</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (hex.length &lt; </code><code class="value">2</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">        hex = </code><code class="string">&apos;0&apos;</code><code class="plain"> + hex;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Use a different template every other row</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (i%</code><code class="value">2</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">        moreItems.push({</code></div>
+<div class="line"><code class="plain">            template: </code><code class="string">&apos;requiredTemplate&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            leftImage: {</code></div>
+<div class="line"><code class="plain">                image: IMAGES[imageCtr++]</code></div>
+<div class="line"><code class="plain">            },</code></div>
+<div class="line"><code class="plain">            rightImage: {</code></div>
+<div class="line"><code class="plain">                image: i%</code><code class="value">5</code><code class="plain"> ? </code><code class="string">&apos;/images/up.png&apos;</code><code class="plain"> : </code><code class="string">&apos;/images/down.png&apos;</code></div>
+<div class="line"><code class="plain">            },</code></div>
+<div class="line"><code class="plain">            title: {</code></div>
+<div class="line"><code class="plain">                text: </code><code class="string">&apos;This is my title&apos;</code></div>
+<div class="line"><code class="plain">            },</code></div>
+<div class="line"><code class="plain">            subtitle: {</code></div>
+<div class="line"><code class="plain">                text: </code><code class="string">&apos;And this is the subtitle&apos;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">        });</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (imageCtr &gt;= IMAGES.length) { imageCtr = </code><code class="value">0</code><code class="plain">; }</code></div>
+<div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">        var textAlign = lastPos === </code><code class="string">&apos;left&apos;</code><code class="plain"> ? (lastPos = </code><code class="string">&apos;right&apos;</code><code class="plain">) : (lastPos = </code><code class="string">&apos;left&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        moreItems.push({</code></div>
+<div class="line"><code class="plain">            template: </code><code class="string">&apos;template2&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            label: {</code></div>
+<div class="line"><code class="plain">                text: </code><code class="string">&apos;row &apos;</code><code class="plain"> + (i+</code><code class="value">1</code><code class="plain">),</code></div>
+<div class="line"><code class="plain">                color: </code><code class="string">&apos;#&apos;</code><code class="plain"> + hex + </code><code class="string">&apos;0000&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                textAlign: textAlign,</code></div>
+<div class="line"><code class="plain">                width: Ti.UI.FILL</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">        });</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="comments">// append programmatic items to the ones from markup</code></div>
+<div class="line"><code class="plain">$.list.sections[</code><code class="value">0</code><code class="plain">].items = $.list.sections[</code><code class="value">0</code><code class="plain">].items.concat(moreItems);</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-41845750_ListView-SeeAlso">
+        <h2 class="heading "><span>See Also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="document-link unresolved" href="#!/guide/ListView-section-src-41845750">Alloy ListView Guide</a>    </p>
+<ul class=" "><li class=" ">    <p><a class="document-link unresolved" href="#!/guide/ListView-section-src-41845750">Handling Events</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.ListView">Titanium.UI.ListView</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.ListViewSection">Titanium.UI.ListViewSection</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.ListItem">Titanium.UI.ListItem</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/ListDataItem">ListDataItem</a> (abstract type)    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/ItemTemplate">ItemTemplate</a> (abstract type)    </p>
+</li></ul>    <p>    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845750"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

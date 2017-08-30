@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Setting Memory Levels</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30083276" class="content">
+                        <h1>Setting Memory Levels</h1>
+    <div class="section section-2 " id="src-30083276_SettingMemoryLevels-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Setting_Memory_Levels.html#src-30083276_SettingMemoryLevels-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Setting_Memory_Levels.html#src-30083276_SettingMemoryLevels-Showingyourcurrentmemorylevel">Showing your current memory level</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Setting_Memory_Levels.html#src-30083276_SettingMemoryLevels-Settingyourmemoryconfiguration">Setting your memory configuration</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Setting_Memory_Levels.html#src-30083276_SettingMemoryLevels-Configurationfilesacrossplatforms">Configuration files across platforms</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Setting_Memory_Levels.html#src-30083276_SettingMemoryLevels-Windows">Windows</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Setting_Memory_Levels.html#src-30083276_SettingMemoryLevels-OSX">OS X</a>    </p>
+</li></ul></li></ul>    </div>
+    <div class="section section-2 " id="src-30083276_SettingMemoryLevels-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>Studio allows you to see your current memory usage and adjust the settings based on the types of projects you work with.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083276_SettingMemoryLevels-Showingyourcurrentmemorylevel">
+        <h2 class="heading "><span>Showing your current memory level</span></h2>
+    <p>In order to see your current memory levels, you may turn on a &quot;Heap Status&quot; indicator. This shows you your available memory, and current usage.    </p>
+    <p>To enable the memory status indicator, turn on <strong class=" ">Preferences &gt; General : Show Heap Status</strong>. You will see a small bar in the bottom right corner of your workspace, similar to the one below:    </p>
+    <p>    <img src="images/download/attachments/30083276/Screen_shot_2011-07-19_at_9.53.12_AM.png" alt="images/download/attachments/30083276/Screen_shot_2011-07-19_at_9.53.12_AM.png" class="confluence-embedded-image">
+        </p>
+    </div>
+    <div class="section section-2 " id="src-30083276_SettingMemoryLevels-Settingyourmemoryconfiguration">
+        <h2 class="heading "><span>Setting your memory configuration</span></h2>
+    <p>By default, Studio allocates a certain amount of memory to start (the <strong class=" ">-Xms</strong> parameter) and uses a maximum amount (the <strong class=" ">-Xmx</strong> parameter) of Java heap memory, which is usually enough for most development tasks. However, depending on the JRE that you are running and if you are working with additional plugins and have many files open, you may need to increase your amount of memory. You may also find it helpful to increase the size of the permanent generation memory (the <strong class=" ">--launcher.XXMaxPermSize</strong> parameter).    </p>
+    <p>In some situations, such as when you have many projects in your workspace or when a project under source control has many files, you may get better performance by increasing the maximum heap memory (the <strong class=" ">-Xmx</strong> parameter). However, setting the memory allocation larger than the available physical memory on your machine can cause issues with Java which will severely degrade your computer&apos;s performance and should be avoided.    </p>
+    <p>Memory usage configuration changes are made in the .ini file. Studio must be restarted for any changes to this file to take effect.    </p>
+    <p>Certain parameters in the AptanaStudio3.ini or TitaniumStudio.ini file are platform-dependent; For example, only OS X needs the <strong class=" ">XstartOnFirstThread</strong> parameter.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083276_SettingMemoryLevels-Configurationfilesacrossplatforms">
+        <h2 class="heading "><span>Configuration files across platforms</span></h2>
+    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Find your configuration file by following the steps here: <a class="document-link " href="Modifying_Your_Configuration.html">Modifying Your Configuration</a>    </p>
+    </div>
+        <div class="section section-3 " id="src-30083276_SettingMemoryLevels-Windows">
+        <h3 class="heading "><span>Windows</span></h3>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">--launcher.XXMaxPermSize</code></div>
+<div class="line"><code class="plain">256m</code></div>
+<div class="line"><code class="plain">--launcher.defaultAction</code></div>
+<div class="line"><code class="plain">openFile</code></div>
+<div class="line"><code class="plain">-vmargs</code></div>
+<div class="line"><code class="plain">-Xms40m</code></div>
+<div class="line"><code class="plain">-Xmx384m</code></div>
+<div class="line"><code class="plain">-Declipse.p2.unsignedPolicy=allow</code></div>
+<div class="line"><code class="plain">-Djava.awt.headless=</code><code class="keyword">true</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083276_SettingMemoryLevels-OSX">
+        <h3 class="heading "><span>OS X</span></h3>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"> -startup</code></div>
+<div class="line"><code class="plain">../../../plugins/org.eclipse.equinox.launcher_1.</code><code class="value">1.1</code><code class="plain">.R36x_v20101122_1400.jar</code></div>
+<div class="line"><code class="plain">--launcher.XXMaxPermSize</code></div>
+<div class="line"><code class="plain">256m</code></div>
+<div class="line"><code class="plain">--launcher.defaultAction</code></div>
+<div class="line"><code class="plain">openFile</code></div>
+<div class="line"><code class="plain">-vmargs</code></div>
+<div class="line"><code class="plain">-Xms40m</code></div>
+<div class="line"><code class="plain">-Xmx384m</code></div>
+<div class="line"><code class="plain">-Declipse.p2.unsignedPolicy=allow</code></div>
+<div class="line"><code class="plain">-Xdock:icon=../Resources/aptana.icns</code></div>
+<div class="line"><code class="plain">-XstartOnFirstThread</code></div>
+<div class="line"><code class="plain">-Dorg.eclipse.swt.internal.carbon.smallFonts</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

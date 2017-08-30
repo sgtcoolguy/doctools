@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Android Action Bar</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-36735509" class="content">
+                        <h1>Android Action Bar</h1>
+    <p>The action bar is a major UI feature for Android applications in Android 3.0 and later. To understand all of the features of the action bar and its place in Android applications, we recommend reviewing the <a class="external-link external-link" href="http://developer.android.com/design/patterns/actionbar.html" target="_blank">Android Design: Action Bar</a> and the <a class="external-link external-link" href="http://developer.android.com/guide/topics/ui/actionbar.html" target="_blank">Action Bar API guide</a> on the Android developer site.    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Action_Bar-section-src-36735509_AndroidActionBar-SupportedandUnsupportedFeatures">Supported and Unsupported Features</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Action_Bar-section-src-36735509_AndroidActionBar-EnablingtheActionBar">Enabling the Action Bar</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Action_Bar-section-src-36735509_AndroidActionBar-HidingtheActionBar">Hiding the Action Bar</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Action_Bar-section-src-36735509_AndroidActionBar-ActionBarTabs">Action Bar Tabs</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Action_Bar-section-src-36735509_AndroidActionBar-ActionItems">Action Items</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Action_Bar-section-src-36735509_AndroidActionBar-DynamicallyUpdatingActionItems">Dynamically Updating Action Items</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Action_Bar-section-src-36735509_AndroidActionBar-OtherActionBarFeatures">Other Action Bar Features</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Action_Bar-section-src-36735509_AndroidActionBar-StylingtheActionBar">Styling the Action Bar</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Action_Bar-section-src-36735509_AndroidActionBar-TestingintheEmulator">Testing in the Emulator</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Action_Bar-section-src-36735509_AndroidActionBar-AndroidEmulator">Android Emulator</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Action_Bar-section-src-36735509_AndroidActionBar-GenymotionEmulator">Genymotion Emulator</a>    </p>
+</li></ul></li></ul>    <div class="section section-2 " id="src-36735509_AndroidActionBar-SupportedandUnsupportedFeatures">
+        <h2 class="heading "><span>Supported and Unsupported Features</span></h2>
+    <p>Titanium SDK 3.0 includes support for the Android action bar element, including support for action bar tabs, action items, and access to the action bar title, background, and home icon.    </p>
+    <p>The following features are <i class=" ">not</i> supported:    </p>
+<ul class=" "><li class=" ">    <p>Drawer-style navigation is not supported. Only tabs are supported at this time. Depending on screen space and the number of tabs, Android may display the tabs as standard tabs, scrolling tabs, or a drop-down list.    </p>
+</li><li class=" ">    <p>Contextual action bars are not supported.    </p>
+</li><li class=" ">    <p>Action providers are not supported.    </p>
+</li><li class=" ">    <p>Most styling on the action bar must be done using Android themes and styles.    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-36735509_AndroidActionBar-EnablingtheActionBar">
+        <h2 class="heading "><span>Enabling the Action Bar</span></h2>
+    <p>Starting with Release 3.3.0, the Titanium SDK uses the appcompat library to provide support for the Action Bar on device&apos;s running Android 2.3.x and later.  The Action Bar is automatically enabled by default on all Android applications.  The target SDK version must be set at least 14.    </p>
+    <p>Prior to Release 3.3.0, to enable the action bar features, applications must be built with a target SDK version of 11 (Android 3.0/Honeycomb) or later. For expanding and collapsing action items, the target SDK version must be at least 14. To set the target SDK version, add code like this in your <tt class=" ">tiapp.xml</tt> file:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;android xmlns:android=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">&gt;&#xA0;</code></div>
+<div class="line"><code class="plain">	&lt;tool-api-level&gt;</code><code class="value">14</code><code class="plain">&lt;/tool-api-level&gt;&#xA0;</code></div>
+<div class="line"><code class="plain">	&lt;manifest&gt;&#xA0;</code></div>
+<div class="line"><code class="plain">		&lt;uses-sdk android:targetSdkVersion=</code><code class="string">&quot;14&quot;</code><code class="plain">/&gt;&#xA0;</code></div>
+<div class="line"><code class="plain">		&lt;!-- other manifest entries --&gt;&#xA0;</code></div>
+<div class="line"><code class="plain">	&lt;/manifest&gt;&#xA0;</code></div>
+<div class="line"><code class="plain">&lt;/android&gt; </code></div>
+</div>
+    </div>
+    <p>The <tt class=" ">tool-api-level</tt> identifies the version of the Android tools to use. If in doubt, use a recent version, such as 15. This does not have to correspond to the <tt class=" ">targetSdkVersion</tt>.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Do not set the <tt class=" ">navBarHidden</tt> property to <tt class=" ">true</tt> for either the Window or TabGroup containing the activity used by the Action Bar. Setting this property to true disables the Action Bar since it is part of the navigation title bar.    </p>
+    </div>
+        </div>
+    <div class="section section-2 " id="src-36735509_AndroidActionBar-HidingtheActionBar">
+        <h2 class="heading "><span>Hiding the Action Bar</span></h2>
+    <p>There are two ways to hide the Action Bar.  You can either hide the activity&apos;s Action Bar in your JavaScript code or modify the default theme to hide the Action Bar.    </p>
+    <p><strong class=" ">In your JavaScript code</strong>, get the activity&apos;s action bar instance and call the <a class="external-link external-link" href="#!/api/Titanium.Android.ActionBar-method-hide">hide</a> method.  <u class=" ">This hides the action bar once it appears on screen</u>.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// &quot;win&quot; is a previously opened window</code></div>
+<div class="line"><code class="comments">// you can only get the activity after the window appears on screen</code></div>
+<div class="line"><code class="plain">win.activity.actionBar.hide();</code></div>
+</div>
+    </div>
+    <p><strong class=" ">To automatically hide the action bar when opening a window or tab group, </strong>you need to modify the theme to hide the action bar:    </p>
+    <p>1. Add a custom theme file to your project, and set the <tt class=" ">android:windowActionBar</tt> item to false and <tt class=" ">android:windowNoTitle</tt> to true.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">platform/android/res/values/custom_theme.xml </div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="platform/android/res/values/custom_theme.xml ">
+<div class="line"><code class="plain">&lt;?xml version=</code><code class="string">&quot;1.0&quot;</code><code class="plain"> encoding=</code><code class="string">&quot;utf-8&quot;</code><code class="plain">?&gt;</code></div>
+<div class="line"><code class="plain">&lt;resources&gt;</code></div>
+<div class="line"><code class="plain">    &lt;style name=</code><code class="string">&quot;Theme.NoActionBar&quot;</code><code class="plain"> parent=</code><code class="string">&quot;@style/Theme.AppCompat&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;item name=</code><code class="string">&quot;android:windowActionBar&quot;</code><code class="plain">&gt;</code><code class="keyword">false</code><code class="plain">&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">        &lt;item name=</code><code class="string">&quot;android:windowNoTitle&quot;</code><code class="plain">&gt;</code><code class="keyword">true</code><code class="plain">&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">		&lt;!-- AppCompat Compatibility --&gt;</code></div>
+<div class="line"><code class="plain">		&lt;item name=</code><code class="string">&quot;windowActionBar&quot;</code><code class="plain">&gt;</code><code class="keyword">false</code><code class="plain">&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">		&lt;item name=</code><code class="string">&quot;windowNoTitle&quot;</code><code class="plain">&gt;</code><code class="keyword">true</code><code class="plain">&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/style&gt;</code></div>
+<div class="line"><code class="plain">&lt;/resources&gt;&#xA0;</code></div>
+</div>
+    </div>
+    <p>2. Modify your <tt class=" ">tiapp.xml</tt> file to use the modified theme.  This will globally hide the action bar in all of your activities:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&#xA0;&lt;android xmlns:android=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;manifest&gt;</code></div>
+<div class="line"><code class="plain">        &lt;application android:theme=</code><code class="string">&quot;@style/Theme.NoActionBar&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/manifest&gt;</code></div>
+<div class="line"><code class="plain">&lt;/android&gt;</code></div>
+</div>
+    </div>
+    <p>    </p>
+    </div>
+    <div class="section section-2 " id="src-36735509_AndroidActionBar-ActionBarTabs">
+        <h2 class="heading "><span>Action Bar Tabs</span></h2>
+    <p>For tab groups, the new action bar tabs will automatically be used on devices that support them. The actual display of the tabs depends on the number of tabs and the amount of screen space available. If there is not enough space to fit all of the tabs on the action bar, Android may display scrolling tabs or a drop-down list instead.    </p>
+    <p>With the new-style tab group, all of the windows in a tab group share a single activity. You can use <tt class=" ">TabGroup.getActivity</tt> to obtain the activity for the tab group. Note that since all the tabs share the same activity, you can&apos;t change the contents of the options menu for each tab by setting <tt class=" ">onCreateOptionsMenu</tt> on each window&apos;s activity. See <a class="document-link " href="#!/guide/Android_Action_Bar-section-src-36735509_AndroidActionBar-DynamicallyUpdatingActionItems">Dynamically Updating Action Items</a> for an alternate implementation.    </p>
+    </div>
+    <div class="section section-2 " id="src-36735509_AndroidActionBar-ActionItems">
+        <h2 class="heading "><span>Action Items</span></h2>
+    <p>For action items, you can add items to the action bar by creating menu items and specifying the new <a class="external-link external-link" href="#!/api/Titanium.Android.MenuItem-property-showAsAction"> <tt class=" ">showAsAction</tt> </a> property. Valid values are:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">SHOW_AS_ACTION_ALWAYS</tt>. Show item in action bar.    </p>
+</li><li class=" ">    <p><tt class=" ">SHOW_AS_ACTION_IF_ROOM</tt>. Show item in action bar if space permits, or in the overflow menu otherwise.    </p>
+</li><li class=" ">    <p><tt class=" ">SHOW_AS_ACTION_NEVER</tt>. Only show item in the overflow menu. This is the default.    </p>
+</li></ul>    <p>You can OR the above values with one of the following modifiers:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">SHOW_AS_ACTION_WITH_TEXT</tt>. Show the action item text instead of its icon, <i class=" ">if space permits</i>.    </p>
+</li><li class=" ">    <p><tt class=" ">SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW</tt>. Create a standard action item button that can be &quot;expanded&quot; to show an action view.    </p>
+</li></ul>    <p>The following code sample creates a basic action item:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">win1.activity.onCreateOptionsMenu = function(e) {&#xA0;</code></div>
+<div class="line"><code class="plain">	var menu = e.menu;&#xA0;</code></div>
+<div class="line"><code class="plain">	var menuItem = menu.add({&#xA0;</code></div>
+<div class="line"><code class="plain">		title: </code><code class="string">&quot;Compose&quot;</code><code class="plain">,&#xA0;</code></div>
+<div class="line"><code class="plain">		icon: </code><code class="string">&quot;images/compose_icon.png&quot;</code><code class="plain">,&#xA0;</code></div>
+<div class="line"><code class="plain">		showAsAction: Ti.Android.SHOW_AS_ACTION_IF_ROOM&#xA0;</code></div>
+<div class="line"><code class="plain">	});&#xA0;</code></div>
+<div class="line"><code class="plain">	menuItem.addEventListener(</code><code class="string">&quot;click&quot;</code><code class="plain">, function(e) {&#xA0;</code></div>
+<div class="line"><code class="plain">		Ti.API.info(</code><code class="string">&quot;Action Item Clicked!&quot;</code><code class="plain">);&#xA0;</code></div>
+<div class="line"><code class="plain">	});&#xA0;</code></div>
+<div class="line"><code class="plain">};</code></div>
+</div>
+    </div>
+    <p>Android has very specific guidelines for action item icons, including density-specific size requirements. So you&apos;ll probably want to generate icons for each density and store them in the density-specific folders in <tt class=" ">Resources/android</tt>. For example, <tt class=" ">Resources/android/images/res-hdpi</tt>.    </p>
+    <p>To specify a view to use in place of the the default action item button, use the <tt class=" ">actionView</tt> property. When you add an action view to an action bar, the native view underlying the Titanium view is inserted into the action bar. The view will only be visible if the underlying native view has an inherent size. For example, a Button or ImageView corresponds to an Android native control that is sized based on its contents, so will appear in the action bar. Any Titanium layout properties specified on the view (such as width and height) are ignored by the native Android layout system.    </p>
+    <p>If <tt class=" ">showAsAction</tt> is set to <tt class=" ">SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW</tt> is specified, the icon or title is shown when the item is collapsed, and the action view is shown when the item is expanded. When expanded, the action view takes over most of the action bar, and other action items are hidden. The <tt class=" ">MenuItem</tt> object supports two new methods, <tt class=" ">expandActionView </tt>and <tt class=" ">collapseActionView</tt>, and accompanying <tt class=" ">expand</tt> and <tt class=" ">collapse</tt> events. The most common use of the expandable action item is for Android search widget, <a class="external-link external-link" href="#!/api/Titanium.UI.Android.SearchView">Ti.UI.Android.SearchView</a>.    </p>
+    <p>When creating action items, keep in mind:    </p>
+<ul class=" "><li class=" ">    <p>The behavior of <tt class=" ">SHOW_AS_ACTION_WITH_TEXT</tt> is rather unpredictable; if you specify an icon and SHOW_AS_ACTION_WITH_TEXT, the Android OS still may choose to display either the text or the icon, depending on how much space is available in the action bar. This determination may vary based on which orientation an application was launched in, so the setting should be used with care if your application supports multiple orientations. To force Android to display text for an action item, specify a title but no icon.<br><br>Note that Android displays <i class=" "> <strong class=" ">either</strong> </i> text or an icon in the action bar. If you need to include both text and an icon, you can create a Titanium button with both text and icon, and add it as the <tt class=" ">actionView</tt>. <br>    </br></br></br></p>
+</li><li class=" ">    <p>When an action item is displayed in the overflow menu (for example, when specified with <tt class=" ">SHOW_AS_ACTION_IF_ROOM</tt> or <tt class=" ">SHOW_AS_ACTION_NEVER</tt>), it is displayed as text, without an icon. This is the way the overflow menu is meant to behave. It may cause some confusion because it differs from the way items are displayed in the action bar (where they use the icon if available) and in the legacy Android menu (where both icon and text are displayed).    </p>
+</li><li class=" ">    <p>You should always specify a title for an action item. Titles are used to display in the overflow menu, and are also displayed as hints when the user long-presses on an action item.    </p>
+</li></ul><ul class=" "><li class=" ">    <p>Only a few items can be displayed in the action bar. See the <a class="external-link external-link" href="http://developer.android.com/design/patterns/actionbar.html" target="_blank">Android Design: Action Bar</a> for guidelines on selecting action items.    </p>
+</li></ul>    <div class="section section-3 " id="src-36735509_AndroidActionBar-DynamicallyUpdatingActionItems">
+        <h3 class="heading "><span>Dynamically Updating Action Items</span></h3>
+    <p>Since the options menu is considered always open when the action bar is in use, <tt class=" ">onCreateOptionsMenu</tt> is only called when the window or tab group is opened. To force the <tt class=" ">onCreateOptionsMenu</tt> method to be executed again, call <tt class=" ">Activity.invalidateOptionsMenu</tt>. The following code sample shows one way to switch the action items when the user changes tabs in a tab group.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// Copy and paste this code to the end of the Classic Default Project</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (Ti.Platform.name === </code><code class="string">&quot;android&quot;</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">    tabGroup.addEventListener(</code><code class="string">&quot;open&quot;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">        var activity = tabGroup.getActivity();</code></div>
+<div class="line"><code class="plain">        activity.onCreateOptionsMenu = function(e) {</code></div>
+<div class="line"><code class="plain">            var item, menu;</code></div>
+<div class="line"><code class="plain">            menu = e.menu;</code></div>
+<div class="line"><code class="plain">            menu.clear();</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">if</code><code class="plain"> (tabGroup.activeTab == tab1) {</code></div>
+<div class="line"><code class="plain">                item = menu.add({</code></div>
+<div class="line"><code class="plain">                    title: </code><code class="string">&quot;Tab1 Item&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                    icon: </code><code class="string">&quot;images/icon1.png&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                    showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS</code></div>
+<div class="line"><code class="plain">                });</code></div>
+<div class="line"><code class="plain">            } </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (tabGroup.activeTab == tab2) {</code></div>
+<div class="line"><code class="plain">                item = menu.add({</code></div>
+<div class="line"><code class="plain">                    title: </code><code class="string">&quot;Tab2 Item&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                    icon: </code><code class="string">&quot;images/icon2.png&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                    showAsAction: Ti.Android.SHOW_AS_ACTION_IF_ROOM</code></div>
+<div class="line"><code class="plain">                });</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">        };</code></div>
+<div class="line"><code class="plain">    });</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">    tabGroup.addEventListener(</code><code class="string">&quot;focus&quot;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">        tabGroup.getActivity().invalidateOptionsMenu();</code></div>
+<div class="line"><code class="plain">    });</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-36735509_AndroidActionBar-OtherActionBarFeatures">
+        <h2 class="heading "><span>Other Action Bar Features</span></h2>
+    <p>Direct access to some action bar methods and properties is available through the <tt class=" ">Activity.actionBar</tt> property. The activity and action bar objects are not created until the associated window or tab group is opened. Initial updates to these objects should be done in the <tt class=" ">open</tt> event handler for the window or tab group.    </p>
+    <p>Currently, the tab group activity is only available from using the <tt class=" ">TabGroup.getActivity</tt> method.    </p>
+    <p>To receive a callback when the home icon is clicked, set the <tt class=" ">ActionBar.onHomeIconItemSelected</tt> property to a callback function:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">win.addEventListener(</code><code class="string">&quot;open&quot;</code><code class="plain">, function(evt) {&#xA0;</code></div>
+<div class="line"><code class="plain">	var actionBar = win.activity.actionBar;&#xA0;</code></div>
+<div class="line"><code class="plain">	actionBar.onHomeIconItemSelected = function() {&#xA0;</code></div>
+<div class="line"><code class="plain">		Ti.API.info(</code><code class="string">&quot;Home clicked!&quot;</code><code class="plain">);&#xA0;</code></div>
+<div class="line"><code class="plain">	};&#xA0;</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    <p>    </p>
+    <p>You can use the <tt class=" ">ActionBar</tt> <tt class=" ">title</tt>, <tt class=" ">backgroundImage</tt>, <tt class=" ">icon</tt>, and <tt class=" ">logo</tt> properties to set the title, background, app icon, and app logo used in the action bar, respectively. Set the <tt class=" ">ActionBar.displayHomeAsUp</tt> property to <tt class=" ">true</tt> to display the &quot;up&quot; affordance. <tt class=" ">ActionBar</tt> also provides <tt class=" ">show</tt> and <tt class=" ">hide</tt> methods to show and hide the action bar. For example, to show the &quot;up&quot; affordance on a tab group&apos;s action bar you could use code like this:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var activity = tabGroup.getActivity();&#xA0;</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (activity != undefined &amp;&amp; activity.actionBar != undefined) {&#xA0;</code></div>
+<div class="line"><code class="plain">	activity.actionBar.displayHomeAsUp = </code><code class="keyword">true</code><code class="plain">;&#xA0;</code></div>
+<div class="line"><code class="plain">} </code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-36735509_AndroidActionBar-StylingtheActionBar">
+        <h2 class="heading "><span>Styling the Action Bar</span></h2>
+    <p>To change the style of the action bar, create a custom theme to override the <a class="external-link external-link" href="https://developer.android.com/guide/topics/ui/actionbar.html#Style" target="_blank">Action Bar style properties</a>.  To create a custom theme:    </p>
+<ol class=" "><li class=" ">    <p>Create an XML file in <tt class=" ">platform/android/res/values</tt>.    </p>
+</li><li class=" ">    <p>In the XML file, create an action bar style resource and set the parent style of the action bar style to <tt class=" ">Widget.AppCompat.ActionBar</tt> or another supported Action Bar parent.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;style name=</code><code class="string">&quot;MyTheme&quot;</code><code class="plain"> parent=</code><code class="string">&quot;@style/Widget.AppCompat.ActionBar&quot;</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Define action bar properties in the style resource to override the default values from the parent style.  To support devices running Android 2.3.x, the property name does not use the <tt class=" ">android:</tt> prefix, so you need to duplicate the properties then remove the <tt class=" ">android:</tt> prefix from the name.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;style name=</code><code class="string">&quot;MyTheme&quot;</code><code class="plain"> parent=</code><code class="string">&quot;@style/Widget.AppCompat.ActionBar&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;!-- For Android </code><code class="value">3</code><code class="plain">.x. and above --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;item name=</code><code class="string">&quot;android:background&quot;</code><code class="plain">&gt;</code><code class="color1">@drawable</code><code class="plain">/actionbar_background&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">    &lt;!-- For Android </code><code class="value">2.3</code><code class="plain">.x --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;item name=</code><code class="string">&quot;background&quot;</code><code class="plain">&gt;</code><code class="color1">@drawable</code><code class="plain">/actionbar_background&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">&lt;/style&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>In the theme, set the <tt class=" ">android:actionBarStyle</tt> to name of action bar style you created.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;style name=</code><code class="string">&quot;Theme.CustomActionBar&quot;</code><code class="plain"> parent=</code><code class="string">&quot;@style/Theme.AppCompat&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;item name=</code><code class="string">&quot;android:actionBarStyle&quot;</code><code class="plain">&gt;</code><code class="color1">@style</code><code class="plain">/MyActionBar&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">    &lt;item name=</code><code class="string">&quot;actionBarStyle&quot;</code><code class="plain">&gt;</code><code class="color1">@style</code><code class="plain">/MyActionBar&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">&lt;/style&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Modify your <tt class=" ">tiapp.xml</tt> file to use the custom theme:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">tiapp.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="tiapp.xml">
+<div class="line"><code class="plain"> &lt;android xmlns:android=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;manifest&gt;</code></div>
+<div class="line"><code class="plain">        &lt;application android:theme=</code><code class="string">&quot;@style/Theme.CustomActionBar&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;!-- Need to specify at least API level </code><code class="value">11</code><code class="plain"> </code><code class="keyword">for</code><code class="plain"> Titanium SDK </code><code class="value">3.2</code><code class="plain">.x and prior --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;uses-sdk android:minSdkVersion=</code><code class="string">&quot;14&quot;</code><code class="plain"> android:targetSdkVersion=</code><code class="string">&quot;19&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/manifest&gt;</code></div>
+<div class="line"><code class="plain">&lt;/android&gt;</code></div>
+</div>
+    </div>
+</li></ol>    <p>The example below modifies the Action Bar&apos;s background color and title text color.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">platform/android/res/values/mytheme.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="platform/android/res/values/mytheme.xml">
+<div class="line"><code class="plain">&lt;?xml version=</code><code class="string">&quot;1.0&quot;</code><code class="plain"> encoding=</code><code class="string">&quot;utf-8&quot;</code><code class="plain">?&gt;</code></div>
+<div class="line"><code class="plain">&lt;resources&gt;</code></div>
+<div class="line"><code class="plain">    &lt;style name=</code><code class="string">&quot;Theme.CustomActionBar&quot;</code><code class="plain"> parent=</code><code class="string">&quot;@style/Theme.AppCompat&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;!-- Specify an Action Bar style to use --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;item name=</code><code class="string">&quot;android:actionBarStyle&quot;</code><code class="plain">&gt;</code><code class="color1">@style</code><code class="plain">/MyActionBar&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">        &lt;!-- This item is required </code><code class="keyword">for</code><code class="plain"> Android </code><code class="value">2.3</code><code class="plain">.x support --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;item name=</code><code class="string">&quot;actionBarStyle&quot;</code><code class="plain">&gt;</code><code class="color1">@style</code><code class="plain">/MyActionBar&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/style&gt;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    &lt;!-- Define the ActionBar styles --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;style name=</code><code class="string">&quot;MyActionBar&quot;</code></div>
+<div class="line"><code class="plain">           parent=</code><code class="string">&quot;@style/Widget.AppCompat.ActionBar&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;!-- Create another style resource to specify the text color --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;item name=</code><code class="string">&quot;android:titleTextStyle&quot;</code><code class="plain">&gt;</code><code class="color1">@style</code><code class="plain">/MyActionBarTitleText&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">        &lt;!-- For Android </code><code class="value">3</code><code class="plain">.x and later, you can specify either a color or background image --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;item name=</code><code class="string">&quot;android:background&quot;</code><code class="plain">&gt;#ffa500&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">        &lt;!-- These item are required </code><code class="keyword">for</code><code class="plain"> Android </code><code class="value">2.3</code><code class="plain">.x support --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;item name=</code><code class="string">&quot;titleTextStyle&quot;</code><code class="plain">&gt;</code><code class="color1">@style</code><code class="plain">/MyActionBarTitleText&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">        &lt;!-- For Android </code><code class="value">2.3</code><code class="plain">.x, you can only specify a background image not a color --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;!-- This example references the platform/android/res/drawable-nodpi/actionbar_background.png image --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;item name=</code><code class="string">&quot;background&quot;</code><code class="plain">&gt;</code><code class="color1">@drawable</code><code class="plain">/actionbar_background&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/style&gt;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    &lt;!-- Define a text color </code><code class="keyword">for</code><code class="plain"> the Action Bar title --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;style name=</code><code class="string">&quot;MyActionBarTitleText&quot;</code></div>
+<div class="line"><code class="plain">           parent=</code><code class="string">&quot;@style/TextAppearance.AppCompat.Widget.ActionBar.Title&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;item name=</code><code class="string">&quot;android:textColor&quot;</code><code class="plain">&gt;#</code><code class="value">000080</code><code class="plain">&lt;/item&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/style&gt;</code></div>
+<div class="line"><code class="plain">&lt;/resources&gt; </code></div>
+</div>
+    </div>
+    <p>    </p>
+    <div class="section section-3 " id="src-36735509_AndroidActionBar-FurtherReading">
+        <h3 class="heading "><span>Further Reading</span></h3>
+<ul class=" "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Themes">Android Themes</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://developer.android.com/training/basics/actionbar/styling.html" target="_blank">Android Developer: Styling the Action Bar</a>    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-2 " id="src-36735509_AndroidActionBar-TestingintheEmulator">
+        <h2 class="heading "><span>Testing in the Emulator</span></h2>
+    <p>To test on an emulator, you may need to configure some options to display the action bar and overflow menu.  Note that the overflow option does not appear on emulators and devices running Android 2.3.x and earlier.    </p>
+    <div class="section section-3 " id="src-36735509_AndroidActionBar-AndroidEmulator">
+        <h3 class="heading "><span>Android Emulator</span></h3>
+    <p>When testing the action bar in the Android emulator, note that the action overflow menu is not displayed in the default emulator, because the default emulator represents a device with hardware buttons.    </p>
+    <p>To configure the Android emulator to show the overflow menu:    </p>
+<ol class=" "><li class=" ">    <p>Make a note of the name of the emulator you&apos;re testing with (for example, <tt class=" ">titanium_25_WVGA800</tt>).    </p>
+</li><li class=" ">    <p>Close the emulator.    </p>
+</li><li class=" ">    <p>Run the Android AVD manager:<br><br><tt class=" ">android avd</tt><br><br>The <tt class=" ">android</tt> command is in the <tt class=" ">tools</tt> folder of the Android SDK folder.    </br></br></br></br></p>
+</li><li class=" ">    <p>Select the emulator you&apos;re testing with  and click <strong class=" ">Edit</strong>.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">New</strong> next to the Hardware list.    </p>
+</li><li class=" ">    <p>Choose <strong class=" ">Hardware Back/Home Keys</strong> and click <strong class=" ">OK</strong>.    </p>
+</li><li class=" ">    <p>Change the <strong class=" ">Hardware Back/Home Keys</strong> value to <strong class=" ">No.<br>    <img src="images/download/attachments/36735509/edit_avd_properties.png" alt="images/download/attachments/36735509/edit_avd_properties.png" class="confluence-embedded-image">
+ </img></br></strong>    </p>
+</li><li class=" ">    <p>Click <i class=" ">outside</i> the Hardware list to confirm the value change; make sure the value for <strong class=" ">Hardware Back/Home Keys</strong> is still displayed as <strong class=" ">No</strong>.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">Edit AVD</strong>.    </p>
+</li><li class=" ">    <p>Run your test application again.    </p>
+</li></ol>    </div>
+    <div class="section section-3 " id="src-36735509_AndroidActionBar-GenymotionEmulator">
+        <h3 class="heading "><span>Genymotion Emulator</span></h3>
+    <p>If you do not see the overflow menu when testing on a Genymotion emulator, you may need to enable the navigation bar.    </p>
+    <p>To enable the navigation bar, the emulator must not be currently opened, then:    </p>
+<ol class=" "><li class=" ">    <p>Start the Genymotion app.    </p>
+</li><li class=" ">    <p>Select the emulator you want to configure, then click <strong class=" ">Configure</strong> button     <img src="images/download/attachments/36735509/configure.png" alt="images/download/attachments/36735509/configure.png" class="confluence-embedded-image">
+.    </img></p>
+</li><li class=" ">    <p>Enable <strong class=" ">Show Android navigation</strong> <strong class=" ">bar</strong>, then click <strong class=" ">OK</strong>.    </p>
+</li><li class=" ">    <p>Run your test application again.    </p>
+</li></ol>    <p>    <img src="images/download/attachments/36735509/GenymotinConfiguration.png" alt="images/download/attachments/36735509/GenymotinConfiguration.png" class="confluence-embedded-image" width="500">
+        </img></p>
+    <p>See also:    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://developer.android.com/design/patterns/actionbar.html" target="_blank">Android Design: Action Bar</a> in Android Design    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://developer.android.com/guide/topics/ui/actionbar.html" target="_blank">Action Bar</a> in the Android API Guides    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/guide/Android_Themes">Android Themes</a> in the Titanium Guides    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.Android.ActionBar">ActionBar</a> Titanium API Reference    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.Android.MenuItem">MenuItem</a> Titanium API Reference    </p>
+</li></ul>    <p>    <span id="src-36735509_accessibility"><a name="src-36735509_accessibility"/></span>
+    </p>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=36735509"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

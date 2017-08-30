@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">&#39;use strict&#39;;
+
+<span id='Arrow-Model'>/**
+</span> * @class Arrow.Model
+ */
+var util = require(&#39;util&#39;),
+	events = require(&#39;events&#39;),
+	_ = require(&#39;lodash&#39;),
+	async = require(&#39;async&#39;),
+	LRUCache = require(&#39;lru-cache&#39;),
+	pluralize = require(&#39;pluralize&#39;),
+	Instance = require(&#39;./instance&#39;),
+	error = require(&#39;./error&#39;),
+	ORMError = error.ORMError,
+	ValidationError = error.ValidationError,
+	Collection = require(&#39;./collection&#39;),
+	utillib = require(&#39;./util&#39;),
+	models = [],
+	ModelClass = new events.EventEmitter();
+
+util.inherits(Model, events.EventEmitter);
+module.exports = Model;
+
+function Model(name, definition, skipValidation) {
+	this.name = name;
+
+	var ModelFields = [&#39;name&#39;, &#39;fields&#39;, &#39;connector&#39;, &#39;_extended&#39;, &#39;metadata&#39;, &#39;mappings&#39;, &#39;actions&#39;, &#39;disabledActions&#39;, &#39;singular&#39;, &#39;plural&#39;, &#39;autogen&#39;, &#39;generated&#39;, &#39;cache&#39;];
+
+	this.autogen = definition ? definition.autogen === undefined ? true : definition.autogen : true;
+	_.defaults(this, _.pick(definition, ModelFields), {
+		singular: pluralize(name.toLowerCase(), 1),
+		plural: pluralize(name.toLowerCase()),
+		metadata: {},
+		mappings: {},
+		actions: VALID_ACTIONS,
+		disabledActions: [],
+		generated: false
+	});
+
+	validateActions(this.actions);
+
+	if (name !== encodeURI(name)) {
+		throw new ValidationError(&#39;name&#39;, &#39;Model names cannot contain characters that need to be encoded in a URL: &quot;&#39; + this.name + &#39;&quot;&#39;);
+	}
+	var modelSplit = name.split(&#39;/&#39;).pop();
+	if (modelSplit.indexOf(&#39;.&#39;) &gt;= 0) {
+		throw new ValidationError(&#39;name&#39;, &#39;Model names cannot contain periods: &quot;&#39; + this.name + &#39;&quot;&#39;);
+	}
+	if (!skipValidation &amp;&amp; !definition) {
+		throw new ORMError(&quot;missing required definition&quot;);
+	}
+	if (!skipValidation &amp;&amp; this.fields &amp;&amp; this.fields.id) {
+		throw new ValidationError(&#39;id&#39;, &#39;id is a reserved field name for the generated primary key&#39;);
+	}
+
+	if (this.cache === true || (_.isPlainObject(this.cache) &amp;&amp; (this.cache.max || this.cache.maxAge))) {
+		this.cache = new LRUCache(this.cache === true ? {
+			max: 500,
+			maxAge: 10 * 60 * 1000 /* 10 minutes */
+		} : this.cache);
+	}
+
+	validateFields(this.fields);
+
+	// pull out any method definitions
+	this.methods = definition &amp;&amp; _.omit(definition, ModelFields);
+	this._wireMethods();
+
+	models.push(this);
+	ModelClass.emit(&#39;register&#39;, this);
+}
+
+<span id='Arrow-Model-method-inspect'>/**
+</span> * suitable for util.inspect
+ */
+Model.prototype.inspect = function () {
+	return &#39;[object Model:&#39; + this.name + &#39;]&#39;;
+};
+
+<span id='Arrow-Model-method-toJSON'>/**
+</span> * suitable for JSON.stringify
+ */
+Model.prototype.toJSON = function () {
+	return {
+		name: this.name,
+		fields: this.fields,
+		connector: this.connector
+	};
+};
+
+var VALID_ACTIONS = [
+	&#39;read&#39;, &#39;write&#39;, &#39;create&#39;, &#39;upsert&#39;, &#39;findAll&#39;, &#39;findByID&#39;, &#39;findById&#39;, &#39;findOne&#39;, &#39;findAndModify&#39;, &#39;count&#39;,
+	&#39;query&#39;, &#39;distinct&#39;, &#39;update&#39;, &#39;delete&#39;, &#39;deleteAll&#39;
+];
+
+function validateActions(actions) {
+	if (actions === undefined || actions === null) {
+		return null;
+	}
+	if (!Array.isArray(actions)) {
+		throw new ORMError(&quot;actions must be an array with one or more of the following: &quot; + VALID_ACTIONS.join(&#39;, &#39;));
+	}
+	return actions;
+}
+
+function validateFields(fields) {
+	if (!fields) {
+		return;
+	}
+	Object.keys(fields).forEach(function (name) {
+		// should all be the same
+		// type: Array
+		// type: &#39;Array&#39;
+		// type: &#39;array&#39;
+		var field = fields[name];
+		field.type = field.type || &#39;string&#39;;
+		var fname = _.isObject(field.type) ? field.type.name : field.type;
+		field.type = fname.toLowerCase();
+		setOptionality(field);
+	});
+}
+
+function setOptionality(field) {
+	// since we allow both, make sure both are set
+	if (field.required !== undefined) {
+		field.optional = !field.required;
+	}
+	else {
+		// defaults to optional
+		field.required = false;
+	}
+	if (field.optional !== undefined) {
+		field.required = !field.optional;
+	}
+	else {
+		field.optional = true;
+	}
+}
+
+var excludeMethods = [&#39;getConnector&#39;, &#39;getMeta&#39;, &#39;setMeta&#39;, &#39;get&#39;, &#39;set&#39;, &#39;keys&#39;, &#39;instance&#39;, &#39;getModels&#39;, &#39;payloadKeys&#39;, &#39;translateKeysForPayload&#39;, &#39;toJSON&#39;, &#39;inspect&#39;];
+
+var dispatchers = {
+	deleteAll: &#39;deleteAll&#39;,
+	removeAll: &#39;deleteAll&#39;,
+	fetch: &#39;query&#39;,
+	find: &#39;query&#39;,
+	query: &#39;query&#39;,
+	findAll: &#39;findAll&#39;,
+	findByID: &#39;findByID&#39;,
+	findById: &#39;findById&#39;,
+	findOne: &#39;findOne&#39;,
+	delete: &#39;delete&#39;,
+	remove: &#39;delete&#39;,
+	update: &#39;save&#39;,
+	save: &#39;save&#39;,
+	create: &#39;create&#39;,
+	distinct: &#39;distinct&#39;,
+	count: &#39;count&#39;,
+	findAndModify: &#39;findAndModify&#39;,
+	upsert: &#39;upsert&#39;
+};
+
+Model.prototype._wireMethods = function _wireMethods() {
+
+	if (this._promise) {
+		// Bind functions.
+		for (var name in this) {
+			var fn = this[name];
+			if (typeof fn === &#39;function&#39;) {
+				if (this.connector) {
+					var mapFn = dispatchers[name];
+					if (mapFn) {
+						var cnFn = this[mapFn];
+						// we don&#39;t have a connector fn, skip it
+						if (typeof cnFn !== &#39;function&#39;) {
+							continue;
+						}
+					}
+				}
+				if (excludeMethods.indexOf(name) &lt; 0) {
+					utillib.createTransactionLoggedDelegate(this, &#39;model&#39;, this, name);
+				}
+			}
+			else {
+				// Don&#39;t need to do anything.
+			}
+		}
+	}
+
+	// Bind method functions.
+	this.methods &amp;&amp; Object.keys(this.methods).forEach(function (name) {
+		var fn = this.methods[name];
+		this[name] = fn;
+		// bind the delegate
+		if (this._promise &amp;&amp; typeof fn === &#39;function&#39;) {
+			utillib.createTransactionLoggedDelegate(this, &#39;model&#39;, this, name);
+		}
+	}.bind(this));
+
+};
+
+<span id='Arrow-Model-static-method-getModels'>/**
+</span> * Returns a list of available Models.
+ * @static
+ * @returns {Array&lt;Arrow.Model&gt;}
+ */
+Model.getModels = function getModels() {
+	return models;
+};
+
+<span id='Arrow-Model-static-method-getModel'>/**
+</span> * Returns a specific Model by name.
+ * @static
+ * @param {String} name Name of the Model.
+ * @returns {Arrow.Model}
+ */
+Model.getModel = function getModel(name) {
+	for (var c = 0; c &lt; models.length; c++) {
+		if (models[c].name === name) {
+			return models[c];
+		}
+	}
+};
+
+<span id='Arrow-Model-static-method-on'>/**
+</span> * Binds a callback to an event.
+ * @static
+ * @param {String} name Event name
+ * @param {Function} cb Callback function to execute.
+ */
+Model.on = function on() {
+	ModelClass.on.apply(ModelClass, arguments);
+};
+
+<span id='Arrow-Model-static-method-removeListener'>/**
+</span> * Unbinds a callback from an event.
+ * @static
+ * @param {String} name Event name
+ * @param {Function} cb Callback function to remove.
+ */
+Model.removeListener = function removeListener() {
+	ModelClass.removeListener.apply(ModelClass, arguments);
+};
+
+<span id='Arrow-Model-static-method-removeAllListeners'>/**
+</span> * Unbinds all event callbacks for the specified event.
+ * @static
+ * @param {String} [name] Event name.  If omitted, unbinds all event listeners.
+ */
+Model.removeAllListeners = function removeAllListeners() {
+	ModelClass.removeAllListeners.apply(ModelClass, arguments);
+};
+
+// NOTE: this is internal and only used by the test and should never be called directly
+Model.clearModels = function clearModels() {
+	models.length = 0;
+};
+
+<span id='Arrow-Model-method-getConnector'>/**
+</span> * Checks for a valid connector and returns it, throwing an ORMError
+ * if a connector is not set.
+ * @param {Boolean} dontRaiseException Set to true to not throw an error if the model is missing a connector.
+ * @return {Arrow.Connector} Connector used by the Model.
+ * @throws {Arrow.ORMError}
+ */
+Model.prototype.getConnector = function getConnector(dontRaiseException) {
+	if (!this.connector &amp;&amp; !dontRaiseException) {
+		throw new ORMError(&quot;missing required connector&quot;);
+	}
+	return this.connector;
+};
+
+<span id='Arrow-Model-method-setConnector'>/**
+</span> * Sets the connector for the model.
+ * @param connect {Arrow.Connector}
+ */
+Model.prototype.setConnector = function setConnector(connector) {
+	this.connector = connector;
+};
+
+Model.prototype.endRequest = function () {
+	if (this.connector) {
+		this.connector.endRequest();
+		this.connector.model = null;
+	}
+	this.request = null;
+	this.response = null;
+	this.removeAllListeners();
+};
+
+Model.prototype.createRequest = function createRequest(request, response) {
+	var connector = this.getConnector().createRequest(request, response);
+	var model = Object.create(this);
+	model.request = request;
+	model.response = response;
+	model.connector = connector;
+	model.connector.model = model;
+	model._promise = true;
+	model._wireMethods();
+	return model;
+};
+
+<span id='Arrow-Model-static-method-define'>/**
+</span> * @method define
+ * @static
+ * Extends a new Model object.
+ * @param {String} name Name of the new Model.
+ * @param {ArrowModelDefinition} definition Model definition object.
+ * @return {Arrow.Model}
+ * @throws {Arrow.ValidationError} Using a reserved key name in the definition object.
+ * @throws {Arrow.ORMError} Missing definition object.
+ */
+<span id='Arrow-Model-method-extend'>/**
+</span> * @method extend
+ * @alias #static-define
+ */
+Model.extend =
+	Model.define = function define(name, definition) {
+		return new Model(name, definition);
+	};
+
+function extendOrReduce(instance, name, definition, extend) {
+	var model;
+	if (typeof name === &#39;string&#39;) {
+		model = new Model(name, definition, true);
+	}
+	else if (name instanceof Model) {
+		model = name;
+	}
+	else {
+		throw new ORMError(&quot;invalid argument passed to extend. Must either be a model class or model definition&quot;);
+	}
+	model.metadata = _.merge(_.cloneDeep(instance.metadata), model.metadata);
+	model.mappings = _.merge(_.cloneDeep(instance.mappings), model.mappings);
+	if (model.fields) {
+		var fields = instance.fields;
+		if (extend) {
+			for (var key in model.fields) {
+				if (model.fields.hasOwnProperty(key)) {
+					model.fields[key]._own = true;
+				}
+			}
+			model.fields = mergeFields(model.fields, fields);
+		}
+		else {
+			// allow the extending model to just specify the fields keys and pull out
+			// the actual values from the extended model field (or merge them)
+			Object.keys(model.fields).forEach(function (name) {
+				if (name in fields) {
+					model.fields[name] = _.merge(_.cloneDeep(fields[name]), model.fields[name]);
+				} else { 
+					model.fields[name]._own = true;	
+				}
+			});
+		}
+	}
+	else {
+		model.fields = _.cloneDeep(instance.fields);
+	}
+	model.connector = model.connector || instance.connector;
+	model.methods = _.merge(_.cloneDeep(instance.methods), model.methods);
+	model.autogen = instance.autogen;
+	model.actions = (definition &amp;&amp; definition.actions) ? definition.actions : instance.actions;
+	model.disabledActions = (definition &amp;&amp; definition.disabledActions) ? definition.disabledActions : instance.disabledActions;
+	model._extended = !!extend;
+	model._supermodel = instance.name;
+	model._parent = instance;
+	model._wireMethods();
+	return model;
+}
+
+<span id='Arrow-Model-method-extend'>/**
+</span> * Creates a new Model which extends the current Model object. The fields specified in the
+ * definition object will be merged with the ones defined in the current Model object.
+ * @param {String} name Name of the new Model.
+ * @param {ArrowModelDefinition} definition Model definition object.
+ * @return {Arrow.Model}
+ * @throws {Arrow.ValidationError} Using a reserved key name in the definition object.
+ * @throws {Arrow.ORMError} Model is not valid or missing the definition object.
+ */
+Model.prototype.extend = function extend(name, definition) {
+	return extendOrReduce(this, name, definition, true);
+};
+
+<span id='Arrow-Model-method-reduce'>/**
+</span> * Creates a new Model which reduces fields from the current Model class.
+ * Only the fields specified in the definition object that are found in the current Model object
+ * will be used.
+ * @param {String} name Name of the new Model.
+ * @param {ArrowModelDefinition} definition Model definition object.
+ * @return {Arrow.Model}
+ * @throws {Arrow.ValidationError} Using a reserved key name in the definition object.
+ * @throws {Arrow.ORMError} Model is not valid or missing the definition object.
+ */
+Model.prototype.reduce = function extend(name, definition) {
+	return extendOrReduce(this, name, definition, false);
+};
+
+<span id='Arrow-Model-method-instance'>/**
+</span> * Creates an instance of this Model.
+ * @param {Object} values Attributes to set.
+ * @param {Boolean} skipNotFound Set to `true` to skip fields passed in
+ * to the `value` parameter that are not defined by the Model&#39;s schema.  By default,
+ * an error will be thrown if an undefined field is passed in.
+ * @return {Arrow.Instance}
+ * @throws {Arrow.ORMError} Model class is missing fields.
+ * @throws {Arrow.ValidationError} Missing required field or field failed validation.
+ */
+Model.prototype.instance = function instance(values, skipNotFound) {
+	if (typeof values === &#39;string&#39;) {
+		throw new ORMError(&#39;The first argument to model.instance() cannot be a string: &#39; + values);
+	}
+	return new Instance(this, values, skipNotFound);
+};
+
+function resolveOptionality(field, param) {
+	setOptionality(field);
+	if (field.default !== undefined) {
+		param.default = field.default;
+	}
+	param.required = field.required;
+	param.optional = field.optional;
+	return param;
+}
+
+<span id='Arrow-Model-method-createAPI'>/**
+</span> * Documents the create method for API usage.
+ * @return {Object}
+ */
+Model.prototype.createAPI = function createAPI() {
+	var model = this;
+	var parameters = {};
+	Object.keys(model.fields).forEach(function (k) {
+		var field = model.fields[k];
+		parameters[k] = resolveOptionality(field, {
+			description: field.description || k + &#39; field&#39;,
+			dataType: field.type,
+			type: &#39;body&#39;
+		});
+	});
+	return {
+		generated: true,
+		uiSort: 2,
+		actionGroup: &#39;write&#39;,
+		method: &#39;POST&#39;,
+		nickname: &#39;Create&#39;,
+		description: this.createDescription || &#39;Create a &#39; + this.singular,
+		beforeEvent: this.beforeCreateEvent || this.beforeEvent,
+		afterEvent: this.afterCreateEvent || this.afterEvent,
+		eventTransformer: this.createEventTransformer || this.eventTransformer,
+		parameters: parameters,
+		responses: {
+			201: {
+				description: &#39;The create succeeded.&#39;,
+				headers: {
+					Location: {
+						description: &#39;The URL to the newly created instance.&#39;,
+						type: &#39;string&#39;
+					}
+				}
+			}
+		},
+		action: function createAction(req, resp, next) {
+			try {
+				req.model.create(req.params, next);
+			}
+			catch (E) {
+				return next(E);
+			}
+		}
+	};
+};
+
+<span id='Arrow-Model-method-create'>/**
+</span> * Creates a new Model or Collection object.
+ * @param {Array&lt;Object&gt;/Object} [values] Attributes to set on the new model(s).
+ * @param {Function} callback Callback passed an Error object (or null if successful), and the new model or collection.
+ * @throws {Error}
+ */
+Model.prototype.create = function create(values, callback) {
+	if (_.isFunction(values)) {
+		callback = values;
+		values = {};
+	}
+	// if we have an array of values, create all the users in one shot
+	// in the case of a DB, you want to send them in batch
+	if (Array.isArray(values)) {
+		return this.getConnector().createMany(this, values.map(function (v) {
+			return this.instance(v, false).toPayload();
+		}.bind(this)), callback);
+	}
+	try {
+		// we need to create an instance to run the validator logic if any
+		var instance = this.instance(values, false);
+		var payload = instance.toPayload();
+		var pk = this.getConnector().getPrimaryKey(this, instance) || &#39;id&#39;;
+		if (values[pk]) {
+			payload[pk] = values[pk];
+		}
+		var next = callback,
+			cache = this.cache;
+		if (cache) {
+			next = function (err, result) {
+				if (result &amp;&amp; result.getPrimaryKey) {
+					cache.del(&#39;count&#39;);
+					cache.del(&#39;findAll&#39;);
+					cache.set(result.getPrimaryKey(), result);
+				}
+				return callback &amp;&amp; callback.apply(this, arguments);
+			};
+		}
+		this.getConnector().create(this, payload, next);
+	}
+	catch (E) {
+		if (E instanceof ORMError) {
+			if (callback) {
+				return callback(E);
+			}
+		}
+		throw E;
+	}
+};
+
+<span id='Arrow-Model-method-updateAPI'>/**
+</span> * Documents the update method for API usage.
+ * @returns {Object}
+ */
+Model.prototype.updateAPI = function updateAPI() {
+	var model = this;
+	var parameters = {
+		id: {
+			description: &#39;The &#39; + this.singular + &#39; ID&#39;,
+			required: true,
+			optional: false,
+			type: &#39;path&#39;,
+			dataType: &#39;string&#39;
+		}
+	};
+	Object.keys(model.fields).forEach(function (k) {
+		var field = model.fields[k];
+		parameters[k] = resolveOptionality(field, {
+			description: field.description || k + &#39; field&#39;,
+			dataType: field.type,
+			type: &#39;body&#39;
+		});
+		parameters[k].required = false;
+		parameters[k].optional = true;
+	});
+	return {
+		generated: true,
+		uiSort: 5,
+		path: &#39;./:id&#39;,
+		actionGroup: &#39;write&#39;,
+		method: &#39;PUT&#39;,
+		nickname: &#39;Update&#39;,
+		description: this.updateDescription || &#39;Update a specific &#39; + this.singular,
+		beforeEvent: this.beforeUpdateEvent || this.beforeEvent,
+		afterEvent: this.afterUpdateEvent || this.afterEvent,
+		eventTransformer: this.updateEventTransformer || this.eventTransformer,
+		parameters: parameters,
+		dependsOnAll: [&#39;save&#39;],
+		responses: {
+			204: {
+				description: &#39;The update succeeded.&#39;
+			}
+		},
+		action: function updateAction(req, resp, next) {
+			req.model.fetch(req.params.id, resp.createCallback(null, function putSuccessCallback(model, cb) {
+				try {
+					model.set(req.params);
+					model.save(cb);
+				}
+				catch (E) {
+					return next(E);
+				}
+			}, next));
+		}
+	};
+};
+
+<span id='Arrow-Model-method-save'>/**
+</span> * @method save
+ * Updates a Model instance.
+ * @param {Arrow.Instance} instance Model instance to update.
+ * @param {Function} callback Callback passed an Error object (or null if successful) and the updated model.
+ */
+<span id='Arrow-Model-method-update'>/**
+</span> * @method update
+ * @alias #save
+ */
+Model.prototype.update =
+	Model.prototype.save = function save(instance, callback) {
+		if (instance.isDeleted &amp;&amp; instance.isDeleted()) {
+			callback &amp;&amp; callback(new ORMError(&#39;instance has already been deleted&#39;));
+			return;
+		}
+		if (!(instance instanceof Instance) || instance.isUnsaved()) {
+			if (!(instance instanceof Instance)) {
+				// do we have an id? then we can look up the instance directly!
+				if (instance.id) {
+					return this.findByID(instance.id, function findByIDCallback(err, _instance) {
+						if (err) { return callback(err); }
+						if (!_instance) { return callback(&quot;trying to update, couldn&#39;t find record with primary key: &quot; + instance.id + &quot; for &quot; + this.name); }
+						_instance.set(instance);
+						this.update(_instance, callback);
+					}.bind(this));
+				}
+				// otherwise, we can try instantiating the instance directly right here.
+				this.instance(instance, false);
+			}
+			var cache = this.cache;
+			this.getConnector().save(this, instance, function saveCallback(err, result) {
+				if (err) { return callback &amp;&amp; callback(err); }
+				if (result) {
+					result._dirty = false;
+					result.emit(&#39;save&#39;);
+					if (cache) {
+						cache.del(&#39;findAll&#39;);
+						cache.set(result.getPrimaryKey(), result);
+					}
+				}
+				else if (cache) {
+					cache.reset();
+				}
+
+				callback &amp;&amp; callback(null, result);
+			});
+		}
+		// no changes, just return it
+		else {
+			return callback &amp;&amp; callback(null, instance);
+		}
+	};
+
+<span id='Arrow-Model-method-deleteAPI'>/**
+</span> * Documents the delete method for API usage.
+ * @returns {Object}
+ */
+Model.prototype.deleteAPI = function deleteAPI() {
+	return {
+		generated: true,
+		uiSort: 10,
+		path: &#39;./:id&#39;,
+		actionGroup: &#39;write&#39;,
+		method: &#39;DELETE&#39;,
+		nickname: &#39;Delete One&#39;,
+		beforeEvent: this.beforeDeleteEvent || this.beforeEvent,
+		afterEvent: this.afterDeleteEvent || this.afterEvent,
+		eventTransformer: this.deleteEventTransformer || this.eventTransformer,
+		description: this.deleteDescription || &#39;Delete a specific &#39; + this.singular,
+		parameters: {
+			id: {
+				description: &#39;The &#39; + this.singular + &#39; ID&#39;,
+				optional: false,
+				required: true,
+				type: &#39;path&#39;,
+				dataType: &#39;string&#39;
+			}
+		},
+		responses: {
+			204: {
+				description: &#39;The delete succeeded.&#39;
+			}
+		},
+		action: function deleteAction(req, resp, next) {
+			try {
+				req.model.remove(req.params.id, next);
+			}
+			catch (E) {
+				return next(E);
+			}
+		}
+	};
+};
+
+<span id='Arrow-Model-method-remove'>/**
+</span> * @method remove
+ * Deletes the model instance.
+ * @param {Arrow.Instance} instance Model instance.
+ * @param {Function} callback Callback passed an Error object (or null if successful), and the deleted model.
+ */
+<span id='Arrow-Model-method-delete'>/**
+</span> * @method delete
+ * @alias #remove
+ */
+Model.prototype.delete =
+	Model.prototype.remove = function remove(instance, callback) {
+		if (typeof instance === &#39;object&#39; &amp;&amp; instance._deleted) {
+			return callback &amp;&amp; callback(new ORMError(&#39;instance has already been deleted&#39;));
+		}
+		// quick validation
+		if (_.isFunction(instance)) {
+			callback = instance;
+			instance = undefined;
+		}
+		// array of ids means multiple delete
+		if (_.isArray(instance)) {
+			return this.getConnector().deleteMany(this, instance, callback);
+		}
+		// if we specified a non-Instance, we need to findByID to get the instance
+		// and then delete it
+		if (typeof instance !== &#39;object&#39;) {
+			return this.findByID(instance, function findByIDCallback(err, _instance) {
+				if (err) { return callback(err); }
+				if (!_instance) { return callback(&quot;trying to remove, couldn&#39;t find record with primary key: &quot; + instance + &quot; for &quot; + this.name); }
+				this.remove(_instance, callback);
+			}.bind(this));
+		}
+		var cache = this.cache;
+		this.getConnector().delete(this, instance, function deleteCallback(err, result) {
+			if (err) { return callback &amp;&amp; callback(err); }
+			if (result) {
+				result._deleted = true;
+				result.emit(&#39;delete&#39;);
+				if (cache) {
+					cache.del(&#39;count&#39;);
+					cache.del(&#39;findAll&#39;);
+					cache.set(result.getPrimaryKey(), result);
+				}
+			}
+			else if (cache) {
+				cache.reset();
+			}
+			callback &amp;&amp; callback(null, result);
+		});
+	};
+
+<span id='Arrow-Model-method-deleteAllAPI'>/**
+</span> * Documents the delete all method for API usage.
+ * @returns {Object}
+ */
+Model.prototype.deleteAllAPI = function deleteAllAPI() {
+	return {
+		generated: true,
+		uiSort: 11,
+		method: &#39;DELETE&#39;,
+		actionGroup: &#39;write&#39;,
+		nickname: &#39;Delete All&#39;,
+		description: this.deleteAllDescription || &#39;Deletes all &#39; + this.plural,
+		beforeEvent: this.beforeDeleteAllEvent || this.beforeEvent,
+		afterEvent: this.afterDeleteAllEvent || this.afterEvent,
+		eventTransformer: this.deleteAllEventTransformer || this.eventTransformer,
+		responses: {
+			204: {
+				description: &#39;The delete succeeded.&#39;
+			}
+		},
+		action: function deleteAction(req, resp, next) {
+			req.model.deleteAll(resp.createCallback(null, function delAllSuccessCallback(count, cb) {
+				if (count !== undefined) {
+					resp.noContent(cb);
+				}
+				else {
+					resp.notFound(cb);
+				}
+			}, next));
+		}
+	};
+};
+
+<span id='Arrow-Model-method-removeAll'>/**
+</span> * @method removeAll
+ * Deletes all the data records.
+ * @param {Function} callback Callback passed an Error object (or null if successful), and the deleted models.
+ */
+<span id='Arrow-Model-method-deleteAll'>/**
+</span> * @method deleteAll
+ * @alias #removeAll
+ */
+Model.prototype.deleteAll =
+	Model.prototype.removeAll = function removeAll(callback) {
+		var next = callback,
+			cache = this.cache;
+		if (cache) {
+			next = function () {
+				cache.reset();
+				return callback &amp;&amp; callback.apply(this, arguments);
+			};
+		}
+		this.getConnector().deleteAll(this, next);
+	};
+
+<span id='Arrow-Model-method-distinctAPI'>/**
+</span> * Documents the distinct method for API usage.
+ * @returns {Object}
+ */
+Model.prototype.distinctAPI = function distinctAPI() {
+	var result = this.queryAPI();
+	result.nickname = &#39;Distinct&#39;;
+	result.uiSort = 9;
+	result.path = &#39;./distinct/:field&#39;;
+	result.description = this.distinctDescription || &#39;Find distinct &#39; + this.plural;
+	result.dependsOnAny = [&#39;query&#39;];
+	result.beforeEvent = this.beforeDistinctEvent || this.beforeEvent;
+	result.afterEvent = this.afterDistinctEvent || this.afterEvent;
+	result.eventTransformer = this.distinctEventTransformer || this.eventTransformer;
+	result.responses = {
+		200: {
+			description: &#39;The request succeeded, and the results are available.&#39;,
+			schema: {
+				type: &#39;integer&#39;
+			}
+		}
+	};
+	result.parameters.field = {
+		type: &#39;path&#39;,
+		optional: false,
+		required: true,
+		dataType: &#39;string&#39;,
+		description: &#39;The field name that must be distinct.&#39;
+	};
+	result.responses[200] = {
+		description: &#39;Distinct fields response.&#39;,
+		schema: {
+			type: &#39;array&#39;,
+			items: {
+				type: &#39;string&#39;
+			},
+			uniqueItems: true
+		}
+	};
+	result.action = function distinctAction(req, resp, next) {
+		var field = req.params.field;
+		delete req.params.field;
+		resp.stream(req.model.distinct, field, req.params, next);
+	};
+	return result;
+};
+
+<span id='Arrow-Model-method-distinct'>/**
+</span> * Finds unique values using the provided field.
+ * @param {String} field The field that must be distinct.
+ * @param {ArrowQueryOptions} options Query options.
+ * @param {Function} callback Callback passed an Error object (or null if successful) and the distinct models.
+ * @throws {Error} Failed to parse query options.
+ */
+Model.prototype.distinct = function distinct(field, options, callback) {
+	try {
+		options = prepareQueryOptions(this, options);
+	}
+	catch (E) {
+		return callback(E);
+	}
+	this.getConnector().distinct(this, field, options, callback);
+};
+
+<span id='Arrow-Model-method-findByIDAPI'>/**
+</span> * Documents the findByID method for API usage.
+ * @return {Object}
+ */
+Model.prototype.findByIDAPI = function findByIDAPI() {
+	return {
+		generated: true,
+		uiSort: 4,
+		path: &#39;./:id&#39;,
+		actionGroup: &#39;read&#39;,
+		nickname: &#39;Find By ID&#39;,
+		method: &#39;GET&#39;,
+		description: this.findByIDDescription || this.findByIdDescription || this.findOneDescription || &#39;Find one &#39; + this.singular + &#39; by ID&#39;,
+		beforeEvent: this.beforeFindByIDEvent || this.beforeFindByIdEvent || this.beforeFindOneEvent || this.beforeEvent,
+		afterEvent: this.afterFindByIDEvent || this.afterFindByIdEvent || this.afterFindOneEvent || this.afterEvent,
+		eventTransformer: this.findByIDEventTransformer || this.findByIdEventTransformer || this.findOneEventTransformer || this.eventTransformer,
+		parameters: {
+			id: {
+				description: &#39;The &#39; + this.singular + &#39; ID&#39;,
+				optional: false,
+				required: true,
+				type: &#39;path&#39;,
+				dataType: &#39;string&#39;
+			}
+		},
+		responses: {
+			200: {
+				description: &#39;The find succeeded, and the results are available.&#39;,
+				schema: {
+					$ref: &#39;#/definitions/&#39; + this.name.replace(/\//g, &#39;_&#39;)
+				}
+			}
+		},
+		action: function findByIDAction(req, resp, next) {
+			try {
+				resp.stream(req.model.findByID, req.params.id, next);
+			}
+			catch (E) {
+				return next(E);
+			}
+		}
+	};
+};
+
+<span id='Arrow-Model-method-findOne'>/**
+</span> * Warning: This method is being deprecated and should not be used in your implementation.
+ * Finds a model instance using the primary key.
+ */
+Model.prototype.findOne = function () {
+	// Get connector&#39;s logger or fallbacks to console.warn if it not exists
+	var connector = this.getConnector();
+	var log = connector.logger ? connector.logger.warn.bind(connector.logger) : console.warn.bind(console);
+
+	log(&#39;The findOne method of a model is deprecated and will be removed in an upcoming major release. Please use findById instead.&#39;);
+
+	// Fallback to findByID
+	return this.findByID.apply(this, arguments);
+};
+
+<span id='Arrow-Model-method-findByID'>/**
+</span> * Finds a model instance using the primary key.
+ * @param {String} id ID of the model to find.
+ * @param {Function} callback Callback passed an Error object (or null if successful) and the found model.
+ */
+Model.prototype.findByID = Model.prototype.findById = function findByID(id, callback) {
+	try {
+		var next = callback,
+			cache = this.cache;
+		if (!_.isArray(id) &amp;&amp; cache) {
+			var cached = cache.get(id);
+			if (cached) {
+				return callback(null, cached);
+			}
+			next = function (err, result) {
+				if (result &amp;&amp; result.getPrimaryKey) {
+					cache.set(result.getPrimaryKey(), result);
+				}
+				callback.apply(this, arguments);
+			};
+		}
+		var connector = this.getConnector();
+		if (connector.findByID) {
+			connector[_.isArray(id) ? &#39;findManyByID&#39; : &#39;findByID&#39;](this, id, next);
+		} else if (connector.findById) {
+			connector[_.isArray(id) ? &#39;findManyById&#39; : &#39;findById&#39;](this, id, next);
+		} else {
+			connector[_.isArray(id) ? &#39;findOneMany&#39; : &#39;findOne&#39;](this, id, next);
+		}
+	} catch (E) {
+		return callback(E);
+	}
+};
+
+<span id='Arrow-Model-method-findAndModifyAPI'>/**
+</span> * Documents the query method for API usage.
+ * @returns {Object}
+ */
+Model.prototype.findAndModifyAPI = function findAndModifyAPI() {
+	var model = this;
+	var parameters = {
+		limit: {
+			type: &#39;query&#39;,
+			optional: true,
+			required: false,
+			dataType: &#39;number&#39;,
+			default: 10,
+			description: &#39;The number of records to fetch. The value must be greater than 0, and no greater than 1000.&#39;
+		},
+		skip: {
+			type: &#39;query&#39;,
+			optional: true,
+			required: false,
+			dataType: &#39;number&#39;,
+			default: 0,
+			description: &#39;The number of records to skip. The value must not be less than 0.&#39;
+		},
+		where: {
+			type: &#39;query&#39;,
+			optional: true,
+			required: false,
+			dataType: &#39;object&#39;,
+			description: &#39;Constrains values for fields. The value should be encoded JSON.&#39;
+		},
+		order: {
+			type: &#39;query&#39;,
+			optional: true,
+			required: false,
+			dataType: &#39;object&#39;,
+			description: &#39;A dictionary of one or more fields specifying sorting of results. In general, you can sort based on any predefined field that you can query using the where operator, as well as on custom fields. The value should be encoded JSON.&#39;
+		},
+		sel: {
+			type: &#39;query&#39;,
+			optional: true,
+			required: false,
+			dataType: &#39;object&#39;,
+			description: &#39;Selects which fields to return from the query. Others are excluded. The value should be encoded JSON.&#39;
+		},
+		unsel: {
+			type: &#39;query&#39;,
+			optional: true,
+			required: false,
+			dataType: &#39;object&#39;,
+			description: &#39;Selects which fields to not return from the query. Others are included. The value should be encoded JSON.&#39;
+		},
+		page: {
+			type: &#39;query&#39;,
+			optional: true,
+			required: false,
+			default: 1,
+			dataType: &#39;number&#39;,
+			description: &#39;Request page number starting from 1.&#39;
+		},
+		per_page: {
+			type: &#39;query&#39;,
+			optional: true,
+			required: false,
+			default: 10,
+			dataType: &#39;number&#39;,
+			description: &#39;Number of results per page.&#39;
+		}
+	};
+	Object.keys(model.fields).forEach(function (k) {
+		var field = model.fields[k];
+		parameters[k] = resolveOptionality(field, {
+			description: field.description || k + &#39; field&#39;,
+			optional: field.optional,
+			required: field.required,
+			type: &#39;body&#39;,
+			dataType: field.type
+		});
+	});
+	return {
+		generated: true,
+		uiSort: 6,
+		path: &#39;./findAndModify&#39;,
+		actionGroup: &#39;write&#39;,
+		method: &#39;PUT&#39;,
+		nickname: &#39;Find and Modify&#39;,
+		dependsOnAll: [&#39;query&#39;, &#39;create&#39;, &#39;save&#39;],
+		beforeEvent: this.beforeFindAndModifyEvent || this.beforeEvent,
+		afterEvent: this.afterFindAndModifyEvent || this.afterEvent,
+		eventTransformer: this.findAndModifyEventTransformer || this.eventTransformer,
+		description: this.findAndModifyDescription || &#39;Find and modify &#39; + this.plural,
+		parameters: parameters,
+		responses: {
+			204: {
+				description: &#39;The find and modify succeeded.&#39;
+			}
+		},
+		action: function queryAction(req, resp, next) {
+			try {
+				resp.stream(req.model.findAndModify, req.query, req.body, next);
+			}
+			catch (E) {
+				return next(E);
+			}
+		}
+	};
+};
+<span id='Arrow-Model-method-findAndModify'>/**
+</span> * Finds one model instance and modifies it.
+ * @param {ArrowQueryOptions} options Query options.
+ * @param {Object} doc Attributes to modify.
+ * @param {Object} [args] Optional parameters.
+ * @param {Boolean} [args.new=false] Set to `true` to return the new model instead of the original model.
+ * @param {Boolean} [args.upsert=false] Set to `true` to allow the method to create a new model.
+ * @param {Function} callback Callback passed an Error object (or null if successful) and the modified model.
+ * @throws {Error} Failed to parse query options.
+ */
+Model.prototype.findAndModify = function findAndModify(options, doc, args, callback) {
+	try {
+		options = prepareQueryOptions(this, options);
+		var next = callback,
+			cache = this.cache;
+		if (cache) {
+			next = function () {
+				cache.reset();
+				return callback &amp;&amp; callback.apply(this, arguments);
+			};
+		}
+		this.getConnector().findAndModify(this, options, doc, args, next);
+	}
+	catch (E) {
+		callback(E);
+	}
+};
+
+<span id='Arrow-Model-method-findAllAPI'>/**
+</span> * Documents the findAll method for API usage.
+ * @returns {Object}
+ */
+Model.prototype.findAllAPI = function findAllAPI() {
+	return {
+		generated: true,
+		uiSort: 1,
+		beforeEvent: this.beforeFindAllEvent || this.beforeEvent,
+		afterEvent: this.afterFindAllEvent || this.afterEvent,
+		eventTransformer: this.findAllEventTransformer || this.eventTransformer,
+		nickname: &#39;Find All&#39;,
+		description: this.findAllDescription || &#39;Find all &#39; + this.plural,
+		actionGroup: &#39;read&#39;,
+		method: &#39;GET&#39;,
+		dependsOnAny: [&#39;findAll&#39;, &#39;query&#39;],
+		responses: {
+			200: {
+				description: &#39;The find all succeeded, and the results are available.&#39;,
+				schema: {
+					type: &#39;array&#39;,
+					items: {
+						$ref: &#39;#/definitions/&#39; + this.name.replace(/\//g, &#39;_&#39;)
+					}
+				}
+			}
+		},
+		action: function findAllAction(req, resp, next) {
+			try {
+				resp.stream(req.model.findAll, next);
+			}
+			catch (E) {
+				return next(E);
+			}
+		}
+	};
+};
+
+<span id='Arrow-Model-method-findAll'>/**
+</span> * Finds all model instances.  A maximum of 1000 models are returned.
+ * @param {Function} callback Callback passed an Error object (or null if successful) and the models.
+ */
+Model.prototype.findAll = function findAll(callback) {
+	try {
+		var next = callback,
+			cache = this.cache;
+		if (cache) {
+			var cached = cache.get(&#39;findAll&#39;);
+			if (cached) {
+				return callback(null, cached);
+			}
+			next = function (err, results) {
+				if (results) {
+					cache.set(&#39;findAll&#39;, results);
+					if (_.isArray(results)) {
+						for (var i = 0; i &lt; results.length; i++) {
+							var result = results[i];
+							if (result.getPrimaryKey()) {
+								cache.set(result.getPrimaryKey(), result);
+							}
+						}
+					}
+				}
+				callback.apply(this, arguments);
+			};
+		}
+
+		if (this.getConnector().findAll) {
+			return this.getConnector().findAll(this, next);
+		}
+		else {
+			return this.query({limit: 1000}, next);
+		}
+	}
+	catch (E) {
+		callback(E);
+	}
+};
+
+<span id='Arrow-Model-method-countAPI'>/**
+</span> * Documents the count method for API usage.
+ * @returns {Object}
+ */
+Model.prototype.countAPI = function countAPI() {
+	var result = this.queryAPI();
+	result.nickname = &#39;Count&#39;;
+	result.uiSort = 7;
+	result.path = &#39;./count&#39;;
+	result.description = this.countDescription || &#39;Count &#39; + this.plural;
+	result.dependsOnAny = [&#39;query&#39;];
+	result.beforeEvent = this.beforeCountEvent || this.beforeEvent;
+	result.afterEvent = this.afterCountEvent || this.afterEvent;
+	result.eventTransformer = this.countEventTransformer || this.eventTransformer;
+	result.responses = {
+		200: {
+			description: &#39;The count succeeded, and the results are available.&#39;,
+			schema: {
+				type: &#39;integer&#39;
+			}
+		}
+	};
+	result.action = function countAction(req, resp, next) {
+		resp.stream(req.model.count, req.params, function (err, results) {
+			var count = 0;
+			if (Array.isArray(results)) {
+				count = results.length;
+			}
+			else if (typeof(results) === &#39;number&#39;) {
+				count = results;
+			}
+			return next(null, count);
+		});
+	};
+	return result;
+};
+
+<span id='Arrow-Model-method-count'>/**
+</span> * Gets a count of records.
+ * @param {ArrowQueryOptions} options Query options.
+ * @param {Function} callback Callback passed an Error object (or null if successful) and the number of models found.
+ */
+Model.prototype.count = function count(options, callback) {
+	try {
+		if (_.isFunction(options) &amp;&amp; !callback) {
+			callback = options;
+			options = {};
+		}
+		var next = callback,
+			cache = this.cache;
+		if (cache &amp;&amp; (!options || Object.keys(options).length === 0)) {
+			var cached = cache.get(&#39;count&#39;);
+			if (cached) {
+				return callback(null, cached);
+			}
+			next = function (err, results) {
+				if (results) {
+					cache.set(&#39;count&#39;, results);
+				}
+				callback.apply(this, arguments);
+			};
+		}
+		this.getConnector().count(this, options, next);
+	}
+	catch (E) {
+		callback(E);
+	}
+};
+
+<span id='Arrow-Model-method-upsertAPI'>/**
+</span> * Documents the upsert method for API usage.
+ * @returns {Object}
+ */
+Model.prototype.upsertAPI = function upsertAPI() {
+	var result = this.createAPI();
+	result.nickname = &#39;Upsert&#39;;
+	result.uiSort = 8;
+	result.path = &#39;./upsert&#39;;
+	result.actionGroup = &#39;write&#39;;
+	result.description = this.upsertDescription || &#39;Create or update a &#39; + this.singular;
+	result.parameters.id = {
+		description: &#39;The &#39; + this.singular + &#39; ID&#39;,
+		type: &#39;body&#39;,
+		optional: true,
+		required: false,
+		dataType: &#39;string&#39;
+	};
+	result.dependsOnAll = [&#39;save&#39;, &#39;create&#39;];
+	result.beforeEvent = this.beforeUpsertEvent || this.beforeEvent;
+	result.afterEvent = this.afterUpsertEvent || this.afterEvent;
+	result.eventTransformer = this.upsertEventTransformer || this.eventTransformer;
+	result.responses = {
+		201: {
+			description: &#39;The upsert succeeded, and resulted in an insert.&#39;,
+			headers: {
+				Location: {
+					description: &#39;The URL to the newly created instance.&#39;,
+					type: &#39;string&#39;
+				}
+			}
+		},
+		204: {
+			description: &#39;The upsert succeeded, and resulted in an update.&#39;
+		}
+	};
+	result.action = function upsertAction(req, resp, next) {
+		try {
+			req.model.upsert(req.params.id, req.params, next);
+		}
+		catch (E) {
+			return next(E);
+		}
+	};
+	return result;
+};
+
+<span id='Arrow-Model-method-upsert'>/**
+</span> * Updates a model or creates the model if it cannot be found.
+ * @param {String} id ID of the model to update.
+ * @param {Object} doc Model attributes to set.
+ * @param {Function} callback Callback passed an Error object (or null if successful) and the updated or new model.
+ */
+Model.prototype.upsert = function upsert(id, doc, callback) {
+	// we need to create an instance to run the validator logic if any
+	try {
+		var instance = this.instance(doc, false);
+		var payload = instance.toPayload();
+		var pk = this.getConnector().getPrimaryKey(this, instance) || &#39;id&#39;;
+		if (doc[pk]) {
+			payload[pk] = doc[pk];
+		}
+		var next = callback,
+			cache = this.cache;
+		if (cache) {
+			next = function () {
+				cache.del(&#39;count&#39;);
+				cache.del(&#39;findAll&#39;);
+				if (id) {
+					cache.del(id);
+				}
+				return callback &amp;&amp; callback.apply(this, arguments);
+			};
+		}
+		this.getConnector().upsert(this, id, payload, next);
+	}
+	catch (E) {
+		callback(E);
+	}
+};
+
+<span id='Arrow-Model-method-queryAPI'>/**
+</span> * Documents the query method for API usage.
+ * @returns {Object}
+ */
+Model.prototype.queryAPI = function queryAPI() {
+	return {
+		nickname: &#39;Query&#39;,
+		generated: true,
+		uiSort: 3,
+		path: &#39;./query&#39;,
+		method: &#39;GET&#39;,
+		description: this.queryDescription || &#39;Query &#39; + this.plural,
+		actionGroup: &#39;read&#39;,
+		parameters: {
+			limit: {
+				type: &#39;query&#39;,
+				optional: true,
+				required: false,
+				default: 10,
+				dataType: &#39;number&#39;,
+				description: &#39;The number of records to fetch. The value must be greater than 0, and no greater than 1000.&#39;
+			},
+			skip: {
+				type: &#39;query&#39;,
+				optional: true,
+				required: false,
+				default: 0,
+				dataType: &#39;number&#39;,
+				description: &#39;The number of records to skip. The value must not be less than 0.&#39;
+			},
+			where: {
+				type: &#39;query&#39;,
+				optional: true,
+				required: false,
+				dataType: &#39;object&#39;,
+				description: &#39;Constrains values for fields. The value should be encoded JSON.&#39;
+			},
+			order: {
+				type: &#39;query&#39;,
+				optional: true,
+				required: false,
+				dataType: &#39;object&#39;,
+				description: &#39;A dictionary of one or more fields specifying sorting of results. In general, you can sort based on any predefined field that you can query using the where operator, as well as on custom fields. The value should be encoded JSON.&#39;
+			},
+			sel: {
+				type: &#39;query&#39;,
+				optional: true,
+				required: false,
+				dataType: &#39;object&#39;,
+				description: &#39;Selects which fields to return from the query. Others are excluded. The value should be encoded JSON.&#39;
+			},
+			unsel: {
+				type: &#39;query&#39;,
+				optional: true,
+				required: false,
+				dataType: &#39;object&#39;,
+				description: &#39;Selects which fields to not return from the query. Others are included. The value should be encoded JSON.&#39;
+			},
+			page: {
+				type: &#39;query&#39;,
+				optional: true,
+				required: false,
+				default: 1,
+				dataType: &#39;number&#39;,
+				description: &#39;Request page number starting from 1.&#39;
+			},
+			per_page: {
+				type: &#39;query&#39;,
+				optional: true,
+				required: false,
+				default: 10,
+				dataType: &#39;number&#39;,
+				description: &#39;Number of results per page.&#39;
+			}
+		},
+		beforeEvent: this.beforeQueryEvent || this.beforeEvent,
+		afterEvent: this.afterQueryEvent || this.afterEvent,
+		eventTransformer: this.queryEventTransformer || this.eventTransformer,
+		responses: {
+			200: {
+				description: &#39;The query succeeded, and the results are available.&#39;,
+				schema: {
+					type: &#39;array&#39;,
+					items: {
+						$ref: &#39;#/definitions/&#39; + this.name.replace(/\//g, &#39;_&#39;)
+					}
+				}
+			}
+		},
+		action: function queryAction(req, resp, next) {
+			try {
+				resp.stream(req.model.query, req.params, next);
+			}
+			catch (E) {
+				return next(E);
+			}
+		}
+	};
+};
+
+<span id='Arrow-Model-method-query'>/**
+</span> * Queries for particular model records.
+ * @param {ArrowQueryOptions} options Query options.
+ * @param {Function} callback Callback passed an Error object (or null if successful) and the model records.
+ * @throws {Error} Failed to parse query options.
+ */
+Model.prototype.query = function query(options, callback) {
+	if (typeof options === &#39;function&#39;) {
+		callback = options;
+		options = {};
+	}
+
+	try {
+		options = prepareQueryOptions(this, options);
+		this.getConnector().query(this, options, ((options &amp;&amp; options.limit &amp;&amp; options.limit === 1) ? function (err, collection) {
+			if (err) { return callback(err); }
+			// if we asked for limit 1 record on query, just return an object instead of an array
+			if (collection) {
+				var instance = collection &amp;&amp; collection[0];
+				return callback(null, instance);
+			}
+			return callback(null, collection);
+		} : callback));
+	}
+	catch (E) {
+		return callback(E);
+	}
+
+};
+
+<span id='Arrow-Model-method-find'>/**
+</span> * @method find
+ * Finds a particular model record or records.
+ * @param {Object/String} [options] Key-value pairs or ID of the model to find. If omitted, performs a findAll operation.
+ * @param {Function} callback Callback passed an Error object (or null if successful) and the model record(s).
+ * @throws {Error} Wrong number of arguments.
+ */
+<span id='Arrow-Model-method-fetch'>/**
+</span> * @method fetch
+ * @alias #find
+ */
+Model.prototype.fetch =
+	Model.prototype.find = function find() {
+		switch (arguments.length) {
+			case 1:
+			{
+				return this.findAll(arguments[0]);
+			}
+			case 2:
+			{
+				var options = arguments[0],
+					callback = arguments[1];
+				if (_.isObject(options)) {
+					return this.query(options, callback);
+				}
+				return this.findByID(options, callback);
+			}
+			default:
+			{
+				throw new Error(&quot;wrong number of parameters passed&quot;);
+			}
+		}
+	};
+
+<span id='Arrow-Model-method-getMeta'>/**
+</span> * Returns model metadata.
+ * @param {String} key Key to retrieve.
+ * @param {Any} def Default value to return if the key is not set.
+ * Does not set the value of the key.
+ * @returns {Any}
+ */
+Model.prototype.getMeta = function getMeta(key, def) {
+	var m1 = this._connector &amp;&amp; this.metadata[this._connector];
+	if (m1 &amp;&amp; m1[key]) {
+		return m1[key];
+	}
+	var m2 = this.getConnector() &amp;&amp; this.metadata[this.getConnector().name];
+	if (m2 &amp;&amp; m2[key]) {
+		return m2[key];
+	}
+	var m3 = this.metadata;
+	if (m3 &amp;&amp; m3[key]) {
+		return m3[key];
+	}
+	return def || null;
+};
+
+<span id='Arrow-Model-method-setMeta'>/**
+</span> * Sets metadata for the model.
+ * @param {String} key Key name.
+ * @param {Any} value Value to set.
+ */
+Model.prototype.setMeta = function setMeta(key, value) {
+	var connector = this.getConnector();
+	var entry = this.metadata[connector.name];
+	if (!entry) {
+		entry = this.metadata[connector.name] = {};
+	}
+	entry[key] = value;
+};
+
+<span id='Arrow-Model-method-keys'>/**
+</span> * Returns the field keys for the Model.
+ * @returns {Array&lt;String&gt;}
+ */
+Model.prototype.keys = function keys() {
+	return Object.keys(this.fields);
+};
+
+<span id='Arrow-Model-method-payloadKeys'>/**
+</span> * Returns the payload keys (model field names) for the Model.
+ * @return {Array&lt;String&gt;}
+ */
+Model.prototype.payloadKeys = function keys() {
+	var retVal = [];
+	for (var key in this.fields) {
+		if (this.fields.hasOwnProperty(key) &amp;&amp; !this.fields[key].custom) {
+			retVal.push(this.fields[key].name || key);
+		}
+	}
+	return retVal;
+};
+
+function parseBoolean(obj) {
+	if (typeof(obj) === &#39;boolean&#39;) {
+		return obj;
+	}
+	else if (typeof(obj) === &#39;string&#39;) {
+		return /^(1|true|yes|ok)$/.test(String(obj).toLowerCase());
+	}
+	return obj;
+}
+
+function parseDate(obj) {
+	if (obj instanceof Date) {
+		return obj;
+	}
+	else if (typeof(obj) === &#39;string&#39;) {
+		return new Date(Date.parse(obj));
+	}
+	return obj;
+}
+
+function parseNumber(obj) {
+	if (obj instanceof Number) {
+		return obj;
+	}
+	else if (typeof(obj) === &#39;string&#39;) {
+		return parseInt(obj, 10);
+	}
+	return obj;
+}
+
+<span id='Arrow-Model-method-translateKeysForPayload'>/**
+</span> * Returns an object containing keys translated from field keys to payload keys. This is useful for translating objects
+ * like &quot;where&quot;, &quot;order&quot;, &quot;sel&quot; and &quot;unsel&quot; to their proper named underlying payload objects.
+ * @param obj
+ * @returns {Object}
+ */
+Model.prototype.translateKeysForPayload = function translateKeysForPayload(obj) {
+	if (obj &amp;&amp; _.isString(obj)) {
+		try {
+			obj = JSON.parse(obj);
+		}
+		catch (E) {
+		}
+	}
+	if (!obj || typeof(obj) !== &#39;object&#39;) {
+		return obj;
+	}
+	var keys = Object.keys(obj);
+	if (!keys.length) {
+		return obj;
+	}
+	var translation = {};
+	for (var fieldKey in this.fields) {
+		if (this.fields.hasOwnProperty(fieldKey)) {
+			var field = this.fields[fieldKey],
+				srckey = field.name || fieldKey;
+			translation[fieldKey] = srckey;
+			switch (field.type) {
+				case &#39;number&#39;:
+				{
+					obj[srckey] = parseNumber(obj[srckey]);
+					break;
+				}
+				case &#39;boolean&#39;:
+				{
+					obj[srckey] = parseBoolean(obj[srckey]);
+					break;
+				}
+				case &#39;date&#39;:
+				{
+					obj[srckey] = parseDate(obj[srckey]);
+					break;
+				}
+				default:
+				{
+					break;
+				}
+			}
+		}
+	}
+	var retVal = {};
+	for (var i = 0; i &lt; keys.length; i++) {
+		var key = keys[i];
+		retVal[translation[key] || key] = obj[key];
+	}
+	return retVal;
+};
+
+<span id='Arrow-Model-static-method-toFunction'>/**
+</span> * Checks to see if the specified key in the object is a function
+ * and converts it to a Function if it was converted to a string.
+ * This is a helper function for the {@link #set} and {@link #get} methods.
+ * @static
+ * @param {Object} obj Object to check.
+ * @param {String} key Key to check.
+ * @returns {Function/String} If the key is not a function, returns the string, else returns the function.
+ */
+Model.toFunction = function (obj, key) {
+	// if this is a string, return
+	var fn = obj[key];
+	if (fn &amp;&amp; _.isString(fn) &amp;&amp; /^function/.test(fn.trim())) {
+		var vm = require(&#39;vm&#39;);
+		var code = &#39;var f = (&#39; + fn + &#39;); f&#39;;
+		fn = vm.runInThisContext(code, {
+			timeout: 10000
+		});
+		// re-write it so we only need to remap once
+		obj[key] = fn;
+	}
+	return fn;
+};
+
+<span id='Arrow-Model-method-get'>/**
+</span> * Processes the field value before its returned to the client.
+ * This function executes the field&#39;s `get` method defined in either the Model&#39;s {@link #mappings}
+ * property or the model definition object.
+ * @param {String} name Field name.
+ * @param {Any} value Value of the field.
+ * @param {Arrow.Instance} instance Model instance.
+ * @returns {Any} Value you want to return to the client.
+ */
+Model.prototype.get = function get(name, value, instance) {
+	var mapper = this.mappings[name] || this.fields[name];
+	if (mapper) {
+		var fn = Model.toFunction(mapper, &#39;get&#39;);
+		if (fn) {
+			return fn(value, name, instance);
+		}
+	}
+	return value;
+};
+
+<span id='Arrow-Model-method-set'>/**
+</span> * Processes the field value before its returned to the connector.
+ * This function executes the field&#39;s `set` method defined in either the Model&#39;s {@link #mappings}
+ * property or the model definition object.
+ * @param {String} name Field name.
+ * @param {Any} value Value of the field.
+ * @param {Arrow.Instance} instance Model instance.
+ * @returns {Any} Value you want to return to the connector.
+ */
+Model.prototype.set = function set(name, value, instance) {
+	var mapper = this.mappings[name] || this.fields[name];
+	if (mapper) {
+		var fn = Model.toFunction(mapper, &#39;set&#39;);
+		if (fn) {
+			return fn(value, name, instance);
+		}
+	}
+	return value;
+};
+
+<span id='Arrow-Model-method-getPrimaryKeyName'>/**
+</span> * Returns model primarykey name.
+ * @param {}
+ * @returns {String} Primary key name value.
+ */
+Model.prototype.getPrimaryKeyName = function getPrimaryKeyName() {
+	// Arrow&#39;s config serialization.exposePrimaryKeyAsId setting
+	var exposePrimaryKeyAsId = Instance.Arrow &amp;&amp; Instance.Arrow.getGlobal().config.serialization ? Instance.Arrow.getGlobal().config.serialization.exposePrimaryKeyAsId : false;
+
+	// returns the model&#39;s primary key column name or the default name &#39;id&#39;
+	return this.metadata &amp;&amp; this.metadata.primarykey &amp;&amp; !exposePrimaryKeyAsId ? this.metadata.primarykey : &#39;id&#39;;
+};
+
+/*
+ Utility.
+ */
+
+function parseProperties(object) {
+	for (var key in object) {
+		if (object.hasOwnProperty(key)) {
+			var val = object[key];
+			if (val &amp;&amp; typeof val === &#39;string&#39; &amp;&amp; val[0] === &#39;{&#39;) {
+				try {
+					val = JSON.parse(val);
+					object[key] = val;
+				}
+				catch (err) {
+					if (key === &#39;where&#39;) {
+						err.message = &#39;Failed to parse &quot;where&quot; as JSON: &#39; + err.message;
+						throw err;
+					}
+				}
+			}
+		}
+	}
+}
+
+function translateCSVToObject(str) {
+	var retVal = {},
+		split = str.split(&#39;,&#39;);
+	for (var i = 0; i &lt; split.length; i++) {
+		retVal[split[i].trim()] = 1;
+	}
+	return retVal;
+}
+
+/*
+ * Merges the fields, taking in to consideration renamed fields.
+ * @param definedFields
+ * @param inheritedFields
+ * @returns {*}
+ */
+function mergeFields(definedFields, inheritedFields) {
+	var retVal = _.merge({}, inheritedFields, definedFields);
+	for (var key in definedFields) {
+		if (definedFields.hasOwnProperty(key)) {
+			var definedField = definedFields[key];
+			if (definedField.name &amp;&amp; definedField.name !== key &amp;&amp; inheritedFields[definedField.name]) {
+				delete retVal[definedField.name];
+			}
+		}
+	}
+	return retVal;
+}
+
+/*
+ * Looks through a query &quot;where&quot; for $like and $notLike values that can be translated to $regex strings.
+ * @param where
+ */
+function translateQueryRegex(where) {
+	for (var key in where) {
+		if (where.hasOwnProperty(key)) {
+			var val = where[key];
+			if (key === &#39;$like&#39; || key === &#39;$notLike&#39;) {
+				var regex = &#39;^&#39; + val
+						.replace(/%{2}/g, &#39;\\%&#39;)
+						.replace(/(^|[^\\])%/g, &#39;$1.*&#39;)
+						.replace(/(^|[^\\])_/g, &#39;$1.&#39;) + &#39;$&#39;;
+				if (key === &#39;$like&#39;) {
+					where.$regex = regex;
+					delete where.$like;
+				}
+				else {
+					where.$not = {$regex: regex};
+					delete where.$notLike;
+				}
+			}
+			else if (_.isArray(val)) {
+				for (var i = 0; i &lt; val.length; i++) {
+					if (_.isObject(val[i])) {
+						translateQueryRegex(val[i]);
+					}
+				}
+			}
+			else if (_.isObject(val)) {
+				translateQueryRegex(val);
+			}
+		}
+	}
+}
+
+
+function prepareQueryOptions(ctx, options) {
+	// Look for JSON for us to parse.
+	parseProperties(options);
+
+	var validOptions = {where: 1, sel: 1, unsel: 1, page: 1, per_page: 1, order: 1, skip: 1, limit: 1};
+
+	// Allow mixed casing on the parameters.
+	for (var casedKey in options) {
+		if (options.hasOwnProperty(casedKey)) {
+			if (!validOptions[casedKey] &amp;&amp; validOptions[casedKey.toLowerCase()]) {
+				options[casedKey.toLowerCase()] = options[casedKey];
+				delete options[casedKey];
+			}
+		}
+	}
+
+	// Did they just pass in some fields and their values? Wrap it before passing to query.
+	if (!_.any(validOptions, function (val, key) {
+			return options[key] !== undefined;
+		})) {
+		options = {where: options};
+	}
+
+	// Translate sel and unsel, if specified.
+	if (options.sel !== undefined &amp;&amp; typeof options.sel === &#39;string&#39;) {
+		options.sel = translateCSVToObject(options.sel);
+	}
+	if (options.unsel !== undefined &amp;&amp; typeof options.unsel === &#39;string&#39;) {
+		options.unsel = translateCSVToObject(options.unsel);
+	}
+
+	if (ctx.defaultQueryOptions) {
+		options = _.merge(ctx.defaultQueryOptions, options);
+	}
+
+	// Ensure limit and per_page are set.
+	options.limit = options.per_page = +options.limit || +options.per_page || 10;
+
+	// Ensure page and skip are set.
+	if (options.page === undefined &amp;&amp; options.skip !== undefined) {
+		options.skip = +options.skip;
+		options.page = Math.floor(options.skip / options.limit) + 1;
+	}
+	else if (options.skip === undefined &amp;&amp; options.page !== undefined) {
+		options.page = +options.page;
+		options.skip = (options.page - 1) * options.per_page;
+	}
+	else {
+		options.page = 1;
+		options.skip = 0;
+	}
+
+	if (ctx.getConnector().translateWhereRegex &amp;&amp; options.where !== undefined) {
+		translateQueryRegex(options.where);
+	}
+
+	return options;
+}
+</pre>
+</body>
+</html>

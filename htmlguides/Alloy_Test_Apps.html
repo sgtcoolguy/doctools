@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Alloy Test Apps</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-41845629" class="content">
+                        <h1>Alloy Test Apps</h1>
+    <p>The Alloy GitHub repository includes a number of small test applications (<a class="external-link external-link" href="https://github.com/appcelerator/alloy/tree/master/test/apps">github.com/appcelerator/alloy/tree/master/test/apps</a>) that demonstrate various Alloy features.    </p>
+    <p>To build and run one of the test applications, do the following:    </p>
+<ul class=" "><li class=" ">    <p>Clone the Alloy project locally.    </p>
+</li><li class=" ">    <p>Create a new Alloy project, either using Studio or the CLI tools.    </p>
+</li><li class=" ">    <p>Copy the contents of the desired sample folder into the newly created Alloy project&apos;s <strong class=" ">app/</strong> folder, over-writing any existing files.    </p>
+</li><li class=" ">    <p>Build and run the application on a device, simulator, or emulator.    </p>
+</li></ul>    <p>The sample apps are organized in several folders representing the following categories:    </p>
+<ul class="childpages-macro "><li class=" ">    <p><a class="document-link " href="User_Interface.html">User Interface</a> &#x2014; Samples in the ui/ folder demonstrate use of several Titanium UI objects in an Alloy project.    </p>
+</li><li class=" ">    <p><a class="document-link " href="Advanced.html">Advanced</a> &#x2014; Samples in the advanced/ folder demonstrate advanced Alloy topics and approaches, such as advanced styling, using modules, using CommonJS modules, and more.    </p>
+</li><li class=" ">    <p><a class="document-link " href="Basics.html">Basics</a> &#x2014; Samples in the basics/ folder demonstrates basic Alloy concepts.    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_Test_Models.html">Alloy Test Models</a> &#x2014; Samples in the alloy/test/apps/models/ folder demonstrates using models, collections, and data binding in Alloy.    </p>
+</li><li class=" ">    <p><a class="document-link " href="Widgets.html">Widgets</a> &#x2014; Samples in the widgets/ folder demonstrates how to create and use Alloy widgets, which are self-contained Alloy components that can easily be shared.    </p>
+</li></ul>    <p>Note that some samples demonstrate platform-specific features that only run certain platforms.    </p>
+    <div class="section section-2 " id="src-41845629_AlloyTestApps-ImportingandRunninganAlloyTestApp">
+        <h2 class="heading "><span>Importing and Running an Alloy Test App</span></h2>
+    <p>To import one of the sample application, first clone the Alloy GitHub project locally:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">git clone https:</code><code class="comments">//github.com/appcelerator/alloy</code></div>
+</div>
+    </div>
+    <p>Once you&apos;ve selected a test app to build and run, you first create a new &quot;blank&quot; Alloy project, and then copy the contents of the sample folder into the /app folder of the newly created Alloy project. You can do this either using Appcelerator Studio or on the command line using the CLI tools, as explained below.    </p>
+    <div class="section section-3 " id="src-41845629_AlloyTestApps-UsingtheCLItools">
+        <h3 class="heading "><span>Using the CLI tools</span></h3>
+    <p>Starting with Appcelerator CLI 5.0.0 or Alloy 1.7.6, you can generate a new Alloy project using a test application from the Alloy Github repo.  (The source code is copied from the global or local install of the Alloy npm package.)    </p>
+    <p>To create an Alloy application based on a test application, first create a skeleton Titanium project, then run the Alloy new command with the <tt class=" ">--testapp &lt;path_to_test_app&gt;</tt> option.  Pass the option the relative path to the test application after the <tt class=" ">alloy/test/apps</tt> path.  For example, if you want to use the <a class="external-link external-link" href="https://github.com/appcelerator/alloy/tree/master/test/apps/ui/picker">picker test application</a>, run <tt class=" ">alloy new --testapp ui/picker</tt> from a skeleton Titanium project.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">appc </code><code class="keyword">new</code><code class="plain"> -t titanium --classic -i com.appc.picker -n AlloyPicker</code></div>
+<div class="line"><code class="plain">cd AlloyPicker</code></div>
+<div class="line"><code class="plain">appc alloy </code><code class="keyword">new</code><code class="plain"> --testapp ui/picker</code></div>
+</div>
+    </div>
+    <p>Prior to Alloy 1.7.6, you need to manually copy the source code to the new Titanium project:.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Creating a test project</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Creating a test project">
+<div class="line"><code class="plain">appc </code><code class="keyword">new</code><code class="plain"> -t titanium -n picker_test --id com.yourdomain -d . -url yourdomain.com -p all</code></div>
+<div class="line"><code class="plain">cd picker_test/</code></div>
+<div class="line"><code class="plain">cp -r &lt;alloy_repo&gt;/test/apps/ui/picker/ app/.</code></div>
+<div class="line"><code class="plain">appc run -p ios</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-41845629_AlloyTestApps-UsingAppceleratorStudio">
+        <h3 class="heading "><span>Using Appcelerator Studio</span></h3>
+    <p>To build a sample using <strong class=" ">Appcelerator Studio</strong>, first create a new Alloy project by selecting <strong class=" ">File &gt; New &gt; Mobile App Project</strong>.    </p>
+    <p>    <img src="images/download/attachments/41845629/studio_create_alloy.png" alt="images/download/attachments/41845629/studio_create_alloy.png" class="confluence-embedded-image confluence-content-image-border" width="400" height="340">
+        </p>
+    <p>Drag and drop the contents of the desired test app folder from the desktop into the new project&apos;s <strong class=" ">app/</strong> folder in Project Explorer.    </p>
+    <p>    <img src="images/download/attachments/41845629/copy_files.png" alt="images/download/attachments/41845629/copy_files.png" class="confluence-embedded-image confluence-content-image-border" width="600" height="304">
+        </p>
+    <p>When prompted, select <strong class=" ">Copy file and folders</strong> option in the File and Folder Operation dialog and click OK.    </p>
+    <p>    <img src="images/download/attachments/41845629/file_folder_dialog.png" alt="images/download/attachments/41845629/file_folder_dialog.png" class="confluence-embedded-image confluence-content-image-border" width="434" height="239">
+        </p>
+    <p>Select <strong class=" ">Yes To All</strong> when asked if you want to overwrite files in the target folder.    </p>
+    <p>    <img src="images/download/attachments/41845629/overwrite_yes.png" alt="images/download/attachments/41845629/overwrite_yes.png" class="confluence-embedded-image confluence-content-image-border" width="500" height="93">
+        </p>
+    <p>You can now build or run the application on a target device, simulator or emulator.    </p>
+    <p>    </p>
+    </div>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

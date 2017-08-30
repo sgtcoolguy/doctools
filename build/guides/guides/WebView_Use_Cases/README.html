@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>WebView Use Cases</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-29004920" class="content">
+                        <h1>WebView Use Cases</h1>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/WebView_Use_Cases-section-src-29004920_WebViewUseCases-Ti.Facebook">Ti.Facebook</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/WebView_Use_Cases-section-src-29004920_WebViewUseCases-HTML5CanvasRendering">HTML5 Canvas Rendering</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/WebView_Use_Cases-section-src-29004920_WebViewUseCases-Forms">Forms</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-29004920_WebViewUseCases-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>We&apos;ve discussed when you should and shouldn&apos;t use <tt class=" ">WebViews</tt> in your apps. It requires a careful evaluation of necessary functionality versus performance. Let&apos;s look at some real cases where <tt class=" ">WebViews</tt> are the most appropriate solution. We&apos;ll discuss integration with social networking authentication and leveraging HTML5 graphics processing as prime reasons to use <tt class=" ">WebViews</tt>.    </p>
+    <div class="section section-3 " id="src-29004920_WebViewUseCases-Ti.Facebook">
+        <h3 class="heading "><span>Ti.Facebook</span></h3>
+    <p>One of the best reasons for leveraging <tt class=" ">WebViews</tt>, integration with social networking authentication, has actually been built into the Titanium API. The <tt class=" ">Ti.Facebook</tt> module includes a login component, rendered in a <tt class=" ">WebView</tt>, that handles the authentication of Facebook users. Users are presented with the familiar Facebook login screen and once authenticated, are free to use Facebook APIs via your app.    </p>
+    <p>Here is a basic example of how this module is used. We supply <tt class=" ">Ti.Facebook</tt> with an <tt class=" ">appid</tt> and an array of <tt class=" ">permissions</tt>, set up an event handler for the login, then call the <tt class=" ">Ti.Facebook.authorize()</tt> function. The <tt class=" ">WebView</tt> that is presented with the Facebook login screen handles the rest. Here&apos;s the code, followed by the interface that your users will see when they attempt to login.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow();</code></div>
+<div class="line"><code class="plain">Titanium.Facebook.appid = </code><code class="string">&apos;[YOUR APPID]&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">Titanium.Facebook.permissions = [</code><code class="string">&apos;publish_stream&apos;</code><code class="plain">];</code></div>
+<div class="line"><code class="plain">Titanium.Facebook.addEventListener(</code><code class="string">&apos;login&apos;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (e.success) {</code></div>
+<div class="line"><code class="plain">        alert(</code><code class="string">&apos;Logged In&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (e.error) {</code></div>
+<div class="line"><code class="plain">        alert(e.error);</code></div>
+<div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (e.cancelled) {</code></div>
+<div class="line"><code class="plain">        alert(</code><code class="string">&quot;Cancelled&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">Titanium.Facebook.authorize();</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <p>    <img src="images/download/attachments/29004920/facebook.png" alt="images/download/attachments/29004920/facebook.png" class="confluence-embedded-image confluence-content-image-border">
+        </img></p>
+    <p>This is a one-time dialog that your users will immediately recognize. This is a clear case where functionality and familiarity encapsulated in a <tt class=" ">WebView</tt> more than makes up for any performance or load delay your app might incur.    </p>
+    </div>
+    <div class="section section-3 " id="src-29004920_WebViewUseCases-HTML5CanvasRendering">
+        <h3 class="heading "><span>HTML5 Canvas Rendering</span></h3>
+    <p>Titanium, through its core API, does not include a canvas-like rendering context. While Titanium can animate properties of its UI components, it can&apos;t generate graphics, animation, physics, and other interactions as one would expect in a game. Modules give us the opportunity to extend rendering capabilities through native code, but in many cases a simpler solution is more appropriate.    </p>
+    <p>Titanium developers, like other web-based mobile developers, can use the <tt class=" ">WebView</tt> component to render animations and interactions in the HTML5 &lt;canvas&gt; element. While the &lt;canvas&gt; element has varying levels of support in desktop browsers, Android and iOS webviews have supported it for some time now. Because of this, Titanium developers can deliver Flash-like apps via this powerful HTML5 element.    </p>
+    <p>A tutorial explaining how to develop with the HTML5 &lt;canvas&gt; element is beyond the scope of this document, but that doesn&apos;t mean we can&apos;t take a look at what&apos;s possible. The following screenshots give just a taste of what&apos;s possible with &lt;canvas&gt; rendering. In addition to the visuals shown, the animation and user interaction possible with this element can create very complex and immersive user experiences.    </p>
+    <p>    <img src="images/download/attachments/29004920/asteroid.jpg" alt="images/download/attachments/29004920/asteroid.jpg" class="confluence-embedded-image confluence-content-image-border" width="300">
+     <img src="images/download/attachments/29004920/hakin-trail.jpg" alt="images/download/attachments/29004920/hakin-trail.jpg" class="confluence-embedded-image confluence-content-image-border" width="300">
+    </img></img></p>
+    <p>    <img src="images/download/attachments/29004920/html5-example-7.png" alt="images/download/attachments/29004920/html5-example-7.png" class="confluence-embedded-image confluence-content-image-border" width="300">
+     <img src="images/download/attachments/29004920/liquid-particles.jpg" alt="images/download/attachments/29004920/liquid-particles.jpg" class="confluence-embedded-image confluence-content-image-border" width="300">
+    </img></img></p>
+    <p>    <img src="images/download/attachments/29004920/molecule.jpg" alt="images/download/attachments/29004920/molecule.jpg" class="confluence-embedded-image confluence-content-image-border" width="300">
+     <img src="images/download/attachments/29004920/strange-attraction.jpg" alt="images/download/attachments/29004920/strange-attraction.jpg" class="confluence-embedded-image confluence-content-image-border" width="300">
+    </img></img></p>
+    <p>As though the examples seen here aren&apos;t impressive enough, Titanium offers us even more. Titanium uniquely gives us the ability to augment our &lt;canvas&gt; code in <tt class=" ">WebViews</tt> with native UI components and services. The possibilities here can range from simple buttons and sliders to modify &lt;canvas&gt; settings to a full heads-up display overlay on fully interactive, animated web content.    </p>
+    </div>
+    <div class="section section-3 " id="src-29004920_WebViewUseCases-Forms">
+        <h3 class="heading "><span>Forms</span></h3>
+    <p>Titanium provides APIs to collect user input, such as the <a class="external-link external-link" href="#!/api/Titanium.UI.TextField">Ti.UI.TextField</a> and <a class="external-link external-link" href="#!/api/Titanium.UI.TextArea">Ti.UI.TextArea</a>. Still, HTML forms offer a couple of features that might be advantageous in some cases.    </p>
+<ul class=" "><li class=" ">    <p>WebViews are automatically scrollable, so the soft keyboard won&apos;t cover the input fields in your HTML form.    </p>
+</li><li class=" ">    <p>On iOS and some versions of Android, navigation buttons (Next, Previous, and Done) are displayed above the soft keyboard to assist data entry. Users can tap these buttons to navigate the fields of your form.    </p>
+</li><li class=" ">    <p>You can use JavaScript libraries, such as jQuery, to add form validation, field highlighting, and so forth to an HTML form displayed within a WebView in your app. HTML 5 includes form validation support, though platform implementations vary.    </p>
+</li></ul>    <p>You can control which keyboard type is displayed with a WebView form by setting attributes on the <tt class=" ">&lt;input&gt;</tt> tag. See <a class="external-link external-link" href="http://www.w3.org/TR/html5/the-input-element.html#attr-input-type" target="_blank">http://www.w3.org/TR/html5/the-input-element.html#attr-input-type</a> for more information.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-29004920_WebViewUseCases-Summary">
+        <h2 class="heading "><span>Summary</span></h2>
+    <p>In this section we saw a few particular cases where <tt class=" ">WebViews</tt> are the most appropriate way to add functionality to our apps. The <tt class=" ">Ti.Facebook</tt> module makes use of a <tt class=" ">WebView</tt> to offer users a simple and familiar way to login to the world&apos;s most popular social network. We also saw how we can use the HTML5 &lt;canvas&gt; element to create graphics, animations, and interaction that go well beyond the core capabilities of the Titanium API.    </p>
+    <p><tt class=" ">Ti.UI.WebViews</tt> are a powerful component of the Titanium API. But as we know, with great power comes great responsibility. With the knowledge gained in this chapter, you should be well equipped to determine when a <tt class=" ">WebView</tt> is appropriate, and how to best leverage its capabilities in order to deliver a high quality user experience.    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=29004920"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

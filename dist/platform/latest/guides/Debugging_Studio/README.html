@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Debugging Studio</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-30083285" class="content">
+                        <h1>Debugging Studio</h1>
+    <div class="section section-2 " id="src-30083285_DebuggingStudio-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Debugging_Studio-section-src-30083285_DebuggingStudio-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Debugging_Studio-section-src-30083285_DebuggingStudio-EnableDebugLogging">Enable Debug Logging</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Debugging_Studio-section-src-30083285_DebuggingStudio-UsingtheStudioConsole">Using the Studio Console</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30083285_DebuggingStudio-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>Studio uses a number of techniques for enabling debugging. If a Studio developer asks you to enable debugging, please follow the steps below.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083285_DebuggingStudio-EnableDebugLogging">
+        <h2 class="heading "><span>Enable Debug Logging</span></h2>
+<ol class=" "><li class=" ">    <p>Open <strong class=" ">Preferences &gt; Studio &gt; Troubleshooting</strong>    </p>
+    <img src="images/download/attachments/30083285/Screen_Shot_2012-04-22_at_6.26.55_AM.png" alt="images/download/attachments/30083285/Screen_Shot_2012-04-22_at_6.26.55_AM.png" class="confluence-embedded-image">
+    </img></li><li class=" ">    <p>Change the severity drop-down to see the desired level of messages written to the log. Caution--&quot;ALL&quot; really does mean all messages!    </p>
+</li><li class=" ">    <p>If you wish to show only show specific error messages, you can enable &quot;specific component&quot; debugging and check the area in question. If you are unsure, ask a Studio developer to help you find the area you need. Some common areas:    </p>
+<ul class=" "><li class=" ">    <p>com.aptana.core/debug/builder: Writes out when studio starts and stops building projects    </p>
+</li><li class=" ">    <p>com.aptana.core/debug/shell: Writes out what processes Studio is running on the command line    </p>
+</li></ul></li></ol>    <p>    </p>
+    </div>
+    <div class="section section-2 " id="src-30083285_DebuggingStudio-UsingtheStudioConsole">
+        <h2 class="heading "><span>Using the Studio Console</span></h2>
+    <p>If Studio does not appear to work properly, particularly if it crashes during startup, you can try and use the console to figure out what is happening.    </p>
+<ol class=" "><li class=" ">    <p>Follow the instructions <a class="document-link " href="#!/guide/Adding_Command-Line_Options">here</a> for adding a launcher argument.    </p>
+</li><li class=" ">    <p>Add <strong class=" ">-console</strong> to the launch arguments for Studio or Eclipse.    </p>
+</li><li class=" ">    <p>After the application launches, you&apos;ll see a separate console window start. Type ss at the command prompt in this window, and you&apos;ll get a list of bundles.    </p>
+</li><li class=" ">    <p>Pick the one which is not starting. If you don&apos;t see any Studio features at all, you might pick <strong class=" ">com.aptana.core.ui</strong>; note the bundle number. See if the bundle says &quot;Started&quot;.    </p>
+</li><li class=" ">    <p>If not, type <strong class=" ">start #</strong>, replacing <strong class=" ">#</strong> with the number you just saw above. Note any error message displayed and log that with a support ticket.    </p>
+</li></ol>    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=30083285"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>
