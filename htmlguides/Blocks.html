@@ -5,12 +5,12 @@
 <head>
     <title>Blocks</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,77 +18,77 @@
 
         <div id="src-49153273" class="content">
                         <h1>Blocks</h1>
-    <p  >    </p>
-<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Blocks.html#src-49153273_Blocks-Introduction">Introduction</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Blocks.html#src-49153273_Blocks-Blockdefinition">Block definition</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Blocks.html#src-49153273_Blocks-Example">Example</a>    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Blocks.html#src-49153273_Blocks-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Blocks.html#src-49153273_Blocks-Blockdefinition">Block definition</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Blocks.html#src-49153273_Blocks-Example">Example</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-49153273_Blocks-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p  >This guide covers the basics for creating Blocks. Blocks are functions that run before or after an API endpoint is executed. They can be used to modify the API request, to modify the API response or to execute common tasks like audit logging, caching, rate limiting or recording analytics. Multiple Blocks can be executed before or after an API request. Blocks are optional.    </p>
-    <p  >To programmatically create a Block, see the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Arrow.Block">API Builder.Block API reference.</a>    </p>
+    <p>This guide covers the basics for creating Blocks. Blocks are functions that run before or after an API endpoint is executed. They can be used to modify the API request, to modify the API response or to execute common tasks like audit logging, caching, rate limiting or recording analytics. Multiple Blocks can be executed before or after an API request. Blocks are optional.    </p>
+    <p>To programmatically create a Block, see the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Arrow.Block">API Builder.Block API reference.</a>    </p>
     </div>
     <div class="section section-2 " id="src-49153273_Blocks-Blockdefinition">
         <h2 class="heading "><span>Block definition</span></h2>
-    <p  >Place all Block files in the project's <tt class=" ">blocks</tt> folder. You can only declare one Block per file. A Block file is a JavaScript file, which:    </p>
-<ol class=" "><li class=" ">    <p  >Loads the <tt class=" ">arrow</tt> module    </p>
-</li><li class=" ">    <p  >Calls the module's <tt class=" ">Block.extend()</tt> method, passing in an object defining the block identifier and logic to execute    </p>
-</li><li class=" ">    <p  >Exports the defined block using the <tt class=" ">module.exports</tt> variable    </p>
-</li></ol>    <p  >Set the following keys in the object passed to the <tt class=" ">Block.extend()</tt> method to define the Block:    </p>
-    <div  class="tablewrap">
+    <p>Place all Block files in the project&apos;s <tt class=" ">blocks</tt> folder. You can only declare one Block per file. A Block file is a JavaScript file, which:    </p>
+<ol class=" "><li class=" ">    <p>Loads the <tt class=" ">arrow</tt> module    </p>
+</li><li class=" ">    <p>Calls the module&apos;s <tt class=" ">Block.extend()</tt> method, passing in an object defining the block identifier and logic to execute    </p>
+</li><li class=" ">    <p>Exports the defined block using the <tt class=" ">module.exports</tt> variable    </p>
+</li></ol>    <p>Set the following keys in the object passed to the <tt class=" ">Block.extend()</tt> method to define the Block:    </p>
+    <div class="tablewrap">
         <table class="confluenceTable">
-        <thead class=" ">    <tr >
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-        <p  >Name    </p>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Name    </p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-        <p  >Required    </p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Required    </p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-        <p  >Description    </p>
-            </td>
-        </tr>
-</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >name    </p>
-            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >true    </p>
-            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >Block name. This name should be used when specifying blocks in your API endpoint definition. Assign the name value to either the <tt class=" ">before</tt> or <tt class=" ">after</tt> property in the API definition object to use it.    </p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
             </td>
         </tr>
-    <tr >
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >description    </p>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>name    </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >true    </p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>true    </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >Human useful description to display in documentation.    </p>
-            </td>
-        </tr>
-    <tr >
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >execute    </p>
-            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >true    </p>
-            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >Function containing the logic for your block. All of your runnable code goes in the <tt class=" ">execute</tt> function. This function is passed a <tt class=" ">request</tt>, <tt class=" ">response</tt>, and <tt class=" ">next</tt> object to be used within your block. Once you are done with your block code, always call <tt class=" ">next()</tt> to continue on to the next step in the request flow.    </p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Block name. This name should be used when specifying blocks in your API endpoint definition. Assign the name value to either the <tt class=" ">before</tt> or <tt class=" ">after</tt> property in the API definition object to use it.    </p>
             </td>
         </tr>
-    <tr >
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >documented    </p>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>description    </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >false    </p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>true    </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  ><strong class=" ">Since Release 5.0.0.</strong> Determines whether to generate API documentation (true) or not (false). The default value is <tt class=" ">true</tt>.    </p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Human useful description to display in documentation.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>execute    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>true    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Function containing the logic for your block. All of your runnable code goes in the <tt class=" ">execute</tt> function. This function is passed a <tt class=" ">request</tt>, <tt class=" ">response</tt>, and <tt class=" ">next</tt> object to be used within your block. Once you are done with your block code, always call <tt class=" ">next()</tt> to continue on to the next step in the request flow.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>documented    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><strong class=" ">Since Release 5.0.0.</strong> Determines whether to generate API documentation (true) or not (false). The default value is <tt class=" ">true</tt>.    </p>
             </td>
         </tr>
 </tbody>        </table>
@@ -96,31 +96,29 @@
     </div>
     <div class="section section-2 " id="src-49153273_Blocks-Example">
         <h2 class="heading "><span>Example</span></h2>
-    <p  >The following Block replaces the <tt class=" ">id</tt> parameter to <tt class=" ">2</tt> and logs the change.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The following Block replaces the <tt class=" ">id</tt> parameter to <tt class=" ">2</tt> and logs the change.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">'arrow'</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">var PreBlock = Arrow.Block.extend({</code></div>
-<div class="line"><code class="plain">    name: </code><code class="string">'pre_example'</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    description: </code><code class="string">'will set a header named "Foo"'</code><code class="plain">,</code></div>
-<div class="line"> </div>
+<div class="line"><code class="plain">    name: </code><code class="string">&apos;pre_example&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    description: </code><code class="string">&apos;will set a header named &quot;Foo&quot;&apos;</code><code class="plain">,</code></div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">    execute: function(req, res, next) {</code></div>
 <div class="line"><code class="plain">        req.params.id = </code><code class="value">2</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">        req.log.info(</code><code class="string">"Changing params.id to 2"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        req.log.info(</code><code class="string">&quot;Changing params.id to 2&quot;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        next();</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"> </div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">module.exports = PreBlock;</code></div>
 </div>
     </div>
     </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

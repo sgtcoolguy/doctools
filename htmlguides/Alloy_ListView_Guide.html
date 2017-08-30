@@ -5,12 +5,12 @@
 <head>
     <title>Alloy ListView Guide</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,33 +18,33 @@
 
         <div id="src-40928632" class="content">
                         <h1>Alloy ListView Guide</h1>
-    <p  >The ListView class lets you create high-performance, vertically scrolling lists. To achieve the fast-scrolling behavior expected in mobile applications, the ListView class manages the life cycle (creation, deletion, updating) of individual list items itself, rather than the application developer. Instead, the developer provides one or more list item <i class=" ">templates</i> that define an item's presentation, and a list of data items for the list to display. As the user scrolls through the list, the data items are cycled through a limited number of rendered list view items.    </p>
-    <p  >    </p>
-<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-BasicsofListView">Basics of ListView</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-AssigningDataProgrammaticallytoaListView">Assigning Data Programmatically to a ListView</a>    </p>
-</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-ListItemTemplates">List Item Templates</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-DefaultListItemTemplate">Default List Item Template</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-CustomListItemTemplates">Custom List Item Templates</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-AssigningDataProgrammaticallywithCustomTemplates">Assigning Data Programmatically with Custom Templates</a>    </p>
-</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-HandlingEvents">Handling Events</a>    </p>
+    <p>The ListView class lets you create high-performance, vertically scrolling lists. To achieve the fast-scrolling behavior expected in mobile applications, the ListView class manages the life cycle (creation, deletion, updating) of individual list items itself, rather than the application developer. Instead, the developer provides one or more list item <i class=" ">templates</i> that define an item&apos;s presentation, and a list of data items for the list to display. As the user scrolls through the list, the data items are cycled through a limited number of rendered list view items.    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-BasicsofListView">Basics of ListView</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-AssigningDataProgrammaticallytoaListView">Assigning Data Programmatically to a ListView</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-ListItemTemplates">List Item Templates</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-DefaultListItemTemplate">Default List Item Template</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-CustomListItemTemplates">Custom List Item Templates</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-AssigningDataProgrammaticallywithCustomTemplates">Assigning Data Programmatically with Custom Templates</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-HandlingEvents">Handling Events</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-40928632_AlloyListViewGuide-BasicsofListView">
         <h2 class="heading "><span>Basics of ListView</span></h2>
-    <p  >In Alloy, a ListView consists minimally of a <tt class=" ">&lt;</tt><tt class=" ">ListView/&gt;</tt> element that contains one or more  <tt class=" ">&lt;ListSection/&gt;</tt>  elements, which in turn contain one or more of  &lt;<tt class=" ">ListItem/</tt>&gt; elements. You can declaratively populate a ListView (using the default list item template), as shown below.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>In Alloy, a ListView consists minimally of a <tt class=" ">&lt;</tt><tt class=" ">ListView/&gt;</tt> element that contains one or more  <tt class=" ">&lt;ListSection/&gt;</tt>  elements, which in turn contain one or more of  &lt;<tt class=" ">ListItem/</tt>&gt; elements. You can declaratively populate a ListView (using the default list item template), as shown below.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="index.xml">
 <div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">	&lt;Window </code><code class="keyword">class</code><code class="plain">=</code><code class="string">"container"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListView id=</code><code class="string">"elementsList"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">			&lt;ListSection name=</code><code class="string">"elements"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Hydrogen"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Helium"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Lithium"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Beryllium"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Boron"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Carbon"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Nitrogen"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Oxygen"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">	&lt;Window </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;container&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListView id=</code><code class="string">&quot;elementsList&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">			&lt;ListSection name=</code><code class="string">&quot;elements&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Hydrogen&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Helium&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Lithium&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Beryllium&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Boron&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Carbon&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Nitrogen&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Oxygen&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">				&lt;!-- Abbreviated... --&gt;</code></div>
 <div class="line"><code class="plain">			&lt;/ListSection&gt;</code></div>
 <div class="line"><code class="plain">		&lt;/ListView&gt;</code></div>
@@ -52,61 +52,61 @@
 <div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
 </div>
     </div>
-    <p  >    <img  src="images/download/attachments/40928632/01_ios_android.png" alt="images/download/attachments/40928632/01_ios_android.png" class="confluence-embedded-image confluence-content-image-border" width="450"  />
+    <p>    <img src="images/download/attachments/40928632/01_ios_android.png" alt="images/download/attachments/40928632/01_ios_android.png" class="confluence-embedded-image confluence-content-image-border" width="450">
         </p>
     <div class="section section-3 " id="src-40928632_AlloyListViewGuide-AssigningDataProgrammaticallytoaListView">
         <h3 class="heading "><span>Assigning Data Programmatically to a ListView</span></h3>
-    <p  >For small data sets, it's convenient to declaratively create the ListItems in the XML view, as shown previously. For large data sets, you will likely want to separate the data set from its presentation. To do this,     <span style="color: #484848;" >
+    <p>For small data sets, it&apos;s convenient to declaratively create the ListItems in the XML view, as shown previously. For large data sets, you will likely want to separate the data set from its presentation. To do this,     <span style="color: #484848;">
 you pass an array of     </span>
-<a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/ListDataItem">ListDataItem</a><a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/ListDataItem">    <span style="color: #484848;" >
+<a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/ListDataItem">ListDataItem</a><a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/ListDataItem">    <span style="color: #484848;">
  objects to the     </span>
-<tt class=" ">setItems()</tt>    <span style="color: #484848;" >
+<tt class=" ">setItems()</tt>    <span style="color: #484848;">
  method of a     </span>
-<tt class=" ">ListSection</tt>    <span style="color: #484848;" >
+<tt class=" ">ListSection</tt>    <span style="color: #484848;">
 .    </span>
 </a>    </p>
-    <p  >The view controller (index.js) defines an array of ListDataItem objects, and then calls the <tt class=" ">setItems()</tt> method on the ListSection to populate it the data.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The view controller (index.js) defines an array of ListDataItem objects, and then calls the <tt class=" ">setItems()</tt> method on the ListSection to populate it the data.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="index.js">
 <div class="line"><code class="plain">var items = [</code></div>
-<div class="line"><code class="plain">	{properties : {title: </code><code class="string">"Hydrogen"</code><code class="plain">} },</code></div>
-<div class="line"><code class="plain">	{properties : {title: </code><code class="string">"Helium"</code><code class="plain">} },</code></div>
-<div class="line"><code class="plain">	{properties : {title: </code><code class="string">"Lithium"</code><code class="plain">} },</code></div>
-<div class="line"><code class="plain">	{properties : {title: </code><code class="string">"Beryllium"</code><code class="plain">} },</code></div>
-<div class="line"><code class="plain">	{properties : {title: </code><code class="string">"Boron"</code><code class="plain">}	},</code></div>
-<div class="line"><code class="plain">	{properties : {title: </code><code class="string">"Carbon"</code><code class="plain">} },</code></div>
-<div class="line"><code class="plain">	{properties : {title: </code><code class="string">"Nitrogen"</code><code class="plain">}}</code></div>
+<div class="line"><code class="plain">	{properties : {title: </code><code class="string">&quot;Hydrogen&quot;</code><code class="plain">} },</code></div>
+<div class="line"><code class="plain">	{properties : {title: </code><code class="string">&quot;Helium&quot;</code><code class="plain">} },</code></div>
+<div class="line"><code class="plain">	{properties : {title: </code><code class="string">&quot;Lithium&quot;</code><code class="plain">} },</code></div>
+<div class="line"><code class="plain">	{properties : {title: </code><code class="string">&quot;Beryllium&quot;</code><code class="plain">} },</code></div>
+<div class="line"><code class="plain">	{properties : {title: </code><code class="string">&quot;Boron&quot;</code><code class="plain">}	},</code></div>
+<div class="line"><code class="plain">	{properties : {title: </code><code class="string">&quot;Carbon&quot;</code><code class="plain">} },</code></div>
+<div class="line"><code class="plain">	{properties : {title: </code><code class="string">&quot;Nitrogen&quot;</code><code class="plain">}}</code></div>
 <div class="line"><code class="plain">];</code></div>
 <div class="line"><code class="plain">$.elementsList.sections[</code><code class="value">0</code><code class="plain">].setItems(items);</code></div>
 </div>
     </div>
-    <p  ><a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/ListDataItem">    <span style="color: #484848;" >
+    <p><a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/ListDataItem">    <span style="color: #484848;">
 In this case, the XML view (index.xml) can be reduced to a <tt class=" ">&lt;ListView/&gt;</tt> and <tt class=" ">&lt;ListSection/&gt;</tt> elements, without any <tt class=" ">&lt;ListItem/&gt;</tt> elements.    </span>
 </a>    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="index.xml">
 <div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">	&lt;Window </code><code class="keyword">class</code><code class="plain">=</code><code class="string">"container"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListView id=</code><code class="string">"elementsList"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">			&lt;ListSection name=</code><code class="string">"elements"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">	&lt;Window </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;container&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListView id=</code><code class="string">&quot;elementsList&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">			&lt;ListSection name=</code><code class="string">&quot;elements&quot;</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">		&lt;/ListView&gt;</code></div>
 <div class="line"><code class="plain">	&lt;/Window&gt;</code></div>
 <div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
 </div>
     </div>
-    <p  >If the source data is provided in a form that doesn't match the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/ListDataItem">ListDataItem</a> structure, you can easily map it to the correct format using the included Underscore library's <tt class=" ">map()</tt> method, as shown below.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>If the source data is provided in a form that doesn&apos;t match the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/ListDataItem">ListDataItem</a> structure, you can easily map it to the correct format using the included Underscore library&apos;s <tt class=" ">map()</tt> method, as shown below.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var elementData = [</code></div>
-<div class="line"><code class="plain">	{</code><code class="string">"name"</code><code class="plain">:</code><code class="string">"Hydrogen"</code><code class="plain"> },</code></div>
-<div class="line"><code class="plain">	{</code><code class="string">"name"</code><code class="plain">:</code><code class="string">"Helium"</code><code class="plain"> },</code></div>
-<div class="line"><code class="plain">	{</code><code class="string">"name"</code><code class="plain">:</code><code class="string">"Lithium"</code><code class="plain"> },</code></div>
-<div class="line"><code class="plain">	{</code><code class="string">"name"</code><code class="plain">:</code><code class="string">"Beryllium"</code><code class="plain"> },</code></div>
-<div class="line"><code class="plain">	{</code><code class="string">"name"</code><code class="plain">:</code><code class="string">"Boron"</code><code class="plain">	},</code></div>
-<div class="line"><code class="plain">	{</code><code class="string">"name"</code><code class="plain">:</code><code class="string">"Carbon"</code><code class="plain"> },</code></div>
-<div class="line"><code class="plain">	{</code><code class="string">"name"</code><code class="plain">:</code><code class="string">"Nitrogen"</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">	{</code><code class="string">&quot;name&quot;</code><code class="plain">:</code><code class="string">&quot;Hydrogen&quot;</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">	{</code><code class="string">&quot;name&quot;</code><code class="plain">:</code><code class="string">&quot;Helium&quot;</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">	{</code><code class="string">&quot;name&quot;</code><code class="plain">:</code><code class="string">&quot;Lithium&quot;</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">	{</code><code class="string">&quot;name&quot;</code><code class="plain">:</code><code class="string">&quot;Beryllium&quot;</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">	{</code><code class="string">&quot;name&quot;</code><code class="plain">:</code><code class="string">&quot;Boron&quot;</code><code class="plain">	},</code></div>
+<div class="line"><code class="plain">	{</code><code class="string">&quot;name&quot;</code><code class="plain">:</code><code class="string">&quot;Carbon&quot;</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">	{</code><code class="string">&quot;name&quot;</code><code class="plain">:</code><code class="string">&quot;Nitrogen&quot;</code><code class="plain">}</code></div>
 <div class="line"><code class="plain">];</code></div>
 <div class="line"><code class="plain">var items = _.map(elementData, function(element) {</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">return</code><code class="plain"> {</code></div>
@@ -118,27 +118,27 @@ In this case, the XML view (index.xml) can be reduced to a <tt class=" ">&lt;Lis
 <div class="line"><code class="plain">$.elementsList.sections[</code><code class="value">0</code><code class="plain">].setItems(items);</code></div>
 </div>
     </div>
-    <p  >Calling <tt class=" ">setItems()</tt> method clears the list before setting its items. To discretely update list items, you can use the <tt class=" ">appendItems()</tt>, <tt class=" ">insertItemsAt(),</tt> and <tt class=" ">replaceItemsAt()</tt> methods of the <tt class=" ">ListSection</tt> class.    </p>
+    <p>Calling <tt class=" ">setItems()</tt> method clears the list before setting its items. To discretely update list items, you can use the <tt class=" ">appendItems()</tt>, <tt class=" ">insertItemsAt(),</tt> and <tt class=" ">replaceItemsAt()</tt> methods of the <tt class=" ">ListSection</tt> class.    </p>
     </div>
     </div>
     <div class="section section-2 " id="src-40928632_AlloyListViewGuide-ListItemTemplates">
         <h2 class="heading "><span>List Item Templates</span></h2>
-    <p  >Each <tt class=" ">ListItem</tt> element has an associated <i class=" ">template</i> that determines how the data for that row is displayed. A template consists of standard UI elements &ndash; Label, ImageView, Button, and so forth &ndash; that are bound to specific fields in the list item data set. You can use the provided <a  class="document-link unresolved" href="Alloy_ListView_Guide.html#src-40928632">default list item template</a> (as in the previous) examples, or create a custom template that you can apply to all list items, or apply to individual list items. On iOS, you can also use one of the additional built-in templates.    </p>
+    <p>Each <tt class=" ">ListItem</tt> element has an associated <i class=" ">template</i> that determines how the data for that row is displayed. A template consists of standard UI elements &#x2013; Label, ImageView, Button, and so forth &#x2013; that are bound to specific fields in the list item data set. You can use the provided <a class="document-link unresolved" href="Alloy_ListView_Guide.html#src-40928632">default list item template</a> (as in the previous) examples, or create a custom template that you can apply to all list items, or apply to individual list items. On iOS, you can also use one of the additional built-in templates.    </p>
     <div class="section section-3 " id="src-40928632_AlloyListViewGuide-DefaultListItemTemplate">
         <h3 class="heading "><span>Default List Item Template</span></h3>
-    <p  >By default, a ListView used the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI-property-LIST_ITEM_TEMPLATE_DEFAULT">default list item template</a>, which consists of  an image view, a black, left-aligned title label, and an optional accessory icon. On Android, the image appears on the right side of the cell, and on iOS, the image appears on the left side of the cell. This is the template used in the previous examples. For example, the following XML and TSS code adds an image and a disclosure icon accessory type to each list item.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>By default, a ListView used the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI-property-LIST_ITEM_TEMPLATE_DEFAULT">default list item template</a>, which consists of  an image view, a black, left-aligned title label, and an optional accessory icon. On Android, the image appears on the right side of the cell, and on iOS, the image appears on the left side of the cell. This is the template used in the previous examples. For example, the following XML and TSS code adds an image and a disclosure icon accessory type to each list item.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="index.xml">
 <div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">	&lt;Window </code><code class="keyword">class</code><code class="plain">=</code><code class="string">"container"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListView id=</code><code class="string">"elementsList"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">			&lt;ListSection name=</code><code class="string">"elements"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Hydrogen"</code><code class="plain"> image=</code><code class="string">"icons/Hydrogen.png"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Helium"</code><code class="plain"> image=</code><code class="string">"icons/Helium.png"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Lithium"</code><code class="plain"> image=</code><code class="string">"icons/Lithium.png"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Beryllium"</code><code class="plain"> image=</code><code class="string">"icons/Beryllium.png"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">"Boron"</code><code class="plain"> image=</code><code class="string">"icons/Boron.png"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">	&lt;Window </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;container&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListView id=</code><code class="string">&quot;elementsList&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">			&lt;ListSection name=</code><code class="string">&quot;elements&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Hydrogen&quot;</code><code class="plain"> image=</code><code class="string">&quot;icons/Hydrogen.png&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Helium&quot;</code><code class="plain"> image=</code><code class="string">&quot;icons/Helium.png&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Lithium&quot;</code><code class="plain"> image=</code><code class="string">&quot;icons/Lithium.png&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Beryllium&quot;</code><code class="plain"> image=</code><code class="string">&quot;icons/Beryllium.png&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ListItem title=</code><code class="string">&quot;Boron&quot;</code><code class="plain"> image=</code><code class="string">&quot;icons/Boron.png&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">				&lt;!-- Abbreviated... --&gt;</code></div>
 <div class="line"><code class="plain">			&lt;/ListSection&gt;</code></div>
 <div class="line"><code class="plain">		&lt;/ListView&gt;</code></div>
@@ -146,153 +146,153 @@ In this case, the XML view (index.xml) can be reduced to a <tt class=" ">&lt;Lis
 <div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
 </div>
     </div>
-    <p  >The template label's text and image source are bound, respectively, to each <tt class=" ">&lt;ListItem&gt;</tt> element's <tt class=" ">title</tt>  and <tt class=" ">image</tt> attributes. If an attribute is not set on the element, then that template element is not displayed. As with any Alloy element, you can specify an attribute value in a TSS file. The following associated TSS specifies the <tt class=" ">accessoryType</tt> for each <tt class=" ">ListItem</tt>.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The template label&apos;s text and image source are bound, respectively, to each <tt class=" ">&lt;ListItem&gt;</tt> element&apos;s <tt class=" ">title</tt>  and <tt class=" ">image</tt> attributes. If an attribute is not set on the element, then that template element is not displayed. As with any Alloy element, you can specify an attribute value in a TSS file. The following associated TSS specifies the <tt class=" ">accessoryType</tt> for each <tt class=" ">ListItem</tt>.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">index.tss</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="index.tss">
-<div class="line"><code class="string">"ListItem"</code><code class="plain">: {</code></div>
+<div class="line"><code class="string">&quot;ListItem&quot;</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">	accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p  >    <img  src="images/download/attachments/40928632/01_iphone_image.png" alt="images/download/attachments/40928632/01_iphone_image.png" class="confluence-embedded-image confluence-content-image-border" width="240"  />
+    <p>    <img src="images/download/attachments/40928632/01_iphone_image.png" alt="images/download/attachments/40928632/01_iphone_image.png" class="confluence-embedded-image confluence-content-image-border" width="240">
         </p>
     </div>
     <div class="section section-3 " id="src-40928632_AlloyListViewGuide-CustomListItemTemplates">
         <h3 class="heading "><span>Custom List Item Templates</span></h3>
-    <p  >    <span style="color: #333333;" >
-If the default <tt class=" ">ListItem</tt> template doesn't suit your needs, you can create a custom template that defines each list item's structure and style. A custom template is a container for Titanium UI elements, such as <tt class=" ">&lt;ImageView&gt;,</tt>&lt;Button&gt; or &lt;View&gt;. To bind list item data to a particular view element, you must assign a <tt class=" ">bindId</tt> attribute to the element. The following illustrates the structure of a custom item template containing several (bindable) &lt;Label/&gt; elements and a couple of (non-bindable) &lt;View/&gt; elements.    </span>
+    <p>    <span style="color: #333333;">
+If the default <tt class=" ">ListItem</tt> template doesn&apos;t suit your needs, you can create a custom template that defines each list item&apos;s structure and style. A custom template is a container for Titanium UI elements, such as <tt class=" ">&lt;ImageView&gt;,</tt>&lt;Button&gt; or &lt;View&gt;. To bind list item data to a particular view element, you must assign a <tt class=" ">bindId</tt> attribute to the element. The following illustrates the structure of a custom item template containing several (bindable) &lt;Label/&gt; elements and a couple of (non-bindable) &lt;View/&gt; elements.    </span>
     </p>
-    <p  >    <img  src="images/download/attachments/40928632/template.png" alt="images/download/attachments/40928632/template.png" class="confluence-embedded-image confluence-content-image-border" width="673" height="297" />
+    <p>    <img src="images/download/attachments/40928632/template.png" alt="images/download/attachments/40928632/template.png" class="confluence-embedded-image confluence-content-image-border" width="673" height="297">
         </p>
-    <p  >To declare a custom item template, add a  <tt class=" ">&lt;Templates/&gt;</tt>  element to the <tt class=" ">&lt;ListView/&gt;</tt> element, and then add one or more named <tt class=" ">&lt;ItemTemplate&gt;</tt> elements to the <tt class=" ">&lt;Templates/&gt;</tt> element. A <tt class=" ">&lt;Templates/&gt;</tt> element can contain multiple &lt;ItemTemplate/&gt; elements, each of which must have a <tt class=" ">name</tt> attribute that uniquely identifies it.    </p>
-    <p  >To the <tt class=" ">&lt;ItemTemplate/&gt;</tt> add any UI elements you want to appear in each list item. To enable data binding on a given view, assign a <tt class=" ">bindId</tt> attribute to the element. To apply the the custom template by default to all list items (rather than the built-in default item template)  set the ListView element's <tt class=" ">defaultItemTemplate</tt> attribute to the value of the <tt class=" ">name</tt> attribute you assigned to the <tt class=" ">&lt;ItemTemplate/&gt;</tt>. If you have more than one custom template, you can override the default item template for a given list item by setting it's <tt class=" ">template</tt> property. See <a  class="document-link unresolved" href="Alloy_ListView_Guide.html#src-40928632">Below</a> for more information.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>To declare a custom item template, add a  <tt class=" ">&lt;Templates/&gt;</tt>  element to the <tt class=" ">&lt;ListView/&gt;</tt> element, and then add one or more named <tt class=" ">&lt;ItemTemplate&gt;</tt> elements to the <tt class=" ">&lt;Templates/&gt;</tt> element. A <tt class=" ">&lt;Templates/&gt;</tt> element can contain multiple &lt;ItemTemplate/&gt; elements, each of which must have a <tt class=" ">name</tt> attribute that uniquely identifies it.    </p>
+    <p>To the <tt class=" ">&lt;ItemTemplate/&gt;</tt> add any UI elements you want to appear in each list item. To enable data binding on a given view, assign a <tt class=" ">bindId</tt> attribute to the element. To apply the the custom template by default to all list items (rather than the built-in default item template)  set the ListView element&apos;s <tt class=" ">defaultItemTemplate</tt> attribute to the value of the <tt class=" ">name</tt> attribute you assigned to the <tt class=" ">&lt;ItemTemplate/&gt;</tt>. If you have more than one custom template, you can override the default item template for a given list item by setting it&apos;s <tt class=" ">template</tt> property. See <a class="document-link unresolved" href="Alloy_ListView_Guide.html#src-40928632">Below</a> for more information.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Custom item template</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Custom item template">
-<div class="line"><code class="plain">&lt;ListView id=</code><code class="string">"elementsList"</code><code class="plain"> defaultItemTemplate=</code><code class="string">"elementTemplate"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;ListView id=</code><code class="string">&quot;elementsList&quot;</code><code class="plain"> defaultItemTemplate=</code><code class="string">&quot;elementTemplate&quot;</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;Templates&gt;</code></div>
-<div class="line"><code class="plain">        &lt;ItemTemplate name=</code><code class="string">"elementTemplate"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Label bindId=</code><code class="string">"symbol"</code><code class="plain"> id=</code><code class="string">"symbol"</code><code class="plain"> /&gt;</code></div>
-<div class="line"><code class="plain">            &lt;View id=</code><code class="string">"atomProperties"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;Label bindId=</code><code class="string">"name"</code><code class="plain"> id=</code><code class="string">"name"</code><code class="plain"> /&gt;</code></div>
-<div class="line"><code class="plain">                &lt;View id=</code><code class="string">"secondLine"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                	&lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">"line2 fieldLabel"</code><code class="plain"> text=</code><code class="string">"Number: "</code><code class="plain"> /&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">"line2"</code><code class="plain"> bindId=</code><code class="string">"number"</code><code class="plain"> id=</code><code class="string">"number"</code><code class="plain"> /&gt;</code></div>
-<div class="line"><code class="plain">                	&lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">"line2 fieldLabel"</code><code class="plain"> text=</code><code class="string">"Atomic Mass: "</code><code class="plain"> /&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">"line2"</code><code class="plain"> bindId=</code><code class="string">"mass"</code><code class="plain"> id=</code><code class="string">"mass"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">        &lt;ItemTemplate name=</code><code class="string">&quot;elementTemplate&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Label bindId=</code><code class="string">&quot;symbol&quot;</code><code class="plain"> id=</code><code class="string">&quot;symbol&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">            &lt;View id=</code><code class="string">&quot;atomProperties&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;Label bindId=</code><code class="string">&quot;name&quot;</code><code class="plain"> id=</code><code class="string">&quot;name&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">                &lt;View id=</code><code class="string">&quot;secondLine&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                	&lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;line2 fieldLabel&quot;</code><code class="plain"> text=</code><code class="string">&quot;Number: &quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;line2&quot;</code><code class="plain"> bindId=</code><code class="string">&quot;number&quot;</code><code class="plain"> id=</code><code class="string">&quot;number&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">                	&lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;line2 fieldLabel&quot;</code><code class="plain"> text=</code><code class="string">&quot;Atomic Mass: &quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;line2&quot;</code><code class="plain"> bindId=</code><code class="string">&quot;mass&quot;</code><code class="plain"> id=</code><code class="string">&quot;mass&quot;</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">                &lt;/View&gt;</code></div>
 <div class="line"><code class="plain">            &lt;/View&gt;</code></div>
-<div class="line"><code class="plain">			&lt;ImageView bindId=</code><code class="string">"image"</code><code class="plain"> id=</code><code class="string">"image"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">			&lt;ImageView bindId=</code><code class="string">&quot;image&quot;</code><code class="plain"> id=</code><code class="string">&quot;image&quot;</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/ItemTemplate&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/Templates&gt;</code></div>
 <div class="line"><code class="plain">	&lt;ListSection&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListItem symbol:text=</code><code class="string">"H"</code><code class="plain"> symbol:color=</code><code class="string">"#090"</code><code class="plain"> name:text=</code><code class="string">"Hydrogen"</code><code class="plain"> number:text=</code><code class="string">"1"</code><code class="plain"> mass:text=</code><code class="string">"1.00794"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListItem symbol:text=</code><code class="string">"He"</code><code class="plain"> symbol:color=</code><code class="string">"#090"</code><code class="plain"> name:text=</code><code class="string">"Helium"</code><code class="plain"> number:text=</code><code class="string">"2"</code><code class="plain"> mass:text=</code><code class="string">"4.002602"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">    	&lt;ListItem symbol:text=</code><code class="string">"Li"</code><code class="plain"> name:text=</code><code class="string">"Lithium"</code><code class="plain"> number:text=</code><code class="string">"3"</code><code class="plain"> mass:text=</code><code class="string">"6.941"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListItem symbol:text=</code><code class="string">&quot;H&quot;</code><code class="plain"> symbol:color=</code><code class="string">&quot;#090&quot;</code><code class="plain"> name:text=</code><code class="string">&quot;Hydrogen&quot;</code><code class="plain"> number:text=</code><code class="string">&quot;1&quot;</code><code class="plain"> mass:text=</code><code class="string">&quot;1.00794&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListItem symbol:text=</code><code class="string">&quot;He&quot;</code><code class="plain"> symbol:color=</code><code class="string">&quot;#090&quot;</code><code class="plain"> name:text=</code><code class="string">&quot;Helium&quot;</code><code class="plain"> number:text=</code><code class="string">&quot;2&quot;</code><code class="plain"> mass:text=</code><code class="string">&quot;4.002602&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    	&lt;ListItem symbol:text=</code><code class="string">&quot;Li&quot;</code><code class="plain"> name:text=</code><code class="string">&quot;Lithium&quot;</code><code class="plain"> number:text=</code><code class="string">&quot;3&quot;</code><code class="plain"> mass:text=</code><code class="string">&quot;6.941&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">	&lt;/ListSection&gt;</code></div>
 <div class="line"><code class="plain">&lt;/ListView&gt;		</code></div>
 </div>
     </div>
-    <p  >As you can see above, to declaratively bind data to the proper view element in a custom template, you specify the element's bindId and the property name to update, separated by colon. For instance, <tt class=" ">mass:text=&quot;1.00794&quot;</tt> means to assign the specified value to the <tt class=" ">text</tt> property of the <tt class=" ">&lt;Label/&gt;</tt> element whose <tt class=" ">bindId</tt> is <tt class=" ">mass</tt>.    </p>
-    <p  >Below is the TSS file used to style the elements in the custom template.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>As you can see above, to declaratively bind data to the proper view element in a custom template, you specify the element&apos;s bindId and the property name to update, separated by colon. For instance, <tt class=" ">mass:text=&quot;1.00794&quot;</tt> means to assign the specified value to the <tt class=" ">text</tt> property of the <tt class=" ">&lt;Label/&gt;</tt> element whose <tt class=" ">bindId</tt> is <tt class=" ">mass</tt>.    </p>
+    <p>Below is the TSS file used to style the elements in the custom template.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Custom item template TSS</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Custom item template TSS">
-<div class="line"><code class="string">"#symbol"</code><code class="plain">: {</code></div>
+<div class="line"><code class="string">&quot;#symbol&quot;</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">	left: </code><code class="value">15</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	color: </code><code class="string">"black"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	font: { fontSize: </code><code class="value">34</code><code class="plain">, fontWeight: </code><code class="string">'bold'</code><code class="plain"> }</code></div>
+<div class="line"><code class="plain">	color: </code><code class="string">&quot;black&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	font: { fontSize: </code><code class="value">34</code><code class="plain">, fontWeight: </code><code class="string">&apos;bold&apos;</code><code class="plain"> }</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">"#symbol[platform=android]"</code><code class="plain">: {</code></div>
+<div class="line"><code class="string">&quot;#symbol[platform=android]&quot;</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">	left: </code><code class="value">0</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="string">"#atomProperties"</code><code class="plain">: {</code></div>
+<div class="line"><code class="string">&quot;#atomProperties&quot;</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">	top: </code><code class="value">0</code><code class="plain">, left: </code><code class="value">80</code><code class="plain">, right: </code><code class="value">0</code><code class="plain">, bottom: </code><code class="value">0</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	layout: </code><code class="string">"vertical"</code></div>
+<div class="line"><code class="plain">	layout: </code><code class="string">&quot;vertical&quot;</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">"#atomProperties[platform=android]"</code><code class="plain">: {</code></div>
+<div class="line"><code class="string">&quot;#atomProperties[platform=android]&quot;</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">	left: </code><code class="value">65</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">"#name"</code><code class="plain">: {</code></div>
+<div class="line"><code class="string">&quot;#name&quot;</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">	left: </code><code class="value">0</code><code class="plain">, top: </code><code class="value">4</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	color: </code><code class="string">"black"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	color: </code><code class="string">&quot;black&quot;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,</code></div>
 <div class="line"><code class="plain">	font: { fontSize: </code><code class="value">16</code><code class="plain"> }</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">"#secondLine"</code><code class="plain">: {</code></div>
+<div class="line"><code class="string">&quot;#secondLine&quot;</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">	left: </code><code class="value">0</code><code class="plain">, right: </code><code class="value">0</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	layout: </code><code class="string">"horizontal"</code></div>
+<div class="line"><code class="plain">	layout: </code><code class="string">&quot;horizontal&quot;</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">".fieldLabel"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">	color:</code><code class="string">"#999"</code></div>
+<div class="line"><code class="string">&quot;.fieldLabel&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">	color:</code><code class="string">&quot;#999&quot;</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">".line2"</code><code class="plain">: {</code></div>
+<div class="line"><code class="string">&quot;.line2&quot;</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">	font: { fontSize: </code><code class="value">10</code><code class="plain"> }</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">"#number"</code><code class="plain">: {</code></div>
+<div class="line"><code class="string">&quot;#number&quot;</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">	width: </code><code class="value">30</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	color: </code><code class="string">'red'</code></div>
+<div class="line"><code class="plain">	color: </code><code class="string">&apos;red&apos;</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">"#mass"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">	color: </code><code class="string">"blue"</code></div>
+<div class="line"><code class="string">&quot;#mass&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">	color: </code><code class="string">&quot;blue&quot;</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p  >The images below show the custom item template on iOS and Android.    </p>
-    <p  >    <img  src="images/download/attachments/40928632/02_customtemplate.png" alt="images/download/attachments/40928632/02_customtemplate.png" class="confluence-embedded-image confluence-content-image-border" width="450"  />
+    <p>The images below show the custom item template on iOS and Android.    </p>
+    <p>    <img src="images/download/attachments/40928632/02_customtemplate.png" alt="images/download/attachments/40928632/02_customtemplate.png" class="confluence-embedded-image confluence-content-image-border" width="450">
         </p>
     </div>
     <div class="section section-3 " id="src-40928632_AlloyListViewGuide-AssigningDataProgrammaticallywithCustomTemplates">
         <h3 class="heading "><span>Assigning Data Programmatically with Custom Templates</span></h3>
-    <p  >To programmatically bind data to view in a custom template, the object you pass to <tt class=" ">setItems()</tt> defines custom key-value pairs. The key for each pair must match the <tt class=" ">bindId</tt> of the child view, and its values are a dictionary of properties to bind the view. Using the <tt class=" ">elementTemplate</tt> from the previous example, the following code assigns data to the list view:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>To programmatically bind data to view in a custom template, the object you pass to <tt class=" ">setItems()</tt> defines custom key-value pairs. The key for each pair must match the <tt class=" ">bindId</tt> of the child view, and its values are a dictionary of properties to bind the view. Using the <tt class=" ">elementTemplate</tt> from the previous example, the following code assigns data to the list view:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="index.js">
 <div class="line"><code class="plain">var items = [</code></div>
 <div class="line"><code class="plain">	    {</code></div>
-<div class="line"><code class="plain">	        mass : {text : </code><code class="string">"1.00794"</code><code class="plain">}, </code></div>
-<div class="line"><code class="plain">	        name : {text : </code><code class="string">"Hydrogen"</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">	        number : { text : </code><code class="string">"1"</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">	        symbol : { color : </code><code class="string">"#090"</code><code class="plain">, text : </code><code class="string">"H"</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">	        mass : {text : </code><code class="string">&quot;1.00794&quot;</code><code class="plain">}, </code></div>
+<div class="line"><code class="plain">	        name : {text : </code><code class="string">&quot;Hydrogen&quot;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">	        number : { text : </code><code class="string">&quot;1&quot;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">	        symbol : { color : </code><code class="string">&quot;#090&quot;</code><code class="plain">, text : </code><code class="string">&quot;H&quot;</code><code class="plain">}</code></div>
 <div class="line"><code class="plain">	    },</code></div>
 <div class="line"><code class="plain">	    {</code></div>
-<div class="line"><code class="plain">	        mass : {text : </code><code class="string">"4.002602"</code><code class="plain">}, </code></div>
-<div class="line"><code class="plain">	        name : {text : </code><code class="string">"Helium"</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">	        number : { text : </code><code class="string">"2"</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">	        symbol : { color : </code><code class="string">"#090"</code><code class="plain">, text : </code><code class="string">"He"</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">	        mass : {text : </code><code class="string">&quot;4.002602&quot;</code><code class="plain">}, </code></div>
+<div class="line"><code class="plain">	        name : {text : </code><code class="string">&quot;Helium&quot;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">	        number : { text : </code><code class="string">&quot;2&quot;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">	        symbol : { color : </code><code class="string">&quot;#090&quot;</code><code class="plain">, text : </code><code class="string">&quot;He&quot;</code><code class="plain">}</code></div>
 <div class="line"><code class="plain">	    },</code></div>
 <div class="line"><code class="plain">	    {</code></div>
-<div class="line"><code class="plain">	        mass : {text : </code><code class="string">"6.941"</code><code class="plain">}, </code></div>
-<div class="line"><code class="plain">	        name : {text : </code><code class="string">"Lithium"</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">	        number : { text : </code><code class="string">"3"</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">	        symbol : { color : </code><code class="string">"#090"</code><code class="plain">, text : </code><code class="string">"Li"</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">	        mass : {text : </code><code class="string">&quot;6.941&quot;</code><code class="plain">}, </code></div>
+<div class="line"><code class="plain">	        name : {text : </code><code class="string">&quot;Lithium&quot;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">	        number : { text : </code><code class="string">&quot;3&quot;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">	        symbol : { color : </code><code class="string">&quot;#090&quot;</code><code class="plain">, text : </code><code class="string">&quot;Li&quot;</code><code class="plain">}</code></div>
 <div class="line"><code class="plain">	    }</code></div>
 <div class="line"><code class="plain">	];</code></div>
 <div class="line"><code class="plain">$.elementsList.sections[</code><code class="value">0</code><code class="plain">].setItems(items);</code></div>
 </div>
     </div>
-    <p  >    <span style="color: #000000;" >
+    <p>    <span style="color: #000000;">
 Assigning List Item Templates    </span>
     </p>
-    <p  >As shown in previous examples, you can assign a custom template to all list items by setting the ListView's <tt class=" ">defaultItemTemplate</tt>. You can also assign a custom template to an individual list item's <tt class=" ">template</tt> property. For example, the following ListView defines two custom item templates named &quot;image_title&quot; and &quot;image_only&quot;. The first template consists of a <tt class=" ">&lt;View/&gt;</tt> with a horizontal layout containing an <tt class=" ">&lt;ImageView/&gt;</tt> and a <tt class=" ">&lt;Label/&gt;</tt> element; the second uses the default (absolute) layout and contains only a <tt class=" ">&lt;Label/&gt;</tt> element. These layouts are illustrated below.    </p>
-    <p  >    </p>
-    <img  src="images/download/attachments/40928632/custom_template_multiple.png" alt="images/download/attachments/40928632/custom_template_multiple.png" class="confluence-embedded-image confluence-content-image-border" width="260"  />
-        <p  >The following XML view defines the two templates.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>As shown in previous examples, you can assign a custom template to all list items by setting the ListView&apos;s <tt class=" ">defaultItemTemplate</tt>. You can also assign a custom template to an individual list item&apos;s <tt class=" ">template</tt> property. For example, the following ListView defines two custom item templates named &quot;image_title&quot; and &quot;image_only&quot;. The first template consists of a <tt class=" ">&lt;View/&gt;</tt> with a horizontal layout containing an <tt class=" ">&lt;ImageView/&gt;</tt> and a <tt class=" ">&lt;Label/&gt;</tt> element; the second uses the default (absolute) layout and contains only a <tt class=" ">&lt;Label/&gt;</tt> element. These layouts are illustrated below.    </p>
+    <p>    </p>
+    <img src="images/download/attachments/40928632/custom_template_multiple.png" alt="images/download/attachments/40928632/custom_template_multiple.png" class="confluence-embedded-image confluence-content-image-border" width="260">
+        <p>The following XML view defines the two templates.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="index.xml">
-<div class="line"><code class="plain">&lt;ListView id=</code><code class="string">"dynamicListView"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;ListView id=</code><code class="string">&quot;dynamicListView&quot;</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">	&lt;Templates&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ItemTemplate name=</code><code class="string">"image_title"</code><code class="plain"> height=</code><code class="string">"100"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">			&lt;View layout=</code><code class="string">"horizontal"</code><code class="plain"> left=</code><code class="string">"15"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">				&lt;ImageView bindId=</code><code class="string">"image"</code><code class="plain"> id=</code><code class="string">"image"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">				&lt;Label bindId=</code><code class="string">"label"</code><code class="plain"> id=</code><code class="string">"label1"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ItemTemplate name=</code><code class="string">&quot;image_title&quot;</code><code class="plain"> height=</code><code class="string">&quot;100&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">			&lt;View layout=</code><code class="string">&quot;horizontal&quot;</code><code class="plain"> left=</code><code class="string">&quot;15&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">				&lt;ImageView bindId=</code><code class="string">&quot;image&quot;</code><code class="plain"> id=</code><code class="string">&quot;image&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">				&lt;Label bindId=</code><code class="string">&quot;label&quot;</code><code class="plain"> id=</code><code class="string">&quot;label1&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">			&lt;/View&gt;</code></div>
 <div class="line"><code class="plain">			&lt;/ItemTemplate&gt;							</code></div>
-<div class="line"><code class="plain">		&lt;ItemTemplate name=</code><code class="string">"title_only"</code><code class="plain"> height=</code><code class="string">"50"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">			&lt;View left=</code><code class="string">"15"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">				&lt;Label bindId=</code><code class="string">"label"</code><code class="plain">/&gt;							</code></div>
+<div class="line"><code class="plain">		&lt;ItemTemplate name=</code><code class="string">&quot;title_only&quot;</code><code class="plain"> height=</code><code class="string">&quot;50&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">			&lt;View left=</code><code class="string">&quot;15&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">				&lt;Label bindId=</code><code class="string">&quot;label&quot;</code><code class="plain">/&gt;							</code></div>
 <div class="line"><code class="plain">			&lt;/View&gt;</code></div>
 <div class="line"><code class="plain">		&lt;/ItemTemplate&gt;</code></div>
 <div class="line"><code class="plain">	&lt;/Templates&gt;</code></div>
@@ -300,66 +300,66 @@ Assigning List Item Templates    </span>
 <div class="line"><code class="plain">&lt;/ListView&gt;</code></div>
 </div>
     </div>
-    <p  >And following controller code programmatically assigns a template to each list item by setting its <tt class=" ">template</tt>  property.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>And following controller code programmatically assigns a template to each list item by setting its <tt class=" ">template</tt>  property.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="index.js">
 <div class="line"><code class="plain">var items = [</code></div>
 <div class="line"><code class="plain">	{</code></div>
-<div class="line"><code class="plain">		</code><code class="string">"label"</code><code class="plain">: { text: </code><code class="string">"Great apps. Mobilized data. Real-time analytics. One platform."</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">		</code><code class="string">"image"</code><code class="plain">: { image: </code><code class="string">"appcelerator.png"</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">		</code><code class="string">"template"</code><code class="plain">: </code><code class="string">"image_title"</code><code class="plain">		</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;label&quot;</code><code class="plain">: { text: </code><code class="string">&quot;Great apps. Mobilized data. Real-time analytics. One platform.&quot;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;image&quot;</code><code class="plain">: { image: </code><code class="string">&quot;appcelerator.png&quot;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;template&quot;</code><code class="plain">: </code><code class="string">&quot;image_title&quot;</code><code class="plain">		</code></div>
 <div class="line"><code class="plain">	},</code></div>
 <div class="line"><code class="plain">	{</code></div>
-<div class="line"><code class="plain">		</code><code class="string">"label"</code><code class="plain">: { text: </code><code class="string">"Provide a simple, mobile-optimized connection to backend data."</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">		</code><code class="string">"template"</code><code class="plain">: </code><code class="string">"title_only"</code><code class="plain">		</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;label&quot;</code><code class="plain">: { text: </code><code class="string">&quot;Provide a simple, mobile-optimized connection to backend data.&quot;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;template&quot;</code><code class="plain">: </code><code class="string">&quot;title_only&quot;</code><code class="plain">		</code></div>
 <div class="line"><code class="plain">	},</code></div>
 <div class="line"><code class="plain">	{</code></div>
-<div class="line"><code class="plain">		</code><code class="string">"label"</code><code class="plain">: { text: </code><code class="string">"Evaluate app portfolio ROI through a unified set of mobile analytics."</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">		</code><code class="string">"image"</code><code class="plain">: { image: </code><code class="string">"mobile-analytics.png"</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">		</code><code class="string">"template"</code><code class="plain">: </code><code class="string">"image_title"</code><code class="plain">		</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;label&quot;</code><code class="plain">: { text: </code><code class="string">&quot;Evaluate app portfolio ROI through a unified set of mobile analytics.&quot;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;image&quot;</code><code class="plain">: { image: </code><code class="string">&quot;mobile-analytics.png&quot;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;template&quot;</code><code class="plain">: </code><code class="string">&quot;image_title&quot;</code><code class="plain">		</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">];</code></div>
-<div class="line"><code class="plain">$.listview2.sections[</code><code class="value">0</code><code class="plain">].setItems(items, {animated: </code><code class="string">"false"</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">$.listview2.sections[</code><code class="value">0</code><code class="plain">].setItems(items, {animated: </code><code class="string">&quot;false&quot;</code><code class="plain">});</code></div>
 </div>
     </div>
     </div>
     </div>
     <div class="section section-2 " id="src-40928632_AlloyListViewGuide-HandlingEvents">
         <h2 class="heading "><span>Handling Events</span></h2>
-<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-Markerevents">Marker events</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-HandlingEventsonListItems">Handling Events on List Items</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-HandlingEventsonTemplateViews">Handling Events on Template Views</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-Markerevents">Marker events</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-HandlingEventsonListItems">Handling Events on List Items</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-HandlingEventsonTemplateViews">Handling Events on Template Views</a>    </p>
 </li></ul>    <div class="section section-3 " id="src-40928632_AlloyListViewGuide-Markerevents">
         <h3 class="heading "><span>Marker events</span></h3>
-    <p  >If the data set you want to display in a ListView is extremely large (or perhaps infinite), it's often preferable to load an initial set of list data items. Then as the user scrolls to the end of available data, additional data items are loaded. For performance reasons, ListView doesn't support scroll events but does provide a feature called &quot;markers&quot;. A marker identifies a point in a rendered ListView that acts like a tripwire: the first time a user scrolls past a list item where a marker has been set, it emits a <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.ListView-event-marker">marker</a> event. Your application can respond to this event by loading additional data and set a new marker, if necessary.    </p>
-    <p  >The following code demonstrates how this works. In your XML view, add an <tt class=" ">onMarker</tt> attribute to the ListView that specifies the function to handle the <tt class=" ">marker</tt> event:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>If the data set you want to display in a ListView is extremely large (or perhaps infinite), it&apos;s often preferable to load an initial set of list data items. Then as the user scrolls to the end of available data, additional data items are loaded. For performance reasons, ListView doesn&apos;t support scroll events but does provide a feature called &quot;markers&quot;. A marker identifies a point in a rendered ListView that acts like a tripwire: the first time a user scrolls past a list item where a marker has been set, it emits a <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.ListView-event-marker">marker</a> event. Your application can respond to this event by loading additional data and set a new marker, if necessary.    </p>
+    <p>The following code demonstrates how this works. In your XML view, add an <tt class=" ">onMarker</tt> attribute to the ListView that specifies the function to handle the <tt class=" ">marker</tt> event:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;ListView id=</code><code class="string">"infiniteList"</code><code class="plain"> onMarker=</code><code class="string">"markerReached"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;ListView id=</code><code class="string">&quot;infiniteList&quot;</code><code class="plain"> onMarker=</code><code class="string">&quot;markerReached&quot;</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">	&lt;ListSection/&gt;</code></div>
 <div class="line"><code class="plain">&lt;/ListView&gt;</code></div>
 </div>
     </div>
-    <p  >You call <a  class="document-link unresolved" href="Alloy_ListView_Guide.html#src-40928632">setMarker()</a>, passing it the list view section index and item index where you want to set a marker. For example, the following sets a marker at the 100th list item in the first section in the ListView.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>You call <a class="document-link unresolved" href="Alloy_ListView_Guide.html#src-40928632">setMarker()</a>, passing it the list view section index and item index where you want to set a marker. For example, the following sets a marker at the 100th list item in the first section in the ListView.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$.infiniteList.setMarker({sectionIndex:</code><code class="value">0</code><code class="plain">,itemIndex:</code><code class="value">100</code><code class="plain">});</code></div>
 </div>
     </div>
-    <p  >The application loads the initial data set and sets the first marker. For the purposes of demonstration, this example use a <tt class=" ">for()</tt> loop to generate an &quot;infinite&quot; data source based on the value of a state variable. In practice, your application will likely consume data from a remote or local paginated data source.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The application loads the initial data set and sets the first marker. For the purposes of demonstration, this example use a <tt class=" ">for()</tt> loop to generate an &quot;infinite&quot; data source based on the value of a state variable. In practice, your application will likely consume data from a remote or local paginated data source.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Load initial data and set initial marker</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Load initial data and set initial marker">
 <div class="line"><code class="comments">// Variable that contains current marker value:</code></div>
 <div class="line"><code class="plain">var currentMarker = </code><code class="value">25</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// Create initial data set...</code></div>
 <div class="line"><code class="plain">var data = [];</code></div>
 <div class="line"><code class="keyword">for</code><code class="plain"> (var k = </code><code class="value">0</code><code class="plain">; k &lt; currentMarker; k++) {</code></div>
 <div class="line"><code class="plain">    data.push({</code></div>
 <div class="line"><code class="plain">        properties : {</code></div>
-<div class="line"><code class="plain">            title: </code><code class="string">'Row '</code><code class="plain"> + (k + </code><code class="value">1</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">            title: </code><code class="string">&apos;Row &apos;</code><code class="plain"> + (k + </code><code class="value">1</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    });		</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -368,8 +368,8 @@ Assigning List Item Templates    </span>
 <div class="line"><code class="plain">$.infiniteList.setMarker({sectionIndex:</code><code class="value">0</code><code class="plain">,itemIndex:currentMarker-</code><code class="value">1</code><code class="plain">});</code></div>
 </div>
     </div>
-    <p  >When the marker event is fired, a new set of data is generated and appended to the list view. Finally, a new marker point is set.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>When the marker event is fired, a new set of data is generated and appended to the list view. Finally, a new marker point is set.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Marker event handler</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Marker event handler">
 <div class="line"><code class="comments">// Marker callback</code></div>
@@ -379,7 +379,7 @@ Assigning List Item Templates    </span>
 <div class="line"><code class="plain">    </code><code class="keyword">for</code><code class="plain"> (var k = currentMarker; k &lt; max; k++) {</code></div>
 <div class="line"><code class="plain">        data.push({</code></div>
 <div class="line"><code class="plain">            properties : {</code></div>
-<div class="line"><code class="plain">                title: </code><code class="string">'Row '</code><code class="plain"> + (k + </code><code class="value">1</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">                title: </code><code class="string">&apos;Row &apos;</code><code class="plain"> + (k + </code><code class="value">1</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">            }</code></div>
 <div class="line"><code class="plain">        });		</code></div>
 <div class="line"><code class="plain">    }</code></div>
@@ -394,23 +394,23 @@ Assigning List Item Templates    </span>
     </div>
     <div class="section section-3 " id="src-40928632_AlloyListViewGuide-HandlingEventsonListItems">
         <h3 class="heading "><span>Handling Events on List Items</span></h3>
-    <p  >To handle click events on list items, you attach an <tt class=" ">onItemclick</tt> attribute to the <tt class=" ">&lt;ListView/&gt;</tt> that specifies the event function handler to invoke. The event handler is passed an <a  class="document-link unresolved" href="Alloy_ListView_Guide.html#src-40928632">itemclick</a> event whose properties identify the clicked list item (by section and item index), as well as the <tt class=" ">bindId</tt> of of the control that generated the event, if any. For example:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>To handle click events on list items, you attach an <tt class=" ">onItemclick</tt> attribute to the <tt class=" ">&lt;ListView/&gt;</tt> that specifies the event function handler to invoke. The event handler is passed an <a class="document-link unresolved" href="Alloy_ListView_Guide.html#src-40928632">itemclick</a> event whose properties identify the clicked list item (by section and item index), as well as the <tt class=" ">bindId</tt> of of the control that generated the event, if any. For example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="index.xml">
-<div class="line"><code class="plain">&lt;ListView id=</code><code class="string">"list"</code><code class="plain"> onItemclick=</code><code class="string">"handleClick"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;ListView id=</code><code class="string">&quot;list&quot;</code><code class="plain"> onItemclick=</code><code class="string">&quot;handleClick&quot;</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">	&lt;ListSection&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListItem title=</code><code class="string">"row 1"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListItem title=</code><code class="string">"row 2"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListItem title=</code><code class="string">"row 3"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListItem title=</code><code class="string">"row 4"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListItem title=</code><code class="string">"row 5"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListItem title=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListItem title=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListItem title=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListItem title=</code><code class="string">&quot;row 4&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListItem title=</code><code class="string">&quot;row 5&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">	&lt;/ListSection&gt;            </code></div>
 <div class="line"><code class="plain">&lt;/ListView&gt;	</code></div>
 </div>
     </div>
-    <p  class="layoutArea">The <tt class=" ">itemclick</tt> handler updates the <tt class=" ">title</tt> property of the list item and sets its <tt class=" ">color</tt> to red, before updating the item in the list.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p class="layoutArea">The <tt class=" ">itemclick</tt> handler updates the <tt class=" ">title</tt> property of the list item and sets its <tt class=" ">color</tt> to red, before updating the item in the list.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="index.js">
 <div class="line"><code class="plain">function handleClick (e) {</code></div>
@@ -418,84 +418,82 @@ Assigning List Item Templates    </span>
 <div class="line"><code class="plain">	var section = $.list.sections[e.sectionIndex];</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Get the clicked item from that section</code></div>
 <div class="line"><code class="plain">	var item = section.getItemAt(e.itemIndex);</code></div>
-<div class="line"><code class="plain">	</code><code class="comments">// Update the item's `title` property and set it's color to red:</code></div>
-<div class="line"><code class="plain">	item.properties.title += </code><code class="string">" (clicked)"</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">	item.properties.color = </code><code class="string">'red'</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Update the item&apos;s `title` property and set it&apos;s color to red:</code></div>
+<div class="line"><code class="plain">	item.properties.title += </code><code class="string">&quot; (clicked)&quot;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">	item.properties.color = </code><code class="string">&apos;red&apos;</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Update the item in the list</code></div>
 <div class="line"><code class="plain">	section.updateItemAt(e.itemIndex, item);</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p  >    </p>
+    <p>    </p>
     </div>
     <div class="section section-3 " id="src-40928632_AlloyListViewGuide-HandlingEventsonTemplateViews">
         <h3 class="heading "><span>Handling Events on Template Views</span></h3>
-    <p  >When using a custom template, you can also handle events on individual template view objects. For example, each list item might contain an image the user can click to indicate they like that item.    </p>
-    <p  >    <img  src="images/download/attachments/40928632/likeornot.png" alt="images/download/attachments/40928632/likeornot.png" class="confluence-embedded-image confluence-content-image-border" width="260"  />
+    <p>When using a custom template, you can also handle events on individual template view objects. For example, each list item might contain an image the user can click to indicate they like that item.    </p>
+    <p>    <img src="images/download/attachments/40928632/likeornot.png" alt="images/download/attachments/40928632/likeornot.png" class="confluence-embedded-image confluence-content-image-border" width="260">
         </p>
-    <p  >To do this, you attach an <tt class=" ">onEvent</tt> attribute to the view element in the <tt class=" ">&lt;ItemTemplate/&gt;</tt> element, whose value is the event handler to invoke when the user clicks that view object. For example, the following defines the custom template used in the above screenshot, consisting of a <tt class=" ">&lt;Label/&gt;</tt> element and an <tt class=" ">&lt;ImageView/&gt;</tt> element. The <tt class=" ">&lt;ListView/&gt;</tt> has an <tt class=" ">onItemclick</tt> attribute set to <tt class=" ">&quot;handleItemClick&quot; </tt>to set the star image by bubbling the event down to the image view. The project's /assets folder contains two PNGs: star_grey.png and star_gold.png. Initially, each list item displays the grey star.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>To do this, you attach an <tt class=" ">onEvent</tt> attribute to the view element in the <tt class=" ">&lt;ItemTemplate/&gt;</tt> element, whose value is the event handler to invoke when the user clicks that view object. For example, the following defines the custom template used in the above screenshot, consisting of a <tt class=" ">&lt;Label/&gt;</tt> element and an <tt class=" ">&lt;ImageView/&gt;</tt> element. The <tt class=" ">&lt;ListView/&gt;</tt> has an <tt class=" ">onItemclick</tt> attribute set to <tt class=" ">&quot;handleItemClick&quot; </tt>to set the star image by bubbling the event down to the image view. The project&apos;s /assets folder contains two PNGs: star_grey.png and star_gold.png. Initially, each list item displays the grey star.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;ListView id=</code><code class="string">"likeList"</code><code class="plain"> defaultItemTemplate=</code><code class="string">"custom"</code><code class="plain"> onItemclick=</code><code class="string">"handleItemClick"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;ListView id=</code><code class="string">&quot;likeList&quot;</code><code class="plain"> defaultItemTemplate=</code><code class="string">&quot;custom&quot;</code><code class="plain"> onItemclick=</code><code class="string">&quot;handleItemClick&quot;</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">	&lt;Templates&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ItemTemplate name=</code><code class="string">"custom"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">			&lt;Label bindId=</code><code class="string">"label"</code><code class="plain"> left=</code><code class="string">"15"</code><code class="plain"> /&gt;</code></div>
-<div class="line"><code class="plain">			&lt;ImageView bindId=</code><code class="string">"icon"</code><code class="plain"> right=</code><code class="string">"15"</code><code class="plain"> /&gt;						</code></div>
+<div class="line"><code class="plain">		&lt;ItemTemplate name=</code><code class="string">&quot;custom&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">			&lt;Label bindId=</code><code class="string">&quot;label&quot;</code><code class="plain"> left=</code><code class="string">&quot;15&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">			&lt;ImageView bindId=</code><code class="string">&quot;icon&quot;</code><code class="plain"> right=</code><code class="string">&quot;15&quot;</code><code class="plain"> /&gt;						</code></div>
 <div class="line"><code class="plain">		&lt;/ItemTemplate&gt;</code></div>
 <div class="line"><code class="plain">	&lt;/Templates&gt;</code></div>
 <div class="line"><code class="plain">	&lt;ListSection&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListItem label:text=</code><code class="string">"Do you like it?"</code><code class="plain"> icon:image=</code><code class="string">"star_grey.png"</code><code class="plain"> /&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListItem label:text=</code><code class="string">"How about this one?"</code><code class="plain"> icon:image=</code><code class="string">"star_grey.png"</code><code class="plain"> /&gt;</code></div>
-<div class="line"><code class="plain">		&lt;ListItem label:text=</code><code class="string">"Or this one?"</code><code class="plain"> icon:image=</code><code class="string">"star_grey.png"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListItem label:text=</code><code class="string">&quot;Do you like it?&quot;</code><code class="plain"> icon:image=</code><code class="string">&quot;star_grey.png&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListItem label:text=</code><code class="string">&quot;How about this one?&quot;</code><code class="plain"> icon:image=</code><code class="string">&quot;star_grey.png&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">		&lt;ListItem label:text=</code><code class="string">&quot;Or this one?&quot;</code><code class="plain"> icon:image=</code><code class="string">&quot;star_grey.png&quot;</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">	&lt;/ListSection&gt;</code></div>
 <div class="line"><code class="plain">&lt;/ListView&gt;</code></div>
 </div>
     </div>
-    <p  >The <tt class=" ">handleItemClick()</tt> event handler function, shown below, toggles the image displayed by the image between the grey and gold versions.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The <tt class=" ">handleItemClick()</tt> event handler function, shown below, toggles the image displayed by the image between the grey and gold versions.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">function handleItemClick (e) {</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Check if the clicked item is the image view</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (e.bindId != </code><code class="string">"icon"</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (e.bindId != </code><code class="string">&quot;icon&quot;</code><code class="plain">) {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Get the clicked item</code></div>
 <div class="line"><code class="plain">	var item = e.section.getItemAt(e.itemIndex);</code></div>
 <div class="line"><code class="plain">	var currentImage = item.icon.image;</code></div>
 <div class="line"><code class="plain">	</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (currentImage == </code><code class="string">"star_grey.png"</code><code class="plain">) {</code></div>
-<div class="line"><code class="plain">		item.icon.image = </code><code class="string">"star_gold.png"</code><code class="plain">		</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (currentImage == </code><code class="string">&quot;star_grey.png&quot;</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">		item.icon.image = </code><code class="string">&quot;star_gold.png&quot;</code><code class="plain">		</code></div>
 <div class="line"><code class="plain">	} </code><code class="keyword">else</code><code class="plain"> {</code></div>
-<div class="line"><code class="plain">		item.icon.image = </code><code class="string">"star_grey.png"</code><code class="plain">				</code></div>
+<div class="line"><code class="plain">		item.icon.image = </code><code class="string">&quot;star_grey.png&quot;</code><code class="plain">				</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">	e.section.updateItemAt(e.itemIndex, item);</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p  >The views that display each list data item are recycled as the user scrolls through the list. Therefore, when changing the content of a ListItem, do so by changing the the underlying list item data, not by modifying the source of the event.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>The views that display each list data item are recycled as the user scrolls through the list. Therefore, when changing the content of a ListItem, do so by changing the the underlying list item data, not by modifying the source of the event.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="comments">// Don't do this:</code></div>
+<div class="line"><code class="comments">// Don&apos;t do this:</code></div>
 <div class="line"><code class="plain">function handleItemClick(e) {</code></div>
-<div class="line"><code class="plain">	e.source.image = </code><code class="string">"star_gold.png"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">	e.source.image = </code><code class="string">&quot;star_gold.png&quot;</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p  >The above code can have unexpected consequences if the user scrolls past the item and then scrolls it back into view.    </p>
+    <p>The above code can have unexpected consequences if the user scrolls past the item and then scrolls it back into view.    </p>
     </div>
-    <ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-Markerevents">Marker events</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-HandlingEventsonListItems">Handling Events on List Items</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-HandlingEventsonTemplateViews">Handling Events on Template Views</a>    </p>
-</li></ul>    <p  >    </p>
+    <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-Markerevents">Marker events</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-HandlingEventsonListItems">Handling Events on List Items</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_ListView_Guide.html#src-40928632_AlloyListViewGuide-HandlingEventsonTemplateViews">Handling Events on Template Views</a>    </p>
+</li></ul>    <p>    </p>
     </div>
     </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

@@ -5,12 +5,12 @@
 <head>
     <title>Adding Popup Windows in Rubles</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -20,74 +20,72 @@
                         <h1>Adding Popup Windows in Rubles</h1>
     <div class="section section-2 " id="src-30083227_AddingPopupWindowsinRubles-Contents">
         <h2 class="heading "><span>Contents</span></h2>
-<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Adding_Popup_Windows_in_Rubles.html#src-30083227_AddingPopupWindowsinRubles-Overview">Overview</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Adding_Popup_Windows_in_Rubles.html#src-30083227_AddingPopupWindowsinRubles-Openingapopupwindowtoselectfromalistofelements">Opening a popup window to select from a list of elements</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Adding_Popup_Windows_in_Rubles.html#src-30083227_AddingPopupWindowsinRubles-Openingapopupwindowforuserinput">Opening a popup window for user input</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Adding_Popup_Windows_in_Rubles.html#src-30083227_AddingPopupWindowsinRubles-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Adding_Popup_Windows_in_Rubles.html#src-30083227_AddingPopupWindowsinRubles-Openingapopupwindowtoselectfromalistofelements">Opening a popup window to select from a list of elements</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Adding_Popup_Windows_in_Rubles.html#src-30083227_AddingPopupWindowsinRubles-Openingapopupwindowforuserinput">Opening a popup window for user input</a>    </p>
 </li></ul>    </div>
     <div class="section section-2 " id="src-30083227_AddingPopupWindowsinRubles-Overview">
         <h2 class="heading "><span>Overview</span></h2>
-    <p  >In this recipe we show how a Ruble command can open a popup window for user input.    </p>
+    <p>In this recipe we show how a Ruble command can open a popup window for user input.    </p>
     </div>
     <div class="section section-2 " id="src-30083227_AddingPopupWindowsinRubles-Openingapopupwindowtoselectfromalistofelements">
         <h2 class="heading "><span>Opening a popup window to select from a list of elements</span></h2>
-    <p  >Here, we select from a list of projects and use the output of the choice to insert different snippets to the editor.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>Here, we select from a list of projects and use the output of the choice to insert different snippets to the editor.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">require </code><code class="string">'ruble'</code></div>
-<div class="line"> </div>
-<div class="line"><code class="plain">command </code><code class="string">"Copy Scope"</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
-<div class="line"><code class="plain">  cmd.key_binding = </code><code class="string">"CONTROL+SHIFT+COMMAND+C"</code></div>
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">command </code><code class="string">&quot;Copy Scope&quot;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
+<div class="line"><code class="plain">  cmd.key_binding = </code><code class="string">&quot;CONTROL+SHIFT+COMMAND+C&quot;</code></div>
 <div class="line"><code class="plain">  cmd.input = :none</code></div>
 <div class="line"><code class="plain">  cmd.output = :insert_as_snippet</code></div>
 <div class="line"><code class="plain">  cmd.invoke {</code></div>
-<div class="line"><code class="plain">    choice = Ruble.choose(</code><code class="string">"Projects:"</code><code class="plain">, [</code><code class="string">"project 1"</code><code class="plain">,</code><code class="string">"project 2"</code><code class="plain">, </code><code class="string">"project 3"</code><code class="plain">], :title =&gt; </code><code class="string">"Project Selector"</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">    choice = Ruble.choose(</code><code class="string">&quot;Projects:&quot;</code><code class="plain">, [</code><code class="string">&quot;project 1&quot;</code><code class="plain">,</code><code class="string">&quot;project 2&quot;</code><code class="plain">, </code><code class="string">&quot;project 3&quot;</code><code class="plain">], :title =&gt; </code><code class="string">&quot;Project Selector&quot;</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">case</code><code class="plain"> choice</code></div>
 <div class="line"><code class="plain">    when </code><code class="value">1</code></div>
-<div class="line"><code class="plain">      </code><code class="string">"snippet for project 1"</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;snippet for project 1&quot;</code></div>
 <div class="line"><code class="plain">    when </code><code class="value">2</code></div>
-<div class="line"><code class="plain">      </code><code class="string">"snippet for project 2"</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;snippet for project 2&quot;</code></div>
 <div class="line"><code class="plain">    when </code><code class="value">3</code></div>
-<div class="line"><code class="plain">      </code><code class="string">"snippet for project 3"</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;snippet for project 3&quot;</code></div>
 <div class="line"><code class="plain">    end</code></div>
 <div class="line"><code class="plain">  }</code></div>
 <div class="line"><code class="plain">end</code></div>
 </div>
     </div>
-    <p  >The popup will look like the following:    </p>
-    <p  >    <img  src="images/download/attachments/30083227/project_selection.png" alt="images/download/attachments/30083227/project_selection.png" class="confluence-embedded-image confluence-content-image-border"   />
+    <p>The popup will look like the following:    </p>
+    <p>    <img src="images/download/attachments/30083227/project_selection.png" alt="images/download/attachments/30083227/project_selection.png" class="confluence-embedded-image confluence-content-image-border">
         </p>
     </div>
     <div class="section section-2 " id="src-30083227_AddingPopupWindowsinRubles-Openingapopupwindowforuserinput">
         <h2 class="heading "><span>Opening a popup window for user input</span></h2>
-    <p  >Here, we open a pop window to prompt for user input, store the output into a local variable &quot;name&quot; and output it as a snippet.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>Here, we open a pop window to prompt for user input, store the output into a local variable &quot;name&quot; and output it as a snippet.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">require </code><code class="string">'ruble'</code></div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"><code class="plain">command </code><code class="string">"Copy Scope"</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
-<div class="line"><code class="plain">  cmd.key_binding = </code><code class="string">"CONTROL+SHIFT+COMMAND+C"</code></div>
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">command </code><code class="string">&quot;Copy Scope&quot;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
+<div class="line"><code class="plain">  cmd.key_binding = </code><code class="string">&quot;CONTROL+SHIFT+COMMAND+C&quot;</code></div>
 <div class="line"><code class="plain">  cmd.input = :none</code></div>
 <div class="line"><code class="plain">  cmd.output = :insert_as_snippet</code></div>
 <div class="line"><code class="plain">  cmd.invoke {</code></div>
 <div class="line"><code class="plain">    name = Ruble::UI.request_string(</code></div>
-<div class="line"><code class="plain">    :title =&gt; </code><code class="string">"User Name"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    :</code><code class="keyword">default</code><code class="plain"> =&gt; </code><code class="string">"guest"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    :prompt =&gt; </code><code class="string">"Please insert user name:"</code></div>
+<div class="line"><code class="plain">    :title =&gt; </code><code class="string">&quot;User Name&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    :</code><code class="keyword">default</code><code class="plain"> =&gt; </code><code class="string">&quot;guest&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    :prompt =&gt; </code><code class="string">&quot;Please insert user name:&quot;</code></div>
 <div class="line"><code class="plain">    )</code></div>
 <div class="line"><code class="plain">  }</code></div>
 <div class="line"><code class="plain">end</code></div>
 </div>
     </div>
-    <p  >The popup will look like the following:    </p>
-    <p  >    <img  src="images/download/attachments/30083227/username_popup.png" alt="images/download/attachments/30083227/username_popup.png" class="confluence-embedded-image confluence-content-image-border"   />
+    <p>The popup will look like the following:    </p>
+    <p>    <img src="images/download/attachments/30083227/username_popup.png" alt="images/download/attachments/30083227/username_popup.png" class="confluence-embedded-image confluence-content-image-border">
         </p>
     </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

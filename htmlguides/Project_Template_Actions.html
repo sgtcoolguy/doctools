@@ -5,12 +5,12 @@
 <head>
     <title>Project Template Actions</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -20,90 +20,90 @@
                         <h1>Project Template Actions</h1>
     <div class="section section-2 " id="src-30083158_ProjectTemplateActions-Actions">
         <h2 class="heading "><span>Actions</span></h2>
-    <p  >    </p>
-<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Project_Template_Actions.html#src-30083158_ProjectTemplateActions-Requirements">Requirements</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Project_Template_Actions.html#src-30083158_ProjectTemplateActions-Invocation">Invocation</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Project_Template_Actions.html#src-30083158_ProjectTemplateActions-GetProjectTemplateTypes">Get Project Template Types</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Project_Template_Actions.html#src-30083158_ProjectTemplateActions-GetProjectTemplates">Get Project Templates</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Project_Template_Actions.html#src-30083158_ProjectTemplateActions-ListeningtoTemplateChanges">Listening to Template Changes</a>    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Project_Template_Actions.html#src-30083158_ProjectTemplateActions-Requirements">Requirements</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Project_Template_Actions.html#src-30083158_ProjectTemplateActions-Invocation">Invocation</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Project_Template_Actions.html#src-30083158_ProjectTemplateActions-GetProjectTemplateTypes">Get Project Template Types</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Project_Template_Actions.html#src-30083158_ProjectTemplateActions-GetProjectTemplates">Get Project Templates</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Project_Template_Actions.html#src-30083158_ProjectTemplateActions-ListeningtoTemplateChanges">Listening to Template Changes</a>    </p>
 </li></ul>    </div>
     <div class="section section-2 " id="src-30083158_ProjectTemplateActions-Requirements">
         <h2 class="heading "><span>Requirements</span></h2>
-    <p  >The examples in this page use the <strong class=" "><i class=" ">Prototype</i></strong> library, which is included by default inside a portal. However, the same concepts may be applied using other implementations.    </p>
+    <p>The examples in this page use the <strong class=" "><i class=" ">Prototype</i></strong> library, which is included by default inside a portal. However, the same concepts may be applied using other implementations.    </p>
     </div>
     <div class="section section-2 " id="src-30083158_ProjectTemplateActions-Invocation">
         <h2 class="heading "><span>Invocation</span></h2>
-    <p  >This command is executed immediately in a synchronous way.    </p>
+    <p>This command is executed immediately in a synchronous way.    </p>
     </div>
     <div class="section section-2 " id="src-30083158_ProjectTemplateActions-GetProjectTemplateTypes">
         <h2 class="heading "><span>Get Project Template Types</span></h2>
-    <p  >Gets the different types of project templates available, dispatch this call:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>Gets the different types of project templates available, dispatch this call:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">dispatch($H({</code></div>
-<div class="line"><code class="plain">	controller: </code><code class="string">'portal.project.templates'</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	action: </code><code class="string">'getTemplateTypes'</code></div>
+<div class="line"><code class="plain">	controller: </code><code class="string">&apos;portal.project.templates&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	action: </code><code class="string">&apos;getTemplateTypes&apos;</code></div>
 <div class="line"><code class="plain">}).toJSON()).evalJSON();</code></div>
 </div>
     </div>
-    <p  >Returns:<br/>An array of strings    </p>
+    <p>Returns:<br>An array of strings    </p>
     </div>
     <div class="section section-2 " id="src-30083158_ProjectTemplateActions-GetProjectTemplates">
         <h2 class="heading "><span>Get Project Templates</span></h2>
-    <p  >Gets the project templates that matches the project template types, dispatch this call:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>Gets the project templates that matches the project template types, dispatch this call:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">dispatch($H({</code></div>
-<div class="line"><code class="plain">	controller: </code><code class="string">'portal.project.templates'</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	action: </code><code class="string">'getTemplates'</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	args: </code><code class="string">'["WEB","TITANIUM_MOBILE"]'</code></div>
+<div class="line"><code class="plain">	controller: </code><code class="string">&apos;portal.project.templates&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	action: </code><code class="string">&apos;getTemplates&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	args: </code><code class="string">&apos;[&quot;WEB&quot;,&quot;TITANIUM_MOBILE&quot;]&apos;</code></div>
 <div class="line"><code class="plain">}).toJSON()).evalJSON();</code></div>
 </div>
     </div>
-    <p  >Arguments:<br/>List of project template types. If no arguments are specified, all project templates will be returned    </p>
-    <p  >Returns:<br/>An array of Project Templates. Each template has the following attributes: &quot;name&quot;, &quot;id&quot;, &quot;description&quot;, &quot;type&quot;    </p>
+    <p>Arguments:<br>List of project template types. If no arguments are specified, all project templates will be returned    </p>
+    <p>Returns:<br>An array of Project Templates. Each template has the following attributes: &quot;name&quot;, &quot;id&quot;, &quot;description&quot;, &quot;type&quot;    </p>
     </div>
     <div class="section section-2 " id="src-30083158_ProjectTemplateActions-ListeningtoTemplateChanges">
         <h2 class="heading "><span>Listening to Template Changes</span></h2>
-    <p  >Some of the templates may be loaded or removed after the portal is opened. In this case, the Studio fires events that indicate a Template addition or removal.<br/>Here is a sample of a way you can listen to such events (based on the <a class="external-link external-link" href="https://github.com/aptana/studio3-sdk">studio3-sdk</a> sample):    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>Some of the templates may be loaded or removed after the portal is opened. In this case, the Studio fires events that indicate a Template addition or removal.<br>Here is a sample of a way you can listen to such events (based on the <a class="external-link external-link" href="https://github.com/aptana/studio3-sdk">studio3-sdk</a> sample):    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">eventsDispatcher.addObserver(</code><code class="string">'templates'</code><code class="plain">, function(e) { portal.templates.update(e); });</code></div>
+<div class="line"><code class="plain">eventsDispatcher.addObserver(</code><code class="string">&apos;templates&apos;</code><code class="plain">, function(e) { portal.templates.update(e); });</code></div>
 </div>
     </div>
-    <p  >The <i class=" ">update</i> call receives an event object that holds the following information, and can be used to update the UI:    </p>
-    <div  class="tablewrap">
+    <p>The <i class=" ">update</i> call receives an event object that holds the following information, and can be used to update the UI:    </p>
+    <div class="tablewrap">
         <table class="confluenceTable">
-        <thead class=" ">    <tr >
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-        <p  >key    </p>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>key    </p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-        <p  >value    </p>
-            </td>
-        </tr>
-</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >event    </p>
-            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >The event identifier (in this case, always 'templates')    </p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>value    </p>
             </td>
         </tr>
-    <tr >
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >eventType    </p>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>event    </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >'added' or 'deleted'    </p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The event identifier (in this case, always &apos;templates&apos;)    </p>
             </td>
         </tr>
-    <tr >
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >data    </p>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>eventType    </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >A JSON representation of the Template-Info (as described above)    </p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&apos;added&apos; or &apos;deleted&apos;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>data    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A JSON representation of the Template-Info (as described above)    </p>
             </td>
         </tr>
 </tbody>        </table>
@@ -111,9 +111,7 @@
     </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

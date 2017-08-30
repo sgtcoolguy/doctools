@@ -5,12 +5,12 @@
 <head>
     <title>API Builder Docs</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,25 +18,25 @@
 
         <div id="src-46007162" class="content">
                         <h1>API Builder Docs</h1>
-    <p  >    </p>
-<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="API_Builder_Docs.html#src-46007162_APIBuilderDocs-Introduction">Introduction</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="API_Builder_Docs.html#src-46007162_APIBuilderDocs-InsertcustomJavaScriptandCSS">Insert custom JavaScript and CSS</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="API_Builder_Docs.html#src-46007162_APIBuilderDocs-Swaggerinterface">Swagger interface</a>    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="API_Builder_Docs.html#src-46007162_APIBuilderDocs-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Docs.html#src-46007162_APIBuilderDocs-InsertcustomJavaScriptandCSS">Insert custom JavaScript and CSS</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Docs.html#src-46007162_APIBuilderDocs-Swaggerinterface">Swagger interface</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-46007162_APIBuilderDocs-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p  >API Builder includes two API doc interfaces&ndash;one public and one private.  This topic discusses the public API interface.  For the private API interface, see <a  class="document-link " href="API_Builder_Console.html#src-43311120_APIBuilderConsole-APIDocs">API Builder Console: API Docs</a>.    </p>
-    <p  >The public API doc interface provides the essential information for external developers to use your RESTful APIs and provides request examples for different platforms. In contrast, the private one provides information about all APIs, Models, Connectors and Blocks as well as details about the authentication scheme, and allows you to test the APIs.    </p>
-    <p  >To access the API docs, append <tt class=" ">/apidoc</tt> to end of the published URL or browse to <tt class=" ">http://127.0.0.1:8080/apidoc</tt> if you are running the project locally. To change the path to the API docs, open the <tt class=" ">./conf/default.js</tt> file and change the value of the     <span style="color: #222222;" >
+    <p>API Builder includes two API doc interfaces&#x2013;one public and one private.  This topic discusses the public API interface.  For the private API interface, see <a class="document-link " href="API_Builder_Console.html#src-43311120_APIBuilderConsole-APIDocs">API Builder Console: API Docs</a>.    </p>
+    <p>The public API doc interface provides the essential information for external developers to use your RESTful APIs and provides request examples for different platforms. In contrast, the private one provides information about all APIs, Models, Connectors and Blocks as well as details about the authentication scheme, and allows you to test the APIs.    </p>
+    <p>To access the API docs, append <tt class=" ">/apidoc</tt> to end of the published URL or browse to <tt class=" ">http://127.0.0.1:8080/apidoc</tt> if you are running the project locally. To change the path to the API docs, open the <tt class=" ">./conf/default.js</tt> file and change the value of the     <span style="color: #222222;">
 <tt class=" ">apiDocPrefix</tt> key.    </span>
     </p>
-    <p  >If you do not want to display public documentation about your APIs, in the <tt class=" ">./conf/default.js</tt> file, set the <tt class=" ">admin.disableAPIDoc</tt> key to true.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>If you do not want to display public documentation about your APIs, in the <tt class=" ">./conf/default.js</tt> file, set the <tt class=" ">admin.disableAPIDoc</tt> key to true.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./conf/default.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./conf/default.js">
 <div class="line"><code class="plain">module.exports = {</code></div>
 <div class="line"><code class="plain">  admin: {</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Default path to API docs</code></div>
-<div class="line"><code class="plain">    apiDocPrefix: </code><code class="string">'/apidoc'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    apiDocPrefix: </code><code class="string">&apos;/apidoc&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Enable public API docs</code></div>
 <div class="line"><code class="plain">    disableAPIDoc: </code><code class="keyword">false</code></div>
 <div class="line"><code class="plain">  }</code></div>
@@ -46,54 +46,54 @@
     </div>
     <div class="section section-2 " id="src-46007162_APIBuilderDocs-InsertcustomJavaScriptandCSS">
         <h2 class="heading "><span>Insert custom JavaScript and CSS</span></h2>
-    <p  >To brand the public APIs with your company's styling, API Builder can inject your own custom JavaScript and CSS into the API docs, as well as the Admin console, to modify the HTML and styling.    </p>
-    <p  >To inject your own JavaScript or CSS files into the Admin Console and API Doc interface:    </p>
-<ol class=" "><li class=" ">    <p  >Create the JavaScript and CSS files and place them in the project's <tt class=" ">./web/public</tt> folder or you can reference the files from a remote server.    </p>
-</li><li class=" ">    <p  >Open the <tt class=" ">./conf/default.js</tt> file.    </p>
-</li><li class=" ">    <p  >To inject CSS files, add the <tt class=" ">admin.css</tt> key and set it to an array of filenames either relative to the <tt class=" ">./web/public</tt> folder or to an absolute URL.    </p>
-</li><li class=" ">    <p  >To inject JavaScript files, add the <tt class=" ">admin.js</tt> key and set it to an array of filenames either relative to the <tt class=" ">./web/public</tt> folder or to an absolute URL.    </p>
-</li></ol>    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>To brand the public APIs with your company&apos;s styling, API Builder can inject your own custom JavaScript and CSS into the API docs, as well as the Admin console, to modify the HTML and styling.    </p>
+    <p>To inject your own JavaScript or CSS files into the Admin Console and API Doc interface:    </p>
+<ol class=" "><li class=" ">    <p>Create the JavaScript and CSS files and place them in the project&apos;s <tt class=" ">./web/public</tt> folder or you can reference the files from a remote server.    </p>
+</li><li class=" ">    <p>Open the <tt class=" ">./conf/default.js</tt> file.    </p>
+</li><li class=" ">    <p>To inject CSS files, add the <tt class=" ">admin.css</tt> key and set it to an array of filenames either relative to the <tt class=" ">./web/public</tt> folder or to an absolute URL.    </p>
+</li><li class=" ">    <p>To inject JavaScript files, add the <tt class=" ">admin.js</tt> key and set it to an array of filenames either relative to the <tt class=" ">./web/public</tt> folder or to an absolute URL.    </p>
+</li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./conf/default.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./conf/default.js">
 <div class="line"><code class="plain">module.exports = {</code></div>
 <div class="line"><code class="plain">  admin: {</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Include ./web/public/app.css</code></div>
-<div class="line"><code class="plain">    css: [ </code><code class="string">'/app.css'</code><code class="plain"> ],</code></div>
+<div class="line"><code class="plain">    css: [ </code><code class="string">&apos;/app.css&apos;</code><code class="plain"> ],</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Include ./web/public/app.js</code></div>
-<div class="line"><code class="plain">    js: [ </code><code class="string">'/app.js'</code><code class="plain"> ]</code></div>
+<div class="line"><code class="plain">    js: [ </code><code class="string">&apos;/app.js&apos;</code><code class="plain"> ]</code></div>
 <div class="line"><code class="plain">  }</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p  >If you only want to modify either the Admin Console or API Doc interface, detect the <tt class=" ">apidoc</tt> class in the <tt class=" ">body</tt> element.  Only the API Doc interface contains the <tt class=" ">apidoc</tt> class.    </p>
-    <p  ><strong class=" ">Example</strong>:    </p>
-    <p  >Let's add a header and footer to the API docs.  Create a JavaScript file to insert <tt class=" ">div</tt> elements to the top and bottom of the <tt class=" ">body</tt> element, then create a CSS file to style the elements.    </p>
-<ol class=" "><li class=" ">    <p  >Create a file called <tt class=" ">app.js</tt> and place it in the <tt class=" ">./web/public</tt> folder.    </p>
-</li><li class=" ">    <p  >Copy and paste the following content into the <tt class=" ">app.js</tt> file:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>If you only want to modify either the Admin Console or API Doc interface, detect the <tt class=" ">apidoc</tt> class in the <tt class=" ">body</tt> element.  Only the API Doc interface contains the <tt class=" ">apidoc</tt> class.    </p>
+    <p><strong class=" ">Example</strong>:    </p>
+    <p>Let&apos;s add a header and footer to the API docs.  Create a JavaScript file to insert <tt class=" ">div</tt> elements to the top and bottom of the <tt class=" ">body</tt> element, then create a CSS file to style the elements.    </p>
+<ol class=" "><li class=" ">    <p>Create a file called <tt class=" ">app.js</tt> and place it in the <tt class=" ">./web/public</tt> folder.    </p>
+</li><li class=" ">    <p>Copy and paste the following content into the <tt class=" ">app.js</tt> file:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./web/public/app.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./web/public/app.js">
 <div class="line"><code class="plain">(function () {</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// If we're not executing in an API Doc page, don't do anything</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (!$(</code><code class="string">'body'</code><code class="plain">).hasClass(</code><code class="string">'apidoc'</code><code class="plain">)) {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// If we&apos;re not executing in an API Doc page, don&apos;t do anything</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (!$(</code><code class="string">&apos;body&apos;</code><code class="plain">).hasClass(</code><code class="string">&apos;apidoc&apos;</code><code class="plain">)) {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Check if our header is here. If not, insert it.</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> ($(</code><code class="string">'#company-header'</code><code class="plain">).length === </code><code class="value">0</code><code class="plain">) {</code></div>
-<div class="line"><code class="plain">        $(</code><code class="string">'body'</code><code class="plain">).prepend(</code><code class="string">'&lt;div id="company-header"&gt;ACME Corporation&lt;/div&gt;'</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> ($(</code><code class="string">&apos;#company-header&apos;</code><code class="plain">).length === </code><code class="value">0</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">        $(</code><code class="string">&apos;body&apos;</code><code class="plain">).prepend(</code><code class="string">&apos;&lt;div id=&quot;company-header&quot;&gt;ACME Corporation&lt;/div&gt;&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Check if our footer is here. If not, insert it.</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> ($(</code><code class="string">'#company-footer'</code><code class="plain">).length === </code><code class="value">0</code><code class="plain">) {</code></div>
-<div class="line"><code class="plain">        $(</code><code class="string">'body'</code><code class="plain">).append(</code><code class="string">'&lt;div id="company-footer"&gt;Copyright &amp;copy; 2015 by ACME Corporation&lt;/div&gt;'</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> ($(</code><code class="string">&apos;#company-footer&apos;</code><code class="plain">).length === </code><code class="value">0</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">        $(</code><code class="string">&apos;body&apos;</code><code class="plain">).append(</code><code class="string">&apos;&lt;div id=&quot;company-footer&quot;&gt;Copyright &amp;copy; 2015 by ACME Corporation&lt;/div&gt;&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">})();</code></div>
 </div>
     </div>
-</li><li class=" ">    <p  >Create a file called <tt class=" ">app.css</tt> and place it in the <tt class=" ">./web/public</tt> folder.    </p>
-</li><li class=" ">    <p  >Copy and paste the following content into the <tt class=" ">app.css</tt> file:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+</li><li class=" ">    <p>Create a file called <tt class=" ">app.css</tt> and place it in the <tt class=" ">./web/public</tt> folder.    </p>
+</li><li class=" ">    <p>Copy and paste the following content into the <tt class=" ">app.css</tt> file:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./web/public/app.css</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./web/public/app.css">
 <div class="line"><code class="comments">// Adjust the margin of the nav bar and container to make room for the header and footer</code></div>
@@ -122,30 +122,30 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" ">    <p  >Open the <tt class=" ">./conf/default.js</tt> file and add the following keys to include the files in the web page:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+</li><li class=" ">    <p>Open the <tt class=" ">./conf/default.js</tt> file and add the following keys to include the files in the web page:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./conf/default.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./conf/default.js">
 <div class="line"><code class="plain">module.exports = {</code></div>
 <div class="line"><code class="plain">  admin: {</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Include ./web/public/app.css</code></div>
-<div class="line"><code class="plain">    css: [ </code><code class="string">'/app.css'</code><code class="plain"> ],</code></div>
+<div class="line"><code class="plain">    css: [ </code><code class="string">&apos;/app.css&apos;</code><code class="plain"> ],</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Include ./web/public/app.js</code></div>
-<div class="line"><code class="plain">    js: [ </code><code class="string">'/app.js'</code><code class="plain"> ]</code></div>
+<div class="line"><code class="plain">    js: [ </code><code class="string">&apos;/app.js&apos;</code><code class="plain"> ]</code></div>
 <div class="line"><code class="plain">  }</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li></ol>    <p  >Now run the project and navigate to the API docs page.    </p>
-    <p  >    <img  src="images/download/attachments/46007162/Screen_Shot_2015-10-20_at_10.37.29_AM.png" alt="images/download/attachments/46007162/Screen_Shot_2015-10-20_at_10.37.29_AM.png" class="confluence-embedded-image confluence-content-image-border"   />
+</li></ol>    <p>Now run the project and navigate to the API docs page.    </p>
+    <p>    <img src="images/download/attachments/46007162/Screen_Shot_2015-10-20_at_10.37.29_AM.png" alt="images/download/attachments/46007162/Screen_Shot_2015-10-20_at_10.37.29_AM.png" class="confluence-embedded-image confluence-content-image-border">
         </p>
     </div>
     <div class="section section-2 " id="src-46007162_APIBuilderDocs-Swaggerinterface">
         <h2 class="heading "><span>Swagger interface</span></h2>
-    <p  ><a class="external-link external-link" href="http://swagger.io/">Swagger</a> is a popular framework to display RESTful APIs. API Builder creates an API endpoint to generate data that can be consumed by Swagger.  You can easily add a Swagger interface to your application by copying the Swagger UI and making a few modifications to point Swagger to the API Builder API endpoint.    </p>
-    <p  >To display a Swagger interface of the API docs:    </p>
-<ol class=" "><li class=" ">    <p  >Copy the contents of the <a class="external-link external-link" href="https://github.com/swagger-api/swagger-ui/blob/5fa84ff5705de2b00e00528efe74a48fd9a49ab1/dist/">https://github.com/swagger-api/swagger-ui/blob/5fa84ff5705de2b00e00528efe74a48fd9a49ab1/dist/</a> folder to the API Builder project's <tt class=" ">./web/public/</tt> folder.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p><a class="external-link external-link" href="http://swagger.io/">Swagger</a> is a popular framework to display RESTful APIs. API Builder creates an API endpoint to generate data that can be consumed by Swagger.  You can easily add a Swagger interface to your application by copying the Swagger UI and making a few modifications to point Swagger to the API Builder API endpoint.    </p>
+    <p>To display a Swagger interface of the API docs:    </p>
+<ol class=" "><li class=" ">    <p>Copy the contents of the <a class="external-link external-link" href="https://github.com/swagger-api/swagger-ui/blob/5fa84ff5705de2b00e00528efe74a48fd9a49ab1/dist/">https://github.com/swagger-api/swagger-ui/blob/5fa84ff5705de2b00e00528efe74a48fd9a49ab1/dist/</a> folder to the API Builder project&apos;s <tt class=" ">./web/public/</tt> folder.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">## Note that </code><code class="keyword">this</code><code class="plain"> will overwrite the index.html and content in the css, font and images folders</code></div>
 <div class="line"><code class="plain">cd &lt;APIBuilderProject&gt;/web/</code><code class="keyword">public</code></div>
@@ -154,38 +154,36 @@
 <div class="line"><code class="plain">rm -rf swagger-ui</code></div>
 </div>
     </div>
-</li><li class=" ">    <p  >Open <tt class=" ">./web/public/index.html</tt> file and make the following modifications:    </p>
-<ol class=" "><li class=" ">    <p  >At line 38, modify the <tt class=" ">url</tt> variable in the else condition to point to the application's API endpoint:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+</li><li class=" ">    <p>Open <tt class=" ">./web/public/index.html</tt> file and make the following modifications:    </p>
+<ol class=" "><li class=" ">    <p>At line 38, modify the <tt class=" ">url</tt> variable in the else condition to point to the application&apos;s API endpoint:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// Find:</code></div>
-<div class="line"><code class="plain">url = </code><code class="string">"http://petstore.swagger.io/v2/swagger.json"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">url = </code><code class="string">&quot;http://petstore.swagger.io/v2/swagger.json&quot;</code><code class="plain">;</code></div>
 <div class="line"><code class="comments">// To test locally, change to:</code></div>
-<div class="line"><code class="plain">url = </code><code class="string">"http://127.0.0.1:8080/apidoc/swagger.json"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">url = </code><code class="string">&quot;http://127.0.0.1:8080/apidoc/swagger.json&quot;</code><code class="plain">;</code></div>
 <div class="line"><code class="comments">// For production, first publish the application to get the URL, replace the URL, then do a force republish</code></div>
-<div class="line"><code class="plain">url = </code><code class="string">"https://&lt;APP_GUID&gt;.cloudapp-enterprise.appcelerator.com/apidoc/swagger.json"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">url = </code><code class="string">&quot;https://&lt;APP_GUID&gt;.cloudapp-enterprise.appcelerator.com/apidoc/swagger.json&quot;</code><code class="plain">;</code></div>
 </div>
     </div>
-</li><li class=" ">    <p  >At line 80, modify the <tt class=" ">SwaggerClient.ApiKeyAuthorization()</tt> method to add the API key for authorization. (Will not work for Internet Explorer 9 and earlier.):    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+</li><li class=" ">    <p>At line 80, modify the <tt class=" ">SwaggerClient.ApiKeyAuthorization()</tt> method to add the API key for authorization. (Will not work for Internet Explorer 9 and earlier.):    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// Find:</code></div>
-<div class="line"><code class="plain">var apiKeyAuth = </code><code class="keyword">new</code><code class="plain"> SwaggerClient.ApiKeyAuthorization(</code><code class="string">"api_key"</code><code class="plain">, key, </code><code class="string">"query"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var apiKeyAuth = </code><code class="keyword">new</code><code class="plain"> SwaggerClient.ApiKeyAuthorization(</code><code class="string">&quot;api_key&quot;</code><code class="plain">, key, </code><code class="string">&quot;query&quot;</code><code class="plain">);</code></div>
 <div class="line"><code class="comments">// Change to:</code></div>
-<div class="line"><code class="plain">var apiKeyAuth = </code><code class="keyword">new</code><code class="plain"> SwaggerClient.ApiKeyAuthorization(</code><code class="string">"Authorization"</code><code class="plain">, </code><code class="string">'Basic '</code><code class="plain"> + btoa(key), </code><code class="string">"header"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var apiKeyAuth = </code><code class="keyword">new</code><code class="plain"> SwaggerClient.ApiKeyAuthorization(</code><code class="string">&quot;Authorization&quot;</code><code class="plain">, </code><code class="string">&apos;Basic &apos;</code><code class="plain"> + btoa(key), </code><code class="string">&quot;header&quot;</code><code class="plain">);</code></div>
 </div>
     </div>
-</li><li class=" ">    <p  ><strong class=" ">Optional</strong>. At lines 89 and 92, uncomment the <tt class=" ">apiKey</tt> variable and specify your API key to hard code the value.    </p>
-</li></ol></li><li class=" ">    <p  >Run or publish the application, then in a browser, navigate to the API Builder application's base URL (http://127.0.0.1:8080/ or https://&lt;APP_GUID&gt;.cloudapp-enterprise.appcelerator.com/) to display the Swagger interface.    </p>
-    <img  src="images/download/attachments/46007162/swagger.png" alt="images/download/attachments/46007162/swagger.png" class="confluence-embedded-image confluence-content-image-border"   />
-    </li></ol>    <p  >    </p>
-    <p  >    </p>
+</li><li class=" ">    <p><strong class=" ">Optional</strong>. At lines 89 and 92, uncomment the <tt class=" ">apiKey</tt> variable and specify your API key to hard code the value.    </p>
+</li></ol></li><li class=" ">    <p>Run or publish the application, then in a browser, navigate to the API Builder application&apos;s base URL (http://127.0.0.1:8080/ or https://&lt;APP_GUID&gt;.cloudapp-enterprise.appcelerator.com/) to display the Swagger interface.    </p>
+    <img src="images/download/attachments/46007162/swagger.png" alt="images/download/attachments/46007162/swagger.png" class="confluence-embedded-image confluence-content-image-border">
+    </li></ol>    <p>    </p>
+    <p>    </p>
     </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

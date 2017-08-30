@@ -5,12 +5,12 @@
 <head>
     <title>Relational Fields</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,16 +18,16 @@
 
         <div id="src-49153824" class="content">
                         <h1>Relational Fields</h1>
-    <p  >    </p>
-<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Relational_Fields.html#src-49153824_RelationalFields-Createarelationalfield">Create a relational field</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Relational_Fields.html#src-49153824_RelationalFields-Showarelationalfield">Show a relational field</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Relational_Fields.html#src-49153824_RelationalFields-Queryarelationalfield">Query a relational field</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Relational_Fields.html#src-49153824_RelationalFields-Removearelationalfield">Remove a relational field</a>    </p>
-</li></ul></li></ul>    <p  >Relational Fields provide a simple way for users to define relations between any Mobile Backend Services (MBS) objects.    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Relational_Fields.html#src-49153824_RelationalFields-Createarelationalfield">Create a relational field</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Relational_Fields.html#src-49153824_RelationalFields-Showarelationalfield">Show a relational field</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Relational_Fields.html#src-49153824_RelationalFields-Queryarelationalfield">Query a relational field</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Relational_Fields.html#src-49153824_RelationalFields-Removearelationalfield">Remove a relational field</a>    </p>
+</li></ul></li></ul>    <p>Relational Fields provide a simple way for users to define relations between any Mobile Backend Services (MBS) objects.    </p>
     <div class="section section-2 " id="src-49153824_RelationalFields-Createarelationalfield">
         <h2 class="heading "><span>Create a relational field</span></h2>
-    <p  >To add or update a relation, you must provide an MBS object ID and an MBS object type. These values together identify a unique MBS object. The relation is specified using one of these formats:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>To add or update a relation, you must provide an MBS object ID and an MBS object type. These values together identify a unique MBS object. The relation is specified using one of these formats:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">[ACS_&lt;TYPENAME&gt;]&lt;fieldname_id&gt;</code></div>
 <div class="line"><code class="plain">[ACS_&lt;TYPENAME&gt;]&lt;fieldname_ids&gt;</code></div>
@@ -35,96 +35,96 @@
 <div class="line"><code class="plain">[CUSTOM_&lt;TYPENAME&gt;]&lt;fieldname_ids&gt;</code></div>
 </div>
     </div>
-    <p  >Where <i class=" ">TYPENAME</i> indicates MBS type or MBS custom object type of the object pointed to. For example, ArrowDB_User represents an MBS User object, ArrowDB_Photo represents an MBS Photo object, and CUSTOM_car represents an MBS custom object of class <tt class=" ">car</tt>.    </p>
-    <p  >To create the relation, create a custom field using one of the relational field name formats shown above. For example, in the following custom fields, we add two relations:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>Where <i class=" ">TYPENAME</i> indicates MBS type or MBS custom object type of the object pointed to. For example, ArrowDB_User represents an MBS User object, ArrowDB_Photo represents an MBS Photo object, and CUSTOM_car represents an MBS custom object of class <tt class=" ">car</tt>.    </p>
+    <p>To create the relation, create a custom field using one of the relational field name formats shown above. For example, in the following custom fields, we add two relations:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">Custom_fields = {</code></div>
-<div class="line"><code class="plain">    </code><code class="string">"[ACS_User]owner_id"</code><code class="plain">:</code><code class="string">"4d6e77386f70950c89000001"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    </code><code class="string">"[CUSTOM_car]mycar_id"</code><code class="plain">:</code><code class="string">"4d51d4186f70952d4c000006"</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;[ACS_User]owner_id&quot;</code><code class="plain">:</code><code class="string">&quot;4d6e77386f70950c89000001&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;[CUSTOM_car]mycar_id&quot;</code><code class="plain">:</code><code class="string">&quot;4d51d4186f70952d4c000006&quot;</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p  >For example, when creating a custom <tt class=" ">car</tt> object, we can specify an owner and picture for the car:    </p>
-    <div  class="tablewrap">
-        <table >
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
-            <td   rowspan="1" colspan="1">
-        <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>For example, when creating a custom <tt class=" ">car</tt> object, we can specify an owner and picture for the car:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">$ curl -b c.txt -c c.txt -F </code><code class="string">"key=sesObkV0qTaPSEwcHc6DGcR21EWN9HT0"</code><code class="plain"> -F </code><code class="string">"id=506e4c775554f7470b00001d"</code><code class="plain"> -F </code></div>
-<div class="line"><code class="string">"fields={"</code><code class="plain">[ACS_User]owner_id</code><code class="string">":"</code><code class="plain">506e4c735554f7470b000003</code><code class="string">", "</code><code class="plain">[ACS_Photo]picture_id</code><code class="string">":"</code><code class="plain">506e4c755554f7470b00000a</code><code class="string">"}"</code><code class="plain"> </code></div>
-<div class="line"><code class="string">"https://api.cloud.appcelerator.com/v1/objects/car/create.json?key="</code></div>
+<div class="line"><code class="plain">$ curl -b c.txt -c c.txt -F </code><code class="string">&quot;key=sesObkV0qTaPSEwcHc6DGcR21EWN9HT0&quot;</code><code class="plain"> -F </code><code class="string">&quot;id=506e4c775554f7470b00001d&quot;</code><code class="plain"> -F </code></div>
+<div class="line"><code class="string">&quot;fields={&quot;</code><code class="plain">[ACS_User]owner_id</code><code class="string">&quot;:&quot;</code><code class="plain">506e4c735554f7470b000003</code><code class="string">&quot;, &quot;</code><code class="plain">[ACS_Photo]picture_id</code><code class="string">&quot;:&quot;</code><code class="plain">506e4c755554f7470b00000a</code><code class="string">&quot;}&quot;</code><code class="plain"> </code></div>
+<div class="line"><code class="string">&quot;https://api.cloud.appcelerator.com/v1/objects/car/create.json?key=&quot;</code></div>
 <div class="line"><code class="plain">{</code></div>
-<div class="line"><code class="plain">  </code><code class="string">"meta"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    </code><code class="string">"code"</code><code class="plain">: 200,</code></div>
-<div class="line"><code class="plain">    </code><code class="string">"status"</code><code class="plain">: </code><code class="string">"ok"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    </code><code class="string">"method_name"</code><code class="plain">: </code><code class="string">"updateCustomObject"</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;meta&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;code&quot;</code><code class="plain">: 200,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;status&quot;</code><code class="plain">: </code><code class="string">&quot;ok&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;method_name&quot;</code><code class="plain">: </code><code class="string">&quot;updateCustomObject&quot;</code></div>
 <div class="line"><code class="plain">  },</code></div>
-<div class="line"><code class="plain">  </code><code class="string">"response"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    </code><code class="string">"car"</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;car&quot;</code><code class="plain">: [</code></div>
 <div class="line"><code class="plain">      {</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"[ACS_Photo]picture_id"</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;[ACS_Photo]picture_id&quot;</code><code class="plain">: [</code></div>
 <div class="line"><code class="plain">          {</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"id"</code><code class="plain">: </code><code class="string">"506e4c755554f7470b00000a"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"filename"</code><code class="plain">: </code><code class="string">"photo.jpg"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"size"</code><code class="plain">: 584344,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"md5"</code><code class="plain">: </code><code class="string">"589b8ad43ed20bf8e622d719642bc939"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"created_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:53+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"updated_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:53+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"processed"</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"user"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">              </code><code class="string">"id"</code><code class="plain">: </code><code class="string">"506e4c735554f7470b000005"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">              </code><code class="string">"first_name"</code><code class="plain">: </code><code class="string">"Frank"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">              </code><code class="string">"last_name"</code><code class="plain">: </code><code class="string">"Jobs"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">              </code><code class="string">"created_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:51+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">              </code><code class="string">"updated_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:55+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">              </code><code class="string">"external_accounts"</code><code class="plain">: [</code></div>
-<div class="line"> </div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;506e4c755554f7470b00000a&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;filename&quot;</code><code class="plain">: </code><code class="string">&quot;photo.jpg&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;size&quot;</code><code class="plain">: 584344,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;md5&quot;</code><code class="plain">: </code><code class="string">&quot;589b8ad43ed20bf8e622d719642bc939&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;created_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:53+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;updated_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:53+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;processed&quot;</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;user&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;506e4c735554f7470b000005&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;first_name&quot;</code><code class="plain">: </code><code class="string">&quot;Frank&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;last_name&quot;</code><code class="plain">: </code><code class="string">&quot;Jobs&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;created_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:51+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;updated_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:55+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;external_accounts&quot;</code><code class="plain">: [</code></div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">              ],</code></div>
-<div class="line"><code class="plain">              </code><code class="string">"confirmed_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:51+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">              </code><code class="string">"email"</code><code class="plain">: </code><code class="string">"frank@guy.com"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">              </code><code class="string">"admin"</code><code class="plain">: </code><code class="string">"false"</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;confirmed_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:51+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;email&quot;</code><code class="plain">: </code><code class="string">&quot;frank@guy.com&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;admin&quot;</code><code class="plain">: </code><code class="string">&quot;false&quot;</code></div>
 <div class="line"><code class="plain">            },</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"content_type"</code><code class="plain">: </code><code class="string">"image/jpeg"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"likes_count"</code><code class="plain">: 1</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;content_type&quot;</code><code class="plain">: </code><code class="string">&quot;image/jpeg&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;likes_count&quot;</code><code class="plain">: 1</code></div>
 <div class="line"><code class="plain">          }</code></div>
 <div class="line"><code class="plain">        ],</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"color"</code><code class="plain">: </code><code class="string">"blue"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"model"</code><code class="plain">: </code><code class="string">"nissan"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"mileage"</code><code class="plain">: 1000,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"purchased_date"</code><code class="plain">: </code><code class="string">"2011-11-01 17:08:36 -0700"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"[ACS_User]owner_id"</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;color&quot;</code><code class="plain">: </code><code class="string">&quot;blue&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;model&quot;</code><code class="plain">: </code><code class="string">&quot;nissan&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;mileage&quot;</code><code class="plain">: 1000,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;purchased_date&quot;</code><code class="plain">: </code><code class="string">&quot;2011-11-01 17:08:36 -0700&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;[ACS_User]owner_id&quot;</code><code class="plain">: [</code></div>
 <div class="line"><code class="plain">          {</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"id"</code><code class="plain">: </code><code class="string">"506e4c735554f7470b000003"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"first_name"</code><code class="plain">: </code><code class="string">"Alice"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"last_name"</code><code class="plain">: </code><code class="string">"Gal"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"created_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:51+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"updated_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:51+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"external_accounts"</code><code class="plain">: [</code></div>
-<div class="line"> </div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;506e4c735554f7470b000003&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;first_name&quot;</code><code class="plain">: </code><code class="string">&quot;Alice&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;last_name&quot;</code><code class="plain">: </code><code class="string">&quot;Gal&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;created_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:51+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;updated_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:51+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;external_accounts&quot;</code><code class="plain">: [</code></div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">            ],</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"confirmed_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:51+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"username"</code><code class="plain">: </code><code class="string">"alice"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"email"</code><code class="plain">: </code><code class="string">"alice@gal.com"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"admin"</code><code class="plain">: </code><code class="string">"false"</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;confirmed_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:51+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;username&quot;</code><code class="plain">: </code><code class="string">&quot;alice&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;email&quot;</code><code class="plain">: </code><code class="string">&quot;alice@gal.com&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;admin&quot;</code><code class="plain">: </code><code class="string">&quot;false&quot;</code></div>
 <div class="line"><code class="plain">          }</code></div>
 <div class="line"><code class="plain">        ],</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"id"</code><code class="plain">: </code><code class="string">"506e4c775554f7470b00001d"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"created_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:55+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"updated_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:56+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"user"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">          </code><code class="string">"id"</code><code class="plain">: </code><code class="string">"506e4c735554f7470b000005"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">          </code><code class="string">"first_name"</code><code class="plain">: </code><code class="string">"Frank"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">          </code><code class="string">"last_name"</code><code class="plain">: </code><code class="string">"Jobs"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">          </code><code class="string">"created_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:51+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">          </code><code class="string">"updated_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:55+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">          </code><code class="string">"external_accounts"</code><code class="plain">: [</code></div>
-<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;506e4c775554f7470b00001d&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;created_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:55+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;updated_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:56+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;user&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;506e4c735554f7470b000005&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;first_name&quot;</code><code class="plain">: </code><code class="string">&quot;Frank&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;last_name&quot;</code><code class="plain">: </code><code class="string">&quot;Jobs&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;created_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:51+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;updated_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:55+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;external_accounts&quot;</code><code class="plain">: [</code></div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">          ],</code></div>
-<div class="line"><code class="plain">          </code><code class="string">"confirmed_at"</code><code class="plain">: </code><code class="string">"2012-10-05T02:56:51+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">          </code><code class="string">"email"</code><code class="plain">: </code><code class="string">"frank@guy.com"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">          </code><code class="string">"admin"</code><code class="plain">: </code><code class="string">"false"</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;confirmed_at&quot;</code><code class="plain">: </code><code class="string">&quot;2012-10-05T02:56:51+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;email&quot;</code><code class="plain">: </code><code class="string">&quot;frank@guy.com&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;admin&quot;</code><code class="plain">: </code><code class="string">&quot;false&quot;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">      }</code></div>
 <div class="line"><code class="plain">    ]</code></div>
@@ -138,65 +138,65 @@
             </div>
     <div class="section section-3 " id="src-49153824_RelationalFields-Showarelationalfield">
         <h3 class="heading "><span>Show a relational field</span></h3>
-    <p  >When you show an MBS object, if the MBS object has a relation to another MBS object, MBS includes the referenced Mobile Backend Services object. For example, suppose a Custom object of type <tt class=" ">car</tt> has two relations: an owner and a picture. When you call <tt class=" ">show</tt> on the object, the user and photo object are included in the response. Example JSON response:    </p>
-    <div  class="tablewrap">
-        <table >
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
-            <td   rowspan="1" colspan="1">
-        <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>When you show an MBS object, if the MBS object has a relation to another MBS object, MBS includes the referenced Mobile Backend Services object. For example, suppose a Custom object of type <tt class=" ">car</tt> has two relations: an owner and a picture. When you call <tt class=" ">show</tt> on the object, the user and photo object are included in the response. Example JSON response:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">{</code></div>
-<div class="line"><code class="plain">  </code><code class="string">"meta"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    </code><code class="string">"code"</code><code class="plain">: 200,</code></div>
-<div class="line"><code class="plain">    </code><code class="string">"status"</code><code class="plain">: </code><code class="string">"ok"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    </code><code class="string">"method_name"</code><code class="plain">: </code><code class="string">"createObject"</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;meta&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;code&quot;</code><code class="plain">: 200,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;status&quot;</code><code class="plain">: </code><code class="string">&quot;ok&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;method_name&quot;</code><code class="plain">: </code><code class="string">&quot;createObject&quot;</code></div>
 <div class="line"><code class="plain">  },</code></div>
-<div class="line"><code class="plain">  </code><code class="string">"response"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    </code><code class="string">"car"</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;car&quot;</code><code class="plain">: [</code></div>
 <div class="line"><code class="plain">      {</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"color"</code><code class="plain">: </code><code class="string">"blue"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"make"</code><code class="plain">: </code><code class="string">"nissan"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"purchased_at"</code><code class="plain">: </code><code class="string">"2011-11-03T00:07:37+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"year"</code><code class="plain">: 2005,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"used"</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"coordinates"</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;color&quot;</code><code class="plain">: </code><code class="string">&quot;blue&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;make&quot;</code><code class="plain">: </code><code class="string">&quot;nissan&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;purchased_at&quot;</code><code class="plain">: </code><code class="string">&quot;2011-11-03T00:07:37+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;year&quot;</code><code class="plain">: 2005,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;used&quot;</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;coordinates&quot;</code><code class="plain">: [</code></div>
 <div class="line"><code class="plain">          [-122.1,37.1]</code></div>
 <div class="line"><code class="plain">        ],</code></div>
-<div class="line"><code class="plain">        “[ACS_User]owner_id” : {</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"id"</code><code class="plain">:</code><code class="string">"4d6e77386f70950c89000001"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"first_name"</code><code class="plain">:</code><code class="string">"John"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"last_name"</code><code class="plain">:</code><code class="string">"Smith"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"role"</code><code class="plain">: </code><code class="string">"teacher"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"created_at"</code><code class="plain">:</code><code class="string">"2011-03-02T16:58:32+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"updated_at"</code><code class="plain">:</code><code class="string">"2011-03-02T16:58:32+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"facebook_authorized"</code><code class="plain">:</code><code class="keyword">false</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"email"</code><code class="plain">:</code><code class="string">"john.smith@company.com"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"photo"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">                </code><code class="string">"id"</code><code class="plain">:</code><code class="string">"4d882896d0afbe0a3600000d"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">                </code><code class="string">"filename"</code><code class="plain">:</code><code class="string">"photo.jpg"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">                </code><code class="string">"size"</code><code class="plain">:584344,</code></div>
-<div class="line"><code class="plain">                </code><code class="string">"md5"</code><code class="plain">:</code><code class="string">"589b8ad43ed20bf8e622d719642bc939"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">                </code><code class="string">"created_at"</code><code class="plain">:</code><code class="string">"2011-03-22T04:41:58+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">                </code><code class="string">"updated_at"</code><code class="plain">:</code><code class="string">"2011-03-22T04:42:07+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">                </code><code class="string">"processed"</code><code class="plain">:</code><code class="keyword">false</code></div>
+<div class="line"><code class="plain">        &#x201C;[ACS_User]owner_id&#x201D; : {</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;id&quot;</code><code class="plain">:</code><code class="string">&quot;4d6e77386f70950c89000001&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;first_name&quot;</code><code class="plain">:</code><code class="string">&quot;John&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;last_name&quot;</code><code class="plain">:</code><code class="string">&quot;Smith&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;role&quot;</code><code class="plain">: </code><code class="string">&quot;teacher&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;created_at&quot;</code><code class="plain">:</code><code class="string">&quot;2011-03-02T16:58:32+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;updated_at&quot;</code><code class="plain">:</code><code class="string">&quot;2011-03-02T16:58:32+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;facebook_authorized&quot;</code><code class="plain">:</code><code class="keyword">false</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;email&quot;</code><code class="plain">:</code><code class="string">&quot;john.smith@company.com&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;photo&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;id&quot;</code><code class="plain">:</code><code class="string">&quot;4d882896d0afbe0a3600000d&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;filename&quot;</code><code class="plain">:</code><code class="string">&quot;photo.jpg&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;size&quot;</code><code class="plain">:584344,</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;md5&quot;</code><code class="plain">:</code><code class="string">&quot;589b8ad43ed20bf8e622d719642bc939&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;created_at&quot;</code><code class="plain">:</code><code class="string">&quot;2011-03-22T04:41:58+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;updated_at&quot;</code><code class="plain">:</code><code class="string">&quot;2011-03-22T04:42:07+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;processed&quot;</code><code class="plain">:</code><code class="keyword">false</code></div>
 <div class="line"><code class="plain">            },</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"custom_fields"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">                </code><code class="string">"age"</code><code class="plain">:28,</code></div>
-<div class="line"><code class="plain">                </code><code class="string">"favorite_color"</code><code class="plain">:</code><code class="string">"blue"</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;age&quot;</code><code class="plain">:28,</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;favorite_color&quot;</code><code class="plain">:</code><code class="string">&quot;blue&quot;</code></div>
 <div class="line"><code class="plain">            }</code></div>
 <div class="line"><code class="plain">        },</code></div>
-<div class="line"><code class="plain">        “[ACS_Photo]picture_id”:{</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"id"</code><code class="plain">:</code><code class="string">"4d51d4186f70952d4c000006"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"filename"</code><code class="plain">:</code><code class="string">"photo.jpg"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"size"</code><code class="plain">:584344,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"md5"</code><code class="plain">:</code><code class="string">"589b8ad43ed20bf8e622d719642bc939"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"created_at"</code><code class="plain">:</code><code class="string">"2011-02-08T23:39:04+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"updated_at"</code><code class="plain">:</code><code class="string">"2011-02-08T23:39:04+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">"processed"</code><code class="plain">:</code><code class="keyword">false</code></div>
+<div class="line"><code class="plain">        &#x201C;[ACS_Photo]picture_id&#x201D;:{</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;id&quot;</code><code class="plain">:</code><code class="string">&quot;4d51d4186f70952d4c000006&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;filename&quot;</code><code class="plain">:</code><code class="string">&quot;photo.jpg&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;size&quot;</code><code class="plain">:584344,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;md5&quot;</code><code class="plain">:</code><code class="string">&quot;589b8ad43ed20bf8e622d719642bc939&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;created_at&quot;</code><code class="plain">:</code><code class="string">&quot;2011-02-08T23:39:04+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;updated_at&quot;</code><code class="plain">:</code><code class="string">&quot;2011-02-08T23:39:04+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;processed&quot;</code><code class="plain">:</code><code class="keyword">false</code></div>
 <div class="line"><code class="plain">        },</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"id"</code><code class="plain">: </code><code class="string">"4ec42de1d9ca72c50700000d"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"created_at"</code><code class="plain">: </code><code class="string">"2011-11-16T21:40:49+0000"</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        </code><code class="string">"updated_at"</code><code class="plain">: </code><code class="string">"2011-11-16T21:40:49+0000"</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;4ec42de1d9ca72c50700000d&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;created_at&quot;</code><code class="plain">: </code><code class="string">&quot;2011-11-16T21:40:49+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;updated_at&quot;</code><code class="plain">: </code><code class="string">&quot;2011-11-16T21:40:49+0000&quot;</code></div>
 <div class="line"><code class="plain">      }</code></div>
 <div class="line"><code class="plain">    ]</code></div>
 <div class="line"><code class="plain">  }</code></div>
@@ -210,33 +210,33 @@
     </div>
     <div class="section section-3 " id="src-49153824_RelationalFields-Queryarelationalfield">
         <h3 class="heading "><span>Query a relational field</span></h3>
-    <p  >A relation points to an Mobile Backend Services object, so to query a relation, you must first get the Mobile Backend Services object pointed by the relation. For example, if you want to query cars whose owner is &ldquo;John Smith&rdquo;, you first need to find the {@link Users} object whose full name is &ldquo;John Smith&rdquo;:    </p>
-    <div  class="tablewrap">
-        <table >
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
-            <td   rowspan="1" colspan="1">
-        <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>A relation points to an Mobile Backend Services object, so to query a relation, you must first get the Mobile Backend Services object pointed by the relation. For example, if you want to query cars whose owner is &#x201C;John Smith&#x201D;, you first need to find the {@link Users} object whose full name is &#x201C;John Smith&#x201D;:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -c cookies.txt -b cookies.txt -X GET --data-urlencode </code></div>
-<div class="line"><code class="string">'where={"first_name":"John","last_name":”Smith”}'</code><code class="plain"> --data-urlencode </code><code class="string">'order=created_at'</code><code class="plain"> </code></div>
-<div class="line"><code class="string">"https://api.cloud.appcelerator.com/v1/users/query.json?key={YOUR APP APP KEY}"</code></div>
+<div class="line"><code class="string">&apos;where={&quot;first_name&quot;:&quot;John&quot;,&quot;last_name&quot;:&#x201D;Smith&#x201D;}&apos;</code><code class="plain"> --data-urlencode </code><code class="string">&apos;order=created_at&apos;</code><code class="plain"> </code></div>
+<div class="line"><code class="string">&quot;https://api.cloud.appcelerator.com/v1/users/query.json?key={YOUR APP APP KEY}&quot;</code></div>
 </div>
     </div>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-    <p  >If the user exists, use the user ID to query the custom objects collection for cars that have a <tt class=" ">[ACS_User]owner_id</tt> property with the specified value.    </p>
-    <div  class="tablewrap">
-        <table >
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
-            <td   rowspan="1" colspan="1">
-        <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>If the user exists, use the user ID to query the custom objects collection for cars that have a <tt class=" ">[ACS_User]owner_id</tt> property with the specified value.    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -c cookies.txt -b cookies.txt -X GET --data-urlencode </code></div>
-<div class="line"><code class="string">'where= {"[ACS_User]owner_id":"the user’s object id"}'</code><code class="plain"> --data-urlencode </code></div>
-<div class="line"><code class="string">'order=-purchased_at'</code><code class="plain"> </code></div>
-<div class="line"><code class="string">"https://api.cloud.appcelerator.com/v1/objects/car/query.json?key={YOUR APP APP KEY}"</code></div>
+<div class="line"><code class="string">&apos;where= {&quot;[ACS_User]owner_id&quot;:&quot;the user&#x2019;s object id&quot;}&apos;</code><code class="plain"> --data-urlencode </code></div>
+<div class="line"><code class="string">&apos;order=-purchased_at&apos;</code><code class="plain"> </code></div>
+<div class="line"><code class="string">&quot;https://api.cloud.appcelerator.com/v1/objects/car/query.json?key={YOUR APP APP KEY}&quot;</code></div>
 </div>
     </div>
             </td>
@@ -246,29 +246,27 @@
     </div>
     <div class="section section-3 " id="src-49153824_RelationalFields-Removearelationalfield">
         <h3 class="heading "><span>Remove a relational field</span></h3>
-    <p  >To remove a relational field from an Mobile Backend Services object, set the field's value to null. For example, remove to picture from a Custom object:    </p>
-    <div  class="tablewrap">
-        <table >
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
-            <td   rowspan="1" colspan="1">
-        <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>To remove a relational field from an Mobile Backend Services object, set the field&apos;s value to null. For example, remove to picture from a Custom object:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">$ curl -b cookies.txt -c cookies.txt -X PUT --data-urlencode </code><code class="string">'fields={“[ACS_Photo]picture_id”:null}'</code><code class="plain"> </code></div>
-<div class="line"><code class="string">"https://api.cloud.appcelerator.com/v1/objects/car/update.json?key={YOUR APP APP KEY}"</code></div>
+<div class="line"><code class="plain">$ curl -b cookies.txt -c cookies.txt -X PUT --data-urlencode </code><code class="string">&apos;fields={&#x201C;[ACS_Photo]picture_id&#x201D;:null}&apos;</code><code class="plain"> </code></div>
+<div class="line"><code class="string">&quot;https://api.cloud.appcelerator.com/v1/objects/car/update.json?key={YOUR APP APP KEY}&quot;</code></div>
 </div>
     </div>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-    <p  >    </p>
+    <p>    </p>
     </div>
     </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

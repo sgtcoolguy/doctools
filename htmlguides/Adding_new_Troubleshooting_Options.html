@@ -5,12 +5,12 @@
 <head>
     <title>Adding new Troubleshooting Options</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,53 +18,53 @@
 
         <div id="src-30083181" class="content">
                         <h1>Adding new Troubleshooting Options</h1>
-    <p  >Studio provides a sophisticated mechanism for allowing users to turn on and off various bits of logging in their code. Please see <a  class="document-link " href="Debugging_Studio.html">Debugging Studio</a> for details on the user interactions.    </p>
+    <p>Studio provides a sophisticated mechanism for allowing users to turn on and off various bits of logging in their code. Please see <a class="document-link " href="Debugging_Studio.html">Debugging Studio</a> for details on the user interactions.    </p>
     <div class="section section-2 " id="src-30083181_AddingnewTroubleshootingOptions-Logging">
         <h2 class="heading "><span>Logging</span></h2>
-    <p  >The com.aptana.core.IdeLog class contains a variety of methods allowing the developer to write out information to the log file, and allow the user to filter exactly what they wish to see.    </p>
-    <p  >At the simplest, the user can take a slider and switch debugging from Errors, to Errors + Warnings, to Errors + Warnings + Info messages. This will work, but the user may quickly be overwhelmed with wading through a large set of &quot;Info&quot; messages. This is where component-level debugging comes in.    </p>
-    <p  >We create the notion of &quot;Debug Scopes&quot; which allows the user to more precisely filter the list of items that they see in the log file. To enable, a user selects the &quot;Debug specific components&quot; checkbox, and then selects the items in the list that apply.    </p>
-    <div  class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p  >    </p>
-    <p  >The log file is a poorly-discoverable option for the end user and directing the user to the log file should be seen as a method of last resort. It is, however, very useful to us when debugging, but please be careful when logging items under the <strong class=" ">ERROR</strong> severity. That is a true, blocker/critical error. We can always ask the user to modify the severity slider for log info, and capture the more detailed information as necessary.    </p>
+    <p>The com.aptana.core.IdeLog class contains a variety of methods allowing the developer to write out information to the log file, and allow the user to filter exactly what they wish to see.    </p>
+    <p>At the simplest, the user can take a slider and switch debugging from Errors, to Errors + Warnings, to Errors + Warnings + Info messages. This will work, but the user may quickly be overwhelmed with wading through a large set of &quot;Info&quot; messages. This is where component-level debugging comes in.    </p>
+    <p>We create the notion of &quot;Debug Scopes&quot; which allows the user to more precisely filter the list of items that they see in the log file. To enable, a user selects the &quot;Debug specific components&quot; checkbox, and then selects the items in the list that apply.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>    </p>
+    <p>The log file is a poorly-discoverable option for the end user and directing the user to the log file should be seen as a method of last resort. It is, however, very useful to us when debugging, but please be careful when logging items under the <strong class=" ">ERROR</strong> severity. That is a true, blocker/critical error. We can always ask the user to modify the severity slider for log info, and capture the more detailed information as necessary.    </p>
     </div>
         </div>
     <div class="section section-2 " id="src-30083181_AddingnewTroubleshootingOptions-LoggingBestPractices">
         <h2 class="heading "><span>Logging Best Practices</span></h2>
-<ul class=" "><li class=" ">    <p  ><strong class=" ">ERROR</strong> means a show-stopper error that deserves a bug report. If it's not that important, it's a <strong class=" ">WARNING</strong>    </p>
-</li><li class=" ">    <p  ><strong class=" ">WARNING</strong> means items of interest that may be the source of a problem, or issues that should be taken care of eventually    </p>
-</li><li class=" ">    <p  ><strong class=" ">INFO</strong> means anything useful during debugging    </p>
-</li></ul>    <p  >If the error is caused by a configuration issue in Studio, the UI should present the problem and offer ways to help the user solve the problem, one of which may be pointing them to documentation. This is independent of what is logged to the log file.    </p>
-    <p  >The error message in the log file should be descriptive enough that the user could reasonably file a bug and we could understand the context. <strong class=" ">e.getLocalizedMessage() is rarely the right message to display.</strong>    </p>
-    <div  class="confbox panel panel">
-    <ul class=" "><li class=" ">    <p  >If the user is <strong class=" ">not</strong> in &quot;Specific components&quot; mode, all components are logged, regardless of scope, but filtered by severity slider    </p>
-</li><li class=" ">    <p  >If a user <strong class=" ">is</strong> in &quot;Specific components&quot; mode only components where the scope is null or matches the toggled options will log, filtered by severity slider    </p>
-</li><li class=" ">    <p  >If a user is in <strong class=" ">debug mode</strong> (-debug, tracing tab in run configurations), those settings override the &quot;Specific components&quot; setting. If desired, the user can then later turn on those specific options manually while in the process of debugging by using the &quot;Troubleshooting&quot; page.    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">ERROR</strong> means a show-stopper error that deserves a bug report. If it&apos;s not that important, it&apos;s a <strong class=" ">WARNING</strong>    </p>
+</li><li class=" ">    <p><strong class=" ">WARNING</strong> means items of interest that may be the source of a problem, or issues that should be taken care of eventually    </p>
+</li><li class=" ">    <p><strong class=" ">INFO</strong> means anything useful during debugging    </p>
+</li></ul>    <p>If the error is caused by a configuration issue in Studio, the UI should present the problem and offer ways to help the user solve the problem, one of which may be pointing them to documentation. This is independent of what is logged to the log file.    </p>
+    <p>The error message in the log file should be descriptive enough that the user could reasonably file a bug and we could understand the context. <strong class=" ">e.getLocalizedMessage() is rarely the right message to display.</strong>    </p>
+    <div class="confbox panel panel">
+    <ul class=" "><li class=" ">    <p>If the user is <strong class=" ">not</strong> in &quot;Specific components&quot; mode, all components are logged, regardless of scope, but filtered by severity slider    </p>
+</li><li class=" ">    <p>If a user <strong class=" ">is</strong> in &quot;Specific components&quot; mode only components where the scope is null or matches the toggled options will log, filtered by severity slider    </p>
+</li><li class=" ">    <p>If a user is in <strong class=" ">debug mode</strong> (-debug, tracing tab in run configurations), those settings override the &quot;Specific components&quot; setting. If desired, the user can then later turn on those specific options manually while in the process of debugging by using the &quot;Troubleshooting&quot; page.    </p>
 </li></ul>    </div>
     </div>
     <div class="section section-2 " id="src-30083181_AddingnewTroubleshootingOptions-Scopes">
         <h2 class="heading "><span>Scopes</span></h2>
-    <p  >A scope is of the form:    </p>
-    <p  >PLUGIN_ID + &quot;/debug&quot; + name_of_scope    </p>
-    <p  >Performance-related debug options may also be created, though they don't currently work in the Troubleshooting tab. They exhibit the form:    </p>
-    <p  >PLUGIN_ID + &quot;/perf&quot; + name_of_scope    </p>
-    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
-            <p  >    </p>
-    <p  >We use the term &quot;scope&quot; a bit loosely here, as the scopes don't quite match the form of other scopes across Studio. However, to maintain compatibility with existing Eclipse infrastructure, we use the same form as they suggest    </p>
+    <p>A scope is of the form:    </p>
+    <p>PLUGIN_ID + &quot;/debug&quot; + name_of_scope    </p>
+    <p>Performance-related debug options may also be created, though they don&apos;t currently work in the Troubleshooting tab. They exhibit the form:    </p>
+    <p>PLUGIN_ID + &quot;/perf&quot; + name_of_scope    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p>    </p>
+    <p>We use the term &quot;scope&quot; a bit loosely here, as the scopes don&apos;t quite match the form of other scopes across Studio. However, to maintain compatibility with existing Eclipse infrastructure, we use the same form as they suggest    </p>
     </div>
         <div class="section section-3 " id="src-30083181_safe-id-QWRkaW5nbmV3VHJvdWJsZXNob290aW5nT3B0aW9ucy1Ub2NyZWF0ZWFzY29wZTo">
         <h3 class="heading "><span>To create a scope:</span></h3>
-<ol class=" "><li class=" ">    <p  >Create a new .options file at the root of your plugin (if one does not exist already)    </p>
-</li><li class=" ">    <p  >Edit build.properties to ensure the .options file is included as part of the build    </p>
-</li><li class=" ">    <p  >Edit the file to add a line such as:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+<ol class=" "><li class=" ">    <p>Create a new .options file at the root of your plugin (if one does not exist already)    </p>
+</li><li class=" ">    <p>Edit build.properties to ensure the .options file is included as part of the build    </p>
+</li><li class=" ">    <p>Edit the file to add a line such as:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">com.aptana.core/debug/logger=</code><code class="keyword">true</code></div>
 </div>
     </div>
-</li><li class=" ">    <p  >The initial default value of true/false is not relevant here--when enabling a scope, we default to true    </p>
-</li><li class=" ">    <p  >Create a new Interface of the form I*DebugScopes in the main package of your plugin, where * is derived from the name of the plugin. See <a  class="document-link " href="Source_Code_Conventions.html">here</a> for naming convention:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+</li><li class=" ">    <p>The initial default value of true/false is not relevant here--when enabling a scope, we default to true    </p>
+</li><li class=" ">    <p>Create a new Interface of the form I*DebugScopes in the main package of your plugin, where * is derived from the name of the plugin. See <a class="document-link " href="Source_Code_Conventions.html">here</a> for naming convention:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">package</code><code class="plain"> com.aptana.core;</code></div>
 <div class="line"><code class="preprocessor">/**</code></div>
@@ -78,56 +78,54 @@
 <div class="line"><code class="plain">	</code><code class="preprocessor">/**</code></div>
 <div class="line"><code class="preprocessor">	 * Items related to the logging process</code></div>
 <div class="line"><code class="preprocessor">	 */</code></div>
-<div class="line"><code class="plain">	String LOGGER = CorePlugin.PLUGIN_ID + </code><code class="string">"/debug/logger"</code><code class="plain">; </code><code class="comments">//$NON-NLS-1$</code></div>
+<div class="line"><code class="plain">	String LOGGER = CorePlugin.PLUGIN_ID + </code><code class="string">&quot;/debug/logger&quot;</code><code class="plain">; </code><code class="comments">//$NON-NLS-1$</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
 </li></ol>    </div>
     <div class="section section-3 " id="src-30083181_AddingnewTroubleshootingOptions-UsingaScope">
         <h3 class="heading "><span>Using a Scope</span></h3>
-    <p  >In your code, call the scope above by using a log method of the form:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>In your code, call the scope above by using a log method of the form:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">IdeLog.logInfo(CorePlugin.getDefault(), </code><code class="string">"My info message"</code><code class="plain">, ICoreDebugScopes.LOGGER);</code></div>
+<div class="line"><code class="plain">IdeLog.logInfo(CorePlugin.getDefault(), </code><code class="string">&quot;My info message&quot;</code><code class="plain">, ICoreDebugScopes.LOGGER);</code></div>
 </div>
     </div>
-    <p  >If you need to test if logging is enabled before compiling an errors sting (say there are performance considerations involved), you can test using IdeLog.isOutputEnabled(). An example:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>If you need to test if logging is enabled before compiling an errors sting (say there are performance considerations involved), you can test using IdeLog.isOutputEnabled(). An example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">IdeLog.isOutputEnabled(ScriptingActivator.getDefault(), IdeLog.StatusLevel.INFO,</code></div>
 <div class="line"><code class="plain">				ICoreDebugScopes.SHOW_ELEMENT_REGISTRATION)</code></div>
 </div>
     </div>
-    <p  >There are also severity-specific versions, such as isInfoEnabled(), isWarningEnabled(), etc...    </p>
+    <p>There are also severity-specific versions, such as isInfoEnabled(), isWarningEnabled(), etc...    </p>
     </div>
     </div>
     <div class="section section-2 " id="src-30083181_AddingnewTroubleshootingOptions-EnablingLogging">
         <h2 class="heading "><span>Enabling Logging</span></h2>
-<ol class=" "><li class=" ">    <p  >Open the <strong class=" ">Preferences &gt; Studio &gt; Troubleshooting</strong> page    </p>
-</li><li class=" ">    <p  >Slide the severity slider to the desired level    </p>
-</li><li class=" ">    <p  >Click &quot;specific component&quot; checkbox    </p>
-</li><li class=" ">    <p  >Find the scope in the list and click to check it    </p>
+<ol class=" "><li class=" ">    <p>Open the <strong class=" ">Preferences &gt; Studio &gt; Troubleshooting</strong> page    </p>
+</li><li class=" ">    <p>Slide the severity slider to the desired level    </p>
+</li><li class=" ">    <p>Click &quot;specific component&quot; checkbox    </p>
+</li><li class=" ">    <p>Find the scope in the list and click to check it    </p>
 </li></ol>    </div>
     <div class="section section-2 " id="src-30083181_AddingnewTroubleshootingOptions-DebuggingLogging">
         <h2 class="heading "><span>Debugging Logging</span></h2>
-    <p  >The com.aptana.core plugin contains a debug scope for logging itself. Enable &quot;com.aptana.core/debug/logger&quot; to see messages written out to the log file. It will indicate if the message wasn't written because of a filtered severity level association, or a filtered scope setting.    </p>
+    <p>The com.aptana.core plugin contains a debug scope for logging itself. Enable &quot;com.aptana.core/debug/logger&quot; to see messages written out to the log file. It will indicate if the message wasn&apos;t written because of a filtered severity level association, or a filtered scope setting.    </p>
     </div>
     <div class="section section-2 " id="src-30083181_AddingnewTroubleshootingOptions-ErrorMessages">
         <h2 class="heading "><span>Error Messages</span></h2>
     <div class="section section-3 " id="src-30083181_safe-id-QWRkaW5nbmV3VHJvdWJsZXNob290aW5nT3B0aW9ucy1TQzEwMDpFcnJvcjE">
         <h3 class="heading "><span>SC100: Error 1</span></h3>
-    <p  >This is an error message detailing something has seriously gone wrong with your application.    </p>
+    <p>This is an error message detailing something has seriously gone wrong with your application.    </p>
     </div>
     <div class="section section-3 " id="src-30083181_safe-id-QWRkaW5nbmV3VHJvdWJsZXNob290aW5nT3B0aW9ucy1TQzIwMDpFcnJvcjI">
         <h3 class="heading "><span>SC200: Error 2</span></h3>
-    <p  >This is a different error message indicating something else has gone wrong.    </p>
+    <p>This is a different error message indicating something else has gone wrong.    </p>
     </div>
     </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

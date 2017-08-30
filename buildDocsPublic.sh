@@ -42,14 +42,14 @@ read -r input1
 cd $DOCTOOLS
 if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
 	echo "Updating repos.\n"
-	sh update_modules.sh ## update various modules needed by the API docs portion of the stripFooter
-	sh build_htmlguide.sh ## rebuild the htmlguide directory and it's content
+	#sh update_modules.sh ## update various modules needed by the API docs portion of the stripFooter
+	#sh build_htmlguide.sh ## rebuild the htmlguide directory and it's content
 else
 	echo "Skipping updating the repos."
 fi
 
 echo "Checking status of NPM modules.\n"
-sh updateNPMModules.sh ## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
+#sh updateNPMModules.sh ## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
 
 ## ask user if this is an SDK major or minor change. If it is, the repo_update.sh script must be updated to ensure we are pulling from the correct stream
 printf "Is this a SDK major or minor change? [y]es?"

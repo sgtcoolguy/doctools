@@ -5,12 +5,12 @@
 <head>
     <title>Adding new JavaScript Debuggers</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,60 +18,60 @@
 
         <div id="src-30083179" class="content">
                         <h1>Adding new JavaScript Debuggers</h1>
-    <p  >The Studio debugger infrastructure falls under the general Eclipse debugger API. For more information on how the overall architecture is structured, see the reference documentation <a class="external-link external-link" href="http://www.eclipse.org/articles/Article-Debugger/how-to.html">here</a>. The information below covers how to extend the Studio infrastructure to implement a debugger extension in an external product capable of talking to our JavaScript debugger implementation via the <a  class="document-link " href="Debugger_Protocol.html">Debugger Protocol</a>.    </p>
+    <p>The Studio debugger infrastructure falls under the general Eclipse debugger API. For more information on how the overall architecture is structured, see the reference documentation <a class="external-link external-link" href="http://www.eclipse.org/articles/Article-Debugger/how-to.html">here</a>. The information below covers how to extend the Studio infrastructure to implement a debugger extension in an external product capable of talking to our JavaScript debugger implementation via the <a class="document-link " href="Debugger_Protocol.html">Debugger Protocol</a>.    </p>
     <div class="section section-2 " id="src-30083179_AddingnewJavaScriptDebuggers-Referenceimplementation">
         <h2 class="heading "><span>Reference implementation</span></h2>
-    <p  >There is a reference implementation:    </p>
-<ul class=" "><li class=" ">    <p  >Firefox: <a class="external-link external-link" href="https://github.com/aptana/studio3/tree/development/browser.extensions/debugger.aptana.com">https://github.com/aptana/studio3/tree/development/browser.extensions/debugger.aptana.com</a>    </p>
-</li></ul>    <p  >In the case of iOS and Android, you can view the message flow between the debugger extension and Studio by viewing the files located at:    </p>
-    <p  >Debugger logs created under:    </p>
-<ul class=" "><li class=" ">    <p  ><i class=" ">workspace</i>/.metadata/.plugins/com.appcelerator.titanium.mobile/logs/    </p>
-<ul class=" "><li class=" ">    <p  >iosdebugger.log    </p>
-</li><li class=" ">    <p  >androiddebugger.log    </p>
+    <p>There is a reference implementation:    </p>
+<ul class=" "><li class=" ">    <p>Firefox: <a class="external-link external-link" href="https://github.com/aptana/studio3/tree/development/browser.extensions/debugger.aptana.com">https://github.com/aptana/studio3/tree/development/browser.extensions/debugger.aptana.com</a>    </p>
+</li></ul>    <p>In the case of iOS and Android, you can view the message flow between the debugger extension and Studio by viewing the files located at:    </p>
+    <p>Debugger logs created under:    </p>
+<ul class=" "><li class=" ">    <p><i class=" ">workspace</i>/.metadata/.plugins/com.appcelerator.titanium.mobile/logs/    </p>
+<ul class=" "><li class=" ">    <p>iosdebugger.log    </p>
+</li><li class=" ">    <p>androiddebugger.log    </p>
 </li></ul></li></ul>    <div class="section section-3 " id="src-30083179_AddingnewJavaScriptDebuggers-GeneralControlFlow">
         <h3 class="heading "><span>General Control Flow</span></h3>
-<ol class=" "><li class=" ">    <p  >Open socket    </p>
-</li><li class=" ">    <p  >Pass socket info to iOS/Android debugger via parameter on python script (builder.py)    </p>
-</li><li class=" ">    <p  >Studio listens for connection from platform debugger and then they communicate via the debugger protocol <a  class="document-link " href="Debugger_Protocol.html">Debugger Protocol</a>    </p>
-</li><li class=" ">    <p  >Step Over/Into command issued, then act after receipt of suspend notification with appropriate message    </p>
-</li><li class=" ">    <p  >etc.    </p>
-</li></ol>    <p  >View the transcript of a debug session at the bottom of this file for more information.    </p>
+<ol class=" "><li class=" ">    <p>Open socket    </p>
+</li><li class=" ">    <p>Pass socket info to iOS/Android debugger via parameter on python script (builder.py)    </p>
+</li><li class=" ">    <p>Studio listens for connection from platform debugger and then they communicate via the debugger protocol <a class="document-link " href="Debugger_Protocol.html">Debugger Protocol</a>    </p>
+</li><li class=" ">    <p>Step Over/Into command issued, then act after receipt of suspend notification with appropriate message    </p>
+</li><li class=" ">    <p>etc.    </p>
+</li></ol>    <p>View the transcript of a debug session at the bottom of this file for more information.    </p>
     </div>
     </div>
     <div class="section section-2 " id="src-30083179_AddingnewJavaScriptDebuggers-Testing">
         <h2 class="heading "><span>Testing</span></h2>
-    <p  >Create a new file in your home folder, e.g. &quot;studio_options&quot; with the following content:    </p>
-<ul class=" "><li class=" ">    <p  >com.aptana.debug.core/debugger_debug = true    </p>
-</li><li class=" ">    <p  >com.aptana.debug.core/skip_debugger_install = true    </p>
+    <p>Create a new file in your home folder, e.g. &quot;studio_options&quot; with the following content:    </p>
+<ul class=" "><li class=" ">    <p>com.aptana.debug.core/debugger_debug = true    </p>
+</li><li class=" ">    <p>com.aptana.debug.core/skip_debugger_install = true    </p>
 </li></ul>    <div class="section section-3 " id="src-30083179_AddingnewJavaScriptDebuggers-OSXinstructions">
         <h3 class="heading "><span>OS X instructions</span></h3>
-<ol class=" "><li class=" ">    <p  >Install Studio from the DMG    </p>
-</li><li class=" ">    <p  >Do &quot;Show Package Contents&quot; on AptanaStudio3.app/TitaniumStudio.app/AppceleratorStudio.app.    </p>
-</li><li class=" ">    <p  >Edit Info.plist to add two parameters into Eclipse array: &quot;-debug&quot; and the absolute path to the studio_options file mentioned above (e.g /Users/username/studio_options).    </p>
-</li><li class=" ">    <p  >Save the file.    </p>
+<ol class=" "><li class=" ">    <p>Install Studio from the DMG    </p>
+</li><li class=" ">    <p>Do &quot;Show Package Contents&quot; on AptanaStudio3.app/TitaniumStudio.app/AppceleratorStudio.app.    </p>
+</li><li class=" ">    <p>Edit Info.plist to add two parameters into Eclipse array: &quot;-debug&quot; and the absolute path to the studio_options file mentioned above (e.g /Users/username/studio_options).    </p>
+</li><li class=" ">    <p>Save the file.    </p>
 </li></ol>    </div>
     <div class="section section-3 " id="src-30083179_AddingnewJavaScriptDebuggers-Windowsinstructions">
         <h3 class="heading "><span>Windows instructions</span></h3>
-    <p  >In the Aptana Studio/Titanium Studio/Appcelerator Studio folder, edit the .ini file to add the two above items.    </p>
+    <p>In the Aptana Studio/Titanium Studio/Appcelerator Studio folder, edit the .ini file to add the two above items.    </p>
     </div>
     <div class="section section-3 " id="src-30083179_AddingnewJavaScriptDebuggers-TestinginsideStudio">
         <h3 class="heading "><span>Testing inside Studio</span></h3>
-    <p  >The effect of these actions will be that there will be no checks for a FF debugger extension, the debugger port number will be fixed to 2525 and the socket timeout will be infinite.<br/>But you will still need to have Firefox (any version) installed.    </p>
-<ol class=" "><li class=" ">    <p  >Launch Studio    </p>
-</li><li class=" ">    <p  >Open menu Run /Debug Configurations.    </p>
-</li><li class=" ">    <p  >Under Web Browser category you should see &quot;Firefox - Internal Server&quot; launch configuration. If not, simple press plus button above the configurations tree view. Configuration parameters does not matter for now.    </p>
-</li><li class=" ">    <p  >Once you press the <strong class=" ">Debug</strong> button on the configuration dialog (or drop-down from IDE toolbar), the debug session will be initiated and Studio will start accepting connections on port 2525 (from all local IPs)    </p>
-</li><li class=" ">    <p  >From this point you could connect to it from your debug layer on the remote device    </p>
-</li></ol>    <p  >You don't need to support all commands listed in the protocol spec, but you need to reply to all of them. So simply reply back with &quot;!error message&quot;. At the bottom of this message is a sample message flow.    </p>
-    <div  class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-        <ul class=" "><li class=" ">    <p  >'enable' request should turn on debugging, otherwise debug host should be in 'run' mode where only logging to IDE works.    </p>
-</li><li class=" ">    <p  >'resumed*start' reply should always be sent beck when debugger is fully set up. basically it is a feedback on 'enable' message.    </p>
+    <p>The effect of these actions will be that there will be no checks for a FF debugger extension, the debugger port number will be fixed to 2525 and the socket timeout will be infinite.<br>But you will still need to have Firefox (any version) installed.    </p>
+<ol class=" "><li class=" ">    <p>Launch Studio    </p>
+</li><li class=" ">    <p>Open menu Run /Debug Configurations.    </p>
+</li><li class=" ">    <p>Under Web Browser category you should see &quot;Firefox - Internal Server&quot; launch configuration. If not, simple press plus button above the configurations tree view. Configuration parameters does not matter for now.    </p>
+</li><li class=" ">    <p>Once you press the <strong class=" ">Debug</strong> button on the configuration dialog (or drop-down from IDE toolbar), the debug session will be initiated and Studio will start accepting connections on port 2525 (from all local IPs)    </p>
+</li><li class=" ">    <p>From this point you could connect to it from your debug layer on the remote device    </p>
+</li></ol>    <p>You don&apos;t need to support all commands listed in the protocol spec, but you need to reply to all of them. So simply reply back with &quot;!error message&quot;. At the bottom of this message is a sample message flow.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+        <ul class=" "><li class=" ">    <p>&apos;enable&apos; request should turn on debugging, otherwise debug host should be in &apos;run&apos; mode where only logging to IDE works.    </p>
+</li><li class=" ">    <p>&apos;resumed*start&apos; reply should always be sent beck when debugger is fully set up. basically it is a feedback on &apos;enable&apos; message.    </p>
 </li></ul>    </div>
         </div>
     </div>
     <div class="section section-2 " id="src-30083179_AddingnewJavaScriptDebuggers-SampleMessageFlow">
         <h2 class="heading "><span>Sample Message Flow</span></h2>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">[</code><code class="value">55</code><code class="plain">:</code><code class="value">14.553</code><code class="plain">] Socket recv: &gt;</code><code class="value">1297295714294</code><code class="plain">*version&lt;</code></div>
 <div class="line"><code class="plain">[</code><code class="value">55</code><code class="plain">:</code><code class="value">14.553</code><code class="plain">] Socket sent: &gt;</code><code class="value">21</code><code class="plain">*</code><code class="value">1297295714294</code><code class="plain">*</code><code class="value">1</code><code class="plain">*</code><code class="value">1.6</code><code class="plain">.</code><code class="value">0</code><code class="plain">&lt;</code></div>
@@ -194,9 +194,7 @@
     </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

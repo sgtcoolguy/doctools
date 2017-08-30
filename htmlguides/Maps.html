@@ -5,12 +5,12 @@
 <head>
     <title>Maps</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,74 +18,74 @@
 
         <div id="src-41845752" class="content">
                         <h1>Maps</h1>
-    <p  >Demonstrates how to use the Maps module and display annotations on iOS and Android.    </p>
-    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
+    <p>Demonstrates how to use the Maps module and display annotations on iOS and Android.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
             <div class="title">App Folder Location</div>
-            <p  >alloy/test/apps/<strong class=" ">ui/map</strong>    </p>
+            <p>alloy/test/apps/<strong class=" ">ui/map</strong>    </p>
     </div>
-        <p  >Android and iOS applications use the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/3.0/#!/api/Modules.Map">Ti.Maps</a> add-on module, which is included with Titanium SDK, but needs to be added as a dependency to your project's tiapp.xml file.    </p>
-    <p  >    <img  src="images/download/attachments/41845752/ios.png" alt="images/download/attachments/41845752/ios.png" class="confluence-embedded-image" width="250"  />
+        <p>Android and iOS applications use the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/3.0/#!/api/Modules.Map">Ti.Maps</a> add-on module, which is included with Titanium SDK, but needs to be added as a dependency to your project&apos;s tiapp.xml file.    </p>
+    <p>    <img src="images/download/attachments/41845752/ios.png" alt="images/download/attachments/41845752/ios.png" class="confluence-embedded-image" width="250">
         </p>
-    <p  >To use the Ti.Map module in your iOS or Android project you need to declare your module in the tiapp.xml file:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>To use the Ti.Map module in your iOS or Android project you need to declare your module in the tiapp.xml file:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/tiapp.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/tiapp.xml">
 <div class="line"><code class="plain">&lt;modules&gt;</code></div>
-<div class="line"><code class="plain">    &lt;module platform=</code><code class="string">"iphone"</code><code class="plain">&gt;ti.map&lt;/module&gt;</code></div>
-<div class="line"><code class="plain">    &lt;module platform=</code><code class="string">"android"</code><code class="plain">&gt;ti.map&lt;/module&gt;</code></div>
+<div class="line"><code class="plain">    &lt;module platform=</code><code class="string">&quot;iphone&quot;</code><code class="plain">&gt;ti.map&lt;/module&gt;</code></div>
+<div class="line"><code class="plain">    &lt;module platform=</code><code class="string">&quot;android&quot;</code><code class="plain">&gt;ti.map&lt;/module&gt;</code></div>
 <div class="line"><code class="plain">&lt;/modules&gt;</code></div>
 </div>
     </div>
-    <p  >Alternatively, you add the module to your project by clicking the green     <img  src="images/s/en_GB/5637/e1ef10868e8fe2f234a1a0b171b01cde1d9717c4.31/_/images/icons/emoticons/add.png" alt="images/s/en_GB/5637/e1ef10868e8fe2f234a1a0b171b01cde1d9717c4.31/_/images/icons/emoticons/add.png" class="emoticon emoticon-plus"   />
+    <p>Alternatively, you add the module to your project by clicking the green     <img src="images/s/en_GB/5637/e1ef10868e8fe2f234a1a0b171b01cde1d9717c4.31/_/images/icons/emoticons/add.png" alt="images/s/en_GB/5637/e1ef10868e8fe2f234a1a0b171b01cde1d9717c4.31/_/images/icons/emoticons/add.png" class="emoticon emoticon-plus">
  in the Module section of the tiapp.xml overview screen, selecting the <strong class=" ">ti.map</strong> module in the Mobile Modules dialog, and clicking OK.    </p>
-    <p  >    <img  src="images/download/attachments/41845752/map_add.png" alt="images/download/attachments/41845752/map_add.png" class="confluence-embedded-image" width="350"  />
+    <p>    <img src="images/download/attachments/41845752/map_add.png" alt="images/download/attachments/41845752/map_add.png" class="confluence-embedded-image" width="350">
         </p>
     <div class="section section-2 " id="src-41845752_Maps-Androidsetup">
         <h2 class="heading "><span>Android setup</span></h2>
-    <p  >To use the Maps module on Android, there are some setup tasks you first need to complete:    </p>
-<ul class=" "><li class=" ">    <p  ><a  class="document-link unresolved" href="Maps.html#src-41845752">Install the Google Play Services SDK</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link unresolved" href="Maps.html#src-41845752">Obtain and Add a Google API Key</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link unresolved" href="Maps.html#src-41845752">Obtain the SHA-1 certificate fingerprint</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link unresolved" href="Maps.html#src-41845752">Add the Google API key and permissions to the tiapp.xml file</a>    </p>
-</li></ul>    <p  >Once these steps are complete, using the Map module is the same on Android or iOS.    </p>
+    <p>To use the Maps module on Android, there are some setup tasks you first need to complete:    </p>
+<ul class=" "><li class=" ">    <p><a class="document-link unresolved" href="Maps.html#src-41845752">Install the Google Play Services SDK</a>    </p>
+</li><li class=" ">    <p><a class="document-link unresolved" href="Maps.html#src-41845752">Obtain and Add a Google API Key</a>    </p>
+</li><li class=" ">    <p><a class="document-link unresolved" href="Maps.html#src-41845752">Obtain the SHA-1 certificate fingerprint</a>    </p>
+</li><li class=" ">    <p><a class="document-link unresolved" href="Maps.html#src-41845752">Add the Google API key and permissions to the tiapp.xml file</a>    </p>
+</li></ul>    <p>Once these steps are complete, using the Map module is the same on Android or iOS.    </p>
     </div>
     <div class="section section-2 " id="src-41845752_Maps-AppConfiguration">
         <h2 class="heading "><span>App Configuration</span></h2>
-    <p  >As shown in the sample, app to use the Map module on iOS or Android, add a <tt class=" ">&lt;Module/&gt;</tt> element to your XML view with its <strong class=" "><tt class=" ">module</tt></strong> attribute set to &quot;<strong class=" ">ti.map</strong>&quot;. The sample app also declares several &lt;Annotation/&gt; elements with named &quot;id&quot; attributes.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>As shown in the sample, app to use the Map module on iOS or Android, add a <tt class=" ">&lt;Module/&gt;</tt> element to your XML view with its <strong class=" "><tt class=" ">module</tt></strong> attribute set to &quot;<strong class=" ">ti.map</strong>&quot;. The sample app also declares several &lt;Annotation/&gt; elements with named &quot;id&quot; attributes.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
 <div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">	&lt;Window </code><code class="keyword">class</code><code class="plain">=</code><code class="string">'container'</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">    	&lt;Module id=</code><code class="string">"map"</code><code class="plain"> module=</code><code class="string">"ti.map"</code><code class="plain"> method=</code><code class="string">"createView"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;Window </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&apos;container&apos;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    	&lt;Module id=</code><code class="string">&quot;map&quot;</code><code class="plain"> module=</code><code class="string">&quot;ti.map&quot;</code><code class="plain"> method=</code><code class="string">&quot;createView&quot;</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">			&lt;!-- annotation styled via tss file --&gt;</code></div>
-<div class="line"><code class="plain">			&lt;Annotation id=</code><code class="string">"annotation1"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">			&lt;Annotation id=</code><code class="string">&quot;annotation1&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">			&lt;!-- annotation styles via inline style --&gt;</code></div>
-<div class="line"><code class="plain">			&lt;Annotation title=</code><code class="string">"Palo Alto"</code><code class="plain"> latitude=</code><code class="string">"37.47"</code><code class="plain"> longitude=</code><code class="string">"-122.12"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">			&lt;Annotation title=</code><code class="string">&quot;Palo Alto&quot;</code><code class="plain"> latitude=</code><code class="string">&quot;37.47&quot;</code><code class="plain"> longitude=</code><code class="string">&quot;-122.12&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">			&lt;!-- platform-specific annotations --&gt;</code></div>
-<div class="line"><code class="plain">			&lt;Annotation id=</code><code class="string">"annotation2"</code><code class="plain"> platform=</code><code class="string">"android"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">			&lt;Annotation id=</code><code class="string">"annotation3"</code><code class="plain"> platform=</code><code class="string">"ios"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">			&lt;Annotation id=</code><code class="string">&quot;annotation2&quot;</code><code class="plain"> platform=</code><code class="string">&quot;android&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">			&lt;Annotation id=</code><code class="string">&quot;annotation3&quot;</code><code class="plain"> platform=</code><code class="string">&quot;ios&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">			&lt;!-- annotation via &lt;Require&gt; tag --&gt;</code></div>
-<div class="line"><code class="plain">			&lt;Require src=</code><code class="string">"annotationView"</code><code class="plain"> title=</code><code class="string">"Sunnyvale"</code><code class="plain"> latitude=</code><code class="string">"37.37"</code><code class="plain"> longitude=</code><code class="string">"-122.03"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">			&lt;Require src=</code><code class="string">&quot;annotationView&quot;</code><code class="plain"> title=</code><code class="string">&quot;Sunnyvale&quot;</code><code class="plain"> latitude=</code><code class="string">&quot;37.37&quot;</code><code class="plain"> longitude=</code><code class="string">&quot;-122.03&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">			&lt;!--</code></div>
 <div class="line"><code class="plain">				Lets add a UI component to show Annotations being declared</code></div>
 <div class="line"><code class="plain">			    side-by-side with child components. Map subviews will appear</code></div>
 <div class="line"><code class="plain">			    on iOS only.</code></div>
 <div class="line"><code class="plain">			--&gt;</code></div>
-<div class="line"><code class="plain">			&lt;Require src=</code><code class="string">"overlay"</code><code class="plain"> platform=</code><code class="string">"ios"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">			&lt;Require src=</code><code class="string">&quot;overlay&quot;</code><code class="plain"> platform=</code><code class="string">&quot;ios&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">		&lt;/Module&gt;</code></div>
 <div class="line"><code class="plain">	&lt;/Window&gt;</code></div>
 <div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
 </div>
     </div>
-    <p  >The index.tss file assigns values to properties of the Map object, and to the Annotation objects defined in the XML view.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The index.tss file assigns values to properties of the Map object, and to the Annotation objects defined in the XML view.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/styles/index.tss</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/styles/index.tss">
-<div class="line"><code class="string">".container"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    backgroundColor:</code><code class="string">"white"</code></div>
+<div class="line"><code class="string">&quot;.container&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    backgroundColor:</code><code class="string">&quot;white&quot;</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">"#map"</code><code class="plain">: {</code></div>
+<div class="line"><code class="string">&quot;#map&quot;</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">    region: {</code></div>
 <div class="line"><code class="plain">        latitude: </code><code class="value">37.38</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">        latitudeDelta: </code><code class="value">0.2</code><code class="plain">,</code></div>
@@ -94,18 +94,18 @@
 <div class="line"><code class="plain">    },</code></div>
 <div class="line"><code class="plain">    mapType: Alloy.Globals.Map.SATELLITE_TYPE</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">"#annotation1"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    title:</code><code class="string">"Mountain View"</code><code class="plain">,</code></div>
+<div class="line"><code class="string">&quot;#annotation1&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    title:</code><code class="string">&quot;Mountain View&quot;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    latitude:</code><code class="value">37.389569</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    longitude:-</code><code class="value">122.050212</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">"#annotation2"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    title:</code><code class="string">"Google HQ"</code><code class="plain">,</code></div>
+<div class="line"><code class="string">&quot;#annotation2&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    title:</code><code class="string">&quot;Google HQ&quot;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    latitude:</code><code class="value">37.4231054</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    longitude:-</code><code class="value">122.0823988</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">"#annotation3"</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    title:</code><code class="string">"Apple HQ"</code><code class="plain">,</code></div>
+<div class="line"><code class="string">&quot;#annotation3&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    title:</code><code class="string">&quot;Apple HQ&quot;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    latitude:</code><code class="value">37.3308525</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    longitude:-</code><code class="value">122.0296837</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -114,17 +114,15 @@
     </div>
     <div class="section section-2 " id="src-41845752_Maps-SeeAlso">
         <h2 class="heading "><span>See Also</span></h2>
-<ul class=" "><li class=" ">    <p  ><a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/guide/Google_Maps_v2_for_Android">Google Maps v2 for Android</a>    </p>
-</li><li class=" ">    <p  ><a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/guide/iOS_Map_Kit">iOS Map Kit</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Native_Maps_and_Annotations.html">Native Maps and Annotations</a>    </p>
-</li></ul>    <p  >    </p>
-    <p  >    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/guide/Google_Maps_v2_for_Android">Google Maps v2 for Android</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/guide/iOS_Map_Kit">iOS Map Kit</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Native_Maps_and_Annotations.html">Native Maps and Annotations</a>    </p>
+</li></ul>    <p>    </p>
+    <p>    </p>
     </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

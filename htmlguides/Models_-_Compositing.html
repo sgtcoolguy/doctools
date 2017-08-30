@@ -5,12 +5,12 @@
 <head>
     <title>Models - Compositing</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,72 +18,72 @@
 
         <div id="src-49153279" class="content">
                         <h1>Models - Compositing</h1>
-    <p  >    </p>
-<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Models_-_Compositing.html#src-49153279_Models-Compositing-Createacompositemodel">Create a composite model</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Models_-_Compositing.html#src-49153279_Models-Compositing-Joinobjectdefinition">Join object definition</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Models_-_Compositing.html#src-49153279_Models-Compositing-Leftjoinexample">Left join example</a>    </p>
-</li><li class=" ">    <p  ><a  class="document-link " href="Models_-_Compositing.html#src-49153279_Models-Compositing-Innerjoinexample">Inner join example</a>    </p>
-</li></ul></li></ul>    <p  >    </p>
-    <div  class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p  >Composite models requires the <strong class=" ">appc.composite connector</strong> to be installed. This comes by default with all API Builder Projects. If you are missing this connector you can learn how to install it <a  class="document-link " href="Add_a_Connector_in_API_Builder.html">here</a>.    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Models_-_Compositing.html#src-49153279_Models-Compositing-Createacompositemodel">Create a composite model</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Models_-_Compositing.html#src-49153279_Models-Compositing-Joinobjectdefinition">Join object definition</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Models_-_Compositing.html#src-49153279_Models-Compositing-Leftjoinexample">Left join example</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Models_-_Compositing.html#src-49153279_Models-Compositing-Innerjoinexample">Inner join example</a>    </p>
+</li></ul></li></ul>    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Composite models requires the <strong class=" ">appc.composite connector</strong> to be installed. This comes by default with all API Builder Projects. If you are missing this connector you can learn how to install it <a class="document-link " href="Add_a_Connector_in_API_Builder.html">here</a>.    </p>
     </div>
         <div class="section section-2 " id="src-49153279_Models-Compositing-Createacompositemodel">
         <h2 class="heading "><span>Create a composite model</span></h2>
-    <p  >Composite models allow you to create a single model that is composed of two or more models based on the same or different connectors. Composite models can be joined together via a common set of properties, such as primary keys or foreign keys, or they can have no properties in common at all. The power of composite models is that you can represent multiple data sources and entities as a single API endpoint, which is ideal for many mobile use cases.    </p>
-    <p  >To create a composite model, follow the same procedure when creating a regular model except the <tt class=" ">connector</tt> property must be set to <tt class=" ">appc.composite</tt>, each field in the definition object must specify the <tt class=" ">model</tt> property to indicate which model the field originates from, and the <tt class=" ">metadata</tt> property must define the join operation to combine the models or leave it undefined to perform no join operations.    </p>
-    <p  >The composite connector can either perform a left join or inner join:    </p>
-<ul class=" "><li class=" ">    <p  >left join: all records from the main model are returned regardless if it found a match in the secondary models    </p>
-</li><li class=" ">    <p  >inner join: only records that match both models are returned    </p>
-</li></ul>    <p  >The composite connector can also perform either a one-to-one join or one-to-many join:    </p>
-<ul class=" "><li class=" ">    <p  >one-to-one: only one record from the secondary model matches a record in the main model    </p>
-</li><li class=" ">    <p  >one-to-many: multiple records from the secondary model can match a record in the main model    </p>
-</li></ul>    <p  >To define the join operation, set the <tt class=" ">metadata</tt> property to either the <tt class=" ">left_join</tt> key or <tt class=" ">inner_join</tt> key, either of which takes an array of objects defining the join.  Each object in the <tt class=" ">left_join</tt> or <tt class=" ">inner_join</tt> property defines the model to join (<tt class=" ">model</tt> property), a key to join (<tt class=" ">join_properties</tt> property), and optionally if the join is one-to-one or one-to-many (<tt class=" ">multiple</tt> property).    </p>
+    <p>Composite models allow you to create a single model that is composed of two or more models based on the same or different connectors. Composite models can be joined together via a common set of properties, such as primary keys or foreign keys, or they can have no properties in common at all. The power of composite models is that you can represent multiple data sources and entities as a single API endpoint, which is ideal for many mobile use cases.    </p>
+    <p>To create a composite model, follow the same procedure when creating a regular model except the <tt class=" ">connector</tt> property must be set to <tt class=" ">appc.composite</tt>, each field in the definition object must specify the <tt class=" ">model</tt> property to indicate which model the field originates from, and the <tt class=" ">metadata</tt> property must define the join operation to combine the models or leave it undefined to perform no join operations.    </p>
+    <p>The composite connector can either perform a left join or inner join:    </p>
+<ul class=" "><li class=" ">    <p>left join: all records from the main model are returned regardless if it found a match in the secondary models    </p>
+</li><li class=" ">    <p>inner join: only records that match both models are returned    </p>
+</li></ul>    <p>The composite connector can also perform either a one-to-one join or one-to-many join:    </p>
+<ul class=" "><li class=" ">    <p>one-to-one: only one record from the secondary model matches a record in the main model    </p>
+</li><li class=" ">    <p>one-to-many: multiple records from the secondary model can match a record in the main model    </p>
+</li></ul>    <p>To define the join operation, set the <tt class=" ">metadata</tt> property to either the <tt class=" ">left_join</tt> key or <tt class=" ">inner_join</tt> key, either of which takes an array of objects defining the join.  Each object in the <tt class=" ">left_join</tt> or <tt class=" ">inner_join</tt> property defines the model to join (<tt class=" ">model</tt> property), a key to join (<tt class=" ">join_properties</tt> property), and optionally if the join is one-to-one or one-to-many (<tt class=" ">multiple</tt> property).    </p>
     <div class="section section-3 " id="src-49153279_Models-Compositing-Joinobjectdefinition">
         <h3 class="heading "><span>Join object definition</span></h3>
-    <div  class="tablewrap">
+    <div class="tablewrap">
         <table class="confluenceTable">
-        <thead class=" ">    <tr >
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-        <p  >Key    </p>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Key    </p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-        <p  >Type    </p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-        <p  >Value    </p>
-            </td>
-        </tr>
-</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >model    </p>
-            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >String    </p>
-            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >Name of the model. For left joins, this is the secondary model you want to join with the main model.    </p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Value    </p>
             </td>
         </tr>
-    <tr >
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >join_properties    </p>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>model    </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >Object    </p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>String    </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >Collection of key-value pairs that determine the keys in each model to perform the join operation. The key is the property of the model defined in this object and the value is the property to join in another model (or the main model for left joins).    </p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Name of the model. For left joins, this is the secondary model you want to join with the main model.    </p>
             </td>
         </tr>
-    <tr >
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >multiple    </p>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>join_properties    </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >Boolean    </p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Object    </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-        <p  >Determines if the match is one-to-one (false) or one-to-many (true). The default value is <tt class=" ">false</tt>.    </p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Collection of key-value pairs that determine the keys in each model to perform the join operation. The key is the property of the model defined in this object and the value is the property to join in another model (or the main model for left joins).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>multiple    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Boolean    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Determines if the match is one-to-one (false) or one-to-many (true). The default value is <tt class=" ">false</tt>.    </p>
             </td>
         </tr>
 </tbody>        </table>
@@ -91,97 +91,97 @@
     </div>
     <div class="section section-3 " id="src-49153279_Models-Compositing-Leftjoinexample">
         <h3 class="heading "><span>Left join example</span></h3>
-    <p  >The example below combines the <tt class=" ">employee</tt> and <tt class=" ">managers</tt> models to create the employee_manager model.  The models are joined based on a match between the managers model's <tt class=" ">employee_id</tt> and the employee model's auto-generated <tt class=" ">id</tt>.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The example below combines the <tt class=" ">employee</tt> and <tt class=" ">managers</tt> models to create the employee_manager model.  The models are joined based on a match between the managers model&apos;s <tt class=" ">employee_id</tt> and the employee model&apos;s auto-generated <tt class=" ">id</tt>.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">models/employee_manager.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/employee_manager.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">'arrow'</code><code class="plain">);</code></div>
-<div class="line"> </div>
-<div class="line"><code class="plain">var employee_manager = Arrow.createModel(</code><code class="string">'employee_manager'</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var employee_manager = Arrow.createModel(</code><code class="string">&apos;employee_manager&apos;</code><code class="plain">,{</code></div>
 <div class="line"><code class="plain">    fields: {</code></div>
-<div class="line"><code class="plain">        fname: {type:String, description:</code><code class="string">'First name'</code><code class="plain">, model:</code><code class="string">'employee'</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">        manager: {type:String, description:</code><code class="string">'manager of employee'</code><code class="plain">,model:</code><code class="string">'managers'</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">        fname: {type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, model:</code><code class="string">&apos;employee&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        manager: {type:String, description:</code><code class="string">&apos;manager of employee&apos;</code><code class="plain">,model:</code><code class="string">&apos;managers&apos;</code><code class="plain">}</code></div>
 <div class="line"><code class="plain">    },</code></div>
-<div class="line"><code class="plain">    connector: </code><code class="string">'appc.composite'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.composite&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    metadata: {</code></div>
 <div class="line"><code class="plain">        left_join: {</code></div>
-<div class="line"><code class="plain">            model: </code><code class="string">'managers'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            model: </code><code class="string">&apos;managers&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">            join_properties: {</code></div>
-<div class="line"><code class="plain">                employee_id: </code><code class="string">'id'</code></div>
+<div class="line"><code class="plain">                employee_id: </code><code class="string">&apos;id&apos;</code></div>
 <div class="line"><code class="plain">            }</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"> </div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">module.exports = employee_manager;</code></div>
 </div>
     </div>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">models/employee.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/employee.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">'arrow'</code><code class="plain">);</code></div>
-<div class="line"> </div>
-<div class="line"><code class="plain">var employee = Arrow.Model.reduce(</code><code class="string">'appc.mysql/employee'</code><code class="plain">,</code><code class="string">'employee'</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var employee = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee&apos;</code><code class="plain">,</code><code class="string">&apos;employee&apos;</code><code class="plain">,{</code></div>
 <div class="line"><code class="plain">    fields: {</code></div>
-<div class="line"><code class="plain">        fname: {type:String, description:</code><code class="string">'First name'</code><code class="plain">, name:</code><code class="string">'first_name'</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">        fname: {type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, name:</code><code class="string">&apos;first_name&apos;</code><code class="plain">}</code></div>
 <div class="line"><code class="plain">    },</code></div>
-<div class="line"><code class="plain">    connector: </code><code class="string">'appc.mysql'</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.mysql&apos;</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"> </div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">module.exports = employee;</code></div>
 </div>
     </div>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">models/managers.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/managers.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">'arrow'</code><code class="plain">);</code></div>
-<div class="line"> </div>
-<div class="line"><code class="plain">var managers = Arrow.Model.reduce(</code><code class="string">'appc.mysql/employee_manager'</code><code class="plain">,</code><code class="string">'managers'</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var managers = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee_manager&apos;</code><code class="plain">,</code><code class="string">&apos;managers&apos;</code><code class="plain">,{</code></div>
 <div class="line"><code class="plain">    fields: {</code></div>
-<div class="line"><code class="plain">        employee_id: { type: Number, description: </code><code class="string">'Employee ID'</code><code class="plain"> },</code></div>
-<div class="line"><code class="plain">        manager: {type:String, name:</code><code class="string">'manager_name'</code><code class="plain">, description:</code><code class="string">'manager name'</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">        employee_id: { type: Number, description: </code><code class="string">&apos;Employee ID&apos;</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">        manager: {type:String, name:</code><code class="string">&apos;manager_name&apos;</code><code class="plain">, description:</code><code class="string">&apos;manager name&apos;</code><code class="plain">}</code></div>
 <div class="line"><code class="plain">    },</code></div>
-<div class="line"><code class="plain">    connector: </code><code class="string">'appc.mysql'</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.mysql&apos;</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"> </div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">module.exports = managers;</code></div>
 </div>
     </div>
     </div>
     <div class="section section-3 " id="src-49153279_Models-Compositing-Innerjoinexample">
         <h3 class="heading "><span>Inner join example</span></h3>
-    <p  >The example below performs an inner join on the <tt class=" ">employee</tt>, <tt class=" ">employee_manager</tt> and <tt class=" ">employee_habit</tt> models.  Both the <tt class=" ">employee_manager</tt> and <tt class=" ">employee_habit employee_id </tt>properties will try to match the employee<tt class=" "> id</tt> property<tt class=" ">.</tt>    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The example below performs an inner join on the <tt class=" ">employee</tt>, <tt class=" ">employee_manager</tt> and <tt class=" ">employee_habit</tt> models.  Both the <tt class=" ">employee_manager</tt> and <tt class=" ">employee_habit employee_id </tt>properties will try to match the employee<tt class=" "> id</tt> property<tt class=" ">.</tt>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">'arrow'</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// create a model from a mysql table</code></div>
-<div class="line"><code class="plain">var employee_composite = Arrow.createModel(</code><code class="string">'employee_composite'</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">var employee_composite = Arrow.createModel(</code><code class="string">&apos;employee_composite&apos;</code><code class="plain">,{</code></div>
 <div class="line"><code class="plain">    fields: {</code></div>
-<div class="line"><code class="plain">        fname: {type: String, description: </code><code class="string">'First name'</code><code class="plain">, model: </code><code class="string">'employee'</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">        manager: {type: String, description: </code><code class="string">'Manager of employee'</code><code class="plain">, model: </code><code class="string">'employee_manager'</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">        habit: {type: String, description: </code><code class="string">'Habit of employee'</code><code class="plain">, model: </code><code class="string">'employee_habit'</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">        fname: {type: String, description: </code><code class="string">&apos;First name&apos;</code><code class="plain">, model: </code><code class="string">&apos;employee&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        manager: {type: String, description: </code><code class="string">&apos;Manager of employee&apos;</code><code class="plain">, model: </code><code class="string">&apos;employee_manager&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        habit: {type: String, description: </code><code class="string">&apos;Habit of employee&apos;</code><code class="plain">, model: </code><code class="string">&apos;employee_habit&apos;</code><code class="plain">}</code></div>
 <div class="line"><code class="plain">    },</code></div>
-<div class="line"><code class="plain">    connector: </code><code class="string">'appc.composite'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.composite&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    metadata: {</code></div>
 <div class="line"><code class="plain">        inner_join: [</code></div>
 <div class="line"><code class="plain">            {</code></div>
-<div class="line"><code class="plain">                model: </code><code class="string">'employee_manager'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                model: </code><code class="string">&apos;employee_manager&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">                join_properties: {</code></div>
-<div class="line"><code class="plain">                    employee_id: </code><code class="string">'id'</code></div>
+<div class="line"><code class="plain">                    employee_id: </code><code class="string">&apos;id&apos;</code></div>
 <div class="line"><code class="plain">                }</code></div>
 <div class="line"><code class="plain">            },</code></div>
 <div class="line"><code class="plain">            {</code></div>
-<div class="line"><code class="plain">                model:</code><code class="string">'employee_habit'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                model:</code><code class="string">&apos;employee_habit&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">                multiple:</code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">                join_properties:{</code></div>
-<div class="line"><code class="plain">                    employee_id:</code><code class="string">'id'</code></div>
+<div class="line"><code class="plain">                    employee_id:</code><code class="string">&apos;id&apos;</code></div>
 <div class="line"><code class="plain">                }</code></div>
 <div class="line"><code class="plain">            }</code></div>
 <div class="line"><code class="plain">        ]</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"> </div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">module.exports = employee_composite;</code></div>
 </div>
     </div>
@@ -189,9 +189,7 @@
     </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>
