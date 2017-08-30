@@ -13,12 +13,19 @@
 ##########################################################################################
 
 SECONDS=0
+DATE=$(date +%Y-%m-%d)
 
 ## create the appc_modules directory if it is missing
 if [ ! -d $TI_ROOT/appc_modules ]; then
 	echo "appc_modules directory is missing. Creating that directory."
 	mkdir $TI_ROOT/appc_modules
 fi
+
+## back up the doctools directory before updating it
+cd $TI_ROOT/doctools
+git add * -f
+git commit * -m "updated /doctools for $DATE commit" ## add auto-commit message
+git push
 
 ## cd into the modules directory
 cd $TI_ROOT/appc_modules
