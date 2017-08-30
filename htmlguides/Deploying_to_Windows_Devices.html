@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Deploying to Windows Devices</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-43308601" class="content">
+                        <h1>Deploying to Windows Devices</h1>
+    <p  >    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Deploying_to_Windows_Devices.html#src-43308601_DeployingtoWindowsDevices-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Deploying_to_Windows_Devices.html#src-43308601_DeployingtoWindowsDevices-WindowsPhone">Windows Phone</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Deploying_to_Windows_Devices.html#src-43308601_DeployingtoWindowsDevices-SetthePublisherID">Set the Publisher ID</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Deploying_to_Windows_Devices.html#src-43308601_DeployingtoWindowsDevices-CLIInstructions">CLI Instructions</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Deploying_to_Windows_Devices.html#src-43308601_DeployingtoWindowsDevices-Studioinstructions">Studio instructions</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Deploying_to_Windows_Devices.html#src-43308601_DeployingtoWindowsDevices-RegistertheDevice">Register the Device</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Deploying_to_Windows_Devices.html#src-43308601_DeployingtoWindowsDevices-DeploytoaDevicewithStudio">Deploy to a Device with Studio</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Deploying_to_Windows_Devices.html#src-43308601_DeployingtoWindowsDevices-DeploytoaDevicewiththeCLI">Deploy to a Device with the CLI</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Deploying_to_Windows_Devices.html#src-43308601_DeployingtoWindowsDevices-WindowsTablet">Windows Tablet</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Deploying_to_Windows_Devices.html#src-43308601_DeployingtoWindowsDevices-EditGroupPolicySettings">Edit Group Policy Settings</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Deploying_to_Windows_Devices.html#src-43308601_DeployingtoWindowsDevices-InstalltheCertificate">Install the Certificate</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Deploying_to_Windows_Devices.html#src-43308601_DeployingtoWindowsDevices-InstallthePackage">Install the Package</a>    </p>
+</li></ul></li></ul>    <div class="section section-2 " id="src-43308601_DeployingtoWindowsDevices-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p  >Use Appcelerator Studio or CLI to deploy your Titanium projects as Windows Phone applications, which can be deployed to Windows Phone devices.  To deploy to a Windows tablet, you need to package a Windows Store app with Studio or the CLI, configure the tablet to sideload a package, and install the public certificate and package.    </p>
+    </div>
+    <div class="section section-2 " id="src-43308601_DeployingtoWindowsDevices-WindowsPhone">
+        <h2 class="heading "><span>Windows Phone</span></h2>
+    <p  >Before deploying the application to a Windows Phone device, you will need to:    </p>
+<ul class=" "><li class=" ">    <p  >Set the Publisher ID in the CLI or Studio    </p>
+</li><li class=" ">    <p  >Register the device using the Windows Phone Developer Registration tool (part of the Windows Phone SDK)    </p>
+</li><li class=" ">    <p  >Connect the device to your computer with a USB cable    </p>
+</li></ul>    <p  >    </p>
+    <div  class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p  >Currently, only one Windows Phone device may be plugged in to your computer to deploy. If multiple devices are plugged in, the build process will fail with an error.    </p>
+    </div>
+        <div class="section section-3 " id="src-43308601_DeployingtoWindowsDevices-SetthePublisherID">
+        <h3 class="heading "><span>Set the Publisher ID</span></h3>
+    <p  >To deploy to the Windows Phone emulator or device, and to create a Windows Phone store package, you need to set your publisher ID.    </p>
+    <p  ><strong class=" ">To retrieve your publisher GUID</strong>:    </p>
+<ol class=" "><li class=" ">    <p  >Log into <a class="external-link external-link" href="https://dev.windows.com/">https://dev.windows.com</a>.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Dashboard</strong> in the top-right corner.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Account settings</strong> in the left navigation.    </p>
+</li></ol>    <p  >The publisher GUID will be under the <strong class=" ">Account Details</strong> section as the     <span style="color: #000000;" >
+<strong class=" ">Windows publisher ID</strong> field.    </span>
+    </p>
+    <p  >    <span style="color: #000000;" >
+You can set the publisher ID using either the CLI or in the Studio Preferences dialog.  If you set the publisher ID using the CLI, the value will be passed to Studio from the CLI.    </span>
+    </p>
+    </div>
+    <div class="section section-3 " id="src-43308601_DeployingtoWindowsDevices-CLIInstructions">
+        <h3 class="heading "><span>CLI Instructions</span></h3>
+    <p  >Use the <tt class=" ">appc ti config</tt> CLI command to set the <tt class=" ">windows.publisherId</tt> Titanium CLI key.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">appc ti config windows.publisherId </code><code class="string">"CN=00000000-0000-1000-8000-000000000000"</code></div>
+</div>
+    </div>
+    <p  >Alternatively, you may also pass the publisher ID to the CLI using the <tt class=" ">-I</tt> option.    </p>
+    </div>
+    <div class="section section-3 " id="src-43308601_DeployingtoWindowsDevices-Studioinstructions">
+        <h3 class="heading "><span>Studio instructions</span></h3>
+<ol class=" "><li class=" ">    <p  >Open the Preferences dialog:    </p>
+<ol class=" "><li class=" ">    <p  >On Mac OS X, from the menu bar, select <strong class=" ">Appcelerator Studio</strong> &gt; <strong class=" ">Preferences</strong>.    </p>
+</li><li class=" ">    <p  >On Windows, from the menu bar, select <strong class=" ">Window </strong>&gt;<strong class=" "> Preferences</strong>.    </p>
+</li></ol></li><li class=" ">    <p  >In the<strong class=" "> Preferences</strong> dialog, navigate to<strong class=" "> Studio </strong>&gt;<strong class=" "> Platforms </strong>&gt;<strong class=" "> Windows</strong>.    </p>
+</li><li class=" ">    <p  >Enter your publisher ID in the <strong class=" ">Publisher Id </strong>field.    </p>
+</li></ol>    </div>
+    <div class="section section-3 " id="src-43308601_DeployingtoWindowsDevices-RegistertheDevice">
+        <h3 class="heading "><span>Register the Device</span></h3>
+    <p  >The following instructions are from <a class="external-link external-link" href="https://msdn.microsoft.com/en-us/library/windows/apps/ff769508(v=vs.105).aspx">Windows Dev Center: How to register your phone for development for Windows Phone 8</a>.    </p>
+    <p  >    </p>
+<ol class=" "><li class=" ">    <p  >Turn on your phone and unlock the phone screen.    </p>
+</li><li class=" ">    <p  >On your phone, ensure that the date and time are correct.    </p>
+</li><li class=" ">    <p  >Connect your phone to your computer by using the USB cable that came with your phone.    </p>
+</li><li class=" ">    <p  >On your computer&rsquo;s Start screen, switch to <strong class=" ">All apps</strong> view.    </p>
+</li><li class=" ">    <p  >Under <strong class=" ">Windows Phone SDK 8.1</strong>, click <strong class=" ">Windows Phone Developer Registration</strong>.    </p>
+</li><li class=" ">    <p  >Verify that the <strong class=" ">Status</strong> message displays <strong class=" ">Identified Windows Phone 8 device</strong>. Click the <strong class=" ">Register</strong> button to unlock the phone. If your phone is already registered, the <strong class=" ">Status</strong> message indicates this and you see an <strong class=" ">Unregister</strong> button.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Register</strong>.    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">Sign In</strong> dialog box for your Microsoft account (formerly known as a Windows Live ID), enter the email address and password for your Microsoft account. Click <strong class=" ">Sign In</strong>. If you&rsquo;re a registered developer, be sure to use the Microsoft account associated with your developer account.    </p>
+</li><li class=" ">    <p  >After your phone is successfully registered, the <strong class=" ">Status</strong> message displays: &quot;Congratulations! You have successfully unlocked your Windows Phone.&quot;    </p>
+</li></ol>    <p  >Your phone is now registered. You can now deploy apps to the phone.    </p>
+    </div>
+    <div class="section section-3 " id="src-43308601_DeployingtoWindowsDevices-DeploytoaDevicewithStudio">
+        <h3 class="heading "><span>Deploy to a Device with Studio</span></h3>
+    <p  >To deploy with Studio:    </p>
+<ol class=" "><li class=" ">    <p  >Select the project in the <strong class=" ">Project Explorer</strong> view.    </p>
+</li><li class=" ">    <p  >In the global tool bar, select <strong class=" ">Run</strong> from the <strong class=" ">Launch Mode </strong>drop-down list.    </p>
+</li><li class=" ">    <p  >Select <strong class=" ">Windows Phone Device</strong> from the <strong class=" ">Target</strong> drop-down list.    </p>
+</li><li class=" ">    <p  >If the <strong class=" ">Launch Automatically</strong> option is enabled under the <strong class=" ">Target</strong> drop-down list, the application will be automatically launched after the device is selected.  If not, you need to click the <strong class=" ">Launch</strong> button to start the build process.    </p>
+</li></ol>    <p  >Your app will be built, installed to your device and automatically launched.    </p>
+    <p  >    <img  src="images/download/attachments/43308601/WindowsPhoneDevice.png" alt="images/download/attachments/43308601/WindowsPhoneDevice.png" class="confluence-embedded-image confluence-content-image-border"   />
+        </p>
+    </div>
+    <div class="section section-3 " id="src-43308601_DeployingtoWindowsDevices-DeploytoaDevicewiththeCLI">
+        <h3 class="heading "><span>Deploy to a Device with the CLI</span></h3>
+    <p  >To deploy an application to a device with the CLI, run the following command:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">appc run -p windows -T wp-device</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43308601_DeployingtoWindowsDevices-WindowsTablet">
+        <h2 class="heading "><span>Windows Tablet</span></h2>
+    <p  >To deploy to a Windows tablet, you need to <a class="external-link external-link" href="https://technet.microsoft.com/en-us/windows/jj874388.aspx">sideload</a> the application package to the device.    </p>
+<ol class=" "><li class=" ">    <p  >Package the application as a Windows Store app. For instructions, see <a  class="document-link " href="Distributing_Windows_Applications.html">Distributing Windows Applications</a>.    </p>
+</li><li class=" ">    <p  >Enable the <strong class=" ">Allow all trusted apps to install</strong> group policy    </p>
+</li><li class=" ">    <p  >Install the public certificate that was used to sign the package to the tablet's <strong class=" ">Trusted Root Certification Authorities</strong> store    </p>
+</li><li class=" ">    <p  >Execute a PowerShell command to install the package to the tablet with the <tt class=" ">Add-AppxPackage</tt> command.    </p>
+</li></ol>    <p  >After you package the application, copy the project's <tt class=" ">generated.cer</tt> and <tt class=" ">./dist/&lt;PACKAGE_NAME&gt;_Win32.appx</tt> files to to a USB drive and plug it into the tablet.    </p>
+    <div class="section section-3 " id="src-43308601_DeployingtoWindowsDevices-EditGroupPolicySettings">
+        <h3 class="heading "><span>Edit Group Policy Settings</span></h3>
+    <p  >To enable installation of the package, you need to update the device's group policy.    </p>
+<ol class=" "><li class=" ">    <p  >Go to the <strong class=" ">Start</strong> screen and type &quot;edit group policy.&quot;    </p>
+</li><li class=" ">    <p  >Click<strong class=" "> Edit Group Policy</strong>.    </p>
+</li><li class=" ">    <p  >Expand <strong class=" ">Computer Configuration \</strong> <strong class=" ">Administrative Templates \</strong> <strong class=" ">Windows Components </strong>    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">App Package Deployment</strong>.    </p>
+</li><li class=" ">    <p  >Double-click <strong class=" ">Allow all trusted apps to install</strong>.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Enabled</strong>.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">OK.</strong>    </p>
+</li></ol>    </div>
+    <div class="section section-3 " id="src-43308601_DeployingtoWindowsDevices-InstalltheCertificate">
+        <h3 class="heading "><span>Install the Certificate</span></h3>
+    <p  >Install the certificate you copied to the USB drive to the device's Trusted Root Certification Authorities store. You will need administrative privileges.    </p>
+<ol class=" "><li class=" ">    <p  >Double-click the certificate file.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Install Certificate...</strong> to open the Certificate Import wizard.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">LOCAL MACHINE</strong>, then click <strong class=" ">Next</strong>.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Place all certificates in the following store</strong>, click <strong class=" ">Browse</strong>, click <strong class=" ">Trusted Root Certification Authorities</strong>, click <strong class=" ">OK</strong>, then click <strong class=" ">Next</strong>.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Finish</strong>.    </p>
+</li></ol>    <p  >A dialog should appear that the certificate was installed successfully.    </p>
+    </div>
+    <div class="section section-3 " id="src-43308601_DeployingtoWindowsDevices-InstallthePackage">
+        <h3 class="heading "><span>Install the Package</span></h3>
+    <p  >Open PowerShell and execute the <tt class=" ">Add-AppxPackage</tt> command to install the application.    </p>
+<ol class=" "><li class=" ">    <p  >Go to the <strong class=" ">Start</strong> screen and type &quot;powershell.&quot;    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">PowerShell</strong>.    </p>
+</li><li class=" ">    <p  >Execute the following command to install the package:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">import</code><code class="plain">-module appx</code></div>
+<div class="line"><code class="plain">add-appxpackage &lt;PACKAGE_NAME&gt;_Win32.appx</code></div>
+</div>
+    </div>
+</li></ol>    <p  >The application will be installed to the device and you can access it from the <strong class=" ">All apps</strong> screen.    </p>
+    <p  >    </p>
+    <p  >    </p>
+    </div>
+    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

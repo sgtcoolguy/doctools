@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Layout Limitations Spec</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-31524170" class="content">
+                        <h1>Layout Limitations Spec</h1>
+    <p  >This document provides information on layout limitations, sizes, and positioning.    </p>
+    <p  >    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_LayoutLimitationsSpec-Layoutlimitationsspecification">Layout limitations specification</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_LayoutLimitationsSpec-Definitions">Definitions</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_LayoutLimitationsSpec-Size">Size</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_LayoutLimitationsSpec-AllLayouts">All Layouts</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_LayoutLimitationsSpec-Verticallayout">Vertical layout</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_LayoutLimitationsSpec-HorizontalLayout">Horizontal Layout</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_safe-id-TGF5b3V0TGltaXRhdGlvbnNTcGVjLUFic29sdXRlKGNvbXBvc2l0ZSlsYXlvdXQ">Absolute (composite) layout</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_LayoutLimitationsSpec-Positioning">Positioning</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_LayoutLimitationsSpec-Verticallayout.1">Vertical layout</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_LayoutLimitationsSpec-Horizontallayout">Horizontal layout</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_LayoutLimitationsSpec-WithoutWrap">Without Wrap</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_LayoutLimitationsSpec-WithWrap">With Wrap</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Layout_Limitations_Spec.html#src-31524170_LayoutLimitationsSpec-Absolutelayout">Absolute layout</a>    </p>
+</li></ul></li></ul>    <div class="section section-2 " id="src-31524170_LayoutLimitationsSpec-Layoutlimitationsspecification">
+        <h2 class="heading "><span>Layout limitations specification</span></h2>
+    <div class="section section-3 " id="src-31524170_LayoutLimitationsSpec-Definitions">
+        <h3 class="heading "><span>Definitions</span></h3>
+    <p  ><strong class=" ">View Constrained Dimension</strong> - a view has a dimension either fixed or SIZE.<br/><strong class=" ">View Flexible Dimension</strong> - a view has a dimension either percentage or FILL.<br/><strong class=" ">Container Constrained Dimension</strong> - a container has a dimension either fixed or relative to its parent such as percentage or FILL.<br/><strong class=" ">Container Flexible Dimension</strong> - a container has the SIZE dimension.    </p>
+    <p  >In these definition, for container (parent) view both <i class=" ">View</i> and <i class=" ">Container</i> definitions apply depending if the container is being layout as a child, or it layouts others.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-31524170_LayoutLimitationsSpec-Size">
+        <h2 class="heading "><span>Size</span></h2>
+    <div class="section section-3 " id="src-31524170_LayoutLimitationsSpec-AllLayouts">
+        <h3 class="heading "><span>All Layouts</span></h3>
+<ol class=" "><li class=" ">    <p  >For a container with flexible height (<i class=" ">Container Flexible Dimension</i>), effective height of children with flexible height (<i class=" ">View Flexible Dimension</i>) is 0. In other words, the effective height of a container with flexible height is the sum heights of all its children with constrained height (<i class=" ">View Constrained Dimension</i>). A runtime warning should be issued for these child views.    </p>
+</li><li class=" ">    <p  >For container with flexible width (<i class=" ">Container Flexible Dimension</i>), effective width of children with flexible width (<i class=" ">View Flexible Dimension</i>) is 0. In other words, the effective width of a container with flexible width is the sum widths of all its children with constrained width (<i class=" ">View Constrained Dimension</i>). A runtime warning should be issued for these child views.    </p>
+</li></ol>    </div>
+    <div class="section section-3 " id="src-31524170_LayoutLimitationsSpec-Verticallayout">
+        <h3 class="heading "><span>Vertical layout</span></h3>
+    <p  >For vertical container with constrained height (<i class=" ">Container Constrained Dimension</i>), only one child with FILL height is supported.<br/>That child will occupy all the remaining vertical space of the container (container height minus heights of all other children).<br/>Effective height for any other children with FILL height is 0. A runtime warning should be issued for these child views.    </p>
+    </div>
+    <div class="section section-3 " id="src-31524170_LayoutLimitationsSpec-HorizontalLayout">
+        <h3 class="heading "><span>Horizontal Layout</span></h3>
+    <p  >Horizontal layout has two modes: with wrap (default) and without wrap.    </p>
+<ol class=" "><li class=" ">    <p  >For horizontal non-wrapping container with constrained width (<i class=" ">Container Constrained Dimension</i>), only one child with FILL width is supported. That child will occupy all the remaining horizontal space of the container (container width minus widths of all other children). Effective width for any other children with FILL width is 0. A runtime warning should be issued for these child views.    </p>
+</li><li class=" ">    <p  >No other restrictions for horizontal wrapping container with constrained width (<i class=" ">Container Constrained Dimension</i>).    </p>
+</li></ol>    </div>
+    <div class="section section-3 " id="src-31524170_safe-id-TGF5b3V0TGltaXRhdGlvbnNTcGVjLUFic29sdXRlKGNvbXBvc2l0ZSlsYXlvdXQ">
+        <h3 class="heading "><span>Absolute (composite) layout</span></h3>
+    <p  >No other restrictions regarding container/child view size.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-31524170_LayoutLimitationsSpec-Positioning">
+        <h2 class="heading "><span>Positioning</span></h2>
+    <div class="section section-3 " id="src-31524170_LayoutLimitationsSpec-Verticallayout.1">
+        <h3 class="heading "><span>Vertical layout</span></h3>
+    <p  >Views are centered horizontally unless horizontal pins (left/right) specified.    </p>
+    </div>
+    <div class="section section-3 " id="src-31524170_LayoutLimitationsSpec-Horizontallayout">
+        <h3 class="heading "><span>Horizontal layout</span></h3>
+    <div class="section section-4 " id="src-31524170_LayoutLimitationsSpec-WithoutWrap">
+        <h4 class="heading "><span>Without Wrap</span></h4>
+    <p  >For horizontal non-wrapping container, views are centered vertically unless vertical pins (top/bottom) specified. Vertical pins behave the same as they would in absolute layout.  They are used for positioning, and can also be used to determine implicit height.  Horizontal pins are used for padding only.    </p>
+    </div>
+    <div class="section section-4 " id="src-31524170_LayoutLimitationsSpec-WithWrap">
+        <h4 class="heading "><span>With Wrap</span></h4>
+    <p  >For horizontal wrapping container, views are centered vertically within individual layout rows.  Both vertical and horizontal pins are used for padding.  In the case where implicit height needs to be calculated by pins, it will follow the same precedence and behavior as the <a  class="document-link " href="UI_Composite_Layout_Behavior_Spec.html">UI Composite Layout Behavior Spec</a>.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-31524170_LayoutLimitationsSpec-Absolutelayout">
+        <h3 class="heading "><span>Absolute layout</span></h3>
+    <p  >Views are centered horizontally and vertically unless pins (left/right/top/bottom) specified.    </p>
+    </div>
+    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

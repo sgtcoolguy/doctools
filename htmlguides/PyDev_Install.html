@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>PyDev Install</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30083046" class="content">
+                        <h1>PyDev Install</h1>
+    <div class="section section-2 " id="src-30083046_safe-id-UHlEZXZJbnN0YWxsLU5vdGVmb3J1c2Vyc3dpdGhBcHRhbmFTdHVkaW8zKEJldGEp">
+        <h2 class="heading "><span>Note for users with Aptana Studio 3 (Beta)</span></h2>
+    <p  >PyDev already comes preinstalled in <a class="external-link external-link" href="http://aptana.com/products/studio3">Aptana Studio 3</a>, so, this step can be skipped (note that if <a class="external-link external-link" href="http://aptana.com/products/studio3">Aptana Studio 3</a> is used,<br/>PyDev cannot be installed or update separately, as it must always be updated as a whole).    </p>
+    </div>
+    <div class="section section-2 " id="src-30083046_PyDevInstall-Beforestartingtheinstall">
+        <h2 class="heading "><span>Before starting the install</span></h2>
+    <p  >The first thing to choose before the install is a folder where you have permissions to write (otherwise,<br/>remember to install Eclipse running as an Administrator and remember to run as an Administrator whenever<br/>any plugin needs to be updated).    </p>
+    <p  >Also, it seems Eclipse 3.6.0 has some issues installing in shared locations (in any OS). An example of such a location would<br/>be the Program Files directory on Windows (see: <a class="external-link external-link" href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=322929">https://bugs.eclipse.org/bugs/show_bug.cgi?id=322929</a>), so,<br/>please use at least 3.6.1 if planning to install Eclipse/PyDev on a shared location.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083046_PyDevInstall-PyDevCertificate">
+        <h2 class="heading "><span>PyDev Certificate</span></h2>
+    <p  >PyDev is built with a self-signed certificate, which means that when installed a dialog will be opened to ask if you trust<br/>the certificate (which should be OK for most users).    </p>
+    <p  >Now, if you don't want that dialog to appear, it's possible to import the certificate before starting the installation process<br/>(this is actually a requirement for those that want to install PyDev from the command line because of a bug in the Eclipse p2 director).    </p>
+    <p  >The first step for that is downloading the <a  class="document-link unresolved" href="PyDev_Install.html#src-30083046">PyDev certificate</a>.    </p>
+    <p  >The second step is discovering the java being used in Eclipse: go to <strong class=" ">Help &gt; About &gt; Installation details and look for 'java.home'</strong>    </p>
+    <p  >Then to actually import it, in the command line, go to the Eclipse 'java.home' directory and execute    </p>
+    <p  ><strong class=" ">bin/keytool.exe -import -file pydev_certificate.cer -keystore lib/security/cacerts</strong>    </p>
+    <p  >Note that if you never did anything here, your <strong class=" ">password</strong> when requested should be <strong class=" ">changeit</strong>    </p>
+    <p  >Reference: <a class="external-link external-link" href="http://download.oracle.com/javase/1.4.2/docs/tooldocs/solaris/keytool.html#cacerts">http://download.oracle.com/javase/1.4.2/docs/tooldocs/solaris/keytool.html#cacerts</a>    </p>
+    </div>
+    <div class="section section-2 " id="src-30083046_PyDevInstall-Installingwiththeupdatesite">
+        <h2 class="heading "><span>Installing with the update site</span></h2>
+    <p  ><strong class=" ">Note: Instructions are targeted at Eclipse 3.5 and 3.6</strong>    </p>
+    <p  >To install PyDev and PyDev Extensions using the Eclipse Update Manager, you need to use the <strong class=" ">Help &gt; Install New Software...</strong><br/>menu (note that in older versions, this would be the 'Find and Install' menu).    </p>
+    <p  >    <img  src="images/pydev.org/images/install_menu.png" alt="images/pydev.org/images/install_menu.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border"   />
+    <br/>In the next screen, add the update site(s) you want to work with (<strong class=" ">See below for a list with the</strong> available update sites).    </p>
+    <p  >    <img  src="images/pydev.org/images/update_sites.png" alt="images/pydev.org/images/update_sites.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border"   />
+        </p>
+    </div>
+    <div class="section section-2 " id="src-30083046_PyDevInstall-Availableupdatesites">
+        <h2 class="heading "><span>Available update sites</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Main:    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  ><a class="external-link external-link" href="http://pydev.org/updates">http://pydev.org/updates</a>    </p>
+</li></ul>            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Nightly builds:    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  ><a class="external-link external-link" href="http://pydev.org/nightly">http://pydev.org/nightly</a>    </p>
+</li></ul>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >After entering the update sites, select the update site you entered or<br/>select &quot;All available sites&quot; and add a filter for PyDev, so that it<br/>shows the contents of all the update sites that have PyDev, then select what you want to install and click 'Next'.    </p>
+    <p  >    <img  src="images/pydev.org/images/update_sites2.png" alt="images/pydev.org/images/update_sites2.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border"   />
+    <br/>Then, <strong class=" ">UNCHECK</strong> the <strong class=" ">'Contact all update sites during install to find required software'</strong> and press<br/>'Next' again to confirm your selection.    </p>
+    <p  >    <img  src="images/pydev.org/images/update_sites3.png" alt="images/pydev.org/images/update_sites3.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border"   />
+    <br/>And finally, read the license agreement and if you accept, select the accept radio button and click 'Finish'.    </p>
+    <p  >    <img  src="images/pydev.org/images/update_sites4.png" alt="images/pydev.org/images/update_sites4.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border"   />
+    <br/>At that point, Eclipse should automatically download the plugin contents and present you to a dialog asking<br/>if you want to restart (to which you should say <strong class=" ">yes</strong>).    </p>
+    </div>
+    <div class="section section-2 " id="src-30083046_PyDevInstall-Possibleissueondownload">
+        <h2 class="heading "><span>Possible issue on download</span></h2>
+    <p  >If you have any problem at this point with a message such as:    </p>
+    <blockquote >
+    <p  >An error occurred while collecting items to be installed<br/>No repository found containing:<br/>org.python.pydev/osgi.bundle/1.4.7.2843<br/>No repository found containing:<br/>org.python.pydev.ast/osgi.bundle/1.4.7.2843    </p>
+        </blockquote>
+    <p  >that might indicate that the mirror you selected is having some network problem at that time,<br/>so, please follow the same steps with another mirror.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083046_PyDevInstall-Installingwiththezipfile">
+        <h2 class="heading "><span>Installing with the zip file</span></h2>
+    <p  >The available locations for the zip files are:    </p>
+<ul class=" "><li class=" ">    <p  ><a class="external-link external-link" href="http://sourceforge.net/projects/pydev/files/">SourceForge download</a>    </p>
+</li></ul>    <p  >After downloading the zip file:    </p>
+    <p  ><strong class=" ">Eclipse 3.4 and 3.5</strong>    </p>
+    <p  >Extract the contents of the zip file in the <strong class=" ">eclipse/dropins</strong> folder and restart Eclipse.    </p>
+    <p  ><strong class=" ">Before Eclipse 3.4</strong>    </p>
+    <p  >Extract the contents of the zip file on top of Eclipse, making sure the plugins folder is extracted on top of the<br/><strong class=" ">eclipse/plugins</strong> folder and the features is on top of the <strong class=" ">eclipse/features</strong> folder.<br/>After that, restart Eclipse with the '-clean' flag, so that Eclipse finds out about it.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083046_PyDevInstall-Checkingtheinstallation">
+        <h2 class="heading "><span>Checking the installation</span></h2>
+    <p  >You can verify if it is correctly installed going to the menu <strong class=" ">'window &gt; preferences'</strong> and<br/>checking if there is a <strong class=" ">PyDev</strong> item under that.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083046_PyDevInstall-Uninstalling">
+        <h2 class="heading "><span>Uninstalling</span></h2>
+    <p  >Follow the instructons below if at any time you wish to stop using the PyDev plugin<br/>(or any other Eclipse plugin):    </p>
+    <p  ><strong class=" ">Eclipse 3.5</strong>    </p>
+    <p  >If you installed with the update site, go to the menu <strong class=" ">help &gt; about &gt; installation details</strong> then on the<br/><strong class=" ">Installed Software</strong> tab, select the plugins you want to uninstall and click <strong class=" ">Uninstall</strong>.    </p>
+    <p  >If you installed with the zip file, just remove the com.python.pydev and org.python.pydev features and plugins from<br/>the dropins folder.    </p>
+    <p  ><strong class=" ">Before Eclipse 3.4</strong>    </p>
+    <p  >Go to the menu <strong class=" ">help &gt; software updates &gt; manage configuration</strong>, select the plugin and click 'disable', then, you have to restart Eclipse,<br/>go to the same place again and then click on 'remove' (note that you have a button in the menu that enables you to see the 'disabled' features).    </p>
+    </div>
+    <div class="section section-2 " id="src-30083046_PyDevInstall-CommonInstallProblems">
+        <h2 class="heading "><span>Common Install Problems</span></h2>
+    </div>
+    <div class="section section-2 " id="src-30083046_safe-id-UHlEZXZJbnN0YWxsLVdpbmRvd3NWaXN0YS83VUFDKFVzZXJBY2Nlc3NDb250cm9sKQ">
+        <h2 class="heading "><span>Windows Vista/7 UAC (User Access Control)</span></h2>
+    <p  >Eclipse 3.3 had issues with the Windows UAC, so, Eclipse must be run as Administrator to install a plugin on Eclipse 3.3.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083046_PyDevInstall-Corruptedinstall">
+        <h2 class="heading "><span>Corrupted install</span></h2>
+    <p  >Eclipse sometimes is not able to correctly get the plugin, from the update site but will do no checking<br/>on whether it is really correct (no md5 checking), and when this happens, you'll usually get a ClassNotFoundException<br/>(similar to the example below).    </p>
+    <p  >When that happens, <strong class=" ">you should uninstall it and reinstall again</strong> with the update site...<br/>if that still fails, you could try to get the zip files, as it will at least give you a warning when it is corrupt.    </p>
+    <p  >Note that the chance of the files being corrupt in the server is pretty low, as that's something that's always checked<br/>in a new release &ndash; but if you're suspicious about it, please ask in the forum, so that it can be double-checked.    </p>
+    <p  >Also, there have been reports with that error where the only solution that<br/>has been consistent has been <strong class=" ">removing all</strong> previous versions of pydev and then installing<br/>the latest version.    </p>
+    <p  ><strong class=" ">EXAMPLE</strong>    </p>
+    <p  >Unable to create this part due to an internal error. Reason for the failure:<br/>The editor class could not be instantiated. This usually indicates that the<br/>editor's class name was mistyped in plugin.xml.    </p>
+    <blockquote >
+    <p  >java.lang.ClassNotFoundException: org.python.pydev.editor.PyEdit<br/>at org.eclipse.osgi.framework.internal.core.BundleLoader.findClass(BundleLoader.java:405)<br/>at org.eclipse.osgi.framework.internal.core.BundleLoader.findClass(BundleLoader.java:350)<br/>at org.eclipse.osgi.framework.adaptor.core.AbstractClassLoader.loadClass(AbstractClassLoader.java:78)<br/>at java.lang.ClassLoader.loadClass(ClassLoader.java:235)<br/>at org.eclipse.osgi.framework.internal.core.BundleLoader.loadClass(BundleLoader.java:275)<br/>...    </p>
+        </blockquote>
+    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

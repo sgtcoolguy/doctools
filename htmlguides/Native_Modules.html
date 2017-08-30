@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Native Modules</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-41845669" class="content">
+                        <h1>Native Modules</h1>
+    <p  >Demonstrates using a native module in an Alloy application, in this case the Paint module provided by Appcelerator.    </p>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">App folder location</div>
+            <p  ><i class=" ">alloy</i>/test/apps/<strong class=" ">advanced/native_modules</strong>    </p>
+    </div>
+        <p  >    <img  src="images/download/attachments/41845669/ti.paint.png" alt="images/download/attachments/41845669/ti.paint.png" class="confluence-embedded-image"   />
+        </p>
+    <p  >The native_module sample app is configured to use the <a class="external-link external-link" href="https://github.com/appcelerator/titanium_modules/tree/master/paint/mobile">P</a><a class="external-link external-link" href="https://marketplace.appcelerator.com/apps/4977#!overview">aint</a><a class="external-link external-link" href="https://github.com/appcelerator/titanium_modules/tree/master/paint/mobile"> module provided by Appcelerator. To use a module in an Alloy project, simply add it to an existing Alloy view using a <tt class=" ">&lt;Module/&gt;</tt> element, specifying the module's ID. The element's <tt class=" ">method</tt> parameter specifies the method that will be invoked on the module to initialize it. If no method is specified the module's <tt class=" ">createView()</tt> method will be invoked, by default. The ti.paint module's create method is called <tt class=" ">createPaintView()</tt>.</a>    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/views/index.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
+<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
+<div class="line"><code class="plain">    &lt;Window&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Module id=</code><code class="string">"paint"</code><code class="plain"> module=</code><code class="string">"ti.paint"</code><code class="plain"> method=</code><code class="string">"createPaintView"</code><code class="plain"> platform=</code><code class="string">"ios"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/Window&gt;</code></div>
+<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+</div>
+    </div>
+    <p  >Once you've <a  class="document-link unresolved" href="Native_Modules.html#src-41845669">imported</a> sample app, you next to need to download and install the ti.paint module, and modify the application's tiapp.xml file to include it.    </p>
+    <p  ><strong class=" ">Download and install the ti.paint module</strong>:    </p>
+<ol class=" "><li class=" ">    <p  >Download the <a class="external-link external-link" href="https://github.com/appcelerator/titanium_modules/blob/master/paint/mobile/ios/ti.paint-iphone-1.3.zip">ti.paint module</a> ZIP from GitHub.    </p>
+</li><li class=" ">    <p  >To manually install the module, copy the ZIP file to the root of the Titanium SDK folder (for example, <strong class=" ">~/</strong> <strong class=" ">Library/Application Support/Titanium</strong> on OS X). See <a  class="document-link unresolved" href="Native_Modules.html#src-41845669">Module install locations</a> for other platforms.     <span style="color: #222222;" >
+In Appcelerator Studio, you can also install the module by selecting     </span>
+<strong class=" ">Help &gt; Install Mobile Module</strong> and locating the ZIP file.    </p>
+</li><li class=" ">    <p  >Open the project's tiapp.xml file and insert <strong class=" "> <tt class=" ">&lt;module&gt;ti.paint&lt;/module&gt;</tt> </strong> into the existing <tt class=" ">&lt;modules&gt;&lt;/modules&gt;</tt> element, as shown below.      </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;ti:app xmlns:ti=</code><code class="string">"http://ti.appcelerator.org"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">    &lt;modules&gt;</code></div>
+<div class="line"><code class="plain">        &lt;module&gt;ti.paint&lt;/module&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/modules&gt;</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">&lt;/xml&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Save tiapp.xml and build the application for iOS simulator or device. (The Paint module does not currently work on Android.)    </p>
+</li></ol>    <div class="section section-2 " id="src-41845669_NativeModules-SeeAlso">
+        <h2 class="heading "><span>See Also</span></h2>
+<ul class=" "><li class=" ">    <p  ><a  class="document-link unresolved" href="Native_Modules.html#src-41845669">Using Titanium Modules</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link unresolved" href="Native_Modules.html#src-41845669">Module Element</a>    </p>
+</li><li class=" ">    <p  ><a class="external-link external-link" href="https://marketplace.appcelerator.com/apps/4977#!overview">Paint Module</a>    </p>
+</li></ul>    <p  >    </p>
+    <p  >    </p>
+    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

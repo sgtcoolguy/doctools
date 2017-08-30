@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Errors Configuring Platforms Inside Studio</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30085538" class="content">
+                        <h1>Errors Configuring Platforms Inside Studio</h1>
+    <div class="section section-2 " id="src-30085538_ErrorsConfiguringPlatformsInsideStudio-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p  >    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Errors_Configuring_Platforms_Inside_Studio.html#src-30085538_ErrorsConfiguringPlatformsInsideStudio-Overview">Overview</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Errors_Configuring_Platforms_Inside_Studio.html#src-30085538_ErrorsConfiguringPlatformsInsideStudio-iOSSDKversionXXXnotfound">iOS SDK version XXX not found</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Errors_Configuring_Platforms_Inside_Studio.html#src-30085538_ErrorsConfiguringPlatformsInsideStudio-CouldnotlocatetheAndroidSDKatthegivenpath">Could not locate the Android SDK at the given path</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Errors_Configuring_Platforms_Inside_Studio.html#src-30085538_ErrorsConfiguringPlatformsInsideStudio-iOSconfigurationissues">iOS configuration issues</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30085538_ErrorsConfiguringPlatformsInsideStudio-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p  >Errors while building a mobile project are usually due to configuration issues. The most common problems and possible solutions are posted here.    </p>
+    </div>
+    <div class="section section-2 " id="src-30085538_ErrorsConfiguringPlatformsInsideStudio-iOSSDKversionXXXnotfound">
+        <h2 class="heading "><span>iOS SDK version XXX not found</span></h2>
+    <p  >This will happen if you have upgraded your iOS SDKs, and the old one is not available. To fix:    </p>
+<ol class=" "><li class=" ">    <p  >Select <strong class=" ">Run &gt; Run Configurations...</strong> (you will get to the same spot if you choose <strong class=" ">Debug Configurations...</strong>)    </p>
+</li><li class=" ">    <p  >Select the configuration for the project you are having an issue with.    </p>
+</li><li class=" ">    <p  >Choose an available iOS SDK from the list.    </p>
+</li><li class=" ">    <p  >Save and close the dialog.    </p>
+</li></ol>    </div>
+    <div class="section section-2 " id="src-30085538_ErrorsConfiguringPlatformsInsideStudio-CouldnotlocatetheAndroidSDKatthegivenpath">
+        <h2 class="heading "><span>Could not locate the Android SDK at the given path</span></h2>
+    <p  >This usually appears inside the <strong class=" ">Preference</strong> dialog inside Studio. Studio runs a Python script to determine your current configuration. To diagnose the exact issue, please try the following:    </p>
+<ol class=" "><li class=" ">    <p  >Turn on debug logging: <a  class="document-link " href="Debugging_Studio.html">Debugging Studio</a>, and enable specific component <strong class=" ">com.aptana.core/debug/shell</strong>.    </p>
+</li><li class=" ">    <p  >Re-open the Preference dialog.    </p>
+</li><li class=" ">    <p  >Open the Studio log file (<strong class=" ">Help &gt; Studio &gt; View Log File</strong>) and scroll to the end.    </p>
+</li><li class=" ">    <p  >You should see a command line invocation of <tt class=" ">avd.py</tt>, for example:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="string">"/usr/bin/python"</code><code class="plain"> </code><code class="string">"/Library/Application Support/Titanium/mobilesdk/osx/1.8.0.1/android/avd.py"</code><code class="plain"> </code><code class="string">"/Users/username/Documents/android"</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Copy and paste that complete command line into a terminal window and run it. Check the output. If it doesn't find minimum required Android SDK, the configuration will be marked as invalid.    </p>
+</li></ol>    <p  >It may be that you don't have an <tt class=" ">avd.py</tt> script at the location it's looking. To solve that, just install the latest <a  class="document-link " href="Installing_Titanium_SDK_Continuous_Builds.html">Continuous Build</a>, ensuring that you choose the master branch from the drop-down menu of the download site, and restart Studio.    </p>
+    </div>
+    <div class="section section-2 " id="src-30085538_ErrorsConfiguringPlatformsInsideStudio-iOSconfigurationissues">
+        <h2 class="heading "><span>iOS configuration issues</span></h2>
+    <p  >This usually appears inside the <strong class=" ">Preference</strong> dialog inside Studio. Studio runs some commands to determine your current configuration:    </p>
+<ol class=" "><li class=" ">    <p  >To determine the location of your xcode tooling, it runs <tt class=" ">xcode-select --print-path</tt>.    </p>
+</li><li class=" ">    <p  >It then looks at <tt class=" ">/Platforms/iPhoneSimulator.platform/Developer/SDKs</tt> underneath that path for the SDK locations.    </p>
+</li><li class=" ">    <p  >Currently, it expects to see <i class=" ">at least</i> one iOS SDK of version greater than or equal to 4.2 and less than 5.1. You can have more installed than that, but you at least need one within that range.    </p>
+</li></ol>    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

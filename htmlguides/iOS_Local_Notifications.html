@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>iOS Local Notifications</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-40929226" class="content">
+                        <h1>iOS Local Notifications</h1>
+    <p  >    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="iOS_Local_Notifications.html#src-40929226_iOSLocalNotifications-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="iOS_Local_Notifications.html#src-40929226_iOSLocalNotifications-NotificationTypes">Notification Types</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="iOS_Local_Notifications.html#src-40929226_iOSLocalNotifications-ConfigureNotificationSettings">Configure Notification Settings</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="iOS_Local_Notifications.html#src-40929226_iOSLocalNotifications-SendaLocalNotification">Send a Local Notification</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="iOS_Local_Notifications.html#src-40929226_iOSLocalNotifications-RegisterforLocalNotifications">Register for Local Notifications</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="iOS_Local_Notifications.html#src-40929226_iOSLocalNotifications-ScheduleaLocalNotification">Schedule a Local Notification</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="iOS_Local_Notifications.html#src-40929226_iOSLocalNotifications-MonitorLocalNotifications">Monitor Local Notifications</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="iOS_Local_Notifications.html#src-40929226_iOSLocalNotifications-CancelaNotification">Cancel a Notification</a>    </p>
+</li></ul></li></ul>    <div class="section section-2 " id="src-40929226_iOSLocalNotifications-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p  >Local notifications alert the user that something is happening to your application while it is in the background.  On iOS, the notification can appear as an alert or banner message and stays in the notification center until the user clears them.  The user can tap or swipe the notification to launch the application or dismiss the notification.  The application can also play a sound or modify its badge value on its icon.  Note that the user can customize how they want to receive notifications from <strong class=" ">Settings</strong>.  They can change how the message appears or even disable them.    </p>
+    <p  >Starting with Release 3.4.0, the application can create interactive notifications if the device is running iOS 8 or later.  An interactive notification presents options that the user can tap to respond to the application while it is in the background.  To create an interactive notification, see <a  class="document-link " href="iOS_Interactive_Notifications.html">iOS Interactive Notifications</a>.    </p>
+    </div>
+    <div class="section section-2 " id="src-40929226_iOSLocalNotifications-NotificationTypes">
+        <h2 class="heading "><span>Notification Types</span></h2>
+    <p  >The following sections describe how iOS may present notifications to users.    </p>
+    <div class="section section-3 " id="src-40929226_iOSLocalNotifications-AlertDialog">
+        <h3 class="heading "><span>Alert Dialog</span></h3>
+    <p  >If the application is in the background and the device is unlocked, iOS presents the notification as either a banner message or an alert depending on the user's selection.  The user can tap on <strong class=" ">Open</strong> to launch the application, while tapping <strong class=" ">Close</strong> dismisses the notification.    </p>
+    <p  >    <img  src="images/download/attachments/40929226/AlertDialog.png" alt="images/download/attachments/40929226/AlertDialog.png" class="confluence-embedded-image"   />
+        </p>
+    </div>
+    <div class="section section-3 " id="src-40929226_iOSLocalNotifications-Badge">
+        <h3 class="heading "><span>Badge</span></h3>
+    <p  >The application can optionally set the badge value, which appears in the application's icon.  Use the value to indicate the number of items the user needs to respond to.  After the user responds, be sure to reset the badge value.    </p>
+    <p  >    <img  src="images/download/attachments/40929226/BadgeNotification.png" alt="images/download/attachments/40929226/BadgeNotification.png" class="confluence-embedded-image"   />
+        </p>
+    </div>
+    <div class="section section-3 " id="src-40929226_iOSLocalNotifications-BannerMessage">
+        <h3 class="heading "><span>Banner Message</span></h3>
+    <p  >If the application is in the background and the device is unlocked, iOS presents the notification as either a banner message or an alert depending on the user's selection.  The user can tap the banner message to launch the application.  If the user does nothing, the banner message eventually disappears and the notification will be queued in the notification center.    </p>
+    <p  >    <img  src="images/download/attachments/40929226/BannerNotification.png" alt="images/download/attachments/40929226/BannerNotification.png" class="confluence-embedded-image"   />
+        </p>
+    </div>
+    <div class="section section-3 " id="src-40929226_iOSLocalNotifications-LockScreen">
+        <h3 class="heading "><span>Lock Screen</span></h3>
+    <p  >If the device is locked, the notification appears in the lock screen. The user swipes the notification to the right to launch the application.    </p>
+    <p  >    <img  src="images/download/attachments/40929226/LockedScreen.png" alt="images/download/attachments/40929226/LockedScreen.png" class="confluence-embedded-image" width="300"  />
+        </p>
+    </div>
+    <div class="section section-3 " id="src-40929226_iOSLocalNotifications-NotificationCenter">
+        <h3 class="heading "><span>Notification Center</span></h3>
+    <p  >If the user never responds to notifications, the notifications are queued in the notification center.  The user can click on the notification to launch the application or click the <strong class=" ">x </strong>button to clear the notifications.    </p>
+    <p  >    <img  src="images/download/attachments/40929226/NotificationCenter.png" alt="images/download/attachments/40929226/NotificationCenter.png" class="confluence-embedded-image" width="300"  />
+        </p>
+    </div>
+    <div class="section section-3 " id="src-40929226_iOSLocalNotifications-Sound">
+        <h3 class="heading "><span>Sound</span></h3>
+    <p  >The application can play a sound when a notification is received.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-40929226_iOSLocalNotifications-ConfigureNotificationSettings">
+        <h2 class="heading "><span>Configure Notification Settings</span></h2>
+    <p  >The user can configure how to receive notifications from your application using <strong class=" ">Settings</strong>.  To access the notification settings, open <strong class=" ">Settings</strong>, then:    </p>
+<ul class=" "><li class=" ">    <p  >For iOS 8 and later, tap the application to configure, then tap <strong class=" ">Notifications</strong>.    </p>
+</li><li class=" ">    <p  >For iOS 7, tap <strong class=" ">Notification Center</strong>, then tap the application to configure.    </p>
+</li></ul>    <p  >In the <strong class=" ">Notifications</strong> screen, the user can selectively decide which notification types to receive.    </p>
+    <p  >    <img  src="images/download/attachments/40929226/NotificationSettings.png" alt="images/download/attachments/40929226/NotificationSettings.png" class="confluence-embedded-image" width="300"  />
+        </p>
+    <p  >    </p>
+    <p  >    </p>
+    </div>
+    <div class="section section-2 " id="src-40929226_iOSLocalNotifications-SendaLocalNotification">
+        <h2 class="heading "><span>Send a Local Notification</span></h2>
+    <p  >To send a local notification, use the <tt class=" ">Titanium.App.iOS.scheduleLocalNotification()</tt> method.  The application can monitor local notifications using the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.App.iOS-event-notification"><tt class=" ">notification</tt></a> event.   For devices running iOS 8 and later, you need to register the application to use the local notification service before scheduling local notifications.    </p>
+    <div class="section section-3 " id="src-40929226_iOSLocalNotifications-RegisterforLocalNotifications">
+        <h3 class="heading "><span>Register for Local Notifications</span></h3>
+    <p  >For devices running iOS 8 and later, you need to register the application to use the local notification services.  Use the <tt class=" ">Titanium.App.iOS.registerUserNotificationSettings() </tt>method to enroll the application in local notification services.  Pass the method a dictionary with the <tt class=" ">types</tt> property set to an array of notification types to use.    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">Titanium.App.iOS.USER_NOTIFICATION_TYPE_ALERT</tt>: allow the application to display an alert or banner message.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.App.iOS.USER_NOTIFICATION_TYPE_BADGE</tt>: allow the application to modify the badge value in the application's icon.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.App.iOS.USER_NOTIFICATION_TYPE_NONE</tt>: disable application UI notifications.  The application will still be notified of the notification by the <tt class=" ">notification</tt> event.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.App.iOS.USER_NOTIFICATION_TYPE_SOUND</tt>: allow the application to play a sound.    </p>
+</li></ul>    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// Check if the device is running iOS 8 or later, before registering for local notifications</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (Ti.Platform.name == </code><code class="string">"iPhone OS"</code><code class="plain"> &amp;&amp; parseInt(Ti.Platform.version.split(</code><code class="string">"."</code><code class="plain">)[</code><code class="value">0</code><code class="plain">]) &gt;= </code><code class="value">8</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">    Ti.App.iOS.registerUserNotificationSettings({</code></div>
+<div class="line"><code class="plain">	    types: [</code></div>
+<div class="line"><code class="plain">            Ti.App.iOS.USER_NOTIFICATION_TYPE_ALERT,</code></div>
+<div class="line"><code class="plain">            Ti.App.iOS.USER_NOTIFICATION_TYPE_SOUND,</code></div>
+<div class="line"><code class="plain">            Ti.App.iOS.USER_NOTIFICATION_TYPE_BADGE</code></div>
+<div class="line"><code class="plain">        ]</code></div>
+<div class="line"><code class="plain">    });</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p  >If you are using interactive notifications, the application also needs to register the notification categories you want to use.  Set the <tt class=" ">categories</tt> property of the dictionary passed to the <tt class=" ">registerUserNotificationSettings()</tt> method to an array of notification category objects that the application needs to use.  For more details, see the <a  class="document-link " href="iOS_Interactive_Notifications.html">iOS Interactive Notifications</a>.    </p>
+    </div>
+        <div  class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p  >Callbacks get called properly only when Liveview is enabled.    </p>
+    </div>
+        <p  >    </p>
+    <p  >After the application registers for notification services, iOS will prompt the user to allow the application to send notifications or not.  The user can reconfigure the notification settings later from <strong class=" ">Settings</strong>.    </p>
+    <p  >The application can monitor the <tt class=" ">usernotificationsettings</tt> event to know when and which user notification types and categories are registered.    </p>
+    </div>
+    <div class="section section-3 " id="src-40929226_iOSLocalNotifications-ScheduleaLocalNotification">
+        <h3 class="heading "><span>Schedule a Local Notification</span></h3>
+    <p  >To send a local notification, use the <tt class=" ">Titanium.App.iOS.scheduleLocalNotification()</tt> method.  Pass the method a dictionary with the following properties. All properties are optional:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">alertAction</tt>: modify the default slider text of the alert (&quot;slide to view&quot;) (see diagram below) or the title of the <strong class=" ">Open</strong> button for the alert dialog.  The value replaces &quot;view&quot; for the slide text, so the message will be &quot;slide to &lt;alertAction&gt;&quot;.    </p>
+</li><li class=" ">    <p  ><tt class=" ">alertBody</tt>: text to display in the alert or banner message (see diagram below). If omitted, an alert is not displayed.    </p>
+</li><li class=" ">    <p  ><tt class=" ">alertLaunchImage</tt>: splash image to display instead of the application's default splash image.    </p>
+</li><li class=" ">    <p  ><tt class=" ">badge</tt>: number to set in the application icon's badge.  To remove the badge value, set the value to a negative number.    </p>
+</li><li class=" ">    <p  ><tt class=" ">category</tt>: s    <span style="color: #484848;" >
+tring identifier of the category of actions to be displayed in the interactive notification (for iOS 8 and later).    </span>
+    </p>
+</li><li class=" ">    <p  ><tt class=" ">date</tt>: datetime to send the notification as a JavaScript Date object. If omitted, the notification is sent immediately.    </p>
+</li><li class=" ">    <p  ><tt class=" ">repeat</tt>: interval to repeat the notification. Values can be: <tt class=" ">daily</tt>, <tt class=" ">weekly</tt>, <tt class=" ">monthly</tt> or <tt class=" ">yearly</tt>.  Default is once.    </p>
+</li><li class=" ">    <p  ><tt class=" ">sound</tt>: sound file to play relative to the <tt class=" ">Resources</tt> or <tt class=" ">app/assets</tt> directory.    </p>
+</li><li class=" ">    <p  ><tt class=" ">timezone</tt>: t    <span style="color: #484848;" >
+imezone of the date configured for the notification. If not set, the system timezone is used.    </span>
+    </p>
+</li><li class=" ">    <p  ><tt class=" ">userInfo</tt>: extra data to pass to the application that can be processed in the <tt class=" ">notification</tt> event.    </p>
+</li></ul>    <p  >    <img  src="images/download/attachments/40929226/LockedAlertAnnotated.png" alt="images/download/attachments/40929226/LockedAlertAnnotated.png" class="gliffy-macro-image" width="562"  />
+        </p>
+    <p  >The <tt class=" ">scheduleLocalNotification()</tt> method returns a LocalNotification object.  The application can use the object to call the <tt class=" ">cancel()</tt> method in case it needs to cancel the notification.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// The following code snippet schedules an alert to be sent within three seconds</code></div>
+<div class="line"><code class="plain">var notification = Ti.App.iOS.scheduleLocalNotification({</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Alert will display 'slide to update' instead of 'slide to view'</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// or 'Update' instead of 'Open' in the alert dialog</code></div>
+<div class="line"><code class="plain">    alertAction: </code><code class="string">"update"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Alert will display the following message</code></div>
+<div class="line"><code class="plain">    alertBody: </code><code class="string">"New content available! Update now?"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// The badge value in the icon will be changed to 1</code></div>
+<div class="line"><code class="plain">    badge: </code><code class="value">1</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Alert will be sent in three seconds</code></div>
+<div class="line"><code class="plain">    date: </code><code class="keyword">new</code><code class="plain"> Date(</code><code class="keyword">new</code><code class="plain"> Date().getTime() + </code><code class="value">3000</code><code class="plain">),</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// The following sound file will be played</code></div>
+<div class="line"><code class="plain">    sound: </code><code class="string">"/alert.wav"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// The following URL is passed to the application </code></div>
+<div class="line"><code class="plain">    userInfo: { </code><code class="string">"url"</code><code class="plain">:</code><code class="string">"http://www.download.com/content/asset.json"</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">}); </code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-40929226_iOSLocalNotifications-MonitorLocalNotifications">
+        <h3 class="heading "><span>Monitor Local Notifications</span></h3>
+    <p  >The application can monitor incoming local notifications by using the iOS application-level <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.App.iOS-event-notification"><tt class=" ">notification</tt></a> event if it is in the foreground or returns to the foreground.  The event is passed a dictionary containing the same properties as the ones used to schedule the notification except the <tt class=" ">interval</tt> property.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// Fired when the application receives an incoming local notification when it's in the foreground</code></div>
+<div class="line"><code class="plain">Ti.App.iOS.addEventListener(</code><code class="string">'notification'</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Process custom data</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (e.userInfo &amp;&amp; </code><code class="string">"url"</code><code class="plain"> in e.userInfo){</code></div>
+<div class="line"><code class="plain">        httpGetRequest(e.userInfo.url);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Reset the badge value</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (e.badge &gt; </code><code class="value">0</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">        Ti.App.iOS.scheduleLocalNotification({</code></div>
+<div class="line"><code class="plain">            date: </code><code class="keyword">new</code><code class="plain"> Date(</code><code class="keyword">new</code><code class="plain"> Date().getTime()),</code></div>
+<div class="line"><code class="plain">            badge: -</code><code class="value">1</code></div>
+<div class="line"><code class="plain">        });</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-40929226_iOSLocalNotifications-CancelaNotification">
+        <h3 class="heading "><span>Cancel a Notification</span></h3>
+    <p  >If the application needs to cancel a notification, it can either selectively choose which notification(s) to cancel or cancel all pending notifications.    </p>
+    <p  ><strong class=" ">To cancel all pending notifications</strong>, call the <tt class=" ">Titanium.App.iOS.cancelAllLocalNotifications()</tt> method.    </p>
+    <p  ><strong class=" ">To cancel a specific notification</strong>, the application can either:    </p>
+<ol class=" "><li class=" ">    <p  >Keep a reference to the notification object and call the <tt class=" ">cancel()</tt> method on the object.    </p>
+</li><li class=" ">    <p  >Add an ID to the notification and pass the ID to the <tt class=" ">Titanium.App.iOS.cancelLocalNotification()</tt> method.  To add an ID to the notification, set the <tt class=" ">id</tt> property of the <tt class=" ">userInfo</tt> dictionary passed to the <tt class=" ">scheduleLocationNotification()</tt> method.    </p>
+</li></ol>    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var notification = Ti.App.iOS.scheduleLocalNotification({</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Create an ID for the notification </code></div>
+<div class="line"><code class="plain">    userInfo: {</code><code class="string">"id"</code><code class="plain">: </code><code class="string">"foo"</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">    alertBody: </code><code class="string">"Test? Test?"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    date: </code><code class="keyword">new</code><code class="plain"> Date(</code><code class="keyword">new</code><code class="plain"> Date().getTime() + </code><code class="value">3000</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">}); </code></div>
+<div class="line"> </div>
+<div class="line"><code class="comments">// Either one of these methods will cancel the notification </code></div>
+<div class="line"><code class="plain">notification.cancel();</code></div>
+<div class="line"><code class="plain">Ti.App.iOS.cancelLocalNotification(</code><code class="string">"foo"</code><code class="plain">);</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

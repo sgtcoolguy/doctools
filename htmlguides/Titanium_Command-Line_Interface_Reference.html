@@ -1,0 +1,1420 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Titanium Command-Line Interface Reference</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-35619828" class="content">
+                        <h1>Titanium Command-Line Interface Reference</h1>
+    <p  >    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-CLIQuickStart">CLI Quick Start</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-InstallNode.js">Install Node.js</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-InstallandConfiguretheCLI">Install and Configure the CLI</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-titaniumCommands">titanium Commands</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Build">Build</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Genericbuildoptionsandflags">Generic build options and flags</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-AndroidBuildOptions">Android Build Options</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-iOSBuildOptionsandFlags">iOS Build Options and Flags</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-MobileWebandWindowsHybridBuildOptions">Mobile Web and Windows Hybrid Build Options</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-WindowsBuildOptions">Windows Build Options</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Clean">Clean</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-CleanOptions">Clean Options</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Config">Config</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-ConfigOptions">Config Options</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Create">Create</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-CreateOptions">Create Options</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Help">Help</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Info">Info</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-InfoOptions">Info Options</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Login">Login</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Logout">Logout</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Module">Module</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-ModuleList">Module List</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-ModuleListOptions">Module List Options</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Plugin">Plugin</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-PluginList">Plugin List</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-PluginListOptions">Plugin List Options</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Project">Project</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-ProjectOptions">Project Options</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-SDK">SDK</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-SDKInstall">SDK Install</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-SDKInstallOptions">SDK Install Options</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-SDKList">SDK List</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-SDKListOptions">SDK List Options</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-SDKSelect">SDK Select</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-SDKUninstall">SDK Uninstall</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-SDKUninstallOptions">SDK Uninstall Options</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-SDKUpdate">SDK Update</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-SDKUpdateOptions">SDK Update Options</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Setup">Setup</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-SetupOptions">Setup Options</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Status">Status</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-StatusOptions">Status Options</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-RevertingStudiototheLegacyCLI">Reverting Studio to the Legacy CLI</a>    </p>
+</li></ul>    <p  >The Titanium Command-Line Interface (CLI) is a Node.js-based command-line tool for managing, building, and deploying Titanium projects. It is designed to replace the legacy Python CLI scripts used in previous releases, including <tt class=" ">titanium.py</tt> and the platform-specific <tt class=" ">builder.py</tt> scripts.    </p>
+    <p  >By default the Titanium CLI is installed by Appcelerator Studio or the Appcelerator CLI.  If you want to install the Titanium CLI independent of the other tools, see the <i class=" ">CLI Quick Start</i> below.    </p>
+    <div class="section section-2 " id="src-35619828_TitaniumCommand-LineInterfaceReference-CLIQuickStart">
+        <h2 class="heading "><span>CLI Quick Start</span></h2>
+    <p  >Getting started with the CLI only requires two steps:    </p>
+<ol class=" "><li class=" ">    <p  >Install Node.js.    </p>
+</li><li class=" ">    <p  >Install and configure the CLI.    </p>
+</li></ol>    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-InstallNode.js">
+        <h3 class="heading "><span>Install Node.js</span></h3>
+    <p  >The CLI requires Node.js 0.10.13 or later. If you don't have Node installed, install it from:    </p>
+<ul class=" "><li class=" ">    <p  ><a class="external-link external-link" href="http://nodejs.org">nodejs.org</a>    </p>
+</li></ul>    <p  >Before installing the CLI, you should decide where you want the Node Package Manager (<tt class=" ">npm</tt>) to install packages. By default <tt class=" ">npm</tt> installs into <tt class=" ">/usr/local</tt> on OS X, which requires that you run <tt class=" ">npm</tt> as root. This is not recommended. You can avoid having to run <tt class=" ">npm</tt> by doing one of the following:    </p>
+<ul class=" "><li class=" ">    <p  >Make the <tt class=" ">/usr/local</tt> directory writable by all:<br/><br/><tt class=" ">sudo chmod 777 /usr/local</tt>    </p>
+</li></ul><ul class=" "><li class=" ">    <p  >Set <tt class=" ">npm</tt> to install to your home directory, or another directory of your choosing by setting the <tt class=" ">npm</tt> prefix. For example, you can add the following to your <tt class=" ">.bash_profile</tt> or other initialization file:<br/><br/><tt class=" ">export NPM_CONFIG_PREFIX=$HOME</tt><br/><br/>In this case, <tt class=" ">npm</tt> packages are installed to <tt class=" ">$HOME/lib/node_modules</tt> and launch scripts are installed in <tt class=" ">$HOME/bin</tt>. <tt class=" ">$HOME/bin</tt> must be in your PATH.    </p>
+</li></ul>    <p  >For more information, see <a  class="document-link " href="Installing_Node.html">Installing Node</a>.    </p>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-InstallandConfiguretheCLI">
+        <h3 class="heading "><span>Install and Configure the CLI</span></h3>
+<ol class=" "><li class=" ">    <p  >Install the <tt class=" ">titanium</tt> CLI.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">npm install titanium -g</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Log in using your Appcelerator credentials.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium login</code></div>
+</div>
+    </div>
+    <p  >You are prompted for your Appcelerator Platform login and password.    </p>
+</li><li class=" ">    <p  >Download a 3.0 or newer SDK.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium sdk update --branch 3_0_X --</code><code class="keyword">default</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Configure CLI (optional).    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium setup</code></div>
+</div>
+    </div>
+    <p  >The script prompts you to enter basic information, such as your name, default locale, default SDK version, and default workspace folder.    </p>
+</li></ol>    <p  >If you encounter an error installing <tt class=" ">titanium</tt>, see <a  class="document-link " href="Installing_Node.html#src-35620436_InstallingNode-TroubleshootingnpmProblems">Troubleshooting npm Problems</a>.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-35619828_TitaniumCommand-LineInterfaceReference-titaniumCommands">
+        <h2 class="heading "><span>titanium  Commands</span></h2>
+    <p  >If you don't specify all of the required options, <tt class=" ">titanium</tt> prompts you for the missing options.    </p>
+<ul class=" "><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Build">Build</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Clean">Clean</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Config">Config</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Create">Create</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Help">Help</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Info">Info</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Login">Login</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Logout">Logout</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Module">Module</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Plugin">Plugin</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Project">Project</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-SDK">SDK</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Setup">Setup</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_Command-Line_Interface_Reference.html#src-35619828_TitaniumCommand-LineInterfaceReference-Status">Status</a>    </p>
+</li></ul>    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Build">
+        <h3 class="heading "><span>Build</span></h3>
+    <p  >Builds and runs an application or module project.    </p>
+    <div  class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p  ><strong class=" ">SDK Version Setting Precedence</strong>    </p>
+    <p  >The CLI checks several settings to see which SDK version to use to build your application. The following is a list of locations in the order of precedence. If an SDK version is not defined in that location, the next location is checked.    </p>
+<ol class=" "><li class=" ">    <p  ><tt class=" ">tiapp.xml</tt> file version specified with the <tt class=" ">sdk-version</tt> tag.<br/>To change this version, manually edit the tiapp.xml file with a text editor or use Studio.    </p>
+</li><li class=" ">    <p  ><tt class=" ">--sdk</tt> command-line option with the <tt class=" ">titanium build</tt> command.    </p>
+</li><li class=" ">    <p  ><tt class=" ">app.sdk</tt> setting specified with the <tt class=" ">titanium config</tt> command.<br/>To check the version, run <tt class=" ">titanium config</tt> and to change the version, run <tt class=" ">titanium config app.sdk &lt;sdk_version&gt;</tt>.    </p>
+</li><li class=" ">    <p  >SDK select version.<br/>To check or change this version, run <tt class=" ">titanium sdk select</tt>.    </p>
+</li></ol>    </div>
+        <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium build --platform &lt;platform&gt; [--build-only] [--force] [--project-dir &lt;value&gt;] [--sdk &lt;value&gt;] [--log-level &lt;level&gt;] [ &lt;platform_build_options&gt; ]</code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Genericbuildoptionsandflags">
+        <h4 class="heading "><span>Generic build options and flags</span></h4>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-b, --build-only    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Only perform the build; when specified, does not install or run the app.<br/><br/>When building a Windows project using <tt class=" ">appc run -p windows -T wp-device --wp-sdk ## --build-only</tt>, you can now use SDK values (e.g. 10.0.10240.0, 10.0.10586.0, etc.).    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-f, --force    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Force a full rebuild.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--skip-js-minify    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Bypasses JavaScript minification. Simulator builds are never minified. Only supported for Android and iOS.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--log-level &lt;level&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Minimum logging level. Supported options are <strong class=" ">trace</strong>, <strong class=" ">debug</strong>, <strong class=" ">info</strong>, <strong class=" ">warn</strong>, and <strong class=" ">error</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-p, --platforms &lt;platform&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Target build platform: Supported values are <strong class=" ">android</strong>, <strong class=" ">ios</strong>, and <strong class=" ">mobileweb</strong>. (<strong class=" ">iphone</strong> and <strong class=" ">ipad</strong> are currently accepted as synonyms for <strong class=" ">ios</strong>.)    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-d, --project-dir &lt;directory&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Directory containing the project, otherwise the current working directory is assumed.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-s, --sdk &lt;version&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Titanium SDK version to build with. If not specified, uses the configured default SDK.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-AndroidBuildOptions">
+        <h4 class="heading "><span>Android Build Options</span></h4>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-A, --android-sdk &lt;path&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Path to the Android SDK.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-C, --device-id &lt;name&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Name of the device or emulator to install the application to.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-D, --deploy-type &lt;type&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Type of deployment when using an emulator. Type can be <strong class=" ">test </strong>or <strong class=" ">development</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-K, --keystore &lt;path&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Location of the keystore.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--key-password &lt;keypass&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Password of the keystore private key. Defaults to value specified with --store-password.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--liveview    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Starts a <a  class="document-link " href="LiveView.html">LiveView</a> session to let you     <span style="color: #484848;" >
+quickly preview changes to your application's UI. <strong class=" ">Requires Appcelerator Studio.</strong>    </span>
+    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-L, --alias &lt;alias&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Alias for the keystore.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-O, --output-dir &lt;dir&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Output directory (used when <tt class=" ">target</tt> is <strong class=" ">dist-playstore</strong>).    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-P, --store-password &lt;password&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Password for the keystore.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-T, --target &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Target to build for. Target can be <strong class=" ">emulator</strong>, <strong class=" ">device</strong>, or <strong class=" ">dist-playstore</strong>.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-iOSBuildOptionsandFlags">
+        <h4 class="heading "><span>iOS Build Options and Flags</span></h4>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--force-copy    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Forces files to be copied instead of symlinked for simulator builds only.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--force-copy-all    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Identical to the --force-copy flag except this will also copy the 236.7 MB libTiCore.a file.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--launch-watch-app    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" "><strong class=" ">Since Appc CLI 5.0.0 or Titanium CLI 4.1.4</strong>. </strong>Launch both the watch app and main app; only used when target is <strong class=" ">simulator</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--launch-watch-app-only    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Since Appc CLI 5.0.0 or Titanium CLI 4.1.4</strong>. Launch only the watch app; only used when target is <strong class=" ">simulator</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--liveview    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Enables <a  class="document-link " href="LiveView.html">LiveView</a> allowing you to     <span style="color: #484848;" >
+quickly preview changes to your application's UI. <strong class=" ">Requires Appcelerator Studio.</strong>    </span>
+    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--retina    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Use the retina version of the iOS Simulator.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--sim-focus    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Focus the iOS simulator (default is true).    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--tall    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >In combination with --retina flag, start the tall version of the retina simulator.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-C, --device-id &lt;name&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Name of the device or emulator to install the application to.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-D, --deploy-type &lt;type&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  class="p1">Type of deployment (<strong class=" ">test</strong> or <strong class=" ">development</strong>). Only used when target is simulator or device.<br/>Defaults to <strong class=" ">development</strong> when building for the iOS Simulator and defaults to <strong class=" ">test</strong> when building for iOS device.<br/>When deploy type is set to <strong class=" ">test</strong>, all of your JavaScript code is minified and encrypted. Any JavaScript syntax errors, even files you are not using, will result in a build failure.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-V, --developer-name &lt;name&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >iOS Developer Certificate to use; required when target is <strong class=" ">device</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-F, --device-family &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Device family to build for (<strong class=" ">iphone</strong>, <strong class=" ">ipad</strong>, or <strong class=" ">universal</strong>).    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-R, --distribution-name &lt;name&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >iOS Distribution Certificate to use; required when target is <strong class=" ">dist-appstore</strong> or <strong class=" ">dist-adhoc</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-I, --ios-version &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >iOS SDK version to build for. Default: latest installed iOS SDK.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-K, --keychain &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Path to the distribution keychain to use instead of the system default; only used when target is <strong class=" ">device</strong>, <strong class=" ">dist-appstore</strong>, or <strong class=" ">dist-adhoc</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-O, --output-dir &lt;dir&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Output directory. Only used when target is <strong class=" ">dist-adhoc</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-P, --pp-uuid &lt;uuid&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Provisioning profile uuid; required when target is <strong class=" ">device</strong>, <strong class=" ">dist-appstore</strong>, or <strong class=" ">dist-adhoc</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-Y, --sim-type &lt;type&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >iOS Simulator type: <strong class=" ">iphone</strong> or <strong class=" ">ipad</strong>; only used when target is <strong class=" ">simulator</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-S, --sim-version &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >iOS Simulator version; only used when target is <strong class=" ">simulator</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-T, --target &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Target to build for: <strong class=" ">simulator</strong>, <strong class=" ">device</strong>, <strong class=" ">dist-appstore</strong>, or <strong class=" ">dist-adhoc</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--watch-app-name &lt;name&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Since Appc CLI 5.0.0 or Titanium CLI 4.1.4</strong>. Name of the watch app to launch; only used when target is <strong class=" ">simulator</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-W, --watch-device-id &lt;udid&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Since Appc CLI 5.0.0 or Titanium CLI 4.1.4</strong>. Watch simulator UDID to launch when building an app with a watch app; only used when target is <strong class=" ">simulator</strong>.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-MobileWebandWindowsHybridBuildOptions">
+        <h4 class="heading "><span>Mobile Web and Windows Hybrid Build Options</span></h4>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-C, --device-id &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >UDID of the Windows Phone 8 device or emulator to build for. Prior to Release 4.0.0, this is either <strong class=" ">de</strong> for device or <strong class=" ">xd</strong> for emulator.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-D, --deploy-type &lt;type&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Type of deployment (<strong class=" ">production</strong> or <strong class=" ">development</strong>). Production performs optimizations.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-T, --target &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Target to build for: <strong class=" ">web</strong> for Mobile Web apps, <strong class=" ">winstore</strong> for Window 8 Store apps or <strong class=" ">wp8</strong> for Windows Phone 8 apps.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-G, --wp8-publisher-guid    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Windows Publisher GUID. Required for Windows Phone 8 builds.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >    </p>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-WindowsBuildOptions">
+        <h4 class="heading "><span>Windows Build Options</span></h4>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Options    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-C, --device-id &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >UDID of the Windows Phone 8 device or emulator to build for. Only used when the target is <strong class=" ">wp-emulator </strong>or <strong class=" ">wp-device</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-D, --deploy-type &lt;type&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Type of deployment (<strong class=" ">test</strong>, <strong class=" ">development</strong> or<strong class=" "> production</strong>). Only used when the target is <strong class=" ">wp-emulator</strong>, <strong class=" ">wp-device</strong> or <strong class=" ">ws-local</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-G, --wp-publisher-guid &lt;GUID&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Windows Phone Publisher ID. Only used when the target is <strong class=" ">wp-emulator</strong>, <strong class=" ">wp-device</strong> or <strong class=" ">dist-<strong class=" ">phonestore</strong></strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-I, --win-publisher-id &lt;ID&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Since Release 5.0.0.</strong> Windows Publisher ID. Required to build the application.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-H, --wp-product-guid &lt;GUID&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Since Release 5.0.0</strong>. Windows 8 product ID, used for upgrading Win 8 apps to Win 8.1.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-O, --output-dir &lt;dir&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Output directory. Only used when target is <strong class=" ">dist-phonestore</strong> or<strong class=" "> dist-winstore</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-R, --ws-cert &lt;file&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Location of the Windows Store certificate file. Only used when target is <strong class=" ">ws-local</strong> or<strong class=" "> dist-winstore</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-S, --wp-sdk &lt;version&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Windows Phone SDK version. When you run CLI on Windows 10, you can specify <strong class=" ">10.0</strong> to indicate building for Windows 10 <i class=" ">Universal Windows Platform</i> (<i class=" ">UWP</i>) app.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-V, --vs-target &lt;version&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Visual Studio target to build for.    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">12.0</strong> to use Visual Studio 2013    </p>
+</li><li class=" ">    <p  ><strong class=" ">14.0</strong> to use Visual Studio 2015    </p>
+</li></ul>            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-T, --target &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Target to build for:    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">wp-emulator</strong> to run a Windows Phone app on the emulator    </p>
+</li><li class=" ">    <p  ><strong class=" ">wp-device</strong> to run a Window Phone app on a device connected to your host machine    </p>
+</li><li class=" ">    <p  ><strong class=" ">dist-<strong class=" ">phonestore </strong></strong>to pakcage a Windows Phone app    </p>
+</li><li class=" ">    <p  ><strong class=" ">ws-local</strong> to run a Windows Store app on your local machine    </p>
+</li><li class=" ">    <p  ><strong class=" ">dist-winstore</strong> to package a Windows Store app    </p>
+</li></ul>            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--<tt class=" ">skipInstallDependencies</tt>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Since Release 6.1.0.</strong> Skip installing dependency packages. If you had trouble with app deployment on device, try this option.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Clean">
+        <h3 class="heading "><span>Clean</span></h3>
+    <p  >Removes the build directories for an application or module project.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium clean [ --platform &lt;platform&gt; ] [--project-dir &lt;value&gt;] [--sdk &lt;value&gt;] [--log-level &lt;level&gt;] </code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-CleanOptions">
+        <h4 class="heading "><span>Clean Options</span></h4>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--log-level &lt;level&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Minimum logging level. Supported options are <strong class=" ">trace</strong>, <strong class=" ">debug</strong>, <strong class=" ">info</strong>, <strong class=" ">warn</strong>, and <strong class=" ">error</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-p, --platform &lt;platform&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >A single platform to clean: <strong class=" ">android</strong>, <strong class=" ">ios</strong>, and <strong class=" ">mobileweb</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-d, --project-dir &lt;directory&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Directory containing the project, otherwise the current working directory is assumed.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-s, --sdk &lt;version&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Titanium SDK version to build with. If not specified, uses the configured default SDK.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Config">
+        <h3 class="heading "><span>Config</span></h3>
+    <p  >Gets and sets configuration options. If no key is specified, then all key/values are returned.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium config [--remove] [--output &lt;value&gt;] [&lt;key&gt;] [&lt;value&gt;]</code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-ConfigOptions">
+        <h4 class="heading "><span>Config Options</span></h4>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-a, --append    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Appenda a value to a key containing a list of values.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-r, --remove    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Removes the specified config key and all its descendants.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-o, --output &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Selects the output format: <strong class=" ">report</strong> or <strong class=" ">json</strong>. Defaults to <strong class=" ">report</strong>.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Create">
+        <h3 class="heading "><span>Create</span></h3>
+    <p  >Creates a new application or module project.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium create [ --platform &lt;platform&gt; ] [--project-dir &lt;value&gt;] [--sdk &lt;value&gt;] [--log-level &lt;level&gt;] </code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-CreateOptions">
+        <h4 class="heading "><span>Create Options</span></h4>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-f, --force    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Force creation of the project, even if the path already exists.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--id &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Application ID. For uniqueness, application IDs should be based on a registered domain name, in reverse-DNS order (for example, <tt class=" ">com.example.mygreatapp</tt>).    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--log-level &lt;level&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Minimum logging level. Supported options are <strong class=" ">trace</strong>, <strong class=" ">debug</strong>, <strong class=" ">info</strong>, <strong class=" ">warn</strong>, and <strong class=" ">error</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--template &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Project template to use--either a name of a template to use or files to copy over to the newly created project. The file to be copied over can either be placed in a directory, ZIP file or ZIP file with a remote URL.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-d, --workspace-dir &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Directory to place the project in. Defaults to the workspace directory set in the <tt class=" ">titanium</tt> configuration, if any.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-n, --name &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Name of the project. Used as the default human-readable name for the project.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-p, --platform &lt;platform&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Comma-separated list of platforms: supported values are <strong class=" ">android</strong>, <strong class=" ">ios</strong>, and <strong class=" ">mobileweb</strong>. (<strong class=" ">iphone</strong> and <strong class=" ">ipad</strong> are currently accepted as synonyms for <strong class=" ">ios</strong>.)    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-s, --sdk &lt;version&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Titanium SDK version to build with. If not specified, uses the configured default SDK.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-t, --type &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Type of project to create (defaul:    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">app </strong>(default)    </p>
+</li><li class=" ">    <p  ><strong class=" ">applewatch</strong> (since Appc CLI 5.0.0 or Titanium CLI 4.1.4)    </p>
+</li><li class=" ">    <p  ><strong class=" ">module</strong>    </p>
+</li></ul>            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-u --url &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Your company/personal URL.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Help">
+        <h3 class="heading "><span>Help</span></h3>
+    <p  >Displays the help screen.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium help</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Info">
+        <h3 class="heading "><span>Info</span></h3>
+    <p  >Displays development environment information.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium info [--output &lt;value&gt;] [--types &lt;value&gt;]</code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-InfoOptions">
+        <h4 class="heading "><span>Info Options</span></h4>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--legacy    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Outputs results using the old format    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-o, --output &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Selects the output format: <strong class=" ">report</strong> or <strong class=" ">json</strong>. Defaults to <strong class=" ">report</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-t, --types &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Comma-separated list of types to display: <strong class=" ">all</strong>, <strong class=" ">os</strong>, <strong class=" ">nodejs</strong>, <strong class=" ">titanium</strong>, <strong class=" ">ios</strong>, <strong class=" ">jdk</strong>, <strong class=" ">haxm </strong>and <strong class=" ">android</strong>. Defaults to <strong class=" ">all</strong>.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Login">
+        <h3 class="heading "><span>Login</span></h3>
+    <p  >Logs into the Appcelerator Platform.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium login &lt;username&gt; &lt;password&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Logout">
+        <h3 class="heading "><span>Logout</span></h3>
+    <p  >Logs out of the Appcelerator Platform.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium logout</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Module">
+        <h3 class="heading "><span>Module</span></h3>
+    <p  >Manages installed Titanium modules.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium module [&lt;subcommand&gt;]</code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-ModuleList">
+        <h4 class="heading "><span>Module List</span></h4>
+    <p  >Prints a list of installed modules.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium module list [--output &lt;value&gt;] [--project-dir &lt;value&gt;]</code></div>
+</div>
+    </div>
+    <div class="section section-5 " id="src-35619828_TitaniumCommand-LineInterfaceReference-ModuleListOptions">
+        <h5 class="heading "><span>Module List Options</span></h5>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-o, --output &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Selects the output format: <strong class=" ">report</strong>, <strong class=" ">json</strong> or <strong class=" ">grid</strong>. Defaults to <strong class=" ">report</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--project-dir &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Directory of the project to analyze. Defaults to the current working directory.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Plugin">
+        <h3 class="heading "><span>Plugin</span></h3>
+    <p  >Manages installed Titanium plugins.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium plugin [&lt;subcommand&gt;]</code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-PluginList">
+        <h4 class="heading "><span>Plugin List</span></h4>
+    <p  >Prints a list of installed plugins.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium plugin list [--output &lt;value&gt;] [--project-dir &lt;value&gt;]</code></div>
+</div>
+    </div>
+    <div class="section section-5 " id="src-35619828_TitaniumCommand-LineInterfaceReference-PluginListOptions">
+        <h5 class="heading "><span>Plugin List Options</span></h5>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-o, --output &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Selects the output format: <strong class=" ">report</strong>, <strong class=" ">json</strong> or <strong class=" ">grid</strong>. Defaults to <strong class=" ">report</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--project-dir &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Directory of the project to analyze. Defaults to the current working directory.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Project">
+        <h3 class="heading "><span>Project</span></h3>
+    <p  >Gets <tt class=" ">tiapp.xml</tt> settings.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium project [--output &lt;value&gt;] [--project-dir &lt;value&gt;] [--template &lt;value&gt;] [--sdk &lt;value&gt;] [--log-level &lt;level&gt;] [&lt;key&gt;] [&lt;value&gt;]</code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-ProjectOptions">
+        <h4 class="heading "><span>Project Options</span></h4>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--log-level &lt;level&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Minimum logging level. Supported options are <strong class=" ">trace</strong>, <strong class=" ">debug</strong>, <strong class=" ">info</strong>, <strong class=" ">warn</strong>, and <strong class=" ">error</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-o, --output &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Selects the output format: <strong class=" ">report</strong>, <strong class=" ">json</strong> or <strong class=" ">text</strong>. Defaults to <strong class=" ">report</strong>.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--project-dir &lt;directory&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Directory containing the project, otherwise the current working directory is assumed.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-s, --sdk &lt;version&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Titanium SDK version to build with. If not specified, uses the configured default SDK.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--template &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Project template to use.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-SDK">
+        <h3 class="heading "><span>SDK</span></h3>
+    <p  >Manages installed Titanium SDKs.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium sdk [&lt;subcommand&gt;]</code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-SDKInstall">
+        <h4 class="heading "><span>SDK Install</span></h4>
+    <p  >Downloads the latest Titanium SDK or a specific version.    </p>
+    <p  >    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium sdk install [&lt;version&gt;] [--</code><code class="keyword">default</code><code class="plain">] [--force] [--branch &lt;branch name&gt;]</code></div>
+</div>
+    </div>
+    <p  ><tt class=" ">&lt;version&gt;</tt> may be either a specific version number, such as <tt class=" ">3.1.3.GA</tt> or a URL to a continuous integration build, such as <tt class=" ">http://builds.appcelerator.com.s3.amazonaws.com/mobile/3_1_X/mobilesdk-3.1.3.v20130904134612-osx.zip</tt>.    </p>
+    <p  >To override this behavior, set the <tt class=" ">sdk.defaultInstallLocation</tt> key to a path where you want to install the SDKs, for example:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">ti config sdk.defaultInstallLocation /path/to/intall/sdks</code></div>
+</div>
+    </div>
+    <div class="section section-5 " id="src-35619828_TitaniumCommand-LineInterfaceReference-SDKInstallOptions">
+        <h5 class="heading "><span>SDK Install Options</span></h5>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-d, --default    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Sets as the default SDK.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-f, --force    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Forces reinstallation.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-k, --keep-files    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Keep downloaded files after install.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-b, --branch &lt;branch name&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Branch to install or &quot;latest&quot;.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-SDKList">
+        <h4 class="heading "><span>SDK List</span></h4>
+    <p  >Prints a list of installed SDK versions.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium sdk list [--branches] [--releases] [--output &lt;value&gt;]</code></div>
+</div>
+    </div>
+    <div class="section section-5 " id="src-35619828_TitaniumCommand-LineInterfaceReference-SDKListOptions">
+        <h5 class="heading "><span>SDK List Options</span></h5>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-b, --branches    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Retrieves and prints all branches.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-r, --releases    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Retrieves and prints all releases.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-o, --output &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Selects the output format: <strong class=" ">report</strong> or <strong class=" ">json</strong>. Defaults to <strong class=" ">report</strong>.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-SDKSelect">
+        <h4 class="heading "><span>SDK Select</span></h4>
+    <p  >Used to select which installed Titanium SDK is the active SDK.  This is not the SDK your application will be built with but the SDK used to run the CLI commands. However, if the <tt class=" ">tiapp.xml</tt> file does not contain an SDK version or the <tt class=" ">app.sdk</tt> setting is not set with <tt class=" ">titanium config</tt>, then the application will be built with the SDK select version.  If the SDK selected is ever deleted or if you are missing CLI commands, select a new active SDK.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium sdk select [&lt;version&gt;]</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-SDKUninstall">
+        <h4 class="heading "><span>SDK Uninstall</span></h4>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium sdk uninstall [&lt;version&gt;] [--force]</code></div>
+</div>
+    </div>
+    <p  >Uninstalls a specific Titanium SDK version.    </p>
+    <div class="section section-5 " id="src-35619828_TitaniumCommand-LineInterfaceReference-SDKUninstallOptions">
+        <h5 class="heading "><span>SDK Uninstall Options</span></h5>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-f, --force    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Forces uninstallation without confirmation.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-SDKUpdate">
+        <h4 class="heading "><span>SDK Update</span></h4>
+    <p  >Finds the latest version of the Titanium SDK.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium sdk update [--</code><code class="keyword">default</code><code class="plain">] [--force] [--install] [--branch &lt;branch name&gt;]</code></div>
+</div>
+    </div>
+    <div class="section section-5 " id="src-35619828_TitaniumCommand-LineInterfaceReference-SDKUpdateOptions">
+        <h5 class="heading "><span>SDK Update Options</span></h5>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-d, --default    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Sets as the default SDK.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-f, --force    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Forces reinstallation.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-i, --install    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Installs the latest version.    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-b, --branch &lt;branch name&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Branch to update from.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Setup">
+        <h3 class="heading "><span>Setup</span></h3>
+    <p  >Runs the setup wizard.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium setup</code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-SetupOptions">
+        <h4 class="heading "><span>Setup Options</span></h4>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >    <span style="color: #999999;" >
+-a, --advanced    </span>
+    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Removed in Release 3.2.0.</strong> Prompts for all configuration options.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-35619828_TitaniumCommand-LineInterfaceReference-Status">
+        <h3 class="heading "><span>Status</span></h3>
+    <p  >Displays session information.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">titanium status [--output &lt;value&gt;]</code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-35619828_TitaniumCommand-LineInterfaceReference-StatusOptions">
+        <h4 class="heading "><span>Status Options</span></h4>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-o, --output &lt;value&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Selects the output format: <strong class=" ">report</strong> or <strong class=" ">json</strong>. Defaults to <strong class=" ">report</strong>.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-35619828_TitaniumCommand-LineInterfaceReference-RevertingStudiototheLegacyCLI">
+        <h2 class="heading "><span>Reverting Studio to the Legacy CLI</span></h2>
+    <p  >If you experience problems building in Studio when using the new CLI, you can revert to the legacy CLI.    </p>
+<ol class=" "><li class=" ">    <p  >Edit your Studio initialization file (<tt class=" ">TitaniumStudio.ini</tt>) as described in <a  class="document-link " href="Modifying_Your_Configuration.html">Modifying Your Configuration</a>.    </p>
+</li><li class=" ">    <p  >Add the following to the file:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-vmargs </code></div>
+<div class="line"><code class="plain">-Dtitanium.bypassNewCLI=</code><code class="keyword">true</code></div>
+</div>
+    </div>
+    <p  >If there is already a <tt class=" ">-vmargs</tt> line in the file, simply add the <tt class=" ">-Dtitanium.bypassNewCLI=true</tt> after <tt class=" ">-vmargs</tt>.    </p>
+</li><li class=" ">    <p  >Save the file and restart Studio.    </p>
+</li></ol>    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Titanium SDK 6.0.0 Changes</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-48431315" class="content">
+                        <h1>Titanium SDK 6.0.0 Changes</h1>
+    <p  >With the release of Titanium SDK 6.0.0, we introduced many great features and improvements. However, some of these changes broke features in previous releases. This document lists all the breaking changes as well as how to handle them.    </p>
+    <p  >    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Titanium_SDK_6.0.0_Changes.html#src-48431315_TitaniumSDK6.0.0Changes-RebuildingAndroidModules">Rebuilding Android Modules</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_SDK_6.0.0_Changes.html#src-48431315_TitaniumSDK6.0.0Changes-Node.js">Node.js</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_SDK_6.0.0_Changes.html#src-48431315_TitaniumSDK6.0.0Changes-Xcode">Xcode</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_SDK_6.0.0_Changes.html#src-48431315_TitaniumSDK6.0.0Changes-DeprecatedAPIs">Deprecated APIs</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_SDK_6.0.0_Changes.html#src-48431315_TitaniumSDK6.0.0Changes-watchOS1">watchOS 1</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_SDK_6.0.0_Changes.html#src-48431315_TitaniumSDK6.0.0Changes-Listentoandroidback">Listen to androidback</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_SDK_6.0.0_Changes.html#src-48431315_TitaniumSDK6.0.0Changes-ModuleguidesuseCLIinsteadofbuild.py">Module guides use CLI instead of build.py</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_SDK_6.0.0_Changes.html#src-48431315_TitaniumSDK6.0.0Changes-Studio4.8.0">Studio 4.8.0</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Titanium_SDK_6.0.0_Changes.html#src-48431315_TitaniumSDK6.0.0Changes-RemovalofTi.include">Removal of Ti.include</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-48431315_TitaniumSDK6.0.0Changes-RebuildingAndroidModules">
+        <h2 class="heading "><span>Rebuilding Android Modules</span></h2>
+    <p  >For this release of Titanium SDK 6.0.0, V8 has been updated to the latest LTS release (<a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-19790">TIMOB-19790</a>). Any projects built on previous versions of the SDK will need to rebuild all of the Android modules.    </p>
+    <p  >If you have Android titanium modules, you have to rebuild them with this V8 in order for it to be supported on Titanium SDK 6.0.0.    </p>
+    <p  >You will need to update the android/manifest by:    </p>
+<ol class=" "><li class=" ">    <p  >Bump apiversion from 2 to 3.    </p>
+</li><li class=" ">    <p  >Remove &quot;armeabi&quot; ABI from listing (keep &quot;armeabi-v7a&quot;).    </p>
+</li><li class=" ">    <p  >Bump their module version (typically bump the major number since this is a backwards-incompatible change).    </p>
+</li><li class=" ">    <p  >Update minsdk to 6.0.0.    </p>
+</li><li class=" ">    <p  >Then rebuild the module.    </p>
+</li></ol>    <p  >Note, you may also need to edit the Java code to remove references to deprecate classes that have been removed in 6.0.0 (such as TiContext).    </p>
+    </div>
+    <div class="section section-2 " id="src-48431315_TitaniumSDK6.0.0Changes-Node.js">
+        <h2 class="heading "><span>Node.js</span></h2>
+    <p  >Node 4.2.0 is the new minimum supported version and 4.6.x is the maximum supported version. Please install or update Node.js accordingly.    </p>
+    </div>
+    <div class="section section-2 " id="src-48431315_TitaniumSDK6.0.0Changes-Xcode">
+        <h2 class="heading "><span>Xcode</span></h2>
+    <p  >Xcode 8 in the minimum supported version. Please install or update Xcode accordingly.    </p>
+    </div>
+    <div class="section section-2 " id="src-48431315_TitaniumSDK6.0.0Changes-DeprecatedAPIs">
+        <h2 class="heading "><span>Deprecated APIs</span></h2>
+    <p  >For this release, we removed 176+ APIs across iOS and Android. Please review this table to see how it would affect your projects.    </p>
+    <p  >&lt;insert table here after it has been generated from <a class="external-link " href="https://wiki.appcelerator.org/display/~bimmel/Generate+API+Change+Report+Script">Generate API Change Report Script</a>&gt;    </p>
+    </div>
+    <div class="section section-2 " id="src-48431315_TitaniumSDK6.0.0Changes-watchOS1">
+        <h2 class="heading "><span>watchOS 1</span></h2>
+    <p  >As of SDK 6.0.0, the watchOS 1 template and all related code are no longer supported. See <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-20083">TIMOB-20083</a> for details.    </p>
+    </div>
+    <div class="section section-2 " id="src-48431315_TitaniumSDK6.0.0Changes-Listentoandroidback">
+        <h2 class="heading "><span>Listen to androidback</span></h2>
+    <p  >With SDK 6.0.0+, we changed how the override of a default behavior for the back button on Android works. This change requires apps using this version to override the back button to update their code when using calls like this: <tt class=" ">win.addEventListener('androidback', onBack);</tt>    </p>
+    <p  >See <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-19919">TIMOB-19919</a> for more details.    </p>
+    </div>
+    <div class="section section-2 " id="src-48431315_TitaniumSDK6.0.0Changes-ModuleguidesuseCLIinsteadofbuild.py">
+        <h2 class="heading "><span>Module guides use CLI instead of build.py</span></h2>
+    <p  >As of SDK 6.0.0, we have removed all Python scripts that are normally used to in the app build process. Users can use the CLI equivalent (<tt class=" ">ti build</tt>) and it should be backwards compatible on all your projects. As of SDK 5.2.1, all new projects warn users that the <tt class=" ">build.py</tt> script will be deprecated.    </p>
+    <p  >To build an iOS or Android module, use the ti build command from the CLI:    </p>
+<ul class=" "><li class=" ">    <p  >iOS: <tt class=" ">ti build -p ios --build-only</tt>    </p>
+</li><li class=" ">    <p  >Android: <tt class=" ">ti build -p android --build-only</tt>    </p>
+</li></ul>    <p  >If you omit the <tt class=" ">--build-only</tt> flag, it will run <tt class=" ">ti create</tt> and <tt class=" ">ti build</tt> with the example code in the module.    </p>
+    <p  ><strong class=" ">Note</strong>: The <tt class=" ">--project-dir </tt>flag must point to the platform-specific subdirectory in the module directory.    </p>
+    <p  >For those who use the Unified CLI and are confused if you should use either <tt class=" ">appc run</tt> or <tt class=" ">appc ti</tt> build, you should change directories into<tt class=" ">&lt;module-dir&gt;/iphone</tt> and <tt class=" ">run appc run -p ios --build-only</tt> command.    </p>
+    <p  >To upgrade your module to stop using the <tt class=" ">build.py</tt> script, follow these steps:    </p>
+<ol class=" "><li class=" ">    <p  >Delete the <tt class=" ">build.py</tt> file.    </p>
+</li><li class=" ">    <p  >Execute either one of these commands:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">ti build -p &lt;platform&gt; --build-only</tt>    </p>
+</li><li class=" ">    <p  ><tt class=" ">appc run -p &lt;platform&gt; --build-only</tt>    </p>
+</li></ul></li></ol>    <p  >There isn't anything else you need to change.    </p>
+    <p  ><strong class=" ">Note for Android users</strong>: <tt class=" ">ant</tt> is no longer required.    </p>
+    <p  >For those iOS users who need to create customized storyboards or for users who copy content into the <tt class=" ">../platform/iphone/ios</tt> directory, you can now create a directory called <tt class=" ">Resources</tt> in each platform-specific directory and place all your files in there that you wish to be copied into your app.    </p>
+    </div>
+    <div class="section section-2 " id="src-48431315_TitaniumSDK6.0.0Changes-Studio4.8.0">
+        <h2 class="heading "><span>Studio 4.8.0</span></h2>
+    <p  ><strong class=" ">Recommendation:</strong> If you upgraded SDK to version 6.0.0, we strongly urge you to upgrade Studio to version 4.8.0 to avoid any backwards compatibility issues.    </p>
+    </div>
+    <div class="section section-2 " id="src-48431315_TitaniumSDK6.0.0Changes-RemovalofTi.include">
+        <h2 class="heading "><span>Removal of Ti.include</span></h2>
+    <p  >Ti.include has been deprecated since version 3.3.0. With the release of 6.0.0, we have completely removed it (<a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-23185">TIMOB-23185</a>). For those who are still using it, we urge you to replace usage with the necessary <strong class=" ">require()</strong> calls. If you did not migrate until now, please follow <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Global-method-require">this guide</a> to do so.    </p>
+    <p  >As a last resort, consider using this workaround:    </p>
+    <p  ><strong class=" ">Ti.include workaround</strong>    </p>
+    <p  >    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class="js keyword ">function</tt> <tt class="js plain ">include(file) {</tt><tt class="js spaces ">    </tt><tt class="js keyword ">return</tt> <tt class="js plain ">eval(Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, file).read().text);</tt><tt class="js plain ">}</tt>    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >    </p>
+    <p  >    </p>
+    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

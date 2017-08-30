@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Errors While Starting Studio</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30083290" class="content">
+                        <h1>Errors While Starting Studio</h1>
+    <div class="section section-2 " id="src-30083290_ErrorsWhileStartingStudio-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p  >    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Errors_While_Starting_Studio.html#src-30083290_ErrorsWhileStartingStudio-Overview">Overview</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Errors_While_Starting_Studio.html#src-30083290_safe-id-RXJyb3JzV2hpbGVTdGFydGluZ1N0dWRpby1Xb3Jrc3BhY2VpbnVzZW9yY2Fubm90YmVjcmVhdGVkLGNob29zZWFkaWZmZXJlbnRvbmU">Workspace in use or cannot be created, choose a different one</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Errors_While_Starting_Studio.html#src-30083290_ErrorsWhileStartingStudio-AnErrorHasOccurred">An Error Has Occurred</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Errors_While_Starting_Studio.html#src-30083290_safe-id-RXJyb3JzV2hpbGVTdGFydGluZ1N0dWRpby1TZWV0aGVsb2dmaWxlL1VzZXJzLy4uLi4">See the log file /Users/....</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Errors_While_Starting_Studio.html#src-30083290_ErrorsWhileStartingStudio-LaunchingtheStudiowith-clean">Launching the Studio with -clean</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Errors_While_Starting_Studio.html#src-30083290_ErrorsWhileStartingStudio-HowtostopStudiofromloadingaproblemfile">How to stop Studio from loading a problem file</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30083290_ErrorsWhileStartingStudio-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p  >Occasionally you may experience errors starting Studio. Here are some suggested solutions.    </p>
+    <div  class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p  >See <a  class="document-link " href="Switching_your_Workspace.html">Switching your Workspace</a> to help find your current workspace location    </p>
+    </div>
+        </div>
+    <div class="section section-2 " id="src-30083290_safe-id-RXJyb3JzV2hpbGVTdGFydGluZ1N0dWRpby1Xb3Jrc3BhY2VpbnVzZW9yY2Fubm90YmVjcmVhdGVkLGNob29zZWFkaWZmZXJlbnRvbmU">
+        <h2 class="heading "><span>Workspace in use or cannot be created, choose a different one</span></h2>
+    <p  >This can happen as a result of an improper shutdown of Studio. To resolve the issue, you need to delete a .lock file.    </p>
+<ol class=" "><li class=" ">    <p  >Delete the file %WORKSPACE_PATH%/.metadata/.lock, and restart Studio    </p>
+</li></ol>    </div>
+    <div class="section section-2 " id="src-30083290_ErrorsWhileStartingStudio-AnErrorHasOccurred">
+        <h2 class="heading "><span>An Error Has Occurred</span></h2>
+    <p  >These are errors pop up a dialog box, asking you to look at a log file    </p>
+    <div class="section section-3 " id="src-30083290_safe-id-RXJyb3JzV2hpbGVTdGFydGluZ1N0dWRpby1TZWV0aGVsb2dmaWxlL1VzZXJzLy4uLi4">
+        <h3 class="heading "><span>See the log file /Users/....</span></h3>
+    <p  >Open the log file at the specified location. If you see messages like:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">org.osgi.framework.BundleException: Exception in org.eclipse.core.resources.ResourcesPlugin.start() of bundle org.eclipse.core.resources.</code></div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"><code class="plain">Caused by: org.eclipse.core.internal.dtree.ObjectNotFoundException: Tree element </code><code class="string">'XXX'</code><code class="plain"> not found.</code></div>
+</div>
+    </div>
+    <p  >It is caused by <a class="external-link external-link" href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=149121">this</a> bug in Eclipse, most likely due to a case where Studio quit or was closed unexpectedly, corrupting a particular file.    </p>
+    <p  >Steps to fix:    </p>
+<ol class=" "><li class=" ">    <p  >Copy your whole workspace first, so that you are not risking your original files when you attempt these steps    </p>
+</li><li class=" ">    <p  >Delete the file %WORKSPACE_PATH%/.metadata/.plugins/org.eclipse.core.resources/.snap, and restart Studio    </p>
+</li></ol>    <p  >This will start Studio, but your workspace will most likely be missing your projects. This is okay--you can quickly reimport them    </p>
+<ol class=" "><li class=" ">    <p  >File &gt; Import &gt; Existing Projects....    </p>
+</li><li class=" ">    <p  >Select the workspace directory from above, and finish the wizard    </p>
+</li></ol>    </div>
+    </div>
+    <div class="section section-2 " id="src-30083290_ErrorsWhileStartingStudio-LaunchingtheStudiowith-clean">
+        <h2 class="heading "><span>Launching the Studio with -clean</span></h2>
+    <p  >If Studio does not appear to work properly, you can try and launch it with a -clean option.    </p>
+<ol class=" "><li class=" ">    <p  >Follow the instructions <a  class="document-link " href="Adding_Command-Line_Options.html">here</a> for adding a launcher argument.    </p>
+</li><li class=" ">    <p  >Add <strong class=" ">-clean</strong> to the launch arguments for Studio or Eclipse.    </p>
+</li></ol>    </div>
+    <div class="section section-2 " id="src-30083290_ErrorsWhileStartingStudio-HowtostopStudiofromloadingaproblemfile">
+        <h2 class="heading "><span>How to stop Studio from loading a problem file</span></h2>
+    <p  >A file might be causing trouble when Studio is restarted because it is very large or in some way corrupted. There are a couple of ways you could prevent Studio from loading the file.    </p>
+<ul class=" "><li class=" ">    <p  >Rename the problem file. This means Studio can no longer find it and so will ignore the file on restart.    </p>
+</li><li class=" ">    <p  >Delete the &lt;studio_workspace&gt;\.metadata\.plugins\org.eclipse.ui.workbench\workbench.xml file, where the state of workbench when exiting is saved. This means Studio will not preload any files that were open on the last exit.    </p>
+</li></ul>    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

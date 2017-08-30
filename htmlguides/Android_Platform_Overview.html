@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Android Platform Overview</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-29004888" class="content">
+                        <h1>Android Platform Overview</h1>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Android_Platform_Overview.html#src-29004888_AndroidPlatformOverview-Userinterfaceconventions">User interface conventions</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Android_Platform_Overview.html#src-29004888_AndroidPlatformOverview-Hardwarebuttons">Hardware buttons</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Android_Platform_Overview.html#src-29004888_AndroidPlatformOverview-Screensizesanddensities">Screen sizes and densities</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Android_Platform_Overview.html#src-29004888_AndroidPlatformOverview-ComparisonwithiOS">Comparison with iOS</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Android_Platform_Overview.html#src-29004888_AndroidPlatformOverview-ApplicationComponents">Application Components</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Android_Platform_Overview.html#src-29004888_AndroidPlatformOverview-Activities">Activities</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Android_Platform_Overview.html#src-29004888_AndroidPlatformOverview-Services">Services</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Android_Platform_Overview.html#src-29004888_AndroidPlatformOverview-Intents">Intents</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Android_Platform_Overview.html#src-29004888_AndroidPlatformOverview-ReferencesandFurtherReading">References and Further Reading</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-29004888_AndroidPlatformOverview-Objective">
+        <h2 class="heading "><span>Objective</span></h2>
+    <p  >In order to build best-of-breed, native apps, it's critical that we understand the unique characteristics of each platform for which we plan to develop. In this section, you will examine the concepts, features, and components that identify Android apps.    </p>
+    </div>
+    <div class="section section-2 " id="src-29004888_AndroidPlatformOverview-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p  >Android has a multitude of platform specific features that we need to be aware of as Titanium developers. Everything from its user interface components to its low level interfaces for Services and Intents make Android stand apart from other mobile operating systems. While Titanium's Javascript API does the lion's share of the work in terms of abstracting away these details, it's still very important to understand them in order to build high quality apps. The following content in this section will address each of the most important features of the Android operating system, as well as discuss how they are handled from the perspective of the Titanium API.    </p>
+    <div class="section section-3 " id="src-29004888_AndroidPlatformOverview-Userinterfaceconventions">
+        <h3 class="heading "><span>User interface conventions</span></h3>
+    <p  >You will find quickly when researching Android that the UI can vary significantly among devices. While there is a standard, &quot;vanilla&quot; UI common to all Android operating systems, this is rarely seen on device. This is because Android is an open source, and thus extensible, mobile operating system. Mobile device vendors, like Motorola and HTC, are free to take the base UI and enhance it as they see fit. Android seeks to enable each vendor's own vision of what Android should be on their device, not dictate it.    </p>
+    <p  >The following screens illustrate some of the common user interface components offered by the &quot;vanilla&quot; Android UI.    </p>
+    <p  >    <img  src="images/download/attachments/29004888/android_ui.png" alt="images/download/attachments/29004888/android_ui.png" class="confluence-embedded-image"   />
+        </p>
+    <div class="section section-4 " id="src-29004888_AndroidPlatformOverview-Hardwarebuttons">
+        <h4 class="heading "><span>Hardware buttons</span></h4>
+    <p  >Android devices feature four dedicated-function &quot;hardware&quot; buttons: Back, Menu, Home, and Search. Depending on the device, these buttons can be physical buttons or touch-based user interface buttons. The location and order of those buttons varies between device vendors.    </p>
+<ul class=" "><li class=" ">    <p  >Back &ndash; tap to return to the previous activity in the stack; if none remain in the stack you're returned to the home screen.    </p>
+</li><li class=" ">    <p  >Home &ndash; return immediately to the home screen, pausing any currently opened apps    </p>
+</li><li class=" ">    <p  >Menu &ndash; display a menu of activity-specific options    </p>
+</li><li class=" ">    <p  >Search &ndash; display search functionality, either in-app or system-wide    </p>
+</li></ul>    <p  >The Home button behavior cannot be overridden, but you can interact with the Back, Search and Menu buttons.    </p>
+    <p  >To override the default behavior for the Back button, add an event listener for the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Window-event-androidback">Window.androidback</a> event. (Prior to Release 3.0, this event was named <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Window-event-android:back">Window.android:back</a>. The older name is now deprecated.)    </p>
+    <p  >To receive an event when the Search button is pressed, add an event listener for the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Window-event-androidsearch">Window.androidsearch</a> event. (Prior to Release 3.0, this event was named <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Window-event-android:search">Window.android:search</a>. The older name is now deprecated.)    </p>
+    <p  >You cannot directly override the Menu button, but you can customize the menu displayed when the user presses the Menu button. See <a  class="document-link " href="Android_UI_Components_and_Conventions.html#src-29004929_AndroidUIComponentsandConventions-AndroidMenu">Android Menus in the Android UI Components and Conventions section</a> for more information.    </p>
+    </div>
+    <div class="section section-4 " id="src-29004888_AndroidPlatformOverview-Screensizesanddensities">
+        <h4 class="heading "><span>Screen sizes and densities</span></h4>
+    <p  >Android devices vary greatly in screen size and density. <strong class=" ">Screen size</strong> represents the physical size of the display. Measured diagonally, it can range from quite small (2.8 inches/71 mm) to large (4.3 inches/110mm) to tablet sizes (10.1 inches/256 mm). Android divides these into generally four categories: small, normal, large, and xlarge which are then denoted by their density-independent pixel measurements which Google labels &quot;dp.&quot; Each density-independent pixel is equivalent to one physical pixel on a 160 dpi screen.    </p>
+<ul class=" "><li class=" ">    <p  >small screens are at least 426dp x 320dp    </p>
+</li><li class=" ">    <p  >normal screens are at least 470dp x 320dp    </p>
+</li><li class=" ">    <p  >large screens are at least 640dp x 480dp    </p>
+</li><li class=" ">    <p  >xlarge screens are at least 960dp x 720dp    </p>
+</li></ul>    <p  >Aspect ratios vary as well, though Android generally lumps them into two buckets: long and &quot;notlong&quot; with the latter corresponding to devices with an aspect ratio not significantly different than the 320 x 470 &quot;normal&quot; screen.    </p>
+    <p  >Finally, density describes the actual pixels (aka dots) per square inch resolution of the screen. These range between:    </p>
+<ul class=" "><li class=" ">    <p  >ldpi screens are roughly 120 dpi    </p>
+</li><li class=" ">    <p  >mdpi screens are roughly 160 dpi (this is the baseline &quot;normal&quot; density)    </p>
+</li><li class=" ">    <p  >tvdpi screens are roughly 213 dpi    </p>
+</li><li class=" ">    <p  >hdpi screens are roughly 240 dpi    </p>
+</li><li class=" ">    <p  >xhdpi screens are roughly 320 dpi    </p>
+</li><li class=" ">    <p  >xxhdpi screens are roughly 480 dpi    </p>
+</li></ul>    <p  >Titanium enables you to simply scale your user interface to fit the device's screen. But it also offers convenient features for specifically handling assets and layout for various screen sizes. You should plan to test on multiple devices if you want your user interface to be &quot;pixel perfect&quot; on all devices.    </p>
+    <p  >There is also a nodpi option where your images will not be scaled by the system if you do not want to create various assets for each density.    </p>
+    </div>
+    <div class="section section-4 " id="src-29004888_AndroidPlatformOverview-ComparisonwithiOS">
+        <h4 class="heading "><span>Comparison with iOS</span></h4>
+    <p  >The Android user interface features some key differences that iOS users should note.    </p>
+<ul class=" "><li class=" ">    <p  >Tabs are at the top rather than bottom.    </p>
+</li><li class=" ">    <p  >Window title bars don't include navigation buttons. Navigation functionality is provided by the hardware Back and Menu buttons instead.    </p>
+</li><li class=" ">    <p  >The Navigation bar does more than just give battery and signal-strength info. It is the common location for system and app notification messages. Likewise, Android doesn't use the &quot;badge&quot; indicator like iOS.    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-3 " id="src-29004888_AndroidPlatformOverview-ApplicationComponents">
+        <h3 class="heading "><span>Application Components</span></h3>
+    <p  >Android applications are built from the following components. Titanium shields you from some of the particulars, though it also gives you the tools to interact with these components when you want to.    </p>
+<ul class=" "><li class=" ">    <p  >Activities    </p>
+</li><li class=" ">    <p  >Services    </p>
+</li><li class=" ">    <p  >Intents    </p>
+</li></ul>    <p  >(We're simplifying things a bit here by ignoring content providers and broadcast receivers. Read Google's <a class="external-link external-link" href="http://developer.android.com/guide/topics/fundamentals.html">Android Fundamentals</a> guide for more detailed information.)    </p>
+    <div class="section section-4 " id="src-29004888_AndroidPlatformOverview-Activities">
+        <h4 class="heading "><span>Activities</span></h4>
+    <p  >An Android app is made up of one or more activities. Each activity represents a &quot;single screen with a user interface.&quot; For example, a window that lists messages in an inbox would be an activity. The window in which you read one of those messages would be a separate activity. The set of activities in an app work together to provide the functionality of that app.    </p>
+    <p  >On of the most powerful features of Android activities is that apps can start each other's activities. Let's say you want the user to be able to snap a photo within your app. You could write all the code to display the camera's live view along with the buttons that make up the photo-snapping experience. But with Android, you don't have to. The built-in Camera app has an activity that does all that already. All your app needs to do is launch the Camera app's activity and define what should happen with the data that's returned. Other apps can call on the activities that are defined within your app as well.    </p>
+    <p  >This shared-activity scheme is a key strength of the Android platform. Apps can share functionality, and they don't even need to know how those other apps work. Your app doesn't need to know how Camera's activity grabs the photo. You can just deal with the image that's returned. This activity sharing mechanism is what enables the &quot;Share&quot; button functionality included in many Android apps. This is discussed in more detail in the Intent section.    </p>
+    <p  >Each activity is listed in the <a class="external-link external-link" href="http://developer.android.com/guide/topics/manifest/manifest-intro.html">AndroidManifest.xml file</a>. Notations in that file describe which activities are published (and thus available for other apps to call on). Titanium let's you create activities &ndash; a &quot;heavy weight&quot; window that corresponds to an Android activity. When the tiapp.xml file and your code is parsed by Titanium's compile scripts, appropriate entries are created in the AndroidManifest.xml file.    </p>
+    <p  >An Android Activity is not created until the &quot;heavy weight&quot; window is opened. Before the window is opened, the <tt class=" ">activity</tt> property refers to a plain JS object, which can be used to setup <a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.Android.Activity">Ti.Android.Activity</a> properties. Once the window is opened, the Android Activity is created, then the <tt class=" ">activity</tt> property can use the <a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.Android.Activity">Ti.Android.Activity</a> methods.    </p>
+    <p  >You'll find more info on the Android developer's <a class="external-link external-link" href="http://developer.android.com/reference/android/app/Activity.html">Activity</a> guide.    </p>
+    <p  >    <span id="src-29004888_AndroidPlatformOverview-heavyweightwindows"><a class="confluence-anchor-link" name="src-29004888_AndroidPlatformOverview-heavyweightwindows"></a></span>
+    </p>
+    <div class="section section-5 " id="src-29004888_AndroidPlatformOverview-Heavyweightandlightweightwindows">
+        <h5 class="heading "><span>Heavyweight and lightweight windows</span></h5>
+    <p  >Heavyweight windows are Titanium windows that correspond directly to Android activities. It's possible to create Titanium windows that are &quot;lightweight&quot; and don't correspond to activities. You should think of them more like fullscreen views. When you create a Titanium window, the API makes a few checks to decide if it should be heavyweight; a window is heavyweight if:    </p>
+<ul class=" "><li class=" ">    <p  >Any of these properties are set to either true or false: <tt class=" ">fullscreen</tt>, <tt class=" ">navBarHidden</tt>, or <tt class=" ">modal</tt>;    </p>
+</li><li class=" ">    <p  >Or if the window's <tt class=" ">windowSoftInputMode</tt> property is set to any of the Ti.UI.Android constants;    </p>
+</li><li class=" ">    <p  >Or if the <tt class=" ">tabOpen</tt> property is <tt class=" ">true</tt>.    </p>
+</li></ul>    <p  >Heavyweight windows create a new Activity on the stack, and always create a new Javascript context for their window.    </p>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-29004888_AndroidPlatformOverview-Services">
+        <h4 class="heading "><span>Services</span></h4>
+    <p  >Services are &quot;long running&quot; app components that run without user interaction. You might use a service to periodically check a network resource or you play music while your app is in the background. Services are not separate threads or processes. They're not a way to offload work from your main application. You can create services by calling on Titanium's <a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.Android.Service-object.html">Ti.Android.Service</a> module.    </p>
+    <p  >More information can be found at the Android developer's <a class="external-link external-link" href="http://developer.android.com/reference/android/app/Service.html">services</a> page or the <a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.Android.Service-object.html">Ti.Android.Service</a> page.    </p>
+    </div>
+    <div class="section section-4 " id="src-29004888_AndroidPlatformOverview-Intents">
+        <h4 class="heading "><span>Intents</span></h4>
+    <p  >Intents are messaging objects that hold data passed between activities, sent to or from a background service, or sent by system broadcasts. Intents enable your app to interact with the activities available on the user's device without knowing which apps the user has installed.    </p>
+    <p  >Earlier we stated that you can launch another app's activities. In truth, for security reasons your app can't directly start another app's activities. Instead, your app sends an Intent, which contains a URI to the content and instructions as to how it should be handled. You can create an <i class=" ">explicit</i> iIntent, in which you request that a specific activity be launched. If it's available, Android launches it for on behalf of your app. The more powerful option is to use an <i class=" ">implicit</i> intent, which will return a list of all apps available on a mobile device that are capable of handling your Intent.    </p>
+    <p  >Think back to the &quot;Share&quot; button functionality described earlier. Your app might publish some text via an intent, thereby sending a request for a list of all the apps that could handle that data. The OS would present a list of suitable apps to the user, who would choose which app to use. The user could select a Twitter client, email app, or any other app that can handle text. With properly formatted Intents, you can add large amounts of functionality to your apps simply by leveraging apps already installed on the device.    </p>
+    <div class="section section-5 " id="src-29004888_AndroidPlatformOverview-IntentFilters">
+        <h5 class="heading "><span>Intent Filters</span></h5>
+    <p  >Intent filters are created through entries in the AndroidManifest.xml file. They are used to describe the types of Intents an Activity can accept. Android uses intent filters to determine which activities can respond to an intent. For example, this is how Android narrows the list of all possible apps to just those shown on a particular Share menu. See the <a class="external-link external-link" href="http://developer.android.com/guide/topics/intents/intents-filters.html#ifs">Android docs</a> for more information.    </p>
+    <p  >More information about intents and intent filters are available from the <a class="external-link external-link" href="http://developer.android.com/guide/topics/intents/intents-filters.html">Android docs</a> or the <a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.Android-module">Titanium Android module</a> page.    </p>
+    </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-29004888_AndroidPlatformOverview-ReferencesandFurtherReading">
+        <h3 class="heading "><span>References and Further Reading</span></h3>
+<ul class=" "><li class=" ">    <p  >Google's <a class="external-link external-link" href="http://developer.android.com/guide/topics/fundamentals.html">Android Fundamentals</a> document is recommended reading    </p>
+</li><li class=" ">    <p  ><a class="external-link external-link" href="http://developer.android.com/guide/practices/screens_support.html">Supporting Multiple Screens</a>    </p>
+</li><li class=" ">    <p  ><a class="external-link external-link" href="http://developer.android.com/resources/dashboard/screens.html">Screen Sizes and Densities in use now</a>    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-2 " id="src-29004888_AndroidPlatformOverview-Summary">
+        <h2 class="heading "><span>Summary</span></h2>
+    <p  >In this chapter, you learned about some of the characteristics that define Android and Android apps. You looked at user interface components, device buttons, and application components, such as activities and intents. Next we'll learn what makes iOS unique from other mobile operating systems, and how we can leverage these features with Titanium.    </p>
+    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

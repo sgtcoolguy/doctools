@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Creating a new template</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30083254" class="content">
+                        <h1>Creating a new template</h1>
+    <div class="section section-2 " id="src-30083254_Creatinganewtemplate-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Creating_a_new_template.html#src-30083254_Creatinganewtemplate-Overview">Overview</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Creating_a_new_template.html#src-30083254_Creatinganewtemplate-Creatinganewfiletemplate">Creating a new file template</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Creating_a_new_template.html#src-30083254_Creatinganewtemplate-Creatinganewprojecttemplate">Creating a new project template</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Creating_a_new_template.html#src-30083254_Creatinganewtemplate-Projecttypes">Project types</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Creating_a_new_template.html#src-30083254_Creatinganewtemplate-Localcontent">Local content</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Creating_a_new_template.html#src-30083254_Creatinganewtemplate-Remotecontent">Remote content</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Creating_a_new_template.html#src-30083254_Creatinganewtemplate-Templatevariables">Template variables</a>    </p>
+</li></ul></li></ul>    </div>
+    <div class="section section-2 " id="src-30083254_Creatinganewtemplate-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p  >Users can create new templates or modify existing templates in order to allow easy creation of default content.    </p>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p  >    </p>
+    <p  >We assume you've <a  class="document-link " href="Creating_a_new_Ruble.html">created a new Ruble</a> as a placeholder for the following content.    </p>
+    </div>
+        </div>
+    <div class="section section-2 " id="src-30083254_Creatinganewtemplate-Creatinganewfiletemplate">
+        <h2 class="heading "><span>Creating a new file template</span></h2>
+    <p  >New file templates are templates that show up after a user has entered a file name and has clicked the <strong class=" ">Next</strong> button:    </p>
+    <p  >    <img  src="images/download/attachments/30083254/Screen_shot_2011-04-05_at_8.56.37_AM.png" alt="images/download/attachments/30083254/Screen_shot_2011-04-05_at_8.56.37_AM.png" class="confluence-embedded-image"   />
+        </p>
+<ol class=" "><li class=" ">    <p  >Open the existing bundle.rb file    </p>
+</li><li class=" ">    <p  >Add the following content to the bottom of the file:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">template </code><code class="string">"Sample File Template"</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |t|</code></div>
+<div class="line"><code class="plain">  t.filetype = </code><code class="string">"*.txt"</code></div>
+<div class="line"><code class="plain">  t.location = </code><code class="string">"templates/sample.txt"</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Replace the &quot;sample&quot; and &quot;txt&quot; values with values appropriate to your filetype.    </p>
+</li><li class=" ">    <p  >Create a templates folder underneath the <i class=" ">rublename</i>.ruble folder    </p>
+</li><li class=" ">    <p  >Drop in file sample.txt (or the specific file you have created)    </p>
+</li><li class=" ">    <p  >Save and close bundle.rb    </p>
+</li></ol>    <p  >If you now go to <strong class=" ">File &gt; New &gt; File...</strong> and create a file name of the appropriate extension above, you should see your template in the list.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083254_Creatinganewtemplate-Creatinganewprojecttemplate">
+        <h2 class="heading "><span>Creating a new project template</span></h2>
+    <p  >New project templates are templates that show up after a user has entered a project name and has clicked the <strong class=" ">Next</strong> button:    </p>
+    <p  >    <img  src="images/download/attachments/30083254/Screen_shot_2011-04-05_at_9.02.07_AM.png" alt="images/download/attachments/30083254/Screen_shot_2011-04-05_at_9.02.07_AM.png" class="confluence-embedded-image"   />
+        </p>
+    <p  >You can create project templates that reference a local .zip file, or retrieve content from the web.    </p>
+    <div class="section section-3 " id="src-30083254_Creatinganewtemplate-Projecttypes">
+        <h3 class="heading "><span>Project types</span></h3>
+    <p  >Project templates can be added to existing project wizards by the specification of the &quot;type&quot; element:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Type    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Project    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >all    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >all project types    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ruby    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Ruby projects    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >php    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PHP projects    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >web    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Web projects    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >python    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Python projects    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >titanium_desktop    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Titanium Desktop projects    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >titanium_mobile    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Titanium Mobile projects    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-30083254_Creatinganewtemplate-Localcontent">
+        <h3 class="heading "><span>Local content</span></h3>
+    <p  >If your content is hosted locally, you can simply reference a .zip file containing the files in question.    </p>
+<ol class=" "><li class=" ">    <p  >Create a templates directory in the bundle and add a project_templates.rb file in the templates directory.    </p>
+</li><li class=" ">    <p  >Add the following content to the project_templates.rb file:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">'ruble'</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">project_template </code><code class="string">"Sample Project Template"</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |t|</code></div>
+<div class="line"><code class="plain">  t.type = :web</code></div>
+<div class="line"><code class="plain">  t.location = </code><code class="string">"templates/sample_project.zip"</code></div>
+<div class="line"><code class="plain">  t.description = </code><code class="string">"A sample project template"</code></div>
+<div class="line"><code class="plain">  t.icon = </code><code class="string">"template.png"</code><code class="plain"> </code><code class="comments">// Ideally a ruble-relative path to a 48x48px icon. Could also be a URL to a remote file</code></div>
+<div class="line"><code class="plain">  t.tags = [</code><code class="string">'Titanium Classic'</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Replace the template name, &quot;web&quot;, and &quot;sample_project.zip&quot; values with values appropriate to your project.    </p>
+</li><li class=" ">    <p  >Drop the file sample_project.zip in the templates folder.    </p>
+</li><li class=" ">    <p  >Save and close project_templates.rb.    </p>
+</li></ol>    <p  ><strong class=" ">File &gt; New &gt; Project...</strong> and create a project of the appropriate type above, you should see your template in the list.    </p>
+    </div>
+    <div class="section section-3 " id="src-30083254_Creatinganewtemplate-Remotecontent">
+        <h3 class="heading "><span>Remote content</span></h3>
+    <div  class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p  >    </p>
+    <p  >Note that this does not yet work for Titanium projects. See bug <a class="external-link external-link" href="http://jira.appcelerator.org/browse/TISTUD-640">http://jira.appcelerator.org/browse/TISTUD-640</a> for status on that feature.    </p>
+    </div>
+        <p  >If you instead have a project template hosted on a Git repo, you can reference that as well:    </p>
+<ol class=" "><li class=" ">    <p  >Create a templates directory in the bundle and add a project_templates.rb file in the templates directory.    </p>
+</li><li class=" ">    <p  >Add the following content to the project_templates.rb file:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">'ruble'</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">project_template </code><code class="string">"Sample Remote Project Template"</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |t|</code></div>
+<div class="line"><code class="plain">  t.type = :web</code></div>
+<div class="line"><code class="plain">  t.location = </code><code class="string">"git://github.com/repo.git"</code></div>
+<div class="line"><code class="plain">  t.description = </code><code class="string">"Remote template. Requires network access."</code></div>
+<div class="line"><code class="plain">  t.icon = </code><code class="string">"template.png"</code><code class="plain"> </code><code class="comments">// Ideally a ruble-relative path to a 48x48px icon. Could also be a URL to a remote file</code></div>
+<div class="line"><code class="plain">  t.tags = [</code><code class="string">'Titanium Classic'</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Replace the template name, &quot;web&quot;, and &quot;location&quot; values with values appropriate to your project.    </p>
+</li><li class=" ">    <p  >Save and close project_templates.rb.    </p>
+</li></ol>    <p  ><strong class=" ">File &gt; New &gt; Project...</strong> and create a project of the appropriate type above, you should see your template in the list.    </p>
+    <p  >The <a  class="document-link " href="Ruble_Specification.html">Ruble Specification</a> gives a complete discussion on the new Ruble scripting system in Studio.    </p>
+    </div>
+    <div class="section section-3 " id="src-30083254_Creatinganewtemplate-Templatevariables">
+        <h3 class="heading "><span>Template variables</span></h3>
+    <p  >It's possible to add template-variables in the project's template files. Those variables will be substituted with the appropriate content as the project is created.    </p>
+    <div  class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p  >    </p>
+    <p  >By default, variables are not replaced. If you need to turn this on, use &quot;t.replace_parameters = true&quot; in the project template definition to enable substitution    </p>
+    </div>
+        <p  >The following variables are supported:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >TM_NEW_FILE_BASENAME    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The file name, without the file-extension    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >TM_NEW_FILE    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The absolute path to the current file    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >TM_NEW_FILE_DIRECTORY    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory path for the current file    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >TM_PROJECTNAME    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The name of the created project    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >TIME    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The current time (in words)    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >YEAR    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The current year    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >Variables should be inserted inside a ${} blocks into your code. For example:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">Project name is ${TM_PROJECTNAME}.</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

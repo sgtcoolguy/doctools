@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Adding a New Portal Dispatcher</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30083152" class="content">
+                        <h1>Adding a New Portal Dispatcher</h1>
+    <div class="section section-2 " id="src-30083152_AddingaNewPortalDispatcher-Chapters">
+        <h2 class="heading "><span>Chapters</span></h2>
+    <p  >    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Adding_a_New_Portal_Dispatcher.html#src-30083152_AddingaNewPortalDispatcher-CreatingaNewDispatcher">Creating a New Dispatcher</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Adding_a_New_Portal_Dispatcher.html#src-30083152_AddingaNewPortalDispatcher-AddingtheJavaScriptCode">Adding the JavaScript Code</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Adding_a_New_Portal_Dispatcher.html#src-30083152_AddingaNewPortalDispatcher-UpdatingtheHTML">Updating the HTML</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Adding_a_New_Portal_Dispatcher.html#src-30083152_AddingaNewPortalDispatcher-WritetheJavaScriptHandler">Write the JavaScript Handler</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Adding_a_New_Portal_Dispatcher.html#src-30083152_AddingaNewPortalDispatcher-CalltheHandler">Call the Handler</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Adding_a_New_Portal_Dispatcher.html#src-30083152_safe-id-QWRkaW5nYU5ld1BvcnRhbERpc3BhdGNoZXItRXhhbXBsZTpJbnRlZ3JhdGVEaXNwYXRjaGVyc0ludG9hSFRNTFBhZ2U">Example: Integrate Dispatchers Into a HTML Page</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30083152_AddingaNewPortalDispatcher-CreatingaNewDispatcher">
+        <h2 class="heading "><span>Creating a New Dispatcher</span></h2>
+    <p  >If you've created a portal page, you may wish to add new portal handlers to do new actions within Studio.    </p>
+    <p  >The 'magic' is done through a 'dispatch' function that is injected to the internal browser when the portal loads the content. Once the 'dispatch' is in, JavaScript code in the remote content may interact with the Studio through JSON calls. Every call is designed to invoke a specific action on a specific controller that is implemented in the Studio. Controllers and Actions are contributed through extension points inside the Studio's code, so the browser may only invoke a specific set of actions that were pre-defined (such as, plug-in installations).&lt;br&gt; For example, saving a preference key inside the Studio is done by invoking this dispatch call:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">dispatch($H({controller: </code><code class="string">'portal.preferences'</code><code class="plain">, action: </code><code class="string">'setPreferenceValue'</code><code class="plain">, args: {key: prefKey, value: val}}).toJSON());</code></div>
+</div>
+    </div>
+    <p  >Let's break this 'dispatch' to it pieces...&lt;br&gt;The dispatch is made to call the 'portal.preferences' controller. This controller is one of the core controllers in the portal system and is already implemented.&lt;br&gt;The actions is 'setPreferencesValue', and the arguments are the preference-key and its value.    </p>
+    <p  >All of that is held in a 'prototype' hash that is converted to JSON.  In the same way, we would call a dispatch method to retrieve a preference value:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">value = dispatch($H({controller: </code><code class="string">'portal.preferences'</code><code class="plain">, action: </code><code class="string">'getPreferenceValue'</code><code class="plain">, args: {key: control.getAttribute(</code><code class="string">'key'</code><code class="plain">)}}).toJSON());</code></div>
+</div>
+    </div>
+    <div class="section section-3 " id="src-30083152_AddingaNewPortalDispatcher-AddingtheJavaScriptCode">
+        <h3 class="heading "><span>Adding the JavaScript Code</span></h3>
+    <p  >Here is an example of adding a checkbox into your content that will interact with the Studio preferences:    </p>
+    <div class="section section-4 " id="src-30083152_AddingaNewPortalDispatcher-UpdatingtheHTML">
+        <h4 class="heading "><span>Updating the HTML</span></h4>
+    <p  >In your HTML code, add this line to mark the location of the checkbox and its text. We'll handle this later on in JavaScript when the page loads.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;div id=</code><code class="string">"load_toolbox"</code><code class="plain"> </code><code class="keyword">class</code><code class="plain">=</code><code class="string">'preference checkbox'</code><code class="plain"> text=</code><code class="string">'Load the Toolbox on startup'</code><code class="plain"> key=</code><code class="string">'open_developer_toolbox'</code><code class="plain">&gt;&lt;/div&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-30083152_AddingaNewPortalDispatcher-WritetheJavaScriptHandler">
+        <h4 class="heading "><span>Write the JavaScript Handler</span></h4>
+    <p  >Write the JavaScript code that will handle the dispatchers. Here is an actual JS implementation that creates the checkbox and interacts with the dispatch to create the desired outcome:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">Preferences = Class.create({</code></div>
+<div class="line"><code class="plain">  </code><code class="preprocessor">/**</code></div>
+<div class="line"><code class="preprocessor">   * Render the items that are attached to the studio preferences.</code></div>
+<div class="line"><code class="preprocessor">   */</code></div>
+<div class="line"><code class="plain">  render: function() {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Get the items that should be controlling/diaplaying the preference item.</code></div>
+<div class="line"><code class="plain">    controls = [$(</code><code class="string">'load_toolbox'</code><code class="plain">)];</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// For each control, get the </code></div>
+<div class="line"><code class="plain">    with (Elements.Builder) {</code></div>
+<div class="line"><code class="plain">      controls.each(function (control) {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (control) {</code></div>
+<div class="line"><code class="plain">          </code><code class="keyword">if</code><code class="plain"> (navigator.appName == </code><code class="string">"Microsoft Internet Explorer"</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">            clazz = control.getAttribute(</code><code class="string">'className'</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">          } </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">            clazz = control.getAttribute(</code><code class="string">'class'</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">          }</code></div>
+<div class="line"><code class="plain">          </code><code class="keyword">if</code><code class="plain"> (clazz &amp;&amp; clazz.match(</code><code class="string">'preference'</code><code class="plain">)) {</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// TODO - For now we support only 'input' (checkbox) types.</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// We should add more as needed.</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">if</code><code class="plain"> (clazz.match(</code><code class="string">'checkbox'</code><code class="plain">)) {</code></div>
+<div class="line"><code class="plain">              elm = input({</code><code class="string">'type'</code><code class="plain">: </code><code class="string">'checkbox'</code><code class="plain">, </code><code class="string">'key'</code><code class="plain">: control.getAttribute(</code><code class="string">'key'</code><code class="plain">)});</code></div>
+<div class="line"><code class="plain">              control.appendChild(elm);</code></div>
+<div class="line"><code class="plain">              control.appendChild(span(control.getAttribute(</code><code class="string">'text'</code><code class="plain">)));</code></div>
+<div class="line"><code class="plain">              </code></div>
+<div class="line"><code class="plain">              </code><code class="comments">// Get the current preference value for this item</code></div>
+<div class="line"><code class="plain">              </code><code class="keyword">if</code><code class="plain"> (typeof(console) !== </code><code class="string">'undefined'</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">                console.log(</code><code class="string">"Dispatching the 'getPreferenceValue' action on the 'portal.preferences' controller..."</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">              }</code></div>
+<div class="line"><code class="plain">              value = </code><code class="string">'false'</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">              </code><code class="comments">// Check that we have the dispatch browser function</code></div>
+<div class="line"><code class="plain">              </code><code class="keyword">if</code><code class="plain"> (typeof(dispatch) !== </code><code class="string">'undefined'</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">                value = dispatch($H({controller: </code><code class="string">'portal.preferences'</code><code class="plain">, action: </code><code class="string">"getPreferenceValue"</code><code class="plain">, args: {key: control.getAttribute(</code><code class="string">'key'</code><code class="plain">)}}).toJSON());</code></div>
+<div class="line"><code class="plain">              }</code></div>
+<div class="line"><code class="plain">              </code><code class="comments">// We expect true/false for checkboxes</code></div>
+<div class="line"><code class="plain">              </code><code class="keyword">if</code><code class="plain"> (value == </code><code class="string">'true'</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">                elm.setAttribute(</code><code class="string">"checked"</code><code class="plain">, </code><code class="string">"checked"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">              }</code></div>
+<div class="line"><code class="plain">              </code></div>
+<div class="line"><code class="plain">              </code><code class="comments">// Observe and report selection changes for this item</code></div>
+<div class="line"><code class="plain">              elm.observe(</code><code class="string">'click'</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">                inputElement = e.element();</code></div>
+<div class="line"><code class="plain">                </code><code class="keyword">if</code><code class="plain"> (inputElement) {</code></div>
+<div class="line"><code class="plain">                  prefKey = inputElement.getAttribute(</code><code class="string">'key'</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">                  </code><code class="comments">// set the pref value</code></div>
+<div class="line"><code class="plain">                  val = (inputElement.getValue() == </code><code class="string">'on'</code><code class="plain">) ? </code><code class="string">'true'</code><code class="plain"> : </code><code class="string">'false'</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">                  </code><code class="keyword">if</code><code class="plain"> (typeof(console) !== </code><code class="string">'undefined'</code><code class="plain"> &amp;&amp; typeof(dispatch) !== </code><code class="string">'undefined'</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">                    console.log(</code><code class="string">"Dispatching the 'setPreferenceValue' action on the 'portal.preferences' controller..."</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">                    dispatch($H({controller: </code><code class="string">'portal.preferences'</code><code class="plain">, action: </code><code class="string">"setPreferenceValue"</code><code class="plain">, args: {key: prefKey, value: val}}).toJSON());</code></div>
+<div class="line"><code class="plain">                  }</code></div>
+<div class="line"><code class="plain">                  </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">false</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">                }</code></div>
+<div class="line"><code class="plain">              });</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">          }</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">      });</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    <p  >Note that the &quot;''with (Elements.Builder)&quot;'' is actually using a supporting JavaScript that helps us in building HTML elements (you can take a look at ''elements.js'' under the toolbox repo).    </p>
+    <p  >The JavaScript above renders the checkbox after locating it by the ID. It then sets the initial state by dispatching for the preference key and listens to any click events to inform the Studio with any changes. Again, through a ''dispatch ''call.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083152_AddingaNewPortalDispatcher-CalltheHandler">
+        <h4 class="heading "><span>Call the Handler</span></h4>
+    <p  >The last part is to call the code. We can do that from the same JS file, but we'll choose to create another JavaScript file and have it control this preferences interaction code and other code segments we'll add in the future. Our manager file will hold this code. If you are using the resource files with the stock portal page, this has been done for you already--you just need to make sure to call    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">loadPortal()</code></div>
+</div>
+    </div>
+    <p  >in your body tag.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var portal;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="preprocessor">/**</code></div>
+<div class="line"><code class="preprocessor"> * The Portal class</code></div>
+<div class="line"><code class="preprocessor"> */</code></div>
+<div class="line"><code class="plain">var Portal = Class.create({</code></div>
+<div class="line"><code class="plain">  initialize: function() {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">this</code><code class="plain">.preferences  = </code><code class="keyword">new</code><code class="plain"> Preferences();</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Render any preferences-related items.</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">this</code><code class="plain">.preferences.render();</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"> </div>
+<div class="line"><code class="preprocessor">/**</code></div>
+<div class="line"><code class="preprocessor"> * Call to load the portal</code></div>
+<div class="line"><code class="preprocessor"> */</code></div>
+<div class="line"><code class="plain">function loadPortal() {</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">if</code><code class="plain"> (typeof(portal) === </code><code class="string">'undefined'</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">    portal = </code><code class="keyword">new</code><code class="plain"> Portal();</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p  >And finally, our HTML will load all the needed JavaScript files and call to load this JS:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;body onload=</code><code class="string">"loadPortal()"</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083152_safe-id-QWRkaW5nYU5ld1BvcnRhbERpc3BhdGNoZXItRXhhbXBsZTpJbnRlZ3JhdGVEaXNwYXRjaGVyc0ludG9hSFRNTFBhZ2U">
+        <h2 class="heading "><span>Example: Integrate Dispatchers Into a HTML Page</span></h2>
+    <p  >As usual, it's always easier to take a look at a working implementation, so you are welcome to clone the <strong class=" "><i class=" ">rails3</i></strong> branch from <strong class=" "><i class=" ">git@github.com:aptana/toolbox-aptana-com.git</i></strong> and take a look at the way various dispatch calls interact with the web-content.<br/>We also have a set of simpler examples at the <strong class=" "><i class=" ">git@github.com:aptana/studio3-sdk.git</i></strong> repo.    </p>
+    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

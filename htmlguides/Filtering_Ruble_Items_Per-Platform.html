@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Filtering Ruble Items Per-Platform</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30083231" class="content">
+                        <h1>Filtering Ruble Items Per-Platform</h1>
+    <div class="section section-2 " id="src-30083231_FilteringRubleItemsPer-Platform-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p  >    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Filtering_Ruble_Items_Per-Platform.html#src-30083231_FilteringRubleItemsPer-Platform-Overview">Overview</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Filtering_Ruble_Items_Per-Platform.html#src-30083231_FilteringRubleItemsPer-Platform-Wrappinganiteminaper-platformconditional">Wrapping an item in a per-platform conditional</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Filtering_Ruble_Items_Per-Platform.html#src-30083231_FilteringRubleItemsPer-Platform-Specifyingper-platformoptions">Specifying per-platform options</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30083231_FilteringRubleItemsPer-Platform-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p  >Sometimes you want a snippet, command, sample, or other item to only appear on certain platforms. To do so, you can use some platform specifiers.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083231_FilteringRubleItemsPer-Platform-Wrappinganiteminaper-platformconditional">
+        <h2 class="heading "><span>Wrapping an item in a per-platform conditional</span></h2>
+    <p  >In the example below, we only want the sample to appear on OSX.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">'ruble'</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">if</code><code class="plain"> Ruble.is_mac?</code></div>
+<div class="line"><code class="plain">  project_sample </code><code class="string">"Kitchen Sink"</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |s|</code></div>
+<div class="line"><code class="plain">    s.id = </code><code class="string">"com.appcelerator.titanium.mobile.samples.kitchensink"</code></div>
+<div class="line"><code class="plain">    s.category = </code><code class="string">"com.appcelerator.titanium.mobile.samples.category"</code></div>
+<div class="line"><code class="plain">    s.location = </code><code class="string">"git://github.com/appcelerator/KitchenSink.git"</code></div>
+<div class="line"><code class="plain">    s.description = </code><code class="string">"A sample Titanium Mobile project that demonstrates a variety of APIs available in Titanium Mobile"</code></div>
+<div class="line"><code class="plain">    s.natures = [</code><code class="string">"com.appcelerator.titanium.mobile.nature"</code><code class="plain">, </code><code class="string">"com.aptana.projects.webnature"</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">    s.icon = </code><code class="string">"http://preview.appcelerator.com/dashboard/img/icons/icon_kitchen_sink.png"</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Platform    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Test    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Windows    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >is_windows?    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Windows XP    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >is_windows_xp?    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Windows Vista    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >is_windows_7?    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Windows 7    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >is_windows_vista?    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >OS X    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >is_mac?    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Unix (includes Linux)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >is_unix?    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-30083231_FilteringRubleItemsPer-Platform-Specifyingper-platformoptions">
+        <h2 class="heading "><span>Specifying per-platform options</span></h2>
+    <p  >Sometimes, you just want an item to be bound to a different key per-platform. That can be done by using the <a  class="document-link " href="Ruble_Specification.html#src-30083218_RubleSpecification-PLATFORMSPECIFIER">PLATFORM_SPECIFIER</a>. However, you could accomplish the same thing by conditionally setting the property using the same syntax as above with <tt class=" ">Ruble.is_mac</tt>, for example.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">'ruble'</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">command </code><code class="string">'Add to multifile Gist'</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
+<div class="line"><code class="plain">  cmd.key_binding.mac = </code><code class="string">'CONTROL+OPTION+COMMAND+G'</code><code class="plain"> # aka M1+M3+M4+G</code></div>
+<div class="line"><code class="plain">  cmd.key_binding = </code><code class="string">'M1+M3+G'</code></div>
+<div class="line"><code class="plain">  cmd.output = :show_as_tooltip</code></div>
+<div class="line"><code class="plain">  cmd.input = :selection, :document</code></div>
+<div class="line"><code class="plain">  cmd.invoke </code><code class="keyword">do</code></div>
+<div class="line"><code class="plain">    require </code><code class="string">"gist"</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    Gist.process_selection</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    <p  >Currently, only the following properties support platform specifiers:    </p>
+<ul class=" "><li class=" ">    <p  >key_binding    </p>
+</li><li class=" ">    <p  >invoke    </p>
+</li></ul>    <p  >Alternatively, you could also wrap the setting of various properties in conditionals that test the platform using the calls from the previous section.    </p>
+    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

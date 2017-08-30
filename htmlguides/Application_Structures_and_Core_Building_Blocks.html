@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Application Structures and Core Building Blocks</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-29004894" class="content">
+                        <h1>Application Structures and Core Building Blocks</h1>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Application_Structures_and_Core_Building_Blocks.html#src-29004894_ApplicationStructuresandCoreBuildingBlocks-Tab-basedapplications">Tab-based applications</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Application_Structures_and_Core_Building_Blocks.html#src-29004894_ApplicationStructuresandCoreBuildingBlocks-Tabrecommendations">Tab recommendations</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Application_Structures_and_Core_Building_Blocks.html#src-29004894_ApplicationStructuresandCoreBuildingBlocks-Window-basedapps">Window-based apps</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-29004894_ApplicationStructuresandCoreBuildingBlocks-Objective">
+        <h2 class="heading "><span>Objective</span></h2>
+    <p  >In this section, you'll take a look at the core building blocks of a Titanium app. Tab groups, windows, and their core functionality will be discussed here in detail.    </p>
+    </div>
+    <div class="section section-2 " id="src-29004894_ApplicationStructuresandCoreBuildingBlocks-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p  >In web development parlance, a Titanium <strong class=" ">window</strong> is roughly analogous to a <strong class=" ">web page</strong>. In turn, Titanium <strong class=" ">view</strong> is analogous to a <strong class=" ">div</strong>. We already touched on the fact that Titanium windows can, but aren't required to, run within their own <a  class="document-link " href="Coding_Strategies.html#src-29004891_CodingStrategies-Executioncontexts">execution context</a> like a web page. Conceptually, windows are a top-level container just like a web page.    </p>
+    <p  >Titanium views are like divs in that both are style-able, generic content containers. Both can enclose other content (buttons, views, etc.) and must be contained within a window, or web page.    </p>
+    <p  >Tab groups are a mobile component without a clear equivalent in the web world. Web pages sometimes use the tab UI metaphor, but the contents of those tabs are typically implemented as divs. The closest analog for mobile tab groups would probably be a set of pages listed in a menu or set of navigation links.    </p>
+    <p  >Let's see how you'd use tab groups, windows, and views to construct your app's UI. Mobile utility apps generally feature one of two basic layouts: tab-based or window-based. These are illustrated below:    </p>
+    <p  >    <img  src="images/download/attachments/29004894/app_building_blocks.png" alt="images/download/attachments/29004894/app_building_blocks.png" class="confluence-embedded-image"   />
+        </p>
+    <div class="section section-3 " id="src-29004894_ApplicationStructuresandCoreBuildingBlocks-Tab-basedapplications">
+        <h3 class="heading "><span>Tab-based applications</span></h3>
+    <p  >In a tab-based app, two or more tabs are contained within a <a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.UI.TabGroup-object">tab group</a>. Each tab contains a window. Each window contains the various controls and graphics of your app. The basic code for creating a two-tabbed app skeleton looks like this:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// create tab group</code></div>
+<div class="line"><code class="plain">var tabGroup = Titanium.UI.createTabGroup();</code></div>
+<div class="line"><code class="plain">var win1 = Titanium.UI.createWindow({</code></div>
+<div class="line"><code class="plain">    title: </code><code class="string">'Tab 1'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    backgroundColor: </code><code class="string">'#fff'</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">var tab1 = Titanium.UI.createTab({</code></div>
+<div class="line"><code class="plain">    icon: </code><code class="string">'tab1icon.png'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    title: </code><code class="string">'Tab 1'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    window: win1</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">var win2 = Titanium.UI.createWindow({</code></div>
+<div class="line"><code class="plain">    title: </code><code class="string">'Tab 2'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    backgroundColor: </code><code class="string">'#fff'</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">var tab2 = Titanium.UI.createTab({</code></div>
+<div class="line"><code class="plain">    icon: </code><code class="string">'tab2icon.png'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    title: </code><code class="string">'Tab 2'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    window: win2</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="comments">// add tabs to the group</code></div>
+<div class="line"><code class="plain">tabGroup.addTab(tab1);</code></div>
+<div class="line"><code class="plain">tabGroup.addTab(tab2);</code></div>
+<div class="line"><code class="comments">// open tab group</code></div>
+<div class="line"><code class="plain">tabGroup.open();</code></div>
+</div>
+    </div>
+    <p  >In the preceding code, the tab's <tt class=" ">title</tt> is the text shown on the tab &quot;handle&quot; while the window's <tt class=" ">title</tt> is shown in a title bar across the top of the window. On iOS, you can add navigation buttons (<tt class=" ">leftNavButton</tt> and <tt class=" ">rightNavButton</tt>) to the window's title bar. Also on iOS, a modal window opened within a tab will fill the entire screen, overlaying the tab group. A non-modal window will open within the tab. On Android, a window automatically fills the entire screen and inherits the Back button functionality. Tapping the Back button closes the window and returns you to the tab group's focused window.    </p>
+    <div class="section section-4 " id="src-29004894_ApplicationStructuresandCoreBuildingBlocks-Tabrecommendations">
+        <h4 class="heading "><span>Tab recommendations</span></h4>
+    <p  >Users expect each tab to be focused on a limited and related set of functionality. Tabs are expected to be related to each other, within the overall purpose of your app. However, they are not expected to be in any sort of hierarchical relationship. Tabs are peers, or siblings, of each other; not children of one another.    </p>
+    <p  >On iOS, the tab &quot;handles&quot; have a fixed minimum width. If you define more tabs than will fit, iOS will display an ellipsis on a new tab labeled &quot;More&quot;. Tapping that tab opens a table view style window listing additional tabs.    </p>
+    <p  >On Android, tab &quot;handles&quot; are not fixed-width. Instead, tabs will shrink to fit the number of tabs you have created. While this behavior is convenient, you need to be aware that using too many tabs in this manner make shrink your tab &quot;handles&quot; to unusable dimensions. Always test the usability of your UI as you develop.    </p>
+    <p  >For both platforms, we recommend you limit the tabs in your app to four or less so that all your tabs can be visible at once and remain easily clickable across platforms.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-29004894_ApplicationStructuresandCoreBuildingBlocks-Window-basedapps">
+        <h3 class="heading "><span>Window-based apps</span></h3>
+    <p  >A window-based app uses views, controls, and graphics that are contained within a full-screen window. All app flow is driven from menu, UI, or navigation components available to the given platform. Both Android and iOS can take advantage of the Titanium Window's <tt class=" ">open()</tt> function which will create a new window that will present itself on the top of our stack. Conversely, to <i class=" ">pop</i> a window from the stack, we can use its <tt class=" ">close()</tt> function.    </p>
+    <p  >In addition to this cross platform method, let's take a look at some of the platform specific ways you can navigate through your app without the aid of tab groups.    </p>
+<ul class=" "><li class=" ">    <p  >Android    </p>
+<ul class=" "><li class=" ">    <p  >The Menu button can be used to display options for navigation. These can be sections similar to tabs, or more direct instructions like &quot;Back&quot; or &quot;Forward&quot; in a web browser.    </p>
+</li><li class=" ">    <p  >The Back button will close the current window and go back to the previous one    </p>
+</li></ul></li><li class=" ">    <p  >iOS    </p>
+<ul class=" "><li class=" ">    <p  >You can use a <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.NavigationWindow">navigation window</a>, which is the core of most iOS app navigation.    </p>
+</li><li class=" ">    <p  >You could implement a <a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.UI.DashboardView-object">DashboardView</a>    </p>
+    <img  src="images/download/attachments/29004894/dashboard_view.png" alt="images/download/attachments/29004894/dashboard_view.png" class="confluence-embedded-image"  height="300" />
+    </li></ul></li></ul>    <p  >It's also notable that window based apps are the common choice for mobile games. As most games employ only a single screen and use mostly custom UI components, OS level navigation is rarely useful. The game is simply presented full-screen and the gameplay itself dictates how the user interacts with the app.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-29004894_ApplicationStructuresandCoreBuildingBlocks-ReferencesandFurtherReading">
+        <h2 class="heading "><span>References and Further Reading</span></h2>
+<ul class=" "><li class=" ">    <p  ><a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.UI-module">Titanium.UI module</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-29004894_ApplicationStructuresandCoreBuildingBlocks-Summary">
+        <h2 class="heading "><span>Summary</span></h2>
+    <p  >In this section, you looked at the core building blocks of a Titanium app, including tab groups and windows and the ways you can use each. In the upcoming sections, we'll look in depth at how to lay out the views and components of your UI in the Titanium model.    </p>
+    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>

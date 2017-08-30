@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Nodes - Model Update</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-49158451" class="content">
+                        <h1>Nodes - Model Update</h1>
+    <p  >This document describes the model update and provides instance configuration and parameters information.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Name    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ModelUpdate    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >A Model specific node. Invokes the Update API on a specified model and returns the response.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >    </p>
+    <div class="section section-2 " id="src-49158451_Nodes-ModelUpdate-Instanceconfiguration">
+        <h2 class="heading "><span>Instance configuration</span></h2>
+    <p  >    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Property    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Required    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Type    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >model    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The name of the model of which to invoke the Update API.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >yes    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >string    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-49158451_Nodes-ModelUpdate-Instanceparameters">
+        <h2 class="heading "><span>Instance parameters</span></h2>
+    <p  >    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Property    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Type    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Required    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >id    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The id of the record to update.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >string    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >true    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div class="section section-3 " id="src-49158451_Nodes-ModelUpdate-Example">
+        <h3 class="heading "><span>Example</span></h3>
+    <p  >    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="string">"model.update"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain"> </code><code class="string">"type"</code><code class="plain">: </code><code class="string">"ModelUpdate"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain"> </code><code class="string">"config"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">   </code><code class="string">"model"</code><code class="plain">: </code><code class="string">"appc.arrowdb/acl"</code></div>
+<div class="line"><code class="plain"> },</code></div>
+<div class="line"><code class="plain"> </code><code class="string">"parameters"</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"name"</code><code class="plain">: </code><code class="string">"id"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"value"</code><code class="plain">: </code><code class="string">"$.params.id|0"</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"name"</code><code class="plain">: </code><code class="string">"name"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"value"</code><code class="plain">: </code><code class="string">"$.params[\"appc.arrowdb/acl\"].name|0"</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"name"</code><code class="plain">: </code><code class="string">"readers"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"value"</code><code class="plain">: </code><code class="string">"$.params[\"appc.arrowdb/acl\"].readers|0"</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"name"</code><code class="plain">: </code><code class="string">"writers"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"value"</code><code class="plain">: </code><code class="string">"$.params[\"appc.arrowdb/acl\"].writers|0"</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"name"</code><code class="plain">: </code><code class="string">"public_read"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"value"</code><code class="plain">: </code><code class="string">"$.params[\"appc.arrowdb/acl\"].public_read|0"</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"name"</code><code class="plain">: </code><code class="string">"public_write"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"value"</code><code class="plain">: </code><code class="string">"$.params[\"appc.arrowdb/acl\"].public_write|0"</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"name"</code><code class="plain">: </code><code class="string">"user"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"value"</code><code class="plain">: </code><code class="string">"$.params[\"appc.arrowdb/acl\"].user|0"</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"name"</code><code class="plain">: </code><code class="string">"created_at"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"value"</code><code class="plain">: </code><code class="string">"$.params[\"appc.arrowdb/acl\"].created_at|0"</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"name"</code><code class="plain">: </code><code class="string">"updated_at"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"value"</code><code class="plain">: </code><code class="string">"$.params[\"appc.arrowdb/acl\"].updated_at|0"</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"name"</code><code class="plain">: </code><code class="string">"pretty_json"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"value"</code><code class="plain">: </code><code class="string">"$.params[\"appc.arrowdb/acl\"].pretty_json|0"</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"name"</code><code class="plain">: </code><code class="string">"custom_fields"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"value"</code><code class="plain">: </code><code class="string">"$.params[\"appc.arrowdb/acl\"].custom_fields|0"</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"name"</code><code class="plain">: </code><code class="string">"user_id"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">"value"</code><code class="plain">: </code><code class="string">"$.params[\"appc.arrowdb/acl\"].user_id|0"</code></div>
+<div class="line"><code class="plain">   }</code></div>
+<div class="line"><code class="plain"> ],</code></div>
+<div class="line"><code class="plain"> </code><code class="string">"response"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">   </code><code class="string">"context"</code><code class="plain">: {},</code></div>
+<div class="line"><code class="plain">   </code><code class="string">"routes"</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">     {</code></div>
+<div class="line"><code class="plain">       </code><code class="string">"conditions"</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">         {</code></div>
+<div class="line"><code class="plain">           </code><code class="string">"key"</code><code class="plain">: </code><code class="string">"$|0"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">           </code><code class="string">"exists"</code><code class="plain">: </code><code class="keyword">false</code></div>
+<div class="line"><code class="plain">         }</code></div>
+<div class="line"><code class="plain">       ],</code></div>
+<div class="line"><code class="plain">       </code><code class="string">"next"</code><code class="plain">: </code><code class="string">"response.error.notfound"</code></div>
+<div class="line"><code class="plain">     },</code></div>
+<div class="line"><code class="plain">     {</code></div>
+<div class="line"><code class="plain">       </code><code class="string">"next"</code><code class="plain">: </code><code class="string">"response.success"</code></div>
+<div class="line"><code class="plain">     }</code></div>
+<div class="line"><code class="plain">   ]</code></div>
+<div class="line"><code class="plain"> }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+        </div>
+    
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
+    </div>
+</body>
+</html>
