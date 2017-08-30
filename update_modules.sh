@@ -27,6 +27,12 @@ git add * -f
 git commit * -m "updated /doctools for $DATE commit" ## add auto-commit message
 git push
 
+## back up the appc_web_docs directory to Github before any updates
+cd $TI_ROOT/appc_web_docs
+git add * -f
+git commit * -m "updated /appc_web_docs for $DATE commit" ## add auto-commit message
+git push
+
 ## cd into the modules directory
 cd $TI_ROOT/appc_modules
 
