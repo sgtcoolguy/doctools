@@ -5,12 +5,12 @@
 <head>
     <title>CoverFlow</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -18,53 +18,55 @@
 
         <div id="src-41845741" class="content">
                         <h1>CoverFlow</h1>
-    <p>    <span style="color: #484848;">
+    <p  >    <span style="color: #484848;" >
 Demonstrates basic use of the CoverFlowView control, an iOS-only control that presents a list of scrollable images in a style consistent with that used for iPod, iTunes, and file browsing. \    </span>
-    <span style="color: #484848;">
+    <span style="color: #484848;" >
      </span>
     </p>
-    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
             <div class="title">App Folder Location</div>
-            <p>alloy/test/apps/<strong class=" ">ui/coverflow</strong>    </p>
+            <p  >alloy/test/apps/<strong class=" ">ui/coverflow</strong>    </p>
     </div>
-        <p>    <span style="color: #484848;">
-<br>    </span>
-    <img src="images/download/attachments/41845741/screenshot.png" alt="images/download/attachments/41845741/screenshot.png" class="confluence-embedded-image" width="450">
+        <p  >    <span style="color: #484848;" >
+<br/>    </span>
+    <img  src="images/download/attachments/41845741/screenshot.png" alt="images/download/attachments/41845741/screenshot.png" class="confluence-embedded-image" width="450"  />
     </p>
-    <p>    <span style="color: #484848;">
+    <p  >    <span style="color: #484848;" >
 To define the images displayed by a <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.iOS.CoverFlowView">CoverFlowView</a>, insert an <tt class=" ">&lt;Images&gt;</tt> element to which you add one or more <tt class=" ">&lt;Image/&gt;</tt> elements.    </span>
     </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
 <div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
 <div class="line"><code class="plain">    &lt;Window&gt;</code></div>
-<div class="line"><code class="plain">        &lt;CoverFlowView id=</code><code class="string">&quot;coverflow&quot;</code><code class="plain"> platform=</code><code class="string">&quot;ios&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;CoverFlowView id=</code><code class="string">"coverflow"</code><code class="plain"> platform=</code><code class="string">"ios"</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">            &lt;Images&gt;</code></div>
-<div class="line"><code class="plain">                &lt;!-- Assign image by node text or </code><code class="string">&quot;image&quot;</code><code class="plain"> attribute --&gt;</code></div>
+<div class="line"><code class="plain">                &lt;!-- Assign image by node text or </code><code class="string">"image"</code><code class="plain"> attribute --&gt;</code></div>
 <div class="line"><code class="plain">                &lt;Image&gt;appc1.png&lt;/Image&gt;</code></div>
-<div class="line"><code class="plain">                &lt;Image image=</code><code class="string">&quot;appc2.png&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;Image image=</code><code class="string">"appc2.png"</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">                &lt;!-- you can also change the width and height --&gt;</code></div>
-<div class="line"><code class="plain">                &lt;Image width=</code><code class="string">&quot;100&quot;</code><code class="plain"> height=</code><code class="string">&quot;100&quot;</code><code class="plain"> image=</code><code class="string">&quot;appc3.png&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                &lt;Image width=</code><code class="string">&quot;50&quot;</code><code class="plain"> height=</code><code class="string">&quot;50&quot;</code><code class="plain">&gt;appc4.png&lt;/Image&gt;</code></div>
+<div class="line"><code class="plain">                &lt;Image width=</code><code class="string">"100"</code><code class="plain"> height=</code><code class="string">"100"</code><code class="plain"> image=</code><code class="string">"appc3.png"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;Image width=</code><code class="string">"50"</code><code class="plain"> height=</code><code class="string">"50"</code><code class="plain">&gt;appc4.png&lt;/Image&gt;</code></div>
 <div class="line"><code class="plain">            &lt;/Images&gt;</code></div>
 <div class="line"><code class="plain">            &lt;!-- additional views </code><code class="keyword">for</code><code class="plain"> the CoverFlowView --&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Label id=</code><code class="string">&quot;apilabel&quot;</code><code class="plain">&gt;Ti.UI.iOS.CoverFlowView&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Label id=</code><code class="string">"apilabel"</code><code class="plain">&gt;Ti.UI.iOS.CoverFlowView&lt;/Label&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/CoverFlowView&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Label platform=</code><code class="string">&quot;!ios&quot;</code><code class="plain">&gt;Ti.UI.iOS.CoverFlowView only supported on iOS&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Label platform=</code><code class="string">"!ios"</code><code class="plain">&gt;Ti.UI.iOS.CoverFlowView only supported on iOS&lt;/Label&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/Window&gt;</code></div>
 <div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
 </div>
     </div>
     <div class="section section-2 " id="src-41845741_CoverFlow-SeeAlso">
         <h2 class="heading "><span>See Also</span></h2>
-<ul class=" "><li class=" ">    <p>    <span style="color: #484848;">
-<a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.iOS.CoverFlowView">Titanium.UI.iOS.CoverFlowView</a><br>    </span>
+<ul class=" "><li class=" ">    <p  >    <span style="color: #484848;" >
+<a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.iOS.CoverFlowView">Titanium.UI.iOS.CoverFlowView</a><br/>    </span>
     </p>
 </li></ul>    </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>

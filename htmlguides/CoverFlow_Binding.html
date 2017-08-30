@@ -5,12 +5,12 @@
 <head>
     <title>CoverFlow Binding</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -18,29 +18,29 @@
 
         <div id="src-41846559" class="content">
                         <h1>CoverFlow Binding</h1>
-    <p>Demonstrates data binding with a CoverFlowView control, which presents images in carousel-like view.    </p>
-    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
+    <p  >Demonstrates data binding with a CoverFlowView control, which presents images in carousel-like view.    </p>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
             <div class="title">App Folder Location</div>
-            <p>alloy/test/apps/<strong class=" ">models/binding_coverflow</strong>    </p>
+            <p  >alloy/test/apps/<strong class=" ">models/binding_coverflow</strong>    </p>
     </div>
-        <p>    <img src="images/download/attachments/41846559/image.png" alt="images/download/attachments/41846559/image.png" class="confluence-embedded-image" width="200">
+        <p  >    <img  src="images/download/attachments/41846559/image.png" alt="images/download/attachments/41846559/image.png" class="confluence-embedded-image" width="200"  />
     </p>
-    <p>A <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.UI.iOS.CoverFlowView">CoverFlowView</a> element&apos;s <tt class=" ">images</tt> property is an array of images to display in the carousel. In Alloy, this property is represented by an <tt class=" ">&lt;Images/&gt;</tt> element, which contains a single &lt;Image/&gt; element. The &lt;Images/&gt; element&apos;s <tt class=" ">dataCollection</tt> attribute is set to &quot;images&quot;, the name of the Alloy collection that contains the actual images to display. When the &quot;images&quot; collection is updated, the images displayed by the CoverFlowView update accordingly.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >A <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.UI.iOS.CoverFlowView">CoverFlowView</a> element's <tt class=" ">images</tt> property is an array of images to display in the carousel. In Alloy, this property is represented by an <tt class=" ">&lt;Images/&gt;</tt> element, which contains a single &lt;Image/&gt; element. The &lt;Images/&gt; element's <tt class=" ">dataCollection</tt> attribute is set to &quot;images&quot;, the name of the Alloy collection that contains the actual images to display. When the &quot;images&quot; collection is updated, the images displayed by the CoverFlowView update accordingly.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
-<div class="line"><code class="plain">&lt;CoverFlowView id=</code><code class="string">&quot;coverflow&quot;</code><code class="plain"> platform=</code><code class="string">&quot;ios&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;CoverFlowView id=</code><code class="string">"coverflow"</code><code class="plain"> platform=</code><code class="string">"ios"</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;!-- data-bound collection of images --&gt;</code></div>
-<div class="line"><code class="plain">    &lt;Images dataCollection=</code><code class="string">&quot;images&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Image image=</code><code class="string">&quot;{url}&quot;</code><code class="plain"> height=</code><code class="string">&quot;{height}&quot;</code><code class="plain"> width=</code><code class="string">&quot;{width}&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;Images dataCollection=</code><code class="string">"images"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Image image=</code><code class="string">"{url}"</code><code class="plain"> height=</code><code class="string">"{height}"</code><code class="plain"> width=</code><code class="string">"{width}"</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/Images&gt;</code></div>
 <div class="line"><code class="plain">    &lt;!-- additional views </code><code class="keyword">for</code><code class="plain"> the CoverFlowView --&gt;</code></div>
-<div class="line"><code class="plain">    &lt;Label id=</code><code class="string">&quot;apilabel&quot;</code><code class="plain">&gt;Ti.UI.iOS.CoverFlowView&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">    &lt;Label id=</code><code class="string">"apilabel"</code><code class="plain">&gt;Ti.UI.iOS.CoverFlowView&lt;/Label&gt;</code></div>
 <div class="line"><code class="plain">&lt;/CoverFlowView&gt;</code></div>
 </div>
     </div>
-    <p>The alloy.js file create the <tt class=" ">images</tt> collection. Each member of the collection specifies the URL of the image to display, as well as optional <tt class=" ">width</tt> and <tt class=" ">height</tt> properties. These properties are referenced by the &lt;Image/&gt; element in the index.xml view.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >The alloy.js file create the <tt class=" ">images</tt> collection. Each member of the collection specifies the URL of the image to display, as well as optional <tt class=" ">width</tt> and <tt class=" ">height</tt> properties. These properties are referenced by the &lt;Image/&gt; element in the index.xml view.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/alloy.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/alloy.js">
 <div class="line"><code class="plain">var Image = Backbone.Model.extend();</code></div>
@@ -49,21 +49,23 @@
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="plain">Alloy.Collections.images = </code><code class="keyword">new</code><code class="plain"> Images();</code></div>
 <div class="line"><code class="plain">Alloy.Collections.images.reset([</code></div>
-<div class="line"><code class="plain">    { url: </code><code class="string">&apos;/appc1.png&apos;</code><code class="plain"> },</code></div>
-<div class="line"><code class="plain">    { url: </code><code class="string">&apos;/appc2.png&apos;</code><code class="plain"> },</code></div>
-<div class="line"><code class="plain">    { url: </code><code class="string">&apos;/appc3.png&apos;</code><code class="plain">, width: </code><code class="value">100</code><code class="plain">, height: </code><code class="value">100</code><code class="plain"> },</code></div>
-<div class="line"><code class="plain">    { url: </code><code class="string">&apos;/appc4.png&apos;</code><code class="plain">, width: </code><code class="value">50</code><code class="plain">, height: </code><code class="value">50</code><code class="plain"> }</code></div>
+<div class="line"><code class="plain">    { url: </code><code class="string">'/appc1.png'</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">    { url: </code><code class="string">'/appc2.png'</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">    { url: </code><code class="string">'/appc3.png'</code><code class="plain">, width: </code><code class="value">100</code><code class="plain">, height: </code><code class="value">100</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">    { url: </code><code class="string">'/appc4.png'</code><code class="plain">, width: </code><code class="value">50</code><code class="plain">, height: </code><code class="value">50</code><code class="plain"> }</code></div>
 <div class="line"><code class="plain">]);</code></div>
 </div>
     </div>
     <div class="section section-2 " id="src-41846559_CoverFlowBinding-SeeAlso">
         <h2 class="heading "><span>See Also</span></h2>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.UI.iOS.CoverFlowView">Titanium.UI.iOS.CoverFlowView</a> API reference    </p>
-</li></ul>    <p>    </p>
+<ul class=" "><li class=" ">    <p  ><a class="external-link external-link" href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.UI.iOS.CoverFlowView">Titanium.UI.iOS.CoverFlowView</a> API reference    </p>
+</li></ul>    <p  >    </p>
     </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>

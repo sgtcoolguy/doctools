@@ -5,12 +5,12 @@
 <head>
     <title>Adding New Properties to Existing Ruble Objects</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -18,15 +18,15 @@
 
         <div id="src-30083184" class="content">
                         <h1>Adding New Properties to Existing Ruble Objects</h1>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Adding_New_Properties_to_Existing_Ruble_Objects.html#src-30083184_AddingNewPropertiestoExistingRubleObjects-Updatetheelementclass">Update the element class</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Adding_New_Properties_to_Existing_Ruble_Objects.html#src-30083184_AddingNewPropertiestoExistingRubleObjects-Updatetheproject_template.rbwrapperfile">Update the project_template.rb wrapper file</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Adding_New_Properties_to_Existing_Ruble_Objects.html#src-30083184_AddingNewPropertiestoExistingRubleObjects-UpdatetheBundleView">Update the Bundle View</a>    </p>
-</li></ul>    <p>If you add new properties to an existing Ruble object, you&apos;ll need to make a few related changes. Here, we discuss the addition of a new &quot;Icon&quot; property to the Project Template Element. This is a property that enables a user to set a path to an icon for a project template.    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Adding_New_Properties_to_Existing_Ruble_Objects.html#src-30083184_AddingNewPropertiestoExistingRubleObjects-Updatetheelementclass">Update the element class</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Adding_New_Properties_to_Existing_Ruble_Objects.html#src-30083184_AddingNewPropertiestoExistingRubleObjects-Updatetheproject_template.rbwrapperfile">Update the project_template.rb wrapper file</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Adding_New_Properties_to_Existing_Ruble_Objects.html#src-30083184_AddingNewPropertiestoExistingRubleObjects-UpdatetheBundleView">Update the Bundle View</a>    </p>
+</li></ul>    <p  >If you add new properties to an existing Ruble object, you'll need to make a few related changes. Here, we discuss the addition of a new &quot;Icon&quot; property to the Project Template Element. This is a property that enables a user to set a path to an icon for a project template.    </p>
     <div class="section section-2 " id="src-30083184_AddingNewPropertiestoExistingRubleObjects-Updatetheelementclass">
         <h2 class="heading "><span>Update the element class</span></h2>
-    <p>We update the model element to contain the new getter and setters. Note that we expect a string value and return a string value here. If the end object type is more complex, you may need to create separate methods to serialize and deserialize from a string value.    </p>
-    <p>In com.aptana.scripting.model.ProjectTemplateElement:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >We update the model element to contain the new getter and setters. Note that we expect a string value and return a string value here. If the end object type is more complex, you may need to create separate methods to serialize and deserialize from a string value.    </p>
+    <p  >In com.aptana.scripting.model.ProjectTemplateElement:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">/*</code></div>
 <div class="line"><code class="comments"> * setIconPath</code></div>
@@ -35,7 +35,7 @@
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	fIconPath = iconPath;</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="comments">/*</code></div>
 <div class="line"><code class="comments"> * getIconPath</code></div>
 <div class="line"><code class="comments"> */</code></div>
@@ -48,9 +48,9 @@
     </div>
     <div class="section section-2 " id="src-30083184_AddingNewPropertiestoExistingRubleObjects-Updatetheproject_template.rbwrapperfile">
         <h2 class="heading "><span>Update the project_template.rb wrapper file</span></h2>
-    <p>This is the wrapper the Ruby code interacts with. This is translated into the getIcon and setIcon calls above.    </p>
-    <p>In plugins/com.aptana.scripting/framework/ruble/project.template.rb:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >This is the wrapper the Ruby code interacts with. This is translated into the getIcon and setIcon calls above.    </p>
+    <p  >In plugins/com.aptana.scripting/framework/ruble/project.template.rb:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">def icon</code></div>
 <div class="line"><code class="plain">  </code><code class="color1">@jobj</code><code class="plain">.icon</code></div>
@@ -64,9 +64,9 @@
     </div>
     <div class="section section-2 " id="src-30083184_AddingNewPropertiestoExistingRubleObjects-UpdatetheBundleView">
         <h2 class="heading "><span>Update the Bundle View</span></h2>
-    <p>The Bundle View shows the properties for the current selected element.    </p>
-    <p>Update com.aptana.scripting.ui.views.ProjectTemplateNode to add an item to the existing enum for the new property:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >The Bundle View shows the properties for the current selected element.    </p>
+    <p  >Update com.aptana.scripting.ui.views.ProjectTemplateNode to add an item to the existing enum for the new property:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">...</code></div>
 <div class="line"><code class="plain">},</code></div>
@@ -83,7 +83,9 @@
     </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>

@@ -5,12 +5,12 @@
 <head>
     <title>Adding new Command-Line Options</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -18,19 +18,19 @@
 
         <div id="src-30083182" class="content">
                         <h1>Adding new Command-Line Options</h1>
-    <p>If you wish a user to have additional control over their environment, you can implement properties to modify the application&apos;s behavior from the command line or configuration files.    </p>
+    <p  >If you wish a user to have additional control over their environment, you can implement properties to modify the application's behavior from the command line or configuration files.    </p>
     <div class="section section-2 " id="src-30083182_AddingnewCommand-LineOptions-SettingProperties">
         <h2 class="heading "><span>Setting Properties</span></h2>
-<ul class=" "><li class=" ">    <p>Reference <a class="document-link " href="Adding_Command-Line_Options.html">Adding Command-Line Options</a>. These are all considered VM arguments.    </p>
-</li><li class=" ">    <p>A full list of default Eclipse properties may be found <a class="external-link external-link" href="http://help.eclipse.org/indigo/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/misc/runtime-options.html">here</a>.    </p>
+<ul class=" "><li class=" ">    <p  >Reference <a  class="document-link " href="Adding_Command-Line_Options.html">Adding Command-Line Options</a>. These are all considered VM arguments.    </p>
+</li><li class=" ">    <p  >A full list of default Eclipse properties may be found <a class="external-link external-link" href="http://help.eclipse.org/indigo/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/misc/runtime-options.html">here</a>.    </p>
 </li></ul>    </div>
     <div class="section section-2 " id="src-30083182_AddingnewCommand-LineOptions-CreatingaNewProperty">
         <h2 class="heading "><span>Creating a New Property</span></h2>
-<ul class=" "><li class=" ">    <p>Create a new Interface of the form I*SystemProperties, where * is derived from the name of the plugin. See <a class="document-link " href="Source_Code_Conventions.html">here</a> for naming conventions    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+<ul class=" "><li class=" ">    <p  >Create a new Interface of the form I*SystemProperties, where * is derived from the name of the plugin. See <a  class="document-link " href="Source_Code_Conventions.html">here</a> for naming conventions    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">package</code><code class="plain"> com.appcelerator.titanium.ui;</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="preprocessor">/**</code></div>
 <div class="line"><code class="preprocessor"> * Various options that can be passed on the command line to control Studio behavior</code></div>
 <div class="line"><code class="preprocessor"> *</code></div>
@@ -41,19 +41,21 @@
 <div class="line"><code class="plain">	</code><code class="preprocessor">/**</code></div>
 <div class="line"><code class="preprocessor">	 * The url of the Titanium dashboard</code></div>
 <div class="line"><code class="preprocessor">	 */</code></div>
-<div class="line"><code class="plain">	</code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> String DASHBOARD_URL = </code><code class="string">&quot;titanium.dashboardUrl&quot;</code><code class="plain">; </code><code class="comments">//$NON-NLS-1$</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">	</code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> String DASHBOARD_URL = </code><code class="string">"titanium.dashboardUrl"</code><code class="plain">; </code><code class="comments">//$NON-NLS-1$</code></div>
+<div class="line"> </div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" ">    <p>Create a new string for the system property. Note the following naming convention:    </p>
-<ul class=" "><li class=" ">    <p>titanium.camelCasedString for items in the Titanium set of plugins    </p>
-</li><li class=" ">    <p>studio.camelCasedName for items that affect the Aptana set of plugins    </p>
-</li></ul></li><li class=" ">    <p>Use EclipseUtils.isSystemPropertyEnabled() and EclipseUtils.getSystemProperty() to check if the specified option is defined, or the value in question    </p>
+</li><li class=" ">    <p  >Create a new string for the system property. Note the following naming convention:    </p>
+<ul class=" "><li class=" ">    <p  >titanium.camelCasedString for items in the Titanium set of plugins    </p>
+</li><li class=" ">    <p  >studio.camelCasedName for items that affect the Aptana set of plugins    </p>
+</li></ul></li><li class=" ">    <p  >Use EclipseUtils.isSystemPropertyEnabled() and EclipseUtils.getSystemProperty() to check if the specified option is defined, or the value in question    </p>
 </li></ul>    </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>

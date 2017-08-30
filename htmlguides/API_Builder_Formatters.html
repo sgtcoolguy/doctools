@@ -5,12 +5,12 @@
 <head>
     <title>Formatters</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -18,26 +18,26 @@
 
         <div id="src-49158047" class="content">
                         <h1>Formatters</h1>
-    <p>API Buiider ships with a number of formatters already installed:    </p>
-<ul class=" "><li class=" ">    <p>JSON    </p>
-</li><li class=" ">    <p>XML    </p>
-</li><li class=" ">    <p>CSV    </p>
-</li><li class=" ">    <p>YAML    </p>
-</li><li class=" ">    <p>Text    </p>
-</li><li class=" ">    <p>JavaScript    </p>
-</li></ul>    <p>When accessing the API, if you provide an &#x201C;Accept&#x201D; header, the response will be formatted using one of the above.    </p>
-    <p>These formatters can be customized, or new ones can be added.    </p>
+    <p  >API Buiider ships with a number of formatters already installed:    </p>
+<ul class=" "><li class=" ">    <p  >JSON    </p>
+</li><li class=" ">    <p  >XML    </p>
+</li><li class=" ">    <p  >CSV    </p>
+</li><li class=" ">    <p  >YAML    </p>
+</li><li class=" ">    <p  >Text    </p>
+</li><li class=" ">    <p  >JavaScript    </p>
+</li></ul>    <p  >When accessing the API, if you provide an &ldquo;Accept&rdquo; header, the response will be formatted using one of the above.    </p>
+    <p  >These formatters can be customized, or new ones can be added.    </p>
     <div class="section section-2 " id="src-49158047_APIBuilderFormatters-">
         <h2 class="heading "><span></span></h2>
     </div>
     <div class="section section-2 " id="src-49158047_APIBuilderFormatters-Customizingthebuilt-inJSONformatter">
         <h2 class="heading "><span>Customizing the built-in JSON formatter</span></h2>
-    <p>In your app.js, overwrite the built in formatter as follows:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >In your app.js, overwrite the built in formatter as follows:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">Arrow.Formation.formatters.json = function jsonFormatter(req, resp, body, singular, plural, callback) {</code></div>
-<div class="line"><code class="plain">    resp.set(</code><code class="string">&apos;Content-Type&apos;</code><code class="plain">, </code><code class="string">&apos;application/json&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (typeof body === </code><code class="string">&apos;object&apos;</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">    resp.set(</code><code class="string">'Content-Type'</code><code class="plain">, </code><code class="string">'application/json'</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (typeof body === </code><code class="string">'object'</code><code class="plain">) {</code></div>
 <div class="line"><code class="plain">        body.customized = </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">        callback(</code><code class="keyword">null</code><code class="plain">, JSON.stringify(body));</code></div>
 <div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> {</code></div>
@@ -46,30 +46,32 @@
 <div class="line"><code class="plain">};</code></div>
 </div>
     </div>
-    <p>    </p>
-    <p>Now whenever you request a JSON format from the API, it will also inject the <tt class=" ">&quot;customized&quot;:true</tt> property on objects.    </p>
+    <p  >    </p>
+    <p  >Now whenever you request a JSON format from the API, it will also inject the <tt class=" ">&quot;customized&quot;:true</tt> property on objects.    </p>
     </div>
     <div class="section section-2 " id="src-49158047_APIBuilderFormatters-.1">
         <h2 class="heading "><span></span></h2>
     </div>
     <div class="section section-2 " id="src-49158047_APIBuilderFormatters-Addinganewformattype">
         <h2 class="heading "><span>Adding a new format type</span></h2>
-    <p>In your app.js, add the new format as follows:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >In your app.js, add the new format as follows:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">Arrow.Formation.formats.push(</code><code class="string">&apos;happy&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">Arrow.Formation.extensions.happy = </code><code class="string">&apos;text/happy&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">Arrow.Formation.formats.push(</code><code class="string">'happy'</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">Arrow.Formation.extensions.happy = </code><code class="string">'text/happy'</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">Arrow.Formation.formatters.happy = function happyFormatter(req, resp, body, singular, plural, callback) {</code></div>
-<div class="line"><code class="plain">    resp.set(</code><code class="string">&apos;Content-Type&apos;</code><code class="plain">, </code><code class="string">&apos;text/happy&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">    callback(</code><code class="keyword">null</code><code class="plain">, </code><code class="string">&apos;You look super happy today! Oh, and: &apos;</code><code class="plain"> + JSON.stringify(body, </code><code class="keyword">null</code><code class="plain">, </code><code class="string">&apos;\t&apos;</code><code class="plain">));</code></div>
+<div class="line"><code class="plain">    resp.set(</code><code class="string">'Content-Type'</code><code class="plain">, </code><code class="string">'text/happy'</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    callback(</code><code class="keyword">null</code><code class="plain">, </code><code class="string">'You look super happy today! Oh, and: '</code><code class="plain"> + JSON.stringify(body, </code><code class="keyword">null</code><code class="plain">, </code><code class="string">'\t'</code><code class="plain">));</code></div>
 <div class="line"><code class="plain">};</code></div>
 </div>
     </div>
-    <p>Now whenever you request a &#x201C;text/happy&#x201D; format from the API, it will follow the &#x201C;happy&#x201D; protocol (which has been contrived solely for this demonstration of formatters).    </p>
+    <p  >Now whenever you request a &ldquo;text/happy&rdquo; format from the API, it will follow the &ldquo;happy&rdquo; protocol (which has been contrived solely for this demonstration of formatters).    </p>
     </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>

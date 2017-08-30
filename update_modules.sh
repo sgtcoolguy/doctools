@@ -21,7 +21,7 @@ if [ ! -d $TI_ROOT/appc_modules ]; then
 	mkdir $TI_ROOT/appc_modules
 fi
 
-## back up the doctools directory before updating it
+## back up the doctools directory to Github before updating it
 cd $TI_ROOT/doctools
 git add * -f
 git commit * -m "updated /doctools for $DATE commit" ## add auto-commit message
