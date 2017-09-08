@@ -39,7 +39,6 @@
 </li></ul></li></ul>    <div class="section section-2 " id="src-49158401_FlowDefinition-Flowdefinition">
         <h2 class="heading "><span>Flow definition</span></h2>
     <p>This section contains a detailed breakdown of how the Flow configuration is defined, alongside a number of examples. The base object is as follows:    </p>
-    <p>    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -246,7 +245,6 @@
     <div class="section section-2 " id="src-49158401_FlowDefinition-Node">
         <h2 class="heading "><span>Node</span></h2>
     <p>The <a class="document-link " href="#!/guide/Flow_Definition-section-src-49158401_FlowDefinition-node">node</a> configuration.    </p>
-    <p>    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -339,7 +337,6 @@
     <div class="section section-3 " id="src-49158401_FlowDefinition-Nodeexample">
         <h3 class="heading "><span>Node example</span></h3>
     <p>This shows the basic structure of a node as described above. It takes the value of the input key from the context, then saves it back to the context on the same key.    </p>
-    <p>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">{</code></div>
@@ -365,7 +362,6 @@
     <div class="section section-2 " id="src-49158401_FlowDefinition-Parameter">
         <h2 class="heading "><span>Parameter</span></h2>
     <p>The details of an input parameter.    </p>
-    <p>    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -441,7 +437,6 @@
     <div class="section section-3 " id="src-49158401_FlowDefinition-Parameterexample">
         <h3 class="heading "><span>Parameter example</span></h3>
     <p>This example shows a parameter with the name &quot;value&quot; with its value taken from the Flow context key &quot;input&quot;.    </p>
-    <p>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">{</code></div>
@@ -455,7 +450,6 @@
     <div class="section section-2 " id="src-49158401_FlowDefinition-Response">
         <h2 class="heading "><span>Response</span></h2>
     <p>Detail for handling the response of the node.    </p>
-    <p>    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -511,7 +505,6 @@
         </tr>
 </tbody>        </table>
             </div>
-    <p>    </p>
     <div class="section section-3 " id="src-49158401_FlowDefinition-Responseexample">
         <h3 class="heading "><span>Response example</span></h3>
     <p>This shows the response of a node being written to the &#x201C;value&#x201D; key in the context. A condition is applied so that if the response is equal to 4, the next node to be executed will be the one defined by <tt class=" ">step.two-squared</tt>. Otherwise, <tt class=" ">step.not-two-squared</tt> will be executed instead.    </p>
@@ -581,7 +574,6 @@
     <div class="section section-2 " id="src-49158401_FlowDefinition-Route">
         <h2 class="heading "><span>Route</span></h2>
     <p>A route selector which checks if optional conditions are met, and routes to the next node(s) if they match.    </p>
-    <p>    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -680,7 +672,6 @@
     <div class="section section-2 " id="src-49158401_FlowDefinition-Condition">
         <h2 class="heading "><span>Condition</span></h2>
     <p>A test to apply to an evaluated <a class="document-link " href="#!/guide/JSONPath">JSONPath</a> from the node response.    </p>
-    <p>    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -855,7 +846,7 @@
         <h2 class="heading "><span>Returns</span></h2>
     <p>A <a class="document-link " href="#!/guide/JSONPath">JSONPath</a> evaluated against the final context and returned as the result of the flow.    </p>
     <p>This value directly corresponds to the data which is returned when hitting an endpoint. In API Builder two returns definitions are supported:    </p>
-<ol class=" "><li class=" ">    <p>Here the value resolved by the JSONPath will be returned by the flow. The endpoint which consumes this flow will return the value as the response with a status code of 200.    </p>
+    <p>Here the value resolved by the JSONPath will be returned by the flow. The endpoint which consumes this flow will return the value as the response with a status code of 200.    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -893,7 +884,7 @@
         </tr>
 </tbody>        </table>
             </div>
-</li><li class=" ">    <p>This format allows custom status codes and headers to be set by the flow. Each value is resolved from a JSONPath pointing to data within the flow context.    </p>
+    <p>This format allows custom status codes and headers to be set by the flow. Each value is resolved from a JSONPath pointing to data within the flow context.    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -966,8 +957,7 @@
         </tr>
 </tbody>        </table>
             </div>
-</li></ol>    <p>Since none of these properties are required, default values will be used in their place if the properties are either not specified, or the JSONPath query does not match a value.    </p>
-    <p>    </p>
+    <p>Since none of these properties are required, default values will be used in their place if the properties are either not specified, or the JSONPath query does not match a value.    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -1007,7 +997,6 @@
     <div class="section section-3 " id="src-49158401_FlowDefinition-Returnsexample">
         <h3 class="heading "><span>Returns example</span></h3>
     <p>JSONPath selector taking the value of the <tt class=" ">result</tt> property from the Flow context. This will return the contents of that property from the flow and corresponding endpoint to which it is attached.    </p>
-    <p>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="string">&quot;$.result&quot;</code><code class="plain"> </code></div>

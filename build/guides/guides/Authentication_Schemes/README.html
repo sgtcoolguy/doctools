@@ -26,8 +26,8 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Authentication_Schemes-section-src-43302486_AuthenticationSchemes-Customauthentication">Custom authentication</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-43302486_AuthenticationSchemes-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p>An API Builder project provides different types of security mechanisms to authenticate requests.  Typically, you want to restrict which client applications have access to your APIs, and you want the client to prove it has permission to access your API Builder application&apos;s APIs.    </p>
-    <p>By default, a new API Builder project uses HTTP basic authentication, where the client must pass the API key in the Authorization header for each request.  A new API Builder project contains two generated API keys, <tt class=" ">apikey_development</tt> and <tt class=" ">apikey_production</tt>, located in the <tt class=" ">conf/default.js</tt> file.  The <tt class=" ">apikey_development</tt> key contains the key used to test your project locally, while <tt class=" ">apikey_production</tt> is used to make requests to your project when it is published.  You may change the values for these keys but make sure you generate a sufficiently unique value and do not share these keys with other API projects as they control access to your APIs.  These keys should only be used by one API Builder project.    </p>
+    <p>An API Builder project provides different types of security mechanisms to authenticate requests. Typically, you want to restrict which client applications have access to your APIs, and you want the client to prove it has permission to access your API Builder application&apos;s APIs.    </p>
+    <p>By default, a new API Builder project uses HTTP basic authentication, where the client must pass the API key in the Authorization header for each request. A new API Builder project contains two generated API keys, <tt class=" ">apikey_development</tt> and <tt class=" ">apikey_production</tt>, located in the <tt class=" ">conf/default.js</tt> file. The <tt class=" ">apikey_development</tt> key contains the key used to test your project locally, while <tt class=" ">apikey_production</tt> is used to make requests to your project when it is published. You may change the values for these keys but make sure you generate a sufficiently unique value and do not share these keys with other API projects as they control access to your APIs. These keys should only be used by one API Builder project.    </p>
     <p>To change the authentication mechanism, open the <tt class=" ">conf/default.js</tt> file and change the <tt class=" ">APIKeyAuthType</tt> key to one of the following:    </p>
 <ul class=" "><li class=" ">    <p><strong class=" "><tt class=" ">none</tt></strong>: No authentication. The client does not need any authentication to access these APIs. In this case, all client requests are accepted without any security. Use the value <tt class=" ">none</tt> for the key <tt class=" ">APIKeyAuthType</tt>.    </p>
 </li><li class=" ">    <p><strong class=" "><tt class=" ">basic</tt></strong>: Use HTTP basic authentication (default). The client uses the HTTP <tt class=" ">Authorization</tt> header to send an encoded version of the API Key using the <a class="external-link external-link" href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank">HTTP Basic Authentication</a> standard. The username part is the value of the API Key and the password part should be blank (empty string). Use the value <tt class=" ">basic</tt> for the key <tt class=" ">APIKeyAuthType</tt>.    </p>
@@ -45,7 +45,7 @@
 <div class="line"><code class="plain">Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code></div>
 </div>
     </div>
-    <p>For API Builder applications, the user name is the API key and the password field is left blank.  For a Titanium application, you can construct the header and request as follows:    </p>
+    <p>For API Builder applications, the user name is the API key and the password field is left blank. For a Titanium application, you can construct the header and request as follows:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var xhr = Ti.Network.createHTTPClient({</code></div>
@@ -66,7 +66,7 @@
     </div>
     <div class="section section-2 " id="src-43302486_AuthenticationSchemes-HTTPheaderauthentication">
         <h2 class="heading "><span>HTTP header authentication</span></h2>
-    <p>In HTTP header authentication, the client sends the API key in a custom APIKey header.  The server must only support HTTPS requests, so the key is not sent as plain text (unencrypted).    </p>
+    <p>In HTTP header authentication, the client sends the API key in a custom APIKey header. The server must only support HTTPS requests, so the key is not sent as plain text (unencrypted).    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var xhr = Ti.Network.createHTTPClient({</code></div>
@@ -86,8 +86,8 @@
     </div>
     <div class="section section-2 " id="src-43302486_AuthenticationSchemes-LDAP">
         <h2 class="heading "><span>LDAP</span></h2>
-    <p>Starting with API Builder 1.2.x, you may use the LDAP plugin to authenticate requests.  The client application will need to use HTTP basic authentication to send the username and password in the HTTP authorization header to the API Builder application.    </p>
-    <p>To use the plugin, you need to pass your LDAP settings to the <tt class=" ">ldap</tt> object in the <tt class=" ">conf/default.js</tt> file.  Define the following key-value pairs:    </p>
+    <p>Starting with API Builder 1.2.x, you may use the LDAP plugin to authenticate requests. The client application will need to use HTTP basic authentication to send the username and password in the HTTP authorization header to the API Builder application.    </p>
+    <p>To use the plugin, you need to pass your LDAP settings to the <tt class=" ">ldap</tt> object in the <tt class=" ">conf/default.js</tt> file. Define the following key-value pairs:    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -223,7 +223,7 @@
     </div>
     <div class="section section-2 " id="src-43302486_AuthenticationSchemes-Customauthentication">
         <h2 class="heading "><span>Custom authentication</span></h2>
-    <p>To use a custom authentication mechanism, you need to create a CommonJS module that exposes a plugin class and implements the following methods.  All methods are optional, but to validate requests, you need to implement the <tt class=" ">validateRequest</tt> method, either the synchronous version or asynchronous version.    </p>
+    <p>To use a custom authentication mechanism, you need to create a CommonJS module that exposes a plugin class and implements the following methods. All methods are optional, but to validate requests, you need to implement the <tt class=" ">validateRequest</tt> method, either the synchronous version or asynchronous version.    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -277,6 +277,14 @@
         <p class="p1">Used by the API Doc tab in the API Builder Console to allow the plugin to modify the authentication response headers, body, etc.    </p>
             </td>
         </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">Plugin.prototype.getSwaggerSecurity</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Used by Swagger generation to describe the <a class="external-link external-link" href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#security-definitions-object" target="_blank">Swagger Definitions Object</a> and the <a class="external-link external-link" href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#security-requirement-object" target="_blank">Swagger Requirement Object</a> authentication mechanism.    </p>
+            </td>
+        </tr>
 </tbody>        </table>
             </div>
     <p>In the <tt class=" ">conf/default.js</tt> file, set the     <span style="color: #343438;">
@@ -326,6 +334,23 @@
 <div class="line"><code class="plain">Plugin.prototype.applyResponseForTest = function(response, body) {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> body;</code></div>
 <div class="line"><code class="plain">};</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Describe the x-security header for the Swagger 2.0 feed</code></div>
+<div class="line"><code class="plain">Plugin.prototype.getSwaggerSecurity = function () {</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">return</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">		securityDefinitions: {</code></div>
+<div class="line"><code class="plain">			app_auth: {</code></div>
+<div class="line"><code class="plain">				type: </code><code class="string">&apos;apiKey&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">				name: </code><code class="string">&apos;x-secret&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">				in: </code><code class="string">&apos;header&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">				description: </code><code class="string">&apos;Require authorized access to API&apos;</code></div>
+<div class="line"><code class="plain">			}</code></div>
+<div class="line"><code class="plain">		},</code></div>
+<div class="line"><code class="plain">		security: [{</code></div>
+<div class="line"><code class="plain">			app_auth: []</code></div>
+<div class="line"><code class="plain">		}]</code></div>
+<div class="line"><code class="plain">	}</code></div>
+<div class="line"><code class="plain">}</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">module.exports = Plugin;</code></div>
 </div>

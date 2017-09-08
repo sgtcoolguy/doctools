@@ -71,7 +71,7 @@
         <p><tt class=" ">apis</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains &apos;Builder API JavaScript files, used to create custom entry points for the application. For details, see <a class="document-link " href="#!/guide/API_Builder_APIs">API Builder APIs</a>.    </p>
+        <p>Contains API JavaScript files, used to create custom entry points for the application. For details, see <a class="document-link " href="#!/guide/API_Builder_APIs">API Builder APIs</a>.    </p>
             </td>
         </tr>
     <tr>
@@ -87,7 +87,7 @@
         <p><tt class=" ">appc.json</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains component dependencies and API Runtime Services deployment settings. For details, see <a class="document-link " href="#!/guide/API_Builder_Appc_JSON_File">API Builder Appc JSON File</a>.    </p>
+        <p>Contains component dependencies and API Runtime Services deployment settings. For details, see <a class="document-link " href="#!/guide/API_Runtime_Configuration">API Runtime Configuration</a>.    </p>
             </td>
         </tr>
     <tr>
@@ -95,7 +95,7 @@
         <p><tt class=" ">blocks</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains Block JavaScript files, used to create pre- and post-processing filters. For details, see <a class="document-link " href="#!/guide/Blocks">Blocks</a>.    </p>
+        <p>Contains Block JavaScript files, used to create pre- and post-processing filters. For details, see <a class="document-link " href="#!/guide/API_Builder_Blocks">API Builder Blocks</a>.    </p>
             </td>
         </tr>
     <tr>
@@ -103,7 +103,7 @@
         <p><tt class=" ">conf</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains configuration files in JSON format for the project and required connectors. For details, see <a class="document-link " href="#!/guide/API_Builder_Configuration">API Builder Configuration</a>.    </p>
+        <p>Contains configuration files in JSON format for the project and required connectors. For details, see <a class="document-link " href="#!/guide/Console_Configuration">Console Configuration</a>.    </p>
             </td>
         </tr>
     <tr>
@@ -135,7 +135,7 @@
         <p><tt class=" ">models</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains Model JavaScript files, used to define the schema for your data. For details, see <a class="document-link " href="#!/guide/API_Builder_Models">API Builder Models</a>.    </p>
+        <p>Contains Model JavaScript files, used to define the schema for your data. For details, see <a class="document-link " href="#!/guide/Models">Models</a>.    </p>
             </td>
         </tr>
     <tr>
@@ -159,7 +159,7 @@
         <p><tt class=" ">web</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains Web files, used to create endpoints that render UI. For details, see API Builder Web.    </p>
+        <p>Contains Web files, used to create endpoints that render UI.    </p>
             </td>
         </tr>
     <tr>
@@ -218,22 +218,7 @@
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Custom404page">
         <h2 class="heading "><span>Custom 404 page</span></h2>
-    <p>While the API Builder Admin provides a default 404 page, you can create your own for your production app.    </p>
-    <p>First, disable the default handler in your configuration:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">module.exports = {</code></div>
-<div class="line"><code class="plain">    ...</code></div>
-<div class="line"><code class="plain">    admin: {</code></div>
-<div class="line"><code class="plain">        ...</code></div>
-<div class="line"><code class="plain">        disableDefault404: true</code></div>
-<div class="line"><code class="plain">        ...</code></div>
-<div class="line"><code class="plain">    }</code></div>
-<div class="line"><code class="plain">    ...</code></div>
-<div class="line"><code class="plain">};</code></div>
-</div>
-    </div>
-    <p>Then add the following to your app.js to register the handler:    </p>
+    <p>You can render your own custom not found page by adding the following code to your app.js:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
@@ -269,7 +254,7 @@
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Custom500page">
         <h2 class="heading "><span>Custom 500 page</span></h2>
-    <p>You can render your own custom error handling page by adding code to your app.js:    </p>
+    <p>You can render your own custom error handling page by adding the following code to your app.js:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
@@ -317,7 +302,7 @@
 </li><li class=" ">    <p>application logs &#x2013; explicit log calls made in the application    </p>
 </li></ul>    <p>To capture access logs, use the <tt class=" ">appc-logger</tt> module, and to capture application logs, you can either use the standard JavaScript <tt class=" ">console.log()</tt> and <tt class=" ">console.error()</tt> methods, or you can use the <tt class=" ">appc-logger</tt> module.    </p>
     <p>By default, when an application is initialized, it loads and creates an <tt class=" ">appc-logger</tt> instance.  The <tt class=" ">appc-logger</tt> instance is bound to the server instance, which will automatically capture access logs for the application.    </p>
-    <p>To make log calls, use the <tt class=" ">logger</tt> property from either the API Builder instance, request object or response object to invoke <a class="external-link external-link" href="#!/api/Arrow.Logger"> <tt class=" ">appc-logger</tt> APIs</a>.    </p>
+    <p>To make log calls, use the <tt class=" ">logger</tt> property from either the API Builder instance, request object or response object to invoke <a class="external-link external-link" href="#!/api/Arrow.Logger"><tt class=" ">appc-logger</tt> APIs</a>.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
@@ -593,8 +578,8 @@ The following example allows the application to be accessed from     </span>
     </div>
     <div class="section section-3 " id="src-49153285_APIBuilderProject-Wildcardsubdomains">
         <h3 class="heading "><span>Wildcard subdomains</span></h3>
-    <p>The pre-defined<tt class=" "> cloudapp.appcelerator.com </tt>URL that Appcelerator Cloud uses to publish your application supports a wildcard subdomain. You may append a token to the beginning of the URL that can be parsed by the application. This does not apply to custom domain names using the <tt class=" ">acs domain</tt> command to bind the application to a CNAME or A record.    </p>
-    <p>For example, if your published URL is <tt class=" "> https://1234567890.cloudapp.appcelerator.com/ </tt>, you can navigate to your application using the same domain and add a custom token as the subdomain, for example,  <tt class=" ">https://deadbeef.1234567890.cloudapp.appcelerator.com/</tt>, where <tt class=" ">deadbeef</tt> is the wildcard subdomain. Then, the application can retrieve the host and subdomain:    </p>
+    <p>The pre-defined <tt class=" ">cloudapp.appcelerator.com</tt> URL that Appcelerator Cloud uses to publish your application supports a wildcard subdomain. You may append a token to the beginning of the URL that can be parsed by the application. This does not apply to custom domain names using the <tt class=" ">acs domain</tt> command to bind the application to a CNAME or A record.    </p>
+    <p>For example, if your published URL is <tt class=" ">https://1234567890.cloudapp.appcelerator.com/</tt>, you can navigate to your application using the same domain and add a custom token as the subdomain, for example,  <tt class=" ">https://deadbeef.1234567890.cloudapp.appcelerator.com/</tt>, where <tt class=" ">deadbeef</tt> is the wildcard subdomain. Then, the application can retrieve the host and subdomain:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var http = require(</code><code class="string">&apos;http&apos;</code><code class="plain">),</code></div>
@@ -613,7 +598,7 @@ The following example allows the application to be accessed from     </span>
         <h2 class="heading "><span>Add a custom SSL certificate</span></h2>
     <p>To use a custom SSL certificate to access your application using HTTPS, you need to create a PEM file, then add the PEM file to the application.    </p>
     <p>To create a PEM file, you will need the following three files provided by your SSL certificate provider:    </p>
-<ul class=" "><li class=" ">    <p>Certificate file (<tt class=" "> customapp.com.crt</tt>, for example)    </p>
+<ul class=" "><li class=" ">    <p>Certificate file (<tt class=" ">customapp.com.crt</tt>, for example)    </p>
 </li><li class=" ">    <p>Intermediate certificate authority (<tt class=" ">gd_bundle.crt</tt>, for example)    </p>
 </li><li class=" ">    <p>Key used to generate the certificate (<tt class=" ">customapp.com.key</tt>, for example)    </p>
 </li></ul>    <p>You need to combine the contents of the three files into a single text file, called a PEM file, which you will add to your application. The PEM file must have the following structure:    </p>
