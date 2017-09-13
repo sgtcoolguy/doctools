@@ -22,8 +22,6 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Overview">Overview</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Projectstructure">Project structure</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Initializerfile">Initializer file</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Custom404page">Custom 404 page</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Custom500page">Custom 500 page</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Deploytheapplication">Deploy the application</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Logoutput">Log output</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Viewlogfiles">View log files</a>    </p>
@@ -213,80 +211,6 @@
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="comments">// start the server</code></div>
 <div class="line"><code class="plain">server.start();</code></div>
-</div>
-    </div>
-    </div>
-    <div class="section section-2 " id="src-49153285_APIBuilderProject-Custom404page">
-        <h2 class="heading "><span>Custom 404 page</span></h2>
-    <p>You can render your own custom not found page by adding the following code to your app.js:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
-<div class="line"><code class="plain">    server = </code><code class="keyword">new</code><code class="plain"> Arrow();</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">server.on(</code><code class="string">&apos;started&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">( ) {</code></div>
-<div class="line"><code class="plain">    server.logger.debug(</code><code class="string">&apos;server started!&apos;</code><code class="plain">);</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">    </code><code class="comments">// add a 404 error handler</code></div>
-<div class="line"><code class="plain">    server.app.use(</code><code class="keyword">function</code><code class="plain">(req, resp, next) {</code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (!resp.bodyFlushed) {</code></div>
-<div class="line"><code class="plain">            resp.status(404).render(</code><code class="string">&apos;404&apos;</code><code class="plain">, {</code></div>
-<div class="line"><code class="plain">                menuName: </code><code class="string">&apos;Not Found&apos;</code></div>
-<div class="line"><code class="plain">            });</code></div>
-<div class="line"><code class="plain">        }</code></div>
-<div class="line"><code class="plain">        next(</code><code class="keyword">false</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">    });</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="comments">// start the server</code></div>
-<div class="line"><code class="plain">server.start();</code></div>
-</div>
-    </div>
-    <p>This example renders a 404 page from <tt class=" ">web/views/404.md</tt>:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;</code><code class="keyword">strong</code><code class="plain">&gt;404!&lt;/</code><code class="keyword">strong</code><code class="plain">&gt;</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">&lt;</code><code class="keyword">p</code><code class="plain">&gt;Oh no, nothing was found! I am so sorry. :(&lt;/</code><code class="keyword">p</code><code class="plain">&gt;</code></div>
-</div>
-    </div>
-    </div>
-    <div class="section section-2 " id="src-49153285_APIBuilderProject-Custom500page">
-        <h2 class="heading "><span>Custom 500 page</span></h2>
-    <p>You can render your own custom error handling page by adding the following code to your app.js:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
-<div class="line"><code class="plain">    server = </code><code class="keyword">new</code><code class="plain"> Arrow();</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">server.on(</code><code class="string">&apos;started&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">( ) {</code></div>
-<div class="line"><code class="plain">    server.logger.debug(</code><code class="string">&apos;server started!&apos;</code><code class="plain">);</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">    </code><code class="comments">// add a 500 error handler</code></div>
-<div class="line"><code class="plain">    app.use(</code><code class="keyword">function</code><code class="plain">(err, req, resp, next) {</code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (!resp.bodyFlushed) {</code></div>
-<div class="line"><code class="plain">            server.logger.error(req.originalUrl + </code><code class="string">&apos; Failed With &apos;</code><code class="plain"> + err.stack);</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">            app.render(</code><code class="string">&apos;500&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(err, html) {</code></div>
-<div class="line"><code class="plain">                resp.status(500).send(html);</code></div>
-<div class="line"><code class="plain">                next(</code><code class="keyword">false</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">            });</code></div>
-<div class="line"><code class="plain">        }</code></div>
-<div class="line"><code class="plain">    });</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="comments">// start the server</code></div>
-<div class="line"><code class="plain">server.start();</code></div>
-</div>
-    </div>
-    <p>This example renders a 500 page from <tt class=" ">web/views/500.md</tt>:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;</code><code class="keyword">strong</code><code class="plain">&gt;500 Error!&lt;/</code><code class="keyword">strong</code><code class="plain">&gt;</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">&lt;</code><code class="keyword">p</code><code class="plain">&gt;Oh no, something went wrong! I am so sorry. :(&lt;/</code><code class="keyword">p</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     </div>

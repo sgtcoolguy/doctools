@@ -43,7 +43,7 @@
     <p>API Builder uses the configuration files in the project&apos;s <tt class=" ">conf</tt> directory to initialize the application and its connectors. Each JavaScript file in the directory should expose an object of key-value pairs. You may add any arbitrary key-value pair beside the one described below. The values will be passed to any method that is passed the API Builder configuration object.    </p>
     <p>Note: API key values and session object are auto-generated when you create a new project.    </p>
     <p>For environment-specific configuration files, add either <tt class=" ">.development</tt> or <tt class=" ">.production</tt> to the end of the filename. For example, <tt class=" ">foo.development.js</tt> will be used for the development environment, while <tt class=" ">foo.production.js</tt> will be used for the production environment.    </p>
-    <p>If multiple files set the same keys, the value from the last file loaded will be used unless its an environment-specific file. Files are loaded based on the order returned from the OS&apos;s readdir() method. For example, if Foo.js and foo.development.js set the same key, the value in Foo.js is used since it is not environment specific. However, if <tt class=" ">Foo.development.js</tt> and <tt class=" ">foo.development.js</tt> set the same key, the value from <tt class=" ">foo.development.js</tt> is used since it is loaded last.    </p>
+    <p>If multiple files set the same keys, the value from the last file loaded will be used unless its an environment-specific file. Files are loaded based on the order returned from the OS&apos;s readdir() method. For example, if <tt class=" ">Foo.js</tt> and <tt class=" ">foo.development.js</tt> set the same key, the value in <tt class=" ">Foo.js</tt> is used since it is not environment specific. However, if <tt class=" ">Foo.development.js</tt> and <tt class=" ">foo.development.js</tt> set the same key, the value from <tt class=" ">foo.development.js</tt> is used since it is loaded last.    </p>
     <p>Since Release 5.0.0, you can override the configuration file settings with an environment variable. For the setting, you want to override, prefix the variable with <tt class=" ">ARROW_</tt>. For example, if you want to override the <tt class=" ">apikey</tt> setting, set the <tt class=" ">ARROW_APIKEY</tt> environment variable.    </p>
     </div>
     <div class="section section-2 " id="src-49153261_ConsoleConfiguration-Example">
@@ -127,62 +127,6 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>apiDocPrefix    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>String    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">/apidoc</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Path to access the generated API docs    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>css    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Array&lt;String&gt;    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>-    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>CSS files to inject to customize the styling of the Admin Console and API docs. Files must be relative to <tt class=" ">./web/public/</tt> folder or absolute URLs.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p class="p1">customHTMLErrorPage    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>String    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>-    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>HTML content to display for unauthorized access (HTTP 401 error code).    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>disableAuth    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Boolean    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>false    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Set to <tt class=" ">true</tt> to disable authorization to access the Admin Console console.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
         <p>disableAPIDoc    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
@@ -192,21 +136,7 @@
         <p>false    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Set to <tt class=" ">true</tt> to not display the generated API Docs.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p class="p1">enableAdminInProduction    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Boolean    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>false    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Set to <tt class=" ">true</tt> to enable the Admin Console in the production environment. Note: as of CLI 6.0.0 and API Builder (formerly know as Arrow Builder) 1.8.8, this default value is false. Previously, it was set to true.    </p>
+        <p>Set to <tt class=" ">true</tt> to not display the generated API Docs. Changing the setting only works in production. Swagger is always available in dev mode.    </p>
             </td>
         </tr>
     <tr>
@@ -221,34 +151,6 @@
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Set to <tt class=" ">true</tt> to enable the Admin Console.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>js    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Array&lt;String&gt;    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>-    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>JavaScript files to inject to customize the styling of the Admin Console and API docs. Files must be relative to <tt class=" ">./web/public/</tt> folder or absolute URLs.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>prefix    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>String    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">/arrow</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Path to access the Admin Console.    </p>
             </td>
         </tr>
     <tr>

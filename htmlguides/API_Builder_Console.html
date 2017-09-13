@@ -78,62 +78,6 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>apiDocPrefix    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>String    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">/apidoc</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Path to access the generated API docs    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>css    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Array&lt;String&gt;    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>-    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>CSS files to inject to customize the styling of the Admin Console and API docs. Files must be relative to <tt class=" ">./web/public/</tt> folder or absolute URLs.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p class="p1">customHTMLErrorPage    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>String    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>-    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>HTML content to display for unauthorized access (HTTP 401 error code).    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>disableAuth    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Boolean    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>false    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Set to <tt class=" ">true</tt> to disable authorization to access the Admin Console console.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
         <p>disableAPIDoc    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
@@ -143,21 +87,7 @@
         <p>false    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Set to <tt class=" ">true</tt> to not display the generated API Docs.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p class="p1">enableAdminInProduction    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Boolean    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>false    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Set to <tt class=" ">true</tt> to enable the Admin Console in the production environment. Note: as of CLI 6.0.0 and API Builder (formerly know as Arrow Builder) 1.8.8, this default value is false. Previously, it was set to true.    </p>
+        <p>Set to <tt class=" ">true</tt> to not display the generated API Docs. Changing the setting only works in production. Swagger is always available in dev mode.    </p>
             </td>
         </tr>
     <tr>
@@ -172,34 +102,6 @@
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Set to <tt class=" ">true</tt> to enable the Admin Console.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>js    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Array&lt;String&gt;    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>-    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>JavaScript files to inject to customize the styling of the Admin Console and API docs. Files must be relative to <tt class=" ">./web/public/</tt> folder or absolute URLs.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>prefix    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>String    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">/arrow</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Path to access the Admin Console.    </p>
             </td>
         </tr>
     <tr>
@@ -241,31 +143,14 @@
 <div class="line"><code class="plain">    </code><code class="comments">// control whether the admin website is available</code></div>
 <div class="line"><code class="plain">    enabled: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">    </code><code class="comments">// the prefix to the admin website</code></div>
-<div class="line"><code class="plain">    prefix: </code><code class="string">&apos;/arrow&apos;</code><code class="plain">,</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">    </code><code class="comments">// the prefix for the public apidocs website</code></div>
-<div class="line"><code class="plain">    apiDocPrefix: </code><code class="string">&apos;/apidoc&apos;</code><code class="plain">,</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">    </code><code class="comments">// if you set disableAuth, in production only your API docs will show up</code></div>
-<div class="line"><code class="plain">    disableAuth: </code><code class="keyword">false</code><code class="plain">,</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">    </code><code class="comments">// if you set disableAPIDoc, you APIs docs will not show up (regardless of disableAuth)</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// if you set disableAPIDoc, your APIs docs will not show up (Only works in production. Swagger is always available in dev mode.)</code></div>
 <div class="line"><code class="plain">    disableAPIDoc: </code><code class="keyword">false</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">&#xA0;</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// set to true to allow the admin website to be accessed in production. however, you will still need a</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// login unless disableAuth is false. if you set this to false, the admin website will not be enabled</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// when in production (still respects enabled above)</code></div>
-<div class="line"><code class="plain">    enableAdminInProduction: </code><code class="keyword">false</code><code class="plain">,</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// set the email addresses you want to enable while in production</code></div>
 <div class="line"><code class="plain">    validEmails: [</code><code class="string">&quot;jsmith@foo.com&quot;</code><code class="plain">],</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// set the organization ids you want to enable while in production</code></div>
 <div class="line"><code class="plain">    validOrgs: [</code><code class="value">199546299</code><code class="plain">]</code></div>
-<div class="line"><code class="plain">&#xA0;</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// custom error page for unauthorized access (HTTP 401 error code)</code></div>
-<div class="line"><code class="plain">    customHTMLErrorPage: </code><code class="string">&apos;&lt;p&gt;No, no, no...&lt;/p&gt;&apos;</code><code class="plain">,</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// set the list of IP addresses, IP ranges and hostnames from which connections to the admin interfaces </code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// will be accepted</code></div>
