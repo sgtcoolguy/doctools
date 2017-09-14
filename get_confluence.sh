@@ -51,7 +51,38 @@ parse_xml() {
 	#cd $DOCTOOLSDIR
 	## parse the $TI_ROOT/doctools/htmlguides/toc.xml file for items related to TIDOC-2718
 	#node $DOCTOOLSDIR/parse_xml $HTMLGUIDESDIR toc.xml
-	echo "Parsing $HTMLGUIDESDIR/toc.xml"
+	#echo "Parsing $HTMLGUIDESDIR/toc.xml"
+	echo
+}
+
+getWiki() {
+	if [ -s $WORKINGDIR/$CONFLUENCE_FILE ]; then
+		printf "$CONFLUENCE_FILE exists. Do you wish to download it again, unzip the current file, or download and unzip latest version (total package)? [d]ownload/[u]nzip/[t]otal?"
+		read -r input
+		if [ $input == "download" ] || [ $input == "d" ]; then
+			echo "Downloading today's guide2 .jar file."
+			downloadJarFile
+		elif [ $input == "unzip" ] || [ $input == "u" ]; then
+			echo "Unzipping the existing guide2 file in $HTMLGUIDESDIR."
+			cd $HTMLGUIDESDIR
+			unzipFile
+			parse_xml
+		elif [ $input == "total" ] || [ $input == "t" ]; then
+			echo "Downloading latest version of guide2 space and unzipping in $HTMLGUIDESDIR."
+			downloadJarFile
+			cd $HTMLGUIDESDIR
+			unzipFile
+			parse_xml
+		else
+			Echo "Quitting"
+		fi
+	else
+		echo "The guide2 .jar file is out of date or does not exist. Downloading today's version."
+		## download .jar file into a working directory outside of htmlguides directory
+		downloadJarFile
+		unzipFile
+		parse_xml
+	fi
 }
 
 ## Create a series of potentially missing directories
@@ -81,33 +112,26 @@ if [ ! -d $WORKINGDIR ]; then
 	mkdir $WORKINGDIR
 fi
 
-if [ -s $WORKINGDIR/$CONFLUENCE_FILE ]; then
-	printf "$CONFLUENCE_FILE exists. Do you wish to download it again, unzip the current file, or download and unzip latest version (total package)? [d]ownload/[u]nzip/[t]otal?"
-	read -r input
-	if [ $input == "download" ] || [ $input == "d" ]; then
-		echo "Downloading today's guide2 .jar file."
-		downloadJarFile
-	elif [ $input == "unzip" ] || [ $input == "u" ]; then
-		echo "Unzipping the existing guide2 file in $HTMLGUIDESDIR."
-		cd $HTMLGUIDESDIR
-		unzipFile
-		parse_xml
-	elif [ $input == "total" ] || [ $input == "t" ]; then
-		echo "Downloading latest version of guide2 space and unzipping in $HTMLGUIDESDIR."
-		downloadJarFile
-		cd $HTMLGUIDESDIR
-		unzipFile
-		parse_xml
-	else
-		Echo "Quitting"
-	fi
+## Ask user if this is a major or minor SDK release; if so, edit the Titanium Compatibility Matrix wiki page and carry on normally
+printf "Is this a major or minor SDK release? "
+read -r edit
+if [ $edit == "y" ]; then
+  echo "\nBe sure to add info for the Supported SDK releases, CLI info, Appc NPM, Node.js, etc."
+  echo "\nOpening browser to Titanium Compatibility Matrix"
+  open https://wiki.appcelerator.org/pages/editpage.action?pageId=29004837 #open browser
+  printf "Are you done editing? "
+  read -r done
+  if [ $done == "y" ]; then
+    getWiki
+  else
+    echo "Finish editing the Titanium Compatibility Matrix wiki page and try again.\nQuitting script."
+    exit 1
+  fi
 else
-	echo "The guide2 .jar file is out of date or does not exist. Downloading today's version."
-	## download .jar file into a working directory outside of htmlguides directory
-	downloadJarFile
-	unzipFile
-	parse_xml
+  getWiki
 fi
+
+
 
 say 'Download complete'
 
