@@ -6,28 +6,30 @@
 #####################################################################
 
 SECONDS=0
+doctools=$TI_ROOT/doctools
+
 ## empty ../platform directory
-#if [ -d $TI_ROOT/doctools/dist/platform ]; then
+#if [ -d $doctools/dist/platform ]; then
 #	echo "Emptying ../dist/platform directory."
-#	cd $TI_ROOT/doctools/dist/platform
+#	cd $doctools/dist/platform
 #	rm -r *
 #fi
 
 ## empty ../arrowdb directory
-#if [ -d $TI_ROOT/doctools/dist/arrowdb ]; then
+#if [ -d $doctools/dist/arrowdb ]; then
 #	echo "Emptying ../dist/arrowdb directory."
-#	cd $TI_ROOT/doctools/dist/arrowdb
+#	cd $doctools/dist/arrowdb
 #	rm -r *
 #fi
 
-cd $TI_ROOT/doctools
+cd $doctools
 rm messages.txt
 touch messages.txt
 
 ## ask if the repos should be updated. If not, check on the npm modules anyway
 #printf "update repos? [y]es?"
 #read -r input1
-#cd $TI_ROOT/doctools
+#cd $doctools
 #if [ $input1 == "y" ] || [ $input1 == "yes" ]; then
 #	echo "Updating repos.\n"
 #	sh update_modules.sh ## update various modules needed by the API docs portion of the stripFooter
@@ -42,28 +44,41 @@ touch messages.txt
 #sh updateNPMModules.sh ## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
 
 ## run through the basic scripts to build the docs locally
-cd $TI_ROOT/doctools
-echo "moved into $TI_ROOT/doctools\n"
-echo "starting deploy.sh prod script\n"
+
+## ** copy redirect documents into ../doctools/htmlguides
+## see TIDOC-????
+cp $doctools/page_redirects/htmlguides/*.html $doctools/htmlguides
+
+cd $doctools
+##echo "moved into $doctools\n"
+echo "Executing deploy.sh prod script\n"
 sh deploy.sh prod #> messages.txt
-echo "starting sh clouddeploy.sh\n"
+echo "Executing sh clouddeploy.sh\n"
 sh clouddeploy.sh >> messages.txt
-echo "starting sh deploy.sh -o arrow -o alloy -o modules -s prod\n"
+echo "Executing sh deploy.sh -o arrow -o alloy -o modules -s prod\n"
 sh deploy.sh -o arrow -o alloy -o modules -s prod >> messages.txt
 node stripFooter.js >> message.txt ## not 100% necessary if building for test reasons
 node redirects.js >> message.txt ## not 100% necessary if building for test reasons
-echo "starting sh clouddeploy.sh -s prod\n"
+echo "Executing sh clouddeploy.sh -s prod\n"
 sh clouddeploy.sh -s prod >> messages.txt
-echo "starting bash clouddeploy.sh prod\n"
+echo "Executing bash clouddeploy.sh prod\n"
 bash clouddeploy.sh prod >> messages.txt
-echo "starting bash build_platform.sh\n"
+## see TIDOC-????
+echo "Adding redirects based on entries in toc.xml marked with '!!REDIRECT!!'"
+say "redirect script"
+node redirect2.js $TI_ROOT
+
+## this is where the index-template.html
+## Update the ../doctools/dist/platform/latest/index-template.html file to remove any element with the !!REDIRECT!! text
+
+echo "Executing bash build_platform.sh\n"
 bash build_platform.sh >> messages.txt
 cd $TI_ROOT/appc_web_docs
-echo "starting bash ../doctools/copy_platform.sh\n"
+echo "Executing bash ../doctools/copy_platform.sh\n"
 bash ../doctools/copy_platform.sh >> messages.txt
-echo "starting bash ../doctools/copy_cloud.sh\n"
+echo "Executing bash ../doctools/copy_cloud.sh\n"
 bash ../doctools/copy_cloud.sh >> messages.txt
-cd $TI_ROOT/doctools
+cd $doctools
 node appendTitles.js >> messages.txt ## not 100% necessary if building for test reasons
 sh css_fix.sh ## See TIDOC-2739
 
