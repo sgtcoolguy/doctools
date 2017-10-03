@@ -28,7 +28,7 @@ getNPMs () { ## check to see if a NPM modules is missing and install it if it is
 		echo "Reviewing titanium_mobile for ${bold}$2${normal}"
 		cd $TI_ROOT/titanium_mobile/apidoc
 		module="$(echo $2|cut -d'@' -f 1)" ## js-yaml@3.6.1 becomes js-yaml
-		if [ ! -d $TI_ROOT/titanium_mobile/$module ]; then
+		if [ ! -d $TI_ROOT/titanium_mobile/node_modules/$module ]; then
 			echo "Missing $module npm. Installing it now.\n"
 			cd $TI_ROOT/titanium_mobile
 			npm install $2
@@ -74,6 +74,8 @@ for i in "${jsduck[@]}"
 do
 	getNPMs jsduck $i ## install missing npm modules in the doctools directory
 done
+
+say "NPM modules updated"
 
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
