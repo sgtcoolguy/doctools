@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Arrow'>/**
+</span> * @class Arrow
+ * The top-level module for managing Arrow Projects.
+ *
+ * An Arrow Project is a Node.js server application that runs in the API Runtime Services.
+ * To create a server, load the Arrow module, then use the Arrow constructor to create an
+ * Arrow instance and invoke its {@link #start start() method}.
+ *
+ *     var Arrow = require(&#39;arrow&#39;),
+ *         server = new Arrow();
+ *
+ *     // Add event listeners or invoke APIs on the Arrow instance
+ * 	   var myModel = Arrow.createModel(&#39;foo&#39;, {...});
+ *     server.addModel(myModel);
+ *
+ *     server.on(&#39;starting&#39;, function () {
+ * 	       server.logger.trace(&#39;Starting server...&#39;);
+ *     });
+ *
+ *     server.start();
+ *
+ * ### Components
+ *
+ * An Arrow Project is comprised of several components. You can either define the
+ * components using JavaScript files placed in specific directories, which are automatically loaded
+ * when creating an Arrow instance, or programmatically create components after initializing an Arrow instance.
+ *
+ * For information about the project structure of Arrow Projects, see
+ * [Arrow Builder guides](http://docs.appcelerator.com/platform/latest/#!/guide/Arrow_Builder).
+ *
+ * #### Express and Third-Party Middleware
+ *
+ * Arrow uses Express for its web framework. By default, Arrow creates an Express app instance
+ * when creating an Arrow instance, then binds its API endpoints to the app instance.
+ * You can access the Express app instance using the `app` property of the Arrow instance,
+ * then invoke [Express API calls](http://expressjs.com/4x/api.html) on the app instance.
+ *
+ *     server.app.all(&#39;/api/*&#39;, function (req, res, next) {
+ * 	       req.server.logger.info(&#39;Intercepted the request!&#39;);
+ * 	       next();
+ *     });
+ *
+ * Do not pass the error code to the response object&#39;s `send()` method. Use the `status()` method
+ * instead. If you pass a number value to the `send()` method, an error will be thrown.
+ *
+ *     // Throws an error
+ *     res.send(500);
+ *
+ *     // Invoke the following methods instead.
+ *     res.status(500).send(&#39;Uh oh. Something bad happened.&#39;);
+ *
+ * Arrow also loads the body-parser, cookie-parser and busboy modules to provide additional
+ * parsing capabilities as well as the compression module.
+ *
+ * For Express template engines, Arrow uses ejs, handlebars, marked and react modules.
+ * Access the template engines using the {@link Arrow.Middleware} API.
+ *
+ * #### Connectors
+ *
+ * {@link Arrow.Connector Connectors} allow an Arrow Project to access data stored
+ * in an external source.  Connectors are structured like Arrow Projects where they have
+ * their own models, dependencies and configuration files.
+ *
+ * You can either use an existing connector or create your own connector.
+ *
+ * #### Models
+ *
+ * {@link Arrow.Model Models} provide an interface for the Arrow Project to access
+ * data.  By default, the application will generate standardized endpoints for a client to access
+ * the data from the Arrow Project.
+ *
+ * #### APIs
+ *
+ * {@link Arrow.API APIs} provide a way for a client to access your application, execute custom
+ * logic and internally access the application&#39;s models, then return data back to the
+ * client application.
+ *
+ * Create an API to execute a custom operation with model data.
+ *
+ * #### Blocks
+ *
+ * {@link Arrow.Block Blocks} are functions that run before or after an API endpoint is executed.
+ * They can be used to modify the API request, to modify the API response or to execute common
+ * tasks like audit logging, caching, rate limiting or recording analytics. Multiple blocks can
+ * be executed before or after an API request. Blocks are optional.
+ *
+ * #### Webs
+ *
+ * Webs are endpoints that render HTML to the client application.
+ * Webs are comprised of routes, renderers, templates and static assets.
+ *
+ * {@link Arrow.Router Routes} provide the endpoint to access the Web and logic to access the data.
+ *
+ * {@link ArrowRendererEngine Renderers} (or template engines) apply local data to your templates
+ * to generate HTML. To access a renderer or create your own renderer, use the {@link Arrow.Middleware} API.
+ *
+ * Templates are the files you want to render. Place all templates in the `./web/views` folder
+ * with an appropriate extension--either `ejs`, `hbs`, `html`, `jsx`, `md` or a custom one that
+ * you can define. API Builder Tools selects the renderer engine based on the file extension.
+ *
+ * Place all assets, such as images, style sheets, static HTML files, etc., in the `./web/public`
+ * folder.
+ *
+ * #### Logger
+ *
+ * The {@link Arrow.Logger} provides a wrapper for [bunyan](https://www.npmjs.com/package/bunyan),
+ * a JSON logging utility.  By default, API Builder Tools creates a logger instance, which can be accessed
+ * using the `logger` property of the Arrow instance.
+ *
+ *     server.logger.trace(&#39;breadcrumbs...&#39;);
+ *     server.logger.info(&#39;%s %s&#39;, key, value);
+ *     server.logger.error(err);
+ *
+ * ### Lifecycle
+ *
+ * The following sections describe the sequence of events that occur when initializing and starting
+ * an Arrow Project, then making requests to the server.
+ *
+ * #### Initialization Sequence
+ *
+ * When creating a new Arrow instance, the following events occur:
+ *
+ * 1. Loads the configuration files.
+ * 2. Creates an Express app instance unless you pass `loadOnly` as `true` in the constructor.
+ * 3. Creates the API Builder Console unless its disabled.
+ * 4. Creates a Logger instance.
+ * 5. Registers the connectors.
+ * 6. Loads the model and block files.
+ * 7. Loads API and Web files and binds the endpoints to the Express app instance.
+ * 8. Fires the `loaded` event.
+ *
+ * At this point, you may add event listeners or programmatically add any other Arrow components.
+ *
+ * #### Startup Sequence
+ *
+ * After invoking the `start()` method on the Arrow instance:
+ *
+ * 1. Fires the `starting` event.
+ * 2. Registers and binds the model&#39;s standardized API endpoints to the Express app instance.
+ * 3. Fires the `listening` event.
+ * 4. Binds the server to a port.
+ * 5. Fires the `listen` event.
+ * 6. Fires the `started` event.
+ *
+ * The client can now make requests to the server.
+ *
+ * #### Request Sequence
+ *
+ * When a client makes a request to the Arrow Project, API Builder Tools first authenticates the request,
+ * then proceeds by making a series of middleware calls, where the `next()` function needs to be
+ * called after completing each operation.
+ *
+ * 1. Authenticate the request. If you are using a custom security plugin, calls the `matchURL()`
+ *    and `validateRequest()` methods if defined.
+ * 2. For Models, calls the Connector&#39;s `startRequest()`, `loginRequired()` and `login()` methods
+ *    if defined.
+ * 3. Calls any defined pre-Blocks.
+ * 4. Calls the API, Model or Router logic.
+ * 5. Calls any defined post-Blocks.
+ * 6. For Models, calls the Connector&#39;s `endRequest()` method if defined.
+ * 7. Fires the `after` event.
+ *
+ * ### Arrow Middleware Calls
+ *
+ * Each Arrow middleware call (`action` or `execute` property) is passed the same three objects:
+ *
+ *  * [Express Request object](http://expressjs.com/4x/api.html#req)
+ *  * [Express Response object](http://expressjs.com/4x/api.html#res)
+ *  * Middleware function to call next. Always call the `next()` function to execute the next
+ *    middleware call in the sequence.
+ *
+ * In addition to the Express APIs, the request object is also passed a reference to the Arrow
+ * instance as the `server` property. Use the instance to invoke APIs, such as accessing
+ * model data or invoking an API endpoint. Both the request and response objects are passed a
+ * reference to the Logger instance as the `logger` property to log messages.
+ *
+ * For Arrow.API instances, the request and response objects are also passed the `model`
+ * and `responseModel` properties, which references the models passed to the API constructor.
+ */
+
+<span id='Arrow-method-constructor'>/**
+</span> * @constructor
+ * Loads the configuration files in the `./conf` folder and initializes an Arrow instance.
+ * @param {Object} [config] Additional configuration parameters, which are merged with the configuration files.
+ * @param {Boolean} [loadOnly] Set to `true` to only load the Arrow components.
+ * Does not create the Express app instance or starts the admin console.
+ */
+
+<span id='Arrow-event-after'>/**
+</span> * @event after
+ * Fired after a request completes. The callback will be passed the request and response objects.
+ */
+<span id='Arrow-event-error'>/**
+</span> * @event error
+ * Fired if an error occurred when setting up the server. The callback will be passed the error object.
+ */
+<span id='Arrow-event-listening'>/**
+</span> * @event listening
+ * Fired before binding the server to a port.
+ */
+<span id='Arrow-event-listen'>/**
+</span> * @event listen
+ * Fired when the server can accept connections.
+ */
+<span id='Arrow-event-loaded'>/**
+</span> * @event loaded
+ * Fired after initializing the Arrow instance.
+ */
+<span id='Arrow-event-reloaded'>/**
+</span> * @event reloaded
+ * Fired after reloading an Arrow component.
+ */
+<span id='Arrow-event-starting'>/**
+</span> * @event starting
+ * Fired when the `start()` method is invoked.
+ */
+<span id='Arrow-event-started'>/**
+</span> * @event started
+ * Fired when the `start()` method completes.
+ */
+<span id='Arrow-event-stopping'>/**
+</span> * @event stopping
+ * Fired when the `stop()` method is invoked.
+ */
+<span id='Arrow-event-stopped'>/**
+</span> * @event stopped
+ * Fired when the `stop()` method completes.
+ */
+
+<span id='Arrow-static-method-addListener'>/**
+</span> * @method addListener
+ * Binds a callback to an event.
+ * @static
+ * @param {String} name Event name
+ * @param {Function} cb Callback function to execute.
+ */
+<span id='Arrow-static-method-on'>/**
+</span> * @method on
+ * @alias #static-method-addListener
+ * @static
+ */
+<span id='Arrow-static-method-once'>/**
+</span> * @method once
+ * Binds an one-time listener to an event.
+ * @static
+ * @param {String} name Event name
+ * @param {Function} cb Callback function to execute.
+ */
+<span id='Arrow-static-method-removeListener'>/**
+</span> * @method removeListener
+ * Unbinds a callback from an event.
+ * @static
+ * @param {String} name Event name
+ * @param {Function} cb Callback function to remove.
+ */
+<span id='Arrow-static-method-removeAllListeners'>/**
+</span> * @method removeAllListeners
+ * Unbinds all event callbacks for the specified event.
+ * @static
+ * @param {String} [name] Event name. If omitted, unbinds all event listeners.
+ */
+
+
+<span id='Arrow-property-apis'>/**
+</span> * @property {Array&lt;Arrow.API&gt;} apis
+ * APIs loaded and added to the instance.
+ */
+<span id='Arrow-property-app'>/**
+</span> * @property {Object} app
+ * Express app instance.
+ */
+<span id='Arrow-property-blocks'>/**
+</span> * @property {Array&lt;Arrow.Block&gt;} blocks
+ * Blocks loaded or added to the instance.
+ */
+<span id='Arrow-property-config'>/**
+</span> * @property {Object} config
+ * Configuration object used to initialize the server instance.
+ */
+<span id='Arrow-property-express'>/**
+</span> * @property {Object} express
+ * Express module instance.
+ * @since 1.1.0
+ */
+<span id='Arrow-property-ignoreDuplicateModels'>/**
+</span> * @property {Boolean} ignoreDuplicateModels
+ * Set to `true` to ignore duplicate models.
+ */
+<span id='Arrow-property-inProduction'>/**
+</span> * @property {Boolean} inProduction
+ * Set to `true` if the application was deployed to the production environment.
+ */
+<span id='Arrow-property-logger'>/**
+</span> * @property {Arrow.Logger} logger
+ * Logger instance.
+ */
+<span id='Arrow-property-middleware'>/**
+</span> * @property {Arrow.Middleware} middleware
+ * Middleware instance.
+ */
+<span id='Arrow-property-models'>/**
+</span> * @property {Array&lt;Arrow.Model&gt;} models
+ * Models loaded or added to the instance.
+ */
+<span id='Arrow-property-port'>/**
+</span> * @property {Number} port
+ * Port number used by the server instance.
+ */
+<span id='Arrow-property-routes'>/**
+</span> * @property {Array&lt;Arrow.Router&gt;} routes
+ * Routes loaded to the instance.
+ */
+</pre>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Arrow-Logger'>/**
+</span> * @class Arrow.Logger
+ * The Arrow Logger class provides a wrapper for [bunyan](https://www.npmjs.com/package/bunyan),
+ * a JSON logging utility. You can access a local instance of the log utility using the `logger`
+ * property of the Arrow instance.
+ */
+
+<span id='Arrow-Logger-static-method-createLogger'>/**
+</span> * @method createLogger
+ * Creates a log utility instance.
+ * @static
+ * @param {Object} options Additional initialization options.
+ * Refer to the [bunyan documentation](https://www.npmjs.com/package/bunyan).
+ * @return {Arrow.Logger}
+ */
+<span id='Arrow-Logger-static-method-createDefaultLogger'>/**
+</span> * @method createDefaultLogger
+ * @alias #static-method-createLogger
+ * @static
+ */
+<span id='Arrow-Logger-static-method-createRestifyLogger'>/**
+</span> * @method createRestifyLogger
+ * Creates a restify version of the log utility.
+ * @static
+ * @param {Arrow} Arrow instance.
+ * @param {Object} options Additional initialization options.
+ * Refer to the [bunyan documentation](https://www.npmjs.com/package/bunyan).
+ * @return {Arrow.Logger}
+ */
+<span id='Arrow-Logger-method-debug'>/**
+</span> * @method debug
+ * Logs a message with a debug-level severity.
+ * @param {...Object} [params] String, formatted-string with variables, object or Error object.
+ * @return {Boolean/void} If no arguments are passed, returns a boolean indicating if the debug
+ * level is enabled.
+ */
+<span id='Arrow-Logger-method-error'>/**
+</span> * @method error
+ * Logs a message with an error-level severity.
+ * @param {...Object} [params] String, formatted-string with variables, object or Error object.
+ * @return {Boolean/void} If no arguments are passed, returns a boolean indicating if the error
+ * level is enabled.
+ */
+<span id='Arrow-Logger-method-fatal'>/**
+</span> * @method fatal
+ * Logs a message with a fatal-level severity.
+ * @param {...Object} [params] String, formatted-string with variables, object or Error object.
+ * @return {Boolean/void} If no arguments are passed, returns a boolean indicating if the fatal
+ * level is enabled.
+ */
+<span id='Arrow-Logger-method-info'>/**
+</span> * @method info
+ * Logs a message with an info-level severity.
+ * @param {...Object} [params] String, formatted-string with variables, object or Error object.
+ * @return {Boolean/void} If no arguments are passed, returns a boolean indicating if the info
+ * level is enabled.
+ */
+<span id='Arrow-Logger-method-level'>/**
+</span> * @method level
+ * Sets or retrieves the log level.
+ * @param {Number/String} [level] Level to set.
+ */
+<span id='Arrow-Logger-method-levels'>/**
+</span> * @method levels
+ * Sets or retrieves the log level for a specific stream.
+ * @param {Number/String} [stream] Stream to set or retrieve the log level for.
+ * @param {Number/String} [level] Level to set.
+ * @return {Array&lt;Number&gt;/Number/void} If no arguments are passed, retrieves an array of available
+ * log levels. If the stream is passed, retrieves the current log level of the stream.
+ */
+<span id='Arrow-Logger-method-stripColors'>/**
+</span> * @method stripColors
+ * Removes ANSI color codes from the string
+ * @param {String} string
+ * @return {String}
+ */
+<span id='Arrow-Logger-method-trace'>/**
+</span> * @method trace
+ * Logs a message with a trace-level severity.
+ * @param {...Object} [params] String, formatted-string with variables, object or Error object.
+ * @return {Boolean/void} If no arguments are passed, returns a boolean indicating if the trace
+ * level is enabled.
+ */
+<span id='Arrow-Logger-method-warn'>/**
+</span> * @method warn
+ * Logs a message with a warn-level severity.
+ * @param {...Object} [params] String, formatted-string with variables, object or Error object.
+ * @return {Boolean/void} If no arguments are passed, returns a boolean indicating if the warn
+ * level is enabled.
+ */
+
+<span id='Arrow-Logger-static-property-DEBUG'>/**
+</span> * @property {Number} DEBUG
+ * Constant indicating the debug level
+ * @static
+ */
+<span id='Arrow-Logger-static-property-ERROR'>/**
+</span> * @property {Number} ERROR
+ * Constant indicating the error level
+ * @static
+ */
+<span id='Arrow-Logger-static-property-FATAL'>/**
+</span> * @property {Number} FATAL
+ * Constant indicating the fatal level
+ * @static
+ */
+<span id='Arrow-Logger-static-property-INFO'>/**
+</span> * @property {Number} INFO
+ * Constant indicating the info level
+ * @static
+ */
+<span id='Arrow-Logger-static-property-TRACE'>/**
+</span> * @property {Number} TRACE
+ * Constant indicating the trace level
+ * @static
+ */
+<span id='Arrow-Logger-static-property-WARN'>/**
+</span> * @property {Number} WARN
+ * Constant indicating the warn level
+ * @static
+ */
+</pre>
+</body>
+</html>

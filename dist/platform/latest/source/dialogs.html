@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Alloy-builtins-dialogs'>/**
+</span> * @class Alloy.builtins.dialogs
+ * A collection of utilities for generating dialog boxes.
+ * To use the dialogs builtin library,
+ * require it with the `alloy` root directory in your `require` call. For example:
+ *
+ *     var dialogs = require(&#39;alloy/dialogs&#39;);
+ *     dialogs.confirm({});
+ */
+
+<span id='Alloy-builtins-dialogs-property-title'>/**
+</span> * @property {String} title
+ * To be used as default title for confirm-method AlertDialog
+ */
+exports.title = &#39;Confirm&#39;;
+
+<span id='Alloy-builtins-dialogs-property-message'>/**
+</span> * @property {String} message
+ * To be used as default message for confirm-method AlertDialog
+ */
+exports.message = &#39;Are you sure?&#39;;
+
+<span id='Alloy-builtins-dialogs-property-buttonNames'>/**
+</span> * @property {Array} buttonNames
+ * To be used as default buttonNames for confirm-method AlertDialog
+ */
+exports.buttonNames = [&#39;No&#39;, &#39;Yes&#39;];
+
+<span id='Alloy-builtins-dialogs-method-confirm'>/**
+</span> * @method confirm
+ * Creates a confirmation dialog box. Default values may be overridden and a callback function
+ * may be called after an affirmative response.
+ * @param {...*} args Dialog box parameters.
+ * @param {String} [args.title=&quot;Confirm&quot;] Title of the dialog box.
+ * @param {String} [args.message=&quot;Are you sure?&quot;] Message of the dialog box.
+ * @param {String} [args.yes=&quot;Yes&quot;] Label of the affirmative button of the dialog box.
+ * @param {String} [args.no=&quot;No&quot;] Label of the negative button of the dialog box.
+ * @param {Function} [args.callback] Callback function invoked after an affirmative response.
+ * @param {...*} [args.evt] Callback context.
+ */
+exports.confirm = function (args) {
+	args = args || {};
+	if(args.buttonNames) {
+		args.no = args.no || args.buttonNames[0];
+		args.yes = args.yes || args.buttonNames[1];
+	}
+
+	var alertDialog = Ti.UI.createAlertDialog({
+		title: args.title || exports.title,
+		message: args.message || exports.message,
+		buttonNames: [args.no || exports.buttonNames[0], args.yes || exports.buttonNames[1]],
+		cancel: 0
+	});
+	alertDialog.addEventListener(&#39;click&#39;, function (evt) {
+		if (evt.index) {
+			if (args.callback) { args.callback(args.evt || {}); }
+		}
+		args = null;
+	});
+	alertDialog.show();
+};
+</pre>
+</body>
+</html>

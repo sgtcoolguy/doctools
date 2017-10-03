@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Arrow-Instance'>/**
+</span> * @class Arrow.Instance
+ */
+var util = require(&#39;util&#39;),
+	events = require(&#39;events&#39;),
+	error = require(&#39;./error&#39;),
+	ORMError = error.ORMError,
+	ValidationError = error.ValidationError,
+	_ = require(&#39;lodash&#39;);
+
+util.inherits(Instance, events.EventEmitter);
+module.exports = Instance;
+
+var builtInTypes = [&#39;string&#39;, &#39;number&#39;, &#39;boolean&#39;, &#39;object&#39;, &#39;date&#39;, &#39;array&#39;];
+
+function Instance(model, values, skipNotFound) {
+	if (!model.fields) {
+		throw new ORMError(&#39;missing model &quot;fields&quot; property&#39;);
+	}
+	this._values = {};
+	this._model = model;
+	this._dirty = false;
+	this._deleted = false;
+	this._metadata = {};
+	this._dirtyfields = {};
+	this._fieldmap = {};
+	this._fieldmap_by_name = {};
+	this._skipNotFoundFields = null;
+	this._events = {};
+
+	var self = this;
+	[&#39;_values&#39;, &#39;_model&#39;, &#39;_dirty&#39;, &#39;_deleted&#39;, &#39;_metadata&#39;, &#39;_dirtyfields&#39;, &#39;_fieldmap&#39;, &#39;_fieldmap_by_name&#39;, &#39;_skipNotFoundFields&#39;, &#39;_events&#39;].forEach(function (k) {
+		Object.defineProperty(self, k, {
+			enumerable: false
+		});
+	});
+
+	// map our field properties into this instance
+	Object.keys(model.fields).forEach(function instanceIterator(property) {
+		var field = model.fields[property];
+		if (!field.type) {
+			throw new ValidationError(property, &quot;required type property missing for field&quot;);
+		}
+		if (!field.type.name) {
+			field.type = String(field.type);
+		}
+		else {
+			field.type = field.type.name.toLowerCase();
+		}
+		if (_.isString(field.model)) {
+			if (Instance.Arrow &amp;&amp; Instance.Arrow.getModel(field.model)) {
+				field.Model = Instance.Arrow.getModel(field.model);
+			}
+			else if (model.connector &amp;&amp; model.connector.models &amp;&amp; model.connector.models[field.model]) {
+				field.Model = model.connector.models[field.model];
+			}
+		}
+		else if (_.isObject(field.model)) {
+			field.Model = field.model;
+			field.model = field.Model.name;
+		}
+		if (field.default !== undefined) {
+			this._values[property] = field.default;
+		}
+		// only set on the the field map if the aliased field does not come from another model
+		if (field.name &amp;&amp; !field.model) {
+			this._fieldmap[field.name] = property;
+			this._fieldmap_by_name[property] = field;
+		}
+		Object.defineProperty(this, property, {
+			get: function () {
+				return this.get(property);
+			},
+			set: function (value) {
+				return this.set(property, value);
+			}
+		});
+	}.bind(this));
+
+	// map in the methods from the Model on to the instance
+	model.methods &amp;&amp; Object.keys(model.methods).forEach(function modelMethodIterator(name) {
+		var o = model.methods[name];
+		if (_.isFunction(o)) {
+			this[name] = o.bind(this);
+		}
+		else {
+			this[name] = o;
+		}
+	}.bind(this));
+
+	// set the values
+	values &amp;&amp; this.set(values, skipNotFound);
+
+	// set dirty false when we are constructing
+	this._dirty = false;
+	this._dirtyfields = {};
+	this._skipNotFoundFields = skipNotFound &amp;&amp; Object.keys(values);
+
+	// perform initial validation
+	!skipNotFound &amp;&amp; this.validateFields();
+}
+
+function isOK(value) {
+	return !(value === undefined || value === null);
+}
+
+<span id='Arrow-Instance-method-getModel'>/**
+</span> * Retrieves the Model class used by this model instance.
+ * @returns {Arrow.Model}
+ */
+Instance.prototype.getModel = function getModel() {
+	return this._model;
+};
+
+<span id='Arrow-Instance-method-getConnector'>/**
+</span> * Retrieves the Connector class used by this model instance.
+ * @returns {Arrow.Connector}
+ */
+Instance.prototype.getConnector = function getConnector() {
+	return this._model.getConnector();
+};
+
+<span id='Arrow-Instance-method-validateCoersiveTypes'>/**
+</span> * Validates if the model field can be implictly converted to the value.
+ * If it can, sets the converted value.
+ * @param {Any} field Field value to validate.
+ * @param {String} name Field name to set.
+ * @param {Any} value Value to validate.
+ * @returns {Boolean} Returns `true` if the type can be implicitly converted else `false`.
+ */
+Instance.prototype.validateCoersiveTypes = function validateCoersiveTypes(field, name, value) {
+	var type = (typeof value).toLowerCase();
+	switch (field.type.toLowerCase()) {
+		case &#39;boolean&#39;:
+		{
+			if (type === &#39;number&#39;) {
+				this.set(name, value &gt;= 1);
+				return true;
+			}
+			if (type === &#39;string&#39;) {
+				switch (value.trim().toLowerCase()) {
+					case &#39;false&#39;:
+					case &#39;no&#39;:
+					case &#39;0&#39;:
+						this.set(name, false);
+						return true;
+					case &#39;true&#39;:
+					case &#39;yes&#39;:
+					case &#39;1&#39;:
+						this.set(name, true);
+						return true;
+				}
+			}
+			break;
+		}
+		case &#39;number&#39;:
+		{
+			if (type === &#39;string&#39;) {
+				var parsedInt = parseInt(value, 10);
+				if (value == parsedInt) { // jshint ignore:line
+					this.set(name, parsedInt);
+					return true;
+				}
+				var parsedFloat = parseFloat(value);
+				if (value == parsedFloat) { // jshint ignore:line
+					this.set(name, parsedFloat);
+					return true;
+				}
+			}
+			break;
+		}
+		case &#39;date&#39;:
+		{
+			if (type === &#39;number&#39;) {
+				this.set(name, new Date(value));
+				return true;
+			}
+			else if (value instanceof Date) {
+				return true;
+			}
+			break;
+		}
+		case &#39;object&#39;:
+		{
+			if (value instanceof Date) {
+				return true;
+			}
+			if (typeof(value) === &#39;string&#39; &amp;&amp; value === &#39;&#39;) {
+				this.set(name, {});
+				return true;
+			}
+			break;
+		}
+		case &#39;array&#39;:
+		{
+			if (Array.isArray(value)) {
+				return true;
+			}
+			break;
+		}
+	}
+	return false;
+};
+
+<span id='Arrow-Instance-method-validateField'>/**
+</span> * Validates a field in the model. Throws a validation error if validation fails.
+ * @param {String} name Field name to validate.
+ * @param {Any} v Value to validate.
+ * @throws {Arrow.ValidationError}
+ */
+Instance.prototype.validateField = function validateField(name, v) {
+	var field = this._model.fields[name],
+		value = isOK(v) ? v : this.get(name),
+		hasValue = isOK(value);
+	if ((false === field.optional || field.required) &amp;&amp; !hasValue) {
+		throw new ValidationError(name, &quot;required field value missing: &quot; + name);
+	}
+	if (hasValue &amp;&amp; field.type.toLowerCase() !== (typeof value).toLowerCase()) {
+		var isBuiltInType = builtInTypes.indexOf(field.type.toLowerCase()) &gt;= 0,
+			builtInCoerce = isBuiltInType &amp;&amp; this.validateCoersiveTypes(field, name, value),
+			externalCoerce = !isBuiltInType &amp;&amp; this._model.connector &amp;&amp; this._model.connector.coerceCustomType &amp;&amp; this._model.connector.coerceCustomType(this, field, name, value);
+		if (!builtInCoerce &amp;&amp; !externalCoerce) {
+			throw new ValidationError(name, &quot;invalid type (&quot; + (typeof value) + &quot;) for field: &quot; + name + &quot;. Should be &quot; + field.type + &quot;. Value was: &quot; + util.inspect(value));
+		}
+	}
+	if (value !== undefined &amp;&amp; value !== null &amp;&amp; (_.isString(value) || _.isArray(value))) {
+		if (field.minlength !== undefined &amp;&amp; value.length &lt; field.minlength) {
+			throw new ValidationError(name, &quot;field value must be at least &quot; + field.minlength + &quot; characters long: &quot; + name);
+		}
+		if (field.maxlength !== undefined &amp;&amp; value.length &gt; field.maxlength) {
+			throw new ValidationError(name, &quot;field value must be at most &quot; + field.maxlength + &quot; characters long: &quot; + name);
+		}
+		if (field.length !== undefined &amp;&amp; value.length !== field.length) {
+			throw new ValidationError(name, &quot;field value must be exactly &quot; + field.length + &quot; characters long: &quot; + name);
+		}
+	}
+	// Run validation on sub-models, if we have them.
+	if (field.Model &amp;&amp; field.Model.instance) {
+		if (_.isArray(value)) {
+			for (var i = 0; i &lt; value.length; i++) {
+				field.Model.instance(value[i], false);
+			}
+		}
+		else if (_.isObject(value)) {
+			field.Model.instance(value, false);
+		}
+	}
+	if (field.validator) {
+		// only run validators if required or if we have a value
+		if (field.required || hasValue) {
+			if (field.validator instanceof RegExp) {
+				if (!field.validator.test(value)) {
+					throw new ValidationError(name, &#39;field &quot;&#39; + name + &#39;&quot; failed validation using expression &quot;&#39; + field.validator + &#39;&quot; and value: &#39; + value);
+				}
+			} else if (typeof field.validator === &#39;function&#39;) {
+				var msg;
+				try {
+					msg = field.validator(value);
+				}
+				catch (E) {
+					if (E instanceof ValidationError) {
+						throw E;
+					}
+					else {
+						throw new ValidationError(name, E.message);
+					}
+				}
+				if (msg) {
+					throw new ValidationError(name, msg);
+				}
+			}
+		}
+	}
+};
+
+<span id='Arrow-Instance-method-validateFields'>/**
+</span> * Validates the fields in the model.
+ * @returns {Boolean} Returns `true` if all fields are valid else `false`.
+ * @throws {Arrow.ValidationError}
+ */
+Instance.prototype.validateFields = function validateFields() {
+	// map our field properties into this instance
+	var errors = [];
+	Object.keys(this._model.fields).forEach(function iterator(property) {
+		try {
+			this.validateField(property);
+		}
+		catch (err) {
+			errors.push(err);
+		}
+	}.bind(this));
+	if (errors.length &gt; 0) {
+		if (errors.length === 1) {
+			throw errors[0];
+		}
+		else {
+			throw new ValidationError(_.pluck(errors, &#39;field&#39;).join(&#39;, &#39;), _.pluck(errors, &#39;message&#39;).join(&#39;\n&#39;));
+		}
+	}
+};
+
+<span id='Arrow-Instance-method-setPrimaryKey'>/**
+</span> * Sets the primary key for the model.
+ * @param {String} field Field name to use as the primary key.
+ */
+Instance.prototype.setPrimaryKey = function setPrimaryKey(value) {
+	this.setMeta(Instance.PRIMARY_KEY, value);
+};
+
+<span id='Arrow-Instance-method-getPrimaryKey'>/**
+</span> * Retrieves the field name used as the primary key.
+ * @returns {String}
+ */
+Instance.prototype.getPrimaryKey = function getPrimaryKey() {
+	return this.getMeta(Instance.PRIMARY_KEY);
+};
+
+[&#39;primaryKey&#39;, &#39;ID&#39;, &#39;Id&#39;, &#39;id&#39;, &#39;_id&#39;].forEach(function (alias) {
+	Object.defineProperty(Instance.prototype, alias, {
+		get: Instance.prototype.getPrimaryKey,
+		set: Instance.prototype.setPrimaryKey
+	});
+});
+
+<span id='Arrow-Instance-method-setMeta'>/**
+</span> * Sets metadata for the model instance.
+ * @param {String} key Key to set.
+ * @param {Any} value Value to set.
+ * @returns {Arrow.Instance}
+ */
+Instance.prototype.setMeta = function setMeta(key, value) {
+	this._metadata[key] = value;
+	return this;
+};
+
+<span id='Arrow-Instance-method-getMeta'>/**
+</span> * Retrieves metadata from the model instance.
+ * @param {String} key Key to retrieve.
+ * @param {Any} def Default value to return if the key is not set.
+ * Does not set the value of the key.
+ * @returns {Any}
+ */
+Instance.prototype.getMeta = function getMeta(key, def) {
+	return this._metadata[key] !== undefined ? this._metadata[key] : def;
+};
+
+<span id='Arrow-Instance-method-inspect'>/**
+</span> * Returns a string representation of the model instance.
+ * @returns {String}
+ */
+Instance.prototype.inspect = function inspect() {
+	return util.inspect(this.toJSON());
+};
+
+<span id='Arrow-Instance-method-toJSON'>/**
+</span> * Converts the model instance to JSON.
+ * @returns {Object}
+ */
+Instance.prototype.toJSON = function toJSON() {
+	var obj = {},
+		fields = this._model.fields,
+		pkName = this._model.getPrimaryKeyName(),
+		pk = this.getPrimaryKey();
+	// only add the primary key if we have one
+	if (pk !== undefined) {
+		obj[pkName] = pk;
+	}
+	for (var key in this._model.fields) {
+		if (this._model.fields.hasOwnProperty(key)) {
+
+			// if we have skip fields, only return fields contained in the model - that what
+			// if we query with sel or unsel, we only return a model that also contains those same
+			// field keys (assuming it&#39;s not a calculated field)
+			var field = fields[key];
+			if (this._skipNotFoundFields &amp;&amp;
+				this._skipNotFoundFields.indexOf(key) &lt; 0 &amp;&amp;
+					// not custom and not primary key
+				field &amp;&amp; !field.custom &amp;&amp; key !== pkName &amp;&amp;
+					// if its not a custom mapped field name
+				field.name === key) {
+				continue;
+			}
+			var v = this._model.get(key, this._values[key], this);
+			if (!_.isFunction(v)) {
+				if (v !== undefined) {
+					// undefined means remove it
+					obj[key] = v;
+				}
+			}
+		}
+	}
+
+	// allow the model to have a global serialize callback
+	if (this._model.serialize) {
+		obj = this._model.serialize(obj, this, this._model);
+	}
+	return obj;
+};
+
+<span id='Arrow-Instance-method-toPayload'>/**
+</span> * Converts the model fields to a JSON payload.
+ * @returns {Object}
+ */
+Instance.prototype.toPayload = function toPayload() {
+	var obj = {},
+		fields = this._model.fields,
+		values = this.values();
+	for (var key in values) {
+		/*if (values.hasOwnProperty(key) &amp;&amp; values[key] !== null &amp;&amp; !fields[key].custom) {
+		 obj[fields[key].name || key] = values[key];
+		 }*/
+		if (values.hasOwnProperty(key) &amp;&amp; !fields[key].custom) {
+			obj[fields[key].name || key] = this._model.set(key, this._values[key], this);
+		}
+	}
+	// allow the model to have a global deserialize callback
+	if (this._model.deserialize) {
+		obj = this._model.deserialize(obj, this, this._model);
+	}
+	return obj;
+};
+
+<span id='Arrow-Instance-method-isUnsaved'>/**
+</span> * Returns `true` if the model instance has not been saved to the external source.
+ * @returns {Boolean}
+ */
+Instance.prototype.isUnsaved = function isUnsaved() {
+	return this._dirty;
+};
+
+<span id='Arrow-Instance-method-isDeleted'>/**
+</span> * Returns `true` if the model instance has been deleted.
+ * @returns {Boolean}
+ */
+Instance.prototype.isDeleted = function isDeleted() {
+	return this._deleted;
+};
+
+<span id='Arrow-Instance-method-get'>/**
+</span> * Retrieves the value of the model field.
+ * @param {String} name Field name to retrieve.
+ * @returns {Any}
+ */
+Instance.prototype.get = function get(name) {
+	var field = this._model.fields[name],
+		isBuiltInType = field &amp;&amp; field.type &amp;&amp; builtInTypes.indexOf(field.type.toLowerCase()) &gt;= 0,
+		result,
+		notFound = true;
+	if (field &amp;&amp; field.get) {
+		var Model = require(&#39;./model&#39;);
+		var fn = Model.toFunction(field, &#39;get&#39;);
+		result = fn(this._values[name], name, this);
+		notFound = false;
+	}
+	if (undefined === result &amp;&amp; name in this._values) {
+		result = this._values[name];
+		notFound = false;
+	}
+	if (!isBuiltInType &amp;&amp; this._model.connector &amp;&amp; this._model.connector.getCustomType) {
+		result = this._model.connector.getCustomType(this, field, name, result);
+	}
+	else if (_.isObject(result)) {
+		if (result.toJSON) {
+			// if we&#39;ve stored a model instance, don&#39;t clone it.
+		}
+		else {
+			// we need to return a cloned value otherwise if you mutate it and then attempt
+			// to update it, it won&#39;t think it&#39;s changed when you call set.
+			result = JSON.parse(JSON.stringify(result));
+		}
+	}
+	if (!notFound) {
+		return result;
+	}
+	else {
+		return undefined;
+	}
+};
+
+<span id='Arrow-Instance-method-change'>/**
+</span> * Changes a field with a new value. This will force the internal state to be dirty regardless of
+ * whether the value is the same as what&#39;s already set.
+ * @param {String} name Name of the model attribute.
+ * @param {Any} value Value to set.
+ */
+Instance.prototype.change = function (name, value) {
+	if (name in this._values) {
+		this._values[name] = value;
+		this._dirty = true;
+		this._dirtyfields[name] = value;
+	}
+	else {
+		throw new ORMError(&#39;field not found: &#39; + name);
+	}
+};
+
+<span id='Arrow-Instance-method-getChangedFields'>/**
+</span> * Returns the fields that have been changed.
+ * @returns {Object}
+ */
+Instance.prototype.getChangedFields = function getChangedFields() {
+	return this._dirtyfields;
+};
+
+<span id='Arrow-Instance-method-values'>/**
+</span> * Returns the values for the model instance excluding the primary key.
+ * @param {Boolean} [dirtyOnly=false] Set to `true` to only return unsaved fields.
+ * @returns {Object}
+ */
+Instance.prototype.values = function values(dirtyOnly) {
+	var retVal = {};
+	for (var key in this._model.fields) {
+		if (this._model.fields.hasOwnProperty(key)) {
+			var field = this._model.fields[key],
+				isDirty = dirtyOnly &amp;&amp; key in this._dirtyfields;
+			if (field.readonly &amp;&amp; isDirty) {
+				retVal[key] = this._values[key];
+				continue;
+			}
+			else if (field.readonly &amp;&amp; !isDirty) {
+				continue;
+			}
+			if (!dirtyOnly || isDirty) {
+				retVal[key] = this._values[key];
+			}
+		}
+	}
+	return retVal;
+};
+
+<span id='Arrow-Instance-method-keys'>/**
+</span> * Returns the field keys for the instance.
+ * @returns {Array&lt;String&gt;}
+ */
+Instance.prototype.keys = function keys() {
+	return this._model.keys();
+};
+
+var internal = [&#39;_dirty&#39;, &#39;_deleted&#39;, &#39;_metadata&#39;, &#39;_dirtyfields&#39;, &#39;_events&#39;, &#39;_values&#39;, &#39;_model&#39;, &#39;_fieldmap&#39;, &#39;_skipNotFoundFields&#39;];
+
+<span id='Arrow-Instance-method-set'>/**
+</span> * Sets the values on the model instance.
+ * @param {String} [name] Name of the field to set.
+ * @param {Object/Any} value If `name` is used, the value to set for the field.
+ * Otherwise, use an object of key-value pairs to set.
+ * @param {Boolean} skipNotFound Set to `true` to skip fields passed in to
+ * the `value` parameter that are not defined by the model&#39;s schema.  By default,
+ * an error will be thrown if an undefined field is passed in.
+ * @return {Arrow.Instance}
+ * @throws {Arrow.ValidationError}
+ */
+Instance.prototype.set = function set() {
+	var skipNotFound;
+	if (typeof(arguments[0]) === &#39;object&#39;) {
+		var obj = arguments[0];
+		skipNotFound = arguments[1];
+		var keys = _.keys(obj),
+			errors = [];
+		keys.forEach(function iterator(key) {
+			try {
+				this.set(key, obj[key], skipNotFound);
+			}
+			catch (err) {
+				errors.push(err);
+			}
+		}.bind(this));
+		if (errors.length &gt; 0) {
+			if (errors.length === 1) {
+				throw errors[0];
+			}
+			else {
+				throw new ValidationError(_.pluck(errors, &#39;field&#39;).join(&#39;, &#39;), _.pluck(errors, &#39;message&#39;).join(&#39;\n&#39;));
+			}
+		}
+		if (skipNotFound) {
+			// we need to remove any keys not found in the incoming payload
+			// in case the user did a sel/unsel
+			var removeKeys = _.difference(_.keys(this._values), keys);
+			if (removeKeys.length) {
+				removeKeys.forEach(function (k) {
+					if (!(k in this._fieldmap_by_name)) {
+						// only undefine if not in the field mapping
+						this._values[k] = undefined;
+					}
+				}.bind(this));
+			}
+		}
+		if (this._model.validator) {
+			// only run validators if required or if we have a value
+			if (typeof this._model.validator === &#39;function&#39;) {
+				var msg;
+				try {
+					msg = this._model.validator(this);
+				}
+				catch (E) {
+					if (E instanceof ValidationError) {
+						throw E;
+					}
+					else {
+						throw new ValidationError(this._model.name, E.message);
+					}
+				}
+				if (msg) {
+					throw new ValidationError(this._model.name, msg);
+				}
+			}
+		}
+	}
+	else {
+		var name = arguments[0];
+
+		// if internal, we can skip
+		if (name.charAt(0) === &#39;_&#39;) {
+			if (internal.indexOf(name) !== -1) {
+				return;
+			}
+		}
+		skipNotFound = arguments[2];
+
+		// see if we have a field remapping
+		if (name in this._fieldmap) {
+			name = this._fieldmap[name];
+		}
+
+		var value = arguments[1],
+			definition = this._model.fields[name],
+			current_value = this._values[name];
+
+		// don&#39;t set primary key, skip it
+		if (name === this._model.getPrimaryKeyName()) {
+			return;
+		}
+
+		if (!definition &amp;&amp; !skipNotFound) {
+			throw new ValidationError(name, &quot;invalid field: &quot; + name);
+		}
+		else if (!definition &amp;&amp; skipNotFound) {
+			// don&#39;t set it if we can&#39;t find definition and
+			// we have told it to skip these types of fields
+			// this is useful when a connector wants to add
+			// values from DB but filter by the Model field
+			// definitions and skip others
+			return this;
+		}
+		if (!skipNotFound &amp;&amp; definition.readonly) {
+			throw new ValidationError(name, &quot;cannot set read-only field: &quot; + name);
+		}
+
+		value = isOK(value) ? value : definition.default;
+
+		// do serialization
+		if (!skipNotFound) {
+			value = this._model.set(name, value, this);
+		}
+
+		if (/date/i.test(definition.type) &amp;&amp; typeof value === &#39;string&#39;) {
+			var dt = new Date(value);
+			value = isNaN(dt) ? null : dt;
+		}
+
+		// validate this field
+		!skipNotFound &amp;&amp; this.validateField(name, value, skipNotFound);
+
+		if (current_value !== value) {
+			this._values[name] = value;
+			this._dirty = true;
+			this._dirtyfields[name] = value;
+			this.emit(&#39;change:&#39; + name, value, current_value);
+		}
+	}
+	return this;
+};
+
+<span id='Arrow-Instance-method-save'>/**
+</span> * @method save
+ * Saves the model instance.
+ * @param {Function} callback Callback passed an Error object (or null if successful) and the updated model.
+ */
+<span id='Arrow-Instance-method-update'>/**
+</span> * @method update
+ * @alias #save
+ */
+Instance.prototype.update =
+	Instance.prototype.save = function save(callback) {
+		return this._model.update(this, callback);
+	};
+
+<span id='Arrow-Instance-method-remove'>/**
+</span> * @method remove
+ * Deletes the model instance.
+ * @param {Function} callback Callback passed an Error object (or null if successful), and the deleted model.
+ */
+<span id='Arrow-Instance-method-delete'>/**
+</span> * @method delete
+ * @alias #remove
+ */
+Instance.prototype.delete =
+	Instance.prototype.remove = function remove(callback) {
+		return this._model.delete(this, callback);
+	};
+
+Instance.PRIMARY_KEY = &#39;primarykey&#39;;
+</pre>
+</body>
+</html>

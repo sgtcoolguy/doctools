@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">/*
+ * HTML5 localStorage sync adapter
+ */
+var _ = require(&#39;alloy/underscore&#39;)._;
+
+function S4() {
+   return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+}
+
+function guid() {
+   return (S4()+S4()+&#39;-&#39;+S4()+&#39;-&#39;+S4()+&#39;-&#39;+S4()+&#39;-&#39;+S4()+S4()+S4());
+}
+
+function InitAdapter() {
+	if (!OS_MOBILEWEB) {
+		throw &#39;localStorage persistence supported only with MobileWeb.&#39;;
+	}
+}
+
+function Sync(method, model, opts) {
+	var name = model.config.adapter.collection_name,
+		data = model.config.data,
+		resp = null;
+
+	function storeModel(data) {
+		localStorage.setItem(name, JSON.stringify(data));
+	}
+
+	switch (method) {
+
+		case &#39;create&#39;:
+			if (!model.id) {
+				model.id = guid();
+				model.set(model.idAttribute, model.id);
+			}
+			data[model.id] = model;
+			storeModel(data);
+			resp = model.toJSON();
+			break;
+
+		case &#39;read&#39;:
+			var store = localStorage.getItem(name);
+			var store_data = (store &amp;&amp; JSON.parse(store)) || {};
+
+            var len = 0;
+            for (var key in store_data) {
+				var m = new model.config.Model(store_data[key]);
+				model.models.push(m);
+				len++;
+            }
+
+            model.length = len;
+            if (len === 1) {
+				resp = model.models[0];
+            } else {
+				resp = model.models;
+            }
+			break;
+
+		case &#39;update&#39;:
+			data[model.id] = model;
+			storeModel(data);
+			resp = model.toJSON();
+			break;
+
+		case &#39;delete&#39;:
+			delete data[model.id];
+			storeModel(data);
+			resp = model.toJSON();
+			break;
+	}
+
+	// process success/error handlers, if present
+	if (resp) {
+        if (_.isFunction(opts.success)) { opts.success(resp); }
+        if (method === &quot;read&quot;) { model.trigger(&quot;fetch&quot;); }
+    } else {
+		if (_.isFunction(opts.error)) { opts.error(resp); }
+    }
+}
+
+module.exports.sync = Sync;
+
+module.exports.beforeModelCreate = function(config) {
+	config = config || {};
+
+	config.data = {}; // for localStorage or case where entire collection is needed to maintain store
+
+	InitAdapter();
+
+	return config;
+};
+
+module.exports.afterModelCreate = function(Model) {
+	Model = Model || {};
+
+	Model.prototype.config.Model = Model; // needed for fetch operations to initialize the collection from persistent store
+
+	return Model;
+};
+</pre>
+</body>
+</html>

@@ -22,12 +22,14 @@ if [ ! -d $TI_ROOT/appc_modules ]; then
 fi
 
 ## back up the doctools directory to Github before updating it
+echo "backing up doctools directory"
 cd $TI_ROOT/doctools
 git add * -f
 git commit * -m "updated /doctools for $DATE commit" ## add auto-commit message
 git push
 
 ## back up the appc_web_docs directory to Github before any updates
+echo "backing up appc_web_docs directory"
 cd $TI_ROOT/appc_web_docs
 git add * -f
 git commit * -m "updated /appc_web_docs for $DATE commit" ## add auto-commit message
@@ -68,7 +70,7 @@ updateModules () { ## check to see if a module exists and update it
 }
 
 ## array of apidoc modules to update from their respective repos
-moduleArray=( appcelerator.apm appcelerator.https ti.cloud ti.coremotion ti.facebook ti.geofence ti.map ti.newsstand ti.nfc Ti.SafariDialog ti.touchid ti.urlsession )
+moduleArray=( appcelerator.apm appcelerator.https ti.cloud ti.coremotion ti.facebook ti.geofence ti.map ti.newsstand ti.nfc Ti.SafariDialog ti.touchid ti.urlsession titanium-identity )
 
 ## array of misc repos to update
 repoArray=( appc-docs appc_web_docs arrow arrow-orm cloud_docs doctools titanium_mobile titanium_mobile_windows )

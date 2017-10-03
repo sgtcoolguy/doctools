@@ -69,6 +69,7 @@ sh deploy.sh -o arrow -o alloy -o modules -s prod 2>> messages.txt
 node stripFooter.js 2>> message.txt
 node redirects.js 2>> message.txt
 node appendTitles.js 2>> messages.txt
+node banner.js >> message.txt ## add banners to each HTML doc; see TIDOC-3015
 sh clouddeploy.sh -s prod 2>> messages.txt
 bash clouddeploy.sh prod 2>> messages.txt
 bash build_platform.sh 2>> messages.txt
@@ -79,7 +80,7 @@ open -a Atom messages.txt
 bash ../doctools/copy_platform.sh 2>> messages.txt
 bash ../doctools/copy_cloud.sh 2>> messages.txt
 cd $DOCTOOLS
-sh css_fix.sh ## See TIDOC-2739I
+sh css_fix.sh ## See TIDOC-2739
 
 ## open localhost and manually review the pages
 open http://localhost
@@ -94,8 +95,8 @@ echo "Manually check the page(s) you updated.\nIf everything looks good, check i
 open http://devops-jenkins.appcelerator.org/job/appc_web_docs/
 open http://devops-jenkins.appcelerator.org/job/server_package_deployment/
 
-open -a Atom ~/.bash_profile
-echo "Grab your Jenkins password"
+#open -a Atom ~/.bash_profile
+#echo "Grab your Jenkins password"
 
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."

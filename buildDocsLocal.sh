@@ -59,14 +59,15 @@ echo "Executing sh deploy.sh -o arrow -o alloy -o modules -s prod\n"
 sh deploy.sh -o arrow -o alloy -o modules -s prod >> messages.txt
 node stripFooter.js >> message.txt ## not 100% necessary if building for test reasons
 node redirects.js >> message.txt ## not 100% necessary if building for test reasons
+node banner.js >> message.txt ## add banners to each HTML doc
 echo "Executing sh clouddeploy.sh -s prod\n"
 sh clouddeploy.sh -s prod >> messages.txt
 echo "Executing bash clouddeploy.sh prod\n"
 bash clouddeploy.sh prod >> messages.txt
 ## see TIDOC-????
-echo "Adding redirects based on entries in toc.xml marked with '!!REDIRECT!!'"
-say "redirect script"
-node redirect2.js $TI_ROOT
+#echo "Adding redirects based on entries in toc.xml marked with '!!REDIRECT!!'"
+#say "redirect script"
+#node redirect2.js $TI_ROOT
 
 ## this is where the index-template.html
 ## Update the ../doctools/dist/platform/latest/index-template.html file to remove any element with the !!REDIRECT!! text
