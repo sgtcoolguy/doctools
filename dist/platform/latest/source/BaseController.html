@@ -15,7 +15,7 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">var Alloy = require(&#39;alloy&#39;),
+  <pre class="prettyprint lang-js">var Alloy = require(&#39;/alloy&#39;),
 	Backbone = Alloy.Backbone,
 	_ = Alloy._;
 
@@ -88,9 +88,9 @@ var Controller = function() {
 	for (each in views) {
 		var view = views[each];
 		console.log(view.id);
-	}		 
+	}
 
-		 * 				
+		 *
 		 *
 		 * @return {Array.&lt;(Titanium.UI.View|Alloy.Controller)&gt;}
 		 */
@@ -109,7 +109,7 @@ var Controller = function() {
 		 * with the `id` of &quot;loginWin&quot; and then calls its [open()](Titanium.UI.Window) method.
 
 	var loginWindow = $.getView(&#39;loginWin&#39;);
-	loginWindow.open();		 
+	loginWindow.open();
 		 *
 		 * @param {String} [id] ID of the view to return.
 		 * @return {Titanium.UI.View/Alloy.Controller}
@@ -150,7 +150,7 @@ var Controller = function() {
 			&lt;/Tab&gt;
 		&lt;/TabGroup&gt;
 		&lt;View id=&quot;otherview&quot;&gt;&lt;/View&gt;
-	&lt;/Alloy&gt;		 
+	&lt;/Alloy&gt;
 
 		* The following view-controller outputs the id of each view in the hierarchy.
 
@@ -158,7 +158,7 @@ var Controller = function() {
 	for (each in views) {
 		var view = views[each];
 		console.log(view.id);
-	}	
+	}
 
 	[INFO] :   win1
 	[INFO] :   label1
@@ -191,9 +191,9 @@ var Controller = function() {
 
 	$.dialog.addEventListener(&#39;close&#39;, function() {
 		$.destroy();
-	});		 
+	});
 		 */
-		destroy: function(){
+		destroy: function() {
 			// destroy() is defined during the compile process based on
 			// the UI components and binding contained within the controller.
 		},
@@ -241,7 +241,7 @@ var Controller = function() {
 		 * {@link Titanium.UI.View#method-applyProperties applyProperties} method
 		 * or a create object method, such as {@link Titanium.UI#method-createView Titanium.UI.createView}.
 		 * #### Examples
-		 * The following creates a new style object that is passed as a parameter 
+		 * The following creates a new style object that is passed as a parameter
 		 * to the {@link Titanium.UI#method-createLabel Ti.UI.createLabel()} method.
 
 	var styleArgs = {
@@ -253,7 +253,7 @@ var Controller = function() {
 		borderColor: &#39;#000&#39;
 	};
 	var styleObject = $.createStyle(styleArgs);
-	testLabel = Ti.UI.createLabel(styleObject);	 
+	testLabel = Ti.UI.createLabel(styleObject);
 
 		 * The next example uses the {@link Titanium#method-applyProperties applyProperties()} method
 		 * to apply a style object to an existing Button control (button not shown).
@@ -306,9 +306,9 @@ The &#39;redbg&#39; and &#39;bigger&#39; classes are shown below:
 	}
 	&quot;.bigger&quot;: {
 		font : {
-		   fontSize: &#39;36&#39;    
+		   fontSize: &#39;36&#39;
 		}
-	}	
+	}
 
 		 * @param {Object} proxy View object to which to add class(es).
 		 * @param {Array&lt;String&gt;/String} classes Array or space-separated list of classes to apply.
@@ -369,8 +369,8 @@ The &#39;redbg&#39; and &#39;bigger&#39; classes are shown below:
 <span id='Alloy-Controller-method-updateViews'>		/**
 </span>		 * @method updateViews
 		 * Applies a set of properties to view elements associated with this controller.
-		 * This method is useful for setting properties on repeated elements such as 
-		 * {@link Titanium.UI.TableViewRow TableViewRow} objects, rather than needing to have a controller 
+		 * This method is useful for setting properties on repeated elements such as
+		 * {@link Titanium.UI.TableViewRow TableViewRow} objects, rather than needing to have a controller
 		 * for those child controllers.
 		 * #### Example
 		 * The following example uses this method to update a Label inside a TableViewRow object
@@ -384,7 +384,7 @@ The &#39;redbg&#39; and &#39;bigger&#39; classes are shown below:
 	  	&quot;#theLabel&quot;: {
 	  		text: &quot;I am row #&quot; + i
 	  	}
-	  });  
+	  });
 	  $.tableView.appendRow(row.getView());
 	};
 
@@ -394,19 +394,19 @@ The &#39;redbg&#39; and &#39;bigger&#39; classes are shown below:
 		&lt;TableViewRow&gt;
 			&lt;Label id=&quot;theLabel&quot;&gt;&lt;/Label&gt;
 		&lt;/TableViewRow&gt;
-	&lt;/Alloy&gt;	 
+	&lt;/Alloy&gt;
 
 			 * XML view: views/index.xml
 
 	&lt;TableView id=&quot;tableView&quot;&gt;
-	&lt;/TableView&gt;			 
+	&lt;/TableView&gt;
 		 * @param {Object} args An object whose keys are the IDs (in form &#39;#id&#39;) of views to which the styles will be applied.
 		 * @since 1.4.0
 
 		 */
 		updateViews: function(args) {
 			var views = this.getViews();
-			if(_.isObject(args)) {
+			if (_.isObject(args)) {
 				_.each(_.keys(args), function(key) {
 					var elem = views[key.substring(1)];
 					if (key.indexOf(&#39;#&#39;) === 0 &amp;&amp; key !== &#39;#&#39; &amp;&amp; _.isObject(elem) &amp;&amp; typeof elem.applyProperties === &#39;function&#39;) {
@@ -498,7 +498,7 @@ The &#39;redbg&#39; and &#39;bigger&#39; classes are shown below:
 		&lt;Window onOpen=&quot;doOpen&quot; onClose=&quot;doClose&quot;&gt;
 			&lt;Label id=&quot;label&quot; onClick=&quot;doClick&quot;&gt;Hello, world&lt;/Label&gt;
 		&lt;/Window&gt;
-	&lt;/Alloy&gt;		 
+	&lt;/Alloy&gt;
 
 	function doClose() {
 		$.removeListener();

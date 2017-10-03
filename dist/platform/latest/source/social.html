@@ -26,7 +26,7 @@
  * To use the social builtin library, require it with the `alloy` root
  * directory in your `require` call. For example:
  *
- *     var social = require(&#39;alloy/social&#39;).create({
+ *     var social = require(&#39;/alloy/social&#39;).create({
  *         consumerSecret: &#39;consumer-secret&#39;,
  *         consumerKey: &#39;consumer-key&#39;
  *     });
@@ -55,8 +55,8 @@
  *		}
  *
  *		// Post a message
- *      // Setup both callbacks for confirmation
- *      // Note: share() automatically calls authorize() so an explicit call as above is unnecessary
+ *	  // Setup both callbacks for confirmation
+ *	  // Note: share() automatically calls authorize() so an explicit call as above is unnecessary
  *		social.share({
  *			message: &quot;Salut, Monde!&quot;,
  *			success: function(e) {alert(&#39;Success!&#39;)},
@@ -68,326 +68,333 @@
  */
 
 function hex_sha1(s) {
-    return binb2hex(core_sha1(str2binb(s), s.length * chrsz));
+	return binb2hex(core_sha1(str2binb(s), s.length * chrsz));
 }
 
 function b64_sha1(s) {
-    return binb2b64(core_sha1(str2binb(s), s.length * chrsz));
+	return binb2b64(core_sha1(str2binb(s), s.length * chrsz));
 }
 
 function str_sha1(s) {
-    return binb2str(core_sha1(str2binb(s), s.length * chrsz));
+	return binb2str(core_sha1(str2binb(s), s.length * chrsz));
 }
 
 function hex_hmac_sha1(key, data) {
-    return binb2hex(core_hmac_sha1(key, data));
+	return binb2hex(core_hmac_sha1(key, data));
 }
 
 function b64_hmac_sha1(key, data) {
-    return binb2b64(core_hmac_sha1(key, data));
+	return binb2b64(core_hmac_sha1(key, data));
 }
 
 function str_hmac_sha1(key, data) {
-    return binb2str(core_hmac_sha1(key, data));
+	return binb2str(core_hmac_sha1(key, data));
 }
 
 function sha1_vm_test() {
-    return hex_sha1(&quot;abc&quot;) == &quot;a9993e364706816aba3e25717850c26c9cd0d89d&quot;;
+	return hex_sha1(&#39;abc&#39;) == &#39;a9993e364706816aba3e25717850c26c9cd0d89d&#39;;
 }
 
 function core_sha1(x, len) {
-    x[len &gt;&gt; 5] |= 128 &lt;&lt; 24 - len % 32, x[(len + 64 &gt;&gt; 9 &lt;&lt; 4) + 15] = len;
-    var w = Array(80), a = 1732584193, b = -271733879, c = -1732584194, d = 271733878, e = -1009589776;
-    for (var i = 0; i &lt; x.length; i += 16) {
-        var olda = a, oldb = b, oldc = c, oldd = d, olde = e;
-        for (var j = 0; j &lt; 80; j++) {
-            j &lt; 16 ? w[j] = x[i + j] : w[j] = rol(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);
-            var t = safe_add(safe_add(rol(a, 5), sha1_ft(j, b, c, d)), safe_add(safe_add(e, w[j]), sha1_kt(j)));
-            e = d, d = c, c = rol(b, 30), b = a, a = t;
-        }
-        a = safe_add(a, olda), b = safe_add(b, oldb), c = safe_add(c, oldc), d = safe_add(d, oldd), e = safe_add(e, olde);
-    }
-    return Array(a, b, c, d, e);
+	x[len &gt;&gt; 5] |= 128 &lt;&lt; 24 - len % 32, x[(len + 64 &gt;&gt; 9 &lt;&lt; 4) + 15] = len;
+	var w = Array(80), a = 1732584193, b = -271733879, c = -1732584194, d = 271733878, e = -1009589776;
+	for (var i = 0; i &lt; x.length; i += 16) {
+		var olda = a, oldb = b, oldc = c, oldd = d, olde = e;
+		for (var j = 0; j &lt; 80; j++) {
+			j &lt; 16 ? w[j] = x[i + j] : w[j] = rol(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);
+			var t = safe_add(safe_add(rol(a, 5), sha1_ft(j, b, c, d)), safe_add(safe_add(e, w[j]), sha1_kt(j)));
+			e = d, d = c, c = rol(b, 30), b = a, a = t;
+		}
+		a = safe_add(a, olda), b = safe_add(b, oldb), c = safe_add(c, oldc), d = safe_add(d, oldd), e = safe_add(e, olde);
+	}
+	return Array(a, b, c, d, e);
 }
 
 function sha1_ft(t, b, c, d) {
-    return t &lt; 20 ? b &amp; c | ~b &amp; d : t &lt; 40 ? b ^ c ^ d : t &lt; 60 ? b &amp; c | b &amp; d | c &amp; d : b ^ c ^ d;
+	return t &lt; 20 ? b &amp; c | ~b &amp; d : t &lt; 40 ? b ^ c ^ d : t &lt; 60 ? b &amp; c | b &amp; d | c &amp; d : b ^ c ^ d;
 }
 
 function sha1_kt(t) {
-    return t &lt; 20 ? 1518500249 : t &lt; 40 ? 1859775393 : t &lt; 60 ? -1894007588 : -899497514;
+	return t &lt; 20 ? 1518500249 : t &lt; 40 ? 1859775393 : t &lt; 60 ? -1894007588 : -899497514;
 }
 
 function core_hmac_sha1(key, data) {
-    var bkey = str2binb(key);
-    bkey.length &gt; 16 &amp;&amp; (bkey = core_sha1(bkey, key.length * chrsz));
-    var ipad = Array(16), opad = Array(16);
-    for (var i = 0; i &lt; 16; i++) ipad[i] = bkey[i] ^ 909522486, opad[i] = bkey[i] ^ 1549556828;
-    var hash = core_sha1(ipad.concat(str2binb(data)), 512 + data.length * chrsz);
-    return core_sha1(opad.concat(hash), 672);
+	var bkey = str2binb(key);
+	bkey.length &gt; 16 &amp;&amp; (bkey = core_sha1(bkey, key.length * chrsz));
+	var ipad = Array(16), opad = Array(16);
+	for (var i = 0; i &lt; 16; i++) ipad[i] = bkey[i] ^ 909522486, opad[i] = bkey[i] ^ 1549556828;
+	var hash = core_sha1(ipad.concat(str2binb(data)), 512 + data.length * chrsz);
+	return core_sha1(opad.concat(hash), 672);
 }
 
 function safe_add(x, y) {
-    var lsw = (x &amp; 65535) + (y &amp; 65535), msw = (x &gt;&gt; 16) + (y &gt;&gt; 16) + (lsw &gt;&gt; 16);
-    return msw &lt;&lt; 16 | lsw &amp; 65535;
+	var lsw = (x &amp; 65535) + (y &amp; 65535), msw = (x &gt;&gt; 16) + (y &gt;&gt; 16) + (lsw &gt;&gt; 16);
+	return msw &lt;&lt; 16 | lsw &amp; 65535;
 }
 
 function rol(num, cnt) {
-    return num &lt;&lt; cnt | num &gt;&gt;&gt; 32 - cnt;
+	return num &lt;&lt; cnt | num &gt;&gt;&gt; 32 - cnt;
 }
 
 function str2binb(str) {
-    var bin = Array(), mask = (1 &lt;&lt; chrsz) - 1;
-    for (var i = 0; i &lt; str.length * chrsz; i += chrsz) bin[i &gt;&gt; 5] |= (str.charCodeAt(i / chrsz) &amp; mask) &lt;&lt; 32 - chrsz - i % 32;
-    return bin;
+	var bin = Array(), mask = (1 &lt;&lt; chrsz) - 1;
+	for (var i = 0; i &lt; str.length * chrsz; i += chrsz) bin[i &gt;&gt; 5] |= (str.charCodeAt(i / chrsz) &amp; mask) &lt;&lt; 32 - chrsz - i % 32;
+	return bin;
 }
 
 function binb2str(bin) {
-    var str = &quot;&quot;, mask = (1 &lt;&lt; chrsz) - 1;
-    for (var i = 0; i &lt; bin.length * 32; i += chrsz) str += String.fromCharCode(bin[i &gt;&gt; 5] &gt;&gt;&gt; 32 - chrsz - i % 32 &amp; mask);
-    return str;
+	var str = &#39;&#39;, mask = (1 &lt;&lt; chrsz) - 1;
+	for (var i = 0; i &lt; bin.length * 32; i += chrsz) str += String.fromCharCode(bin[i &gt;&gt; 5] &gt;&gt;&gt; 32 - chrsz - i % 32 &amp; mask);
+	return str;
 }
 
 function binb2hex(binarray) {
-    var hex_tab = hexcase ? &quot;0123456789ABCDEF&quot; : &quot;0123456789abcdef&quot;, str = &quot;&quot;;
-    for (var i = 0; i &lt; binarray.length * 4; i++) str += hex_tab.charAt(binarray[i &gt;&gt; 2] &gt;&gt; (3 - i % 4) * 8 + 4 &amp; 15) + hex_tab.charAt(binarray[i &gt;&gt; 2] &gt;&gt; (3 - i % 4) * 8 &amp; 15);
-    return str;
+	var hex_tab = hexcase ? &#39;0123456789ABCDEF&#39; : &#39;0123456789abcdef&#39;, str = &#39;&#39;;
+	for (var i = 0; i &lt; binarray.length * 4; i++) str += hex_tab.charAt(binarray[i &gt;&gt; 2] &gt;&gt; (3 - i % 4) * 8 + 4 &amp; 15) + hex_tab.charAt(binarray[i &gt;&gt; 2] &gt;&gt; (3 - i % 4) * 8 &amp; 15);
+	return str;
 }
 
 function binb2b64(binarray) {
-    var tab = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;, str = &quot;&quot;;
-    for (var i = 0; i &lt; binarray.length * 4; i += 3) {
-        var triplet = (binarray[i &gt;&gt; 2] &gt;&gt; 8 * (3 - i % 4) &amp; 255) &lt;&lt; 16 | (binarray[i + 1 &gt;&gt; 2] &gt;&gt; 8 * (3 - (i + 1) % 4) &amp; 255) &lt;&lt; 8 | binarray[i + 2 &gt;&gt; 2] &gt;&gt; 8 * (3 - (i + 2) % 4) &amp; 255;
-        for (var j = 0; j &lt; 4; j++) i * 8 + j * 6 &gt; binarray.length * 32 ? str += b64pad : str += tab.charAt(triplet &gt;&gt; 6 * (3 - j) &amp; 63);
-    }
-    return str;
+	var tab = &#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#39;, str = &#39;&#39;;
+	for (var i = 0; i &lt; binarray.length * 4; i += 3) {
+		var triplet = (binarray[i &gt;&gt; 2] &gt;&gt; 8 * (3 - i % 4) &amp; 255) &lt;&lt; 16 | (binarray[i + 1 &gt;&gt; 2] &gt;&gt; 8 * (3 - (i + 1) % 4) &amp; 255) &lt;&lt; 8 | binarray[i + 2 &gt;&gt; 2] &gt;&gt; 8 * (3 - (i + 2) % 4) &amp; 255;
+		for (var j = 0; j &lt; 4; j++) i * 8 + j * 6 &gt; binarray.length * 32 ? str += b64pad : str += tab.charAt(triplet &gt;&gt; 6 * (3 - j) &amp; 63);
+	}
+	return str;
 }
 
-var hexcase = 0, b64pad = &quot;&quot;, chrsz = 8, OAuth;
+var hexcase = 0, b64pad = &#39;&#39;, chrsz = 8, OAuth;
 
 
 OAuth == null &amp;&amp; (OAuth = {}), OAuth.setProperties = function(into, from) {
-    if (into != null &amp;&amp; from != null) for (var key in from) into[key] = from[key];
-    return into;
+	if (into != null &amp;&amp; from != null) for (var key in from) into[key] = from[key];
+	return into;
 }, OAuth.setProperties(OAuth, {
-    percentEncode: function(s) {
-        if (s == null) return &quot;&quot;;
-        if (s instanceof Array) {
-            var e = &quot;&quot;;
-            for (var i = 0; i &lt; s.length; ++s) e != &quot;&quot; &amp;&amp; (e += &quot;&amp;&quot;), e += OAuth.percentEncode(s[i]);
-            return e;
-        }
-        return s = encodeURIComponent(s), s = s.replace(/\!/g, &quot;%21&quot;), s = s.replace(/\*/g, &quot;%2A&quot;), s = s.replace(/\&#39;/g, &quot;%27&quot;), s = s.replace(/\(/g, &quot;%28&quot;), s = s.replace(/\)/g, &quot;%29&quot;), s;
-    },
-    decodePercent: function(s) {
-        return s != null &amp;&amp; (s = s.replace(/\+/g, &quot; &quot;)), decodeURIComponent(s);
-    },
-    getParameterList: function(parameters) {
-        if (parameters == null) return [];
-        if (typeof parameters != &quot;object&quot;) return OAuth.decodeForm(parameters + &quot;&quot;);
-        if (parameters instanceof Array) return parameters;
-        var list = [];
-        for (var p in parameters) list.push([ p, parameters[p] ]);
-        return list;
-    },
-    getParameterMap: function(parameters) {
-        if (parameters == null) return {};
-        if (typeof parameters != &quot;object&quot;) return OAuth.getParameterMap(OAuth.decodeForm(parameters + &quot;&quot;));
-        if (parameters instanceof Array) {
-            var map = {};
-            for (var p = 0; p &lt; parameters.length; ++p) {
-                var key = parameters[p][0];
-                map[key] === undefined &amp;&amp; (map[key] = parameters[p][1]);
-            }
-            return map;
-        }
-        return parameters;
-    },
-    getParameter: function(parameters, name) {
-        if (parameters instanceof Array) {
-            for (var p = 0; p &lt; parameters.length; ++p) if (parameters[p][0] == name) return parameters[p][1];
-            return null;
-        }
-        return OAuth.getParameterMap(parameters)[name];
-    },
-    formEncode: function(parameters) {
-        var form = &quot;&quot;, list = OAuth.getParameterList(parameters);
-        for (var p = 0; p &lt; list.length; ++p) {
-            var value = list[p][1];
-            value == null &amp;&amp; (value = &quot;&quot;), form != &quot;&quot; &amp;&amp; (form += &quot;&amp;&quot;), form += OAuth.percentEncode(list[p][0]) + &quot;=&quot; + OAuth.percentEncode(value);
-        }
-        return form;
-    },
-    decodeForm: function(form) {
-        var list = [], nvps = form.split(&quot;&amp;&quot;);
-        for (var n = 0; n &lt; nvps.length; ++n) {
-            var nvp = nvps[n];
-            if (nvp == &quot;&quot;) continue;
-            var equals = nvp.indexOf(&quot;=&quot;), name, value;
-            equals &lt; 0 ? (name = OAuth.decodePercent(nvp), value = null) : (name = OAuth.decodePercent(nvp.substring(0, equals)), value = OAuth.decodePercent(nvp.substring(equals + 1))), list.push([ name, value ]);
-        }
-        return list;
-    },
-    setParameter: function(message, name, value) {
-        var parameters = message.parameters;
-        if (parameters instanceof Array) {
-            for (var p = 0; p &lt; parameters.length; ++p) parameters[p][0] == name &amp;&amp; (value === undefined ? parameters.splice(p, 1) : (parameters[p][1] = value, value = undefined));
-            value !== undefined &amp;&amp; parameters.push([ name, value ]);
-        } else parameters = OAuth.getParameterMap(parameters), parameters[name] = value, message.parameters = parameters;
-    },
-    setParameters: function(message, parameters) {
-        var list = OAuth.getParameterList(parameters);
-        for (var i = 0; i &lt; list.length; ++i) OAuth.setParameter(message, list[i][0], list[i][1]);
-    },
-    completeRequest: function(message, accessor) {
-        message.method == null &amp;&amp; (message.method = &quot;GET&quot;);
-        var map = OAuth.getParameterMap(message.parameters);
-        map.oauth_consumer_key == null &amp;&amp; OAuth.setParameter(message, &quot;oauth_consumer_key&quot;, accessor.consumerKey || &quot;&quot;), map.oauth_token == null &amp;&amp; accessor.token != null &amp;&amp; OAuth.setParameter(message, &quot;oauth_token&quot;, accessor.token), map.oauth_version == null &amp;&amp; OAuth.setParameter(message, &quot;oauth_version&quot;, &quot;1.0&quot;), map.oauth_timestamp == null &amp;&amp; OAuth.setParameter(message, &quot;oauth_timestamp&quot;, OAuth.timestamp()), map.oauth_nonce == null &amp;&amp; OAuth.setParameter(message, &quot;oauth_nonce&quot;, OAuth.nonce(6)), OAuth.SignatureMethod.sign(message, accessor);
-    },
-    setTimestampAndNonce: function(message) {
-        OAuth.setParameter(message, &quot;oauth_timestamp&quot;, OAuth.timestamp()), OAuth.setParameter(message, &quot;oauth_nonce&quot;, OAuth.nonce(6));
-    },
-    addToURL: function(url, parameters) {
-        newURL = url;
-        if (parameters != null) {
-            var toAdd = OAuth.formEncode(parameters);
-            if (toAdd.length &gt; 0) {
-                var q = url.indexOf(&quot;?&quot;);
-                q &lt; 0 ? newURL += &quot;?&quot; : newURL += &quot;&amp;&quot;, newURL += toAdd;
-            }
-        }
-        return newURL;
-    },
-    getAuthorizationHeader: function(realm, parameters) {
-        var header = &#39;OAuth realm=&quot;&#39; + OAuth.percentEncode(realm) + &#39;&quot;&#39;, list = OAuth.getParameterList(parameters);
-        for (var p = 0; p &lt; list.length; ++p) {
-            var parameter = list[p], name = parameter[0];
-            name.indexOf(&quot;oauth_&quot;) == 0 &amp;&amp; (header += &quot;,&quot; + OAuth.percentEncode(name) + &#39;=&quot;&#39; + OAuth.percentEncode(parameter[1]) + &#39;&quot;&#39;);
-        }
-        return header;
-    },
-    correctTimestampFromSrc: function(parameterName) {
-        parameterName = parameterName || &quot;oauth_timestamp&quot;;
-        var scripts = document.getElementsByTagName(&quot;script&quot;);
-        if (scripts == null || !scripts.length) return;
-        var src = scripts[scripts.length - 1].src;
-        if (!src) return;
-        var q = src.indexOf(&quot;?&quot;);
-        if (q &lt; 0) return;
-        parameters = OAuth.getParameterMap(OAuth.decodeForm(src.substring(q + 1)));
-        var t = parameters[parameterName];
-        if (t == null) return;
-        OAuth.correctTimestamp(t);
-    },
-    correctTimestamp: function(timestamp) {
-        OAuth.timeCorrectionMsec = timestamp * 1e3 - (new Date).getTime();
-    },
-    timeCorrectionMsec: 0,
-    timestamp: function() {
-        var t = (new Date).getTime() + OAuth.timeCorrectionMsec;
-        return &quot;&quot; + Math.floor(t / 1e3);
-    },
-    nonce: function(length) {
-        var chars = OAuth.nonce.CHARS, result = &quot;&quot;;
-        for (var i = 0; i &lt; length; ++i) {
-            var rnum = Math.floor(Math.random() * chars.length);
-            result += chars.substring(rnum, rnum + 1);
-        }
-        return result;
-    }
-}), OAuth.nonce.CHARS = &quot;0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz&quot;, OAuth.declareClass = function(parent, name, newConstructor) {
-    var previous = parent[name];
-    parent[name] = newConstructor;
-    if (newConstructor != null &amp;&amp; previous != null) for (var key in previous) key != &quot;prototype&quot; &amp;&amp; (newConstructor[key] = previous[key]);
-    return newConstructor;
-}, OAuth.declareClass(OAuth, &quot;SignatureMethod&quot;, function() {}), OAuth.setProperties(OAuth.SignatureMethod.prototype, {
-    sign: function(message) {
-        var baseString = OAuth.SignatureMethod.getBaseString(message), signature = this.getSignature(baseString);
-        return OAuth.setParameter(message, &quot;oauth_signature&quot;, signature), signature;
-    },
-    initialize: function(name, accessor) {
-        var consumerSecret;
-        accessor.accessorSecret != null &amp;&amp; name.length &gt; 9 &amp;&amp; name.substring(name.length - 9) == &quot;-Accessor&quot; ? consumerSecret = accessor.accessorSecret : consumerSecret = accessor.consumerSecret, this.key = OAuth.percentEncode(consumerSecret) + &quot;&amp;&quot; + OAuth.percentEncode(accessor.tokenSecret);
-    }
+	percentEncode: function(s) {
+		if (s == null) return &#39;&#39;;
+		if (s instanceof Array) {
+			var e = &#39;&#39;;
+			for (var i = 0; i &lt; s.length; ++s) e != &#39;&#39; &amp;&amp; (e += &#39;&amp;&#39;), e += OAuth.percentEncode(s[i]);
+			return e;
+		}
+		return s = encodeURIComponent(s), s = s.replace(/\!/g, &#39;%21&#39;), s = s.replace(/\*/g, &#39;%2A&#39;), s = s.replace(/\&#39;/g, &#39;%27&#39;), s = s.replace(/\(/g, &#39;%28&#39;), s = s.replace(/\)/g, &#39;%29&#39;), s;
+	},
+	decodePercent: function(s) {
+		return s != null &amp;&amp; (s = s.replace(/\+/g, &#39; &#39;)), decodeURIComponent(s);
+	},
+	getParameterList: function(parameters) {
+		if (parameters == null) return [];
+		if (typeof parameters != &#39;object&#39;) return OAuth.decodeForm(parameters + &#39;&#39;);
+		if (parameters instanceof Array) return parameters;
+		var list = [];
+		for (var p in parameters) list.push([ p, parameters[p] ]);
+		return list;
+	},
+	getParameterMap: function(parameters) {
+		if (parameters == null) return {};
+		if (typeof parameters != &#39;object&#39;) return OAuth.getParameterMap(OAuth.decodeForm(parameters + &#39;&#39;));
+		if (parameters instanceof Array) {
+			var map = {};
+			for (var p = 0; p &lt; parameters.length; ++p) {
+				var key = parameters[p][0];
+				map[key] === undefined &amp;&amp; (map[key] = parameters[p][1]);
+			}
+			return map;
+		}
+		return parameters;
+	},
+	getParameter: function(parameters, name) {
+		if (parameters instanceof Array) {
+			for (var p = 0; p &lt; parameters.length; ++p) if (parameters[p][0] == name) return parameters[p][1];
+			return null;
+		}
+		return OAuth.getParameterMap(parameters)[name];
+	},
+	formEncode: function(parameters) {
+		var form = &#39;&#39;, list = OAuth.getParameterList(parameters);
+		for (var p = 0; p &lt; list.length; ++p) {
+			var value = list[p][1];
+			value == null &amp;&amp; (value = &#39;&#39;), form != &#39;&#39; &amp;&amp; (form += &#39;&amp;&#39;), form += OAuth.percentEncode(list[p][0]) + &#39;=&#39; + OAuth.percentEncode(value);
+		}
+		return form;
+	},
+	decodeForm: function(form) {
+		var list = [], nvps = form.split(&#39;&amp;&#39;);
+		for (var n = 0; n &lt; nvps.length; ++n) {
+			var nvp = nvps[n];
+			if (nvp == &#39;&#39;) continue;
+			var equals = nvp.indexOf(&#39;=&#39;), name, value;
+			equals &lt; 0 ? (name = OAuth.decodePercent(nvp), value = null) : (name = OAuth.decodePercent(nvp.substring(0, equals)), value = OAuth.decodePercent(nvp.substring(equals + 1))), list.push([ name, value ]);
+		}
+		return list;
+	},
+	setParameter: function(message, name, value) {
+		var parameters = message.parameters;
+		if (parameters instanceof Array) {
+			for (var p = 0; p &lt; parameters.length; ++p) parameters[p][0] == name &amp;&amp; (value === undefined ? parameters.splice(p, 1) : (parameters[p][1] = value, value = undefined));
+			value !== undefined &amp;&amp; parameters.push([ name, value ]);
+		} else parameters = OAuth.getParameterMap(parameters), parameters[name] = value, message.parameters = parameters;
+	},
+	setParameters: function(message, parameters) {
+		var list = OAuth.getParameterList(parameters);
+		for (var i = 0; i &lt; list.length; ++i) OAuth.setParameter(message, list[i][0], list[i][1]);
+	},
+	completeRequest: function(message, accessor) {
+		message.method == null &amp;&amp; (message.method = &#39;GET&#39;);
+		var map = OAuth.getParameterMap(message.parameters);
+		map.oauth_consumer_key == null &amp;&amp; OAuth.setParameter(message, &#39;oauth_consumer_key&#39;, accessor.consumerKey || &#39;&#39;), map.oauth_token == null &amp;&amp; accessor.token != null &amp;&amp; OAuth.setParameter(message, &#39;oauth_token&#39;, accessor.token), map.oauth_version == null &amp;&amp; OAuth.setParameter(message, &#39;oauth_version&#39;, &#39;1.0&#39;), map.oauth_timestamp == null &amp;&amp; OAuth.setParameter(message, &#39;oauth_timestamp&#39;, OAuth.timestamp()), map.oauth_nonce == null &amp;&amp; OAuth.setParameter(message, &#39;oauth_nonce&#39;, OAuth.nonce(6)), OAuth.SignatureMethod.sign(message, accessor);
+	},
+	setTimestampAndNonce: function(message) {
+		OAuth.setParameter(message, &#39;oauth_timestamp&#39;, OAuth.timestamp()), OAuth.setParameter(message, &#39;oauth_nonce&#39;, OAuth.nonce(6));
+	},
+	addToURL: function(url, parameters) {
+		newURL = url;
+		if (parameters != null) {
+			var toAdd = OAuth.formEncode(parameters);
+			if (toAdd.length &gt; 0) {
+				var q = url.indexOf(&#39;?&#39;);
+				q &lt; 0 ? newURL += &#39;?&#39; : newURL += &#39;&amp;&#39;, newURL += toAdd;
+			}
+		}
+		return newURL;
+	},
+	getAuthorizationHeader: function(realm, parameters) {
+		var header = &#39;OAuth realm=&quot;&#39; + OAuth.percentEncode(realm) + &#39;&quot;&#39;, list = OAuth.getParameterList(parameters);
+		for (var p = 0; p &lt; list.length; ++p) {
+			var parameter = list[p], name = parameter[0];
+			name.indexOf(&#39;oauth_&#39;) == 0 &amp;&amp; (header += &#39;,&#39; + OAuth.percentEncode(name) + &#39;=&quot;&#39; + OAuth.percentEncode(parameter[1]) + &#39;&quot;&#39;);
+		}
+		return header;
+	},
+	correctTimestampFromSrc: function(parameterName) {
+		parameterName = parameterName || &#39;oauth_timestamp&#39;;
+		var scripts = document.getElementsByTagName(&#39;script&#39;);
+		if (scripts == null || !scripts.length) return;
+		var src = scripts[scripts.length - 1].src;
+		if (!src) return;
+		var q = src.indexOf(&#39;?&#39;);
+		if (q &lt; 0) return;
+		parameters = OAuth.getParameterMap(OAuth.decodeForm(src.substring(q + 1)));
+		var t = parameters[parameterName];
+		if (t == null) return;
+		OAuth.correctTimestamp(t);
+	},
+	correctTimestamp: function(timestamp) {
+		OAuth.timeCorrectionMsec = timestamp * 1e3 - (new Date).getTime();
+	},
+	timeCorrectionMsec: 0,
+	timestamp: function() {
+		var t = (new Date).getTime() + OAuth.timeCorrectionMsec;
+		return &#39;&#39; + Math.floor(t / 1e3);
+	},
+	nonce: function(length) {
+		var chars = OAuth.nonce.CHARS, result = &#39;&#39;;
+		for (var i = 0; i &lt; length; ++i) {
+			var rnum = Math.floor(Math.random() * chars.length);
+			result += chars.substring(rnum, rnum + 1);
+		}
+		return result;
+	}
+}), OAuth.nonce.CHARS = &#39;0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz&#39;, OAuth.declareClass = function(parent, name, newConstructor) {
+	var previous = parent[name];
+	parent[name] = newConstructor;
+	if (newConstructor != null &amp;&amp; previous != null) for (var key in previous) key != &#39;prototype&#39; &amp;&amp; (newConstructor[key] = previous[key]);
+	return newConstructor;
+}, OAuth.declareClass(OAuth, &#39;SignatureMethod&#39;, function() {}), OAuth.setProperties(OAuth.SignatureMethod.prototype, {
+	sign: function(message) {
+		var baseString = OAuth.SignatureMethod.getBaseString(message), signature = this.getSignature(baseString);
+		return OAuth.setParameter(message, &#39;oauth_signature&#39;, signature), signature;
+	},
+	initialize: function(name, accessor) {
+		var consumerSecret;
+		accessor.accessorSecret != null &amp;&amp; name.length &gt; 9 &amp;&amp; name.substring(name.length - 9) == &#39;-Accessor&#39; ? consumerSecret = accessor.accessorSecret : consumerSecret = accessor.consumerSecret, this.key = OAuth.percentEncode(consumerSecret) + &#39;&amp;&#39; + OAuth.percentEncode(accessor.tokenSecret);
+	}
 }), OAuth.setProperties(OAuth.SignatureMethod, {
-    sign: function(message, accessor) {
-        var name = OAuth.getParameterMap(message.parameters).oauth_signature_method;
-        if (name == null || name == &quot;&quot;) name = &quot;HMAC-SHA1&quot;, OAuth.setParameter(message, &quot;oauth_signature_method&quot;, name);
-        OAuth.SignatureMethod.newMethod(name, accessor).sign(message);
-    },
-    newMethod: function(name, accessor) {
-        var impl = OAuth.SignatureMethod.REGISTERED[name];
-        if (impl != null) {
-            var method = new impl;
-            return method.initialize(name, accessor), method;
-        }
-        var err = new Error(&quot;signature_method_rejected&quot;), acceptable = &quot;&quot;;
-        for (var r in OAuth.SignatureMethod.REGISTERED) acceptable != &quot;&quot; &amp;&amp; (acceptable += &quot;&amp;&quot;), acceptable += OAuth.percentEncode(r);
-        throw err.oauth_acceptable_signature_methods = acceptable, err;
-    },
-    REGISTERED: {},
-    registerMethodClass: function(names, classConstructor) {
-        for (var n = 0; n &lt; names.length; ++n) OAuth.SignatureMethod.REGISTERED[names[n]] = classConstructor;
-    },
-    makeSubclass: function(getSignatureFunction) {
-        var superClass = OAuth.SignatureMethod, subClass = function() {
-            superClass.call(this);
-        };
-        return subClass.prototype = new superClass, subClass.prototype.getSignature = getSignatureFunction, subClass.prototype.constructor = subClass, subClass;
-    },
-    getBaseString: function(message) {
-        var URL = message.action, q = URL.indexOf(&quot;?&quot;), parameters;
-        if (q &lt; 0) parameters = message.parameters; else {
-            parameters = OAuth.decodeForm(URL.substring(q + 1));
-            var toAdd = OAuth.getParameterList(message.parameters);
-            for (var a = 0; a &lt; toAdd.length; ++a) parameters.push(toAdd[a]);
-        }
-        return OAuth.percentEncode(message.method.toUpperCase()) + &quot;&amp;&quot; + OAuth.percentEncode(OAuth.SignatureMethod.normalizeUrl(URL)) + &quot;&amp;&quot; + OAuth.percentEncode(OAuth.SignatureMethod.normalizeParameters(parameters));
-    },
-    normalizeUrl: function(url) {
-        var uri = OAuth.SignatureMethod.parseUri(url), scheme = uri.protocol.toLowerCase(), authority = uri.authority.toLowerCase(), dropPort = scheme == &quot;http&quot; &amp;&amp; uri.port == 80 || scheme == &quot;https&quot; &amp;&amp; uri.port == 443;
-        if (dropPort) {
-            var index = authority.lastIndexOf(&quot;:&quot;);
-            index &gt;= 0 &amp;&amp; (authority = authority.substring(0, index));
-        }
-        var path = uri.path;
-        return path || (path = &quot;/&quot;), scheme + &quot;://&quot; + authority + path;
-    },
-    parseUri: function(str) {
-        var o = {
-            key: [ &quot;source&quot;, &quot;protocol&quot;, &quot;authority&quot;, &quot;userInfo&quot;, &quot;user&quot;, &quot;password&quot;, &quot;host&quot;, &quot;port&quot;, &quot;relative&quot;, &quot;path&quot;, &quot;directory&quot;, &quot;file&quot;, &quot;query&quot;, &quot;anchor&quot; ],
-            parser: {
-                strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@\/]*):?([^:@\/]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/
-            }
-        }, m = o.parser.strict.exec(str), uri = {}, i = 14;
-        while (i--) uri[o.key[i]] = m[i] || &quot;&quot;;
-        return uri;
-    },
-    normalizeParameters: function(parameters) {
-        if (parameters == null) return &quot;&quot;;
-        var list = OAuth.getParameterList(parameters), sortable = [];
-        for (var p = 0; p &lt; list.length; ++p) {
-            var nvp = list[p];
-            nvp[0] != &quot;oauth_signature&quot; &amp;&amp; sortable.push([ OAuth.percentEncode(nvp[0]) + &quot; &quot; + OAuth.percentEncode(nvp[1]), nvp ]);
-        }
-        sortable.sort(function(a, b) {
-            return a[0] &lt; b[0] ? -1 : a[0] &gt; b[0] ? 1 : 0;
-        });
-        var sorted = [];
-        for (var s = 0; s &lt; sortable.length; ++s) sorted.push(sortable[s][1]);
-        return OAuth.formEncode(sorted);
-    }
-}), OAuth.SignatureMethod.registerMethodClass([ &quot;PLAINTEXT&quot;, &quot;PLAINTEXT-Accessor&quot; ], OAuth.SignatureMethod.makeSubclass(function(baseString) {
-    return this.key;
-})), OAuth.SignatureMethod.registerMethodClass([ &quot;HMAC-SHA1&quot;, &quot;HMAC-SHA1-Accessor&quot; ], OAuth.SignatureMethod.makeSubclass(function(baseString) {
-    b64pad = &quot;=&quot;;
-    var signature = b64_hmac_sha1(this.key, baseString);
-    return signature;
+	sign: function(message, accessor) {
+		var name = OAuth.getParameterMap(message.parameters).oauth_signature_method;
+		if (name == null || name == &#39;&#39;) name = &#39;HMAC-SHA1&#39;, OAuth.setParameter(message, &#39;oauth_signature_method&#39;, name);
+		OAuth.SignatureMethod.newMethod(name, accessor).sign(message);
+	},
+	newMethod: function(name, accessor) {
+		var impl = OAuth.SignatureMethod.REGISTERED[name];
+		if (impl != null) {
+			var method = new impl;
+			return method.initialize(name, accessor), method;
+		}
+		var err = new Error(&#39;signature_method_rejected&#39;), acceptable = &#39;&#39;;
+		for (var r in OAuth.SignatureMethod.REGISTERED) acceptable != &#39;&#39; &amp;&amp; (acceptable += &#39;&amp;&#39;), acceptable += OAuth.percentEncode(r);
+		throw err.oauth_acceptable_signature_methods = acceptable, err;
+	},
+	REGISTERED: {},
+	registerMethodClass: function(names, classConstructor) {
+		for (var n = 0; n &lt; names.length; ++n) OAuth.SignatureMethod.REGISTERED[names[n]] = classConstructor;
+	},
+	makeSubclass: function(getSignatureFunction) {
+		var superClass = OAuth.SignatureMethod,
+			subClass = function() {
+				superClass.call(this);
+			};
+		return subClass.prototype = new superClass, subClass.prototype.getSignature = getSignatureFunction, subClass.prototype.constructor = subClass, subClass;
+	},
+	getBaseString: function(message) {
+		var URL = message.action, q = URL.indexOf(&#39;?&#39;), parameters;
+		if (q &lt; 0) parameters = message.parameters; else {
+			parameters = OAuth.decodeForm(URL.substring(q + 1));
+			var toAdd = OAuth.getParameterList(message.parameters);
+			for (var a = 0; a &lt; toAdd.length; ++a) parameters.push(toAdd[a]);
+		}
+		return OAuth.percentEncode(message.method.toUpperCase()) + &#39;&amp;&#39; + OAuth.percentEncode(OAuth.SignatureMethod.normalizeUrl(URL)) + &#39;&amp;&#39; + OAuth.percentEncode(OAuth.SignatureMethod.normalizeParameters(parameters));
+	},
+	normalizeUrl: function(url) {
+		var uri = OAuth.SignatureMethod.parseUri(url), scheme = uri.protocol.toLowerCase(), authority = uri.authority.toLowerCase(), dropPort = scheme == &#39;http&#39; &amp;&amp; uri.port == 80 || scheme == &#39;https&#39; &amp;&amp; uri.port == 443;
+		if (dropPort) {
+			var index = authority.lastIndexOf(&#39;:&#39;);
+			index &gt;= 0 &amp;&amp; (authority = authority.substring(0, index));
+		}
+		var path = uri.path;
+		return path || (path = &#39;/&#39;), scheme + &#39;://&#39; + authority + path;
+	},
+	parseUri: function(str) {
+		var o = {
+				key: [ &#39;source&#39;, &#39;protocol&#39;, &#39;authority&#39;, &#39;userInfo&#39;, &#39;user&#39;, &#39;password&#39;, &#39;host&#39;, &#39;port&#39;, &#39;relative&#39;, &#39;path&#39;, &#39;directory&#39;, &#39;file&#39;, &#39;query&#39;, &#39;anchor&#39; ],
+				parser: {
+					strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@\/]*):?([^:@\/]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/
+				}
+			},
+			m = o.parser.strict.exec(str),
+			uri = {},
+			i = 14;
+
+		while (i--) uri[o.key[i]] = m[i] || &#39;&#39;;
+		return uri;
+	},
+	normalizeParameters: function(parameters) {
+		if (parameters == null) return &#39;&#39;;
+		var list = OAuth.getParameterList(parameters), sortable = [];
+		for (var p = 0; p &lt; list.length; ++p) {
+			var nvp = list[p];
+			nvp[0] != &#39;oauth_signature&#39; &amp;&amp; sortable.push([ OAuth.percentEncode(nvp[0]) + &#39; &#39; + OAuth.percentEncode(nvp[1]), nvp ]);
+		}
+		sortable.sort(function(a, b) {
+			return a[0] &lt; b[0] ? -1 : a[0] &gt; b[0] ? 1 : 0;
+		});
+		var sorted = [];
+		for (var s = 0; s &lt; sortable.length; ++s) sorted.push(sortable[s][1]);
+		return OAuth.formEncode(sorted);
+	}
+}), OAuth.SignatureMethod.registerMethodClass([ &#39;PLAINTEXT&#39;, &#39;PLAINTEXT-Accessor&#39; ], OAuth.SignatureMethod.makeSubclass(function(baseString) {
+	return this.key;
+})), OAuth.SignatureMethod.registerMethodClass([ &#39;HMAC-SHA1&#39;, &#39;HMAC-SHA1-Accessor&#39; ], OAuth.SignatureMethod.makeSubclass(function(baseString) {
+	b64pad = &#39;=&#39;;
+	var signature = b64_hmac_sha1(this.key, baseString);
+	return signature;
 }));
 
 try {
-    OAuth.correctTimestampFromSrc();
-} catch (e) {}
+	OAuth.correctTimestampFromSrc();
+} catch (e) {
+	//do nothing
+}
 
 var OAuthAdapter = function(pConsumerSecret, pConsumerKey, pSignatureMethod) {
     function showLoading() {
@@ -467,7 +474,7 @@ var OAuthAdapter = function(pConsumerSecret, pConsumerKey, pSignatureMethod) {
         }
     }, firstLoad = !0, loading = !1, estimates = JSON.parse(Ti.App.Properties.getString(&quot;Social-LoadingEstimates&quot;, &quot;{}&quot;)), estimateID, startTime, intervalID = 0;
     this.showLoadingUI = function() {
-        var animation = require(&#39;alloy/animation&#39;);
+        var animation = require(&#39;/alloy/animation&#39;);
         var isIOS7 = OS_IOS &amp;&amp; parseInt(Ti.Platform.version, 10) &gt; 6 ? true : false
         window = Ti.UI.createWindow({
             backgroundColor: &quot;transparent&quot;,
@@ -539,45 +546,45 @@ var OAuthAdapter = function(pConsumerSecret, pConsumerKey, pSignatureMethod) {
 		var responseParams = OAuth.getParameterMap(this.responseText);
 		var userid = responseParams.user_id;
 		var username = responseParams.screen_name;
-                accessToken = responseParams.oauth_token, accessTokenSecret = responseParams.oauth_token_secret, callback({
-                    success: !0, username:username, userid:userid
-                });
-            },
-            onerror: function() {
-                Ti.API.error(&quot;Social.js: FAILED to getAccessToken!&quot;), Ti.API.error(this.responseText), callback({
-                    success: !1
-                });
-            }
-        });
-        client.open(&quot;POST&quot;, pUrl), client.send(parameterMap);
-    }, this.send = function(options, callback) {
-        var pUrl = options.url, pParameters = options.parameters, pTitle = options.title, pSuccessMessage = options.onSuccess, pErrorMessage = options.onError;
-        if (accessToken == null || accessTokenSecret == null) {
-            Ti.API.debug(&quot;The send status cannot be processed as the client doesn&#39;t have an access token. Authorize before trying to send.&quot;);
-            return;
-        }
-        accessor.tokenSecret = accessTokenSecret;
-        var message = createMessage(pUrl);
-        message.parameters.push([ &quot;oauth_token&quot;, accessToken ]);
-        for (p in pParameters) message.parameters.push(pParameters[p]);
-        OAuth.setTimestampAndNonce(message), OAuth.SignatureMethod.sign(message, accessor);
-        var parameterMap = OAuth.getParameterMap(message.parameters), client = Ti.Network.createHTTPClient({
-            onload: function() {
-                client.status == 200 ? pSuccessMessage &amp;&amp; pSuccessMessage(this.responseText) : pErrorMessage &amp;&amp; pErrorMessage(this.responseText);
-            },
-            onerror: function() {
-                Ti.API.error(&quot;Social.js: FAILED to send a request!&quot;), pErrorMessage &amp;&amp; pErrorMessage(this.responseText);
-            }
-        });
-        client.open(&quot;POST&quot;, pUrl), client.send(parameterMap);
-    };
+				accessToken = responseParams.oauth_token, accessTokenSecret = responseParams.oauth_token_secret, callback({
+					success: !0, username:username, userid:userid
+				});
+			},
+			onerror: function() {
+				Ti.API.error(&#39;Social.js: FAILED to getAccessToken!&#39;), Ti.API.error(this.responseText), callback({
+					success: !1
+				});
+			}
+		});
+		client.open(&#39;POST&#39;, pUrl), client.send(parameterMap);
+	}, this.send = function(options, callback) {
+		var pUrl = options.url, pParameters = options.parameters, pTitle = options.title, pSuccessMessage = options.onSuccess, pErrorMessage = options.onError;
+		if (accessToken == null || accessTokenSecret == null) {
+			Ti.API.debug(&quot;The send status cannot be processed as the client doesn&#39;t have an access token. Authorize before trying to send.&quot;);
+			return;
+		}
+		accessor.tokenSecret = accessTokenSecret;
+		var message = createMessage(pUrl);
+		message.parameters.push([ &#39;oauth_token&#39;, accessToken ]);
+		for (p in pParameters) message.parameters.push(pParameters[p]);
+		OAuth.setTimestampAndNonce(message), OAuth.SignatureMethod.sign(message, accessor);
+		var parameterMap = OAuth.getParameterMap(message.parameters), client = Ti.Network.createHTTPClient({
+			onload: function() {
+				client.status == 200 ? pSuccessMessage &amp;&amp; pSuccessMessage(this.responseText) : pErrorMessage &amp;&amp; pErrorMessage(this.responseText);
+			},
+			onerror: function() {
+				Ti.API.error(&#39;Social.js: FAILED to send a request!&#39;), pErrorMessage &amp;&amp; pErrorMessage(this.responseText);
+			}
+		});
+		client.open(&#39;POST&#39;, pUrl), client.send(parameterMap);
+	};
 }, supportedSites = {
-    twitter: {
-        accessToken: &quot;https://api.twitter.com/oauth/access_token&quot;,
-        requestToken: &quot;https://api.twitter.com/oauth/request_token&quot;,
-        authorize: &quot;https://api.twitter.com/oauth/authorize?&quot;,
-        update: &quot;https://api.twitter.com/1.1/statuses/update.json&quot;
-    }
+	twitter: {
+		accessToken: &#39;https://api.twitter.com/oauth/access_token&#39;,
+		requestToken: &#39;https://api.twitter.com/oauth/request_token&#39;,
+		authorize: &#39;https://api.twitter.com/oauth/authorize?&#39;,
+		update: &#39;https://api.twitter.com/1.1/statuses/update.json&#39;
+	}
 };
 
 <span id='Alloy-builtins-social-method-create'>/**
@@ -585,74 +592,75 @@ var OAuthAdapter = function(pConsumerSecret, pConsumerKey, pSignatureMethod) {
  * Initializes an OAuth session to the service provider.
  * If a previous access token exists, it will be loaded.
  * @param {...*} settings OAuth session settings.
- * @param {String} [settings.site=&quot;twitter&quot;] Site to access. Only &#39;twitter&#39; is working.
+ * @param {String} [settings.site=&#39;twitter&#39;] Site to access. Only &#39;twitter&#39; is working.
  * @param {String} settings.consumerSecret Shared secret used to authenticate the key.
  * @param {String} settings.consumerKey Key used to identify the client to the service provider.
  * @return {Object} Instance of social to make subsequent API calls.
  */
 
 exports.create = function(settings) {
-    var site = (settings.site || &quot;twitter&quot;).toLowerCase(), adapter = new OAuthAdapter(settings.consumerSecret, settings.consumerKey, &quot;HMAC-SHA1&quot;);
-    adapter.loadAccessToken(site);
-    var urls = supportedSites[site];
-    return urls == null ? (alert(&quot;The Social.js module does not support &quot; + site + &quot; yet!&quot;), null) : {
-<span id='Alloy-builtins-social-method-isAuthorized'>        /**
-</span>         * @method isAuthorized
-         * Returns &#39;true&#39; if the client is authorized by the service provider.
-         * @return {Boolean} Returns &#39;true&#39; if authorized else &#39;false&#39;.
-         */
-        isAuthorized: function() {
-            return adapter.isAuthorized();
-        },
-<span id='Alloy-builtins-social-method-deauthorize'>        /**
-</span>         * @method deauthorize
-         * Deauthorizes the client and clears the access token.
-         */
-        deauthorize: function() {
-            adapter.clearAccessToken(site);
-        },
-<span id='Alloy-builtins-social-method-authorize'>        /**
-</span>         * @method authorize
-         * Authorizes the client to the service provider to access user data.
-         * If successful, the client will receive an access token, which will be saved for future
-         * usage.
-         * Call this function after opening the parent view or else the authorize UI window will
-         * appear in the background behind the view and unusable to the user.
-         * @param {Function} [callback] Callback function executed after successfully retrieving
-         * an access token.
-         */
-        authorize: function(callback) {
-            if (!adapter.isAuthorized()) {
-                function receivePin() {
-                    adapter.getAccessToken(urls.accessToken, function(evt) {
-                        evt.success ? (adapter.saveAccessToken(site), callback &amp;&amp; callback({username:evt.username,userid:evt.userid})) : alert(&quot;Twitter did not give us an access token!&quot;);
-                    });
-                }
-                adapter.showLoadingUI(), adapter.getRequestToken(urls.requestToken, function(evt) {
-                    evt.success ? adapter.showAuthorizeUI(urls.authorize + evt.token, receivePin) : alert(&quot;Twitter did not give us a request token!&quot;);
-                });
-            } else callback &amp;&amp; callback();
-        },
-<span id='Alloy-builtins-social-method-share'>        /**
-</span>         * @method share
-         * Sends an update to the service provider. Implicitly calls authorize() to authorize your app.
-         * @param {...*} options Update parameters.
-         * @param {String} options.message Message to send.
-         * @param {Function} [options.success] Callback function executed after a successful update.
-         * @param {Function} [options.error] Callback function executed after a failed update.
-         */
-        share: function(options) {
-            this.authorize(function() {
-                adapter.send({
-                    url: urls.update,
-                    parameters: [ [ &quot;status&quot;, options.message ] ],
-                    title: &quot;Twitter&quot;,
-                    onSuccess: options.success,
-                    onError: options.error
-                });
-            });
-        }
-    };
+	var site = (settings.site || &#39;twitter&#39;).toLowerCase(), adapter = new OAuthAdapter(settings.consumerSecret, settings.consumerKey, &#39;HMAC-SHA1&#39;);
+	adapter.loadAccessToken(site);
+	var urls = supportedSites[site];
+	return urls == null ? (alert(&#39;The Social.js module does not support &#39; + site + &#39; yet!&#39;), null) : {
+<span id='Alloy-builtins-social-method-isAuthorized'>		/**
+</span>		 * @method isAuthorized
+		 * Returns &#39;true&#39; if the client is authorized by the service provider.
+		 * @return {Boolean} Returns &#39;true&#39; if authorized else &#39;false&#39;.
+		 */
+		isAuthorized: function() {
+			return adapter.isAuthorized();
+		},
+<span id='Alloy-builtins-social-method-deauthorize'>		/**
+</span>		 * @method deauthorize
+		 * Deauthorizes the client and clears the access token.
+		 */
+		deauthorize: function() {
+			adapter.clearAccessToken(site);
+		},
+<span id='Alloy-builtins-social-method-authorize'>		/**
+</span>		 * @method authorize
+		 * Authorizes the client to the service provider to access user data.
+		 * If successful, the client will receive an access token, which will be saved for future
+		 * usage.
+		 * Call this function after opening the parent view or else the authorize UI window will
+		 * appear in the background behind the view and unusable to the user.
+		 * @param {Function} [callback] Callback function executed after successfully retrieving
+		 * an access token.
+		 */
+		authorize: function(callback) {
+			function receivePin() {
+				adapter.getAccessToken(urls.accessToken, function(evt) {
+					evt.success ? (adapter.saveAccessToken(site), callback &amp;&amp; callback({username:evt.username, userid:evt.userid})) : alert(&#39;Twitter did not give us an access token!&#39;);
+				});
+			}
+
+			if (!adapter.isAuthorized()) {
+				adapter.showLoadingUI(), adapter.getRequestToken(urls.requestToken, function(evt) {
+					evt.success ? adapter.showAuthorizeUI(urls.authorize + evt.token, receivePin) : alert(&#39;Twitter did not give us a request token!&#39;);
+				});
+			} else callback &amp;&amp; callback();
+		},
+<span id='Alloy-builtins-social-method-share'>		/**
+</span>		 * @method share
+		 * Sends an update to the service provider. Implicitly calls authorize() to authorize your app.
+		 * @param {...*} options Update parameters.
+		 * @param {String} options.message Message to send.
+		 * @param {Function} [options.success] Callback function executed after a successful update.
+		 * @param {Function} [options.error] Callback function executed after a failed update.
+		 */
+		share: function(options) {
+			this.authorize(function() {
+				adapter.send({
+					url: urls.update,
+					parameters: [ [ &#39;status&#39;, options.message ] ],
+					title: &#39;Twitter&#39;,
+					onSuccess: options.success,
+					onError: options.error
+				});
+			});
+		}
+	};
 };
 </pre>
 </body>

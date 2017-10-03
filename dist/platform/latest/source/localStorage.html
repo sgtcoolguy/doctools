@@ -18,14 +18,14 @@
   <pre class="prettyprint lang-js">/*
  * HTML5 localStorage sync adapter
  */
-var _ = require(&#39;alloy/underscore&#39;)._;
+var _ = require(&#39;/alloy/underscore&#39;)._;
 
 function S4() {
-   return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+	return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
 }
 
 function guid() {
-   return (S4()+S4()+&#39;-&#39;+S4()+&#39;-&#39;+S4()+&#39;-&#39;+S4()+&#39;-&#39;+S4()+S4()+S4());
+	return (S4() + S4() + &#39;-&#39; + S4() + &#39;-&#39; + S4() + &#39;-&#39; + S4() + &#39;-&#39; + S4() + S4() + S4());
 }
 
 function InitAdapter() {
@@ -59,19 +59,19 @@ function Sync(method, model, opts) {
 			var store = localStorage.getItem(name);
 			var store_data = (store &amp;&amp; JSON.parse(store)) || {};
 
-            var len = 0;
-            for (var key in store_data) {
+			var len = 0;
+			for (var key in store_data) {
 				var m = new model.config.Model(store_data[key]);
 				model.models.push(m);
 				len++;
-            }
+			}
 
-            model.length = len;
-            if (len === 1) {
+			model.length = len;
+			if (len === 1) {
 				resp = model.models[0];
-            } else {
+			} else {
 				resp = model.models;
-            }
+			}
 			break;
 
 		case &#39;update&#39;:
@@ -89,11 +89,11 @@ function Sync(method, model, opts) {
 
 	// process success/error handlers, if present
 	if (resp) {
-        if (_.isFunction(opts.success)) { opts.success(resp); }
-        if (method === &quot;read&quot;) { model.trigger(&quot;fetch&quot;); }
-    } else {
+		if (_.isFunction(opts.success)) { opts.success(resp); }
+		if (method === &#39;read&#39;) { model.trigger(&#39;fetch&#39;); }
+	} else {
 		if (_.isFunction(opts.error)) { opts.error(resp); }
-    }
+	}
 }
 
 module.exports.sync = Sync;

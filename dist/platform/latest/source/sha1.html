@@ -21,7 +21,7 @@
  * To use the sha1 builtin library,
  * require it with the `alloy` root directory in your `require` call. For example:
  *
- *     var sha1 = require(&#39;alloy/sha1&#39;);
+ *     var sha1 = require(&#39;/alloy/sha1&#39;);
  *     var sha1_digest = sha1.hex_sha1(&#39;The quick brown fox jumps over the lazy dog.&#39;);
  */
 /*
@@ -39,8 +39,8 @@
  */
 var hexcase = 0;
 /* hex output format. 0 - lowercase; 1 - uppercase */
-var b64pad = &quot;&quot;;
-/* base-64 pad character. &quot;=&quot; for strict RFC compliance */
+var b64pad = &#39;&#39;;
+/* base-64 pad character. &#39;=&#39; for strict RFC compliance */
 var chrsz = 8;
 /* bits per input character. 8 - ASCII; 16 - Unicode */
 
@@ -56,7 +56,7 @@ var chrsz = 8;
  * @return {String} SHA-1 value of the string in hexadecimal.
  */
 function hex_sha1(s) {
-    return binb2hex(core_sha1(str2binb(s), s.length * chrsz));
+	return binb2hex(core_sha1(str2binb(s), s.length * chrsz));
 }
 
 <span id='Alloy-builtins-sha1-method-b64_sha1'>/**
@@ -66,7 +66,7 @@ function hex_sha1(s) {
  * @return {String} SHA-1 value of the string in base-64.
  */
 function b64_sha1(s) {
-    return binb2b64(core_sha1(str2binb(s), s.length * chrsz));
+	return binb2b64(core_sha1(str2binb(s), s.length * chrsz));
 }
 
 <span id='Alloy-builtins-sha1-method-str_sha1'>/**
@@ -76,7 +76,7 @@ function b64_sha1(s) {
  * @return {String} SHA-1 value of the string as a string.
  */
 function str_sha1(s) {
-    return binb2str(core_sha1(str2binb(s), s.length * chrsz));
+	return binb2str(core_sha1(str2binb(s), s.length * chrsz));
 }
 
 <span id='Alloy-builtins-sha1-method-hex_hmac_sha1'>/**
@@ -87,7 +87,7 @@ function str_sha1(s) {
  * @return {String} HMAC-SHA-1 value of the string in hexadecimal.
  */
 function hex_hmac_sha1(key, data) {
-    return binb2hex(core_hmac_sha1(key, data));
+	return binb2hex(core_hmac_sha1(key, data));
 }
 
 <span id='Alloy-builtins-sha1-method-b64_hmac_sha1'>/**
@@ -98,7 +98,7 @@ function hex_hmac_sha1(key, data) {
  * @return {String} HMAC-SHA-1 value of the string in base-64.
  */
 function b64_hmac_sha1(key, data) {
-    return binb2b64(core_hmac_sha1(key, data));
+	return binb2b64(core_hmac_sha1(key, data));
 }
 
 <span id='Alloy-builtins-sha1-method-str_hmac_sha1'>/**
@@ -109,7 +109,7 @@ function b64_hmac_sha1(key, data) {
  * @return {String} HMAC-SHA-1 value of the string as a string.
  */
 function str_hmac_sha1(key, data) {
-    return binb2str(core_hmac_sha1(key, data));
+	return binb2str(core_hmac_sha1(key, data));
 }
 
 
@@ -118,41 +118,41 @@ function str_hmac_sha1(key, data) {
  */
 
 function core_sha1(x, len) { /* append padding */
-    x[len &gt;&gt; 5] |= 0x80 &lt;&lt; (24 - len % 32);
-    x[((len + 64 &gt;&gt; 9) &lt;&lt; 4) + 15] = len;
+	x[len &gt;&gt; 5] |= 0x80 &lt;&lt; (24 - len % 32);
+	x[((len + 64 &gt;&gt; 9) &lt;&lt; 4) + 15] = len;
 
-    var w = Array(80);
-    var a = 1732584193;
-    var b = -271733879;
-    var c = -1732584194;
-    var d = 271733878;
-    var e = -1009589776;
+	var w = Array(80);
+	var a = 1732584193;
+	var b = -271733879;
+	var c = -1732584194;
+	var d = 271733878;
+	var e = -1009589776;
 
-    for (var i = 0; i &lt; x.length; i += 16) {
-        var olda = a;
-        var oldb = b;
-        var oldc = c;
-        var oldd = d;
-        var olde = e;
+	for (var i = 0; i &lt; x.length; i += 16) {
+		var olda = a;
+		var oldb = b;
+		var oldc = c;
+		var oldd = d;
+		var olde = e;
 
-        for (var j = 0; j &lt; 80; j++) {
-            if (j &lt; 16) w[j] = x[i + j];
-            else w[j] = rol(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);
-            var t = safe_add(safe_add(rol(a, 5), sha1_ft(j, b, c, d)), safe_add(safe_add(e, w[j]), sha1_kt(j)));
-            e = d;
-            d = c;
-            c = rol(b, 30);
-            b = a;
-            a = t;
-        }
+		for (var j = 0; j &lt; 80; j++) {
+			if (j &lt; 16) w[j] = x[i + j];
+			else w[j] = rol(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);
+			var t = safe_add(safe_add(rol(a, 5), sha1_ft(j, b, c, d)), safe_add(safe_add(e, w[j]), sha1_kt(j)));
+			e = d;
+			d = c;
+			c = rol(b, 30);
+			b = a;
+			a = t;
+		}
 
-        a = safe_add(a, olda);
-        b = safe_add(b, oldb);
-        c = safe_add(c, oldc);
-        d = safe_add(d, oldd);
-        e = safe_add(e, olde);
-    }
-    return Array(a, b, c, d, e);
+		a = safe_add(a, olda);
+		b = safe_add(b, oldb);
+		c = safe_add(c, oldc);
+		d = safe_add(d, oldd);
+		e = safe_add(e, olde);
+	}
+	return Array(a, b, c, d, e);
 
 }
 
@@ -162,10 +162,10 @@ function core_sha1(x, len) { /* append padding */
  */
 
 function sha1_ft(t, b, c, d) {
-    if (t &lt; 20) return (b &amp; c) | ((~b) &amp; d);
-    if (t &lt; 40) return b ^ c ^ d;
-    if (t &lt; 60) return (b &amp; c) | (b &amp; d) | (c &amp; d);
-    return b ^ c ^ d;
+	if (t &lt; 20) return (b &amp; c) | ((~b) &amp; d);
+	if (t &lt; 40) return b ^ c ^ d;
+	if (t &lt; 60) return (b &amp; c) | (b &amp; d) | (c &amp; d);
+	return b ^ c ^ d;
 }
 
 /*
@@ -173,7 +173,7 @@ function sha1_ft(t, b, c, d) {
  */
 
 function sha1_kt(t) {
-    return (t &lt; 20) ? 1518500249 : (t &lt; 40) ? 1859775393 : (t &lt; 60) ? -1894007588 : -899497514;
+	return (t &lt; 20) ? 1518500249 : (t &lt; 40) ? 1859775393 : (t &lt; 60) ? -1894007588 : -899497514;
 }
 
 /*
@@ -181,18 +181,18 @@ function sha1_kt(t) {
  */
 
 function core_hmac_sha1(key, data) {
-    var bkey = str2binb(key);
-    if (bkey.length &gt; 16) bkey = core_sha1(bkey, key.length * chrsz);
+	var bkey = str2binb(key);
+	if (bkey.length &gt; 16) bkey = core_sha1(bkey, key.length * chrsz);
 
-    var ipad = Array(16),
-        opad = Array(16);
-    for (var i = 0; i &lt; 16; i++) {
-        ipad[i] = bkey[i] ^ 0x36363636;
-        opad[i] = bkey[i] ^ 0x5C5C5C5C;
-    }
+	var ipad = Array(16),
+		opad = Array(16);
+	for (var i = 0; i &lt; 16; i++) {
+		ipad[i] = bkey[i] ^ 0x36363636;
+		opad[i] = bkey[i] ^ 0x5C5C5C5C;
+	}
 
-    var hash = core_sha1(ipad.concat(str2binb(data)), 512 + data.length * chrsz);
-    return core_sha1(opad.concat(hash), 512 + 160);
+	var hash = core_sha1(ipad.concat(str2binb(data)), 512 + data.length * chrsz);
+	return core_sha1(opad.concat(hash), 512 + 160);
 }
 
 /*
@@ -201,9 +201,9 @@ function core_hmac_sha1(key, data) {
  */
 
 function safe_add(x, y) {
-    var lsw = (x &amp; 0xFFFF) + (y &amp; 0xFFFF);
-    var msw = (x &gt;&gt; 16) + (y &gt;&gt; 16) + (lsw &gt;&gt; 16);
-    return (msw &lt;&lt; 16) | (lsw &amp; 0xFFFF);
+	var lsw = (x &amp; 0xFFFF) + (y &amp; 0xFFFF);
+	var msw = (x &gt;&gt; 16) + (y &gt;&gt; 16) + (lsw &gt;&gt; 16);
+	return (msw &lt;&lt; 16) | (lsw &amp; 0xFFFF);
 }
 
 /*
@@ -211,7 +211,7 @@ function safe_add(x, y) {
  */
 
 function rol(num, cnt) {
-    return (num &lt;&lt; cnt) | (num &gt;&gt;&gt; (32 - cnt));
+	return (num &lt;&lt; cnt) | (num &gt;&gt;&gt; (32 - cnt));
 }
 
 /*
@@ -220,11 +220,11 @@ function rol(num, cnt) {
  */
 
 function str2binb(str) {
-    var bin = Array();
-    var mask = (1 &lt;&lt; chrsz) - 1;
-    for (var i = 0; i &lt; str.length * chrsz; i += chrsz)
-        bin[i &gt;&gt; 5] |= (str.charCodeAt(i / chrsz) &amp; mask) &lt;&lt; (32 - chrsz - i % 32);
-    return bin;
+	var bin = Array();
+	var mask = (1 &lt;&lt; chrsz) - 1;
+	for (var i = 0; i &lt; str.length * chrsz; i += chrsz)
+		bin[i &gt;&gt; 5] |= (str.charCodeAt(i / chrsz) &amp; mask) &lt;&lt; (32 - chrsz - i % 32);
+	return bin;
 }
 
 /*
@@ -232,11 +232,11 @@ function str2binb(str) {
  */
 
 function binb2str(bin) {
-    var str = &quot;&quot;;
-    var mask = (1 &lt;&lt; chrsz) - 1;
-    for (var i = 0; i &lt; bin.length * 32; i += chrsz)
-        str += String.fromCharCode((bin[i &gt;&gt; 5] &gt;&gt;&gt; (32 - chrsz - i % 32)) &amp; mask);
-    return str;
+	var str = &#39;&#39;;
+	var mask = (1 &lt;&lt; chrsz) - 1;
+	for (var i = 0; i &lt; bin.length * 32; i += chrsz)
+		str += String.fromCharCode((bin[i &gt;&gt; 5] &gt;&gt;&gt; (32 - chrsz - i % 32)) &amp; mask);
+	return str;
 }
 
 /*
@@ -244,12 +244,12 @@ function binb2str(bin) {
  */
 
 function binb2hex(binarray) {
-    var hex_tab = hexcase ? &quot;0123456789ABCDEF&quot; : &quot;0123456789abcdef&quot;;
-    var str = &quot;&quot;;
-    for (var i = 0; i &lt; binarray.length * 4; i++) {
-        str += hex_tab.charAt((binarray[i &gt;&gt; 2] &gt;&gt; ((3 - i % 4) * 8 + 4)) &amp; 0xF) + hex_tab.charAt((binarray[i &gt;&gt; 2] &gt;&gt; ((3 - i % 4) * 8)) &amp; 0xF);
-    }
-    return str;
+	var hex_tab = hexcase ? &#39;0123456789ABCDEF&#39; : &#39;0123456789abcdef&#39;;
+	var str = &#39;&#39;;
+	for (var i = 0; i &lt; binarray.length * 4; i++) {
+		str += hex_tab.charAt((binarray[i &gt;&gt; 2] &gt;&gt; ((3 - i % 4) * 8 + 4)) &amp; 0xF) + hex_tab.charAt((binarray[i &gt;&gt; 2] &gt;&gt; ((3 - i % 4) * 8)) &amp; 0xF);
+	}
+	return str;
 }
 
 /*
@@ -257,16 +257,16 @@ function binb2hex(binarray) {
  */
 
 function binb2b64(binarray) {
-    var tab = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;;
-    var str = &quot;&quot;;
-    for (var i = 0; i &lt; binarray.length * 4; i += 3) {
-        var triplet = (((binarray[i &gt;&gt; 2] &gt;&gt; 8 * (3 - i % 4)) &amp; 0xFF) &lt;&lt; 16) | (((binarray[i + 1 &gt;&gt; 2] &gt;&gt; 8 * (3 - (i + 1) % 4)) &amp; 0xFF) &lt;&lt; 8) | ((binarray[i + 2 &gt;&gt; 2] &gt;&gt; 8 * (3 - (i + 2) % 4)) &amp; 0xFF);
-        for (var j = 0; j &lt; 4; j++) {
-            if (i * 8 + j * 6 &gt; binarray.length * 32) str += b64pad;
-            else str += tab.charAt((triplet &gt;&gt; 6 * (3 - j)) &amp; 0x3F);
-        }
-    }
-    return str;
+	var tab = &#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#39;;
+	var str = &#39;&#39;;
+	for (var i = 0; i &lt; binarray.length * 4; i += 3) {
+		var triplet = (((binarray[i &gt;&gt; 2] &gt;&gt; 8 * (3 - i % 4)) &amp; 0xFF) &lt;&lt; 16) | (((binarray[i + 1 &gt;&gt; 2] &gt;&gt; 8 * (3 - (i + 1) % 4)) &amp; 0xFF) &lt;&lt; 8) | ((binarray[i + 2 &gt;&gt; 2] &gt;&gt; 8 * (3 - (i + 2) % 4)) &amp; 0xFF);
+		for (var j = 0; j &lt; 4; j++) {
+			if (i * 8 + j * 6 &gt; binarray.length * 32) str += b64pad;
+			else str += tab.charAt((triplet &gt;&gt; 6 * (3 - j)) &amp; 0x3F);
+		}
+	}
+	return str;
 }
 
 

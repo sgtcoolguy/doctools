@@ -15,7 +15,7 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">var Alloy = require(&#39;alloy&#39;);
+  <pre class="prettyprint lang-js">var Alloy = require(&#39;/alloy&#39;);
 
 // Hold a collection of widget objects instances. These
 // objects are not the widgets themselves, but a set of
@@ -24,8 +24,8 @@
 var widgets = {};
 
 function ucfirst(text) {
-    if (!text) { return text; }
-    return text[0].toUpperCase() + text.substr(1);
+	if (!text) { return text; }
+	return text[0].toUpperCase() + text.substr(1);
 }
 
 module.exports = function(widgetId) {
@@ -44,13 +44,13 @@ module.exports = function(widgetId) {
 
 	// functions
 	this.createController = function(name, args) {
-		return new (require(&#39;alloy/widgets/&#39; + widgetId + &#39;/controllers/&#39; + name))(args);
+		return new (require(&#39;/alloy/widgets/&#39; + widgetId + &#39;/controllers/&#39; + name))(args);
 	};
 	this.createCollection = function(name, args) {
-		return new (require(&#39;alloy/widgets/&#39; + widgetId + &#39;/models/&#39; + ucfirst(name)).Collection)(args);
+		return new (require(&#39;/alloy/widgets/&#39; + widgetId + &#39;/models/&#39; + ucfirst(name)).Collection)(args);
 	};
 	this.createModel = function(name, args) {
-		return new (require(&#39;alloy/widgets/&#39; + widgetId + &#39;/models/&#39; + ucfirst(name)).Model)(args);
+		return new (require(&#39;/alloy/widgets/&#39; + widgetId + &#39;/models/&#39; + ucfirst(name)).Model)(args);
 	};
 	this.createWidget = Alloy.createWidget; // just to be complete
 	this.Collections.instance = function(name) {

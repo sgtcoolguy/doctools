@@ -15,21 +15,21 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">var Alloy = require(&#39;alloy&#39;),
-	_ = require(&quot;alloy/underscore&quot;)._,
+  <pre class="prettyprint lang-js">var Alloy = require(&#39;/alloy&#39;),
+	_ = require(&#39;/alloy/underscore&#39;)._,
 	TAP = Ti.App.Properties;
 
 function S4() {
-   return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+	return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
 }
 
 function guid() {
-   return (S4()+S4()+&#39;-&#39;+S4()+&#39;-&#39;+S4()+&#39;-&#39;+S4()+&#39;-&#39;+S4()+S4()+S4());
+	return (S4() + S4() + &#39;-&#39; + S4() + &#39;-&#39; + S4() + &#39;-&#39; + S4() + &#39;-&#39; + S4() + S4() + S4());
 }
 
 function Sync(method, model, opts) {
 	var prefix = model.config.adapter.collection_name ? model.config.adapter.collection_name : &#39;default&#39;;
-	var regex = new RegExp(&quot;^(&quot; + prefix + &quot;)\\-(.+)$&quot;);
+	var regex = new RegExp(&#39;^(&#39; + prefix + &#39;)\\-(.+)$&#39;);
 	var resp = null;
 
 	if (method === &#39;read&#39;) {
@@ -49,8 +49,7 @@ function Sync(method, model, opts) {
 			model.set(obj);
 			resp = model.toJSON();
 		}
-	}
-	else if (method === &#39;create&#39; || method === &#39;update&#39;) {
+	} else if (method === &#39;create&#39; || method === &#39;update&#39;) {
 		if (!model.id) {
 			model.id = guid();
 			model.set(model.idAttribute, model.id);
@@ -65,11 +64,11 @@ function Sync(method, model, opts) {
 
 	// process success/error handlers, if present
 	if (resp) {
-        if (_.isFunction(opts.success)) { opts.success(resp); }
-        if (method === &quot;read&quot;) { model.trigger(&quot;fetch&quot;); }
-    } else {
+		if (_.isFunction(opts.success)) { opts.success(resp); }
+		if (method === &#39;read&#39;) { model.trigger(&#39;fetch&#39;); }
+	} else {
 		if (_.isFunction(opts.error)) { opts.error(resp); }
-    }
+	}
 }
 
 module.exports.sync = Sync;

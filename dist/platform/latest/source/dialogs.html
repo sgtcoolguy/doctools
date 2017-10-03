@@ -21,7 +21,7 @@
  * To use the dialogs builtin library,
  * require it with the `alloy` root directory in your `require` call. For example:
  *
- *     var dialogs = require(&#39;alloy/dialogs&#39;);
+ *     var dialogs = require(&#39;/alloy/dialogs&#39;);
  *     dialogs.confirm({});
  */
 
@@ -57,7 +57,7 @@ exports.buttonNames = [&#39;No&#39;, &#39;Yes&#39;];
  */
 exports.confirm = function (args) {
 	args = args || {};
-	if(args.buttonNames) {
+	if (args.buttonNames) {
 		args.no = args.no || args.buttonNames[0];
 		args.yes = args.yes || args.buttonNames[1];
 	}

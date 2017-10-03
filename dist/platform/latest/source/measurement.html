@@ -24,13 +24,13 @@
  * To use the measurement builtin library,
  * require it with the `alloy` root directory in your `require` call. For example:
  *
- *     var measurement = require(&#39;alloy/measurement&#39;);
+ *     var measurement = require(&#39;/alloy/measurement&#39;);
  *     var pointPX = {x:42, y:7};
  *     var pointDP = measurement.pointPXToDP(pointPX);
  */
 
 var dpi = Ti.Platform.displayCaps.dpi,
-    density = Ti.Platform.displayCaps.density;
+	density = Ti.Platform.displayCaps.density;
 
 <span id='Alloy-builtins-measurement-method-dpToPX'>/**
 </span> * @method dpToPX
@@ -39,13 +39,17 @@ var dpi = Ti.Platform.displayCaps.dpi,
  * @return {Number} Converted value in screen pixels.
  */
 exports.dpToPX = function (val) {
-    if (OS_ANDROID) {
-        return val * dpi / 160;
-    } else if (OS_IOS) {
-        return val * (density === &#39;high&#39; ? 2 : 1);
-    } else {
-        return val;
-    }
+	if (OS_ANDROID) {
+		return val * dpi / 160;
+	} else if (OS_IOS) {
+		switch (density) {
+			case &#39;xhigh&#39;: return val * 3;
+			case &#39;high&#39;: return val * 2;
+			default: return val;
+		}
+	} else {
+		return val;
+	}
 };
 
 <span id='Alloy-builtins-measurement-method-pxToDP'>/**
@@ -55,13 +59,17 @@ exports.dpToPX = function (val) {
  * @return {Number} Converted value in density-independent pixels.
  */
 exports.pxToDP = function (val) {
-    if (OS_ANDROID) {
-        return val / dpi * 160;
-    } else if (OS_IOS) {
-        return val / (density === &#39;high&#39; ? 2 : 1);
-    } else {
-        return val;
-    }
+	if (OS_ANDROID) {
+		return val / dpi * 160;
+	} else if (OS_IOS) {
+		switch (density) {
+			case &#39;xhigh&#39;: return val / 3;
+			case &#39;high&#39;: return val / 2;
+			default: return val;
+		}
+	} else {
+		return val;
+	}
 };
 
 <span id='Alloy-builtins-measurement-method-pointPXToDP'>/**
@@ -71,11 +79,11 @@ exports.pxToDP = function (val) {
  * @return {Number} Converted coordinate in density-independent pixels.
  */
 exports.pointPXToDP = function (pt) {
-    if (OS_ANDROID || OS_IOS) {
-        return { x: exports.pxToDP(pt.x), y: exports.pxToDP(pt.y) };
-    } else {
-        return pt;
-    }
+	if (OS_ANDROID || OS_IOS) {
+		return { x: exports.pxToDP(pt.x), y: exports.pxToDP(pt.y) };
+	} else {
+		return pt;
+	}
 };
 </pre>
 </body>
