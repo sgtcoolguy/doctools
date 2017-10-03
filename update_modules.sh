@@ -49,6 +49,7 @@ updateModules () { ## check to see if a module exists and update it
 	elif [ $1 == "forked" ]; then ## if the first parameter is a forked repo
 		ACTIVE=$TI_ROOT/$2
 		GITHPATH=https://github.com/jawa9000/
+		#https://github.com/appcelerator/alloy.git
 	fi
 	echo "Setting active directory to $ACTIVE"
 	if [ ! -d "$ACTIVE" ]; then ## if the repo doesn't exist, clone it
