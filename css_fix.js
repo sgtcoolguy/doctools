@@ -19,3 +19,7 @@ for (var i = 0; i < count + 1; i++) {
   }
   fs.writeFileSync(fileName, doc);
 }
+
+// Added fix for the banner to push it down below the edit page and print icon
+doc += 'div#banner {margin: 55px 17px 0 0;}';
+fs.writeFileSync(fileName, doc);
