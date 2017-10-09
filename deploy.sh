@@ -187,6 +187,7 @@ if [ $include_modules ]; then
                  $APPC_MODULES/ti.coremotion/apidoc
                  $APPC_MODULES/ti.urlsession/apidoc
                  $APPC_MODULES/ti.touchid/apidoc
+                 $APPC_MODULES/titanium-identity/apidoc
                  $APPC_MODULES/Ti.SafariDialog/apidoc
                  $APPC_MODULES/appcelerator.apm/apidoc"
 

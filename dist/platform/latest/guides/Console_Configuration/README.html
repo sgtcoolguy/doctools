@@ -23,8 +23,8 @@
                         <h1>Console Configuration</h1>
     <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Console_Configuration-section-src-49153261_ConsoleConfiguration-Introduction">Introduction</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/Console_Configuration-section-src-49153261_ConsoleConfiguration-Example">Example</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/Console_Configuration-section-src-49153261_ConsoleConfiguration-Settings">Settings</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Console_Configuration-section-src-49153261_ConsoleConfiguration-Example">Example</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Console_Configuration-section-src-49153261_ConsoleConfiguration-Settings">Settings</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Console_Configuration-section-src-49153261_ConsoleConfiguration-admin">admin</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Console_Configuration-section-src-49153261_ConsoleConfiguration-apikey_development">apikey_development</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Console_Configuration-section-src-49153261_ConsoleConfiguration-apikey_production">apikey_production</a>    </p>
@@ -48,9 +48,8 @@
     <p>For environment-specific configuration files, add either <tt class=" ">.development</tt> or <tt class=" ">.production</tt> to the end of the filename. For example, <tt class=" ">foo.development.js</tt> will be used for the development environment, while <tt class=" ">foo.production.js</tt> will be used for the production environment.    </p>
     <p>If multiple files set the same keys, the value from the last file loaded will be used unless its an environment-specific file. Files are loaded based on the order returned from the OS&apos;s readdir() method. For example, if <tt class=" ">Foo.js</tt> and <tt class=" ">foo.development.js</tt> set the same key, the value in <tt class=" ">Foo.js</tt> is used since it is not environment specific. However, if <tt class=" ">Foo.development.js</tt> and <tt class=" ">foo.development.js</tt> set the same key, the value from <tt class=" ">foo.development.js</tt> is used since it is loaded last.    </p>
     <p>Since Release 5.0.0, you can override the configuration file settings with an environment variable. For the setting, you want to override, prefix the variable with <tt class=" ">ARROW_</tt>. For example, if you want to override the <tt class=" ">apikey</tt> setting, set the <tt class=" ">ARROW_APIKEY</tt> environment variable.    </p>
-    </div>
-    <div class="section section-2 " id="src-49153261_ConsoleConfiguration-Example">
-        <h2 class="heading "><span>Example</span></h2>
+    <div class="section section-3 " id="src-49153261_ConsoleConfiguration-Example">
+        <h3 class="heading "><span>Example</span></h3>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./conf/foo.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./conf/foo.js">
@@ -91,6 +90,7 @@
 <div class="line"><code class="plain">    </code><code class="comments">// et cetera</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
+    </div>
     </div>
     </div>
     <div class="section section-2 " id="src-49153261_ConsoleConfiguration-Settings">
