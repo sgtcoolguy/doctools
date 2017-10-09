@@ -73,6 +73,7 @@ node banner.js >> message.txt ## add banners to each HTML doc; see TIDOC-3015
 sh clouddeploy.sh -s prod 2>> messages.txt
 bash clouddeploy.sh prod 2>> messages.txt
 bash build_platform.sh 2>> messages.txt
+sh copyFavicon.sh >> message.txt ## copy Griffin favicon.ico from ../doctools to various directories
 cd $APPCWEBDOCS
 
 ## open the message.txt file and you need to manually search for error messages

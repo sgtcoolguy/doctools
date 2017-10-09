@@ -53,6 +53,7 @@ cd $doctools
 ##echo "moved into $doctools\n"
 echo "Executing deploy.sh prod script\n"
 sh deploy.sh prod #> messages.txt
+
 echo "Executing sh clouddeploy.sh\n"
 sh clouddeploy.sh >> messages.txt
 echo "Executing sh deploy.sh -o arrow -o alloy -o modules -s prod\n"
@@ -64,10 +65,7 @@ echo "Executing sh clouddeploy.sh -s prod\n"
 sh clouddeploy.sh -s prod >> messages.txt
 echo "Executing bash clouddeploy.sh prod\n"
 bash clouddeploy.sh prod >> messages.txt
-## see TIDOC-????
-#echo "Adding redirects based on entries in toc.xml marked with '!!REDIRECT!!'"
-#say "redirect script"
-#node redirect2.js $TI_ROOT
+sh copyFavicon.sh >> message.txt ## copy Griffin favicon.ico from ../doctools to various directories
 
 ## this is where the index-template.html
 ## Update the ../doctools/dist/platform/latest/index-template.html file to remove any element with the !!REDIRECT!! text
