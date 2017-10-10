@@ -65,7 +65,6 @@ echo "Executing sh clouddeploy.sh -s prod\n"
 sh clouddeploy.sh -s prod >> messages.txt
 echo "Executing bash clouddeploy.sh prod\n"
 bash clouddeploy.sh prod >> messages.txt
-sh copyFavicon.sh >> message.txt ## copy Griffin favicon.ico from ../doctools to various directories
 
 ## this is where the index-template.html
 ## Update the ../doctools/dist/platform/latest/index-template.html file to remove any element with the !!REDIRECT!! text
@@ -79,6 +78,7 @@ echo "Executing bash ../doctools/copy_cloud.sh\n"
 bash ../doctools/copy_cloud.sh >> messages.txt
 cd $doctools
 node appendTitles.js >> messages.txt ## not 100% necessary if building for test reasons
+sh copyFavicon.sh >> message.txt ## copy Griffin favicon.ico from ../doctools to various directories
 sh css_fix.sh ## See TIDOC-2739
 
 ## open the message.txt file and you need to manually search for error messages
