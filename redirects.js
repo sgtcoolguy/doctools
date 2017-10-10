@@ -40,10 +40,13 @@ for (i in fileNames) { // loop through each HTML file
 	for (j in redirect) { // loop through each redirected page
 		if (fileNames[i] == "htmlguides/" + redirect[j] + ".html") { // if the page is found in the htmlguides directory, append a redirect to it's target
 			$ = cheerio.load(fs.readFileSync(fileNames[i]).toString()); // read in HTML file with jQuery-like features
-			console.log("Adding a redirect to " + fileNames[i] + ".html to point to " + redirect[j]);
-			$("head").append('\t\t<meta http-equiv="refresh" content="0;URL=http://docs.appcelerator.com/platform/latest/#!/guide/' + redirectTarget[j] + '">\n'); // add redirect to source page
-			var appended = $.html(); // update html
-			fs.writeFileSync(fileNames[i],appended); // save out HTML file
+			if ($('meta[http-equiv*=refresh]').length > 0) { // check if file already has a redirect meta element
+				console.log(fileNames[i] + ' already has a redirect; skipping');
+			} else {
+				console.log("Adding a redirect to " + fileNames[i] + ".html to point to " + redirect[j]);
+				$("head").append('\t\t<meta http-equiv="refresh" content="0;URL=http://docs.appcelerator.com/platform/latest/#!/guide/' + redirectTarget[j] + '">\n'); // add redirect to source page
+				fs.writeFileSync(fileNames[i],$.html()); // save out HTML file
+			}
 		}
 	}
 
@@ -51,10 +54,13 @@ for (i in fileNames) { // loop through each HTML file
 	for (j in redirectWiki) { // loop through each redirected page
 		if (fileNames[i] == "htmlguides/" + redirectExternalTarget[j] + ".html") { // if the page is found in the htmlguides directory, append a redirect to it's target
 			$ = cheerio.load(fs.readFileSync(fileNames[i]).toString()); // read in HTML file with jQuery-like features
-			console.log("Adding a redirect to " + fileNames[i] + ".html to point to " + redirect[j]);
-			$("head").append('\t<meta http-equiv="refresh" content="0;' + redirectExternalTarget[j] + '">'); // add redirect to source page
-			var appended = $.html(); // update html
-			fs.writeFileSync(fileNames[i],appended); // save out HTML file
+			if ($('meta[http-equiv*=refresh]').length > 0) { // check if file already has a redirect meta element
+				console.log(fileNames[i] + ' already has a redirect; skipping');
+			} else {
+				console.log("Adding a redirect to " + fileNames[i] + ".html to point to " + redirect[j]);
+				$("head").append('\t<meta http-equiv="refresh" content="0;' + redirectExternalTarget[j] + '">'); // add redirect to source page
+				fs.writeFileSync(fileNames[i],$.html()); // save out HTML file
+			}
 		}
 	}
 }
