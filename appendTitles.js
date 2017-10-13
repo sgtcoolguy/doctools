@@ -1,6 +1,6 @@
 /*
 	Purpose: Add a title element with title content derived from the first h1 element for the SDK release notes (HTML version)
-	See ???? for more details
+	See https://wiki.appcelerator.org/x/ugHZAg for more details
 */
 var fs = require('fs');
 var shell = require('shelljs');
