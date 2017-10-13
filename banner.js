@@ -1,3 +1,7 @@
+/*
+  Purpose: This script adds a banner element with a hardcoded message to each document in the ../doctools/htmlguides﻿ directory prior to the Appcelerator documentation being published.
+  Documentation: https://wiki.appcelerator.org/x/dQwOAw
+*/
 var fs = require('fs');
 var cheerio = require('cheerio');
 var shell = require('shelljs');
@@ -10,6 +14,6 @@ fileNames.map(function(doc,i) { // loop through all HTML documents found in the 
   } else {
     console.log('Adding banner to ' + doc);
     $('div.container').prepend('\n\t\t<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">\n\t\t\t<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>\n\t\t</div>'); // add banner and message
-    fs.writeFileSync(fileNames[i],$.html()); // save out HTML document
+    fs.writeFileSync(doc,$.html()); // save out HTML document
   }
  });
