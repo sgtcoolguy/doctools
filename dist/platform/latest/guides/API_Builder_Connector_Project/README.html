@@ -1,0 +1,863 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>API Builder Connector Project</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-49153271" class="content">
+                        <h1>API Builder Connector Project</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Projectstructure">Project structure</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-CLItasks">CLI tasks</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Createaconnector">Create a connector</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Testtheconnector">Test the connector</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Publishtheconnector">Publish the connector</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Connectorlogic">Connector logic</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Capabilities">Capabilities</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Initialization">Initialization</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Connectionlifecycle">Connection lifecycle</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-CRUDmethods">CRUD methods</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Requestlifecycle">Request lifecycle</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Connectorconfigurationfile">Connector configuration file</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-ModelsandAPIendpoints">Models and API endpoints</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Declaredependencies">Declare dependencies</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p>A Connector project is similar in structure to a project. This guide covers how to manage your Connector project.    </p>
+    <p>To add a connector to your project, see <a class="document-link " href="#!/guide/Add_a_Connector">Add a Connector</a>.    </p>
+    </div>
+    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-Projectstructure">
+        <h2 class="heading "><span>Project structure</span></h2>
+    <p>A Connector project is made up of several components. To simplify development, API Builder primarily uses a strict directory structure and naming convention to organize the application rather than configuration files.    </p>
+    <p>The following is a list of directories and files that can be found in a Connector project:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>File/Folder Name    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">app.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Entry point to the connector for testing, which launches a server instance.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">appc.json</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Project configuration file. Do not modify this file.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">conf</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Contains configuration files in JSON format for the connector. The <tt class=" ">default.js</tt> file is used for testing the connector. You can create an example configuration file, which is copied to the project when its installed. See <a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-ConnectorConfigurationFile">Connector Configuration File</a> below.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">index.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Entry point to the connector.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">lib</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Contains the logic for your connector. Requires an <tt class=" ">index.js</tt> file. See <a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-ConnectorLogic">Connector Logic</a> below.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">logs</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Contains generated log files when running your project locally. If you test the connector, the generated log files will get packaged with the application. You may want to disable logging by setting the <tt class=" ">transactionLogEnabled</tt>  property to  <tt class=" ">false</tt>  in the <tt class=" "> conf/default.js</tt> .    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">models</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Contains Model JavaScript files, used to declare the schema for your data and generate API endpoints for the connector. See <a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-ModelsandAPIEndpoints">Models and API Endpoints</a> below.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">node_modules</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Contains project dependencies. API Builder automatically installs any project dependencies declared in the <tt class=" ">package.json</tt> file.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">package.json</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NPM configuration file to declare project dependencies and other build or runtime configurations.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-CLItasks">
+        <h2 class="heading "><span>CLI tasks</span></h2>
+    <p>Use the Appcelerator CLI to create, test and deploy your Connector project.    </p>
+    <div class="section section-3 " id="src-49153271_APIBuilderConnectorProject-Createaconnector">
+        <h3 class="heading "><span>Create a connector</span></h3>
+    <p>To create a new connector, from your workspace directory, execute the <tt class=" ">appc generate</tt> command. When prompted:    </p>
+<ul class=" "><li class=" ">    <p>Select <strong class=" "> Component</strong> for the type of component    </p>
+</li><li class=" ">    <p>Select<strong class=" "> Connector</strong> for the component    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Empty Connector Project</strong> to use a boilerplate project.    </p>
+</li><li class=" ">    <p>Enter a name and directory name for your project.    </p>
+</li></ul>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ appc generate</code></div>
+<div class="line"><code class="plain">Appcelerator Command-Line Interface, version </code><code class="value">0.2</code><code class="plain">.</code><code class="value">230</code></div>
+<div class="line"><code class="plain">Copyright (c) </code><code class="value">2014</code><code class="plain">-</code><code class="value">2015</code><code class="plain">, Appcelerator, Inc.  All Rights Reserved.</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">? What type of component would you like to generate? Arrow Component</code></div>
+<div class="line"><code class="plain">? What Arrow component would you like to generate? Arrow Connector</code></div>
+<div class="line"><code class="plain">? Which Connector would you like to generate? Empty Connector Project</code></div>
+<div class="line"><code class="plain">? What is the connector name? sample.connector</code></div>
+<div class="line"><code class="plain">? Which directory to generate into? sample.connector</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-49153271_APIBuilderConnectorProject-Testtheconnector">
+        <h3 class="heading "><span>Test the connector</span></h3>
+    <p>Like an API Builder project, you can locally run the Connector project and make APIs calls to it.  From the project directory, execute:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">appc run</code></div>
+</div>
+    </div>
+    <p>Once the server starts, you can make cURL or other requests to the server. Open the admin console, then go to the <strong class=" ">API Docs</strong> tab to retrieve the cURL commands for the methods. Copy and paste a command in a terminal to test it.    </p>
+    </div>
+    <div class="section section-3 " id="src-49153271_APIBuilderConnectorProject-Publishtheconnector">
+        <h3 class="heading "><span>Publish the connector</span></h3>
+    <p>To publish the connector, execute the following command from the project directory:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">appc publish</code></div>
+</div>
+    </div>
+    <p>By default, the access level for the connector is set to private, so only the creator can access the connector. To share the connector with other people or publicly, specify a different access level with the <tt class=" ">appc access</tt> command and add people or orgs to your component using the <tt class=" ">appc user</tt> and <tt class=" ">appc org</tt> commands.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-Connectorlogic">
+        <h2 class="heading "><span>Connector logic</span></h2>
+    <p>Place all the connector logic in the <tt class=" ">lib</tt> folder.  There must be an <tt class=" ">index.js</tt> file in your <tt class=" ">lib</tt> folder, which is the first file loaded by the connector.    </p>
+    <p>The boilerplate <tt class=" ">index.js</tt> file expose a <tt class=" ">create()</tt> method, which is passed the API Builder class.  The method must return a Connector instance, which is created using the <tt class=" ">Arrow.Connector.extend()</tt>method.  Uncomment each Capability constant in the <tt class=" ">capabilities</tt> field to have API Builder generate boilerplate logic for each capability you want the Connector to support.  Each method will have its own JavaScript file. You may also pass the <tt class=" ">extend()</tt> method an object, which implements the methods of the Connector class and a few methods from the Model class.    </p>
+    <p>To start developing your connector, run the project in one console window, then edit the files with the connector logic in another console or editor.  As you save your files, API Builder will automatically update your connector and restart the server instance, allowing you to work on and test the connector incrementally.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">lib/index.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="lib/index.js">
+<div class="line"><code class="comments">/*</code></div>
+<div class="line"><code class="comments"> Welcome to your new connector!</code></div>
+<div class="line"><code class="comments"> TODO: First things first, look at the &quot;capabilities&quot; array TODOs down below.</code></div>
+<div class="line"><code class="comments"> */</code></div>
+<div class="line"><code class="plain">var _ = require(</code><code class="string">&apos;lodash&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="preprocessor">/**</code></div>
+<div class="line"><code class="preprocessor"> * Creates your connector for Arrow.</code></div>
+<div class="line"><code class="preprocessor"> */</code></div>
+<div class="line"><code class="plain">exports.create = function (Arrow) {</code></div>
+<div class="line"><code class="plain">        var Connector = Arrow.Connector,</code></div>
+<div class="line"><code class="plain">                Capabilities = Connector.Capabilities;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> Connector.extend({</code></div>
+<div class="line"><code class="plain">                filename: module.filename,</code></div>
+<div class="line"><code class="plain">                capabilities: [</code></div>
+<div class="line"><code class="plain">                        </code><code class="comments">// TODO: Get started by uncommenting the next line and running `appc run`.</code></div>
+<div class="line"><code class="plain">                        </code><code class="comments">//Capabilities.ConnectsToADataSource,</code></div>
+<div class="line">&#xA0;</div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">                        </code><code class="comments">// TODO: Each of these capabilities is optional; add the ones you want, and delete the rest.</code></div>
+<div class="line"><code class="plain">                        </code><code class="comments">// (Hint: I&apos;ve found it to be easiest to add these one at a time, running `appc run` for guidance.)</code></div>
+<div class="line"><code class="plain">                        </code><code class="comments">//Capabilities.ValidatesConfiguration,</code></div>
+<div class="line"><code class="plain">                        </code><code class="comments">//Capabilities.ContainsModels,</code></div>
+<div class="line"><code class="plain">                        </code><code class="comments">//Capabilities.GeneratesModels,</code></div>
+<div class="line"><code class="plain">                        </code><code class="comments">//Capabilities.CanCreate,</code></div>
+<div class="line"><code class="plain">                        </code><code class="comments">//Capabilities.CanRetrieve,</code></div>
+<div class="line"><code class="plain">                        </code><code class="comments">//Capabilities.CanUpdate,</code></div>
+<div class="line"><code class="plain">                        </code><code class="comments">//Capabilities.CanDelete,</code></div>
+<div class="line"><code class="plain">                        </code><code class="comments">//Capabilities.AuthenticatesThroughConnector</code></div>
+<div class="line"><code class="plain">                ]</code></div>
+<div class="line"><code class="plain">        });</code></div>
+<div class="line"><code class="plain">};</code></div>
+</div>
+    </div>
+    <div class="section section-3 " id="src-49153271_APIBuilderConnectorProject-Capabilities">
+        <h3 class="heading "><span>Capabilities</span></h3>
+    <p>API Builder is based on Arrow and starting with API Builder 1.2.48 or Appcelerator CLI 4.1.3, the connector configuration object passed to the <tt class=" ">Connect.extend()</tt> method supports a <tt class=" ">capabilities</tt> property.  The first time you run a project after adding a Capability constant to the <tt class=" ">capabilities</tt> property, API Builder will generate boilerplate logic, which you can modify.  The table below explains what each capability constant exposes and creates. If a certain connector is not exposed through a capability, you can implement the method in the object passed to the <tt class=" ">Connector.extend()</tt> method.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Capability Constant    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Location    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Exposed Connector Methods    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>ConnectToADataSource    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/lifecycle</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p>connect    </p>
+</li><li class=" ">    <p>disconnect    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>ValidatesConfiguration    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/metadata</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p>fetchMetadata    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>AddsCustomTypes    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/metadata</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p>coerceCustomType    </p>
+</li><li class=" ">    <p>getCustomType    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>GenerateModels    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/schema</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p>createModelsFromSchema    </p>
+</li><li class=" ">    <p>fetchSchema    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>ContainsModels    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./models</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Creates a boiler plate model in the <tt class=" ">models</tt> folder.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanCreate    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p>create    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanRetrieve    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p>distinct    </p>
+</li><li class=" ">    <p>findAll    </p>
+</li><li class=" ">    <p>findById    </p>
+</li><li class=" ">    <p>query    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanUpdate    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p>findAndModify    </p>
+</li><li class=" ">    <p>save    </p>
+</li><li class=" ">    <p>upsert    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanDelete    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p>delete    </p>
+</li><li class=" ">    <p>deleteAll    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1">AuthenticatesThroughConnector    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/lifecycle</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p>login    </p>
+</li><li class=" ">    <p>loginRequired    </p>
+</li></ul>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-49153271_APIBuilderConnectorProject-Initialization">
+        <h3 class="heading "><span>Initialization</span></h3>
+    <p>If you need to add some custom initialization logic when creating the connector, implement the following methods. The connector instance is the value passed to <tt class=" ">this</tt> in the functions. The functions do not take any arguments or return any values:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Method Signature    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>constructor(void)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Use to execute some custom logic when the connector is created.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Arrow.Connector-method-postCreate">postCreate(void)</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Use to execute some custom logic after the connector instance is created but before its returned.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-49153271_APIBuilderConnectorProject-Connectionlifecycle">
+        <h3 class="heading "><span>Connection lifecycle</span></h3>
+    <p>When the connector is loaded, the following methods are executed (in order and if defined).  You do not need to implement any of the methods.   Each method is passed a callback. After completing the operation, invoke the callback function and pass it an Error object (or null if successful) as the first parameter, and the results of the operation as the second parameter. None of the methods have a return value.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Method Signature    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Capability    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Boiler Plate File    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Result to Pass to the Callback    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1"><a class="external-link external-link" href="#!/api/Arrow.Connector-method-fetchMetadata">fetchMetadata(callback)</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>ValidatesConfiguration    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/metadata/fetchMetadata.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Retrieves the metadata of the data source. The metadata is used to validate the configuration object.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Metadata object. Set the <tt class=" ">fields</tt> key to an array of Metadata objects to verify the keys in the configuration object.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1"><a class="external-link external-link" href="#!/api/Arrow.Connector-method-fetchConfig">fetchConfig(callback)</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>-    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>-    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Retrieves the configuration of the data source.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Configuration object. Key-value pairs describing the configuration of the connector.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Arrow.Connector-method-connect">connect(callback)</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>ConnectToADataSource    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/lifecycle/connect.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Connects to the data source.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>None.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1"><a class="external-link external-link" href="#!/api/Arrow.Connector-method-fetchSchema">fetchSchema(callback)</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>GenerateModels    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/schema/fetchSchema.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Retrieves the model schema of the data source.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Schema object.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Arrow.Connector-method-disconnect">disconnect(callback)</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>ConnectToADataSource    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/lifecycle/connect.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Disconnect from the data source.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>None.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-49153271_APIBuilderConnectorProject-CRUDmethods">
+        <h3 class="heading "><span>CRUD methods</span></h3>
+    <p>To access data from the Connector, you need to implement the following methods. Each method is passed the Model class as its first parameter and a callback as its last parameter. After completing the operation, invoke the callback function and pass it an Error object (or null if successful) as the first parameter, and the results of the operation as the second parameter. None of the methods have a return value.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Method Signature    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Capability    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Boiler Plate File    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Result to Pass to the Callback    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>create(Model, values, callback)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanCreate    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods/create.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Creates a new model using the passed values.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>New model    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>delete(Model, instance, callback)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanDelete    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods/delete.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Deletes the model instance.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Deleted model    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>deleteAll(Model, callback)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanDelete    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods/deleteAll.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Deletes all the models.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Array of deleted models    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>findAll(Model, callback)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanRetrieve    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods/findAll.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Retrieves all the models.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Array of models    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>findById(Model, id, callback)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanRetrieve    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods/findById.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Retrieves one model with the specified ID (<tt class=" ">id</tt> parameter).    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A model    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>query(Model, options, callback)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanRetrieve    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods/query.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Retrieves all models based on the query options.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Array of found models    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>distinct(Model, field, options, callback)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanRetrieve    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods/ditinct.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Retrieves a distinct set of models based on the field(s) and query options.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Array of distinct models    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>save(Model, instance, callback)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanUpdate    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods/save.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Updates the model instance.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Updated model    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Arrow.Connector-method-findAndModify">findAndModify(Model, options, doc, args, callback)</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanUpdate    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods/findAndModify.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Finds one model instance and modifies it.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Modified model    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Arrow.Connector-method-upsert">upsert(Model, id, doc, callback)</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CanUpdate    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/methods/upsert.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Updates the model instance if found or creates a new model instance.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Updated or new model    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-49153271_APIBuilderConnectorProject-Requestlifecycle">
+        <h3 class="heading "><span>Request lifecycle</span></h3>
+    <p class="p1">If a request requires a login or if you want to intercept the request before or after it completes, you can implement the following methods:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Method Signature    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Capability    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Boiler Plate File    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Arrow.Connector-method-startRequest">startRequest(methodName, args, request, next)</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>-    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>-    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1">Request interceptor invoked before the request is initiated and the login method is invoked. The method is passed the name of the method that started the request and the arguments passed to the method. Invoke the next function when the operation completes.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Arrow.Connector-method-loginRequired">loginRequired(request, callback)</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1">AuthenticatesThroughConnector    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/lifecycle/loginRequired.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Determines if the request required a login. Pass an error message (or null if successful) as the first parameter to callback and a boolean value indicating if the login method needs to be executed (true) or not (false) as the second parameter.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Arrow.Connector-method-login">login(request, next)</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1">AuthenticatesThroughConnector    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">./lib/lifecycle/login.js</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Logs into the data source to make a request. Invoke the next function when the operation completes.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Arrow.Connector-method-endRequest">endRequest(methodName, args, request, next)</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>-    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>-    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Request interceptor invoked after the request completes . The method is passed the name of the method that started the request and the arguments passed to the method. Invoke the next function when the operation completes.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-Connectorconfigurationfile">
+        <h2 class="heading "><span>Connector configuration file</span></h2>
+    <p>To have the Appcelerator CLI create a default configuration file for your connector when it is installed, create a sample configuration file that exports a JSON object in the <tt class=" ">conf</tt> directory, then reference the file in the connector logic with the <tt class=" ">defaultConfig</tt> property in the implementation object passed to the <tt class=" ">Arrow.Connector.extend()</tt> method.    </p>
+    <p>For example, create a file called <tt class=" ">example.config.js</tt> in the <tt class=" ">conf</tt> directory and add the following content to it:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">conf/example.config.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="conf/example.config.js">
+<div class="line"><code class="plain">module.exports = {</code></div>
+<div class="line"><code class="plain">    connectors: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&apos;connector.name&apos;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">            setting1: </code><code class="string">&apos;foo&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            setting2: </code><code class="string">&apos;bar&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            setting3: </code><code class="string">&apos;baz&apos;</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">};</code></div>
+</div>
+    </div>
+    <p>Then reference the file in the connector logic using the <tt class=" ">defaultConfig</tt> property:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">lib/index.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="lib/index.js">
+<div class="line"><code class="plain">exports.create = function(Arrow) {</code></div>
+<div class="line"><code class="plain">    var Connector = Arrow.Connector;</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> Connector.extend({</code></div>
+<div class="line"><code class="plain">        defaultConfig: require(</code><code class="string">&apos;fs&apos;</code><code class="plain">).readFileSync(__dirname + </code><code class="string">&apos;/../conf/example.config.js&apos;</code><code class="plain">, </code><code class="string">&apos;utf8&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="plain">        ...</code></div>
+<div class="line"><code class="plain">    });</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>When the Appcelerator CLI installs the connector, it will copy and rename the file to the project&apos;s <tt class=" ">conf</tt>.    </p>
+    </div>
+    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-ModelsandAPIendpoints">
+        <h2 class="heading "><span>Models and API endpoints</span></h2>
+    <p>To allow an application to interact with the connector, you need to create a model definition file to define the schema of the data from the connector for the project to access. For more details about creating a model, see <a class="document-link " href="#!/guide/Models">Models</a>.    </p>
+    <p>By default, when you install a connector, it will add its API endpoints to the application. If you do not want to generate these API endpoints, set the <tt class=" ">modelAutogen</tt> key to <tt class=" ">false</tt> in the connector&apos;s configuration file in the project.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">conf/myconnector.default.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="conf/myconnector.default.js">
+<div class="line"><code class="plain">module.exports = {</code></div>
+<div class="line"><code class="plain">    connectors: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&apos;connector.name&apos;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">            setting1: </code><code class="string">&apos;foo&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            setting2: </code><code class="string">&apos;bar&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            setting3: </code><code class="string">&apos;baz&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            modelAutogen: </code><code class="keyword">false</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">};</code></div>
+</div>
+    </div>
+    <p>Since Release 5.0.0, you may specify specific models to generate from a connector. Set the <tt class=" ">generateModels</tt> key to an array of model names you want to include.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">module.exports = {</code></div>
+<div class="line"><code class="plain">    connectors: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&apos;connector.name&apos;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">            generateModels: [</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&apos;foo&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&apos;bar&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&apos;baz&apos;</code></div>
+<div class="line"><code class="plain">            ]</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-Declaredependencies">
+        <h2 class="heading "><span>Declare dependencies</span></h2>
+    <p>The application can import any third-party modules that are supported by standard Node.js applications. Before publishing the app to the cloud, make sure all dependencies are listed in the <tt class=" ">dependencies</tt> field in the application&apos;s <tt class=" ">package.json</tt> file. For example, to add support for MongoDB 1.2.0 or greater:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">package.json</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="package.json">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;dependencies&quot;</code><code class="plain">:{ </code><code class="string">&quot;mongodb&quot;</code><code class="plain">: </code><code class="string">&quot;&gt;1.2.0&quot;</code><code class="plain"> }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=49153271"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

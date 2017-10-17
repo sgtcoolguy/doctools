@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Windows UI Components and Conventions</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-43309475" class="content">
+                        <h1>Windows UI Components and Conventions</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Windows_UI_Components_and_Conventions-section-src-43309475_WindowsUIComponentsandConventions-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Windows_UI_Components_and_Conventions-section-src-43309475_WindowsUIComponentsandConventions-BackButton">Back Button</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Windows_UI_Components_and_Conventions-section-src-43309475_WindowsUIComponentsandConventions-CommandBar">Command Bar</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Windows_UI_Components_and_Conventions-section-src-43309475_WindowsUIComponentsandConventions-AssetQualifiers">Asset Qualifiers</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-43309475_WindowsUIComponentsandConventions-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p>In this section, you will learn some of the user interface and user experience components that are specific to Windows.    </p>
+    </div>
+    <div class="section section-2 " id="src-43309475_WindowsUIComponentsandConventions-BackButton">
+        <h2 class="heading "><span>Back Button</span></h2>
+    <p>Windows phones have a hardware back button allowing you to go to the previous opened window.  However, Windows tablets do not have a hardware back button.  If you rely on the back button for navigation, you will need to implement a navigation element, such as a software back button, for Windows tablets if you choose to support it.    </p>
+    <p>To distinguish between the Windows Phone OS and Windows OS, the <tt class=" ">Titanium.Platform.osname</tt> property will return <tt class=" ">windowsphone</tt> if the application is running on a Windows Phone device or <tt class=" ">windowsstore</tt> if the application is running on a device running the Windows OS.    </p>
+    <p>In Alloy, use the <tt class=" ">formFactor</tt> attribute to distinguish between a phone (set to <tt class=" ">handheld</tt>) or tablet (set to <tt class=" ">tablet</tt>).    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
+<div class="line"><code class="plain">    &lt;Window&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Button formFactor=</code><code class="string">&quot;tablet&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;closeWindow&quot;</code><code class="plain">&gt;Back&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/Window&gt;</code></div>
+<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+</div>
+    </div>
+    <p>As of 5.0.0 of the SDK, you can create an event that can prevent accidental closure of the app due to hitting the back button to many times.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow(</code></div>
+<div class="line"><code class="plain">	{ </code><code class="comments">// some code... }</code></div>
+<div class="line"><code class="plain">);</code></div>
+<div class="line"><code class="comments">// more code</code></div>
+<div class="line"><code class="plain">win.addEventListener(</code><code class="string">&quot;windows:back&quot;</code><code class="plain">, function()</code></div>
+<div class="line"><code class="plain">	{ alert(</code><code class="string">&quot;Back pressed&quot;</code><code class="plain">); }</code></div>
+<div class="line"><code class="plain">);</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43309475_WindowsUIComponentsandConventions-CommandBar">
+        <h2 class="heading "><span>Command Bar</span></h2>
+    <p>The command bar displays a row of buttons the user can tap to invoke additional functionality with your application (similar to the Action Bar in Android or Toolbar in iOS).  On a phone, the command bar always appears at the bottom of the application, and on a tablet, the user needs to tap the More icon (<tt class=" ">[...]</tt>) to reveal the command bar.  If you are testing locally on your Windows computer, right-click on the application to reveal the command bar.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Windows Phone app    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Windows Store app    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p>Buttons are centered    </p>
+</li><li class=" ">    <p>Room for only four buttons    </p>
+</li><li class=" ">    <p>Command bar is always present    </p>
+</li></ul>    <p>    <img src="images/download/attachments/43309475/wp_commandbar.PNG" alt="images/download/attachments/43309475/wp_commandbar.PNG" class="confluence-embedded-image">
+        </img></p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p>Buttons are right-aligned    </p>
+</li><li class=" ">    <p>Room for more than four buttons    </p>
+</li><li class=" ">    <p>Command bar must be revealed by the user    </p>
+</li></ul>    <p>    <img src="images/download/attachments/43309475/ws_commandbar.png" alt="images/download/attachments/43309475/ws_commandbar.png" class="confluence-embedded-image">
+        </img></p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>    </p>
+    <p>To create a command bar:    </p>
+<ol class=" "><li class=" ">    <p>Create buttons and separator objects using the following methods:    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.Windows-method-createAppBarButton">Titanium.UI.Windows.createAppBarButton()</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.Windows-method-createAppBarToggleButton">Titanium.UI.Windows.createAppBarToggleButton()</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.Windows-method-createAppBarSeparator">Titanium.UI.Windows.createAppBarSeparator()</a> &#x2013; note that separators only appear for Windows Store apps (for the tablet)    </p>
+</li></ul></li><li class=" ">    <p>Pass an array of button and separator objects to the <tt class=" ">items</tt> property when creating a command bar with the <a class="external-link external-link" href="#!/api/Titanium.UI.Windows-method-createCommandBar">Titanium.UI.Windows.createCommandBar()</a> method.  Note that on the phone only four buttons can be displayed.    </p>
+</li><li class=" ">    <p>Add the command bar to a <a class="external-link external-link" href="#!/api/Titanium.UI.Window">Titanium.UI.Window</a> object.    </p>
+</li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var backButton = Ti.UI.Windows.createAppBarButton({</code></div>
+<div class="line"><code class="plain">        icon: Ti.UI.Windows.SystemIcon.BACK</code></div>
+<div class="line"><code class="plain">    }),</code></div>
+<div class="line"><code class="plain">    likeButton = Ti.UI.Windows.createAppBarToggleButton({</code></div>
+<div class="line"><code class="plain">        icon: Ti.UI.Windows.SystemIcon.LIKEDISLIKE</code></div>
+<div class="line"><code class="plain">    }),</code></div>
+<div class="line"><code class="plain">    forwardButton = Titanium.UI.Windows.createAppBarButton({</code></div>
+<div class="line"><code class="plain">        icon: Ti.UI.Windows.SystemIcon.FORWARD</code></div>
+<div class="line"><code class="plain">    }),</code></div>
+<div class="line"><code class="plain">    commandBar = Ti.UI.Windows.createCommandBar({</code></div>
+<div class="line"><code class="plain">        items: [backButton, likeButton, forwardButton]</code></div>
+<div class="line"><code class="plain">    }),</code></div>
+<div class="line"><code class="plain">    win = Ti.UI.createWindow();</code></div>
+<div class="line"><code class="plain">win.add(commandBar);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43309475_WindowsUIComponentsandConventions-AssetQualifiers">
+        <h2 class="heading "><span>Asset Qualifiers</span></h2>
+    <p>Windows provides different qualifiers to select which assets to use.  The qualifiers can be used to support devices with different screen sizes, contrast themes, layout directions, languages, regions, etc.    </p>
+    <p>For information about using qualifiers, see <a class="document-link " href="#!/guide/Windows_Asset_Qualifiers">Windows Asset Qualifiers</a>.    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=43309475"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

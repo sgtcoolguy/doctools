@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Form factor</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-41845659" class="content">
+                        <h1>Form factor</h1>
+    <p>Demonstrates how to conditionally apply TSS styles or include XML markup based on the form factor of the target device. Each XML element, or TSS style, can be assigned a <tt class=" ">formFactor</tt> attribute that can take a value of either <strong class=" ">&quot;handheld&quot;</strong> or <strong class=" ">&quot;tablet&quot;</strong>.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">App folder location</div>
+            <p><i class=" ">alloy</i>/test/apps/<strong class=" ">advanced/form_factor</strong>    </p>
+    </div>
+        <p>    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/41845659/iphone.png" alt="images/download/attachments/41845659/iphone.png" class="confluence-embedded-image" width="250">
+        </img></p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/41845659/ipad.png" alt="images/download/attachments/41845659/ipad.png" class="confluence-embedded-image" width="400">
+        </img></p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/41845659/android_handheld.png" alt="images/download/attachments/41845659/android_handheld.png" class="confluence-embedded-image" width="240">
+        </img></p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" "/>        </table>
+            </div>
+    <p>    </p>
+    <p>On handhelds, the <tt class=" ">main</tt> Label text is set to &quot;I&apos;m a handheld!&quot; and to &quot;I&apos;m a tablet!&quot; on tablets. The <tt class=" ">platformLabel</tt> Label displays the platform as well as form factor.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/views/index.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
+<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
+<div class="line"><code class="plain">    &lt;Window&gt;</code></div>
+<div class="line"><code class="plain">        &lt;View id=</code><code class="string">&quot;main&quot;</code><code class="plain"> formFactor=</code><code class="string">&quot;handheld&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Label id=</code><code class="string">&quot;label&quot;</code><code class="plain">&gt;I&apos;m a handheld!&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/View&gt;        </code></div>
+<div class="line"><code class="plain">        &lt;View id=</code><code class="string">&quot;main&quot;</code><code class="plain"> formFactor=</code><code class="string">&quot;tablet&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Label id=</code><code class="string">&quot;label&quot;</code><code class="plain">&gt;I&apos;m a tablet!&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/View&gt;        </code></div>
+<div class="line"><code class="plain">        &lt;View id=</code><code class="string">&quot;container&quot;</code><code class="plain"> height=</code><code class="string">&quot;50&quot;</code><code class="plain"> width=</code><code class="string">&quot;200&quot;</code><code class="plain"> bottom=</code><code class="string">&quot;10&quot;</code><code class="plain"> backgroundColor=</code><code class="string">&quot;#cdcdcd&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Label id=</code><code class="string">&quot;platformLabel&quot;</code><code class="plain"> platform=</code><code class="string">&quot;android&quot;</code><code class="plain"> formFactor=</code><code class="string">&quot;tablet&quot;</code><code class="plain">&gt;android tablet&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Label id=</code><code class="string">&quot;platformLabel&quot;</code><code class="plain"> platform=</code><code class="string">&quot;android&quot;</code><code class="plain"> formFactor=</code><code class="string">&quot;handheld&quot;</code><code class="plain">&gt;android handheld&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Label id=</code><code class="string">&quot;platformLabel&quot;</code><code class="plain"> platform=</code><code class="string">&quot;ios&quot;</code><code class="plain"> formFactor=</code><code class="string">&quot;tablet&quot;</code><code class="plain">&gt;ipad&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Label id=</code><code class="string">&quot;platformLabel&quot;</code><code class="plain"> platform=</code><code class="string">&quot;ios&quot;</code><code class="plain"> formFactor=</code><code class="string">&quot;handheld&quot;</code><code class="plain">&gt;iphone&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Label id=</code><code class="string">&quot;platformLabel&quot;</code><code class="plain"> platform=</code><code class="string">&quot;mobileweb&quot;</code><code class="plain"> formFactor=</code><code class="string">&quot;tablet&quot;</code><code class="plain">&gt;mobileweb tablet&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Label id=</code><code class="string">&quot;platformLabel&quot;</code><code class="plain"> platform=</code><code class="string">&quot;mobileweb&quot;</code><code class="plain"> formFactor=</code><code class="string">&quot;handheld&quot;</code><code class="plain">&gt;mobileweb handheld&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/View&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/Window&gt;</code></div>
+<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+</div>
+    </div>
+    <p>The <tt class=" ">backgroundColor</tt> attribute of all View objects on handhelds is set to blue, and to red on all tablets.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/styles/index.tss</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/styles/index.tss">
+<div class="line"><code class="string">&quot;View[formFactor=handheld]&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    backgroundColor:</code><code class="string">&quot;blue&quot;</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="string">&quot;View[formFactor=tablet]&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    backgroundColor:</code><code class="string">&quot;red&quot;</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div class="section section-2 " id="src-41845659_Formfactor-SeeAlso">
+        <h2 class="heading "><span>See Also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/guide/Alloy_XML_Markup-section-35621528_AlloyXMLMarkup-ConditionalCode">Alloy XML Conditional Code</a>    </p>
+</li></ul>    <p>    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845659"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

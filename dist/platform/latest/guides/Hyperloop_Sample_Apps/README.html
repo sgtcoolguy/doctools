@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Hyperloop Sample Apps</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-46253485" class="content">
+                        <h1>Hyperloop Sample Apps</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Hyperloop_Sample_Apps-section-src-46253485_HyperloopSampleApps-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Hyperloop_Sample_Apps-section-src-46253485_HyperloopSampleApps-Requirements">Requirements</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Hyperloop_Sample_Apps-section-src-46253485_HyperloopSampleApps-Runningthisapp">Running this app</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Hyperloop_Sample_Apps-section-src-46253485_HyperloopSampleApps-UsingHyperlooponexistingprojects">Using Hyperloop on existing projects</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-46253485_HyperloopSampleApps-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p>This page lists information on how to use Hyperloop with existing projects and provides links to sample applications for both Android and iOS.    </p>
+    </div>
+    <div class="section section-2 " id="src-46253485_HyperloopSampleApps-Requirements">
+        <h2 class="heading "><span>Requirements</span></h2>
+<ul class="contains-task-list "><li class="task-list-item ">    <p>Titanium 5.4.0+    </p>
+</li><li class="task-list-item ">    <p>Alloy 1.8.0+    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-46253485_HyperloopSampleApps-Runningthisapp">
+        <h2 class="heading "><span>Running this app</span></h2>
+    <p><strong class=" ">BEFORE</strong> attempting to run this application, ensure that you have downloaded and followed the instructions from the appropriate guide below. There are specific prerequisites that must be first met before this application will run properly.    </p>
+    <p>This sample application only runs on the simulator because it uses a demo application GUID. If you would like to run this application on device, you need to import the application into your own platform account using <tt class=" ">appc new --import</tt>.    </p>
+    </div>
+    <div class="section section-2 " id="src-46253485_HyperloopSampleApps-UsingHyperlooponexistingprojects">
+        <h2 class="heading "><span>Using Hyperloop on existing projects</span></h2>
+    <p>If you&#x2019;re going to run the Hyperloop example project, you do not need to do any additional installation to use Hyperloop. The project will allow you to run on the simulator using <tt class=" ">appc ti build -p ios</tt>.    </p>
+    <p>If you&#x2019;d like to use Hyperloop in a new or existing Titanium project, add the following code to your tiapp.xml to configure the plugin:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;plugins&gt;</code></div>
+<div class="line"><code class="plain">	&lt;plugin&gt;hyperloop&lt;/plugin&gt;</code></div>
+<div class="line"><code class="plain">&lt;/plugins&gt;</code></div>
+</div>
+    </div>
+    <p>Next, you&apos;ll need to configure the module:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;modules&gt;</code></div>
+<div class="line"><code class="plain">	&lt;module&gt;hyperloop&lt;/module&gt;</code></div>
+<div class="line"><code class="plain">&lt;/modules&gt;</code></div>
+</div>
+    </div>
+    <p>For iOS, you&#x2019;ll need to add the following two elements as children to the &lt;ios&gt; node:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;ios&gt;</code></div>
+<div class="line"><code class="plain">	&lt;property name=</code><code class="string">&quot;run-on-main-thread&quot;</code><code class="plain"> type=</code><code class="string">&quot;bool&quot;</code><code class="plain">&gt;</code><code class="keyword">true</code><code class="plain">&lt;/property&gt;</code></div>
+<div class="line"><code class="plain">	&lt;use-jscore-framework&gt;</code><code class="keyword">true</code><code class="plain">&lt;/use-jscore-framework&gt;</code></div>
+<div class="line"><code class="plain">&lt;/ios&gt;</code></div>
+</div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=46253485"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

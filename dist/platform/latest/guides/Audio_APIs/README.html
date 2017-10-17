@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Audio APIs</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-29004910" class="content">
+                        <h1>Audio APIs</h1>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Audio_APIs-section-src-29004910_AudioAPIs-Playingbasicsounds">Playing basic sounds</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Audio_APIs-section-src-29004910_AudioAPIs-Streamingaudio">Streaming audio</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Audio_APIs-section-src-29004910_AudioAPIs-Recordingaudio">Recording audio</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Audio_APIs-section-src-29004910_AudioAPIs-Hands-onPractice">Hands-on Practice</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Audio_APIs-section-src-29004910_AudioAPIs-WindowsDevelopmentConsiderations">Windows Development Considerations</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Audio_APIs-section-src-29004910_AudioAPIs-Grantaccesstobackgroundaudio">Grant access to background audio</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Audio_APIs-section-src-29004910_AudioAPIs-Grantaccesstovideostreamandaudiostream">Grant access to video stream and audio stream</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Audio_APIs-section-src-29004910_AudioAPIs-Grantaccesstomusiclibrary">Grant access to music library</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Audio_APIs-section-src-29004910_AudioAPIs-ReferencesandFurtherReading">References and Further Reading</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-29004910_AudioAPIs-Objective">
+        <h2 class="heading "><span>Objective</span></h2>
+    <p>In this chapter, you&apos;ll learn how to play and record sounds. As with images, you&apos;ll see you can play both local and remote sound files, and have programmatic control over that playback.    </p>
+    </div>
+    <div class="section section-2 " id="src-29004910_AudioAPIs-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p>The audio APIs are part of the larger <tt class=" ">Ti.Media</tt> module, which contains all the APIs for media-related functionality. Sound related APIs in that module are available in the following namespaces:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">Ti.Media.Sound</tt> - used for playing basic sounds    </p>
+</li><li class=" ">    <p><tt class=" ">Ti.Media.AudioPlayer</tt> - used for streaming audio to the device and low-level control of the audio playback    </p>
+</li><li class=" ">    <p><tt class=" ">Ti.Media.AudioRecorder</tt> - used for recording audio from the device microphone    </p>
+</li></ul>    <div class="section section-3 " id="src-29004910_AudioAPIs-Playingbasicsounds">
+        <h3 class="heading "><span>Playing basic sounds</span></h3>
+    <p>You can use the <tt class=" ">Ti.Media.Sound</tt> object to add beeps and other user-feedback sounds. You can also use it for ambient sounds (that play in the background while the app is active). Keep in mind though that with the Sound object, the entire sound file is loaded into memory before it&apos;s played. This increases memory use in your app. It also creates a delay before the sound can be played the first time (while the file is being read into memory). You can set <tt class=" ">sound.preload=true</tt> to preload the sound, but there&apos;s still that delay as the file is read into memory.    </p>
+    <p>The Sound object includes a few useful methods, including <tt class=" ">play()</tt>, <tt class=" ">pause()</tt>, and <tt class=" ">stop()</tt>. The <tt class=" ">url</tt> property accepts a local file path or a URL to a remote sound file. (The entire sound file must be downloaded before it can be played; it won&apos;t be streamed). You can control the volume with either the <tt class=" ">setVolume()</tt> method or by setting the <tt class=" ">volume</tt> property. See the <a class="external-link external-link" href="#!/api/Titanium.Media.Sound">API docs</a> for full information.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// create the sound/media object</code></div>
+<div class="line"><code class="plain">var sound = Titanium.Media.createSound({</code></div>
+<div class="line"><code class="plain">	url: </code><code class="string">&apos;your_sound_file.mp3&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	preload: </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">var button = Ti.UI.createButton({</code></div>
+<div class="line"><code class="plain">	title: </code><code class="string">&apos;Click to play sound&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	width: </code><code class="string">&apos;200&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	height: </code><code class="string">&apos;40&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	top: </code><code class="value">20</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">button.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, function() {</code></div>
+<div class="line"><code class="plain">	sound.play();</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    <p>In this sample, we attached an event listener to a button so that the sound plays when the button is clicked. You could add an event listener to a view or window (say, to watch for the <tt class=" ">open</tt> event) to play the sound while that component is visible. Typically, you&apos;d attach a listener to another component, such as a different view or window, to stop the sound when the window loses focus. This sort of &quot;background&quot; sound won&apos;t continue playing when the app closes unless you set <tt class=" ">allowBackground=true</tt>, though any buffered portion might continue to play after the app closes.    </p>
+    </div>
+    <div class="section section-3 " id="src-29004910_AudioAPIs-Streamingaudio">
+        <h3 class="heading "><span>Streaming audio</span></h3>
+    <p>You can stream audio from a web URL with the <tt class=" ">Ti.Media.AudioPlayer</tt> object. The AudioPlayer supports pseudo-streaming (of MP3 or other files) as well as <a class="external-link external-link" href="http://developer.apple.com/library/ios/#documentation/networkinginternet/conceptual/streamingmediaguide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008332-CH1-DontLinkElementID_39" target="_blank">HTML Live Streaming</a>. You could also implement HTML live streaming with a WebView, but the native player gives you easier programmatic control and handling of events within your app&apos;s native (non-HTML) code.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var streamer = Ti.Media.createAudioPlayer({</code></div>
+<div class="line"><code class="plain">	url: </code><code class="string">&apos;http://example.com/somefile.mp3&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">streamer.start();</code></div>
+</div>
+    </div>
+    <p>When using streaming, you should make sure to account for interruptions, such as receiving a phone call while the audio plays. You can pause and resume the audio automatically by watching a couple of app-level events.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">Titanium.App.addEventListener(</code><code class="string">&apos;pause&apos;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// app is paused during phone call, so pause the stream</code></div>
+<div class="line"><code class="plain">    streamer.setPaused(</code><code class="keyword">true</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// you could also use streamer.pause()</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">Titanium.App.addEventListener(</code><code class="string">&apos;resume&apos;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// app resumes when call ends, so un-pause the stream</code></div>
+<div class="line"><code class="plain">    streamer.setPaused(</code><code class="keyword">false</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// or use streamer.start()</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-29004910_AudioAPIs-Recordingaudio">
+        <h3 class="heading "><span>Recording audio</span></h3>
+    <p>You can record audio from the device&apos;s microphone using the <tt class=" ">Ti.Media.AudioRecorder</tt> object. This object includes a few useful methods, including <tt class=" ">start()</tt>, <tt class=" ">pause()</tt>/<tt class=" ">resume()</tt>, and <tt class=" ">stop()</tt>. It also has two key properties that you use to control the quality and size of the recorded audio data. These are:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">compression</tt> - which specifies the compression type, such as <tt class=" ">Ti.Media.AUDIO_FORMAT_ULAW</tt> (low-fidelity) or <tt class=" ">Ti.Media.AUDIO_FORMAT_LINEAR_PCM</tt> (hi-fi, but creates larger files)    </p>
+</li><li class=" ">    <p><tt class=" ">format</tt> - which specifies the file format type, such as <tt class=" ">Ti.Media.AUDIO_FILEFORMAT_WAVE</tt>    </p>
+</li></ul>    <p>See the <a class="external-link external-link" href="#!/api/Titanium.Media"><tt class=" ">Media</tt> object API docs</a> for a complete list of compression and format types available in Titanium. See the Kitchen Sink <a class="external-link external-link" href="https://github.com/appcelerator/KitchenSink/blob/master/Resources/examples/sound_record.js" target="_blank">sound_record.js</a> example to see how you can record audio and control options for that recording.    </p>
+    </div>
+    <div class="section section-3 " id="src-29004910_AudioAPIs-Hands-onPractice">
+        <h3 class="heading "><span>Hands-on Practice</span></h3>
+    <div class="section section-4 " id="src-29004910_AudioAPIs-Goal">
+        <h4 class="heading "><span>Goal</span></h4>
+    <p>In this activity, you will write a simple app that will play basic sounds and stream a remote sound file. You&apos;ll add a button that when clicked will play a short &quot;beep&quot; tone. You&apos;ll add another button that when clicked will stream a sound file. You&apos;ll also add a sound that plays when a window is active and stops when it loses focus.    </p>
+    </div>
+    <div class="section section-4 " id="src-29004910_AudioAPIs-Resources">
+        <h4 class="heading "><span>Resources</span></h4>
+    <p>To perform the steps in this activity, you will need two sound files. You can use your own, select sounds from a source like <a class="external-link external-link" href="http://www.freesound.org" target="_blank">http://www.freesound.org</a>, or download these sounds (from freesound.org): <a class="external-link external-link" href="http://wiki.appcelerator.org/download/attachments/19202905/2156__nicstage__lightswitchimpact.mp3" target="_blank">button sound</a> and <a class="external-link external-link" href="http://wiki.appcelerator.org/download/attachments/19202905/25921__suonho__funkysynth-retweek-talkboxer-wha-116bpm.mp3" target="_blank">window sound</a> (right-click those links and choose Save). You&apos;ll also access a remote mp3 file from freesound.org, so the simulator/emulator or your test device will need network access.    </p>
+    </div>
+    <div class="section section-4 " id="src-29004910_AudioAPIs-Steps">
+        <h4 class="heading "><span>Steps</span></h4>
+<ol class=" "><li class=" ">    <p>Create a new Titanium Mobile app. You can keep the starting code for this app; you&apos;ll modify what&apos;s there.    </p>
+</li><li class=" ">    <p>Remove <tt class=" ">label1</tt> (it&apos;s definition, and the <tt class=" ">win1.add()</tt> statement). In its place, add a button with these characteristics:    </p>
+<ul class=" "><li class=" ">    <p>Title: Click to play sound    </p>
+</li><li class=" ">    <p>Width/height: 200 x40    </p>
+</li><li class=" ">    <p>Top: 20    </p>
+</li></ul></li><li class=" ">    <p>Define a sound object that preloads the sounds/2156__nicstage__lightswitchimpact.mp3 file.    </p>
+</li><li class=" ">    <p>Add an event listener to the button that plays the sound when the button is clicked.    </p>
+</li><li class=" ">    <p>Add another button to win1 with these characteristics:    </p>
+<ul class=" "><li class=" ">    <p>Title: Click to stream sound    </p>
+</li><li class=" ">    <p>Width/height: 200 x40    </p>
+</li><li class=" ">    <p>Top: 75    </p>
+</li></ul></li><li class=" ">    <p>Define an AudioPlayer that will stream the sound at <a class="external-link external-link" href="http://www.freesound.org/data/previews/2/2686_5150-lq.mp3" target="_blank">http://www.freesound.org/data/previews/2/2686_5150-lq.mp3</a><br>Add an event listener to your streaming button so that when the button is clicked:    </br></p>
+<ul class=" "><li class=" ">    <p>If the streaming player is not playing currently, start the stream and change the button&apos;s title to &apos;Click to pause stream&apos;    </p>
+</li><li class=" ">    <p>If the streaming player is playing, pause the stream and change the button&apos;s title back to &apos;Click to stream sound&apos;    </p>
+</li></ul></li><li class=" ">    <p>Add the app event listeners to pause the stream and restart in the case a call is received during streaming.    </p>
+</li><li class=" ">    <p>On win2, create a looping, preloaded sound that will play the sounds/25921__suonho__funkysynth-retweek-talkboxer-wha-116bpm.mp3 file.    </p>
+</li><li class=" ">    <p>Add an event listener to the tab group that monitors the <tt class=" ">focus</tt> event. If the tab index is 0 (the first tab), pause the sound. Otherwise, play the sound. This will play the sound when tab 2 is displayed and pause it when tab 1 is active.    </p>
+</li><li class=" ">    <p>Build and test the app in the simulator/emulator.    </p>
+</li></ol>    </div>
+    </div>
+    <div class="section section-3 " id="src-29004910_AudioAPIs-WindowsDevelopmentConsiderations">
+        <h3 class="heading "><span>Windows Development Considerations</span></h3>
+    <p>In order to enable background audio for Windows Phone, you need to provide appropriate Capabilities in your <tt class=" ">tiapp.xml</tt>. Windows Phone users are prompted to grant or deny permission when your application attempt to use background audio. Note that background audio does not work on Windows 10 Mobile due to the system resource policy changes.    </p>
+    <div class="section section-4 " id="src-29004910_AudioAPIs-Grantaccesstobackgroundaudio">
+        <h4 class="heading "><span>Grant access to background audio</span></h4>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
+<div class="line"><code class="plain">  ...</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">windows</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">manifest</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;</code><code class="keyword">Extensions</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">       </code></div>
+<div class="line"><code class="plain"> &lt;</code><code class="keyword">Extension</code><code class="plain"> </code><code class="color1">Category</code><code class="plain">=</code><code class="string">&quot;windows.backgroundTasks&quot;</code><code class="plain"> </code></div>
+<div class="line"><code class="color1">Executable</code><code class="plain">=</code><code class="string">&quot;$targetnametoken$.exe&quot;</code><code class="plain"> </code></div>
+<div class="line"><code class="color1">EntryPoint</code><code class="plain">=</code><code class="string">&quot;TitaniumWindows_Media.AudioBackground&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">          &lt;</code><code class="keyword">BackgroundTasks</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Task</code><code class="plain"> </code><code class="color1">Type</code><code class="plain">=</code><code class="string">&quot;audio&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">          &lt;/</code><code class="keyword">BackgroundTasks</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Extension</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/</code><code class="keyword">Extensions</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">manifest</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">  &lt;/</code><code class="keyword">windows</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  ...</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-29004910_AudioAPIs-Grantaccesstovideostreamandaudiostream">
+        <h4 class="heading "><span>Grant access to video stream and audio stream</span></h4>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
+<div class="line"><code class="plain">  ...</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">windows</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Capabilities</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">DeviceCapability</code><code class="plain"> </code><code class="color1">Name</code><code class="plain">=</code><code class="string">&quot;microphone&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">DeviceCapability</code><code class="plain"> </code><code class="color1">Name</code><code class="plain">=</code><code class="string">&quot;webcam&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Capabilities</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">  &lt;/</code><code class="keyword">windows</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  ...</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-29004910_AudioAPIs-Grantaccesstomusiclibrary">
+        <h4 class="heading "><span>Grant access to music library</span></h4>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
+<div class="line"><code class="plain">  ...</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">windows</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Capabilities</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Capability</code><code class="plain"> </code><code class="color1">Name</code><code class="plain">=</code><code class="string">&quot;musicLibrary&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Capabilities</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">  &lt;/</code><code class="keyword">windows</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  ...</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
+</div>
+    </div>
+    <p>For more information about audio configuration in <tt class=" ">tiapp.xml</tt>, see <a class="external-link external-link" href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-29004921_tiapp.xmlandtimodule.xmlReference-Windows-specificsection">Windows-specific section</a> in <a class="external-link external-link" href="#!/guide/tiapp.xml_and_timodule.xml_Reference">tiapp.xml and timodule.xml Reference</a>.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-29004910_AudioAPIs-ReferencesandFurtherReading">
+        <h3 class="heading "><span>References and Further Reading</span></h3>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://assets.appcelerator.com.s3.amazonaws.com/app_u/ebook/7.1_audio.zip" target="_blank">Finished code</a>    </p>
+</li><li class=" ">    <p>Kitchen Sink sound <a class="external-link external-link" href="https://github.com/appcelerator/KitchenSink/blob/master/Resources/examples/" target="_blank">examples</a> all begin with &quot;sound&quot;    </p>
+</li><li class=" ">    <p>The <a class="external-link external-link" href="#!/api/Titanium.Media"><tt class=" ">Media</tt> object API docs</a>    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-2 " id="src-29004910_AudioAPIs-Summary">
+        <h2 class="heading "><span>Summary</span></h2>
+    <p>In this chapter, you learned how to play and record sounds. You saw you can play both local and remote sound files, and have programmatic control over that playback.    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=29004910"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Modifying an existing Ruble</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-30083233" class="content">
+                        <h1>Modifying an existing Ruble</h1>
+    <div class="section section-2 " id="src-30083233_ModifyinganexistingRuble-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Modifying_an_existing_Ruble-section-src-30083233_ModifyinganexistingRuble-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Modifying_an_existing_Ruble-section-src-30083233_ModifyinganexistingRuble-ModifyinganexistingRuble">Modifying an existing Ruble</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Modifying_an_existing_Ruble-section-src-30083233_ModifyinganexistingRuble-Editthisbundle">Edit this bundle</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Modifying_an_existing_Ruble-section-src-30083233_ModifyinganexistingRuble-ExtendanexistingRuble">Extend an existing Ruble</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Modifying_an_existing_Ruble-section-src-30083233_ModifyinganexistingRuble-Specificoverrides">Specific overrides</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Modifying_an_existing_Ruble-section-src-30083233_ModifyinganexistingRuble-Overridinganexistingcommand">Overriding an existing command</a>    </p>
+</li></ul></li></ul>    </div>
+    <div class="section section-2 " id="src-30083233_ModifyinganexistingRuble-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>If you want to extend the functionality of Studio, you can do so by creating a new Ruble, or extending an existing one.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083233_ModifyinganexistingRuble-ModifyinganexistingRuble">
+        <h2 class="heading "><span>Modifying an existing Ruble</span></h2>
+    <p>The <a class="document-link " href="#!/guide/Ruble_Specification">Ruble Specification</a> lists the complete mechanism for extending existing Rubles, but there are two main mechanisms.    </p>
+    <div class="section section-3 " id="src-30083233_ModifyinganexistingRuble-Editthisbundle">
+        <h3 class="heading "><span>Edit this bundle</span></h3>
+    <p>You can edit an existing Ruble by cloning the existing version from Github and editing the files.    </p>
+<ol class=" "><li class=" ">    <p>Select <strong class=" ">Commands &gt; <i class=" ">RubleName</i> &gt; Edit this bundle</strong><br>The ruble is cloned from Github and imported as a project into your workspace    </br></p>
+</li><li class=" ">    <p>At this point, you now have a complete copy of the Ruble to edit as you like. However, you won&apos;t get automatic updates if the remote content changes.    </p>
+</li></ol>    <p>To update your Ruble, do one of the following:    </p>
+<ul class=" "><li class=" ">    <p>Select <strong class=" ">Commands &gt; Bundle Development &gt; Update User Bundles</strong>    </p>
+</li><li class=" ">    <p>Right-click on the project folder in <strong class=" ">Project Explorer</strong> and select <strong class=" ">Team &gt; Pull</strong>    </p>
+</li></ul>    </div>
+    <div class="section section-3 " id="src-30083233_ModifyinganexistingRuble-ExtendanexistingRuble">
+        <h3 class="heading "><span>Extend an existing Ruble</span></h3>
+    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>You need to reference the <i class=" ">name</i> of the Ruble, not the display name (which may be what you see in Menu items). You can find out the ruble name by opening up the Bundles View and expanding the node relevant to the Ruble of interest. You&apos;ll want to use the folder name of the Ruble, <i class=" ">minus</i> &quot;.ruble&quot;, i.e. &quot;html.ruble&quot; =&gt; &quot;html&quot;    </p>
+    </div>
+    <ol class=" "><li class=" ">    <p>Create a folder named <i class=" ">rublename.ruble</i> (replacing <i class=" ">rublename</i> with the name you wish)    </p>
+</li><li class=" ">    <p>Add a bundle.rb file with the following content:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">bundle </code><code class="string">&quot;XXX&quot;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |bundle|</code></div>
+<div class="line"><code class="plain">  bundle.display_name = </code><code class="string">&apos;YYY&apos;</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Replace &quot;XXX&quot; with the name of the Ruble you are extending, and &quot;YYY&quot; with the display name.    </p>
+</li><li class=" ">    <p>Save and close ruble.rb    </p>
+</li></ol>    </div>
+    </div>
+    <div class="section section-2 " id="src-30083233_ModifyinganexistingRuble-Specificoverrides">
+        <h2 class="heading "><span>Specific overrides</span></h2>
+    <p>Some examples of how you might override an existing item.    </p>
+    <div class="section section-3 " id="src-30083233_ModifyinganexistingRuble-Overridinganexistingcommand">
+        <h3 class="heading "><span>Overriding an existing command</span></h3>
+    <p>This replaces a current command&apos;s implementation with new implementation. We&apos;ll use the HTML plugin as an example here.    </p>
+<ol class=" "><li class=" ">    <p>Follow the instructions to &quot;Extend an Existing Ruble&quot;:    </p>
+<ol class=" "><li class=" ">    <p>Create a folder in a workspace project titled <strong class=" ">bundles/htmlextension.ruble</strong>    </p>
+</li><li class=" ">    <p>Create a <strong class=" ">bundle.rb</strong> file with the following content:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">bundle </code><code class="string">&quot;html&quot;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |bundle|</code></div>
+<div class="line"><code class="plain">  bundle.display_name = </code><code class="string">&apos;HTML&apos;</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Create a folder at <strong class=" ">bundles/htmlextension.ruble/commands</strong>    </p>
+</li><li class=" ">    <p>Create a file in the <strong class=" ">commands</strong> folder which is a copy of an existing command, i.e. <strong class=" ">strip_html_tags.rb</strong>.    </p>
+</li><li class=" ">    <p>Add new content to suit:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">command </code><code class="string">&apos;Strip HTML Tags from Document / Selection&apos;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
+<div class="line"><code class="plain">  cmd.scope = </code><code class="string">&apos;text.html&apos;</code></div>
+<div class="line"><code class="plain">  cmd.output = :replace_selection</code></div>
+<div class="line"><code class="plain">  cmd.input = :selection, :document</code></div>
+<div class="line"><code class="plain">  cmd.invoke </code><code class="keyword">do</code><code class="plain"> |context|</code></div>
+<div class="line"><code class="plain">    CONSOLE.puts </code><code class="string">&quot;Testing...&quot;</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Modify the above code to suit    </p>
+</li></ol></li></ol>    <p>Running the above command from the HTML menu should use your new implementation.    </p>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=30083233"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

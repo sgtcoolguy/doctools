@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SDK Requirements JSON</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-30083175" class="content">
+                        <h1>SDK Requirements JSON</h1>
+    <div class="section section-2 " id="src-30083175_SDKRequirementsJSON-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/SDK_Requirements_JSON-section-src-30083175_SDKRequirementsJSON-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/SDK_Requirements_JSON-section-src-30083175_SDKRequirementsJSON-Versioning">Versioning</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/SDK_Requirements_JSON-section-src-30083175_SDKRequirementsJSON-OverallStructure">Overall Structure</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/SDK_Requirements_JSON-section-src-30083175_SDKRequirementsJSON-AndroidSDKs">Android SDKs</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/SDK_Requirements_JSON-section-src-30083175_SDKRequirementsJSON-iOS">iOS</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/SDK_Requirements_JSON-section-src-30083175_SDKRequirementsJSON-CompleteExample">Complete Example</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30083175_SDKRequirementsJSON-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>When Studio starts up, it contacts a remote server to determine what versions of the Android and iOS SDKs must be installed in order to enable proper Titanium Development. Below, we detail the pieces of that file.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083175_SDKRequirementsJSON-Versioning">
+        <h2 class="heading "><span>Versioning</span></h2>
+    <p>The versioning information follows OSGI conventions, so similar flexibility in defining version information is available here too.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Definition    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>4.0, 4.4    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Version 4.0 to 4.4.X inclusive, but not including version 4.5.X    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>4.0, 4.4    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Version 4.0 to 4.3.X inclusive, but not including version 4.4.X    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-30083175_SDKRequirementsJSON-OverallStructure">
+        <h2 class="heading "><span>Overall Structure</span></h2>
+    <p>There are two top-level objects, once for android, one for ios. Underneath that we have separate entries for each platform. Note that we only have osx for ios, since the ios SDK is not available on any other platform.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;android&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;macosx&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;win32&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;ios&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;macosx&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083175_SDKRequirementsJSON-AndroidSDKs">
+        <h2 class="heading "><span>Android SDKs</span></h2>
+    <p>Android requires a number of different items to be installed. Due to complexities in the Titanium Mobile SDKs, we require both platform version 7 and platform version 8 to be installed simultaneously.    </p>
+    <p>Structure:    </p>
+<ul class=" "><li class=" ">    <p>&quot;android&quot;    </p>
+<ul class=" "><li class=" ">    <p>platform (&quot;osx&quot;/&quot;win32&quot;)    </p>
+<ul class=" "><li class=" ">    <p>requiredAddOns: array of strings, corresponding with Google add-on names    </p>
+</li><li class=" ">    <p>requiredSDKTools: array of integers, corresponding with Google SDK Tooling levels    </p>
+</li><li class=" ">    <p>requiredPlatformTools: array of integers, corresponding with Google Platform levels (2.1 == 7, 2.2 == 8, etc.)    </p>
+</li><li class=" ">    <p>requiredPlatforms: array of regular expression strings, corresponding with Google Platform levels    </p>
+</li><li class=" ">    <p>sdkURL: String to .zip file of latest SDK download location    </p>
+</li><li class=" ">    <p>jdkURL (Windows only): String to .zip file of latest JDK download installation    </p>
+</li></ul></li></ul></li></ul>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;android&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;linux&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredAddOns&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;addon_google_apis_google_inc_7&quot;</code></div>
+<div class="line"><code class="plain">      ],</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredPlatformTools&quot;</code><code class="plain">: </code><code class="string">&quot;7&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredPlatforms&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;Android\\s*2\\.1.*&quot;</code></div>
+<div class="line"><code class="plain">      ],</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredSDKTools&quot;</code><code class="plain">: </code><code class="string">&quot;13&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;sdkURL&quot;</code><code class="plain">:</code><code class="string">&quot;http://dl.google.com/android/android-sdk_r13-linux_x86.tgz&quot;</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083175_SDKRequirementsJSON-iOS">
+        <h2 class="heading "><span>iOS</span></h2>
+    <p>iOS is a bit simpler, since we only need to verify one SDK version. Note how we use the version constraints here, not possible with Android above due to inconsistent version numbering (we use the regexes instead)    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;ios&quot;</code><code class="plain">:{</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;macosx&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredPlatforms&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;[4.0, 4.4)&quot;</code></div>
+<div class="line"><code class="plain">      ],</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;sdkURL&quot;</code><code class="plain">: </code><code class="string">&quot;http://itunes.apple.com/us/app/xcode/id448457090?mt=12#&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083175_SDKRequirementsJSON-CompleteExample">
+        <h2 class="heading "><span>Complete Example</span></h2>
+    <p>A complete example of a JSON SDK requirements file.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;android&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;linux&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredAddOns&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;addon_google_apis_google_inc_7&quot;</code></div>
+<div class="line"><code class="plain">      ],</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredPlatformTools&quot;</code><code class="plain">: </code><code class="string">&quot;7&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredPlatforms&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;Android\\s*2\\.1.*&quot;</code></div>
+<div class="line"><code class="plain">      ],</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredSDKTools&quot;</code><code class="plain">: </code><code class="string">&quot;13&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;sdkURL&quot;</code><code class="plain">:</code><code class="string">&quot;http://dl.google.com/android/android-sdk_r13-linux_x86.tgz&quot;</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;macosx&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredAddOns&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;addon_google_apis_google_inc_7&quot;</code></div>
+<div class="line"><code class="plain">      ],</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredPlatformTools&quot;</code><code class="plain">: </code><code class="string">&quot;7&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredPlatforms&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;Android\\s*2\\.1.*&quot;</code></div>
+<div class="line"><code class="plain">      ],</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredSDKTools&quot;</code><code class="plain">: </code><code class="string">&quot;13&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;sdkURL&quot;</code><code class="plain">:</code><code class="string">&quot;http://dl.google.com/android/android-sdk_r13-mac_x86.zip&quot;</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;win32&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredAddOns&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;addon_google_apis_google_inc_7&quot;</code></div>
+<div class="line"><code class="plain">      ],</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredPlatformTools&quot;</code><code class="plain">: </code><code class="string">&quot;7&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredPlatforms&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;Android\\s*2\\.1.*&quot;</code></div>
+<div class="line"><code class="plain">      ],</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredSDKTools&quot;</code><code class="plain">: </code><code class="string">&quot;13&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;sdkURL&quot;</code><code class="plain">: </code><code class="string">&quot;http://dl.google.com/android/android-sdk_r13-windows.zip&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;jdkURL&quot;</code><code class="plain">: </code><code class="string">&quot;http://download.oracle.com/otn-pub/java/jdk/6u29-b11/jdk-6u29-windows-i586.exe&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;ios&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;macosx&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;requiredPlatforms&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;[4.0, 4.4)&quot;</code></div>
+<div class="line"><code class="plain">      ],</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;sdkURL&quot;</code><code class="plain">: </code><code class="string">&quot;http://itunes.apple.com/us/app/xcode/id448457090?mt=12#&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=30083175"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

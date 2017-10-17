@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>JSCA 1.0 Specification</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-30083172" class="content">
+                        <h1>JSCA 1.0 Specification</h1>
+    <div class="section section-2 " id="src-30083172_JSCA1.0Specification-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ShortExample">Short Example</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-Top-LevelProperties">Top-Level Properties</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-VersionProperty">Version Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-BuildProperty">Build Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-AliasesProperty">Aliases Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-TypesProperty">Types Property</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-Types">Types</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-AliasType">Alias Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-NameProperty">Name Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-DescriptionProperty">Description Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-TypeProperty">Type Property</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-TypeType">Type Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-NameProperty.1">Name Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-DescriptionProperty.1">Description Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-DeprecatedProperty">Deprecated Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-UserAgentsProperty">UserAgents Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-SinceProperty">Since Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-InheritsProperty">Inherits Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-PropertiesProperty">Properties Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-FunctionsProperty">Functions Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-EventsProperty">Events Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-RemarksProperty">Remarks Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ExamplesProperty">Examples Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-IsInternalProperty">IsInternal Property</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-UserAgentType">UserAgent Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-PlatformProperty">Platform Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-VersionProperty.1">Version Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-OSProperty">OS Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-OSVersionProperty">OSVersion Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-DescriptionProperty.">Description Property.</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-SinceType">Since Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-NameProperty.2">Name Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-VersionProperty.2">Version Property</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-PropertyType">Property Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-NameProperty.3">Name Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-DescriptionProperty.2">Description Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-UserAgentsProperty.1">UserAgents Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-SinceProperty.1">Since Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-IsInstancePropertyProperty">IsInstanceProperty Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-IsClassPropertyProperty">IsClassProperty Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-IsInternalProperty.1">IsInternal Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-TypeProperty.1">Type Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ExamplesProperty.1">Examples Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-PermissionProperty">Permission Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-AvailabilityProperty">Availability Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ConstantsProperty">Constants Property</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-FunctionType">Function Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-NameProperty.4">Name Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-DescriptionProperty.3">Description Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-UserAgentsProperty.2">UserAgents Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-SinceProperty.2">Since Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-IsInstancePropertyProperty.1">IsInstanceProperty Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-IsClassPropertyProperty.1">IsClassProperty Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-IsInternalProperty.2">IsInternal Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ExamplesProperty.2">Examples Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ParametersProperty">Parameters Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ReferencesProperty">References Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ExceptionsProperty">Exceptions Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ReturnTypesProperty">ReturnTypes Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-IsConstructorProperty">IsConstructor Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-IsMethodProperty">IsMethod Property</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-EventType">Event Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-NameProperty.5">Name Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-DescriptionProperty.4">Description Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-PropertiesProperty.1">Properties Property</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-EventPropertyType">EventProperty Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-NameProperty.6">Name Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-DescriptionProperty.5">Description Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-TypeProperty.2">Type Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ConstantsProperty.1">Constants Property</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ReturnTypeType">ReturnType Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-TypeProperty.3">Type Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-DescriptionProperty.6">Description Property</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ExampleType">Example Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-NameProperty.7">Name Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-CodeProperty">Code Property</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ParameterType">Parameter Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-NameProperty.8">Name Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-TypeProperty.4">Type Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-UsageProperty">Usage Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-DescriptionProperty.7">Description Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ConstantsProperty.2">Constants Property</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-ExceptionType">Exception Type</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-TypeProperty.5">Type Property</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/JSCA_1.0_Specification-section-src-30083172_JSCA1.0Specification-DescriptionProperty.8">Description Property</a>    </p>
+</li></ul></li></ul></li></ul>    </div>
+    <div class="section section-2 " id="src-30083172_JSCA1.0Specification-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>This is a brief description of the JSCA file format. This JSON-based format is used to define content assist metadata for the Javascript Content Assist (CA) system. The structure of JSCA is described by another JSON-based format called <a class="document-link " href="#!/guide/JFF_1.0_Specification">JFF</a> (JSON File Format). While reading this document, it may be useful to view the <a class="external-link external-link" href="https://github.com/aptana/studio3/blob/development/plugins/com.aptana.editor.js/metadata/JSMetadataSchema.json" target="_blank">JSCA JFF file</a>.    </p>
+    <p>Please note, that in general, properties on a JSON object may occur in any order; however, in order to simplify processing of JSCA files, it is required that any JSON objects having a &quot;name&quot; property must list that property before all others.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083172_JSCA1.0Specification-ShortExample">
+        <h2 class="heading "><span>Short Example</span></h2>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;types&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;Titanium.Android.NotificationManager&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;examples&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;functions&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;addEventListener&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;parameters&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">            {</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;name&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;usage&quot;</code><code class="plain">: </code><code class="string">&quot;&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;String&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;name of the event&quot;</code></div>
+<div class="line"><code class="plain">            }, </code></div>
+<div class="line"><code class="plain">            {</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;callback&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;usage&quot;</code><code class="plain">: </code><code class="string">&quot;&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;Function&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;callback function to invoke when the event is fired&quot;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">          ], </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;userAgents&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">            {</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;platform&quot;</code><code class="plain">: </code><code class="string">&quot;android&quot;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">          ], </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;since&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">            {</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;version&quot;</code><code class="plain">: </code><code class="string">&quot;1.5&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;Titanium Mobile SDK&quot;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">          ], </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;isConstructor&quot;</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;isClassProperty&quot;</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;examples&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;isInternal&quot;</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;exceptions&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;references&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;isMethod&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;isInstanceProperty&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;add an event listener for the instance to receive view triggered events&quot;</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">      ], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;events&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;userAgents&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;platform&quot;</code><code class="plain">: </code><code class="string">&quot;android&quot;</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">      ], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;remarks&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;&lt;p&gt;The constants above are taken from other docs&lt;/p&gt;&quot;</code></div>
+<div class="line"><code class="plain">      ], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;deprecated&quot;</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;since&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;version&quot;</code><code class="plain">: </code><code class="string">&quot;1.5&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;Titanium Mobile SDK&quot;</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">      ], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;properties&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;DEFAULT_ALL&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;isInternal&quot;</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;isInstanceProperty&quot;</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;since&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">            {</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;version&quot;</code><code class="plain">: </code><code class="string">&quot;1.5&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;Titanium Mobile SDK&quot;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">          ], </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;examples&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;userAgents&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">            {</code></div>
+<div class="line"><code class="plain">              </code><code class="string">&quot;platform&quot;</code><code class="plain">: </code><code class="string">&quot;android&quot;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">          ], </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;Number&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;isClassProperty&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;&lt;p&gt;Use all default values (where applicable).&lt;/p&gt;&quot;</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">      ], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;&lt;p&gt;Module to notify users of events that happen.&lt;/p&gt;&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  ], </code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;aliases&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;Titanium&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;Ti&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  ],</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;version&quot;</code><code class="plain">: </code><code class="string">&quot;1.0&quot;</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;build&quot;</code><code class="plain">: </code><code class="string">&quot;1.7.0-201103300900&quot;</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083172_JSCA1.0Specification-Top-LevelProperties">
+        <h2 class="heading "><span>Top-Level Properties</span></h2>
+    <p>The JSCA file format consists of a single top-level object with the following properties: version, build, aliases, and types. Below is a description of each of these properties    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;version&quot;</code><code class="plain">: </code><code class="string">&quot;http://url-to-version-spec&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;aliases&quot;</code><code class="plain">: [],</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;types&quot;</code><code class="plain">: []</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-VersionProperty">
+        <h3 class="heading "><span>Version Property</span></h3>
+    <p>The version property indicates the file format version number of the JSCA file. The current version number is 1.0. It is expected that this value will change as new JSCA structures are defined.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">  </code><code class="string">&quot;version&quot;</code><code class="plain">: </code><code class="string">&quot;1.0&quot;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-BuildProperty">
+        <h3 class="heading "><span>Build Property</span></h3>
+    <p>The build property indicates the current build of the file    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">  </code><code class="string">&quot;build&quot;</code><code class="plain">: </code><code class="string">&quot;1.7.0-201103300900&quot;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-AliasesProperty">
+        <h3 class="heading "><span>Aliases Property</span></h3>
+    <p>The aliases property allows for the definition of shortcuts to deeply nested types. This property consists of an array of Alias types. This property is optional.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">  </code><code class="string">&quot;aliases&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;Titanium&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;Ti&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  ]</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-TypesProperty">
+        <h3 class="heading "><span>Types Property</span></h3>
+    <p>This is perhaps the most important top-level property. This property contains a list of Type types used to defined the types in the JSCA file. This property is optional.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;types&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;Titanium.Android.NotificationManager&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;examples&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;functions&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;events&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;userAgents&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;remarks&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;deprecated&quot;</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;since&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;properties&quot;</code><code class="plain">: [], </code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;&lt;p&gt;Module to notify users of events that happen.&lt;/p&gt;&quot;</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">  ],</code></div>
+<div class="line"><code class="plain">  ... </code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083172_JSCA1.0Specification-Types">
+        <h2 class="heading "><span>Types</span></h2>
+    <p>Below is a list of types declared in the JSCA JFF file. These types are what are used to describe the JS types contained within a JSCA file.    </p>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-AliasType">
+        <h3 class="heading "><span>Alias Type</span></h3>
+    <p>A type used to provide shortcuts to deeply nested types.    </p>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-NameProperty">
+        <h4 class="heading "><span>Name Property</span></h4>
+    <p>The shortcut name to be used as an alias to a specific type. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-DescriptionProperty">
+        <h4 class="heading "><span>Description Property</span></h4>
+    <p>A description of the alias. This property is optional. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-TypeProperty">
+        <h4 class="heading "><span>Type Property</span></h4>
+    <p>The type that this alias references via its shortcut. This property is required.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-TypeType">
+        <h3 class="heading "><span>Type Type</span></h3>
+    <p>A type is a named collection of properties and functions. A Type contains the following properties described below: name, description, deprecated, userAgents, since, inherits, properties, functions, events, remarks, and examples.    </p>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-NameProperty.1">
+        <h4 class="heading "><span>Name Property</span></h4>
+    <p>This property is a string value that gives a unique name to the Type. It is expected that the value is a valid Javascript identifier. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-DescriptionProperty.1">
+        <h4 class="heading "><span>Description Property</span></h4>
+    <p>This property gives a brief description of the type. Currently, this is not displayed in content assist, but future versions of Studio will present this information, so it is a good idea to include this property. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-DeprecatedProperty">
+        <h4 class="heading "><span>Deprecated Property</span></h4>
+    <p>This property is a boolean flag indicating, when true, that this type should not be used. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-UserAgentsProperty">
+        <h4 class="heading "><span>UserAgents Property</span></h4>
+    <p>This property is a list of UserAgent types and lists in which user agents this type exists. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-SinceProperty">
+        <h4 class="heading "><span>Since Property</span></h4>
+    <p>This property is a list of Since types and lists from which framework and version this type has been available. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-InheritsProperty">
+        <h4 class="heading "><span>Inherits Property</span></h4>
+    <p>This property describes in a comma-delimited list the super-types for this type. If this property is not defined or is empty, then Object is assumed to be the type&apos;s super-type. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-PropertiesProperty">
+        <h4 class="heading "><span>Properties Property</span></h4>
+    <p>This property is a list of Property types, each describing the non-function members of this type. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-FunctionsProperty">
+        <h4 class="heading "><span>Functions Property</span></h4>
+    <p>This property is a list of Function type, each describing the function members (aka. methods) of this type. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-EventsProperty">
+        <h4 class="heading "><span>Events Property</span></h4>
+    <p>This property is a list of Event types, each describing an event and the values of the event object passed into the events callback. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-RemarksProperty">
+        <h4 class="heading "><span>Remarks Property</span></h4>
+    <p>This property is a list of strings, each providing additional information about the this type. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-ExamplesProperty">
+        <h4 class="heading "><span>Examples Property</span></h4>
+    <p>This property is a list of Example types, each providing code examples of the type in use. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-IsInternalProperty">
+        <h4 class="heading "><span>IsInternal Property</span></h4>
+    <p>This property indicates if this type is internal only. Internal types do not appear in content assist but the properties of the type will still appear on items of the specified type. This property is optional.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-UserAgentType">
+        <h3 class="heading "><span>UserAgent Type</span></h3>
+    <p>A UserAgent type is used to capture information about runtime environments where types and their members are available. Studio also provides an extension point where icons for each user agent can be specified. UserAgents in conjunction with the user agent extension point allows developers to view via icons in which environments types and their members are available. A UserAgent consists of the following properties: platform, version, os, osVersion, and description.    </p>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-PlatformProperty">
+        <h4 class="heading "><span>Platform Property</span></h4>
+    <p>This property indicates on which platform the user agent exists. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-VersionProperty.1">
+        <h4 class="heading "><span>Version Property</span></h4>
+    <p>This property indicates the platform version. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-OSProperty">
+        <h4 class="heading "><span>OS Property</span></h4>
+    <p>This property indicates a specific operating system on which the user agent runs. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-OSVersionProperty">
+        <h4 class="heading "><span>OSVersion Property</span></h4>
+    <p>This property indicates the OS version. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-DescriptionProperty.">
+        <h4 class="heading "><span>Description Property.</span></h4>
+    <p>This property provides a description of this user agent. This property is optional.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-SinceType">
+        <h3 class="heading "><span>Since Type</span></h3>
+    <p>A Since type is used to indicate in which version a type or one of its members was added to a specific framework. A Since type consists of the following properties: name, version, and property.    </p>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-NameProperty.2">
+        <h4 class="heading "><span>Name Property</span></h4>
+    <p>This property indicates the name of the framework or specification. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-VersionProperty.2">
+        <h4 class="heading "><span>Version Property</span></h4>
+    <p>This property indicates the framework or specification number. This property is required.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-PropertyType">
+        <h3 class="heading "><span>Property Type</span></h3>
+    <p>The Property type captures information about all non-function members for a given type. The Property type consists of the following properties: name, description, userAgents, since, isInstanceProperty, isClassProperty, isInternal, type, and examples.    </p>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-NameProperty.3">
+        <h4 class="heading "><span>Name Property</span></h4>
+    <p>This property is the name of the Property instance. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-DescriptionProperty.2">
+        <h4 class="heading "><span>Description Property</span></h4>
+    <p>This property provides a description of the Property instance. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-UserAgentsProperty.1">
+        <h4 class="heading "><span>UserAgents Property</span></h4>
+    <p>This property lists all user agents in which this Property exists. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-SinceProperty.1">
+        <h4 class="heading "><span>Since Property</span></h4>
+    <p>This property lists all framework and specification in which this Property is defined. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-IsInstancePropertyProperty">
+        <h4 class="heading "><span>IsInstanceProperty Property</span></h4>
+    <p>This property indicates if this Property is a member of instances of its owning type. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-IsClassPropertyProperty">
+        <h4 class="heading "><span>IsClassProperty Property</span></h4>
+    <p>This property indicates if this Property is a member of the owning type&apos;s type. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-IsInternalProperty.1">
+        <h4 class="heading "><span>IsInternal Property</span></h4>
+    <p>This property indicates if this property is internal only. Internal properties do not appear in content assist. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-TypeProperty.1">
+        <h4 class="heading "><span>Type Property</span></h4>
+    <p>This property indicates the type of the Property instance. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-ExamplesProperty.1">
+        <h4 class="heading "><span>Examples Property</span></h4>
+    <p>This property allows examples to be created showing the Property in use. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-PermissionProperty">
+        <h4 class="heading "><span>Permission Property</span></h4>
+    <p>This property indicates if the property is &quot;read-only&quot;, &quot;write-only&quot; or &quot;read-write&quot; (default).  This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-AvailabilityProperty">
+        <h4 class="heading "><span>Availability Property</span></h4>
+    <p>This property indicates if the property is &quot;creation&quot; (only invoked when creating the object), &quot;not-creation&quot; (only invoked on the object) or &quot;always&quot; (default).  This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-ConstantsProperty">
+        <h4 class="heading "><span>Constants Property</span></h4>
+    <p>This property provides an array of strings that represent the possible Titanium constants that the property can be assigned.  This property is optional.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-FunctionType">
+        <h3 class="heading "><span>Function Type</span></h3>
+    <p>The Function type captures information about all function members for a given type. The Function type consists of the following properties: name, description, userAgents, since, isInstanceProperty, isClassProperty, isInternal, examples, references, returnTypes, isConstructor, and isMethod.    </p>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-NameProperty.4">
+        <h4 class="heading "><span>Name Property</span></h4>
+    <p>This property is the name of the Function instance. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-DescriptionProperty.3">
+        <h4 class="heading "><span>Description Property</span></h4>
+    <p>This property provides a description of the function. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-UserAgentsProperty.2">
+        <h4 class="heading "><span>UserAgents Property</span></h4>
+    <p>This property lists all user agents in which the function exists. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-SinceProperty.2">
+        <h4 class="heading "><span>Since Property</span></h4>
+    <p>This property lists all framework and specification in which the function is defined. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-IsInstancePropertyProperty.1">
+        <h4 class="heading "><span>IsInstanceProperty Property</span></h4>
+    <p>This property indicates if the function is a member of instances of its owning type. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-IsClassPropertyProperty.1">
+        <h4 class="heading "><span>IsClassProperty Property</span></h4>
+    <p>This property indicates if the function is a member of the owning type&apos;s type. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-IsInternalProperty.2">
+        <h4 class="heading "><span>IsInternal Property</span></h4>
+    <p>This property indicates if the function is internal only. Internal properties do not appear in content assist. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-ExamplesProperty.2">
+        <h4 class="heading "><span>Examples Property</span></h4>
+    <p>This property is a list of examples, showing the function in use. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-ParametersProperty">
+        <h4 class="heading "><span>Parameters Property</span></h4>
+    <p>This property is a list of parameters used when invoking the function. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-ReferencesProperty">
+        <h4 class="heading "><span>References Property</span></h4>
+    <p>This property is a list of references where you can find additional and/or related information on the function. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-ExceptionsProperty">
+        <h4 class="heading "><span>Exceptions Property</span></h4>
+    <p>This property is a list of exceptions that may occur when invoking the function. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-ReturnTypesProperty">
+        <h4 class="heading "><span>ReturnTypes Property</span></h4>
+    <p>This property is a list of return values that the function can return. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-IsConstructorProperty">
+        <h4 class="heading "><span>IsConstructor Property</span></h4>
+    <p>This property indicates if the function can be used as a constructor of type instances. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-IsMethodProperty">
+        <h4 class="heading "><span>IsMethod Property</span></h4>
+    <p>This property indicates if the function is a method on a type instance. This property is optional.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-EventType">
+        <h3 class="heading "><span>Event Type</span></h3>
+    <p>The Event type captures information about the events that a given type listens to. The Event type consists of the following properties: name, description, and properties.    </p>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-NameProperty.5">
+        <h4 class="heading "><span>Name Property</span></h4>
+    <p>This property gives a name to the event. This is the same name used when registering the event via addEventListener. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-DescriptionProperty.4">
+        <h4 class="heading "><span>Description Property</span></h4>
+    <p>This property provides a description of the event. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-PropertiesProperty.1">
+        <h4 class="heading "><span>Properties Property</span></h4>
+    <p>This property provides a list of EventProperty instances which describe the properties of the event object passed into the event&apos;s callback/listener. This property is optional.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-EventPropertyType">
+        <h3 class="heading "><span>EventProperty Type</span></h3>
+    <p>The EventProperty type captures the types of properties contained in the event object passed to an event&apos;s callback. The EventProperty type consists of the following properties: name, description, and type.    </p>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-NameProperty.6">
+        <h4 class="heading "><span>Name Property</span></h4>
+    <p>This property gives a name to the event property. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-DescriptionProperty.5">
+        <h4 class="heading "><span>Description Property</span></h4>
+    <p>This property provides a description of the event property. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-TypeProperty.2">
+        <h4 class="heading "><span>Type Property</span></h4>
+    <p>This property indicates the type of the event property. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-ConstantsProperty.1">
+        <h4 class="heading "><span>Constants Property</span></h4>
+    <p>This property provides an array of strings that represent the possible Titanium constants that the property can be assigned.  This property is optional.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-ReturnTypeType">
+        <h3 class="heading "><span>ReturnType Type</span></h3>
+    <p>The ReturnType type is used to capture information about function return types. The ReturnType type consists of the following properties: type and description.    </p>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-TypeProperty.3">
+        <h4 class="heading "><span>Type Property</span></h4>
+    <p>This property indicates the type of the return type. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-DescriptionProperty.6">
+        <h4 class="heading "><span>Description Property</span></h4>
+    <p>This property provides a description of the return type. This property is optional.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-ExampleType">
+        <h3 class="heading "><span>Example Type</span></h3>
+    <p>The Example type is used to provide examples of how a given type can be used. The Example type consists of the following properties: name and code.    </p>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-NameProperty.7">
+        <h4 class="heading "><span>Name Property</span></h4>
+    <p>This property gives a title to the example. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-CodeProperty">
+        <h4 class="heading "><span>Code Property</span></h4>
+    <p>This property provides a code sample for the example. This property is required.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-ParameterType">
+        <h3 class="heading "><span>Parameter Type</span></h3>
+    <p>The Parameter type captures information about a function&apos;s parameters. The Parameter type consists of the following properties: name, type, usage, and description.    </p>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-NameProperty.8">
+        <h4 class="heading "><span>Name Property</span></h4>
+    <p>This property gives a name to the parameter. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-TypeProperty.4">
+        <h4 class="heading "><span>Type Property</span></h4>
+    <p>This property indicates the type of the parameter. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-UsageProperty">
+        <h4 class="heading "><span>Usage Property</span></h4>
+    <p>This property indicates the usage of this parameter. Possible values are &quot;required&quot;, &quot;optional&quot;, &quot;zero-or-more&quot;, and &quot;one-or-more&quot;. If the property is not defined, then this defaults to &quot;required&quot;. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-DescriptionProperty.7">
+        <h4 class="heading "><span>Description Property</span></h4>
+    <p>This property provides a description of the Parameter. This property is optional.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-ConstantsProperty.2">
+        <h4 class="heading "><span>Constants Property</span></h4>
+    <p>This property provides an array of strings that represent the possible Titanium constants that the parameter can take.  This property is optional.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083172_JSCA1.0Specification-ExceptionType">
+        <h3 class="heading "><span>Exception Type</span></h3>
+    <p>The Exception type is used to capture exception types that may be thrown by a function when it is invoked. The Exception type consists of the following properties: type and description.    </p>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-TypeProperty.5">
+        <h4 class="heading "><span>Type Property</span></h4>
+    <p>This property indicates the type of the Exception. This property is required.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083172_JSCA1.0Specification-DescriptionProperty.8">
+        <h4 class="heading "><span>Description Property</span></h4>
+    <p>This property provides a description of the exception, possibly explaining in which situations it may occur. This property is optional.    </p>
+    </div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=30083172"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

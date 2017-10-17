@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Eclipse Commands</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-30083156" class="content">
+                        <h1>Eclipse Commands</h1>
+    <div class="section section-2 " id="src-30083156_EclipseCommands-Actions">
+        <h2 class="heading "><span>Actions</span></h2>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Eclipse_Commands-section-src-30083156_EclipseCommands-Requirements">Requirements</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Eclipse_Commands-section-src-30083156_EclipseCommands-Description">Description</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Eclipse_Commands-section-src-30083156_EclipseCommands-Invocation">Invocation</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Eclipse_Commands-section-src-30083156_EclipseCommands-AgenericEclipsecommand-handlerinvocation">A generic Eclipse command-handler invocation</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Eclipse_Commands-section-src-30083156_EclipseCommands-AnEclipsecommandthatacceptsarguments">An Eclipse command that accepts arguments</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Eclipse_Commands-section-src-30083156_EclipseCommands-Examples">Examples</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30083156_EclipseCommands-Requirements">
+        <h2 class="heading "><span>Requirements</span></h2>
+    <p>The examples in this page use the <i class=" "><strong class=" ">Prototype</strong></i> library, which is included by default inside a portal. However, the same concepts may be applied using other implementations.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083156_EclipseCommands-Description">
+        <h2 class="heading "><span>Description</span></h2>
+    <p>Eclipse has a <i class=" ">Command Handling</i> system that is invoked through an internal <i class=" ">Command Service</i>. Those commands are contributed via Eclipse extensions and can be called using the portal.    </p>
+    <p>In order to invoke a specific command, a command ID, and and optional command arguments, need to be provided to the Portal&apos;s <i class=" ">dispatch</i> call. These IDs are, in some cases, hidden deep inside Eclipse, so an Eclipse knowledge is needed in order to find out what they are. We list at the bottom of this page a few common ID&apos;s and their usage with the <i class=" ">dispatch</i>.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083156_EclipseCommands-Invocation">
+        <h2 class="heading "><span>Invocation</span></h2>
+    <p>This command is executed immediately in a synchronous way.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083156_EclipseCommands-AgenericEclipsecommand-handlerinvocation">
+        <h2 class="heading "><span>A generic Eclipse command-handler invocation</span></h2>
+    <p>Executing an Eclipse command that does not require any arguments:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">dispatch($H({</code></div>
+<div class="line"><code class="plain">  controller: </code><code class="string">&apos;portal.commands&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  action: </code><code class="string">&quot;execute&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  args: [</code><code class="string">&quot;org.eclipse.ui.help.aboutAction&quot;</code><code class="plain">].toJSON()</code></div>
+<div class="line"><code class="plain">}).toJSON());</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083156_EclipseCommands-AnEclipsecommandthatacceptsarguments">
+        <h2 class="heading "><span>An Eclipse command that accepts arguments</span></h2>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">dispatch($H({</code></div>
+<div class="line"><code class="plain"> controller: </code><code class="string">&apos;portal.commands&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain"> action: </code><code class="string">&quot;execute&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain"> args: [</code><code class="string">&quot;org.eclipse.ui.views.showView&quot;</code><code class="plain">, {</code><code class="string">&quot;org.eclipse.ui.views.showView.viewId&quot;</code><code class="plain">: </code><code class="string">&quot;org.eclipse.debug.ui.BreakpointView&quot;</code><code class="plain">}].toJSON()</code></div>
+<div class="line"><code class="plain">}).toJSON());</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083156_EclipseCommands-Examples">
+        <h2 class="heading "><span>Examples</span></h2>
+    <div class="section section-3 " id="src-30083156_safe-id-RWNsaXBzZUNvbW1hbmRzLU9wZW5TdHVkaW8ncyJOZXdXZWJQcm9qZWN0V2l6YXJkIg">
+        <h3 class="heading "><span>Open Studio&apos;s &quot;New Web Project Wizard&quot;</span></h3>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">dispatch($H({</code></div>
+<div class="line"><code class="plain">  controller: </code><code class="string">&apos;portal.commands&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  action: </code><code class="string">&quot;execute&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  args: [</code><code class="string">&quot;org.eclipse.ui.newWizard&quot;</code><code class="plain">, {</code><code class="string">&quot;newWizardId&quot;</code><code class="plain">: </code><code class="string">&quot;com.aptana.ui.wizards.NewWebProject&quot;</code><code class="plain">}].toJSON()</code></div>
+<div class="line"><code class="plain">}).toJSON());</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083156_safe-id-RWNsaXBzZUNvbW1hbmRzLU9wZW5UaXRhbml1bVN0dWRpbyJOZXdNb2JpbGVBcHBQcm9qZWN0V2l6YXJkIg">
+        <h3 class="heading "><span>Open Titanium Studio &quot;New Mobile App Project Wizard&quot;</span></h3>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">dispatch($H({</code></div>
+<div class="line"><code class="plain">  controller: </code><code class="string">&apos;portal.commands&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  action: </code><code class="string">&quot;execute&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  args: [</code><code class="string">&quot;org.eclipse.ui.newWizard&quot;</code><code class="plain">, {</code><code class="string">&quot;newWizardId&quot;</code><code class="plain">: </code><code class="string">&quot;com.appcelerator.titanium.mobile.project_wizard&quot;</code><code class="plain">}].toJSON()</code></div>
+<div class="line"><code class="plain">}).toJSON());</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083156_safe-id-RWNsaXBzZUNvbW1hbmRzLU9wZW5UaXRhbml1bVN0dWRpbyJOZXdEZXNrdG9wUHJvamVjdFdpemFyZCI">
+        <h3 class="heading "><span>Open Titanium Studio &quot;New Desktop Project Wizard&quot;</span></h3>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">dispatch($H({</code></div>
+<div class="line"><code class="plain">  controller: </code><code class="string">&apos;portal.commands&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  action: </code><code class="string">&quot;execute&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  args: [</code><code class="string">&quot;org.eclipse.ui.newWizard&quot;</code><code class="plain">, {</code><code class="string">&quot;newWizardId&quot;</code><code class="plain">: </code><code class="string">&quot;com.appcelerator.titanium.desktop.project_wizard&quot;</code><code class="plain">}].toJSON()</code></div>
+<div class="line"><code class="plain">}).toJSON());</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=30083156"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

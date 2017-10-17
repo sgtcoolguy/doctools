@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>The WebView Component</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-29004918" class="content">
+                        <h1>The WebView Component</h1>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/The_WebView_Component-section-src-29004918_TheWebViewComponent-UsingRemoteWebContentwithWebView">Using Remote WebContent with WebView</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/The_WebView_Component-section-src-29004918_TheWebViewComponent-UsingLocalWebContentwithWebView">Using Local Web Content with WebView</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/The_WebView_Component-section-src-29004918_TheWebViewComponent-WebViewPropertiesandFunctions">WebView Properties and Functions</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/The_WebView_Component-section-src-29004918_TheWebViewComponent-Navigation">Navigation</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/The_WebView_Component-section-src-29004918_TheWebViewComponent-LoadingControl">Loading Control</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/The_WebView_Component-section-src-29004918_safe-id-VGhlV2ViVmlld0NvbXBvbmVudC1EYXRhSGFuZGxpbmcmU2NhbGluZw">Data Handling &amp; Scaling</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/The_WebView_Component-section-src-29004918_TheWebViewComponent-Events">Events</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/The_WebView_Component-section-src-29004918_TheWebViewComponent-PerformanceandInteractionConcerns">Performance and Interaction Concerns</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/The_WebView_Component-section-src-29004918_TheWebViewComponent-BestPracticesforWebContent">Best Practices for Web Content</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-29004918_TheWebViewComponent-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>Despite the fact that Titanium gives us the opportunity to use native UI components, sometimes we still need to make use of web content. Whether it&apos;s displaying an existing website, making use of the &lt;canvas&gt;, or handling an RSS feed, leveraging web content is something mobile developers need to be able to do. In order to make use of a platform&apos;s native webview component, we need only use <tt class=" ">Ti.UI.WebView</tt>. This API allows us to create, display, and interact with both local and remote web content.    </p>
+    <p>In the following sections we&apos;ll see exactly how we can create <tt class=" ">WebViews</tt> in our apps using the Titanium API, use both local and remote data as the source of our web content, and examine how we can use the properties and functions of the <tt class=" ">Ti.UI.WebView</tt> to enhance the user experience.    </p>
+    </div>
+    <div class="section section-2 " id="src-29004918_TheWebViewComponent-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+<ul class=" "><li class=" ">    <p>Using Remote WebContent with WebView    </p>
+</li><li class=" ">    <p>Using Local Web Content with WebView    </p>
+</li><li class=" ">    <p>WebView Properties and Functions    </p>
+</li><li class=" ">    <p>Performance and Interaction Concerns    </p>
+</li></ul>    <div class="section section-3 " id="src-29004918_TheWebViewComponent-UsingRemoteWebContentwithWebView">
+        <h3 class="heading "><span>Using Remote WebContent with WebView</span></h3>
+    <p>In its simplest form, a <tt class=" ">WebView</tt> is created with the <tt class=" ">Ti.UI.createWebView()</tt> function and added to the view hierarchy just as we would any other view component. Let&apos;s look at a simple example. Here we&apos;ll display an existing website in our native app using just a few lines of code.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow();</code></div>
+<div class="line"><code class="plain">var webview = Ti.UI.createWebView({</code></div>
+<div class="line"><code class="plain">	url: </code><code class="string">&apos;http://www.appcelerator.com&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">win.add(webview);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <p>    <img src="images/download/attachments/29004918/appc.png" alt="images/download/attachments/29004918/appc.png" class="confluence-embedded-image confluence-content-image-border">
+        </img></p>
+    <p>As pictured above, we need only specify the <tt class=" ">url</tt> of a remote website in order to display it in a <tt class=" ">WebView</tt>. And just like other view components, we are free to resize and position the <tt class=" ">WebView</tt> any way we like. For example, if we wanted to have a smaller <tt class=" ">WebView</tt> that was only a portion of the visible screen, we could do something like this:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow();</code></div>
+<div class="line"><code class="plain">var webview = Ti.UI.createWebView({</code></div>
+<div class="line"><code class="plain">    url: </code><code class="string">&apos;http://www.appcelerator.com&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    height: </code><code class="string">&apos;200dp&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">win.add(webview);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <p>    <img src="images/download/attachments/29004918/appc_small.png" alt="images/download/attachments/29004918/appc_small.png" class="confluence-embedded-image confluence-content-image-border">
+        </img></p>
+    <p>The <tt class=" ">WebView</tt> itself is only 200 density independent pixels in height, but the entire webpage is viewable by scrolling vertically. By parceling our web content to a smaller portion of the screen, we are able to use the remaining space for anything we want. We can add native UI components or even more <tt class=" ">WebViews</tt>.    </p>
+    <p>One of the more interesting uses of remote <tt class=" ">WebViews</tt> is displaying mobile optimized content. This is particularly useful when the content encompasses large amounts of functionality that we won&apos;t have to code for ourselves. A great example of this is the <tt class=" ">Ti.Facebook</tt> module that makes use of Facebook&apos;s default login screen via <tt class=" ">WebView</tt> for authentication. This example, along with a few others, can be found in the <a class="document-link " href="#!/guide/WebView_Use_Cases">WebView Use Cases</a> section of this chapter.    </p>
+    </div>
+    <div class="section section-3 " id="src-29004918_TheWebViewComponent-UsingLocalWebContentwithWebView">
+        <h3 class="heading "><span>Using Local Web Content with WebView</span></h3>
+    <p>Often times when dealing with web content we&apos;ll want to load it from local resources. This allows offline usage and can decrease the load time of the <tt class=" ">WebView</tt>. This web content can include HTML, CSS, and even Javascript libraries. The syntax for loading local web content is identical to that of the remote:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow();</code></div>
+<div class="line"><code class="plain">var webview = Ti.UI.createWebView({</code></div>
+<div class="line"><code class="plain">	url: </code><code class="string">&apos;local.html&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">win.add(webview);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <p><tt class=" ">local.html</tt> refers to a local HTML file included in our project. The path used by the <tt class=" ">url</tt> property when referring to local web content is relative to your project&apos;s <tt class=" ">Resources</tt> directory for Titanium projects, or <tt class=" ">app/assets</tt> and <tt class=" ">app/lib</tt> directories for Alloy project. This is important to note as you include more complex local web content, as we&apos;ll discuss next.    </p>
+    <p>Let&apos;s say you not only want to show a local HTML file, but you also want that HTML file to have access to local CSS and Javascript files. All you need to do is remember that all local web content is available relative to your project&apos;s <tt class=" ">Resources</tt> directory for Titanium projects, or <tt class=" ">app/assets</tt> and <tt class=" ">app/lib</tt> directories for Alloy project.. You can think of the directory almost as a local web server root path. To illustrate this point, let&apos;s take the prior example and expand it to use local CSS and Javascript files.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">local.html</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="local.html">
+<div class="line"><code class="plain">&lt;html&gt;</code></div>
+<div class="line"><code class="plain">	&lt;head&gt;</code></div>
+<div class="line"><code class="plain">		&lt;title&gt;Local HTML&lt;/title&gt;</code></div>
+<div class="line"><code class="plain">		&lt;link rel=</code><code class="string">&quot;stylesheet&quot;</code><code class="plain"> type=</code><code class="string">&quot;text/css&quot;</code><code class="plain"> href=</code><code class="string">&quot;local.css&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">		&lt;script src=</code><code class="string">&quot;local.js&quot;</code><code class="plain">&gt;&lt;/script&gt;</code></div>
+<div class="line"><code class="plain">	&lt;/head&gt;</code></div>
+<div class="line"><code class="plain">	&lt;body onload=</code><code class="string">&quot;addParagraphAlert();&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">		&lt;p id=</code><code class="string">&quot;localtest&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">			Here some text that will be styled by the included local style sheet. If you click it,</code></div>
+<div class="line"><code class="plain">			the included local JS file will cause an alert to pop up.</code></div>
+<div class="line"><code class="plain">		&lt;/p&gt;</code></div>
+<div class="line"><code class="plain">	&lt;/body&gt;</code></div>
+<div class="line"><code class="plain">&lt;/html&gt;</code></div>
+</div>
+    </div>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">local.css</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="local.css">
+<div class="line"><code class="plain">p {</code></div>
+<div class="line"><code class="plain">	color: #</code><code class="value">880000</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">	font-weight: bold;</code></div>
+<div class="line"><code class="plain">	font-size: 24px;</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">local.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="local.js">
+<div class="line"><code class="plain">function addParagraphAlert() {</code></div>
+<div class="line"><code class="plain">	document.getElementById(</code><code class="string">&apos;localtest&apos;</code><code class="plain">).addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">		alert(</code><code class="string">&apos;you clicked the paragraph&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">	});</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>All of the above files are placed in the <tt class=" ">Resources</tt> directory of your project. Below we can see what this would look like on an iPhone:    </p>
+    <p>    <img src="images/download/attachments/29004918/local_full.png" alt="images/download/attachments/29004918/local_full.png" class="confluence-embedded-image">
+        </img></p>
+    <p>The included HTML/CSS/JS does not have to be this simplistic, though. With local web content you can include any HTML/CSS/JS that the platform&apos;s browser will support. This include graphics libraries for &lt;canvas&gt; or even using jQuery inside your <tt class=" ">WebViews</tt>. You get the best of both worlds with Titanium: Access to native components along with all the power of the web.    </p>
+    <p>In addition to being able to specify local HTML files, you can also add HTML dynamically to your <tt class=" ">WebViews</tt> via the <tt class=" ">html</tt> property. This can be used for adding everything from simple styled text to a full fledged webpage. Here&apos;s how you would specify HTML in your own <tt class=" ">WebView</tt> via <tt class=" ">html</tt>. This would display a very simple paragraph in an unstyled <tt class=" ">WebView</tt>.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow();</code></div>
+<div class="line"><code class="plain">var webview = Ti.UI.createWebView({</code></div>
+<div class="line"><code class="plain">	html: </code><code class="string">&apos;&lt;html&gt;&lt;body&gt;&lt;p&gt;Here is my paragraph&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">win.add(webview);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <p>One additional, and extremely powerful, bit of functionality available to you with local <tt class=" ">WebViews</tt> is the ability for your local web content to be able to communicate bidirectionally with your Titanium code via application level events. What this means is that interactions and data from your <tt class=" ">WebViews</tt> can be shared with your native Titanium code, and vice versa. This will be discussed in more detail in the <a class="document-link " href="#!/guide/Communication_Between_WebViews_and_Titanium">Communication Between WebViews and Titanium</a> section.    </p>
+    </div>
+    <div class="section section-3 " id="src-29004918_TheWebViewComponent-WebViewPropertiesandFunctions">
+        <h3 class="heading "><span>WebView Properties and Functions</span></h3>
+    <p>Now that you&apos;ve seen how to render <tt class=" ">WebViews</tt> using both local and remote web content, let&apos;s look at some of the ways we can add more style and control to them. This includes functions, properties, and events for basic web browser navigation, data handling, loading control, and scaling.    </p>
+    <div class="section section-4 " id="src-29004918_TheWebViewComponent-Navigation">
+        <h4 class="heading "><span>Navigation</span></h4>
+    <p>Let&apos;s first look at the functions available to us to manage navigation of the <tt class=" ">WebView</tt>. Just like a typical web browser, the <tt class=" ">WebView</tt> supports navigation via links. This means that if you want to support multi-page navigation, you need to now the following functions:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">canGoBack()</tt> - A function that returns a boolean value indicating whether or not the <tt class=" ">WebView</tt> can go back in its history    </p>
+</li><li class=" ">    <p><tt class=" ">canGoForward()</tt> - A function that returns a boolean value indicating whether or not the <tt class=" ">WebView</tt> can go forward in its history    </p>
+</li><li class=" ">    <p><tt class=" ">goBack()</tt> - A function that moves the <tt class=" ">WebView</tt> back in its history. This would commonly be bound with a UI &quot;back&quot; button.    </p>
+</li><li class=" ">    <p><tt class=" ">goForward()</tt> - A function that moves the <tt class=" ">WebView</tt> forward in its history. This would commonly be bound with a UI &quot;forward&quot; button.    </p>
+</li></ul>    </div>
+    <div class="section section-4 " id="src-29004918_TheWebViewComponent-LoadingControl">
+        <h4 class="heading "><span>Loading Control</span></h4>
+    <p>Another familiar set of functionality is the ability to refresh and stop the loading of a <tt class=" ">WebView</tt>. The functions and properties listed below give us visibility into the loading state of the <tt class=" ">WebView</tt> and the ability to control it.    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">loading</tt> - A boolean property that indicates whether or not the <tt class=" ">WebView</tt> is currently loading content.    </p>
+</li><li class=" ">    <p><tt class=" ">reload()</tt> - A function that reloads the <tt class=" ">WebView</tt>, much like a browser refresh.    </p>
+</li><li class=" ">    <p><tt class=" ">repaint()</tt> - A function that causes the <tt class=" ">WebView</tt> to repaint its contents.    </p>
+</li><li class=" ">    <p><tt class=" ">stopLoading()</tt> - A function that stops the loading of a <tt class=" ">WebView</tt>, much like the &quot;stop&quot; button in most browsers.    </p>
+</li></ul>    </div>
+    <div class="section section-4 " id="src-29004918_safe-id-VGhlV2ViVmlld0NvbXBvbmVudC1EYXRhSGFuZGxpbmcmU2NhbGluZw">
+        <h4 class="heading "><span>Data Handling &amp; Scaling</span></h4>
+    <p>As covered in the previous sections, passing local and remote data to the <tt class=" ">WebView</tt> is its core functionality. Additionally, we can pass in basic authentication and handle the initial scaling of that data as well.    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">setBasicAuthentication(username, password)</tt> - A function that passes basic HTTP authentication into the <tt class=" ">WebView</tt>. It takes 2 string parameters, <tt class=" ">username</tt> and <tt class=" ">password</tt>, that will be used to authenticate.    </p>
+</li><li class=" ">    <p><tt class=" ">html</tt> - A string property containing the HTML you would like to render in the <tt class=" ">WebView</tt>.    </p>
+</li><li class=" ">    <p><tt class=" ">scalesPageToFit</tt> - A boolean property that indicates whether or not you would like to scale the content of the <tt class=" ">WebView</tt> to fit its dimensions. (Also see notes about the <tt class=" ">viewport</tt> meta tag in <a class="document-link " href="#!/guide/The_WebView_Component-section-src-29004918_TheWebViewComponent-WebContentForWebViews">#Web Content For WebViews</a>.)    </p>
+</li><li class=" ">    <p><tt class=" ">url</tt> - A URL property to local or remote web content. For remote content, this parameter is the web URL. For local content, this parameter is the path, relative to the project&apos;s <tt class=" ">Resources</tt> directory for Titanium projects, or <tt class=" ">app/assets</tt> and <tt class=" ">app/lib</tt> directories for Alloy project., to the local HTML file.    </p>
+</li></ul>    </div>
+    <div class="section section-4 " id="src-29004918_TheWebViewComponent-Events">
+        <h4 class="heading "><span>Events</span></h4>
+    <p><tt class=" ">WebView</tt> also has a few custom events to allow additional control over the lifecycle of a load, as well as any errors that may occur in the underlying native webview.    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">beforeload</tt> - This event is fired before the <tt class=" ">WebView</tt> starts loading its content. The <tt class=" ">url</tt> property of the event object contains the source of the content.    </p>
+</li><li class=" ">    <p><tt class=" ">error</tt> - This event is fired when a <tt class=" ">WebView</tt> fails to load. Like the <tt class=" ">beforeload</tt> event, it has the <tt class=" ">url</tt> property. It also has a <tt class=" ">message</tt> property, which is a string that contains the details of the error.    </p>
+</li><li class=" ">    <p><tt class=" ">load</tt> - This event is fired when the <tt class=" ">WebView</tt> has loaded.    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-3 " id="src-29004918_TheWebViewComponent-PerformanceandInteractionConcerns">
+        <h3 class="heading "><span>Performance and Interaction Concerns</span></h3>
+    <p>While <tt class=" ">WebViews</tt> give us the ability to leverage the power of the web in our apps, they do come at a cost. The <tt class=" ">WebView</tt> is on of the most expensive components to create in terms of resources and performance. Every <tt class=" ">WebView</tt> loaded requires its own rendering context and will take a moment to load, regardless of how simple its contents are.    </p>
+    <p>For these reasons, it&apos;s critical that you are absolutely certain you need a <tt class=" ">WebView</tt> to create a specific functionality in your app. A good rule of thumb is that if you can recreate web content using Titanium native components, then you should do so. Minimal usage of <tt class=" ">WebViews</tt> will not likely be a problem, but their resource requirements can quickly become unmanageable if continually used. A prime example of this would be usage of <tt class=" ">WebViews</tt> in <tt class=" ">Ti.UI.TableViews</tt>. Performance is of utmost concern with <tt class=" ">TableViews</tt> and including <tt class=" ">WebViews</tt> in your <tt class=" ">TableViewRows</tt> is a recipe for sluggish performance.    </p>
+    <p>On final consideration with <tt class=" ">WebViews</tt> is that they do not play well inside of other scrollable components. This is a limitation of the underlying native components. <tt class=" ">WebViews</tt> are pretty greedy when it comes to touch interactions and this will often steal those events from any containing views that have their own touch handlers. If you must include <tt class=" ">WebViews</tt> inside other scrollable components, your best bet will be to disable touch events on your <tt class=" ">WebView</tt> by setting its <tt class=" ">touchEnabled</tt> property to <tt class=" ">false</tt>.    </p>
+    </div>
+    <div class="section section-3 " id="src-29004918_TheWebViewComponent-BestPracticesforWebContent">
+        <h3 class="heading "><span>Best Practices for Web Content</span></h3>
+    <p>Content displayed in a web view must be tuned for mobile browsers for best results. In particular, you should investigate the <tt class=" ">viewport</tt> meta tag options available for controlling the scaling, zooming, and size of the embedded content. For example, if a web view is resized, it may not dynamically relayout its contents. Setting the viewport meta tag correctly can resolve these issues.    </p>
+    <p>For more information, see the following resources:    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html" target="_blank">Configuring the Viewport</a> in the Apple Safari Web Content Guide    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://developer.android.com/guide/webapps/targeting.html" target="_blank">Targeting Screens from Web Apps</a> in the Android API Guides    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://developer.mozilla.org/en/Mobile/Viewport_meta_tag" target="_blank">Using the viewport meta tag to control layout on mobile browsers</a> in Mozilla&apos;s Developer Documentation    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-2 " id="src-29004918_TheWebViewComponent-Summary">
+        <h2 class="heading "><span>Summary</span></h2>
+    <p>In this section we learned how to create <tt class=" ">Ti.UI.WebViews</tt> to display local and remote web content. We explored the multitude of functions, properties, and events available to <tt class=" ">WebViews</tt> that give it extensive control over its functionality and appearance. Finally, we discussed some of the performance and interaction concerns when incorporating <tt class=" ">WebViews</tt> into your apps.    </p>
+    <p>In the next section we&apos;ll learn how we can use Titanium application level events to bidirectionally communicate between embedded Javascript in a <tt class=" ">WebView</tt> and native Titanium code. This will add a whole new level of interaction between our Titanium code and web content.    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=29004918"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

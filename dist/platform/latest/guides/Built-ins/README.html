@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Built-ins</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-41845681" class="content">
+                        <h1>Built-ins</h1>
+    <p>Demonstrates use of several built-in libraries included with Alloy     <span style="color: #484848;">
+that simplify certain functions, such as animations, string manipulation and display unit conversion.     </span>
+    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">App Folder Location</div>
+            <p>alloy/test/apps/<strong class=" ">basics/builtins</strong>    </p>
+    </div>
+        <p>    <span style="color: #484848;">
+<br>    </br></span>
+    <span style="color: #484848;">
+Alloy includes several <a class="external-link external-link" href="#!/api/Alloy.builtins">built-in libraries</a>. To use these libraries in your project, you simply use the global <tt class=" ">require()</tt> function to include them. The sample demonstrates the <a class="external-link external-link" href="#!/api/Alloy.builtins.animation">animation</a> built-in&apos;s shake, flash, and flip features, and the <a class="external-link external-link" href="#!/api/Alloy.builtins.string">string</a> built-in&apos;s <tt class=" ">trim()</tt> function.    </span>
+    </p>
+    <p>    <img src="images/download/attachments/41845681/ios.png" alt="images/download/attachments/41845681/ios.png" class="confluence-embedded-image" width="250">
+        </img></p>
+    <p>The index.xml file defines the views to animate and assigns event handlers to their <tt class=" ">onClick</tt> handlers, which are defined in index.js.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/views/index.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
+<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
+<div class="line"><code class="plain">  &lt;Window&gt;</code></div>
+<div class="line"><code class="plain">    &lt;View id=</code><code class="string">&quot;mover&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;Label id=</code><code class="string">&quot;label&quot;</code><code class="plain">&gt;     Trimmable String     &lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/View&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Button id=</code><code class="string">&quot;shake&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;shake&quot;</code><code class="plain">&gt;Shake&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Button id=</code><code class="string">&quot;flash&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;flash&quot;</code><code class="plain">&gt;Flash&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">    &lt;Button id=</code><code class="string">&quot;trim&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;trim&quot;</code><code class="plain">&gt;Trim&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">    &lt;View </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;flipper&quot;</code><code class="plain"> platform=</code><code class="string">&quot;ios&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;Label id=</code><code class="string">&quot;back&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;flip&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">      &lt;Label id=</code><code class="string">&quot;front&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;flip&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/View&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/Window&gt;</code></div>
+<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+</div>
+    </div>
+    <p>The view-controller assigns the animation library to a local variable named <tt class=" ">animation</tt> and then calls its various function in response to user input.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/index.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
+<div class="line"><code class="plain">var animation = require(</code><code class="string">&apos;alloy/animation&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="plain">    string = require(</code><code class="string">&apos;alloy/string&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">function shake(e) {</code></div>
+<div class="line"><code class="plain">    animation.shake($.mover, </code><code class="value">0</code><code class="plain">, function (){</code></div>
+<div class="line"><code class="plain">      alert(</code><code class="string">&quot;Shake ended.&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    });</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain">function flash(e) {</code></div>
+<div class="line"><code class="plain">    animation.flash($.mover);</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain">function trim(e) {</code></div>
+<div class="line"><code class="plain">  $.label.text = string.trim($.label.text);</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (OS_IOS) {</code></div>
+<div class="line"><code class="plain">  function flip(e) {</code></div>
+<div class="line"><code class="plain">    var front, back;</code></div>
+<div class="line"><code class="plain">    e.bubbleParent = </code><code class="keyword">false</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (e.source === $.back) {</code></div>
+<div class="line"><code class="plain">      front = $.back;</code></div>
+<div class="line"><code class="plain">      back = $.front;</code></div>
+<div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">      front = $.front;</code></div>
+<div class="line"><code class="plain">      back = $.back;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">    animation.flipHorizontal(front, back, </code><code class="value">500</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">      Ti.API.info(</code><code class="string">&apos;flipped&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    });</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>    <span style="color: #484848;">
+     </span>
+    </p>
+    <p>    <span style="color: #484848;">
+<br>    </br></span>
+    </p>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845681"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

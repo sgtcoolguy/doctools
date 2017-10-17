@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Performance Issues</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-33622331" class="content">
+                        <h1>Performance Issues</h1>
+    <p>If you are having issues with the speed of Studio, this document provides information you can use to diagnose the problem.    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-BuildingWorkspacetakinglongerthanexpected">Building Workspace taking longer than expected</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-Studioisindexingextrafiles">Studio is indexing extra files</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-Studioisencounteringanexceptionduringindexing">Studio is encountering an exception during indexing</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-Avalidatororbuilderisenabledthatistakingalongtimetoprocesseachfile">A validator or builder is enabled that is taking a long time to process each file</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-Theindexiscorrupt">The index is corrupt</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-Localprojectindex">Local project index</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-Globalindex">Global index</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-Ifthatstilldoesnothelp...">If that still does not help...</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-HighCPUusage">High CPU usage</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-VisualVMinstallation">VisualVM installation</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-FindtheStudioprocess">Find the Studio process</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-StartrecordingCPUusage">Start recording CPU usage</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-Alternateapproaches">Alternate approaches</a>    </p>
+</li></ul></li></ul>    <div class="section section-2 " id="src-33622331_PerformanceIssues-BuildingWorkspacetakinglongerthanexpected">
+        <h2 class="heading "><span>Building Workspace taking longer than expected</span></h2>
+    <p>There are several reasons why building a workspace could take a long time to index. We suggest trying the steps below in succession to resolve the issue.    </p>
+    <div class="section section-3 " id="src-33622331_PerformanceIssues-Studioisindexingextrafiles">
+        <h3 class="heading "><span>Studio is indexing extra files</span></h3>
+    <p>It&apos;s possible that you have a large directory of generated or resource files that don&apos;t need to be indexed. To exclude items from indexing:    </p>
+<ol class=" "><li class=" ">    <p>Right-click on a project&apos;s folder.    </p>
+</li><li class=" ">    <p>Select Build &gt; Exclude from build.    </p>
+</li></ol>    </div>
+    <div class="section section-3 " id="src-33622331_PerformanceIssues-Studioisencounteringanexceptionduringindexing">
+        <h3 class="heading "><span>Studio is encountering an exception during indexing</span></h3>
+    <p>Check the Studio log file. It may be a bug, or the index is corrupt.    </p>
+<ol class=" "><li class=" ">    <p>Help &gt; Studio &gt; View Log File    </p>
+</li></ol>    <p>If you notice things like , it&apos;s likely your index is corrupt. See below.    </p>
+    <p>If you notice issues mentioned in <a class="external-link external-link" href="https://jira.appcelerator.org/browse/APSTUD-2260" target="_blank">APSTUD-2260</a> (    <span style="color: #2b4771;">
+UTFDataFormatException in DiskIndex.readString()    </span>
+), it is likely your index is corrupt. See <a class="document-link " href="#!/guide/Performance_Issues-section-src-33622331_PerformanceIssues-Theindexiscorrupt">The index is corrupt</a> section below.    </p>
+    </div>
+    <div class="section section-3 " id="src-33622331_PerformanceIssues-Avalidatororbuilderisenabledthatistakingalongtimetoprocesseachfile">
+        <h3 class="heading "><span>A validator or builder is enabled that is taking a long time to process each file</span></h3>
+    <p>Validators for JavaScript (like JSLint) can take a <i class=" ">long</i> time to process many files. You may wish to only have them enabled on reconcile only    </p>
+<ol class=" "><li class=" ">    <p>Open Preference &gt; Studio &gt; Validation    </p>
+</li><li class=" ">    <p>Disable items on &quot;build&quot; that seem like likely culprits    </p>
+</li><li class=" ">    <p>Select OK    </p>
+</li></ol>    <p>Studio will rebuild using the new settings.    </p>
+    </div>
+    <div class="section section-3 " id="src-33622331_PerformanceIssues-Theindexiscorrupt">
+        <h3 class="heading "><span>The index is corrupt</span></h3>
+    <p>Studio indexes your files in order to collect metadata about the project for use in content assist. There are two indexes.    </p>
+    <div class="section section-4 " id="src-33622331_PerformanceIssues-Localprojectindex">
+        <h4 class="heading "><span>Local project index</span></h4>
+    <p>This stores the contents for your local project    </p>
+    <p>To clear your local project index    </p>
+<ol class=" "><li class=" ">    <p><strong class=" ">Project &gt; Clean...</strong>    </p>
+</li><li class=" ">    <p>Either choose your project, or &quot;All Projects&quot;    </p>
+</li></ol>    </div>
+    <div class="section section-4 " id="src-33622331_PerformanceIssues-Globalindex">
+        <h4 class="heading "><span>Global index</span></h4>
+    <p>This contains information about the core JavaScript libraries, etc.    </p>
+    <p>To clear your global index    </p>
+<ol class=" "><li class=" ">    <p>Find your workspace directory on disk    </p>
+</li><li class=" ">    <p>Locate the .metadata folder indside (you may need to show hidden files)    </p>
+</li><li class=" ">    <p>Delete .metadata/.plugins/com.aptana.index.core/*.index (index file/files for the JS, HTML etc.).    </p>
+</li><li class=" ">    <p>Delete .metadata/.plugins/com.aptana.editor.php/*.index (index file/files for PHP).    </p>
+</li><li class=" ">    <p>Restart Studio    </p>
+</li></ol>    </div>
+    </div>
+    <div class="section section-3 " id="src-33622331_PerformanceIssues-Ifthatstilldoesnothelp...">
+        <h3 class="heading "><span>If that still does not help...</span></h3>
+    <p>There are diagnoses you can perform that will help us understand the issue:    </p>
+<ol class=" "><li class=" ">    <p>Turn on Show Normally Hidden Processes: <strong class=" ">Preferences </strong>&gt;<strong class=" "> Studio </strong>&gt;<strong class=" "> Troubleshooting </strong>&gt;<strong class=" "> Show Normally Hidden Processes</strong>    </p>
+</li><li class=" ">    <p>In the same preference page, turn on the following:    </p>
+<ol class=" "><li class=" ">    <p>Debug Level: All    </p>
+</li><li class=" ">    <p>Debug specific components    </p>
+<ol class=" "><li class=" ">    <p>com.aptana.core/debug/builder    </p>
+</li><li class=" ">    <p>com.aptana.core/debug/builder/indexer    </p>
+</li><li class=" ">    <p>com.aptana.core/debug/builder/participants    </p>
+</li></ol></li></ol></li><li class=" ">    <p>Then, clear the log file: <strong class=" ">Help</strong> &gt; <strong class=" ">Studio</strong> &gt; <strong class=" ">Clear Log File</strong>.    </p>
+</li><li class=" ">    <p>Restart Studio    </p>
+</li></ol>    <p>Attach your findings to <a class="external-link external-link" href="https://jira.appcelerator.org/browse/APSTUD-2050" target="_blank">APSTUD-2050</a> (    <span style="color: #2b4771;">
+&quot;Building Workspace&quot; job takes a while to complete    </span>
+). You should see entries like:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">!ENTRY com.aptana.core </code><code class="value">1</code><code class="plain"> </code><code class="value">0</code><code class="plain"> </code><code class="value">2012</code><code class="plain">-</code><code class="value">08</code><code class="plain">-</code><code class="value">15</code><code class="plain"> </code><code class="value">14</code><code class="plain">:</code><code class="value">44</code><code class="plain">:</code><code class="value">09.007</code></div>
+<div class="line"><code class="plain">!MESSAGE (Build </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0</code><code class="plain">.qualifier) [INFO] com.aptana.core/debug/builder Performing incremental unified build on project </code><code class="string">&apos;geolocationClient&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">!ENTRY com.aptana.buildpath.core </code><code class="value">1</code><code class="plain"> </code><code class="value">0</code><code class="plain"> </code><code class="value">2012</code><code class="plain">-</code><code class="value">08</code><code class="plain">-</code><code class="value">15</code><code class="plain"> </code><code class="value">14</code><code class="plain">:</code><code class="value">44</code><code class="plain">:</code><code class="value">09.069</code></div>
+<div class="line"><code class="plain">!MESSAGE (Build </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0</code><code class="plain">.qualifier) [INFO] com.aptana.core/debug/builder/participants Executed build participant </code><code class="string">&apos;Index Build Participant&apos;</code><code class="plain"> on </code><code class="string">&apos;file:/Users/ingo/Documents/Aptana%20Workspaces/Aptana%20Studio%203%20Workspace/geolocationClient/LICENSE&apos;</code><code class="plain"> in </code><code class="value">10.842</code><code class="plain"> ms.</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">!ENTRY com.aptana.core </code><code class="value">1</code><code class="plain"> </code><code class="value">0</code><code class="plain"> </code><code class="value">2012</code><code class="plain">-</code><code class="value">08</code><code class="plain">-</code><code class="value">15</code><code class="plain"> </code><code class="value">14</code><code class="plain">:</code><code class="value">44</code><code class="plain">:</code><code class="value">09.556</code></div>
+<div class="line"><code class="plain">!MESSAGE (Build </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0</code><code class="plain">.qualifier) [INFO] com.aptana.core/debug/builder Finished unified build of </code><code class="string">&apos;geolocationClient&apos;</code><code class="plain">. Took </code><code class="value">589.057</code><code class="plain"> ms.</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-33622331_PerformanceIssues-HighCPUusage">
+        <h2 class="heading "><span>High CPU usage</span></h2>
+    <p>Diagnosing high CPU usage is relatively straightforward, but requires a small amount of setup. However, the information gained here is invaluable to the developers.    </p>
+    <p>In order to do so, we will use a tool called VisualVM. It is included with many Java distributions, so you may not even need to install it.    </p>
+    <div class="section section-3 " id="src-33622331_PerformanceIssues-VisualVMinstallation">
+        <h3 class="heading "><span>VisualVM installation</span></h3>
+<ol class=" "><li class=" ">    <p>Check to see if it&apos;s already installed. You may be able to run &quot;visualvm&quot; or &quot;jvisualvm&quot; on the command line.    </p>
+</li><li class=" ">    <p>If not, follow the steps <a class="external-link external-link" href="http://visualvm.java.net/download.html" target="_blank">here</a>which involve downloading a .zip file and running the program inside.    </p>
+<ol class=" "><li class=" ">    <p>Ubuntu users can use <tt class=" ">apt-get virtualvm</tt>    </p>
+</li></ol></li><li class=" ">    <p>It will go through a brief step calibrating your machine.    </p>
+</li></ol>    </div>
+    <div class="section section-3 " id="src-33622331_PerformanceIssues-FindtheStudioprocess">
+        <h3 class="heading "><span>Find the Studio process</span></h3>
+<ol class=" "><li class=" ">    <p>Shut down other Java applications other than Studio to make it easiest to find Studio in the list.    </p>
+</li><li class=" ">    <p>Once Visual VM has started, you will see at least two processes in the left-hand column. Studio is likely to be the &quot;Unknown Application&quot;.    </p>
+</li><li class=" ">    <p>Double-click on that item.    </p>
+</li></ol>    <p>A pane opens showing details about the process    </p>
+    </div>
+    <div class="section section-3 " id="src-33622331_PerformanceIssues-StartrecordingCPUusage">
+        <h3 class="heading "><span>Start recording CPU usage</span></h3>
+<ol class=" "><li class=" ">    <p>Switch to the &quot;Sampler&quot; tab, and click &quot;CPU&quot;.    </p>
+</li><li class=" ">    <p>Sort by &quot;Self Time (CPU)&quot; to see if what are the most active threads.    </p>
+</li><li class=" ">    <p>Start replicating the item which provokes CPU usage.    </p>
+</li><li class=" ">    <p>Once you are complete, click the &quot;snapshot&quot; button.    </p>
+</li><li class=" ">    <p>Click on the small disk icon to the left to save the file to disk. Give it a descriptive name.    </p>
+</li><li class=" ">    <p>Attach that file to a JIRA ticket.    </p>
+</li></ol>    </div>
+    <div class="section section-3 " id="src-33622331_PerformanceIssues-Alternateapproaches">
+        <h3 class="heading "><span>Alternate approaches</span></h3>
+    <p>Two other things to try that might highlight the issue    </p>
+<ol class=" "><li class=" ">    <p>Turn on <strong class=" ">Preferences &gt; Studio &gt; Troubleshooting &gt; Show Normally Hidden Processes</strong>    </p>
+</li><li class=" ">    <p>In the same preference page, turn on    </p>
+<ol class=" "><li class=" ">    <p>Debug Level: All    </p>
+</li><li class=" ">    <p>Debug specific components    </p>
+<ol class=" "><li class=" ">    <p>com.aptana.core/debug/shell    </p>
+</li></ol></li></ol></li><li class=" ">    <p>Help &gt; Studio &gt; Clear Log File    </p>
+</li><li class=" ">    <p>Cause the CPU usage spike.    </p>
+</li><li class=" ">    <p>Check both the Progress View and the log file to see if any obvious processes are causing the problems.    </p>
+</li></ol>    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=33622331"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

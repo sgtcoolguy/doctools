@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Creating a new Ruble</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-30083232" class="content">
+                        <h1>Creating a new Ruble</h1>
+    <div class="section section-2 " id="src-30083232_CreatinganewRuble-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Creating_a_new_Ruble-section-src-30083232_CreatinganewRuble-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Creating_a_new_Ruble-section-src-30083232_CreatinganewRuble-CreatinganewRubleUsingtheWizard">Creating a new Ruble Using the Wizard</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Creating_a_new_Ruble-section-src-30083232_CreatinganewRuble-Abare-bonesRublefromScratch">A bare-bones Ruble from Scratch</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Creating_a_new_Ruble-section-src-30083232_CreatinganewRuble-Rublefilelocations">Ruble file locations</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Creating_a_new_Ruble-section-src-30083232_CreatinganewRuble-CheckingtoensureyourRubleloaded">Checking to ensure your Ruble loaded</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30083232_CreatinganewRuble-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>If you want to extend the functionality of Studio, you can do so by creating a new Ruble, or extending an existing one.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Starting with Studio Release 3.1.0, the Ruby editor is no longer included as part of the Studio installer. In order to edit Rubles in Studio, install the Ruby plug-in as instructed in  <a class="document-link " href="#!/guide/Adding_PHP,_Ruby_or_Python_Support">Adding PHP, Ruby or Python Support</a>.    </p>
+    </div>
+        </div>
+    <div class="section section-2 " id="src-30083232_CreatinganewRuble-CreatinganewRubleUsingtheWizard">
+        <h2 class="heading "><span>Creating a new Ruble Using the Wizard</span></h2>
+    <p>Studio greatly simplifies the process of creating your own Ruble.    </p>
+<ol class=" "><li class=" ">    <p>From the menu, select<strong class=" "> File &gt; New &gt; Ruby Project</strong>.    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Ruble Template</strong>, then click <strong class=" ">Next</strong>.    </p>
+</li><li class=" ">    <p>Type a name of your Ruble, for example, &quot;my.ruble&quot;.    </p>
+</li><li class=" ">    <p>Ensure the &quot;I&apos;ll generate my own code...&quot; radio is selected, then click <strong class=" ">Finish</strong>.    </p>
+</li></ol>    <p>The ruble is created in your workspace.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083232_CreatinganewRuble-Abare-bonesRublefromScratch">
+        <h2 class="heading "><span>A bare-bones Ruble from Scratch</span></h2>
+    <p>The <a class="document-link " href="#!/guide/Ruble_Specification">Ruble Specification</a> lists the complete set of items that can be created, but at the bare minimum you need a folder and a single bundle.rb file to create a ruble. The only difference is where you place the files.    </p>
+    <p>We list the steps to create a very simple ruble. Below these steps, we illustrate where you can place this Ruble for different effects.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Make sure the <i class=" ">rublename</i> you choose below is unique to all your installed rubles, or otherwise you will end up overriding an existing Ruble&apos;s functionality. Also note this is a tiny bit more complicated than it ought to be--we&apos;ll make this easier in future versions.    </p>
+    </div>
+    <ol class=" "><li class=" ">    <p>You want to figure out first where your Application Rubles folder lives.    </p>
+<ul class=" "><li class=" ">    <p>Mac: $home/Documents/Aptana Rubles.    </p>
+</li><li class=" ">    <p>Everywhere else: ${user.home}/Aptana Rubles. On Windows, that would translate to somewhere like c:\Users\Username\Aptana Rubles    </p>
+</li><li class=" ">    <p>If you still can&apos;t find the location, look for your user.home java property. Open up the &quot;About Studio&quot; menu, then <strong class=" ">Installation Details &gt; Configuration</strong> and search for the user.home property.    </p>
+</li></ul></li><li class=" ">    <p>Create a new Ruby project. (<strong class=" ">File &gt; New Ruby Project</strong>)    </p>
+</li><li class=" ">    <p>Name it <i class=" ">rublename</i>.ruble, and browse to put the location into the &quot;Aptana Rubles&quot; folder.    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">NOTE: You need to create a new</strong> <strong class=" "><i class=" ">rublename</i></strong><strong class=" ">.ruble folder in the above location.</strong> Otherwise, it will create the project in the root of the &quot;Aptana Rubles&quot; folder.    </p>
+</li><li class=" ">    <p>As an example, the result on OS X might look like:    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">Project name:</strong> my.ruble    </p>
+</li><li class=" ">    <p><strong class=" ">Location:</strong> /Users/username/Documents/Aptana Rubles/my.ruble    </p>
+</li></ul></li></ul></li><li class=" ">    <p>Finish the wizard    </p>
+</li><li class=" ">    <p>Add a bundle.rb file with the following content:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">bundle </code><code class="keyword">do</code><code class="plain"> |bundle|</code></div>
+<div class="line"><code class="plain">  bundle.display_name = </code><code class="string">&apos;My Ruble&apos;</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Save and close bundle.rb    </p>
+</li></ol>    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>You&apos;ve not added any content yet, so you won&apos;t see your Ruble show up in the UI. You&apos;ll need to add <a class="document-link " href="#!/guide/Creating_a_new_template">templates</a> or commands to see a visible change. See below for checking to ensure your bundle loaded.    </p>
+    </div>
+        <div class="section section-3 " id="src-30083232_CreatinganewRuble-Rublefilelocations">
+        <h3 class="heading "><span>Ruble file locations</span></h3>
+    <p>In general you will place your Ruble files in one of two locations.    </p>
+    <p>A. Any top-level &quot;bundles&quot; directory in an active projects within the current workspace.<br>B. The $USER_DOCUMENT_DIRECTORY/Aptana Rubles/, where $USER_DOCUMENT_DIRECTORY is platform dependent.    </br></p>
+    <p>Project-level bundles (A) will override user-level bundles (B) if there is a conflict. (B) is the preferred approach as it makes your ruble easier to share later.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083232_CreatinganewRuble-CheckingtoensureyourRubleloaded">
+        <h2 class="heading "><span>Checking to ensure your Ruble loaded</span></h2>
+    <p>Studio 3 includes a bundles view that shows all currently loaded Rubles. You can use it to ensure your Ruble actually loaded as expected.    </p>
+<ol class=" "><li class=" ">    <p>Go to <strong class=" ">Window &gt; Show View &gt; Other...</strong>    </p>
+</li><li class=" ">    <p>Expand the Studio category    </p>
+</li><li class=" ">    <p>Select the <strong class=" ">Bundles</strong> item<br>A view appears showing all currently loaded bundles    </br></p>
+</li><li class=" ">    <p>You should see the bundle with the name you gave above in the list    </p>
+</li><li class=" ">    <p>For detailed information on selected items in the Bundles View, go to <strong class=" ">Window &gt; Show View &gt; Other...</strong>    </p>
+</li><li class=" ">    <p>Expand the General category    </p>
+</li><li class=" ">    <p>Select the <strong class=" ">Properties</strong> item<br>A view appears showing detailed information on your Bundles View selection    </br></p>
+</li><li class=" ">    <p>If your bundle has an error, you should see output in the Console view.    </p>
+</li></ol>    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=30083232"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

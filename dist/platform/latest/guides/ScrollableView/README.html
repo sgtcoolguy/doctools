@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ScrollableView</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-41845769" class="content">
+                        <h1>ScrollableView</h1>
+    <p>Demonstrates basic use of ScrollableView control to present a horizontally-scrolling set of child views, called <i class=" ">pages.</i>    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
+            <div class="title">App Folder Location</div>
+            <p>alloy/test/apps/<strong class=" ">ui/scrollableview</strong>    </p>
+    </div>
+        <p><i class=" "><br/></i>A <a class="external-link external-link" href="#!/api/Titanium.UI.ScrollableView">ScrollableView</a> encapsulates a horizontally-scrolling set of child views, known as pages, navigable using its built-in horizontal swipe gestures.    </p>
+    <p>    <img src="images/download/attachments/41845769/scrollable.gif" alt="images/download/attachments/41845769/scrollable.gif" class="confluence-embedded-image">
+        </img></p>
+    <p>The main index.xml view declares a &lt;ScrollableView/&gt; named <tt class=" ">scroller</tt> that contains three &lt;View/&gt; elements. Clicking the label on the first view creates a new View object and appends it to the ScrollableView object&apos;s <tt class=" ">views</tt> array property.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/views/index.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
+<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
+<div class="line"><code class="plain">  &lt;Window&gt;</code></div>
+<div class="line"><code class="plain">    &lt;ScrollableView id=</code><code class="string">&quot;scroller&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;View backgroundColor=</code><code class="string">&quot;#a00&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Label onClick=</code><code class="string">&quot;addView&quot;</code><code class="plain">&gt;View </code><code class="value">1</code><code class="plain">&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/View&gt;</code></div>
+<div class="line"><code class="plain">      &lt;View backgroundColor=</code><code class="string">&quot;#0a0&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Label&gt;View </code><code class="value">2</code><code class="plain">&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/View&gt;</code></div>
+<div class="line"><code class="plain">      &lt;View backgroundColor=</code><code class="string">&quot;#00a&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Label&gt;View </code><code class="value">3</code><code class="plain">&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/View&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/ScrollableView&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/Window&gt;</code></div>
+<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+</div>
+    </div>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/index.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
+<div class="line"><code class="plain">function addView() {</code></div>
+<div class="line"><code class="plain">    $.scroller.views = $.scroller.views.concat(Ti.UI.createView({</code></div>
+<div class="line"><code class="plain">        backgroundColor: </code><code class="string">&apos;#ff0&apos;</code></div>
+<div class="line"><code class="plain">    }));</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain">$.index.open();</code></div>
+</div>
+    </div>
+    <div class="section section-2 " id="src-41845769_ScrollableView-SeeAlso">
+        <h2 class="heading "><span>See Also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.ScrollableView">Titanium.UI.ScrollableView</a> API reference    </p>
+</li></ul>    <p>    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845769"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

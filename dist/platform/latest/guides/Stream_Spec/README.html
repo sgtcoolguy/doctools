@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Stream Spec</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-29004736" class="content">
+                        <h1>Stream Spec</h1>
+    <div class="section section-2 " id="src-29004736_StreamSpec-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Stream_Spec-section-src-29004736_StreamSpec-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Stream_Spec-section-src-29004736_StreamSpec-Justification">Justification</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Stream_Spec-section-src-29004736_StreamSpec-Definitions">Definitions</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Stream_Spec-section-src-29004736_StreamSpec-ProposedTasks">Proposed Tasks</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Stream_Spec-section-src-29004736_StreamSpec-ProposedAPI">Proposed API</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Stream_Spec-section-src-29004736_StreamSpec-Ti.Stream">Ti.Stream</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Stream_Spec-section-src-29004736_StreamSpec-Module">Module</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Stream_Spec-section-src-29004736_StreamSpec-Interface">Interface</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Stream_Spec-section-src-29004736_StreamSpec-FileStream">FileStream</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Stream_Spec-section-src-29004736_StreamSpec-Socket">Socket</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Stream_Spec-section-src-29004736_StreamSpec-Sourceexamples">Source examples</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-29004736_StreamSpec-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>Titanium mobile needs support for stream IO operations on appropriate objects such as files, sockets and any other types we decide upon in the future.  In order to support generic stream handling and the exchange of data between streams a common stream interface needs to be defined.    </p>
+    <p>This document will outline the proposed additions for supporting stream operations within Titanium mobile, types that will support stream operations, API changes and source examples.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p>A separate spec exists that outlines encoding support for  numeric and string values.  The <a class="document-link " href="#!/guide/Encoding_Spec">Encoding Spec</a> enables the addition of reading and writing of numeric and string values along with support for specific encoding. In the future, we plan to support the ability for a developer  to define  their own stream types that can be used alongside the native  Titanium  streams.    </p>
+    </div>
+        </div>
+    <div class="section section-2 " id="src-29004736_StreamSpec-Justification">
+        <h2 class="heading "><span>Justification</span></h2>
+    <p>Currently there isn&apos;t an easy or generic manner for reading or writing data from one complex type like xxx to another.  By providing a Stream interface that these complex types can implement, we can allow developers to simplify the process of moving data between these complex types.  In addition to the core stream interface which just allows these types to interact in a generic manner, convenience functions would be provided in a new Stream module that would allow many of the common operations on streams to be simplified further (IE:  writing all data from one stream to another).    </p>
+    <p>Ultimately, adding Stream support will enable our developers to simplify their source code and make IO operations for streaming types much more approachable.    </p>
+    </div>
+    <div class="section section-2 " id="src-29004736_StreamSpec-Definitions">
+        <h2 class="heading "><span>Definitions</span></h2>
+<ul class=" "><li class=" ">    <p>Stream - Generic input / output object that can be used for read / write operations with a variable frequency and amount.    </p>
+</li></ul><ul class=" "><li class=" ">    <p>Buffer - Generally represents temporary storage for data when moving from one location to another (such as reading data off a socket and then writing to a file).  In our case, the buffer will be a container for binary data rather than being limited to only string data. <a class="document-link " href="#!/guide/Buffer_Spec">Buffer Spec</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-29004736_StreamSpec-ProposedTasks">
+        <h2 class="heading "><span>Proposed Tasks</span></h2>
+<ul class=" "><li class=" ">    <p>Create Stream interface    </p>
+</li></ul><ul class=" "><li class=" ">    <p>Create BufferStream object that implements Stream interface    </p>
+</li></ul><ul class=" "><li class=" ">    <p>Create BlobStream object that implements the Stream interface    </p>
+</li></ul><ul class=" "><li class=" ">    <p>Create FileStream object that implements Stream interface    </p>
+</li></ul><ul class=" "><li class=" ">    <p>Update Socket object to implement Stream interface    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-29004736_StreamSpec-ProposedAPI">
+        <h2 class="heading "><span>Proposed API</span></h2>
+    <p>Stream objects below only list the methods that are applicable to the IO operations.  More methods may exist already that are left out for the sake of focus on the stream operations.    </p>
+    <div class="section section-3 " id="src-29004736_StreamSpec-Ti.Stream">
+        <h3 class="heading "><span>Ti.Stream</span></h3>
+    <div class="section section-4 " id="src-29004736_StreamSpec-Module">
+        <h4 class="heading "><span>Module</span></h4>
+    <p>Stream module would expose generic Stream functionality outside of just the types that implement the Stream interface.    </p>
+    <p>Properties:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">int</code><code class="plain"> Ti.Stream.MODE_READ </code><code class="comments">// constant representing a read only mode</code></div>
+<div class="line"><code class="keyword">int</code><code class="plain"> Ti.Stream.MODE_WRITE </code><code class="comments">// constant representing a write mode</code></div>
+<div class="line"><code class="keyword">int</code><code class="plain"> Ti.Stream.MODE_APPEND </code><code class="comments">// constant representing a append mode</code></div>
+</div>
+    </div>
+    <p>Methods:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// wraps specified blob in a container that implements the Stream interface</code></div>
+<div class="line"><code class="plain">BlobStream Ti.Stream.createStream({source:&lt;Blob&gt;, mode:&lt;mode&gt;})</code></div>
+<div class="line"><code class="comments">// wraps the specified buffer in a container that implements the Stream interface</code></div>
+<div class="line"><code class="plain">BufferStream Ti.Stream.createStream({source:&lt;Blob&gt;, mode:&lt;mode&gt;})</code></div>
+<div class="line">&#xA0;</div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Exceptions are throw for void return type methods when an error is encountered.</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// callback argument for async read operations is an object with the following fields:</code></div>
+<div class="line"><code class="comments">// 1) Stream source</code></div>
+<div class="line"><code class="comments">// 2) int bytesProcessed</code></div>
+<div class="line"><code class="comments">// 3) int errorState</code></div>
+<div class="line"><code class="comments">// 4) String errorDescription</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">void</code><code class="plain"> read(Stream sourceStream, Buffer buffer, KrollCallback resultsCallback) </code><code class="comments">// async version of read</code></div>
+<div class="line"><code class="comments">// async version of read</code></div>
+<div class="line"><code class="keyword">void</code><code class="plain"> read(Stream sourceStream, Buffer buffer, </code><code class="keyword">int</code><code class="plain"> offset, </code><code class="keyword">int</code><code class="plain"> length, KrollCallback resultsCallback)</code></div>
+<div class="line"><code class="comments">// should throw exception if there is an error reading from stream or&#xA0;if unable</code></div>
+<div class="line"><code class="comments">// to write all data to buffer</code></div>
+<div class="line"><code class="plain">Buffer readAll(Stream sourceStream)</code></div>
+<div class="line"><code class="keyword">void</code><code class="plain"> readAll(Stream sourceStream, Buffer buffer, KrollCallback resultsCallback) </code><code class="comments">// async version of readAll</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// callback argument for async write operations is an object with the following fields:</code></div>
+<div class="line"><code class="comments">// 1) Stream source</code></div>
+<div class="line"><code class="comments">// 2) int bytesProcessed</code></div>
+<div class="line"><code class="comments">// 3) int errorState</code></div>
+<div class="line"><code class="comments">// 4) String errorDescription</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">void</code><code class="plain"> write(Stream outputStream, Buffer buffer, KrollCallback resultsCallback) </code><code class="comments">// async version of write</code></div>
+<div class="line"><code class="comments">// async version of write</code></div>
+<div class="line"><code class="keyword">void</code><code class="plain"> write(Stream outputStream, Buffer buffer, </code><code class="keyword">int</code><code class="plain"> offset, </code><code class="keyword">int</code><code class="plain"> length, KrollCallback resultsCallback)</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// writes all data from &lt;inputStream&gt; to &lt;outputStream&gt; in chunks of &lt;maxChunkSize&gt; bytes.</code></div>
+<div class="line"><code class="keyword">int</code><code class="plain"> writeStream(Stream inputStream, Stream outputStream, </code><code class="keyword">int</code><code class="plain"> maxChunkSize)</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// resultsCallback argument for async writeStream operation is an object with</code></div>
+<div class="line"><code class="comments">// the following fields:</code></div>
+<div class="line"><code class="comments">// 1) Stream fromStream</code></div>
+<div class="line"><code class="comments">// 2) Stream toStream</code></div>
+<div class="line"><code class="comments">// 3) int bytesProcessed</code></div>
+<div class="line"><code class="comments">// 4) int errorState</code></div>
+<div class="line"><code class="comments">// 5) String errorDescription</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// async version of writeStream.  returns 0 and throws exception on error.</code></div>
+<div class="line"><code class="keyword">int</code><code class="plain"> writeStream(Stream inputStream, Stream outputStream, </code><code class="keyword">int</code><code class="plain"> maxChunkSize, KrollCallback resultsCallback)</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// handler argument for pump operations is an object with the following fields:</code></div>
+<div class="line"><code class="comments">// 1) Stream source</code></div>
+<div class="line"><code class="comments">// 2) Buffer buffer</code></div>
+<div class="line"><code class="comments">// 3) int bytesProcessed // -1 on end of stream</code></div>
+<div class="line"><code class="comments">// 4) int totalBytesProcessed</code></div>
+<div class="line"><code class="comments">// 5) int errorState</code></div>
+<div class="line"><code class="comments">// 6) String errorDescription</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// similar to writeStream, but instead of writing to another stream the</code></div>
+<div class="line"><code class="comments">// chunks of data are handed off to &lt;handler&gt; in chunks of &lt;maxChunkSize&gt; bytes.</code></div>
+<div class="line"><code class="keyword">void</code><code class="plain"> pump(Stream inputStream, KrollCallback handler, </code><code class="keyword">int</code><code class="plain"> maxChunkSize)  </code><code class="comments">// sync pump operation</code></div>
+<div class="line"><code class="comments">// variant that allows setting the pump operation to async or sync</code></div>
+<div class="line"><code class="keyword">void</code><code class="plain"> pump(Stream inputStream, KrollCallback handler, </code><code class="keyword">int</code><code class="plain"> maxChunkSize, </code><code class="keyword">boolean</code><code class="plain"> isAsync)</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-29004736_StreamSpec-Interface">
+        <h4 class="heading "><span>Interface</span></h4>
+    <p>Common interface defines which methods all stream objects will need to support.    </p>
+    <p>Methods:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// read / write operations that return an int will return the number of bytes actually</code></div>
+<div class="line"><code class="comments">// written or read, -1 if no data is available and will throw an exception on error.</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">int</code><code class="plain"> read(Buffer buffer) </code><code class="comments">// reads buffer.length amount of data from stream into &lt;buffer&gt;</code></div>
+<div class="line"><code class="comments">// reads &lt;length&gt; number of bytes from stream into &lt;buffer&gt; starting at &lt;offset&gt;</code></div>
+<div class="line"><code class="keyword">int</code><code class="plain"> read(Buffer buffer, </code><code class="keyword">int</code><code class="plain"> offset, </code><code class="keyword">int</code><code class="plain"> length)</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">int</code><code class="plain"> write(Buffer buffer) </code><code class="comments">// writes specified &lt;buffer&gt; to stream</code></div>
+<div class="line"><code class="comments">// writes &lt;length&gt; number of bytes from &lt;buffer&gt; starting at &lt;offset&gt; to stream</code></div>
+<div class="line"><code class="keyword">int</code><code class="plain"> write(Buffer buffer, </code><code class="keyword">int</code><code class="plain"> offset, </code><code class="keyword">int</code><code class="plain"> length)</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">boolean</code><code class="plain"> isWriteable();</code></div>
+<div class="line"><code class="keyword">boolean</code><code class="plain"> isReadable();</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">void</code><code class="plain"> close() </code><code class="comments">// closes file stream, exception is thrown on error</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-29004736_StreamSpec-FileStream">
+        <h3 class="heading "><span>FileStream</span></h3>
+    <p>File stream object used for IO operations on a physical file.  Implements TiStream interface (not listing interface methods).    </p>
+    <p>Creating file stream object:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// from existing file object</code></div>
+<div class="line"><code class="plain">FileStream &lt;Ti.Filesystem.File&gt;.open(Ti.Filesystem.&lt;MODE&gt;)</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// factory method for creating directly from path.  filepath represents a variable length array of paths that will be combined into a full path</code></div>
+<div class="line"><code class="plain">FileStream Ti.Filesystem.openStream(Ti.Filesystem.&lt;MODE&gt;, string[] filePath)</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-29004736_StreamSpec-Socket">
+        <h3 class="heading "><span>Socket</span></h3>
+    <p>Socket object that supports IO operations.  Implements Stream interface (not listing interface methods).    </p>
+    <p><strong class=" ">* refer to sockets spec for details on creating a socket</strong>    </p>
+    <p>Methods:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">//  make sure the socket it actually in a connected state before trying to read or write data on socket</code></div>
+<div class="line"><code class="keyword">boolean</code><code class="plain"> isConnected()</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-29004736_StreamSpec-Sourceexamples">
+        <h2 class="heading "><span>Source examples</span></h2>
+    <p>Reading data from file:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var messageBuffer = Ti.createBuffer()</code></div>
+<div class="line"><code class="plain">var tempBuffer = Ti.createBuffer({length:</code><code class="value">1024</code><code class="plain">}); </code><code class="comments">// initialized with null characters</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var bytesRead = </code><code class="value">0</code><code class="plain">;</code></div>
+<div class="line"><code class="keyword">while</code><code class="plain">((bytesRead = fileStream.read(tempBuffer)) &gt; -</code><code class="value">1</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// buffer is expanded to contain the new data and the length is updated to reflect this</code></div>
+<div class="line"><code class="plain">&#xA0;&#xA0; &#xA0;messageBuffer.append(tempBuffer, </code><code class="value">0</code><code class="plain">, bytesRead);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>Reading data from file using readAll:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">try</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">    var buffer = Ti.Stream.readAll(fileStream);</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain">(buffer.length &lt;= </code><code class="value">0</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">        Ti.API.info(</code><code class="string">&apos;no data available&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">        Ti.API.info(</code><code class="string">&apos;received &lt;&apos;</code><code class="plain"> + buffer.length + </code><code class="string">&apos;&gt; bytes of data&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">} </code><code class="keyword">catch</code><code class="plain">(e) {</code></div>
+<div class="line"><code class="plain">    Ti.API.error(</code><code class="string">&apos;error when reading from file stream&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>Writing data from one file to another    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var inFileStream = Ti.Filesystem.getFile(</code><code class="string">&apos;infile.txt&apos;</code><code class="plain">).open(Ti.Filesystem.MODE_READ);</code></div>
+<div class="line"><code class="plain">var outBuffer = inFileStream.readAll();</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var outFileStream = Ti.Filesystem.getFile(</code><code class="string">&apos;outfile.txt&apos;</code><code class="plain">).open(Ti.Filesystem.MODE_APPEND);</code></div>
+<div class="line"><code class="plain">outFileStream.write(outBuffer);</code></div>
+</div>
+    </div>
+    <p>Write data from one stream to another.  Useful for when writing large amounts of data that can not or should not be read into memory as a single chunk.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var outFileStream = Ti.Filesystem.getFile(</code><code class="string">&apos;outfile.txt&apos;</code><code class="plain">).open(Ti.Filesystem.MODE_APPEND);</code></div>
+<div class="line"><code class="plain">var inFileStream = Ti.Filesystem.getFile(</code><code class="string">&apos;infile.txt&apos;</code><code class="plain">).open(Ti.Filesystem.MODE_READ);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// writes all data from inFileStream to outFileStream in chunks of 1024</code></div>
+<div class="line"><code class="plain">var bytesWritten = Ti.Stream.writeStream(inFileStream, outFileStream, </code><code class="value">1024</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;&lt;&apos;</code><code class="plain"> + bytesWritten + </code><code class="string">&apos;&gt; byte written, closing both streams&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">inFileStream.close();</code></div>
+<div class="line"><code class="plain">outFileStream.close();</code></div>
+</div>
+    </div>
+    <p>Reading data from one stream into a handler method:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var pumpCallback = function(e) {</code></div>
+<div class="line"><code class="plain">    Ti.API.info(</code><code class="string">&apos;Received data chunk of size &lt;&apos;</code><code class="plain"> + e.bytesPumped + </code><code class="string">&apos;&gt;&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="comments">// do stuff with data (e.data)</code></div>
+<div class="line"><code class="plain">    Ti.API.info(</code><code class="string">&apos;Total bytes received so far &lt;&apos;</code><code class="plain"> + e.totalBytesPumped + </code><code class="string">&apos;&gt;&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">Ti.Stream.pump(inFileStream, pumpCallback, </code><code class="value">1024</code><code class="plain">);</code></div>
+</div>
+    </div>
+    <p>Writing data from a buffer into a file (process is exactly the same if you replace TiBuffer with TiBlob):    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var buffer = </code><code class="comments">// acquire TiBuffer from some previous means</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var outFileStream = Ti.Filesystem.getFile(</code><code class="string">&apos;outfile.txt&apos;</code><code class="plain">).open(Ti.Filesystem.MODE_WRITE);</code></div>
+<div class="line"><code class="plain">var inBufferStream = Ti.Stream.createStream({value:buffer, mode:Ti.Stream.MODE_READ});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// note that the means for writing the data from the buffer to the stream is</code></div>
+<div class="line"><code class="comments">// identical to the previous example when writing one file to another.  Both operations are</code></div>
+<div class="line"><code class="comments">// identical from the view of writeStream since it only sees objects that</code></div>
+<div class="line"><code class="comments">// implement the stream interface.</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// writes all data from inBufferStream to outFileStream in chunks of 1024</code></div>
+<div class="line"><code class="plain">var bytesWritten = Ti.Stream.writeStream(inBufferStream, outFileStream, </code><code class="value">1024</code><code class="plain">);Ti.API.info(</code><code class="string">&apos;&lt;&apos;</code><code class="plain"> + bytesWritten + </code><code class="string">&apos;&gt; byte written, closing both streams&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">outFileStream.close();</code></div>
+</div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=29004736"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

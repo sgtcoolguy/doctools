@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>APS Analytics for Android</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-43298722" class="content">
+                        <h1>APS Analytics for Android</h1>
+    <p>    </p>
+    <div class="confbox admonition admonition-warning aui-message problem shadowed information-macro">
+            <div class="title">Pro or Enterprise Subscription Required</div>
+            <p>This AMPLIFY(<sup class=" ">TM</sup>) Appcelerator Services feature requires a Pro or Enterprise Subscription.    </p>
+    </div>
+        <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-Terminology">Terminology</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-GettingStarted">Getting Started</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-AdvancedInitializationOptions">Advanced Initialization Options</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-SessionTimeout">Session Timeout</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-SetupUserSessionEvents">Setup User Session Events</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-CreatingCustomEvents">Creating Custom Events</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-FeatureEvents">Feature Events</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-NavigationEvents">Navigation Events</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-Transitionevents">Transition events</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-GeoEvents">Geo Events</a>    </p>
+</li></ul></li></ul>    <p>This page describes how to use the AMPLIFY Appcelerator Services Analytics for native Android applications, built with Java and the Android APIs.    </p>
+    <div class="confbox panel panel">
+            <div class="title">Not developing a native Android application with Java?</div>
+        <p>See the following topics to use the Appcelerator Analytics Service on other platforms:    </p>
+    <p>    <img src="images/download/attachments/43298722/ios_icon.png" alt="images/download/attachments/43298722/ios_icon.png" class="confluence-embedded-image">
+        </img></p>
+    <p>For native iOS applications built with Objective-C, see <a class="document-link " href="#!/guide/APS_Analytics_for_iOS">APS Analytics for iOS</a>.    </p>
+    <p>    <img src="images/download/attachments/43298732/titanium_icon.png" alt="images/download/attachments/43298732/titanium_icon.png" class="confluence-embedded-image">
+        </img></p>
+    <p>For Titanium Applications, see <a class="document-link " href="#!/guide/Appcelerator_Analytics">Appcelerator Analytics</a>.    </p>
+    </div>
+    <div class="section section-2 " id="src-43298722_APSAnalyticsforAndroid-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p>Appcelerator Analytics collects and presents information in real time about how your application&apos;s user acquisition, engagement and usage. By default, it provides the number of applications installs, the number of sessions, and the average application session length organized by application name, platform and geography. Your application can send custom     <span style="color: #484848;">
+analytic     </span>
+     <span style="color: #484848;">
+events, which are collected and logged by Analytics, to learn how users use your application. You can also create     </span>
+ <i class=" ">event funnels</i>     <span style="color: #484848;">
+&#x2014;ordered sets of custom events that correspond to a business process or application flow you want to track as a whole.    </span>
+    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro has-no-icon">
+            <p>This document provides an overview of the features provided by Analytics, and how to use them using the Titanium SDK. <strong class=" ">If you are developing an iOS application with Objective-C or Swift or an Android application with Java</strong>, see <a class="document-link " href="#!/guide/APS_Analytics_for_iOS">APS Analytics for iOS</a> or <a class="document-link " href="#!/guide/APS_Analytics_for_Android">APS Analytics for Android</a> for details on using Analytics.    </p>
+    </div>
+        <p><strong class=" ">See also:</strong>    </p>
+<ul class=" "><li class=" ">    <p>For platform-specific details about how analytics captured, see <a class="document-link " href="#!/guide/Analytics_Architecture">Analytics Architecture</a>.    </p>
+</li><li class=" ">    <p>For information about viewing analytics data, see <a class="document-link " href="#!/guide/Managing_Client_Applications-section-src-43298774_ManagingClientApplications-AnalyticsTab">A</a><a class="document-link " href="#!/guide/Managing_Client_Applications-section-src-43298774_ManagingClientApplications-AnalyticsTab">pplication Details Screen: Analytics Tab</a>.    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-43298722_APSAnalyticsforAndroid-Terminology">
+        <h2 class="heading "><span>Terminology</span></h2>
+    <p><strong class=" ">Analytics</strong> refers to data about how your application has been used, as well as information about how users interact with your application. Analytics data is transmitted in the form of <i class=" ">events</i>.    </p>
+    <p><strong class=" ">Events</strong>  are operational milestones in the application. Some events are generated automatically, such as those that mark an installation, or the beginning and end of a session. Others may be  <strong class=" ">custom events</strong>, which have a meaning specific to an application, such as tapping a specific button, or opening a certain window.    </p>
+    <p>There are two types custom events:  <strong class=" ">feature events</strong> and  <strong class=" ">navigation events</strong> .  A  feature event  represents an action a user could take in an application, such as &apos;liking an item&apos; or launching a video&apos;.  A  <strong class=" ">navigation event</strong>  is used to track a users&apos;s navigation from one area of the UI to another. Applications use the Titanium or APSAnalytics API to create custom events.    </p>
+    <p><strong class=" ">Event funnels</strong> let you define custom, ordered event sequences that let you track a specific user process, such as finding a product and making a purchase.    </p>
+    <p>The <strong class=" ">Analytics dashboard</strong> organizes, analyzes, and presents analytics data captured for your applications. You also use the Analytics dashboard to create and view event funnels.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Navigation events are not currently available through the Analytics UI, only through raw data export.    </p>
+    </div>
+        </div>
+    <div class="section section-2 " id="src-43298722_APSAnalyticsforAndroid-GettingStarted">
+        <h2 class="heading "><span>Getting Started</span></h2>
+    <p>To integrate the Analytics service with a new or existing Android application:    </p>
+<ol class=" "><li class=" ">    <p>Go to the <a class="external-link external-link" href="https://platform.appcelerator.com/" target="_blank">Appcelerator Dashboard</a> and create a new native Android application.    </p>
+</li><li class=" ">    <p>Download the Services SDK and get your Analytics application key.    </p>
+</li><li class=" ">    <p>Unpack the Services SDK ZIP file.    </p>
+</li><li class=" ">    <p>Copy the <tt class=" ">appcelerator-sdk-android-&lt;VERSION&gt;.jar</tt>  to the  <tt class=" ">lib</tt> folder of your Android project.    </p>
+</li><li class=" ">    <p>Modify the project&apos;s  <tt class=" ">AndroidManifest.xml</tt>  file to include the following permissions and to add the  <tt class=" ">APSAnalytics</tt>  package as a service:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">AndroidManifest.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="AndroidManifest.xml">
+<div class="line"><code class="plain">&lt;?xml version=</code><code class="string">&quot;1.0&quot;</code><code class="plain"> encoding=</code><code class="string">&quot;utf-8&quot;</code><code class="plain">?&gt;</code></div>
+<div class="line"><code class="plain">&lt;manifest xmlns:android=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">package</code><code class="plain">=</code><code class="string">&quot;com.appcelerator.sample&quot;</code></div>
+<div class="line"><code class="plain">    android:versionCode=</code><code class="string">&quot;1&quot;</code></div>
+<div class="line"><code class="plain">    android:versionName=</code><code class="string">&quot;1.0&quot;</code><code class="plain"> &gt;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    &lt;!-- Add these permissions to enable Analytics --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;uses-permission android:name=</code><code class="string">&quot;android.permission.ACCESS_NETWORK_STATE&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;uses-permission android:name=</code><code class="string">&quot;android.permission.ACCESS_WIFI_STATE&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;uses-permission android:name=</code><code class="string">&quot;android.permission.INTERNET&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;uses-permission android:name=</code><code class="string">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</code></div>
+<div class="line"><code class="plain">                 android:maxSdkVersion=</code><code class="string">&quot;18&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    &lt;application&gt;</code></div>
+<div class="line"><code class="plain">        &lt;activity&gt;</code></div>
+<div class="line"><code class="plain">            ...</code></div>
+<div class="line"><code class="plain">        &lt;/activity&gt;</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">        &lt;!-- Add </code><code class="keyword">this</code><code class="plain"> service to enable Analytics --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;service android:name=</code><code class="string">&quot;com.appcelerator.aps.APSAnalyticsService&quot;</code></div>
+<div class="line"><code class="plain">            android:exported=</code><code class="string">&quot;false&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    &lt;/application&gt;</code></div>
+<div class="line"><code class="plain">&lt;/manifest&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Add the following import statements to the main Activity of the project:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">MainActivity.java</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="MainActivity.java">
+<div class="line"><code class="keyword">import</code><code class="plain"> com.appcelerator.aps.APSServiceManager;</code></div>
+<div class="line"><code class="keyword">import</code><code class="plain"> com.appcelerator.aps.APSAnalytics;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>In the main Activity&apos;s  <tt class=" ">onCreate()</tt>  method, enable the service by calling the APSServiceManager&apos;s<tt class=" "> enable</tt>  method. Pass the method the application context as the first argument and the APS application key as the second argument.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> onCreate() {</code></div>
+<div class="line"><code class="plain">    APSServiceManager.getInstance().enable(getApplicationContext(), </code><code class="string">&quot;APP_KEY&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">} </code></div>
+</div>
+    </div>
+    <div class="confbox admonition admonition-tip aui-message success shadowed information-macro">
+            <p class="diff-block-target diff-block-context">To get your APS App key:    </p>
+<ol class=" "><li class="diff-block-target diff-block-context ">    <p>Go to the <a class="external-link external-link" href="https://platform.appcelerator.com/" target="_blank">Appcelerator Dashboard</a>.    </p>
+</li><li class="diff-block-target diff-block-context ">    <p>Select your application from the <strong class=" ">Apps</strong> drop-down menu.    </p>
+</li><li class="diff-block-target diff-block-context ">    <p>Click the <strong class=" ">Overview</strong> tab.    </p>
+</li><li class="diff-block-target diff-block-context ">    <p>Click the <strong class=" ">Services</strong> button.    </p>
+</li><li class="diff-block-target diff-block-context ">    <p>Click <strong class=" ">Show Key</strong> under the Analytics, Performance and Cloud section.    </p>
+</li></ol>    </div>
+    </li></ol>    <p>The Android application can now make additional method calls using the <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/aps/APSAnalytics.html" target="_blank"> <tt class=" ">APSAnalytics</tt> class</a>.  Before making API calls to the APSAnalytics class, you need to retrieve a shared instance using the <tt class=" ">getInstance()</tt> method. Make APSAnalytics API calls using the shared instance.    </p>
+    <p>For the Android platform, you need to setup the application to send <a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-SetupUser">user session events</a>.    </p>
+    <div class="section section-3 " id="src-43298722_APSAnalyticsforAndroid-AdvancedInitializationOptions">
+        <h3 class="heading "><span>Advanced Initialization Options</span></h3>
+    <div class="section section-4 " id="src-43298722_APSAnalyticsforAndroid-SessionTimeout">
+        <h4 class="heading "><span>Session Timeout</span></h4>
+    <p>By default, after the application has been backgrounded for 30000 milliseconds (30 seconds), the Analytics service ends the current user session and starts a new one when the application enter the foreground again.  To adjust the timeout, use the APSAnalytics&apos;s <tt class=" ">setSessionTimeout()</tt> method.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// Sets the timeout to 15000 milliseconds (15 seconds) instead of 30000 milliseconds.</code></div>
+<div class="line"><code class="plain">APSAnalytics.getInstance().setSessionTimeout(</code><code class="value">15000</code><code class="plain">, TimeUnit.MILLISECONDS);</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-43298722_APSAnalyticsforAndroid-SetupUserSessionEvents">
+        <h3 class="heading "><span>Setup User Session Events</span></h3>
+    <p>On the Android platform, user session events are not automatically sent, unlike the iOS and Titanium platforms.  You need to add three <tt class=" ">APSAnalyitcs</tt> method calls in the main Activity of your application in order to capture user session data.    </p>
+<ol class=" "><li class=" ">    <p>Call the <tt class=" ">sendAppEnrollEvent()</tt> method right after the application calls the <tt class=" ">APSServiceManager.getInstance().enable()</tt>  in the  <tt class=" ">onCreate()</tt>  method. The enroll event indicates application installs or upgrades.    </p>
+</li><li class=" ">    <p>Call the <tt class=" ">sendAppForegroundEvent()</tt> method inside the main Activity&apos;s <tt class=" ">onResume()</tt> method.  The foreground event indicates when the application is being used.    </p>
+</li><li class=" ">    <p>Call the <tt class=" ">sendAppBackgroundEvent()</tt> method inside the main Activity&apos;s <tt class=" ">onPause()</tt> method.  The background event indicates when the application has been dismissed.    </p>
+</li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">MainActivity.java</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="MainActivity.java">
+<div class="line"><code class="color1">@Override</code></div>
+<div class="line"><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> onCreate(Bundle savedInstanceState) {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">super</code><code class="plain">.onCreate(savedInstanceState);</code></div>
+<div class="line"><code class="plain">    setContentView(R.layout.activity_main);</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">    APSServiceManager.getInstance().enable(getApplicationContext(), </code><code class="string">&quot;APP_KEY&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    APSAnalytics.getInstance().sendAppEnrollEvent();</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="color1">@Override</code></div>
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> onPause(){</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">super</code><code class="plain">.onPause();</code></div>
+<div class="line"><code class="plain">    APSAnalytics.getInstance().sendSessionBackgroundEvent();</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="color1">@Override</code></div>
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> onResume(){</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">super</code><code class="plain">.onResume();</code></div>
+<div class="line"><code class="plain">    APSAnalytics.getInstance().sendSessionForegroundEvent();</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43298722_APSAnalyticsforAndroid-CreatingCustomEvents">
+        <h2 class="heading "><span>Creating Custom Events</span></h2>
+    <p>You use the the <a class="external-link external-link" href="#!/api/Titanium.Analytics">A</a> <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/analytics/APSAnalytics.html" target="_blank">PSAnalytics API</a> to log and report custom events. There are two main types of events you can capture: <a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-FeatureEvents">Feature Events</a> and <a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-NavigationEvents">Navigation Events</a>. Feature events are for capturing a user action, such as selecting a specific menu option, or launching a video. Navigation events track a user&apos;s movement through an application, such as going from the application&apos;s home screen, and then to a search screen.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Currently, the optional <tt class=" ">data</tt> parameter of the Titanium.Analytics methods, which is used to log a dictionary object, cannot be accessed through the Dashboard.    </p>
+    </div>
+        <div class="section section-3 " id="src-43298722_APSAnalyticsforAndroid-FeatureEvents">
+        <h3 class="heading "><span>Feature Events</span></h3>
+    <p>You use the APSAnalytics&apos; <tt class=" ">sendAppFeatureEvent()</tt> method to generate a feature event that captures a specific application or user activity. A feature event should represent an action, such as launching a video, or &apos;new item&apos;, &apos;launch video&apos;, and so forth. The name you assign to a feature event should incorporate the application state into the event name, rather than long descriptive names. The following naming convention is suggested, where <i class=" ">group.event</i> refers to the parent event:    </p>
+    <p><tt class=" ">group.event.sub-event</tt>    </p>
+    <p>Feature event names should be as generic as possible. For instance, if you want to track when users select a certain menu option, use a name like  <strong class=" ">     <span style="color: #000000;">
+&quot;user.menu.selection&quot;,    </span>
+ </strong>     <span style="color: #000000;">
+ not <strong class=" ">&quot;joeuser.menu.selection&quot;</strong>. The first option is better because it groups all the same types of event into a single metric that&apos;s easy to view on Dashboard. The person analyzing the data only has to look at a single number to get an overview of how many users have selected that menu option. The second might be fine for very small user bases, but if you have more than 100 users it means that the person analyzing the data would have to look through 100 different event names to be able to generate any useful data.    </span>
+     <span style="color: #000000;">
+     </span>
+    </p>
+    <p>For example, to track a user&apos;s menu selection you might use the following code, where the 10 digit number uniquely identifies the selection in your code:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Good Practice: Track the State with the Naming Syntax</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Good Practice: Track the State with the Naming Syntax">
+<div class="line"><code class="plain">APSAnalytics.getInstance().sendAppFeatureEvent(</code><code class="string">&quot;select.item.12345678910&quot;</code><code class="plain">, </code><code class="keyword">null</code><code class="plain">);</code></div>
+</div>
+    </div>
+    <p>You should avoid using long, descriptive event names, as shown below:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Bad Practice: Avoid Long Descriptions</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Bad Practice: Avoid Long Descriptions">
+<div class="line"><code class="plain">APSAnalytics.getInstance().sendAppFeatureEvent(</code><code class="string">&quot;Select Item THIS IS THE DESCRIPTION OF THE EVENT -12345678910&quot;</code><code class="plain">, </code><code class="keyword">null</code><code class="plain">);</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-43298722_APSAnalyticsforAndroid-NavigationEvents">
+        <h3 class="heading "><span>Navigation Events</span></h3>
+    <p>Use the APSAnalytics&apos;<tt class=" "> sendAppNavEvent()</tt> method to track a user&apos;s navigation within your application from one screen to another. The method&apos;s first and second parameters are strings that specify the &quot;from&quot; and &quot;to&quot; locations, respectively. It&apos;s third parameter is the name you want to assign to the event.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Currently, navigation events do not appear in Dashboard. As a workaround, consider using <a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-Transitionevents">transition events</a>.    </p>
+    </div>
+        <p>In the following example, an event is generated when the user navigates from the application&apos;s home screen to an edit message screen:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Best Practice: Track User Navigations Using a navEvent</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Best Practice: Track User Navigations Using a navEvent">
+<div class="line"><code class="plain">APSAnalytics.getInstance().sendAppNavEvent(</code><code class="string">&quot;Home&quot;</code><code class="plain">, </code><code class="string">&quot;Edit Message&quot;</code><code class="plain">, </code><code class="string">&quot;nav.editmessage&quot;</code><code class="plain">, </code><code class="keyword">null</code><code class="plain">);</code></div>
+</div>
+    </div>
+    <p>Avoid passing a single long, descriptive string to <tt class=" ">navEvent()</tt>, for example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Bad Practice: Do Not Track User Navigations Using featureEvent</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Bad Practice: Do Not Track User Navigations Using featureEvent">
+<div class="line"><code class="plain">APSAnalytics.getInstance().sendAppFeatureEvent(</code><code class="string">&quot;Home -&gt; Edit Message&quot;</code><code class="plain">, </code><code class="keyword">null</code><code class="plain">);</code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-43298722_APSAnalyticsforAndroid-Transitionevents">
+        <h4 class="heading "><span>Transition events</span></h4>
+    <p>Currently, <a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-NavigationEvents">navigation events</a> are not collected and presented in the Appcelerator Dashboard. As a workaround to this temporary issue, you can create &quot;transition&quot; events that serve the same purpose. A transition event is a <a class="document-link " href="#!/guide/APS_Analytics_for_Android-section-src-43298722_APSAnalyticsforAndroid-FeatureEvents">feature event</a> whose name uniquely identifies the user&apos;s navigation (&quot;screen1-to-screen2&quot;, for example). You can create an <a class="document-link " href="#!/guide/Appcelerator_Analytics-section-src-43298693_AppceleratorAnalytics-CreatingandViewingEventFunnels">event funnel</a> in Dashboard from these events to analyze navigation within your application.    </p>
+    <p>For example, suppose you wanted to track user navigation between pages of a multi-step sign-up process. As the user moves from one step to the next, the application generates a feature event whose name follows the pattern &quot;step<i class=" ">N</i>-to-step<i class=" ">N+1</i>&quot;, where <i class=" ">N</i> is the step number.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// Transition 1:</code></div>
+<div class="line"><code class="plain">- (</code><code class="keyword">void</code><code class="plain">)gotoStepTwo {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Generate transition event</code></div>
+<div class="line"><code class="plain">    APSAnalytics.getInstance().sendFeatureEvent(</code><code class="string">&quot;step1-to-step2&quot;</code><code class="plain">, </code><code class="keyword">null</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="comments">// Transition 2:</code></div>
+<div class="line"><code class="plain">- (</code><code class="keyword">void</code><code class="plain">)gotoStepThree {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Generate transition event</code></div>
+<div class="line"><code class="plain">    APSAnalytics.getInstance().sendFeatureEvent(</code><code class="string">&quot;step2-to-step3&quot;</code><code class="plain">, </code><code class="keyword">null</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="comments">// Transition 3:</code></div>
+<div class="line"><code class="plain">- (</code><code class="keyword">void</code><code class="plain">)gotoStepFour {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Generate transition event</code></div>
+<div class="line"><code class="plain">    APSAnalytics.getInstance().sendFeatureEvent(</code><code class="string">&quot;step3-to-step4&quot;</code><code class="plain">, </code><code class="keyword">null</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p class="p1">When you create the funnel, you order the events in their logical order to mirror the process.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-43298722_APSAnalyticsforAndroid-GeoEvents">
+        <h3 class="heading "><span>Geo Events</span></h3>
+    <p>Use the APSAnalytics&apos; <tt class=" ">sendAppGeoEvent()</tt> method to send real-time geographic data to the Analytics service.  Pass the method an Android <a class="external-link external-link" href="http://developer.android.com/reference/android/location/Location.html" target="_blank"> <tt class=" ">Location</tt> </a> object.    </p>
+    <p>In the following example, the application uses a default location provider to get location information from the device.  The application sends the location data to the Analytics service.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">MainActivity.java</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="MainActivity.java">
+<div class="line"><code class="comments">/*</code></div>
+<div class="line"><code class="comments"> * Don&apos;t forget to add the ACCESS_COARSE_LOCATION and ACCESS_FINE_LOCATION permissions</code></div>
+<div class="line"><code class="comments"> * in the AndroidManifest.xml file.</code></div>
+<div class="line"><code class="comments"> */</code></div>
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> MainActivity </code><code class="keyword">extends</code><code class="plain"> Activity </code><code class="keyword">implements</code><code class="plain"> LocationListener{</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> LocationManager locationManager;</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> String provider;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="color1">@Override</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> onCreate(Bundle savedInstanceState) {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">super</code><code class="plain">.onCreate(savedInstanceState);</code></div>
+<div class="line"><code class="plain">        setContentView(R.layout.activity_main);</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Initialize Analytics</code></div>
+<div class="line"><code class="plain">        APSServiceManager.getInstance().enable(getApplicationContext(), </code><code class="string">&quot;APP_KEY&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        APSAnalytics.getInstance().sendAppEnrollEvent();</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">        </code><code class="comments">// Get the location manager and use a default provider</code></div>
+<div class="line"><code class="plain">        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);</code></div>
+<div class="line"><code class="plain">        Criteria criteria = </code><code class="keyword">new</code><code class="plain"> Criteria();</code></div>
+<div class="line"><code class="plain">        provider = locationManager.getBestProvider(criteria, </code><code class="keyword">false</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        Location location = locationManager.getLastKnownLocation(provider);</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Initialize the location</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (location != </code><code class="keyword">null</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">            Log.i(</code><code class="string">&quot;GEO&quot;</code><code class="plain">, </code><code class="string">&quot;Provider &quot;</code><code class="plain"> + provider + </code><code class="string">&quot; has been selected.&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">            onLocationChanged(location);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="comments">// Get location updates</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> onLocationChanged(Location location) {</code></div>
+<div class="line"><code class="plain">        APSAnalytics.getInstance().sendAppGeoEvent(location);</code></div>
+<div class="line"><code class="plain">        Log.i(</code><code class="string">&quot;GEO&quot;</code><code class="plain">, location.getLatitude() + </code><code class="string">&quot;,&quot;</code><code class="plain"> +  location.getLongitude());</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">    </code><code class="color1">@Override</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> onResume() {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">super</code><code class="plain">.onResume();</code></div>
+<div class="line"><code class="plain">        APSAnalytics.getInstance().sendAppForegroundEvent();</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Request location updates at least every 5 minutes</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// and only if the location between updates is at least 1000 meters</code></div>
+<div class="line"><code class="plain">        locationManager.requestLocationUpdates(provider, </code><code class="value">5</code><code class="plain"> * </code><code class="value">60</code><code class="plain"> * </code><code class="value">1000</code><code class="plain">, </code><code class="value">1000</code><code class="plain">, </code><code class="keyword">this</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line">&#xA0;</div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="color1">@Override</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> onPause() {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">super</code><code class="plain">.onPause();</code></div>
+<div class="line"><code class="plain">        APSAnalytics.getInstance().sendAppBackgroundEvent();</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Stop update requests</code></div>
+<div class="line"><code class="plain">        locationManager.removeUpdates(</code><code class="keyword">this</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="color1">@Override</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> onStatusChanged(String s, </code><code class="keyword">int</code><code class="plain"> i, Bundle bundle) {</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// To be implemented</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">    </code><code class="color1">@Override</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> onProviderEnabled(String s) {</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// To be implemented</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">    </code><code class="color1">@Override</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> onProviderDisabled(String s) {</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// To be implemented</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=43298722"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Accessibility</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-36739343" class="content">
+                        <h1>Accessibility</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Accessibility-section-src-36739343_Accessibility-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Accessibility-section-src-36739343_Accessibility-DesigningUniversalAccessibleApplications">Designing Universal Accessible Applications</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Accessibility-section-src-36739343_Accessibility-SpokenFeedbackAccessibilityFeatures">Spoken Feedback Accessibility Features</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Accessibility-section-src-36739343_Accessibility-AndroidTalkBackvs.iOSVoiceOverBehavior">Android TalkBack vs. iOS VoiceOver Behavior</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Accessibility-section-src-36739343_Accessibility-TestingSpokenFeedbackAccessibilityFeatures">Testing Spoken Feedback Accessibility Features</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Accessibility-section-src-36739343_Accessibility-AndroidEmulator">Android Emulator</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Accessibility-section-src-36739343_Accessibility-AndroidDevice">Android Device</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Accessibility-section-src-36739343_Accessibility-iOSSimulator">iOS Simulator</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Accessibility-section-src-36739343_Accessibility-iOSDevice">iOS Device</a>    </p>
+</li></ul></li></ul></li></ul>    <div class="section section-2 " id="src-36739343_Accessibility-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p>The primary focus of this topic is on how to design a Titanium application to use the spoken feedback accessibility features of Android and iOS devices.    </p>
+    </div>
+    <div class="section section-2 " id="src-36739343_Accessibility-DesigningUniversalAccessibleApplications">
+        <h2 class="heading "><span>Designing Universal Accessible Applications</span></h2>
+    <p>An application is universally accessible if it can be used by all users, especially ones with visual, hearing and motor disabilities.  Android and iOS provide many built-in OS features to aid in accessibility, such as a screen magnifier or spoken feedback for people with low vision or blindness.  However, these utilities do not aid with all disabilities.  Your application should be designed so it can be easily navigable by all people. For instance, people with motor disabilities require larger buttons to navigate the application, people with color-blindness need information communicated to them by other means if color is used, and people with hearing disabilities require other cues if sounds are used.    </p>
+    <p>Review the following external guides for information about designing accessible applications:    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/iPhoneAccessibility/Introduction/Introduction.html" target="_blank">Accessibility Programming Guide for iOS</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://developer.android.com/guide/topics/ui/accessibility/index.html" target="_blank">Android Developers: Accessibility API guide</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://developer.android.com/design/patterns/accessibility.html" target="_blank">Android Developers: Accessibility Design guide</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://www.w3.org/standards/webdesign/accessibility" target="_blank">W3C Accessibility</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://www.w3.org/WAI/" target="_blank">Web Accessibility Initiative</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-36739343_Accessibility-SpokenFeedbackAccessibilityFeatures">
+        <h2 class="heading "><span>Spoken Feedback Accessibility Features</span></h2>
+    <p>Android TalkBack and iOS VoiceOver are accessibility features for the visually impaired for Android and iOS devices, respectively. Both of these features provide spoken feedback to the user to describe what they are touching, selecting, activating, etc.    </p>
+    <p>On the Android platform, TalkBack varies by Android version.  Both the supported view elements and user interface varies between Android versions. The user may need to download TalkBack from Google Play for earlier Android devices.  TalkBack for Android 4.1 and later uses gestures similar to iOS VoiceOver.    </p>
+    <p>On the iOS platform, VoiceOver is available on iOS 3.x and later.    </p>
+    <p>To support both spoken feedback assistants, all Titanium view elements support a set of accessibility properties (see table below), which can be used to specify the text spoken back for the UI element.  Many of these view elements have a default value based on the control type and may already be accessible to visually-impaired users.  Setting these properties may not be necessary for your application.  If you have non-textual elements in your application, that is, you are providing information in a graphical way, such as a star-rating system, you need to explicitly set these properties with helpful hints, labels, and values, so they can convey the same information and be accessible.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Property    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Default Value    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Titanium.UI.View-property-accessibilityHidden">accessibilityHidden</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Whether the view should be &quot;hidden&quot; from (i.e., ignored by) the accessibility service.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Titanium.UI.View-property-accessibilityHint">accessibilityHint</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>-    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Briefly describes what performing an action, such as a click, on the view will do.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Titanium.UI.View-property-accessibilityLabel">accessibilityLabel</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Title or label of the control.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A succinct label identifying the view for the device&apos;s accessibility service.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><a class="external-link external-link" href="#!/api/Titanium.UI.View-property-accessibilityValue">accessibilityValue</a>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>State or value of the control.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A string describing the value (if any) of the view for the device&apos;s accessibility service.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>For the Android platform, a custom string is created based on these properties, in the order, <tt class=" ">accessibilityLabel</tt>    <span style="color: #000000;">
+,     </span>
+<tt class=" ">accessibilityValue</tt>    <span style="color: #000000;">
+, then     </span>
+<tt class=" ">accessibilityHint</tt>, which maps to the <a class="external-link external-link" href="http://developer.android.com/reference/android/view/View.html#attr_android:contentDescription" target="_blank">android:contentDescription property</a>. Do not specify the <tt class=" ">accessibilityLabel</tt> property for view elements that display textual items, such as the Label text or Button title, unless you want to override the default behavior.  If this property is defined, the text on these view elements will not be spoken.    </p>
+    <p>For the iOS platform, these properties map directly to the <a class="external-link external-link" href="http://developer.apple.com/library/ios/#documentation/uikit/reference/UIAccessibility_Protocol/Introduction/Introduction.html" target="_blank">UIAccessibility Protocol</a>.  Do not specify accessibility properties for container views, that is, views that contain other view elements. If you define accessibility properties for container views, it will either block interaction with or override the accessibility properties of the view elements contained within it.    </p>
+    <p>The application can monitor the <a class="external-link external-link" href="#!/api/Titanium.App-event-accessibilitychanged">accessibilityChanged</a> event to check when the system&apos;s accessibility mode changes.  The application can also fire a system event to ask the system to make a voice announcement. On iOS the application can also fire events to notify the accessibility system that the layout or current screen has changed. For details on these events, see the <i class=" ">System-Level Accessibility</i> <i class=" ">Events</i> section on the <a class="external-link external-link" href="#!/api/Titanium.App">Ti.App</a> reference page.    </p>
+    <div class="section section-3 " id="src-36739343_Accessibility-AndroidTalkBackvs.iOSVoiceOverBehavior">
+        <h3 class="heading "><span>Android TalkBack vs. iOS VoiceOver Behavior</span></h3>
+    <p>Android TalkBack and iOS VoiceOver behave differently with navigation and spoken feedback.  Take the following code as an example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow({</code></div>
+<div class="line"><code class="plain">    title: </code><code class="string">&apos;Welcome&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    layout: </code><code class="string">&apos;vertical&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    backgroundColor: </code><code class="string">&apos;white&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var win2 = Ti.UI.createWindow({</code></div>
+<div class="line"><code class="plain">    layout: </code><code class="string">&apos;vertical&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    left: </code><code class="string">&apos;25dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    top: </code><code class="string">&apos;25dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    width: </code><code class="string">&apos;100dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    height: </code><code class="string">&apos;100dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    backgroundColor: </code><code class="string">&apos;red&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    zIndex: </code><code class="value">1</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var button2 = Ti.UI.createButton({</code></div>
+<div class="line"><code class="plain">    title: </code><code class="string">&apos;Red&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    accessibilityLabel: </code><code class="string">&apos;Double-click me to close the red window&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">button2.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, function(){</code></div>
+<div class="line"><code class="plain">	win2.close();</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">var label2 = Ti.UI.createLabel({</code></div>
+<div class="line"><code class="plain">    text: </code><code class="string">&apos;Salut, Monde!&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    font: {fontSize: </code><code class="string">&apos;24dp&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">    accessibilityHint: </code><code class="string">&apos;I do not speak French.&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">win2.add(label2);</code></div>
+<div class="line"><code class="plain">win2.add(button2);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var win3 = Ti.UI.createWindow({</code></div>
+<div class="line"><code class="plain">    layout: </code><code class="string">&apos;vertical&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    bottom: </code><code class="string">&apos;25dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    right: </code><code class="string">&apos;25dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    width: </code><code class="string">&apos;100dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    height: </code><code class="string">&apos;100dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    backgroundColor: </code><code class="string">&apos;blue&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    zIndex: </code><code class="value">3</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    accessibilityHint: </code><code class="string">&apos;I am a blue window&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var button3 = Ti.UI.createButton({</code></div>
+<div class="line"><code class="plain">    title: </code><code class="string">&apos;Blue&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    accessibilityHint: </code><code class="string">&apos;Close the blue window.&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">button3.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, function(){</code></div>
+<div class="line"><code class="plain">    win3.close();</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">var label3 = Ti.UI.createLabel({</code></div>
+<div class="line"><code class="plain">    text: </code><code class="string">&apos;Hello, World!&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    font: {fontSize: </code><code class="string">&apos;24dp&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">    accessibilityLabel: </code><code class="string">&apos;You pushed me&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    accessibilityValue: </code><code class="string">&apos;Nominal&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    accessibilityHint: </code><code class="string">&apos;I am a label&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">win3.add(label3);</code></div>
+<div class="line"><code class="plain">win3.add(button3);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var slider = Ti.UI.createSlider({</code></div>
+<div class="line"><code class="plain">    min: </code><code class="value">0</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    max: </code><code class="value">100</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    width: </code><code class="string">&apos;100%&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    value: </code><code class="value">50</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">var button = Ti.UI.createButton({</code></div>
+<div class="line"><code class="plain">    title: </code><code class="string">&apos;Open&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">button.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, function() {</code></div>
+<div class="line"><code class="plain">    win2.open();</code></div>
+<div class="line"><code class="plain">    win3.open();</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">var label = Ti.UI.createLabel({</code></div>
+<div class="line"><code class="plain">    text: </code><code class="string">&apos;I pity the foo.&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    font: {fontSize: </code><code class="string">&apos;24dp&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">})</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">win.add(button);</code></div>
+<div class="line"><code class="plain">win.add(slider);</code></div>
+<div class="line"><code class="plain">win.add(label);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <p>Initially, the application displays a white window with a button, slider and label. At this point in the user experience, both TalkBack and VoiceOver behave similarly.  Since none of the accessibility properties are defined, both spoken feedback assistants provide default feedback. See the table below for the spoken responses of each element.    </p>
+    <p>When you double-click to use the open button, the application displays a red window in the top-left and a blue window in the bottom-right.  At this point in the user experience, TalkBack and VoiceOver behave differently.    </p>
+    <p>Since <tt class=" ">win3</tt>, the blue window, is the top-level view container in the UI hierarchy, VoiceOver only provides feedback for this view container. All other view elements in the background are disabled by VoiceOver.  The user cannot interact with the red window or white parent window. However, TalkBack still provides feedback and does not disable the user interaction with the any of the visible elements.    </p>
+    <p>Since an accessibilityHint is defined for <tt class=" ">win3</tt>, the blue window, VoiceOver does not provide spoken feedback for its children view elements, only the window, but TalkBack provides feedback for all elements as well as the window.  Additionally, all children view elements are disabled or inaccessible by VoiceOver, so the user cannot double-click the button to close the window and are stuck in this application state.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>For the iOS platform, do not specify accessibility properties for container views, that is, views that contain other view elements, and design your UI so the user can return to the parent view if you are implementing a layered UI. If you define accessibility properties for container views, it will either block interaction with or override the accessibility properties of the view elements contained within it.    </p>
+    </div>
+        <p>The following table describes the responses based on accessibility property settings (if the <tt class=" ">win3.accessibilityHint</tt> is removed, which blocks most of the view elements from being spoken by VoiceOver).    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Element    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>TalkBack Response    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>VoiceOver Response    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>button    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;Open. Button.&quot;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;Open. Button.&quot;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>slider    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;Seek control. 50 percent.&quot;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;50 percent. Adjustable. Slide up and down to adjust the value.&quot;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>label    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;I pity the foo.&quot;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;I pity the foo.&quot;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>button2    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;Double-click me to close the red window. Button.&quot;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;Double-click me to close the red window. Button.&quot;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>label2    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;I do not speak French.&quot;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;Salut, Monde. I do not speak French.&quot;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>button3    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;Close the blue window. Button.&quot;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;Blue. Button. Close the blue window.&quot;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>label3    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;You pushed me. Nominal. I am a label.&quot;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&quot;You pushed me. Nominal. I am a label.&quot;    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-36739343_Accessibility-TestingSpokenFeedbackAccessibilityFeatures">
+        <h3 class="heading "><span>Testing Spoken Feedback Accessibility Features</span></h3>
+    <div class="section section-4 " id="src-36739343_Accessibility-AndroidEmulator">
+        <h4 class="heading "><span>Android Emulator</span></h4>
+    <p>The Android Emulator does not have a method to test spoken feedback accessibility features.  Test on device.    </p>
+    </div>
+    <div class="section section-4 " id="src-36739343_Accessibility-AndroidDevice">
+        <h4 class="heading "><span>Android Device</span></h4>
+    <p>TalkBack varies by the Android version.  The following directions are for Android 4.1 and later.    </p>
+    <p>To enable TalkBack:    </p>
+<ol class=" "><li class=" ">    <p>Open <strong class=" ">Settings</strong> on the device.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">Accessibility</strong>, then <strong class=" ">TalkBack</strong>.    </p>
+</li><li class=" ">    <p>Click the <strong class=" ">TalkBack</strong> switch to on to enable TalkBack.    </p>
+</li><li class=" ">    <p>A dialog box appears asking you to confirm your selection.  Click the <strong class=" ">OK</strong> button.    </p>
+</li></ol>    <p>To use TalkBack, tap on a view element to select it, then double-tap to activate the element.  Swipe left or right to select the previous or next item, respectively.  Swipe right then left or left then right in one motion to scroll vertically or horizontally through views.    </p>
+    <p>To disable TalkBack:    </p>
+<ol class=" "><li class=" ">    <p>Tap the App icon to select it, then double-tap to open it.    </p>
+</li><li class=" ">    <p>Swipe right then left in one motion until you see the <strong class=" ">Settings</strong> icon.    </p>
+</li><li class=" ">    <p>Tap the <strong class=" ">Settings</strong> icon to select it, then double-tap to open it.    </p>
+</li><li class=" ">    <p>Swipe right then left in one motion until you see <strong class=" ">Accessibility</strong>.    </p>
+</li><li class=" ">    <p>Tap <strong class=" ">Accessibility</strong> to select it, then double-tap to open it.    </p>
+</li><li class=" ">    <p>Tap <strong class=" ">TalkBack</strong> to select it, then double-tap to open it.    </p>
+</li><li class=" ">    <p>Tap the <strong class=" ">TalkBack</strong> switch to select it, then double-tap top disable it.    </p>
+</li><li class=" ">    <p>A dialog box appears asking you to confirm your selection.    </p>
+</li><li class=" ">    <p>Tap the <strong class=" ">OK</strong> button to select it, then double-tap to confirm.    </p>
+</li></ol>    <p>For more information about using Talkback, see the <a class="external-link external-link" href="http://support.google.com/nexus/bin/topic.py?hl=en&amp;topic=2692466" target="_blank">Nexus Accessibility Guide</a>.    </p>
+    </div>
+    <div class="section section-4 " id="src-36739343_Accessibility-iOSSimulator">
+        <h4 class="heading "><span>iOS Simulator</span></h4>
+    <p>The iOS Simulator has a utility called Accessibility Inspector that displays accessibility information for each view element.  This is not a substitute for the actual VoiceOver assistant but may help test your application during development.    </p>
+    <p>To enable Accessibility Inspector:    </p>
+<ol class=" "><li class=" ">    <p>Open <strong class=" ">Settings</strong> on the simulator.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">General</strong>, then <strong class=" ">Accessibility</strong>.    </p>
+</li><li class=" ">    <p>Switch <strong class=" ">Accessibility</strong> <strong class=" ">Inspector</strong> to on.    </p>
+</li></ol>    <p>A rainbow colored bar appears in the simulator.  To temporary enable or disable the utility during testing, click the &apos;x&apos; icon in the top-left corner to uncollapse and collapse the accessibility information preview, respectively. While the utility is enabled, in your application, click on a view element to select it to preview the information in the Accessibility Inspector.  To navigate in your application while the utility is enabled, for most view elements, tap the view element to select it, then double-tap or triple-tap to activate it.    </p>
+    <p>To disable Accessibility Inspector:    </p>
+<ol class=" "><li class=" ">    <p>Click the &apos;x&apos; icon in the top-left corner of Accessibility Inspector to collapse the utility to disable it.    </p>
+</li><li class=" ">    <p>Repeat the steps to enable it except switch Accessibility Inspector to off.    </p>
+</li></ol>    <p>For more information about using Accessibility Inspector, refer to <a class="external-link external-link" href="https://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/iPhoneAccessibility/Testing_Accessibility/Testing_Accessibility.html" target="_blank">Accessibility Programming Guide for iOS: Testing the Accessibility of Your iPhone Application</a>.    </p>
+    </div>
+    <div class="section section-4 " id="src-36739343_Accessibility-iOSDevice">
+        <h4 class="heading "><span>iOS Device</span></h4>
+    <p>To enable VoiceOver:    </p>
+<ol class=" "><li class=" ">    <p>Open <strong class=" ">Settings</strong> on the iOS device.    </p>
+</li><li class=" ">    <p>Navigate to <strong class=" ">General</strong> &gt; <strong class=" ">Accessibility</strong> &gt; <strong class=" ">VoiceOver</strong>.    </p>
+</li><li class=" ">    <p>Click the <strong class=" ">VoiceOver</strong> switch to on to enable VoiceOver.    </p>
+</li></ol>    <p>To use VoiceOver, tap on a view element to select it, then double- or triple-tap to activate the element.  Swipe left or right to select the previous or next item, respectively.  Swipe with three fingers to scroll vertically or horizontally. If your screen is locked, double-tap it to unlock it.    </p>
+    <p>To disable VoiceOver:    </p>
+<ol class=" "><li class=" ">    <p>Tap <strong class=" ">Settings</strong> to select it, then double-tap to open it.    </p>
+</li><li class=" ">    <p>Tap <strong class=" ">General</strong> to select it, then double-tap to open it.    </p>
+</li><li class=" ">    <p>Swipe right until you select <strong class=" ">Accessibility</strong>, then double-tap to open it.    </p>
+</li><li class=" ">    <p>Tap <strong class=" ">VoiceOver</strong> to select it, then double-tap to open it.    </p>
+</li><li class=" ">    <p>Tap <strong class=" ">VoiceOver</strong> switch to select it, then double-tap to disable it.    </p>
+</li></ol>    <p>For more information about using VoiceOver, refer to <a class="external-link external-link" href="https://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/iPhoneAccessibility/Testing_Accessibility/Testing_Accessibility.html" target="_blank">Accessibility Programming Guide for iOS: Testing the Accessibility of Your iPhone Application</a>.    </p>
+    <p>    </p>
+    </div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=36739343"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Crashes and Freezes</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-30083291" class="content">
+                        <h1>Crashes and Freezes</h1>
+    <div class="section section-2 " id="src-30083291_CrashesandFreezes-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Crashes_and_Freezes-section-src-30083291_CrashesandFreezes-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Crashes_and_Freezes-section-src-30083291_CrashesandFreezes-Freezes">Freezes</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Crashes_and_Freezes-section-src-30083291_CrashesandFreezes-UsingJPS">Using JPS</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Crashes_and_Freezes-section-src-30083291_CrashesandFreezes-WithoutJPS">Without JPS</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Crashes_and_Freezes-section-src-30083291_CrashesandFreezes-JVMTerminated">JVM Terminated</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30083291_CrashesandFreezes-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>Studio does its best not to crash, but when it does, there are helpful pieces of information you can send to the developers.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083291_CrashesandFreezes-Freezes">
+        <h2 class="heading "><span>Freezes</span></h2>
+    <p>A freeze is likely caused by either a deadlock in code or an infinite loop. To diagnose:    </p>
+<ol class=" "><li class=" ">    <p>If you are on OS X or have the JDK installed on Windows, you can use the &quot;jps&quot; command    </p>
+</li><li class=" ">    <p>To check, try typing &quot;jps&quot; on the command line, or you may need to look in &quot;c:\Program Files\Java\jdk_directory\bin&quot; or wherever your Java is installed. If you do not have a directory with &quot;JDK&quot; in the name, you won&apos;t be able to use JPS.    </p>
+</li></ol>    <div class="section section-3 " id="src-30083291_CrashesandFreezes-UsingJPS">
+        <h3 class="heading "><span>Using JPS</span></h3>
+    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>On Unix, you may need to run the following commands as &quot;sudo&quot;    </p>
+    </div>
+    <ol class=" "><li class=" ">    <p>Open a command prompt.    </p>
+</li><li class=" ">    <p>Type <strong class=" ">jps -v</strong> shows you a list of jvm process ids. You should see one referencing Eclipse.    </p>
+</li><li class=" ">    <p>Type <strong class=" ">jstack &lt;pid&gt; &gt;&gt; logfile.log</strong>to dump the stack trace for the specified VM process id. Copy this into a file and attach it to the JIRA ticket. You may need to pipe the output to a location where you have write permissions, i.e.:    </p>
+<ol class=" "><li class=" ">    <p>c:\Program Files\Java\jdk1.6.0_29\bin&gt;jstack 2616 &gt;&gt; &quot;C:\Users\Username\Desktop\test2.log&quot;    </p>
+</li></ol></li></ol>    <p>Example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">Machine$ jps -v</code></div>
+<div class="line"><code class="value">9528</code><code class="plain"> Jps -Dapplication.home=/System/Library/Java/JavaVirtualMachines/</code><code class="value">1.6</code><code class="plain">.</code><code class="value">0</code><code class="plain">.jdk/Contents/Home -Xms8m</code></div>
+<div class="line"><code class="value">8455</code><code class="plain">  -Dorg.eclipse.swt.internal.carbon.smallFonts -Xms40m -Xmx1024m -Declipse.p2.unsignedPolicy=allow -Declipse.log.size.max=</code><code class="value">10000</code><code class="plain"> -Declipse.log.backup.max=</code><code class="value">5</code><code class="plain"> -Xdock:icon=../Resources/titanium.icns -XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts -XX:MaxPermSize=256m</code></div>
+<div class="line"><code class="plain">Machine$ jstack </code><code class="value">8455</code><code class="plain"> &gt;&gt; logfile.log</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083291_CrashesandFreezes-WithoutJPS">
+        <h3 class="heading "><span>Without JPS</span></h3>
+    <p>Unfortunately, the easiest way requires restarting Studio on the command line. If that&apos;s not possible for some reason, you can use this free tool (though it requires registration: <a class="external-link external-link" href="http://www.adaptj.com/main/tracehowtos" target="_blank">http://www.adaptj.com/main/tracehowtos</a>)    </p>
+    <p>To use the command line:    </p>
+<ol class=" "><li class=" ">    <p>Start Studio on the command line:    </p>
+<ol class=" "><li class=" ">    <p>On Windows: <strong class=" ">Appcelerator</strong><strong class=" ">Studio.exe -consolelog, </strong><strong class=" ">TitaniumStudio.exe -consolelog</strong> or <strong class=" ">AptanaStudio.exe -consolelog</strong>    </p>
+</li><li class=" ">    <p>On OS X: <strong class=" ">/Applications/Appcelerator\ Studio/AppceleratorStudio.app/Contents/MacOS/AppceleratorStudio, </strong><strong class=" ">/Applications/Titanium\ Studio/TitaniumStudio.app/Contents/MacOS/TitaniumStudio</strong> or <strong class=" ">/Applications/Aptana\ Studio\ 3/AptanaStudio3.app/Contents/MacOS/AptanaStudio3</strong>    </p>
+</li></ol></li><li class=" ">    <p>You may wish to adjust the buffer size of your console    </p>
+<ol class=" "><li class=" ">    <p>On Windows, right-click in the console window and choose <strong class=" ">Properties</strong>. Set the buffer size to 3000.    </p>
+</li></ol></li><li class=" ">    <p>Enter the key sequence &quot;&lt;ctrl&gt; + \&quot; in the console window.    </p>
+</li><li class=" ">    <p>Copy and paste the resulting output information into a document, and attach it to the JIRA ticket    </p>
+</li></ol>    <p>    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p>If you have additional questions, you can see <a class="external-link external-link" href="http://wiki.eclipse.org/How_to_report_a_deadlock" target="_blank">http://wiki.eclipse.org/How_to_report_a_deadlock</a> for more information.    </p>
+    </div>
+        </div>
+    </div>
+    <div class="section section-2 " id="src-30083291_CrashesandFreezes-JVMTerminated">
+        <h2 class="heading "><span>JVM Terminated</span></h2>
+    <p>When this happens, you&apos;ll see a rectangular dialog with a title of <strong class=" ">JVM Terminate</strong> on your screen and Studio will disappear. This indicates Java itself has crashed, but it creates a log file in the process.    </p>
+    <p>By default, the crash file should be in either the Studio installation directory, or in the system temp directory, most likely with a file name of hs_err_pid*.log. If you still could not locate it, follow the directions here:    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://www.oracle.com/technetwork/java/javase/felog-138657.html#gbwcy" target="_blank">Finding your Error Log</a>    </p>
+</li><li class=" ">    <p>On OS X, the location is ~/Library/Logs/Java/*.crash.log or ~/Library/Logs/CrashReporter, and the file will have the word java in its name.    </p>
+</li></ul>    <p>Please attach this log if you submit a support ticket.    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=30083291"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

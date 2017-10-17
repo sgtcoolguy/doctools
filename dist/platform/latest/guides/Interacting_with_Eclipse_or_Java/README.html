@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Interacting with Eclipse or Java</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"/>
+
+        <div id="src-30083230" class="content">
+                        <h1>Interacting with Eclipse or Java</h1>
+    <div class="section section-2 " id="src-30083230_InteractingwithEclipseorJava-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Interacting_with_Eclipse_or_Java-section-src-30083230_InteractingwithEclipseorJava-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Interacting_with_Eclipse_or_Java-section-src-30083230_safe-id-SW50ZXJhY3Rpbmd3aXRoRWNsaXBzZW9ySmF2YS1JbnRlcmFjdGluZ3dpdGhhbkVkaXRvcjpGb2xkaW5nY29kZWludGhlZWRpdG9y">Interacting with an Editor: Folding code in the editor</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Interacting_with_Eclipse_or_Java-section-src-30083230_safe-id-SW50ZXJhY3Rpbmd3aXRoRWNsaXBzZW9ySmF2YS1JbnRlcmFjdGluZ3dpdGhhbkVkaXRvcjppbmNyZWFzaW5ndGhlZWRpdG9yJ3Nmb250c2l6ZQ">Interacting with an Editor: increasing the editor&apos;s font size</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Interacting_with_Eclipse_or_Java-section-src-30083230_safe-id-SW50ZXJhY3Rpbmd3aXRoRWNsaXBzZW9ySmF2YS1HVUk6QXNpbXBsZWlucHV0ZGlhbG9n">GUI: A simple input dialog</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Interacting_with_Eclipse_or_Java-section-src-30083230_InteractingwithEclipseorJava-CodeEquivalents">Code Equivalents</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30083230_InteractingwithEclipseorJava-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>In this recipe we show how a Ruble command can interact with Eclipse or Java code. For specific questions, see the <a class="external-link external-link" href="https://github.com/jruby/jruby/wiki/CallingJavaFromJRuby" target="_blank">Calling Java from JRuby</a> document    </p>
+    </div>
+    <div class="section section-2 " id="src-30083230_safe-id-SW50ZXJhY3Rpbmd3aXRoRWNsaXBzZW9ySmF2YS1JbnRlcmFjdGluZ3dpdGhhbkVkaXRvcjpGb2xkaW5nY29kZWludGhlZWRpdG9y">
+        <h2 class="heading "><span>Interacting with an Editor: Folding code in the editor</span></h2>
+    <p>Here, we interact with the current editor to collapse all folding markers.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line"><code class="plain">require </code><code class="string">&apos;java&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">command </code><code class="string">&apos;Fold All Code&apos;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
+<div class="line"><code class="plain">  cmd.scope = </code><code class="string">&apos;source&apos;</code></div>
+<div class="line"><code class="plain">  cmd.invoke </code><code class="keyword">do</code><code class="plain"> |context|</code></div>
+<div class="line"><code class="plain">      # Toggle all levels. context.editor.editor_part is the current IEditorPart</code></div>
+<div class="line"><code class="plain">      context.editor.editor_part.source_viewer.doOperation(org.eclipse.jface.text.source.projection.ProjectionViewer::COLLAPSE_ALL)</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083230_safe-id-SW50ZXJhY3Rpbmd3aXRoRWNsaXBzZW9ySmF2YS1JbnRlcmFjdGluZ3dpdGhhbkVkaXRvcjppbmNyZWFzaW5ndGhlZWRpdG9yJ3Nmb250c2l6ZQ">
+        <h2 class="heading "><span>Interacting with an Editor: increasing the editor&apos;s font size</span></h2>
+    <p>Here, we up the current font size in all editors by 2.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line"><code class="plain">require </code><code class="string">&apos;java&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">command </code><code class="string">&apos;Increase Font Size&apos;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
+<div class="line"><code class="plain">  cmd.scope = </code><code class="string">&apos;source&apos;</code></div>
+<div class="line"><code class="plain">  cmd.invoke </code><code class="keyword">do</code><code class="plain"> |context|</code></div>
+<div class="line"><code class="plain">      step = </code><code class="value">2</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">      font_name = org.eclipse.jface.resource.JFaceResources::TEXT_FONT</code></div>
+<div class="line"><code class="plain">      font_registry = org.eclipse.ui.PlatformUI.workbench.theme_manager.current_theme.font_registry</code></div>
+<div class="line"><code class="plain">      data = font_registry.get_font_data(font_name)</code></div>
+<div class="line"><code class="plain">      new_data = data.map {|d| org.eclipse.swt.graphics.FontData.</code><code class="keyword">new</code><code class="plain">(d.getName(), d.height + step, d.style) }</code></div>
+<div class="line"><code class="plain">      font_registry.put(font_name, new_data.to_java(:</code><code class="string">&quot;org.eclipse.swt.graphics.FontData&quot;</code><code class="plain">))</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083230_safe-id-SW50ZXJhY3Rpbmd3aXRoRWNsaXBzZW9ySmF2YS1HVUk6QXNpbXBsZWlucHV0ZGlhbG9n">
+        <h2 class="heading "><span>GUI: A simple input dialog</span></h2>
+    <p>We create a simple dialog to prompt the user for input. Note we have one file for the dialog class, and another file for calling the class in a command.    </p>
+    <p><strong class=" ">in /lib/multi_input_dialog.rb:</strong>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;java&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">class</code><code class="plain"> MultiInputDialog &lt; org.eclipse.jface.dialogs.InputDialog</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">  def getInputTextStyle</code></div>
+<div class="line"><code class="plain">    org.eclipse.swt.SWT::MULTI | org.eclipse.swt.SWT::BORDER | org.eclipse.swt.SWT::V_SCROLL</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">  def createDialogArea(parent)</code></div>
+<div class="line"><code class="plain">    control = </code><code class="keyword">super</code><code class="plain">(parent)</code></div>
+<div class="line"><code class="plain">    getText.getLayoutData.heightHint = </code><code class="value">100</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    control</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    <p><strong class=" ">in /commands/commands.rb:</strong>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line"><code class="plain">require </code><code class="string">&apos;java&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">command </code><code class="string">&apos;Multi-Input Dialog&apos;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
+<div class="line"><code class="plain">  cmd.scope = </code><code class="string">&apos;source&apos;</code></div>
+<div class="line"><code class="plain">  cmd.invoke </code><code class="keyword">do</code><code class="plain"> |context|</code></div>
+<div class="line"><code class="plain">    require </code><code class="string">&apos;multi_input_dialog&apos;</code></div>
+<div class="line"><code class="plain">    dialog =  MultiInputDialog.</code><code class="keyword">new</code><code class="plain">(nil, </code><code class="string">&quot;Title&quot;</code><code class="plain">, </code><code class="string">&quot;Description&quot;</code><code class="plain">, </code><code class="string">&quot;initial_value&quot;</code><code class="plain">, nil)</code></div>
+<div class="line"><code class="plain">    status = dialog.open</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    # Check the status once the dialog has closed</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> status != </code><code class="value">0</code></div>
+<div class="line"><code class="plain">      Ruble::Logger.log_error </code><code class="string">&quot;Status &apos;#{status}&apos;&quot;</code></div>
+<div class="line"><code class="plain">      </code><code class="keyword">return</code></div>
+<div class="line"><code class="plain">    end</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    Ruble::Logger.log_error </code><code class="string">&quot;Status &apos;#{status}&apos;, Value: &apos;#{dialog.getValue}&apos;&quot;</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083230_InteractingwithEclipseorJava-CodeEquivalents">
+        <h2 class="heading "><span>Code Equivalents</span></h2>
+    <p>Some examples of calling code in Ruby and in Java    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Ruby    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Java    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Grabbing a IFile from the current editor    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">context.editor.editor_input.file</code></div>
+</div>
+    </div>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">IFile editorInput = editor.getEditorInput().getFile();</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=30083230"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>
