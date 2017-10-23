@@ -69,7 +69,7 @@ sh deploy.sh -o arrow -o alloy -o modules -s prod 2>> messages.txt
 node stripFooter.js 2>> message.txt
 node redirects.js 2>> message.txt
 node appendTitles.js 2>> messages.txt
-node banner.js >> message.txt ## add banners to each HTML doc; see TIDOC-3015
+#node banner.js >> message.txt ## add banners to each HTML doc; see TIDOC-3015
 sh clouddeploy.sh -s prod 2>> messages.txt
 bash clouddeploy.sh prod 2>> messages.txt
 bash build_platform.sh 2>> messages.txt
