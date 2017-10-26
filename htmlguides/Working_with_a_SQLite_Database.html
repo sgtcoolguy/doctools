@@ -126,11 +126,11 @@
 <div class="line"><code class="plain">db.execute(</code><code class="string">&apos;INSERT INTO city (name,continent,temp_f,temp_c,condition_id) VALUES (?,?,?,?,?)&apos;</code><code class="plain">, importName, importContinent, importTempF, importTempC, dbConditionId);</code></div>
 </div>
     </div>
-    <p>It&apos;s commonplace for tables to include an auto-incrementing primary key, representing a unique ID for each row. You would typically use such IDs to access individual rows to update them or delete them. You can obtain the row ID associated with a newly inserted row by examining the <tt class=" ">lastInsertRowID</tt> property, like this:    </p>
+    <p>It&apos;s commonplace for tables to include an auto-incrementing primary key, representing a unique ID for each row. You would typically use such IDs to access individual rows to update them or delete them. You can obtain the row ID associated with a newly inserted row by examining the <tt class=" ">lastInsertRowId</tt> property, like this:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">db.execute(</code><code class="string">&apos;INSERT INTO city (name,continent,temp_f,temp_c,condition_id) VALUES (?,?,?,?,?)&apos;</code><code class="plain">, importName, importContinent, importTempF, importTempC, dbConditionId);</code></div>
-<div class="line"><code class="plain">var lastID = db.lastInsertRowID; </code><code class="comments">// presumes `city` has an auto-increment column</code></div>
+<div class="line"><code class="plain">var lastID = db.lastInsertRowId; </code><code class="comments">// presumes `city` has an auto-increment column</code></div>
 </div>
     </div>
     </div>

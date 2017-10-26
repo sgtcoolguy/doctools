@@ -19,6 +19,41 @@
         <div id="src-51250815" class="content">
                         <h1>Mobile Backend Services FAQ</h1>
     <p>This document provides questions and answer for several frequently asked questions about MBS.    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Mobile_Backend_Services_FAQ.html#src-51250815_MobileBackendServicesFAQ-FirebasepushnotificationusingAppcelerator">Firebase push notification using Appcelerator</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Mobile_Backend_Services_FAQ.html#src-51250815_MobileBackendServicesFAQ-SendingpushviaFirebaseAPIkey">Sending push via Firebase API key</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Mobile_Backend_Services_FAQ.html#src-51250815_safe-id-TW9iaWxlQmFja2VuZFNlcnZpY2VzRkFRLUlzR0NNZ29pbmd0b2JlZGVwcmVjYXRlZD8">Is GCM going to be deprecated?</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Mobile_Backend_Services_FAQ.html#src-51250815_MobileBackendServicesFAQ-Pushnotificationsamplecode">Push notification sample code</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Mobile_Backend_Services_FAQ.html#src-51250815_MobileBackendServicesFAQ-ErrorenablingCloudserviceforproject">Error enabling Cloud service for project</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Mobile_Backend_Services_FAQ.html#src-51250815_MobileBackendServicesFAQ-Pushnotificationerrormessages">Push notification error messages</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-51250815_MobileBackendServicesFAQ-FirebasepushnotificationusingAppcelerator">
+        <h2 class="heading "><span>Firebase push notification using Appcelerator</span></h2>
+    <p>Firebase Cloud Messaging (FCM) is the new version of <strong class=" ">GCM. </strong>Please visit <a class="external-link external-link" href="https://console.firebase.google.com/">https://console.firebase.google.com</a>.    </p>
+    <p>Then create your project and use that Project ID and Web API Key as a GCM sender ID and GCM API key.    </p>
+    </div>
+    <div class="section section-2 " id="src-51250815_MobileBackendServicesFAQ-SendingpushviaFirebaseAPIkey">
+        <h2 class="heading "><span>Sending push via Firebase API key</span></h2>
+    <p>You can import a cloud-enable project into Firebase. Basically similar, the end result will be a new key is generated. The steps for this are:    </p>
+<ol class=" "><li class=" ">    <p>Log into Firebase console: <a class="external-link external-link" href="https://console.firebase.google.com/">https://console.firebase.google.com/</a>    </p>
+</li><li class=" ">    <p>Choose <strong class=" ">Import Google Project</strong> from the project menu.    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Project Settings</strong> from the gear menu    </p>
+</li><li class=" ">    <p>Select the <strong class=" ">CLOUD MESSAGING Tab</strong> and use the server key and sender ID.    </p>
+</li><li class=" ">    <p>Configuring push service on the Dashboard by reviewing the information in <a class="document-link " href="Configuring_push_services.html">Configuring push services</a>.    </p>
+</li></ol>    <p><a class="external-link external-link" href="https://gist.github.com/MotiurRahman/2cd4520727271bb60316d57032bf0028">https://gist.github.com/MotiurRahman/2cd4520727271bb60316d57032bf0028</a> provides an sample app.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Make sure your Appcelerator ID and package name is same.    </p>
+    </div>
+        <p>Further reading: <a class="external-link external-link" href="https://documentation.onesignal.com/docs/generate-a-google-server-api-key">Generate a Google Server API Key</a>    </p>
+    </div>
+    <div class="section section-2 " id="src-51250815_safe-id-TW9iaWxlQmFja2VuZFNlcnZpY2VzRkFRLUlzR0NNZ29pbmd0b2JlZGVwcmVjYXRlZD8">
+        <h2 class="heading "><span>Is GCM going to be deprecated?</span></h2>
+    <p>We will continue to support the current version of GCM Android and iOS SDKs because we know a lot of developers are using GCM SDKs today to handle notifications and client app upgrade takes time.    </p>
+    </div>
+    <div class="section section-2 " id="src-51250815_MobileBackendServicesFAQ-Pushnotificationsamplecode">
+        <h2 class="heading "><span>Push notification sample code</span></h2>
+    <p>Appcelerator provided subscribed device token code with iOS 10 or later devices have some problem but part it doesn&apos;t work anymore: <tt class=" ">Ti.Platform.name == &quot;iPhone OS&quot;</tt>    </p>
+    <p>Visit <a class="external-link external-link" href="https://gist.github.com/MotiurRahman/2cd4520727271bb60316d57032bf0028">https://gist.github.com/MotiurRahman/2cd4520727271bb60316d57032bf0028</a> for a working sample.    </p>
+    </div>
     <div class="section section-2 " id="src-51250815_MobileBackendServicesFAQ-ErrorenablingCloudserviceforproject">
         <h2 class="heading "><span>Error enabling Cloud service for project</span></h2>
     <p>If you receive a message similar to &quot;Error enabling Cloud service for project&quot; in Studio when trying to enable Cloud services for your project, the Mobile Backend Services (MBS) server may be down or Studio is unable to connect to the MBS server. Try to enable Cloud services later.    </p>
