@@ -24,7 +24,7 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Troubleshooting_Guide.html#src-49153865_TroubleshootingGuide-ErrorenablingCloudserviceforproject">Error enabling Cloud service for project</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="Troubleshooting_Guide.html#src-49153865_TroubleshootingGuide-Pushnotificationerrormessages">Push notification error messages</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Troubleshooting_Guide.html#src-49153865_safe-id-VHJvdWJsZXNob290aW5nR3VpZGUtQXBwbGVQdXNoTm90aWZpY2F0aW9uU2VydmVyKEFQTlMpZXJyb3Jz">Apple Push Notification Server (APNS) errors</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Troubleshooting_Guide.html#src-49153865_safe-id-VHJvdWJsZXNob290aW5nR3VpZGUtR29vZ2xlQ2xvdWRNZXNzYWdpbmcoR0NNKWVycm9ycw">Google Cloud Messaging (GCM) errors</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Troubleshooting_Guide.html#src-49153865_safe-id-VHJvdWJsZXNob290aW5nR3VpZGUtRmlyZWJhc2VDbG91ZE1lc3NhZ2luZyhGQ00pZXJyb3Jz">Firebase Cloud Messaging (FCM) errors</a>    </p>
 </li></ul></li></ul>    <div class="section section-2 " id="src-49153865_TroubleshootingGuide-TitaniumSDKandStudio">
         <h2 class="heading "><span>Titanium SDK and Studio</span></h2>
     <div class="section section-3 " id="src-49153865_TroubleshootingGuide-ErrorenablingCloudserviceforproject">
@@ -68,8 +68,11 @@
     </div>
     <div class="section section-2 " id="src-49153865_TroubleshootingGuide-Pushnotificationerrormessages">
         <h2 class="heading "><span>Push notification error messages</span></h2>
-    <p>The following table lists error messages reported by the MBS push notification dispatcher, which is responsible for sending push notifications to the Apple Push Notification Service (APNS) and Google Cloud Messaging (GCM).    </p>
-    <div class="section section-3 " id="src-49153865_safe-id-VHJvdWJsZXNob290aW5nR3VpZGUtQXBwbGVQdXNoTm90aWZpY2F0aW9uU2VydmVyKEFQTlMpZXJyb3Jz">
+    <p>The following table lists error messages reported by the MBS push notification dispatcher, which is responsible for sending push notifications to the Apple Push Notification Service (APNS) and Firebase Cloud Messaging (FCM).    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Firebase Cloud Messaging (FCM) is the new version of Google Cloud Messaging (GCM). For additional information, refer to <a class="external-link external-link" href="https://developers.google.com/cloud-messaging/concept-options">Firebase Cloud Messaging</a>.    </p>
+    </div>
+        <div class="section section-3 " id="src-49153865_safe-id-VHJvdWJsZXNob290aW5nR3VpZGUtQXBwbGVQdXNoTm90aWZpY2F0aW9uU2VydmVyKEFQTlMpZXJyb3Jz">
         <h3 class="heading "><span>Apple Push Notification Server (APNS) errors</span></h3>
     <div class="tablewrap">
         <table class="confluenceTable">
@@ -197,9 +200,9 @@
 </tbody>        </table>
             </div>
     </div>
-    <div class="section section-3 " id="src-49153865_safe-id-VHJvdWJsZXNob290aW5nR3VpZGUtR29vZ2xlQ2xvdWRNZXNzYWdpbmcoR0NNKWVycm9ycw">
-        <h3 class="heading "><span>Google Cloud Messaging (GCM) errors</span></h3>
-    <p>Error codes in the 3000-3099 range are <a class="external-link external-link" href="http://developer.android.com/reference/com/google/android/gcm/server/Constants.html">GCM error codes</a>. Error codes above 3100 are for custom MBS push dispatcher errors.    </p>
+    <div class="section section-3 " id="src-49153865_safe-id-VHJvdWJsZXNob290aW5nR3VpZGUtRmlyZWJhc2VDbG91ZE1lc3NhZ2luZyhGQ00pZXJyb3Jz">
+        <h3 class="heading "><span>Firebase Cloud Messaging (FCM) errors</span></h3>
+    <p>Error codes in the 3000-3099 range are <a class="external-link external-link" href="http://developer.android.com/reference/com/google/android/gcm/server/Constants.html">FCM error codes</a>. Error codes above 3100 are for custom MBS push dispatcher errors.    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -221,7 +224,7 @@
         <p>Too many messages were sent to a specific device. Retry sending after a while.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>GCM limits the number of push messages that can be sent to a particular device over a period. Increase the period between notifications for this device.    </p>
+        <p>FCM limits the number of push messages that can be sent to a particular device over a period. Increase the period between notifications for this device.    </p>
             </td>
         </tr>
     <tr>
@@ -229,10 +232,10 @@
         <p>3002    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>A particular message could not be sent because the GCM servers encountered an error.    </p>
+        <p>A particular message could not be sent because the FCM servers encountered an error.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>GCM servers encountered an error.    </p>
+        <p>FCM servers encountered an error.    </p>
             </td>
         </tr>
     <tr>
@@ -243,7 +246,7 @@
         <p>Bad registration_id. Sender should remove this registration_id.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The GCM client sent a bad <a class="external-link external-link" href="https://developer.android.com/google/gcm/client.html#sample-register">registration ID</a> and should re-register with GCM to obtain a new ID. This error is uncommon if you are using the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#%21/api/Modules.CloudPush">Modules.CloudPush</a> module.    </p>
+        <p>The FCM client sent a bad <a class="external-link external-link" href="https://developer.android.com/google/gcm/client.html#sample-register">registration ID</a> and should re-register with FCM to obtain a new ID. This error is uncommon if you are using the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#%21/api/Modules.CloudPush">Modules.CloudPush</a> module.    </p>
             </td>
         </tr>
     <tr>
@@ -265,7 +268,7 @@
         <p>Payload is longer than maximum allowed size of 4096 bytes.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>GCM limits push notification payload size to 4096 bytes; try reducing the JSON message size and sending again.    </p>
+        <p>FCM limits push notification payload size to 4096 bytes; try reducing the JSON message size and sending again.    </p>
             </td>
         </tr>
     <tr>
@@ -273,10 +276,10 @@
         <p>3006    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The sender_id contained in the registration_id does not match the sender_id used to register with the GCM servers.    </p>
+        <p>The sender_id contained in the registration_id does not match the sender_id used to register with the FCM servers.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The <a class="external-link external-link" href="https://developer.android.com/google/gcm/client.html">GCM client</a> did not use the proper sender_id. This error is uncommon if you are using the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#%21/api/Modules.CloudPush">Modules.CloudPush</a> module.    </p>
+        <p>The <a class="external-link external-link" href="https://developer.android.com/google/gcm/client.html">FCM client</a> did not use the proper sender_id. This error is uncommon if you are using the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#%21/api/Modules.CloudPush">Modules.CloudPush</a> module.    </p>
             </td>
         </tr>
     <tr>
@@ -287,7 +290,7 @@
         <p>Collapse key is required. Include collapse key in the request.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>If you are using a custom GCM client you need to include a <a class="external-link external-link" href="http://developer.android.com/google/gcm/adv.html">collapse key</a> in the request. This error is uncommon if you are using the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#%21/api/Modules.CloudPush">Modules.CloudPush</a> module.    </p>
+        <p>If you are using a custom FCM client you need to include a <a class="external-link external-link" href="http://developer.android.com/google/gcm/adv.html">collapse key</a> in the request. This error is uncommon if you are using the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#%21/api/Modules.CloudPush">Modules.CloudPush</a> module.    </p>
             </td>
         </tr>
     <tr>
@@ -298,7 +301,7 @@
         <p>The request was missing a registration_id; registration_id is required with every request.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The GCM client did not include a <a class="external-link external-link" href="https://developer.android.com/google/gcm/client.html#sample-register">registration ID</a> in its request. This error is uncommon if you are using the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#%21/api/Modules.CloudPush">Modules.CloudPush</a> module.    </p>
+        <p>The FCM client did not include a <a class="external-link external-link" href="https://developer.android.com/google/gcm/client.html#sample-register">registration ID</a> in its request. This error is uncommon if you are using the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#%21/api/Modules.CloudPush">Modules.CloudPush</a> module.    </p>
             </td>
         </tr>
     <tr>
@@ -306,7 +309,7 @@
         <p>3009    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The user has uninstalled the application or turned off notifications. Sender should stop sending messages to this device and delete the registration_id. The client needs to re-register with the GCM servers to receive notifications again.    </p>
+        <p>The user has uninstalled the application or turned off notifications. Sender should stop sending messages to this device and delete the registration_id. The client needs to re-register with the FCM servers to receive notifications again.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>&#xA0;    </p>
@@ -320,7 +323,7 @@
         <p>Too many messages sent by the sender. Retry after a while.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>GCM limits the number of push notifications that can be sent by a particular sender over a given period. Increase the period between push notification send requests.    </p>
+        <p>FCM limits the number of push notifications that can be sent by a particular sender over a given period. Increase the period between push notification send requests.    </p>
             </td>
         </tr>
     <tr>
@@ -328,10 +331,10 @@
         <p>3011    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>A particular message could not be sent because the GCM servers were not available.    </p>
+        <p>A particular message could not be sent because the FCM servers were not available.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The GCM server was not available for an unknown reason. Try again later.    </p>
+        <p>The FCM server was not available for an unknown reason. Try again later.    </p>
             </td>
         </tr>
     <tr>
@@ -339,10 +342,10 @@
         <p>3101    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>No result retrieved from GCM Server.    </p>
+        <p>No result retrieved from FCM Server.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The GCM server did not return a response from the push notification request.    </p>
+        <p>The FCM server did not return a response from the push notification request.    </p>
             </td>
         </tr>
     <tr>
@@ -350,7 +353,7 @@
         <p>3102    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>gcm_apiKey is null.    </p>
+        <p>fcm_apiKey is null.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Make sure you&apos;ve <a class="document-link " href="Configuring_push_services.html">configured Mobile Backend Services push notifications</a> with your API key.    </p>
@@ -364,7 +367,7 @@
         <p>RegistrationId(s) is null or empty.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The GCM client provided a null or empty <a class="external-link external-link" href="https://developer.android.com/google/gcm/client.html#sample-register">registration ID</a>. This error is uncommon if you are using the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#%21/api/Modules.CloudPush">Modules.CloudPush</a> module.    </p>
+        <p>The FCM client provided a null or empty <a class="external-link external-link" href="https://developer.android.com/google/gcm/client.html#sample-register">registration ID</a>. This error is uncommon if you are using the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#%21/api/Modules.CloudPush">Modules.CloudPush</a> module.    </p>
             </td>
         </tr>
     <tr>
@@ -372,10 +375,10 @@
         <p>3104    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>GCM internal error.    </p>
+        <p>FCM internal error.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>An internal error occurred with GCM. Check GCM status.    </p>
+        <p>An internal error occurred with FCM. Check FCM status.    </p>
             </td>
         </tr>
     <tr>
