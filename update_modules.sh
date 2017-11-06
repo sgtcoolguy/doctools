@@ -71,7 +71,7 @@ updateModules () { ## check to see if a module exists and update it
 }
 
 ## array of apidoc modules to update from their respective repos
-moduleArray=( appcelerator.apm appcelerator.https ti.cloud ti.coremotion ti.facebook ti.geofence ti.map ti.newsstand ti.nfc Ti.SafariDialog ti.touchid ti.urlsession titanium-identity )
+moduleArray=( appcelerator.apm appcelerator.https ti.cloud ti.coremotion ti.facebook ti.geofence ti.map ti.newsstand ti.nfc Ti.SafariDialog ti.touchid ti.urlsession titanium-identity ti.playservices )
 
 ## array of misc repos to update
 repoArray=( appc-docs appc_web_docs arrow arrow-orm cloud_docs doctools titanium_mobile titanium_mobile_windows )
@@ -82,7 +82,7 @@ forkedArray=( alloy )
 ## loop through all arrays and update/clone as necessary
 for i in "${moduleArray[@]}"
 do
-	echo "Updating $i module"
+	echo "\nUpdating $i module"
 	updateModules apidoc $i
 done
 

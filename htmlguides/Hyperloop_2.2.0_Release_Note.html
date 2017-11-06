@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Hyperloop 2.2.0 - 20 October 2017</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
+		</div>
+        <div class="header"></div>
+
+        <div id="src-51252806" class="content">
+                        <h1>Hyperloop 2.2.0 - 20 October 2017</h1>
+    <p>Hyperloop 2.2.0 is a feature release that includes new features, improvements, and bug fixes.    </p>
+    <div class="section section-2 " id="src-51252806_Hyperloop2.2.0ReleaseNote-Newfeatures">
+        <h2 class="heading "><span>New features</span></h2>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-23853">TIMOB-23853</a> - iOS - Support embedded binaries    </p>
+<ul class=" "><li class=" ">    <p>Added full support for embedded / dynamic binaries including Swift frameworks    </p>
+</li></ul></li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-23854">TIMOB-23854</a> - iOS - Support creating of Run Script phases    </p>
+<ul class=" "><li class=" ">    <p>Added support to hooks scripts into the application build phase. This can be configured via the appc.js file with the following example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Run Script phase</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Run Script phase">
+<div class="line"><code class="plain">&#xA0;hyperloop: {</code></div>
+<div class="line"><code class="plain">  ios: {</code></div>
+<div class="line"><code class="plain">    xcodebuild: {</code></div>
+<div class="line"><code class="plain">      scripts: [{</code></div>
+<div class="line"><code class="plain">        name: </code><code class="string">&apos;My script phase&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        shellScript: </code><code class="string">&apos;${APPC_PROJECT_DIR}/src/script.sh&apos;</code></div>
+<div class="line"><code class="plain">      }]</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+</li></ul></li></ul>    </div>
+    <div class="section section-2 " id="src-51252806_Hyperloop2.2.0ReleaseNote-Improvements">
+        <h2 class="heading "><span>Improvements</span></h2>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-23956">TIMOB-23956</a> - iOS: Improve error handling for non-default Xcode installations    </p>
+<ul class=" "><li class=" ">    <p>Improved error handling for non-default Xcode installation    </p>
+</li></ul></li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-24623">TIMOB-24623</a> - iOS: Drop support for CocoaPods 0.39 and below    </p>
+<ul class=" "><li class=" ">    <p>Dropped support for CocoaPods 0.39 and below. Use CocoaPods 1.x instead as we support and recommend the latest version 1.3.1    </p>
+</li></ul></li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-24532">TIMOB-24532</a> - Android: Use .aar handling from AndroidBuilder    </p>
+<ul class=" "><li class=" ">    <p>Removed the AAR handling from Hyperloop hook; Instead, AAR handling relies on features introduced in Titanium SDK 6.1.0    </p>
+</li></ul></li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-24829">TIMOB-24829</a> - Android: Slow Compile-time, too many JS-wrappers generated    </p>
+<ul class=" "><li class=" ">    <p>Improved Android build performance by    </p>
+<ul class=" "><li class=" ">    <p>Moving the Hyperloop wrapper sources from being processed by the normal Android build process (it will also no longer regenerate all wrappers on every build)    </p>
+</li><li class=" ">    <p>Hyperloop wrappers will no longer be copied to the Resources directory which caused some confusion in classic apps. The hook will now generate all files under the build directory.    </p>
+</li><li class=" ">    <p>All important build steps are now being able to work incrementally. This will allow the Hyperloop processing to only trigger for changed or deleted files instead all of them.    </p>
+</li></ul></li></ul></li></ul>    </div>
+    <div class="section section-2 " id="src-51252806_Hyperloop2.2.0ReleaseNote-Deprecations">
+        <h2 class="heading "><span>Deprecations</span></h2>
+    <p>Starting in Hyperloop 2.2.0, manually configuring frameworks has been deprecated (<a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25283">TIMOB-25283</a>) with the introduction of dynamic frameworks in modules in Titanium SDK 6.2.0 (<a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-20557">TIMOB-20557</a>    <span style="color: #333333;">
+) and the updated framework handling for Hyperloop.     </span>
+Instead, place your frameworks in <tt class=" ">app/platform/ios</tt> (Alloy) or <tt class=" ">platform/ios</tt> (Classic Titanium) in Hyperloop 2.0.0+ and they will be computed automatically. The use-case to directly use Objective-C and Swift source files should also be discouraged in favor of using frameworks.    </p>
+    </div>
+    <div class="section section-2 " id="src-51252806_Hyperloop2.2.0ReleaseNote-Fixedissues">
+        <h2 class="heading "><span>Fixed issues</span></h2>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-24151">TIMOB-24151</a> - Android: Requiring certain classes throws an error    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25372">TIMOB-25372</a> - Android: The module android.support.v4.content.ContextCompat is missing with TiSDK 6.2.2.GA    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-23570">TIMOB-23570</a> - iOS: Support use_frameworks flag in Cocoapods    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-24160">TIMOB-24160</a> - iOS: Exclude CocoaPods products from being removed    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-24614">TIMOB-24614</a> - iOS: AVFoundation/AVSpeechSynthesizer class not found    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25341">TIMOB-25341</a> - iOS: Error after iOS 11 / Xcode 9 update    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25354">TIMOB-25354</a> - iOS: Building hyperloop-examples app fails with Hyperloop 2.2.0    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25401">TIMOB-25401</a> - iOS: Hyperloop does not generate code for Flurry &amp; Contentful Pods    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25402">TIMOB-25402</a> - iOS: Framework handling regressions    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25403">TIMOB-25403</a> - iOS: Can&apos;t find blocks from typedefs    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25192">TIMOB-25192</a> - Windows: Evaluating a null value from Hyperloop crashes the App    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-24644">TIMOB-24644</a> - Windows: Decouple Hyperloop logic and Ti SDK    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-23926">TIMOB-23926</a> - CLI: Improve Ti SDK handling durin CI builds    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-23948">TIMOB-23948</a> - CLI: Replace deprecated wrench with fs-extra    </p>
+</li></ul>    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

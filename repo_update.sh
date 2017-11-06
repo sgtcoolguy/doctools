@@ -18,6 +18,7 @@ TIZEN_DIR=$TI_ROOT/titanium_mobile_tizen
 TOUCHID_DIR=$TI_ROOT/appc_modules/ti.touchid
 URL_DIR=$TI_ROOT/appc_modules/ti.urlsession
 TIID_DIR=$TI_ROOT/appc_modules/titanium-identity
+TI_PLAY_DIR=$TI_ROOT/appc_modules/ti.playservices
 
 
 ## Error handling
@@ -39,7 +40,7 @@ fail_on_error() {
 ## $4 - repo branch
 function repo_update {
     if [ -d $2 ]; then
-        echo "Attempting to update the $1 repo on $3/$4..."
+        echo "\nAttempting to update the $1 repo on $3/$4..."
         cd $2
         git checkout $4
         fail_on_error $? "Could not checkout $3/$4 for the $1 repo"
@@ -64,5 +65,6 @@ repo_update ti.newsstand $NEWSSTAND_DIR origin master
 repo_update ti.touchid $TOUCHID_DIR origin master
 repo_update ti.urlsession $URL_DIR origin master
 repo_update titanium-identity $TIID_DIR origin master
+repo_update ti.playservices $TI_PLAY_DIR origin master
 
 echo "Repo updates completed"
