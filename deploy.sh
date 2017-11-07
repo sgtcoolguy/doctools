@@ -189,7 +189,9 @@ if [ $include_modules ]; then
                  $APPC_MODULES/ti.touchid/apidoc
                  $APPC_MODULES/titanium-identity/apidoc
                  $APPC_MODULES/Ti.SafariDialog/apidoc
-                 $APPC_MODULES/appcelerator.apm/apidoc"
+                 $APPC_MODULES/appcelerator.apm/apidoc
+                 $APPC_MODULES/titanium-identity/apidoc
+                 $APPC_MODULES/ti.playservices/apidoc"
 
     module_dirs+=" $APPC_MODULES/ti.geofence/apidoc
       		         $APPC_MODULES/appcelerator.https/apidoc
