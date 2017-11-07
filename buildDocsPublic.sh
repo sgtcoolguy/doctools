@@ -42,8 +42,8 @@ read -r input1
 cd $DOCTOOLS
 if [ $input1 == "y" ] || [ $input2 == "yes" ]; then
 	echo "Updating repos.\n"
-	sh update_modules.sh ## update various modules needed by the API docs portion of the stripFooter
-	sh build_htmlguide.sh ## rebuild the htmlguide directory and it's content
+	#sh update_modules.sh ## update various modules needed by the API docs portion of the stripFooter
+	#sh build_htmlguide.sh ## rebuild the htmlguide directory and it's content
 else
 	echo "Skipping updating the repos."
 fi
