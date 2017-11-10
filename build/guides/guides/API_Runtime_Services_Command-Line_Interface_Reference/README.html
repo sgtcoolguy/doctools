@@ -14,9 +14,6 @@
 </link></link></link></meta></meta></head>
 <body>
     <div class="container">
-		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
-		</div>
         <div class="header"/>
 
         <div id="src-43299782" class="content">
@@ -27,6 +24,7 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-acscommands">acs commands</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-accesslog">accesslog</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-add">add</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-autoshutdown">autoshutdown</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-config">config</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-crt">crt</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-domain">domain</a>    </p>
@@ -174,8 +172,7 @@ Dates are specified as YYYY-MM-DD or &quot;YYYY-MM-DD HH:MM&quot;. Note that if 
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <p>This feature is deprecated as of API Runtime Services (Arrow Cloud) 1.6.    </p>
     </div>
-        <p>    </p>
-    <p>    <span style="color: #222222;">
+        <p>    <span style="color: #222222;">
 Adds a new route or service to an existing application. The     </span>
 <i class=" ">name</i>     <span style="color: #222222;">
 parameter specifies the new the route&apos;s name, as well as the name of the handler function.    </span>
@@ -185,9 +182,6 @@ parameter specifies the new the route&apos;s name, as well as the name of the ha
 <div class="line"><code class="plain">acs add name [ -d &lt;app_directory&gt; ]</code></div>
 </div>
     </div>
-    <p>    <span style="color: #222222;">
-     </span>
-    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -225,6 +219,43 @@ parameter specifies the new the route&apos;s name, as well as the name of the ha
 </tbody>        </table>
             </div>
     </div>
+    <div class="section section-3 " id="src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-autoshutdown">
+        <h3 class="heading "><span>autoshutdown</span></h3>
+    <p>Automatically deactivate non-development containers after the specified number of seconds.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">acs autoshutdown &lt;n&gt;</code></div>
+</div>
+    </div>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Name    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">&lt;n&gt;</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Number of seconds. This value needs to be set to greater than 3600 or set to 0. If the value is not set or is set to 0, the application will not deactivate if its type is not development. <strong class=" ">Note:</strong> Development containers will still be deactivated after 7 days of inactivity.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">-h</tt>, <tt class=" ">--help</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Show help information for this command.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
     <div class="section section-3 " id="src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-config">
         <h3 class="heading "><span>config</span></h3>
     <p>    <span style="color: #222222;">
@@ -240,9 +271,6 @@ The     </span>
 <div class="line"><code class="plain">acs config [--autoscaleup </code><code class="keyword">true</code><code class="plain">|</code><code class="keyword">false</code><code class="plain">] [--autoscaledown </code><code class="keyword">true</code><code class="plain">|</code><code class="keyword">false</code><code class="plain">] [--minsize N] [--maxsize N] [--maxqueuedrequests N] [--usagenotice </code><code class="keyword">true</code><code class="plain">|</code><code class="keyword">false</code><code class="plain">] [appname]</code></div>
 </div>
     </div>
-    <p>    <span style="color: #222222;">
-     </span>
-    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -427,9 +455,6 @@ URL.    </span>
 <div class="line"><code class="plain">acs domain [ options ] [ appname ]</code></div>
 </div>
     </div>
-    <p>    <span style="color: #222222;">
-     </span>
-    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -562,9 +587,6 @@ Retrieves and displays a published application&apos;s runtime logs continuously 
 <div class="line"><code class="plain">acs logcat [ options ] [ appname ]</code></div>
 </div>
     </div>
-    <p>    <span style="color: #222222;">
-     </span>
-    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -628,7 +650,7 @@ Retrieves and displays a published application&apos;s runtime logs continuously 
     </div>
     <div class="section section-3 " id="src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-login">
         <h3 class="heading "><span>login</span></h3>
-    <p>Command for logging in to API Runtime Services using your AMPLIFY(<sup class=" ">TM</sup>) Appcelerator Services account credentials.    </p>
+    <p>Command for logging in to API Runtime Services using your AMPLIFY Appcelerator Services account credentials.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">acs login [&lt;username&gt;] [&lt;password&gt;] [--host &lt;hostname&gt;]</code></div>
@@ -689,9 +711,6 @@ Lists the application&apos;s log within a specific period. By default, a maximum
 <div class="line"><code class="plain">acs loglist [ options ] [ &lt;appname&gt; | -d &lt;app_dir&gt; ]</code></div>
 </div>
     </div>
-    <p>    <span style="color: #222222;">
-     </span>
-    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -814,9 +833,6 @@ Note that if an application is not listening on port 80, use <tt class=" ">acs c
 <div class="line"><code class="plain">acs publish [-d | --dir &lt;application-directory&gt; ] [ --list_versions ] [ --set_active_version &lt;version&gt;] [ --delete_oldest ] [--git &lt;options|config_file&gt;] [ --force ] [-h | --help] [npm_username] [npm_password]</code></div>
 </div>
     </div>
-    <p>    <span style="color: #222222;">
-     </span>
-    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -1075,10 +1091,7 @@ Note that if an application is not listening on port 80, use <tt class=" ">acs c
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <p>This feature is deprecated as of API Runtime Services (Arrow Cloud) 1.6.    </p>
     </div>
-        <p>    <span style="color: #2b4771;">
-<br>    </br></span>
-    </p>
-    <p>    <span style="color: #222222;">
+        <p>    <span style="color: #222222;">
 Start an API Runtime Services application locally for development and testing purposes.    </span>
     </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -1135,9 +1148,6 @@ command configures the server container size of the application. If your applica
 <div class="line"><code class="plain">acs server [&lt;appname&gt;] --set &lt;SERVER_SIZE&gt;] [--org &lt;ORG_ID&gt;]</code></div>
 </div>
     </div>
-    <p>    <span style="color: #222222;">
-     </span>
-    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -1207,9 +1217,6 @@ command.    </span>
 <div class="line"><code class="plain">acs unpublish [ &lt;appname&gt; |--dir &lt;app_dir&gt;] [--ver &lt;version&gt;]</code></div>
 </div>
     </div>
-    <p>    <span style="color: #222222;">
-     </span>
-    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -1257,9 +1264,6 @@ Check server system resource usage within a specific period. The server in cloud
 <div class="line"><code class="plain">acs usage [options] [appname]</code></div>
 </div>
     </div>
-    <p>    <span style="color: #222222;">
-     </span>
-    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
