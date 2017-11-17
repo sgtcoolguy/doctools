@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Application Configuration</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-43313378" class="content">
+                        <h1>Application Configuration</h1>
+    <p>By default, each API Builder project includes a configuration file, in JSON format, called <tt class=" ">appc.json</tt> located in the project&apos;s top-level folder. The settings in the file tell the Appcelerator CLI and API Runtime Services the nature of the project, which API Builder components are required by the project and any special deployment settings.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">appc.json</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="appc.json">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;api&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;group&quot;</code><code class="plain">: </code><code class="string">&quot;arrow&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;dependencies&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;connector/appc.arrowdb&quot;</code><code class="plain">: </code><code class="string">&quot;*&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;connector/appc.composite&quot;</code><code class="plain">: </code><code class="string">&quot;*&quot;</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;cloud&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;container&quot;</code><code class="plain">: </code><code class="string">&quot;Medium&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;minimum&quot;</code><code class="plain">: </code><code class="value">1</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;maximum&quot;</code><code class="plain">: </code><code class="value">1</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;maxqueuesize&quot;</code><code class="plain">: </code><code class="value">50</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;environment&quot;</code><code class="plain">: {},</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;domain&quot;</code><code class="plain">: </code><code class="keyword">null</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;certificate&quot;</code><code class="plain">: </code><code class="keyword">null</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div class="section section-2 " id="src-43313378_ApplicationConfiguration-Cloud">
+        <h2 class="heading "><span>Cloud</span></h2>
+    <p>The cloud object contains key-value pairs to configure API Runtime Services deployment settings. Instead of running a sequence of <tt class=" ">appc cloud</tt> commands, define the following keys:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Key    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>certificate    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Specify the path to the custom SSL certificate to use for HTTPS requests.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>container    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Sets the container size to use. Value can either be <tt class=" ">Dev</tt>, <tt class=" ">Small</tt>, <tt class=" ">Medium</tt>, <tt class=" ">Large</tt> or <tt class=" ">Xlarge</tt>. Default is <tt class=" ">Medium</tt>. The use of Small containers should be avoided. For optimum memory performance use Medium or larger containers.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>domain    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Set domain binding for the application to the specified domain name. A domain record must exist for the specified domain name, pointing to the application&apos;s `<a class="external-link external-link" href="http://cloud.appcelerator.com/" target="_blank">cloud.appcelerator.com</a>` URL. Do not specify the protocol, that is, do not add `http://` or `https://`, when setting this parameter.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>domainPath    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Specifies a URL path for routing. Use this parameter when setting more than one application to the same domain name. You must also set the domain key.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>environment    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Object containing key-value pairs of environment variables to set for the application, where the key is the variable name and the value is the value to set.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>maximum    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Sets the maximum number of server containers that can be used when scaling the application. Default is 1.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>maxqueuesize    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Sets the maximum number of queued requests for autoscaling to occur. API Runtime Services will increase the number of containers if the queue is too high for at least one minute. Default is 50.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>minimum    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Sets the minimum number of server containers to use. Default is 1.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-43313378_ApplicationConfiguration-Dependencies">
+        <h2 class="heading "><span>Dependencies</span></h2>
+    <p>The dependencies object contains key-value pairs of API Builder components required by the project. The key is the name of the component and the value is the version of the component. By default, API Builder automatically adds the dependencies. You should not need to change the value unless you are removing a component from the project.    </p>
+    </div>
+    <div class="section section-2 " id="src-43313378_ApplicationConfiguration-Type">
+        <h2 class="heading "><span>Type</span></h2>
+    <p>The type key is the project type.  Values can be <tt class=" ">api</tt>, <tt class=" ">block</tt>, <tt class=" ">connector</tt>, or <tt class=" ">model</tt>. By default, API Builder sets this property when you generate a new project. You should not need to change the value.    </p>
+    </div>
+    <div class="section section-2 " id="src-43313378_ApplicationConfiguration-Configurationoverride">
+        <h2 class="heading "><span>Configuration override</span></h2>
+    <p>Since Release 5.0.0, you can override the configuration file settings with an environment variable. For the setting, you want to override, prefix the variable with <tt class=" ">ARROW_</tt>. For example, if you want to override the <tt class=" ">apikey</tt> setting, set the <tt class=" ">ARROW_APIKEY</tt> environment variable.    </p>
+    <div class="section section-3 " id="src-43313378_ApplicationConfiguration-Example">
+        <h3 class="heading "><span>Example</span></h3>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">./conf/foo.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./conf/foo.js">
+<div class="line"><code class="plain">module.exports = {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// These are generated when you create a new project</code></div>
+<div class="line"><code class="plain">    apikey_production: </code><code class="string">&apos;xxxxxxxxxxxxxxxxxxxxxxxxx&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    apikey_development: </code><code class="string">&apos;yyyyyyyyyyyyyyyyyyyyyyyyy&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Selects the authorization type -- uses HTTP Basic Authorization by default</code></div>
+<div class="line"><code class="plain">    APIKeyAuthType: </code><code class="string">&apos;basic&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// All API paths will be prefixed with &apos;/foo&apos;</code></div>
+<div class="line"><code class="plain">    apiPrefix: </code><code class="string">&apos;/foo&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Sets body-parser middleware setting</code></div>
+<div class="line"><code class="plain">    bodyParser: {</code></div>
+<div class="line"><code class="plain">        limit: </code><code class="value">1</code><code class="plain"> * </code><code class="value">1024</code><code class="plain"> * </code><code class="value">1024</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Sets busboy initialization settings</code></div>
+<div class="line"><code class="plain">    busboy: {</code></div>
+<div class="line"><code class="plain">        limit: {</code></div>
+<div class="line"><code class="plain">            fieldNameSize: </code><code class="value">100</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            fieldSize: </code><code class="value">1</code><code class="plain"> * </code><code class="value">1024</code><code class="plain"> * </code><code class="value">1024</code></div>
+<div class="line"><code class="plain">        } </code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Connector settings...</code></div>
+<div class="line"><code class="plain">    connectors: {</code></div>
+<div class="line"><code class="plain">        connector_name: {</code></div>
+<div class="line"><code class="plain">            collection: </code><code class="string">&apos;foobar&apos;</code></div>
+<div class="line"><code class="plain">        },</code></div>
+<div class="line"><code class="plain">        another_connector: {</code></div>
+<div class="line"><code class="plain">            name: </code><code class="string">&apos;foobaz&apos;</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// et cetera</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=43313378"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

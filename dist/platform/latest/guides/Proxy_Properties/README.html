@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Proxy Properties</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-41845767" class="content">
+                        <h1>Proxy Properties</h1>
+    <p>    <span style="color: #484848;">
+Demonstrates expressing properties of Titanium objects with Alloy proxy elements.    </span>
+    <span style="color: #484848;">
+     </span>
+    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
+            <div class="title">App Folder Location</div>
+            <p>alloy/test/apps/<strong class=" ">ui/proxy_properties</strong>    </p>
+    </div>
+        <p>    <span style="color: #484848;">
+<br>    </br></span>
+Many Titanium UI objects and properties can be declared in Alloy as mark-up. These mark-up elements are considered proxies for the underlying Titanium APIs. For example, the <a class="document-link " href="#!/guide/Proxy_Properties-section-src-41845767_ProxyProperties-ios">views/ios/index.xml</a> view, shown below, uses the following proxies.    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.iOS.NavigationWindow">&lt;NavigationWindow/&gt;</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.Window">&lt;Window/&gt;</a>    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.Window-property-leftNavButton">&lt;LeftNavButton/&gt;</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.Window-property-rightNavButton">&lt;RightNavButton/&gt;</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.Window-property-titleControl">&lt;TitleControl/&gt;</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.Button">&lt;Button/&gt;</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.TextField">&lt;TextField/&gt;</a>    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.TextField-property-leftButton">&lt;LeftButton/&gt;</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.TextField-property-rightButton">&lt;RightButton/&gt;</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.TextField-property-keyboardToolbar">&lt;KeyboardToolbar/&gt;</a>    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.iOS.Toolbar">&lt;Toolbar/&gt;</a>    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.iOS.Toolbar-property-items">&lt;Items/&gt;</a>    </p>
+</li></ul></li></ul></li></ul></li></ul>    <p>Proxies that represent properties of objects are nested inside the parent element. For example, a <a class="external-link external-link" href="#!/api/Titanium.UI.Window">&lt;Window/&gt;</a> element&apos;s <a class="external-link external-link" href="#!/api/Titanium.UI.Window-property-leftNavButton">leftNavProperty</a> is represented by a <a class="external-link external-link" href="#!/api/Titanium.UI.Window-property-leftNavButton">&lt;LeftNavButton/&gt;</a> child element. Proxies can nest multiple levels, as shown with the Toolbar element in the XML view below.    </p>
+    <p>    <span id="src-41845767_ProxyProperties-ios"><a class="confluence-anchor-link" name="src-41845767_ProxyProperties-ios"/></span>
+    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">views/ios/index.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="views/ios/index.xml">
+<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
+<div class="line"><code class="plain">  &lt;NavigationWindow&gt;</code></div>
+<div class="line"><code class="plain">    &lt;Window&gt;</code></div>
+<div class="line"><code class="plain">      &lt;!-- proxy properties </code><code class="keyword">for</code><code class="plain"> the window --&gt;</code></div>
+<div class="line"><code class="plain">      &lt;LeftNavButton&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Button onClick=</code><code class="string">&quot;sayHi&quot;</code><code class="plain">&gt;say hi&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/LeftNavButton&gt;</code></div>
+<div class="line"><code class="plain">      &lt;TitleControl&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Label&gt;title control&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/TitleControl&gt;</code></div>
+<div class="line"><code class="plain">      &lt;RightNavButton&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Button onClick=</code><code class="string">&quot;doAlert&quot;</code><code class="plain">&gt;alert&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/RightNavButton&gt;</code></div>
+<div class="line"><code class="plain">      &lt;!-- test rest of the Window markup --&gt;</code></div>
+<div class="line"><code class="plain">      &lt;Require src=</code><code class="string">&quot;table&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">      &lt;!-- iOS TextField proxy properties --&gt;</code></div>
+<div class="line"><code class="plain">      &lt;TextField id=</code><code class="string">&quot;textfield&quot;</code><code class="plain"> platform=</code><code class="string">&quot;ios&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;LeftButton&gt;</code></div>
+<div class="line"><code class="plain">          &lt;Button onClick=</code><code class="string">&quot;sayHi&quot;</code><code class="plain"> </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;textButton&quot;</code><code class="plain">&gt;left&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/LeftButton&gt;</code></div>
+<div class="line"><code class="plain">        &lt;RightButton&gt;</code></div>
+<div class="line"><code class="plain">          &lt;Button onClick=</code><code class="string">&quot;doAlert&quot;</code><code class="plain"> </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;textButton&quot;</code><code class="plain">&gt;right&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/RightButton&gt;</code></div>
+<div class="line"><code class="plain">        &lt;!-- even nested proxy properties --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;KeyboardToolbar&gt;</code></div>
+<div class="line"><code class="plain">          &lt;Toolbar&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Items&gt;</code></div>
+<div class="line"><code class="plain">              &lt;Button&gt;button </code><code class="value">1</code><code class="plain">&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">              &lt;FlexSpace/&gt;</code></div>
+<div class="line"><code class="plain">              &lt;Button&gt;button </code><code class="value">2</code><code class="plain">&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/Items&gt;</code></div>
+<div class="line"><code class="plain">          &lt;/Toolbar&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/KeyboardToolbar&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/TextField&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/Window&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/NavigationWindow&gt;</code></div>
+<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+</div>
+    </div>
+    <p>The views/table.xml view defines a &lt;<a class="external-link external-link" href="#!/api/Titanium.UI.TableView">TableView</a>/&gt; element and various properties of the TableView such as its footerView and headerView, as well as <a class="external-link external-link" href="#!/api/Titanium.UI.TableViewSection">TableViewSection</a> and TableViewRow elements.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">views/table.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="views/table.xml">
+<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
+<div class="line"><code class="plain">  &lt;TableView id=</code><code class="string">&quot;table&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;!-- proxy properties </code><code class="keyword">for</code><code class="plain"> the table --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;HeaderView&gt;</code></div>
+<div class="line"><code class="plain">      &lt;View id=</code><code class="string">&quot;headerView&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/HeaderView&gt;</code></div>
+<div class="line"><code class="plain">    &lt;HeaderPullView&gt;</code></div>
+<div class="line"><code class="plain">      &lt;View id=</code><code class="string">&quot;headerPull&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Label id=</code><code class="string">&quot;pullLabel&quot;</code><code class="plain">&gt;Would be refreshing...&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/View&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/HeaderPullView&gt;</code></div>
+<div class="line"><code class="plain">    &lt;FooterView&gt;</code></div>
+<div class="line"><code class="plain">      &lt;View id=</code><code class="string">&quot;footerView&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/FooterView&gt;</code></div>
+<div class="line"><code class="plain">    &lt;TableViewSection headerTitle=</code><code class="string">&quot;section 1&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;TableViewRow title=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">      &lt;TableViewRow title=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">      &lt;TableViewRow title=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">      &lt;TableViewRow title=</code><code class="string">&quot;row 4&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">      &lt;TableViewRow title=</code><code class="string">&quot;row 5&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/TableViewSection&gt;</code></div>
+<div class="line"><code class="plain">    &lt;TableViewSection&gt;</code></div>
+<div class="line"><code class="plain">      &lt;HeaderView&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Label height=</code><code class="string">&quot;30dp&quot;</code><code class="plain"> backgroundColor=</code><code class="string">&quot;#ff0&quot;</code><code class="plain">&gt;section </code><code class="value">2</code><code class="plain">&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/HeaderView&gt;</code></div>
+<div class="line"><code class="plain">      &lt;FooterView&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Label height=</code><code class="string">&quot;30dp&quot;</code><code class="plain"> backgroundColor=</code><code class="string">&quot;#0ff&quot;</code><code class="plain">&gt;the footer&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/FooterView&gt;</code></div>
+<div class="line"><code class="plain">      &lt;TableViewRow title=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">      &lt;TableViewRow title=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">      &lt;TableViewRow title=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">      &lt;TableViewRow title=</code><code class="string">&quot;row 4&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">      &lt;TableViewRow title=</code><code class="string">&quot;row 5&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/TableViewSection&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/TableView&gt;</code></div>
+<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+</div>
+    </div>
+    <div class="section section-2 " id="src-41845767_ProxyProperties-SeeAlso">
+        <h2 class="heading "><span>See Also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="document-link unresolved" href="#!/guide/Proxy_Properties-section-src-41845767">Proxy Properties</a>    </p>
+</li></ul>    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845767"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

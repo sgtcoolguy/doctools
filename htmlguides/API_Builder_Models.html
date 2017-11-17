@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>API Builder Models</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-43299044" class="content">
+                        <h1>API Builder Models</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Modeldefinition">Model definition</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Fielddefinition">Field definition</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Modelschemaexample">Model schema example</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Modifyanexistingmodel">Modify an existing model</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Reduceamodel">Reduce a model</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Extendamodel">Extend a model</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Createacompositemodel">Create a composite model</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Leftjoinexample">Left join example</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Innerjoinexample">Inner join example</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Fieldnamemappings">Field name mappings</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Fieldinputvalidation">Field input validation</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Modelinputvalidation">Model input validation</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-CustomizinggeneratedmodelAPIs">Customizing generated model APIs</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-ProgrammaticCRUDinterface">Programmatic CRUD interface</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Deleteallrecords">Delete all records</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_safe-id-QVBJQnVpbGRlck1vZGVscy1DcmVhdGUsdXBkYXRlLGRlbGV0ZWFyZWNvcmQ">Create, update, delete a record</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Runaquery">Run a query</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-RestrictingCRUDendpoints">Restricting CRUD endpoints</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Predefinedorcustomendpoints">Predefined or custom endpoints</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-43299044_APIBuilderModels-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p>This guides covers the basics for creating Models. Models are data stored in either server memory or a backend service, such as Mobile Backend Services or a MySQL database, using an API Builder Connector. Models are accessed like standard REST objects using predefined endpoints that API Builder automatically generates by default.  You can either create a model by defining your own schema, use an existing model defined by a connector, modify an existing model by either extending or reducing it, or create a composite model by joining two or more models together.    </p>
+    <p>To programmatically create Models, see the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Arrow.Model">API Builder.Model API reference</a>.    </p>
+    </div>
+    <div class="section section-2 " id="src-43299044_APIBuilderModels-Modeldefinition">
+        <h2 class="heading "><span>Model definition</span></h2>
+    <p>Place all Model files in the <tt class=" ">models</tt> folder.  You can only declare one model per file.  A Model file is a JavaScript file, which:    </p>
+<ol class=" "><li class=" ">    <p>Loads the <tt class=" ">arrow</tt> module    </p>
+</li><li class=" ">    <p>Calls the module&apos;s <tt class=" ">createModel(&apos;name&apos;, schema)</tt> method (or another <tt class=" ">Model</tt> method), passing in the name of the model as the first parameter and an object defining the model schema as the second parameter    </p>
+</li><li class=" ">    <p>Exports the defined endpoint using the <tt class=" ">module.exports</tt> variable    </p>
+</li></ol>    <p>Set the following keys in the object passed to the <tt class=" ">createModel()</tt> method to define the model:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Name    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Required    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>fields    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>true    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>An object that represents the model&#x2019;s schema define as key-value pairs. The key is the name of the field and the value is the <tt class=" ">fields</tt> object. See the next table for details.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>connector    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>true    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Connector to which the model is bound (string). Each model can only have <strong class=" ">one</strong> connector. Connectors are responsible for reading and writing data from/to their data source.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>documented    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><strong class=" ">Since Release 5.0.0.</strong>  Determines whether to generate API documentation (true) or not (false). The default value is <tt class=" ">true</tt>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>metadata    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Used to provide connector specific configuration (e.g., mapping the model to a specific database table for the MySQL connector or defining the join properties).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>autogen    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Used to determine whether to generate API endpoints directly from the model. The default value is <tt class=" ">true</tt>. If the endpoint is auto-generated, you do not need to create an API endpoint definition.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>actions    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>An array of data operations supported by the model. The valid values are: <tt class=" ">create</tt>, <tt class=" ">read</tt>, <tt class=" ">update</tt>, and <tt class=" ">delete</tt>. By default, all are supported by the model.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>plural    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A string used as the property name when your API endpoint returns an array. By default, the plural value is the plural of the model name. For example, if your model is named <strong class=" ">car</strong>, the default plural would be <strong class=" ">cars</strong>. Note: this value can be set on an API or a model.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>singular    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A string used as the property name when your API endpoint returns a single record. By default, the singular value is the name of the model. Note: this value can be set on an API or a model.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>before    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>One or more blocks to be executed before the request. Blocks are referenced by their <tt class=" ">name</tt> property. If you want to execute multiple blocks, you should specify them as an array of block names. If multiple blocks are specified, they are executed in the order specified.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>after    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>One or more blocks to be executed after the request. Blocks are referenced by their <tt class=" ">name</tt> property. If you want to execute multiple blocks, you should specify them as an array of block names. If multiple blocks are specified, they are executed in the order specified.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div class="section section-3 " id="src-43299044_APIBuilderModels-Fielddefinition">
+        <h3 class="heading "><span>Field definition</span></h3>
+    <p>The <tt class=" ">fields</tt> property (mentioned above) supports a number of sub-properties as well. The table below outlines these properties.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Name    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Required    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>type    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>true    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The field primitive type plus others (e.g., &#x2018;string&#x2019;, &apos;number&apos;, &apos;boolean&apos;, &apos;object&apos;, &apos;array&apos;, &apos;date&apos;). Type can be any valid JavaScript primitive type. Type can be specified as a string (e.g., &#x2018;string&#x2019;) or by the type class (e.g., String).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>required    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Specifies whether the field is required. The default value is <tt class=" ">false</tt>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>validator    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A function or regular expression that validates the value of the field. The function is passed the data to validate and should return either <tt class=" ">null</tt> or <tt class=" ">undefined</tt> if the validation succeeds. Any other return value means the validation failed, and the return value will be used in the exception message. If a regular expression is used, it should evaluate to either true or false.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>name    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Used if the model field name is different than the field name in the connector&#x2019;s model or the underlying data source for the field name. For example, if my model field is <tt class=" ">first_name</tt> and the column in a MySQL database is <tt class=" ">fname</tt>, the value of the <tt class=" ">name</tt> property should be <tt class=" ">&apos;fname&apos;</tt>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>default    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The default value for the field.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>description    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The description of the field (used for API documentation).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>readonly    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Either <tt class=" ">true</tt> or <tt class=" ">false</tt>. If <tt class=" ">true</tt> the field will be read-only and any attempt to write the field value will fail.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>maxlength    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The max length of the field (specified as an integer)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>get    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A function used to set the value of a property that will be sent to the client. This property is useful if you want to define a custom field where the value is derived.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>set    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A function used to set the value of a property that will be sent to the connector.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>custom    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>This property should be specified and set to <tt class=" ">true</tt> if you are defining a custom field. A custom field is one that does not exist in the underlying data source for the connector you specified.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>model    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>false    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Model name of the field property. This is either the logical name of a custom model or a connector model name in the form <strong class=" ">connector/model_name</strong> (e.g., appc.mysql/employee)    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-43299044_APIBuilderModels-Modelschemaexample">
+        <h3 class="heading "><span>Model schema example</span></h3>
+    <p>The example below creates the <tt class=" ">car</tt> model with the specified schema.  The car models will be stored in Mobile Backend Services as CustomObjects.  Since the <tt class=" ">autogen</tt> property was not set to <tt class=" ">false</tt>, API Builder automatically generates the pre-define endpoints for the client to access the car models using the <tt class=" ">&lt;SEVER_ADDRESS&gt;/</tt> <tt class=" ">api/car</tt> endpoints.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var car = Arrow.createModel(</code><code class="string">&apos;car&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        make:{type:String, description:</code><code class="string">&apos;the make of a car &apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        model:{type:String, description:</code><code class="string">&apos;the model of the car&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        year: {type:Number, description:</code><code class="string">&apos;year the car was made&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        bluebook: {type:Number, description:</code><code class="string">&apos;kelly bluebook value of the car&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        mileage: {type:Number, description:</code><code class="string">&apos;current mileage of the car&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.arrowdb&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = car;</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43299044_APIBuilderModels-Modifyanexistingmodel">
+        <h2 class="heading "><span>Modify an existing model</span></h2>
+    <p>Besides creating a fully defined model, you can modify an existing model either by reducing or extending it.    </p>
+    <div class="section section-3 " id="src-43299044_APIBuilderModels-Reduceamodel">
+        <h3 class="heading "><span>Reduce a model</span></h3>
+    <p>A reduced model is an existing model where you only use specific fields from it.  To create a reduced model, follow the same procedure when creating a regular model except invoke the module&apos;s <tt class=" ">Model.reduce()</tt> method instead of the <tt class=" ">createModel()</tt> method.  Pass the model you want to reduce as the first parameter, the name of the new model as the second parameter, and the new model schema as the last parameter.    </p>
+    <p><strong class=" ">Example</strong>    </p>
+    <p>The Model file below extracts three fields from the <tt class=" ">employee</tt> table of the <tt class=" ">appc.mysql</tt> connector, indicated by the <tt class=" ">appc.mysql/employee</tt> parameter, and renames the fields for the <tt class=" ">baseEmp</tt> model, for example, <tt class=" ">email_address</tt> in the MySQL employee table maps to <tt class=" ">email</tt> in the new model.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">models/baseemp.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/baseemp.js">
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var baseEmp = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee&apos;</code><code class="plain">,</code><code class="string">&apos;baseEmp&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        fname: {type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">, name:</code><code class="string">&apos;first_name&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        lname: {type:String, description:</code><code class="string">&apos;Last name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">, name:</code><code class="string">&apos;last_name&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        email: {type:String, description:</code><code class="string">&apos;Email address&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">, name:</code><code class="string">&apos;email_address&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = baseEmp;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-43299044_APIBuilderModels-Extendamodel">
+        <h3 class="heading "><span>Extend a model</span></h3>
+    <p>An extended model is an existing model where you modify the fields or add more fields.  To create an extended model, follow the same procedure when creating a regular model except invoke the module&apos;s <tt class=" ">Model.extend()</tt> method instead of the <tt class=" ">createModel()</tt> method. Pass the model you want to extend as the first parameter, the name of the new model as the second parameter, and the new model schema as the last parameter.    </p>
+    <p><strong class=" ">Example</strong>    </p>
+    <p>The Model below extends the employee model by adding the <tt class=" ">headquarters</tt> field to it.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">models/fullemp.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/fullemp.js">
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var fullEmp = Arrow.Model.extend(</code><code class="string">&apos;employee&apos;</code><code class="plain">,</code><code class="string">&apos;fullEmp&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        headquarters:{type:Boolean, custom:</code><code class="keyword">true</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">            get:function(val,key,model){</code></div>
+<div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> model.get(</code><code class="string">&apos;state&apos;</code><code class="plain">) === </code><code class="string">&apos;CA&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = fullEmp;</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43299044_APIBuilderModels-Createacompositemodel">
+        <h2 class="heading "><span>Create a composite model</span></h2>
+    <p>Composite models allow you to create a single model that is composed of one or more models based on the same or different connectors. Composite models can be joined together via a common set of properties, such as primary keys or foreign keys, or they can have no properties in common at all. The power of composite models is that you can represent multiple data sources and entities as a single API endpoint, which is ideal for many mobile use cases.    </p>
+    <p>To create a composite model, follow the same procedure when creating a regular model except the <tt class=" ">connector</tt> property must be set to <tt class=" ">appc.composite</tt>, each field in the definition object must specify the <tt class=" ">model</tt> property to indicate which model the field originates from, and the <tt class=" ">metadata</tt> property must define the join operation to combine the models or leave it undefined to perform no join operations.    </p>
+    <p>The following terms are used to refer to models:    </p>
+<ul class=" "><li class=" ">    <p>Model definition: The composite model which is being created    </p>
+</li><li class=" ">    <p>Main model: The main source of data for the composite model. This is the left table in SQL terminology. It is implicitly defined.    </p>
+</li><li class=" ">    <p>Secondary model: Any model other than the main model. This will be the right table in SQL terminology.    </p>
+</li></ul>    <p>The composite connector can either perform a left join or inner join:    </p>
+<ul class=" "><li class=" ">    <p>left join: all records from the main model are returned regardless if it found a match in the secondary models    </p>
+</li><li class=" ">    <p>inner join: only records that match both models are returned    </p>
+</li></ul>    <p>The composite connector can also perform either a one-to-one join or one-to-many join:    </p>
+<ul class=" "><li class=" ">    <p>one-to-one: only one record from the secondary model matches a record in the main model    </p>
+</li><li class=" ">    <p>one-to-many: multiple records from the secondary model can match a record in the main model    </p>
+</li></ul>    <p>There are different ways that a one-to-one join and a one-to-many join can work when merging (mapping) data from a secondary model into the main model:    </p>
+<ul class=" "><li class=" ">    <p>Merge as object: This is a one-to-one relation where the whole secondary model record will be mapped to a field in the main model.    </p>
+</li><li class=" ">    <p>Merge as array: This is a one-to-many relation where multiple records from the secondary model will be mapped to an array field in the model definition.    </p>
+</li><li class=" ">    <p>Merge as field: This is a field which comes directly from a joined model. The field in the model definition <i class=" "><strong class=" ">must</strong> </i>have a &apos;name&apos; property which refers to the field being joined from the secondary model. By default, this is a one-to-one relation where the field will contain a single match. In the Join Object Definition, &apos;multiple&apos; may be set to true for all of the matches to be mapped to the field. Since this returns multiple values, the field type must be Array if &apos;multiple&apos; is set to true.    </p>
+</li></ul>    <p>The composite connector can be used to perform &quot;reduce&quot; functionality on a single model. This only requires the main model and does not require any joins. The API Builder Console offers its functionality using this method. Without any joins, a one-to-one merge as field is the only functionality available.    </p>
+    <p>To define the join operation, set the <tt class=" ">metadata</tt> property to the <tt class=" ">left_join</tt> key or <tt class=" ">inner_join</tt> key, either of which takes an array of objects defining the join.  Each object in the <tt class=" ">left_join</tt> or <tt class=" ">inner_join</tt> property defines the model to join (<tt class=" ">model</tt> property), key to join (<tt class=" ">join_properties</tt> property) and, optionally, if the join is a <tt class=" ">multiple</tt> property.    </p>
+    <p><strong class=" ">Join object definition</strong>    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Key    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Value    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>model    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>String    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Name of the model. For left joins, this is the secondary model you want to join with the main model.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>join_properties    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Object    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Collection of key-value pairs that determine the keys in each model to perform the join operation. The key is the property of the model defined in this object and the value is the property to join in another model (or the main model for left joins).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>multiple    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Boolean    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Determines whether the match is one-to-one (false) or one-to-many (true) . The default value is <tt class=" ">false</tt>. If true, the field being joined on must be of type Array<strong class=" "> </strong>and have a <tt class=" ">name</tt> property referring to the field from the secondary model to be used.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div class="section section-3 " id="src-43299044_APIBuilderModels-Leftjoinexample">
+        <h3 class="heading "><span>Left join example</span></h3>
+    <p>The example below combines the <tt class=" ">employee</tt> and <tt class=" ">managers</tt> models to create the employee_manager model.  The models are joined based on a match between the managers model&apos;s <tt class=" ">employee_id</tt> and the employee model&apos;s auto-generated <tt class=" ">id</tt>.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">models/employee_manager.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/employee_manager.js">
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var employee_manager = Arrow.createModel(</code><code class="string">&apos;employee_manager&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        fname: {type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, name:</code><code class="string">&apos;fname&apos;</code><code class="plain">, model:</code><code class="string">&apos;employee&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        manager: {type:String, description:</code><code class="string">&apos;manager of employee&apos;</code><code class="plain">, name: </code><code class="string">&apos;manager&apos;</code><code class="plain">, model:</code><code class="string">&apos;managers&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.composite&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    metadata: {</code></div>
+<div class="line"><code class="plain">        left_join: {</code></div>
+<div class="line"><code class="plain">            model: </code><code class="string">&apos;managers&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            join_properties: {</code></div>
+<div class="line"><code class="plain">                employee_id: </code><code class="string">&apos;id&apos;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = employee_manager;</code></div>
+</div>
+    </div>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">models/employee.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/employee.js">
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var employee = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee&apos;</code><code class="plain">,</code><code class="string">&apos;employee&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        fname: {type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, name:</code><code class="string">&apos;first_name&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.mysql&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = employee;</code></div>
+</div>
+    </div>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">models/managers.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/managers.js">
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var managers = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee_manager&apos;</code><code class="plain">,</code><code class="string">&apos;managers&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        employee_id: { type: Number, description: </code><code class="string">&apos;Employee ID&apos;</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">        manager: {type:String, name:</code><code class="string">&apos;manager_name&apos;</code><code class="plain">, description:</code><code class="string">&apos;manager name&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.mysql&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = managers;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-43299044_APIBuilderModels-Innerjoinexample">
+        <h3 class="heading "><span>Inner join example</span></h3>
+    <p>The example below performs an inner join on the <tt class=" ">employee</tt>, <tt class=" ">employee_manager</tt> and <tt class=" ">employee_habit</tt> models.  Both the <tt class=" ">employee_manager</tt> and <tt class=" ">employee_habit employee_id </tt>properties will try to match the employee<tt class=" "> id</tt> property. The description of every habit which matches the employee ID will be listed in the <tt class=" ">habit</tt> property.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// create a model from a mysql table</code></div>
+<div class="line"><code class="plain">var employee_composite = Arrow.createModel(</code><code class="string">&apos;employee_composite&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        fname: {type: String, description: </code><code class="string">&apos;First name&apos;</code><code class="plain">, name: </code><code class="string">&apos;fname&apos;</code><code class="plain">, model: </code><code class="string">&apos;employee&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        manager: {type: String, description: </code><code class="string">&apos;Manager of employee&apos;</code><code class="plain">, name: </code><code class="string">&apos;manager&apos;</code><code class="plain">, model: </code><code class="string">&apos;employee_manager&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        habits: {type: Array, description: </code><code class="string">&apos;Habits of employee&apos;</code><code class="plain">, name: </code><code class="string">&apos;description&apos;</code><code class="plain">, model: </code><code class="string">&apos;employee_habit&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.composite&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    metadata: {</code></div>
+<div class="line"><code class="plain">        inner_join: [</code></div>
+<div class="line"><code class="plain">            {</code></div>
+<div class="line"><code class="plain">                model: </code><code class="string">&apos;employee_manager&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                join_properties: {</code></div>
+<div class="line"><code class="plain">                    employee_id: </code><code class="string">&apos;id&apos;</code></div>
+<div class="line"><code class="plain">                }</code></div>
+<div class="line"><code class="plain">            },</code></div>
+<div class="line"><code class="plain">            {</code></div>
+<div class="line"><code class="plain">                model:</code><code class="string">&apos;employee_habit&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                multiple: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                join_properties:{</code></div>
+<div class="line"><code class="plain">                    employee_id:</code><code class="string">&apos;id&apos;</code></div>
+<div class="line"><code class="plain">                }</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">        ]</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = employee_composite;</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43299044_APIBuilderModels-Fieldnamemappings">
+        <h2 class="heading "><span>Field name mappings</span></h2>
+    <p>You often want the ability to use a field property name in your model that is different from its name in an existing model. The following example shows how you can use the <tt class=" ">name</tt> sub-property of a field to map a model property name to a specific property name of an existing custom model or connector generated model. For example, the <strong class=" ">employee</strong> model has a property called <strong class=" ">first_name</strong>, but the new model wants that property to be called <strong class=" ">fname</strong>. The API Builder framework ensures this mapping occurs bidirectionally.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">var</code><code class="plain"> emp = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee&apos;</code><code class="plain">,</code><code class="string">&apos;emp&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        fname: { type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, name:</code><code class="string">&apos;first_name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        lname: { type:String, description:</code><code class="string">&apos;Last name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">, name:</code><code class="string">&apos;last_name&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        email: { type:String, description:</code><code class="string">&apos;Email address&apos;</code><code class="plain">, readonly:</code><code class="keyword">true</code><code class="plain">, name:</code><code class="string">&apos;email_address&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.mysql&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = emp;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43299044_APIBuilderModels-Fieldinputvalidation">
+        <h2 class="heading "><span>Field input validation</span></h2>
+    <p>You might need to perform validation on a field when creating or updating a record. Each property in your model definition can specify a validation function using the <tt class=" ">validator</tt> field property. This function is called before sending data to your model&#x2019;s connector. The <tt class=" ">validator</tt> function is passed the value of the property. If the value is valid, the function should return <tt class=" ">null</tt> or <tt class=" ">undefined</tt>. If not valid, the function should return a message indicating why the validation failed. The following is an example of a validator function on a field.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">var</code><code class="plain"> emp = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee&apos;</code><code class="plain">,</code><code class="string">&apos;emp&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        fname: {</code></div>
+<div class="line"><code class="plain">            type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, name:</code><code class="string">&apos;first_name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            validator:</code><code class="keyword">function</code><code class="plain">(val) {</code></div>
+<div class="line"><code class="plain">                </code><code class="keyword">if</code><code class="plain"> (val.length &lt; 5) {</code></div>
+<div class="line"><code class="plain">                    </code><code class="keyword">return</code><code class="plain"> </code><code class="string">&apos;First name must be greater than 5 characters&apos;</code></div>
+<div class="line"><code class="plain">                }</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">        },</code></div>
+<div class="line"><code class="plain">        lname: { type:String, description:</code><code class="string">&apos;Last name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">, name:</code><code class="string">&apos;last_name&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        email: { type:String, description:</code><code class="string">&apos;Email address&apos;</code><code class="plain">, readonly:</code><code class="keyword">true</code><code class="plain">, name:</code><code class="string">&apos;email_address&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.mysql&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = emp;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43299044_APIBuilderModels-Modelinputvalidation">
+        <h2 class="heading "><span>Model input validation</span></h2>
+    <p>You might need to perform validation on a whole model. Specify in your model definition a validation function using the <tt class=" ">validator</tt> model property. This function is called before sending data to your model&#x2019;s connector. The <tt class=" ">validator</tt> function is passed the instance of the model. If the value is valid, the function should return <tt class=" ">null</tt> or <tt class=" ">undefined</tt>. If not valid, the function should return a message indicating why the validation failed or throw an exception. The following is an example of a validator function on a model.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">var</code><code class="plain"> emp = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee&apos;</code><code class="plain">,</code><code class="string">&apos;emp&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        fame: { type:String },</code></div>
+<div class="line"><code class="plain">        lname: { type:String }</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    validator: </code><code class="keyword">function</code><code class="plain"> (instance) {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">var</code><code class="plain"> errors = [];</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (instance.get(</code><code class="string">&apos;fame&apos;</code><code class="plain">) === </code><code class="string">&quot;Rick&quot;</code><code class="plain">) {</code></div>
+<div class="line"><code class="plain">            errors.push(</code><code class="string">&apos;Sorry, Rick is not allowed to play here.&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (instance.get(</code><code class="string">&apos;lname&apos;</code><code class="plain">).length &lt; 5) {</code></div>
+<div class="line"><code class="plain">            errors.push(</code><code class="string">&apos;The lname must be at least 5 characters long.&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (errors.length) {</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> errors.join(</code><code class="string">&apos;\n&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.mysql&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = emp;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43299044_APIBuilderModels-CustomizinggeneratedmodelAPIs">
+        <h2 class="heading "><span>Customizing generated model APIs</span></h2>
+    <p>You can customize the generated APIs for your models. For example, by default, the create API only returns a status 201 with a header Location pointing to the newly created instance. No body content is returned. If you want to directly receive the newly created instance in the body of the request, add the <tt class=" ">includeResponseBody: true</tt> metadata to your model.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">var</code><code class="plain"> emp = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee&apos;</code><code class="plain">,</code><code class="string">&apos;emp&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        fname: {</code></div>
+<div class="line"><code class="plain">            type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, name:</code><code class="string">&apos;first_name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">        },</code></div>
+<div class="line"><code class="plain">        lname: { type:String, description:</code><code class="string">&apos;Last name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">, name:</code><code class="string">&apos;last_name&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        email: { type:String, description:</code><code class="string">&apos;Email address&apos;</code><code class="plain">, readonly:</code><code class="keyword">true</code><code class="plain">, name:</code><code class="string">&apos;email_address&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.mysql&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    metadata: {</code></div>
+<div class="line"><code class="plain">        includeResponseBody: </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = emp;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43299044_APIBuilderModels-ProgrammaticCRUDinterface">
+        <h2 class="heading "><span>Programmatic CRUD interface</span></h2>
+    <p>All models inherit the CRUD interfaces supported by their underlying connector. As a result, you can programmatically call these interfaces. The main use case for using a model&#x2019;s CRUD interface is when you want more control of an API&apos;s functionality. You can place logic in your API endpoint&#x2019;s <tt class=" ">action</tt> function to handle custom business functionality and control execution of data access.    </p>
+    <p>The following are the main interfaces most connectors support.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&#xA0;</code><code class="comments">// delete all records for a model</code></div>
+<div class="line"><code class="plain">Model.deleteAll(callback);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// query a model.</code></div>
+<div class="line"><code class="plain">Model.query(options, callback);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// find all records for a model</code></div>
+<div class="line"><code class="plain">Model.findAll(callback);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// find a record by id for a model</code></div>
+<div class="line"><code class="plain">Model.findByID(id, callback);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// delete a record for a model</code></div>
+<div class="line"><code class="plain">Model.delete(instance, callback);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// update a record</code></div>
+<div class="line"><code class="plain">Model.update(instance, callback);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// create a record</code></div>
+<div class="line"><code class="plain">Model.create(object, callback);</code></div>
+</div>
+    </div>
+    <p>The following model has example uses.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// example model</code></div>
+<div class="line"><code class="plain">Model = Arrow.Model.extend(testTableName, {</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        title: { type: String },</code></div>
+<div class="line"><code class="plain">        content: { type: String }</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.mssql&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    <div class="section section-3 " id="src-43299044_APIBuilderModels-Deleteallrecords">
+        <h3 class="heading "><span>Delete all records</span></h3>
+    <p>Use the <tt class=" ">deleteAll</tt> function on a model to delete all of its records.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">Model.deleteAll(</code><code class="keyword">function</code><code class="plain">(err) {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (err) {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> next(err);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">    next();</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-43299044_safe-id-QVBJQnVpbGRlck1vZGVscy1DcmVhdGUsdXBkYXRlLGRlbGV0ZWFyZWNvcmQ">
+        <h3 class="heading "><span>Create, update, delete a record</span></h3>
+    <p>The following is an example of creating a record and then updating and deleting it. It&#x2019;s not necessarily a practical example but demonstrates how to use some additional interfaces available on a model.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// setup record object</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> title = </code><code class="string">&apos;Test&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    content = </code><code class="string">&apos;Hello world&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    object = {</code></div>
+<div class="line"><code class="plain">        title: title,</code></div>
+<div class="line"><code class="plain">        content: content</code></div>
+<div class="line"><code class="plain">    };</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// create record then update then delete</code></div>
+<div class="line"><code class="plain">Model.create(object, </code><code class="keyword">function</code><code class="plain">(err, instance) {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (err) {</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// do something</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="comments">// update instance</code></div>
+<div class="line"><code class="plain">    instance.set(</code><code class="string">&apos;content&apos;</code><code class="plain">, </code><code class="string">&apos;foo&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="comments">// save instance</code></div>
+<div class="line"><code class="plain">    instance.update(</code><code class="keyword">function</code><code class="plain">(err, result){</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// logic here</code></div>
+<div class="line"><code class="plain">    });</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    </code><code class="comments">// delete instance</code></div>
+<div class="line"><code class="plain">    instance.</code><code class="keyword">delete</code><code class="plain">(</code><code class="keyword">function</code><code class="plain">(err,result){</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// logic here</code></div>
+<div class="line"><code class="plain">    });</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-43299044_APIBuilderModels-Runaquery">
+        <h3 class="heading "><span>Run a query</span></h3>
+    <p>The following is a simple example of performing a query against a model.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// setup query options</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> options = {</code></div>
+<div class="line"><code class="plain">    where: { content: { $like: </code><code class="string">&apos;Hello%&apos;</code><code class="plain"> } },</code></div>
+<div class="line"><code class="plain">    sel: { content: 1 },</code></div>
+<div class="line"><code class="plain">    order: { title: -1, content: 1 },</code></div>
+<div class="line"><code class="plain">    limit: 3,</code></div>
+<div class="line"><code class="plain">    skip: 0</code></div>
+<div class="line"><code class="plain">};</code></div>
+<div class="line"><code class="comments">// execute query</code></div>
+<div class="line"><code class="plain">Model.query(options, </code><code class="keyword">function</code><code class="plain">(err, coll) {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// process results</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    <p>    <span id="src-43299044_heading-restricting-crud-endpoints"><a name="src-43299044_heading-restricting-crud-endpoints"></a></span>
+If none of these values are present in <tt class=" ">options</tt><strong class=" "><tt class=" ">,</tt> </strong>the <tt class=" ">options</tt> object is treated as a <tt class=" ">where</tt> statement.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// setup query options</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> options = {</code></div>
+<div class="line"><code class="plain">    content: { $like: </code><code class="string">&apos;Hello%&apos;</code><code class="plain"> }</code></div>
+<div class="line"><code class="plain">};</code></div>
+<div class="line"><code class="comments">// execute query</code></div>
+<div class="line"><code class="plain">Model.query(options, </code><code class="keyword">function</code><code class="plain">(err, coll) {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// process results</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43299044_APIBuilderModels-RestrictingCRUDendpoints">
+        <h2 class="heading "><span>Restricting CRUD endpoints</span></h2>
+    <p>By default, models support the basic CRUD methods (CREATE, READ, UPDATE, and DELETE). You can limit the methods supported by a model by using the <tt class=" ">actions</tt> property.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">var</code><code class="plain"> emp = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee&apos;</code><code class="plain">,</code><code class="string">&apos;emp&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        fname: { type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, name:</code><code class="string">&apos;first_name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        lname: { type:String, description:</code><code class="string">&apos;Last name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">, name:</code><code class="string">&apos;last_name&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        email: { type:String, description:</code><code class="string">&apos;Email address&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">, name:</code><code class="string">&apos;email_address&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    actions:[</code><code class="string">&apos;create&apos;</code><code class="plain">,</code><code class="string">&apos;read&apos;</code><code class="plain">],</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;appc.mysql&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = emp;</code></div>
+</div>
+    </div>
+    <p>In this example, the model only allows <tt class=" ">create</tt> (POST) or <tt class=" ">read</tt> (GET). DELETE and PUT are not allowed and would fail.    </p>
+    <p>The valid values for the <tt class=" ">action</tt> property are: <tt class=" ">create</tt>, <tt class=" ">read</tt>, <tt class=" ">update</tt>, <tt class=" ">delete</tt>, and <tt class=" ">deleteAll</tt>.    </p>
+    </div>
+    <div class="section section-2 " id="src-43299044_APIBuilderModels-Predefinedorcustomendpoints">
+        <h2 class="heading "><span>Predefined or custom endpoints</span></h2>
+    <p>By default, API Builder generates the following API endpoints for models:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">GET /api/&lt;model_name&gt;</tt> : Return all objects (the first 1000 records).    </p>
+</li><li class=" ">    <p><tt class=" ">GET /api/&lt;model_name&gt;/query</tt> : Return all objects that satisfy a query.    </p>
+</li><li class=" ">    <p><tt class=" ">GET /api/&lt;model_name&gt;/:id</tt> : Return a specific object by id    </p>
+</li><li class=" ">    <p><tt class=" ">GET /api/&lt;model_name&gt;/distinct</tt> : Find distinct objects    </p>
+</li><li class=" ">    <p><tt class=" ">GET /api/&lt;model_name&gt;/count</tt> : Count objects    </p>
+</li><li class=" ">    <p><tt class=" ">PUT /api/&lt;model_name&gt;/:id</tt> : Update a specific user by id    </p>
+</li><li class=" ">    <p><tt class=" ">PUT /api/&lt;model_name&gt;/findAndModify</tt> : Find and modify an object    </p>
+</li><li class=" ">    <p><tt class=" ">POST /api/&lt;model_name&gt;</tt> : Create a new object    </p>
+</li><li class=" ">    <p><tt class=" ">POST /api/&lt;model_name&gt;/upsert</tt> : Create or update an object    </p>
+</li><li class=" ">    <p><tt class=" ">DELETE /api/&lt;model_name&gt;/:id</tt> : Delete a specific object by id    </p>
+</li><li class=" ">    <p><tt class=" ">DELETE /api/&lt;model_name&gt;</tt> : Delete all objects    </p>
+</li></ul>    <p>To disable API Builder from generating these endpoints, set the Model&apos;s <tt class=" ">autogen</tt> property to <tt class=" ">false</tt> when defining the model.  You will need to create <a class="document-link unresolved" href="API_Builder_Models.html#src-43299044">API Builder API objects</a> to access the model.    </p>
+    <p><strong class=" ">Example</strong>    </p>
+    <p>The following model disabled generating pre-defined endpoints. An API endpoint needs to be defined to access the model data as shown below.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">models/employee.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/employee.js">
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var employee = createModel(</code><code class="string">&apos;employee&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">    fields: {</code></div>
+<div class="line"><code class="plain">        first_name: {type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        last_name: {type:String, description:</code><code class="string">&apos;Last name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        email_address: {type:String, description:</code><code class="string">&apos;Email address&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    connector: </code><code class="string">&apos;memory&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    autogen: </code><code class="keyword">false</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = employee;</code></div>
+</div>
+    </div>
+    <p>The example below implements the <tt class=" ">GET /api/&lt;employee&gt;/:id</tt> endpoint that would normally be generated by API Builder.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">apis/employeefindById.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="apis/employeefindById.js">
+<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var findEmployeeById = Arrow.API.extend({</code></div>
+<div class="line"><code class="plain">    group: </code><code class="string">&apos;employeeAPIs&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    path: </code><code class="string">&apos;/api/employee/:id&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    method: </code><code class="string">&apos;GET&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    description: </code><code class="string">&apos;This API finds one employee record&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    model: </code><code class="string">&apos;employee&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    parameters: {</code></div>
+<div class="line"><code class="plain">        id: {description: </code><code class="string">&apos;the employee id&apos;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    action: function (req, resp, next) {</code></div>
+<div class="line"><code class="plain">        resp.stream(req.model.find, req.params.id, next);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = findEmployeeById;</code></div>
+</div>
+    </div>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

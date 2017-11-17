@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>APIs and Endpoints</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-49158864" class="content">
+                        <h1>APIs and Endpoints</h1>
+    <p>    <span style="color: #000000;">
+APIs are defined as <a class="external-link external-link" href="http://swagger.io/specification/">    <span style="color: #1155cc;">
+Swagger 2.0    </span>
+</a> documents which can contain one or more Endpoint definitions. The API swagger document must be formatted as JSON and contained within the <tt class=" ">/endpoints</tt> directory of your app.     </span>
+    </p>
+    <p>    <span style="color: #000000;">
+When API Builder reads these API swagger definitions, it will create the specified routes for each Endpoint. The implementation of the business logic for each Endpoint is handled by the Flow associated with that Endpoint.    </span>
+    <span style="color: #000000;">
+ This is delegated to Flows which are specified on a per-Endpoint level.    </span>
+    </p>
+    <p>    <span style="color: #000000;">
+APIs have the following extensions to the swagger specification:    </span>
+    </p>
+    <p>    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+Property    </span>
+    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+Description    </span>
+    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+Required    </span>
+    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+Type    </span>
+    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+Default    </span>
+    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+Example    </span>
+    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+x-enabled    </span>
+    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+If the API should be bound to the app on load.    </span>
+    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+No    </span>
+    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+object    </span>
+    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">{ &quot;enabled&quot;: true }</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">{ &quot;enabled&quot;: false }</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+x-flow    </span>
+    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+The name of the Flow to be executed when the endpoint is hit.     </span>
+    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+Yes    </span>
+    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <span style="color: #000000;">
+string    </span>
+    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">&quot;greetflow&quot;</tt><tt class=" "></tt>    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div class="section section-2 " id="src-49158864_APIsandEndpoints-Example">
+        <h2 class="heading "><span>Example</span></h2>
+    <p>    <span style="color: #000000;">
+This example API below is similar to the one that comes with every API Builder Project. It contains an Endpoint which takes a username, invokes the flow called &#x201C;greetflow&#x201D;, and returns a greeting. However, since it has an x-enabled flag set, the Endpoint will be disabled, and no requests will be able to be made to it.    </span>
+    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;swagger&quot;</code><code class="plain">: </code><code class="string">&quot;2.0&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;info&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;Greeting functions&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;version&quot;</code><code class="plain">: </code><code class="string">&quot;1.0.0&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;title&quot;</code><code class="plain">: </code><code class="string">&quot;Greeting API&quot;</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;x-enabled&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;enabled&quot;</code><code class="plain">: </code><code class="keyword">false</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;paths&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;/greet&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;get&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;x-flow&quot;</code><code class="plain">: </code><code class="string">&quot;greetflow&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;consumes&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;application/json&quot;</code></div>
+<div class="line"><code class="plain">         ],</code></div>
+<div class="line"><code class="plain">         </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">         </code><code class="string">&quot;operationId&quot;</code><code class="plain">: </code><code class="string">&quot;Greet&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">         </code><code class="string">&quot;parameters&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">           {</code></div>
+<div class="line"><code class="plain">             </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;The username&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">             </code><code class="string">&quot;in&quot;</code><code class="plain">: </code><code class="string">&quot;query&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">             </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;username&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">             </code><code class="string">&quot;required&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">             </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;string&quot;</code></div>
+<div class="line"><code class="plain">           }</code></div>
+<div class="line"><code class="plain">         ],</code></div>
+<div class="line"><code class="plain">         </code><code class="string">&quot;produces&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">           </code><code class="string">&quot;application/json&quot;</code></div>
+<div class="line"><code class="plain">         ],</code></div>
+<div class="line"><code class="plain">         </code><code class="string">&quot;responses&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">           </code><code class="string">&quot;200&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">             </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;greeting&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">             </code><code class="string">&quot;schema&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">               </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;string&quot;</code></div>
+<div class="line"><code class="plain">             }</code></div>
+<div class="line"><code class="plain">           },</code></div>
+<div class="line"><code class="plain">           </code><code class="string">&quot;400&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">             </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;bad request&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">             </code><code class="string">&quot;schema&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">               </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;string&quot;</code></div>
+<div class="line"><code class="plain">             }</code></div>
+<div class="line"><code class="plain">           }</code></div>
+<div class="line"><code class="plain">         },</code></div>
+<div class="line"><code class="plain">         </code><code class="string">&quot;summary&quot;</code><code class="plain">: </code><code class="string">&quot;Greet a user&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">         </code><code class="string">&quot;tags&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">           </code><code class="string">&quot;helloworld&quot;</code></div>
+<div class="line"><code class="plain">         ]</code></div>
+<div class="line"><code class="plain">       }</code></div>
+<div class="line"><code class="plain">     }</code></div>
+<div class="line"><code class="plain">   }   </code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

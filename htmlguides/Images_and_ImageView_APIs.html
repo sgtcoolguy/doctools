@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Images and ImageView APIs</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-29004912" class="content">
+                        <h1>Images and ImageView APIs</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Images_and_ImageView_APIs.html#src-29004912_ImagesandImageViewAPIs-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Images_and_ImageView_APIs.html#src-29004912_ImagesandImageViewAPIs-BackgroundImages">Background Images</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Images_and_ImageView_APIs.html#src-29004912_ImagesandImageViewAPIs-ImageView">ImageView</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Images_and_ImageView_APIs.html#src-29004912_ImagesandImageViewAPIs-Flipbookanimations">Flipbook animations</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Images_and_ImageView_APIs.html#src-29004912_ImagesandImageViewAPIs-Density-specificimages">Density-specific images</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Images_and_ImageView_APIs.html#src-29004912_ImagesandImageViewAPIs-AndroidPlatform">Android Platform</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Images_and_ImageView_APIs.html#src-29004912_ImagesandImageViewAPIs-iOSPlatform">iOS Platform</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Images_and_ImageView_APIs.html#src-29004912_ImagesandImageViewAPIs-WindowsPlatform">Windows Platform</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Images_and_ImageView_APIs.html#src-29004912_ImagesandImageViewAPIs-Grantaccesstopictureslibrary">Grant access to pictures library</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="Images_and_ImageView_APIs.html#src-29004912_ImagesandImageViewAPIs-References">References</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Images_and_ImageView_APIs.html#src-29004912_ImagesandImageViewAPIs-Summary">Summary</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-29004912_ImagesandImageViewAPIs-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p>In this chapter, we&apos;ll dig a bit deeper into the ways you can add local and remote images to your apps as either background images or ImageViews.    </p>
+    <p>You can display images in your apps in at least two ways: as instances of the ImageView object or as the background of another component. We&apos;ll look at both techniques as well as the options associated with each.    </p>
+    </div>
+    <div class="section section-2 " id="src-29004912_ImagesandImageViewAPIs-BackgroundImages">
+        <h2 class="heading "><span>Background Images</span></h2>
+    <p>You can specify an image be used as the background of another component, such as a view or button. By default, image will be scaled (stretched or squeezed) to fit the dimensions of the component. Any other content of that component will appear in front of the background image. For example, button text will appear over the top of the background.    </p>
+    <p>When the background image is larger than the component, it will be squeezed to fit the component&apos;s dimensions. Both platforms handle that in essentially the same way, as you can see in the red images in the graphic below. But iOS and Android handle background images differently when they&apos;re smaller than the component. Look carefully at the following image. Overlaid on top, you see the original small PNG image that is used as the background if the view with the four Xs. In that view, on Android the background image is stretched to fit the width of the component. On iOS, a small portion of the left and right of the image remain un-stretched while the remainder is stretched to fill the width.    </p>
+    <p>    <img src="images/download/attachments/29004912/default_image_scaling.png" alt="images/download/attachments/29004912/default_image_scaling.png" class="confluence-embedded-image" width="500">
+        </p>
+    <p>On iOS, you can control this &quot;small portion&quot; that remains unstretched. You do so by setting the <tt class=" ">backgroundLeftCap</tt> property. It works like this: End caps specify the portion of an image that should not be resized when an image is stretched. Resizing occurs only in the middle of the button, in the region between the end caps. The end caps themselves keep their original size and appearance. The value of this property specifies the size of the left end cap. The middle (stretchable) portion is assumed to be 1 pixel wide. The right end cap is therefore computed by adding the size of the left end cap and the middle portion together and then subtracting that value from the width of the image.    </p>
+    <p>You can control vertical stretching in this way with the <tt class=" ">backgroundTopCap</tt> property. Again, that works on only iOS.    </p>
+    <p>Android supports remote images as background images. On Android, you can set the <tt class=" ">backgroundImage</tt> property equal to a URL and the image will be displayed (assuming a network connection is available). That&apos;s not the case on iOS.    </p>
+    </div>
+    <div class="section section-2 " id="src-29004912_ImagesandImageViewAPIs-ImageView">
+        <h2 class="heading "><span>ImageView</span></h2>
+    <p>The <tt class=" ">ImageView</tt> is Titanium&apos;s component for representing an image file. You create one with the <tt class=" ">Ti.UI.createImageView()</tt> method. With this component, you have full control over dimensions, positioning, opacity, and more. The <tt class=" ">ImageView</tt> has a number of interesting methods, such as <tt class=" ">show()</tt> and <tt class=" ">hide()</tt>, <tt class=" ">start()</tt> and <tt class=" ">stop()</tt>, and <tt class=" ">toImage()</tt>.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">var myImage = Ti.UI.createImageView({</code></div>
+<div class="line"><code class="plain">	width: </code><code class="value">100</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	height: </code><code class="value">100</code></div>
+<div class="line"><code class="plain">	image: </code><code class="string">&apos;foo.png&apos;</code><code class="plain"> </code><code class="comments">/* accepts URL, local path, or Ti.Filesystem.File */</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="comments">/*</code></div>
+<div class="line"><code class="comments">// this would work:</code></div>
+<div class="line"><code class="comments">myImage.image = &apos;http://example.com/foo.png&apos;</code></div>
+<div class="line"><code class="comments">// set myImage.defaultImage = &apos;localFoo.png&apos; to show an image while the remote one is loading</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// as would</code></div>
+<div class="line"><code class="comments">myImage.image = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory,&apos;foo.png&apos;);</code></div>
+<div class="line"><code class="comments">*/</code></div>
+<div class="line"><code class="plain">win.add(myImage);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <p>If you specify a width and/or height property on the image, the image will be scaled to fit according to these considerations:    </p>
+<ul class=" "><li class=" ">    <p>If the <tt class=" ">ImageView</tt>&apos;s <tt class=" ">height</tt> and <tt class=" ">width</tt> are specified, the images will be scaled unproportionally to fit the dimensions.  The graphic&apos;s aspect ratio will NOT be maintained.    </p>
+</li><li class=" ">    <p>If either the <tt class=" ">ImageView</tt>&apos;s <tt class=" ">height</tt> or <tt class=" ">width</tt> are specified (not both), the image will be scaled to fit the specified dimension.  The graphic&apos;s aspect ratio will be maintained.    </p>
+</li></ul>    <div class="section section-3 " id="src-29004912_ImagesandImageViewAPIs-Flipbookanimations">
+        <h3 class="heading "><span>Flipbook animations</span></h3>
+    <p>You can display flipbook-style animations with the <tt class=" ">ImageView</tt> by assigning an array of images to the <tt class=" ">images</tt> property.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">// from the Kitchen Sink, examples/image_view_animated.js</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var images = [];</code></div>
+<div class="line"><code class="keyword">for</code><code class="plain"> (var i = </code><code class="value">1</code><code class="plain">; i &lt; </code><code class="value">18</code><code class="plain">; i++) {</code></div>
+<div class="line"><code class="plain">	images.push(</code><code class="string">&apos;../images/campFire&apos;</code><code class="plain"> + ((i &lt; </code><code class="value">10</code><code class="plain">) ? </code><code class="string">&apos;0&apos;</code><code class="plain"> + i:i)+</code><code class="string">&apos;.gif&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var imageView = Titanium.UI.createImageView({</code></div>
+<div class="line"><code class="plain">	images: images,</code></div>
+<div class="line"><code class="plain">	duration: </code><code class="value">100</code><code class="plain">, </code><code class="comments">// in milliseconds, the time before next frame is shown</code></div>
+<div class="line"><code class="plain">	repeatCount: </code><code class="value">0</code><code class="plain">,  </code><code class="comments">// 0 means animation repeats indefinitely, use &gt; 1 to control repeat count</code></div>
+<div class="line"><code class="plain">	top: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="comments">// imageView.stop() would stop the animation</code></div>
+<div class="line"><code class="comments">// imageView.start() would start the animation again</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-29004912_ImagesandImageViewAPIs-Density-specificimages">
+        <h3 class="heading "><span>Density-specific images</span></h3>
+    <p>Since the size and resolution of displays varies between devices, you may want to include density-specific images.  Each platform has its own way to support density-specific images.    </p>
+    <div class="section section-4 " id="src-29004912_ImagesandImageViewAPIs-AndroidPlatform">
+        <h4 class="heading "><span>Android Platform</span></h4>
+    <p>For Android, you can create density-specific image based on the device&apos;s resolution, screen sizes and orientation.  To support these screen variations, Titanium uses a set of directories:    </p>
+    <p>    <img src="images/download/attachments/29004912/android_directories.png" alt="images/download/attachments/29004912/android_directories.png" class="confluence-embedded-image">
+        </p>
+    <p>Put your resolution-specific files in the appropriate directories. Then, in code, simply refer to the image via the base name, as shown in the previous example. Titanium will take care of pulling in the correct image for the device in use. Use the sample images in those folders as a starting point for the correct size and resolution when creating your graphics.    </p>
+    <p>If you don&apos;t want to worry about creating graphics for these various resolutions, delete the resolution-specific folders. If you don&apos;t, Android will use the stock images Titanium supplies, which might mean users will see the stock splash screen instead of yours.    </p>
+    <p>For more details, see <a class="document-link " href="Using_density-specific_resources_on_Android.html">Using density-specific resources on Android</a>.    </p>
+    </div>
+    <div class="section section-4 " id="src-29004912_ImagesandImageViewAPIs-iOSPlatform">
+        <h4 class="heading "><span>iOS Platform</span></h4>
+    <p>iOS devices have different screen densities. Most devices either have a non-retina or retina display. The only exception is the iPhone 6 Plus, which has a higher screen density. You may also add the <tt class=" ">~iphone</tt> and <tt class=" ">~ipad</tt> suffixes for iPhone- and iPad-specific images, respectively. To support multiple screen densities, add the following suffixes to the image name:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Suffix    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Device    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Example    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>No suffix    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Devices with non-retina displays (iPad 2 and first generation iPad mini)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>foo.png    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>@2x    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Devices with retina displays (most iPhones and iPads)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>foo@2x.png    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>@3x    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>iPhone 6 Plus    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>foo@3x.png    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>~iphone    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>iPhone-specific image    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>foo~iphone.png    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>~ipad    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>iPad-specific image    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>foo~ipad.png    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>To use both the display and device suffixes, add the display suffix first, followed by the device suffix, for example, <tt class=" ">foo@2x~iphone.png</tt>.    </p>
+    <p>In your code, reference the image without the suffix:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var img = Ti.UI.createImageView({</code></div>
+<div class="line"><code class="plain">	image: </code><code class="string">&apos;foo.png&apos;</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">/* logo@2x.png will be used automatically if it exists with retina devices */</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    <p>On iOS, you can retrieve density-specific images from a remote URL as well. You will have to use <tt class=" ">Ti.Platform.displayCaps.logicalDensityFactor</tt> to build the URL to fetch the right image for the device. Then add the <tt class=" ">hires=true</tt> property to your <tt class=" ">ImageView</tt> to specify that the remote URL is a high-resolution image. Optionally, Set the <tt class=" ">img.defaultImage</tt> property equal to a <i class=" ">local</i> image and it will be displayed while your remote image is being downloaded.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">Asset Catalog</div>
+            <p>Starting with Release 5.1.0, PNG and JPEG images following this naming convention will be added to an Asset Catalog to support App Thinning. When a user installs the application to their device, only the relevant images will be included. Note that you will not be able to access images added to the Asset Catalog from the filesystem, that is, you cannot use the <tt class=" ">Ti.Filesystem</tt> APIs or equivalent to access the files with a URL or path.    </p>
+    </div>
+        </div>
+    <div class="section section-4 " id="src-29004912_ImagesandImageViewAPIs-WindowsPlatform">
+        <h4 class="heading "><span>Windows Platform</span></h4>
+    <p>For the Windows Platform, add the scale qualifier to the filename.  Place the qualifier in between the filename and extension, for example, <tt class=" ">foo.scale-100.png</tt>.    </p>
+    <p>Use the qualifiers below to support devices with different DPIs or screen resolutions.  The scaling is based on the logical density factor returned by the device.  The Windows Phone DPI column is an approximate value.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Qualifier    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Logical Density Factor    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Windows Phone DPI    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Windows Store Resolution    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Notes    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>scale-100    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>1.0    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Up to ~96    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <span style="color: #454545;">
+At least 1024x768    </span>
+    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>scale-140    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>1.4    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Up to ~134 (WVGA emulator)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>At least     <span style="color: #454545;">
+1440x1080    </span>
+    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>scale-180    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>1.8    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Up to ~172 (720p emulator)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>At least     <span style="color: #454545;">
+1920x1440    </span>
+    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>scale-240    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>2.4    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Up to ~230 (WXGA and 1080p emulators)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>N/A    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Windows Phone OS 8.1 only    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p><strong class=" ">Please ask your Confluence administrator to update the license for the  <a class="external-link external-link" href="https://plugins.atlassian.com/plugins/biz.artemissoftware.confluence.multiexcerpt.MultiExcerptMacro"> MultiExcerpt Plugin for Confluence 4+ </a> .</strong><br><strong class=" ">Admin Info:  The error is: license VERSION_MISMATCH</strong>    </p>
+    <p>For more details, see <a class="document-link " href="Windows_Asset_Qualifiers.html">Windows Asset Qualifiers</a>.    </p>
+    <p>In order to grant access to pictures library for Windows Phone, you need to provide appropriate Capabilities in your <tt class=" ">tiapp.xml.</tt> Windows Phone users are prompted to grant or deny permission when your application attempt to use it.    </p>
+    <div class="section section-5 " id="src-29004912_ImagesandImageViewAPIs-Grantaccesstopictureslibrary">
+        <h5 class="heading "><span>Grant access to pictures library</span></h5>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
+<div class="line"><code class="plain">  ...</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">windows</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Capabilities</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Capability</code><code class="plain"> </code><code class="color1">Name</code><code class="plain">=</code><code class="string">&quot;picturesLibrary&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Capabilities</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">  &lt;/</code><code class="keyword">windows</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  ...</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
+</div>
+    </div>
+    <p>For more information about audio configuration in <tt class=" ">tiapp.xml</tt>, see <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#%21/guide/tiapp.xml_and_timodule.xml_Reference-section-29004921_tiapp.xmlandtimodule.xmlReference-Windows-specificsection">Windows-specific section</a> in <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#%21/guide/tiapp.xml_and_timodule.xml_Reference">tiapp.xml and timodule.xml Reference</a>.    </p>
+    </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-29004912_ImagesandImageViewAPIs-References">
+        <h3 class="heading "><span>References</span></h3>
+<ul class=" "><li class=" ">    <p>API Docs - <a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.UI.ImageView-object">ImageView object</a>    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-2 " id="src-29004912_ImagesandImageViewAPIs-Summary">
+        <h2 class="heading "><span>Summary</span></h2>
+    <p>In this chapter, you learned how to add local and remote images to your apps. You saw that you can display images as instances of the ImageView object or as the background of another component. You also learned how to handle density-specific images on iOS and Android.    </p>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

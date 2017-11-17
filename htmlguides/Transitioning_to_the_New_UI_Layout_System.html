@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Transitioning to the New UI Layout System</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30088148" class="content">
+                        <h1>Transitioning to the New UI Layout System</h1>
+    <div class="section section-2 " id="src-30088148_TransitioningtotheNewUILayoutSystem-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-UnderstandingtheUILayoutSystemChanges">Understanding the UI Layout System Changes</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-SummaryofLayoutProperties">Summary of Layout Properties</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-ViewTypesandDefaultLayoutBehavior">View Types and Default Layout Behavior</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-AutoSizeViews">Auto Size Views</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-AutoFillViews">Auto Fill Views</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-AutoFillWidthViews">Auto Fill Width Views</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-LayoutPrecedence">Layout Precedence</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-BatchLayoutUpdates">Batch Layout Updates</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-ControlSizeandPositionandPost-LayoutEvent">Control Size and Position and Post-Layout Event</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-UniversalUnitSupport">Universal Unit Support</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-HorizontalandVerticalLayouts">Horizontal and Vertical Layouts</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-SpecialCasesforParentandChildSizing">Special Cases for Parent and Child Sizing</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-BehaviorChangesinRelease2.0">Behavior Changes in Release 2.0</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-iOSBehaviorChanges">iOS Behavior Changes</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-Clipping">Clipping</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-AutoSizesiniOS">Auto Sizes in iOS</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-UndefinedSizesinOS">Undefined Sizes in OS</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-PositioningPinsiniOS">Positioning Pins in iOS</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-HorizontalLayoutiniOS">Horizontal Layout in iOS</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-AndroidBehaviorChanges">Android Behavior Changes</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-LayoutPrecedenceinAndroid">Layout Precedence in Android</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-UndefinedSizesinAndroid">Undefined Sizes in Android</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-PositioningPinsinAndroid">Positioning Pins in Android</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-MobileWebLayoutBehavior">Mobile Web Layout Behavior</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-MigratingApplicationstoRelease2.0">Migrating Applications to Release 2.0</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30088148_TransitioningtotheNewUILayoutSystem-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>Release 2.0 includes a set of changes to the layout system designed to provide more control over layout and improve the parity between platforms by having all platforms implement a single, well-defined set of behaviors.    </p>
+    <p>These changes affect existing layout behavior on all platforms, so you may see UI changes in your application. This document details:    </p>
+<ul class=" "><li class=" ">    <p>How the new layout system works    </p>
+</li><li class=" ">    <p>Behavior changes from 1.8.2 to 2.0    </p>
+</li><li class=" ">    <p>How to update your application to work with the new layout system    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30088148_TransitioningtotheNewUILayoutSystem-UnderstandingtheUILayoutSystemChanges">
+        <h2 class="heading "><span>Understanding the UI Layout System Changes</span></h2>
+    <p>This section explains the new layout system implemented in Release 2.0. While many of the details are familiar from previous releases, there are a number of changes designed to unify layout behavior on the different platforms.    </p>
+    <div class="section section-3 " id="src-30088148_TransitioningtotheNewUILayoutSystem-SummaryofLayoutProperties">
+        <h3 class="heading "><span>Summary of Layout Properties</span></h3>
+    <p>The following table summarizes the layout properties that affect the layout of views.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Name    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">width</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Defines the width of a UI component.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">height</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Defines the height of a UI component.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">left</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Pins the left side of a UI component relative to its parent. Measured from the parent&apos;s left bound.<br><br>Acts as padding between UI siblings in horizontal layouts.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">right</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Pins the right side of a UI component relative to its parent. Measured from the parent&apos;s right bound.<br><br>Acts as padding between UI siblings in horizontal layouts.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">top</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Pins the top of a UI component relative to its parent. Measured from the parent&apos;s top bound.<br><br>Acts as padding between UI siblings in vertical layouts.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">bottom</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Pins the bottom of a UI component relative to its parent. Measured from the parent&apos;s bottom bound.<br><br>Acts as padding between UI siblings in vertical layouts.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">center</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Dictionary with properties <tt class=" ">x</tt> and <tt class=" ">y</tt>. Pins the center of the view to the defined point. Measured from parent&apos;s left and top bounds.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">layout</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Defines how the component lays out its children. One of &quot;vertical&quot;, &quot;horizontal&quot; or &quot;composite&quot;.<br><br>Default is &quot;composite&quot;. The value &quot;absolute&quot; is a synonym for &quot;composite&quot;.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">zIndex</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Stack order of UI component in its parent. Higher values are rendered towards the top, in front of components with lower values.<br><br>If no <tt class=" ">zIndex</tt> value is set, components stack in the order in which they are added to the parent, with the last child added displayed on top of earlier children. Any component with a defined <tt class=" ">zIndex</tt> value is displayed in front of any components with undefined <tt class=" ">zIndex</tt>.<br>Does not affect the actual layout of this component.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">size</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Could be used as a layout parameter prior to Release 2.0. In Release 2.0, <tt class=" ">size</tt> is a read-only parameter that can be used to determine the dimensions of the view. See <a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-ControlSizeandPositionandPost-LayoutEvent">#Control Size and Position and Post-Layout Event</a> for details.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">rect</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>New in Release 2.0, <tt class=" ">rect</tt> is a read-only parameter that can be used to determine the size and position of the view. See <a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-ControlSizeandPositionandPost-LayoutEvent">#Control Size and Position and Post-Layout Event</a> for details.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-30088148_TransitioningtotheNewUILayoutSystem-ViewTypesandDefaultLayoutBehavior">
+        <h3 class="heading "><span>View Types and Default Layout Behavior</span></h3>
+    <p>In previous releases, using the value &apos;auto&apos; for a control&apos;s width or height resulted in platform-dependent behavior. Depending on the platform and the type of view involved, &apos;auto&apos; either caused the view to fill its parent, or to conform to the size of its contents.    </p>
+    <p>This release introduces two new constants, <tt class=" ">Titanium.UI.FILL</tt> and <tt class=" ">Titanium.UI.SIZE</tt>, designed to replace the &apos;auto&apos; keyword. With these values you can explicitly specify either type of &apos;auto&apos; behavior.    </p>
+    <p>It is recommended that you remove use of the &apos;auto&apos; keyword, which will be deprecated in a future release.    </p>
+    <p>In this release, the behavior of the &apos;auto&apos; keyword has been defined on a per-control basis, so each control has a logical default behavior if you are using the &apos;auto&apos; keyword.    </p>
+    <p>Views are logically grouped into three categories:    </p>
+<ul class=" "><li class=" ">    <p>Views that should fill the parent view by default    </p>
+</li><li class=" ">    <p>Views that should size themselves to their content by default    </p>
+</li><li class=" ">    <p>Views that should fill in the horizontal direction only (for example, toolbars)    </p>
+</li></ul>    <p>Windows fill the screen by default.    </p>
+    <div class="section section-4 " id="src-30088148_TransitioningtotheNewUILayoutSystem-AutoSizeViews">
+        <h4 class="heading "><span>Auto Size Views</span></h4>
+    <p>For the following views, specifying &apos;auto&apos; for either <tt class=" ">height</tt> or <tt class=" ">width</tt> is<br>the same as specifying <tt class=" ">Ti.UI.SIZE</tt>.    </p>
+<ul class=" "><li class=" ">    <p>Button    </p>
+</li><li class=" ">    <p>Label    </p>
+</li><li class=" ">    <p>ImageView    </p>
+</li><li class=" ">    <p>ProgressBar    </p>
+</li><li class=" ">    <p>Switch    </p>
+</li><li class=" ">    <p>TextArea    </p>
+</li><li class=" ">    <p>TextField    </p>
+</li><li class=" ">    <p>Picker    </p>
+</li><li class=" ">    <p>ButtonBar    </p>
+</li><li class=" ">    <p>TableViewSection    </p>
+</li></ul>    </div>
+    <div class="section section-4 " id="src-30088148_TransitioningtotheNewUILayoutSystem-AutoFillViews">
+        <h4 class="heading "><span>Auto Fill Views</span></h4>
+    <p>For the following views, specifying &apos;auto&apos; for either `height` or `width` is<br>the same as specifying <tt class=" ">Ti.UI.FILL</tt>.    </p>
+<ul class=" "><li class=" ">    <p>View    </p>
+</li><li class=" ">    <p>TabGroup    </p>
+</li><li class=" ">    <p>VideoPlayer    </p>
+</li><li class=" ">    <p>TableView    </p>
+</li><li class=" ">    <p>WebView    </p>
+</li><li class=" ">    <p>ScrollView    </p>
+</li><li class=" ">    <p>ScrollableView    </p>
+</li></ul>    </div>
+    <div class="section section-4 " id="src-30088148_TransitioningtotheNewUILayoutSystem-AutoFillWidthViews">
+        <h4 class="heading "><span>Auto Fill Width Views</span></h4>
+    <p>The following views fill the available <strong class=" ">width</strong> by default, and scale vertically to fit<br>their contents.    </p>
+<ul class=" "><li class=" ">    <p>Slider    </p>
+</li><li class=" ">    <p>TableViewRow    </p>
+</li><li class=" ">    <p>Toolbar    </p>
+</li><li class=" ">    <p>SearchBar    </p>
+</li></ul>    <p>For these views, &apos;auto&apos; specifies <tt class=" ">FILL</tt> behavior when it is used as a<br><tt class=" ">width</tt> value, and <tt class=" ">SIZE</tt> behavior when it is used as a <tt class=" ">height</tt> value.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30088148_TransitioningtotheNewUILayoutSystem-LayoutPrecedence">
+        <h3 class="heading "><span>Layout Precedence</span></h3>
+    <p>This section describes the precedence rules that determine which settings take precedence if conflicting layout parameters are specified.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Name    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Notes    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>1    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">width</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>If <tt class=" ">width</tt> is defined, it takes precedence and the positioning pins are not used to determine the view&apos;s width.<br><br>If <tt class=" ">width</tt> is not defined, and at least two horizontal positioning pins are defined, the width is calculated implicitly from the pins. For example, <tt class=" ">left</tt> and <tt class=" ">right</tt> or <tt class=" ">left</tt> and <tt class=" ">center.x</tt>. If all three horizontal pins are defined, the width is determined by the <tt class=" ">left</tt> and <tt class=" ">center.x</tt> pins. If width cannot be implicitly calculated it follows the view&apos;s default sizing behavior.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>2    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">left</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>If <tt class=" ">left</tt> is defined, it always takes precedence for positioning the view horizontally.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>3    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">center.x</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Used to position the view horizontally if <tt class=" ">left</tt> is not set.<br><br>If <tt class=" ">left</tt> is set, this property is not used to position the view, although it may be used to determine its width.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>4    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">right</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Used to position the view horizontally when neither <tt class=" ">left</tt> or <tt class=" ">center.x</tt> is set.<br><br>If either <tt class=" ">left</tt> or <tt class=" ">center.x</tt> is set, this property is not used to position the view, although it may be used to determine its width.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>5    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">height</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>If <tt class=" ">height</tt> is defined, it takes precedence and the positioning pins are not used to determine the view&apos;s height.<br><br>If <tt class=" ">height</tt> is not defined, and at least two vertical positioning pins are defined, the height is determined implicitly from the pins. If all three vertical pins are defined, the height is determined by the <tt class=" ">top</tt> and <tt class=" ">center.y</tt> pins. If height cannot be implicitly calculated it follows the view&apos;s default sizing behavior.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>6    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">top</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>If specified, always takes precedence for positioning the view horizontally.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>7    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">center.y</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Used to position the view vertically if <tt class=" ">top</tt> is not set.<br><br>If <tt class=" ">top</tt> is defined, this property is not used to position the view, although it may be used to determine its height.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>8    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">bottom</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Used to position the view vertically if neither <tt class=" ">top</tt> or <tt class=" ">center.y</tt> is set.<br><br>If either <tt class=" ">top</tt> or <tt class=" ">center.y</tt> is set, this property is ignored. this property is not used to position the view, although it may be used to determine its height.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-30088148_TransitioningtotheNewUILayoutSystem-BatchLayoutUpdates">
+        <h3 class="heading "><span>Batch Layout Updates</span></h3>
+    <p>Another change in this release involves <i class=" ">batch layout updates</i>. In previous releases, each update to a layout parameter (such as <tt class=" ">top</tt>, <tt class=" ">left</tt>, <tt class=" ">height</tt>, and so on) could trigger a layout cycle. This results in a lot of repeated work.    </p>
+    <p>To avoid this, you can batch layout updates, so multiple layout changes only result in a single layout cycle. The <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.View-method-applyProperties">applyProperties</a> method allows you to update a set of layout parameters in a single operation. For example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">myView.applyProperties({</code></div>
+<div class="line"><code class="plain">  top: </code><code class="value">50</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  left: </code><code class="value">50</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  width: </code><code class="value">200</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>The <tt class=" ">applyProperties</tt> method is new in Release 3.0. When working with 2.X releases of the Titanium SDK, <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.View-method-updateLayout">updateLayout</a> can be used in place of <tt class=" ">applyProperties</tt> in the above code sample.    </p>
+    <p>The <tt class=" ">applyProperties</tt> method can be used to bulk-update properties on <i class=" ">any</i> Titanium object, while <tt class=" ">updateLayout</tt> does the same thing, but only works on view objects. So <tt class=" ">updateLayout</tt> is deprecated in Release 3.0 in favor of the more general <tt class=" ">applyProperties</tt>.    </p>
+    </div>
+        </div>
+    <div class="section section-3 " id="src-30088148_TransitioningtotheNewUILayoutSystem-ControlSizeandPositionandPost-LayoutEvent">
+        <h3 class="heading "><span>Control Size and Position and Post-Layout Event</span></h3>
+    <p>In previous releases, there was no reliable means to determine the size and position of a control after it was laid out. In this release, the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#%21/api/Titanium.UI.View-property-rect">rect</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#%21/api/Titanium.UI.View-property-size">size</a> properties can be used to determine the size and position of the view.    </p>
+    <p>Because layout can occur asynchronously, it is sometimes difficult to determine the actual size of a control after it has been laid out. To address this issue, a new <tt class=" ">postlayout</tt> event has been added that is fired when a layout cycle completes. For example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var postLayoutCallback  = function(e){</code></div>
+<div class="line"><code class="plain">  Ti.API.info(String.format(</code><code class="string">&quot;Layout done, left: %f, width: %f&quot;</code><code class="plain">, myView.rect.x, myView.rect.width));</code></div>
+<div class="line"><code class="plain">  myView.removeEventListener(</code><code class="string">&apos;postlayout&apos;</code><code class="plain">, postLayoutCallback);</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain">myView.addEventListener(</code><code class="string">&apos;postlayout&apos;</code><code class="plain">, postLayoutCallback);</code></div>
+<div class="line"><code class="plain">myView.updateLayout({</code></div>
+<div class="line"><code class="plain">  left: </code><code class="string">&apos;25%&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  width: </code><code class="string">&apos;25%&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    <p>Note that updating a view&apos;s layout in the <tt class=" ">postlayout</tt> event can cause an infinite loop of layout events. Furthermore, endless <tt class=" ">postlayout</tt> cycles can be avoided by careful coding. For instance, only listen to the <tt class=" ">postlayout</tt> event for specific views, not for the entire window. If you are laying out some elements based on the position or size of another element, you can cache the last known size of the element you are interested in, and only make layout changes if the size actually changes.    </p>
+    <p>Bear in mind that even non-layout parameters may affect the layout; for example, changing a label&apos;s text may make its size change.    </p>
+    <p>In previous releases, it was possible to change a view&apos;s size on iOS by updating the <tt class=" ">size</tt> dictionary. As this is now a read-only property on all platforms, doing so is no longer supported.    </p>
+    </div>
+    <div class="section section-3 " id="src-30088148_TransitioningtotheNewUILayoutSystem-UniversalUnitSupport">
+        <h3 class="heading "><span>Universal Unit Support</span></h3>
+    <p>All platforms now support specifying units for size and position values. The following table lists the supported units:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Unit    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Abbreviation    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Note    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>pixels    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>px    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>density-independent pixels    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>dip or dp    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Equivalent to Apple &quot;points.&quot;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>inches    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>in    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>millimeters    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>mm    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Android, iOS only    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>centimeters    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>cm    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Android, iOS only    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>points    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>pt    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>1/72 of an inch. Android only. Not to be confused with Apple &quot;points.&quot;    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>On Android, a density-independent pixel (DIP) corresponds to one pixel on a 160DPI display.    </p>
+    <p>On iOS, a DIP corresponds to one pixel on a non-Retina display, which is 163DPI for iPhone/iPod touch and 132DPI for the iPad. A DIP corresponds to 2 pixels of width or height on a Retina display.    </p>
+    <p>On Mobile Web, both a DIP and a pixel are equal to one browser pixel, which may not correspond to a pixel on the display. From testing, most browsers seem to report a DPI value of 96DPI, regardless of the actual display density.    </p>
+    <p>Absolute measures, such as inches, are dependent on the device correctly reporting its density. On Mobile Web, these values are unlikely to be exact.    </p>
+    <p>If no units are specified, a system-default unit is assumed. The system default unit is:    </p>
+<ul class=" "><li class=" ">    <p>pixels on Android    </p>
+</li><li class=" ">    <p>DIP on iOS    </p>
+</li><li class=" ">    <p>DIP on Mobile Web    </p>
+</li></ul>    </div>
+    <div class="section section-3 " id="src-30088148_TransitioningtotheNewUILayoutSystem-HorizontalandVerticalLayouts">
+        <h3 class="heading "><span>Horizontal and Vertical Layouts</span></h3>
+    <p>There are no significant changes to the function of the relative layout modes, horizontal and vertical, but the same <a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-LayoutPrecedence">precedence rules</a> apply.    </p>
+    <p>UI components with the layout parameter defined as either &apos;vertical&apos; or &apos;horizontal&apos; follow the same layout principles as the composite layout, but the view adds extra layout logic. Each child is laid out inside its own pre-calculated &quot;sandbox&quot;, such that no two sandboxes overlap. Due to this two-step nature horizontal and vertical layouts are inherently slower than the composite layout, which simply uses the parent bounds as its sandbox.    </p>
+    <p>A UI component with its layout parameter defined as &apos;vertical&apos; stacks all its children one below the other. All child sandboxes have the same width (set to the parent&apos;s width). The <tt class=" ">top</tt> and <tt class=" ">bottom</tt> properties are used to define vertical padding between the children. The <tt class=" ">left</tt>, <tt class=" ">right</tt> and <tt class=" ">center.x</tt> properties are used to determine the child&apos;s horizontal positioning. Defining a child with FILL width behavior fills the parent width. Defining a child with FILL height behavior in a vertical layout will fill all the remaining vertical space in the layout, causing all children added after this child to be outside the bounds of the parent and hence invisible.    </p>
+    <p>A UI component with its layout parameter defined as &apos;horizontal&apos; will layout its children next to each other left to right. Starting in Release 2.1, UI components support a <tt class=" ">horizontalWrap</tt> flag which determines whether the children should be wrapped to fit on multiple rows (default) or remain in a single row (more like the behavior of a &apos;vertical&apos; layout).    </p>
+    <p>In both cases, the <tt class=" ">left</tt> and <tt class=" ">right</tt> elements are used as padding between the children, and the <tt class=" ">top</tt> and <tt class=" ">bottom</tt> properties are used to position the children vertically.    </p>
+    <p>With <tt class=" ">horizontalWrap</tt> set to <tt class=" ">true</tt>, if a child cannot fit in the width remaining the child element is moved to the next row. The height of the row is defined as the height of the tallest element in a row. All children in a row have the same sandbox height.    </p>
+    <p>With <tt class=" ">horizontalWrap</tt> set to <tt class=" ">false</tt>, all children are placed in a single row.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Prior to Release 2.1, horizontal layout behavior was not consistent across platforms. In particular:    </p>
+<ul class=" "><li class=" ">    <p>Mobile Web did not wrap to a second row and aligned all children to the top of the parent view if no <tt class=" ">top</tt> or <tt class=" ">bottom</tt> pins were defined.    </p>
+</li><li class=" ">    <p>Android centered the first row if no <tt class=" ">top</tt> or <tt class=" ">bottom</tt> pins were defined.    </p>
+</li><li class=" ">    <p>iOS placed the first row against the top of the parent view if no <tt class=" ">top</tt> or <tt class=" ">bottom</tt> pins were defined.    </p>
+</li><li class=" ">    <p>On iOS <strong class=" ">Prior to Release 2.0.1</strong>, the sandbox height of a child was independent of its siblings.    </p>
+</li></ul>    </div>
+        </div>
+    <div class="section section-3 " id="src-30088148_TransitioningtotheNewUILayoutSystem-SpecialCasesforParentandChildSizing">
+        <h3 class="heading "><span>Special Cases for Parent and Child Sizing</span></h3>
+    <p>In some cases, the size values for a parent and child may conflict:    </p>
+<ul class=" "><li class=" ">    <p>When a UI component follows SIZE behavior but the calculated dimensions are larger than the bound of the parent, the child bounds are restricted by parent bounds.    </p>
+</li><li class=" ">    <p>When a child follows FILL behavior and the parent follows SIZE behavior, the parent effectively follows FILL behavior (the child will try and push the parent bounds until a constraining bound can be determined).    </p>
+</li><li class=" ">    <p>When a child has its dimensions defined as a percentage (child dimension based on parent bounds) and the parent follows SIZE behavior (parent dimensions based on child bounds) the result is undefined.    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-2 " id="src-30088148_TransitioningtotheNewUILayoutSystem-BehaviorChangesinRelease2.0">
+        <h2 class="heading "><span>Behavior Changes in Release 2.0</span></h2>
+    <p>This section summarizes how the new UI layout behavior differs from the previous behavior on each platform.    </p>
+    <div class="section section-3 " id="src-30088148_TransitioningtotheNewUILayoutSystem-iOSBehaviorChanges">
+        <h3 class="heading "><span>iOS Behavior Changes</span></h3>
+    <p>The behavior changes in IOS for composite layout are listed below with sample code illustrating the changes. Screen shots are attached showing the difference in behavior between Release 1.8.2 and Release 2.0.    </p>
+    <div class="section section-4 " id="src-30088148_TransitioningtotheNewUILayoutSystem-Clipping">
+        <h4 class="heading "><span>Clipping</span></h4>
+    <p>iOS now follows the same behavior as Android, and clips child views to the bounds of their parents.    </p>
+    <p><strong class=" ">Test Code</strong>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow({});</code></div>
+<div class="line"><code class="comments">//Clipping.</code></div>
+<div class="line"><code class="plain">var parent = Ti.UI.createView(\{backgroundColor: </code><code class="string">&apos;red&apos;</code><code class="plain">, width: </code><code class="string">&apos;100&apos;</code><code class="plain">, height: </code><code class="string">&apos;100&apos;</code><code class="plain">\})</code></div>
+<div class="line"><code class="plain">var child = Ti.UI.createView(\{backgroundColor: </code><code class="string">&apos;green&apos;</code><code class="plain">, width: </code><code class="value">150</code><code class="plain">, height: </code><code class="value">150</code><code class="plain">, left: </code><code class="value">5</code><code class="plain">, top: </code><code class="value">5</code><code class="plain">\});</code></div>
+<div class="line"><code class="plain">parent.add(child);</code></div>
+<div class="line"><code class="plain">win.add(parent);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>1.8 Behavior    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>2.0 Behavior    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav4fb91409ce9c13430f86da138c242336.png" alt="images/download/attachments/30088148/worddav4fb91409ce9c13430f86da138c242336.png" class="confluence-embedded-image" width="137" height="206">
+        </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddavbf9f40926df0f9b0242053ab5cffb0df.png" alt="images/download/attachments/30088148/worddavbf9f40926df0f9b0242053ab5cffb0df.png" class="confluence-embedded-image" width="137" height="205">
+        </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-4 " id="src-30088148_TransitioningtotheNewUILayoutSystem-AutoSizesiniOS">
+        <h4 class="heading "><span>Auto Sizes in iOS</span></h4>
+    <p>When width or height parameters are specified as &quot;auto&quot;, components will follow the specification as defined in the <a class="document-link " href="UI_Composite_Layout_Behavior_Spec.html">UI Composite Layout Behavior Spec</a>. In previous versions of the Titanium SDK &quot;auto&quot; enforced SIZE behavior on iOS.    </p>
+    <p><strong class=" ">Test Code</strong>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow({});</code></div>
+<div class="line"><code class="comments">//parent will follow SIZE in 1_8_X, FILL in 2_0_X</code></div>
+<div class="line"><code class="plain">var parent = Ti.UI.createView({ backgroundColor: </code><code class="string">&apos;red&apos;</code><code class="plain">, width: </code><code class="string">&apos;auto&apos;</code><code class="plain">, height: </code><code class="string">&apos;auto&apos;</code><code class="plain"> })</code></div>
+<div class="line"><code class="plain">var child = Ti.UI.createView( {backgroundColor: </code><code class="string">&apos;green&apos;</code><code class="plain">, width: </code><code class="value">100</code><code class="plain">, height: </code><code class="value">100</code><code class="plain">, left: </code><code class="value">5</code><code class="plain">, right: </code><code class="value">5</code><code class="plain">, top: </code><code class="value">5</code><code class="plain">, bottom: </code><code class="value">5</code><code class="plain"> });</code></div>
+<div class="line"><code class="plain">parent.add(child);</code></div>
+<div class="line"><code class="plain">win.add(parent);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>1.8 Behavior    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>2.0 Behavior    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddavaa6088d3ad3bd20bc33d30d227550b02.png" alt="images/download/attachments/30088148/worddavaa6088d3ad3bd20bc33d30d227550b02.png" class="confluence-embedded-image" width="132" height="198">
+        </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav126852fc23b07781c639da6fd1f28592.png" alt="images/download/attachments/30088148/worddav126852fc23b07781c639da6fd1f28592.png" class="confluence-embedded-image" width="132" height="198">
+        </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>To restore 1.8 behavior on iOS, you can simply replace any &quot;auto&quot; sizes with <tt class=" ">Ti.UI.SIZE</tt>.    </p>
+    </div>
+    <div class="section section-4 " id="src-30088148_TransitioningtotheNewUILayoutSystem-UndefinedSizesinOS">
+        <h4 class="heading "><span>Undefined Sizes in OS</span></h4>
+    <p>When width or height parameters are undefined, an attempt will be made to calculate these parameters implicitly. If they cannot be calculated implicitly, they will follow &quot;auto&quot; behavior. In previous versions of the Titanium SDK undefined width or height enforced FILL behavior.    </p>
+    <p>For any views that don&apos;t have sizes defined <i class=" ">and</i> can&apos;t be sized implicitly, set an explicit size of <tt class=" ">Ti.UI.FILL</tt> to restore the 1.8 behavior.    </p>
+    <p><strong class=" ">Test Code</strong>    </p>
+    <p>The following excerpt shows a label with undefined size and no position pins. In 1.8, this uses the FILL behavior, but in 2.0, it uses the SIZE behavior.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow({});</code></div>
+<div class="line"><code class="plain">var label = Ti.UI.createLabel({text: </code><code class="string">&apos;I am label&apos;</code><code class="plain">, backgroundColor: </code><code class="string">&apos;red&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">win.add(label);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>1.8 Behavior    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>2.0 Behavior    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav31f54ed77be22eccd2e469571c481964.png" alt="images/download/attachments/30088148/worddav31f54ed77be22eccd2e469571c481964.png" class="confluence-embedded-image" width="144" height="216">
+        </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddava29d893857b83cbd19758ea1af58133a.png" alt="images/download/attachments/30088148/worddava29d893857b83cbd19758ea1af58133a.png" class="confluence-embedded-image" width="144" height="216">
+        </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>The following excerpt shows a label with undefined size and position pins. In 1.8, this uses the FILL behavior, but in 2.0, the size is calculated implicitly from the position pins.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow({});</code></div>
+<div class="line"><code class="comments">//Implicit width calculation in 2_0_X</code></div>
+<div class="line"><code class="plain">var parent = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;red&apos;</code><code class="plain">, width: </code><code class="string">&apos;100&apos;</code><code class="plain">, height: </code><code class="string">&apos;100&apos;</code><code class="plain">})</code></div>
+<div class="line"><code class="plain">var child = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;green&apos;</code><code class="plain">, left: </code><code class="value">5</code><code class="plain">, top: </code><code class="value">5</code><code class="plain">, center: {x: </code><code class="value">20</code><code class="plain">, y: </code><code class="value">20</code><code class="plain">}});</code></div>
+<div class="line"><code class="plain">parent.add(child);</code></div>
+<div class="line"><code class="plain">win.add(parent);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>1.8 Behavior    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>2.0 Behavior    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav6e41b637f89f6875f5d501b01c4a9984.png" alt="images/download/attachments/30088148/worddav6e41b637f89f6875f5d501b01c4a9984.png" class="confluence-embedded-image" width="132" height="198">
+        </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav967bf3a3d42ea8df79601245d623401e.png" alt="images/download/attachments/30088148/worddav967bf3a3d42ea8df79601245d623401e.png" class="confluence-embedded-image" width="132" height="198">
+        </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>To restore a view&apos;s 1.8 behavior on iOS, explicitly specify sizes as <tt class=" ">Ti.UI.FILL</tt>.    </p>
+    </div>
+    <div class="section section-4 " id="src-30088148_TransitioningtotheNewUILayoutSystem-PositioningPinsiniOS">
+        <h4 class="heading "><span>Positioning Pins in iOS</span></h4>
+    <p>In previous versions of the Titanium SDK, the precedence of positioning pins was <tt class=" ">center.x</tt>, <tt class=" ">left</tt>, <tt class=" ">right</tt> for horizontal positioning and <tt class=" ">center.y</tt>, <tt class=" ">top</tt>, <tt class=" ">bottom</tt> for vertical positioning. It now follows the precedence defined above: that is, <tt class=" ">top</tt> and <tt class=" ">left</tt> take precedence over the <tt class=" ">center</tt> values.    </p>
+    <p>When no positioning pins are defined the child is placed at the center of the parent.    </p>
+    <p><strong class=" ">Test Code</strong>    </p>
+    <p>The following excerpt creates a view that has conflicting position pins. In Release 1.8, the <tt class=" ">center</tt> values take precedence, but in 2.0, the <tt class=" ">left</tt>,<tt class=" ">top</tt> values take precedence.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow({});</code></div>
+<div class="line"><code class="plain">var parent = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;red&apos;</code><code class="plain">, width: </code><code class="string">&apos;100&apos;</code><code class="plain">, height: </code><code class="string">&apos;100&apos;</code><code class="plain">})</code></div>
+<div class="line"><code class="plain">var child = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;green&apos;</code><code class="plain">, width: </code><code class="value">50</code><code class="plain">, height: </code><code class="value">50</code><code class="plain">, left: </code><code class="value">5</code><code class="plain">, top: </code><code class="value">5</code><code class="plain">, center: {x: </code><code class="value">60</code><code class="plain">, y: </code><code class="value">60</code><code class="plain">}});</code></div>
+<div class="line"><code class="plain">parent.add(child);</code></div>
+<div class="line"><code class="plain">win.add(parent);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>1.8 Behavior    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>2.0 Behavior    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav732cce0bec8f86aa2991ebd30aca9e12.png" alt="images/download/attachments/30088148/worddav732cce0bec8f86aa2991ebd30aca9e12.png" class="confluence-embedded-image" width="152" height="228">
+        </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav89cf18b21e03efa4a099bbdc479b58fc.png" alt="images/download/attachments/30088148/worddav89cf18b21e03efa4a099bbdc479b58fc.png" class="confluence-embedded-image" width="152" height="228">
+        </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Note that in this example, an animation that moved the child view by changing its <tt class=" ">center</tt> value would not work, because the <tt class=" ">center</tt> value is overridden by the <tt class=" ">left</tt> and <tt class=" ">top</tt> values.    </p>
+    </div>
+    <div class="section section-4 " id="src-30088148_TransitioningtotheNewUILayoutSystem-HorizontalLayoutiniOS">
+        <h4 class="heading "><span>Horizontal Layout in iOS</span></h4>
+    <p>In previous versions of the Titanium SDK, the sandbox height of a child was independent of its sibling&apos;s dimensions. Now all children in a row have the same sandbox height. (See section on <a class="document-link " href="Transitioning_to_the_New_UI_Layout_System.html#src-30088148_TransitioningtotheNewUILayoutSystem-HorizontalandVerticalLayouts">#Horizontal and Vertical Layouts</a> below).    </p>
+    <p><strong class=" ">Test Code</strong>    </p>
+    <p>The following code sample creates a view with horizontal layout that contains two children. In Release 1.8, the green child is laid out flush to the top of the parent view. In Release 2.0, the green child is centered relative to its larger neighbor.    </p>
+    <p>Note that there are still inconsistencies between Android, iOS and Mobile Web in the handling of horizontal layouts. This is a known issue.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow({});</code></div>
+<div class="line"><code class="comments">//Horizontal Layout behavior. Green child centered vertically (No positioning pins)</code></div>
+<div class="line"><code class="plain">var parent = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;red&apos;</code><code class="plain">, layout: </code><code class="string">&apos;horizontal&apos;</code><code class="plain">, width: </code><code class="value">100</code><code class="plain">, height: </code><code class="value">100</code><code class="plain">})</code></div>
+<div class="line"><code class="plain">var child1 = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;green&apos;</code><code class="plain">, height: </code><code class="value">20</code><code class="plain">, width: </code><code class="value">50</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">var child2 = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;blue&apos;</code><code class="plain">, height: </code><code class="value">40</code><code class="plain">, width: </code><code class="value">50</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">parent.add(child1);</code></div>
+<div class="line"><code class="plain">parent.add(child2);</code></div>
+<div class="line"><code class="plain">win.add(parent);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>1.8 Behavior    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>2.0 Behavior    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav3daf8cc96bf475e175f9fc1e669263bc.png" alt="images/download/attachments/30088148/worddav3daf8cc96bf475e175f9fc1e669263bc.png" class="confluence-embedded-image" width="156" height="234">
+        </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav4f9852f2fadcc9f123e2713b77d09987.png" alt="images/download/attachments/30088148/worddav4f9852f2fadcc9f123e2713b77d09987.png" class="confluence-embedded-image" width="155" height="232">
+        </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30088148_TransitioningtotheNewUILayoutSystem-AndroidBehaviorChanges">
+        <h3 class="heading "><span>Android Behavior Changes</span></h3>
+    <p>The behavior changes in Android for composite layout are listed below with sample code illustrating the changes. Screen shots are attached for both Release 1.8 and Release 2.0.    </p>
+    <div class="section section-4 " id="src-30088148_TransitioningtotheNewUILayoutSystem-LayoutPrecedenceinAndroid">
+        <h4 class="heading "><span>Layout Precedence in Android</span></h4>
+    <p>In previous releases, the positioning properties would determine the width or height of a view even when width or height was specified explicitly. With the new layout rules, the specified width/height take precedence, and then positioning properties afterwards. If one positioning property conflicts with another, properties lower in the precedence chain are ignored.    </p>
+    <p><strong class=" ">Test Code</strong>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow({});</code></div>
+<div class="line"><code class="plain">var parent = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;red&apos;</code><code class="plain">})</code></div>
+<div class="line"><code class="comments">//child width/height calculated from top/bottom/right/left properties in 1_8_X, and height/width will be 100 in 2_0_X</code></div>
+<div class="line"><code class="plain">var child = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;green&apos;</code><code class="plain">, width: </code><code class="value">100</code><code class="plain">, height: </code><code class="value">100</code><code class="plain">, left: </code><code class="value">5</code><code class="plain">, right: </code><code class="value">5</code><code class="plain">, top: </code><code class="value">5</code><code class="plain">, bottom: </code><code class="value">5</code><code class="plain">})</code></div>
+<div class="line"><code class="plain">parent.add(child);</code></div>
+<div class="line"><code class="plain">win.add(parent);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>1.8 Behavior    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>2.0 Behavior    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddave1adec9f3c6d250f72cc785e6f8b76ac.png" alt="images/download/attachments/30088148/worddave1adec9f3c6d250f72cc785e6f8b76ac.png" class="confluence-embedded-image" width="185" height="276">
+        </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav339a691008b1de03900c82a9aa7558d6.png" alt="images/download/attachments/30088148/worddav339a691008b1de03900c82a9aa7558d6.png" class="confluence-embedded-image" width="187" height="276">
+        </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-4 " id="src-30088148_TransitioningtotheNewUILayoutSystem-UndefinedSizesinAndroid">
+        <h4 class="heading "><span>Undefined Sizes in Android</span></h4>
+    <p>When width or height parameters are undefined, an attempt will be made to calculate these parameters implicitly. If they cannot be calculated implicitly, they will follow &quot;auto&quot; behavior. In previous releases, undefined width or height would result in looking at the center values first.    </p>
+    <p><strong class=" ">Test Code</strong>    </p>
+    <p>The following excerpt shows a child view with positioning pins but no defined width or height. In 1.8, this resulted    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">,});</code></div>
+<div class="line"><code class="comments">//Implicit width calculation in 2_0_X</code></div>
+<div class="line"><code class="plain">var parent = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;red&apos;</code><code class="plain">, width: </code><code class="string">&apos;100&apos;</code><code class="plain">, height: </code><code class="string">&apos;100&apos;</code><code class="plain">})</code></div>
+<div class="line"><code class="plain">var child = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;green&apos;</code><code class="plain">, left: </code><code class="value">5</code><code class="plain">, top: </code><code class="value">5</code><code class="plain">, center: {x: </code><code class="value">20</code><code class="plain">, y: </code><code class="value">20</code><code class="plain">}});</code></div>
+<div class="line"><code class="plain">parent.add(child);</code></div>
+<div class="line"><code class="plain">win.add(parent);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>1.8 Behavior    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>2.0 Behavior    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddavb4ef228203e68062d1cd1ba1ca94674c.png" alt="images/download/attachments/30088148/worddavb4ef228203e68062d1cd1ba1ca94674c.png" class="confluence-embedded-image" width="206" height="312">
+        </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav8a407370cd8830143e4ed0a9faf90cca.png" alt="images/download/attachments/30088148/worddav8a407370cd8830143e4ed0a9faf90cca.png" class="confluence-embedded-image" width="209" height="312">
+        </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-4 " id="src-30088148_TransitioningtotheNewUILayoutSystem-PositioningPinsinAndroid">
+        <h4 class="heading "><span>Positioning Pins in Android</span></h4>
+    <p>In previous versions of the Titanium SDK, the precedence of positioning pins was (center.x, left, right, center.y, top, bottom). It now follows the precedence defined above. When no positioning pins are defined the child is placed at the center of the parent.    </p>
+    <p><strong class=" ">Test Code</strong>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var win = Ti.UI.createWindow({});</code></div>
+<div class="line"><code class="comments">//Positioning precedence. center used in 1_8_X. left and top used in 2_0_X</code></div>
+<div class="line"><code class="comments">//Animation child center will not work in 2_0_X because both left and top are defined</code></div>
+<div class="line"><code class="plain">var parent = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;red&apos;</code><code class="plain">, width: </code><code class="string">&apos;100&apos;</code><code class="plain">,height: </code><code class="string">&apos;100&apos;</code><code class="plain">})</code></div>
+<div class="line"><code class="plain">var child = Ti.UI.createView({backgroundColor: </code><code class="string">&apos;green&apos;</code><code class="plain">, width: </code><code class="value">50</code><code class="plain">, height: </code><code class="value">50</code><code class="plain">, left: </code><code class="value">5</code><code class="plain">, top: </code><code class="value">5</code><code class="plain">, center: {x: </code><code class="value">60</code><code class="plain">, y: </code><code class="value">60</code><code class="plain">}});</code></div>
+<div class="line"><code class="plain">parent.add(child);</code></div>
+<div class="line"><code class="plain">win.add(parent);</code></div>
+<div class="line"><code class="plain">win.open();</code></div>
+</div>
+    </div>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>1.8 Behavior    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>2.0 Behavior    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav898d6f54c105c1e4f9559eaef1e91a0a.png" alt="images/download/attachments/30088148/worddav898d6f54c105c1e4f9559eaef1e91a0a.png" class="confluence-embedded-image" width="186" height="284">
+        </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/30088148/worddav538f8f90df1cf9ae4a1481ed2500025e.png" alt="images/download/attachments/30088148/worddav538f8f90df1cf9ae4a1481ed2500025e.png" class="confluence-embedded-image" width="186" height="291">
+        </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30088148_TransitioningtotheNewUILayoutSystem-MobileWebLayoutBehavior">
+        <h3 class="heading "><span>Mobile Web Layout Behavior</span></h3>
+    <p>On the Mobile Web platform, if you do not specify a height or width for a view (or define the size implicitly using <tt class=" ">left</tt>, <tt class=" ">center</tt> or other layout properties), they use the default behavior defined above - either fill, size, or fill width.    </p>
+    <p>If a value of &apos;auto&apos; is specified for <tt class=" ">height</tt> or <tt class=" ">width</tt>, it is interpreted as <tt class=" ">Ti.UI.SIZE</tt>. This differs from the &apos;auto&apos; behavior on Android and iOS. However, using either <tt class=" ">SIZE</tt> or <tt class=" ">FILL</tt> explicitly should result in the same layout on all three<br>platforms.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30088148_TransitioningtotheNewUILayoutSystem-MigratingApplicationstoRelease2.0">
+        <h2 class="heading "><span>Migrating Applications to Release 2.0</span></h2>
+    <p>When migrating applications to Release 2.0, you should focus on reducing or eliminating the use of &apos;auto&apos; sizes in favor of explicitly selecting SIZE or FILL behavior.    </p>
+    <p>In most cases, simply leaving the width and height undefined should give reasonable default behavior for all view types, which was not always true in previous releases.    </p>
+    <p>On iOS, the following changes apply:    </p>
+<ul class=" "><li class=" ">    <p>Any UI component with the <tt class=" ">width</tt> property defined as &quot;auto&quot; can safely define its <tt class=" ">width</tt> parameter as <tt class=" ">Ti.UI.SIZE</tt> to return to 1.8 behavior.    </p>
+</li><li class=" ">    <p>Any UI component with the <tt class=" ">width</tt> property undefined and with less than 2 positioning pins defined can safely define its <tt class=" ">width</tt> parameter as <tt class=" ">Ti.UI.FILL</tt> to return to 1.8 behavior.    </p>
+</li></ul>    <p>The same principles apply to the <tt class=" ">height</tt> property.    </p>
+    <p>On Android, the &apos;auto&apos; behavior remains the same for most components. However, it is recommended to remove any &apos;auto&apos; sizes in favor of explicitly specifying the desired behavior.    </p>
+    <p>After replacing &apos;auto&apos; values, if you are still seeing layout changes, they are likely due to the changes in the precedence order of layout properties.    </p>
+    <p>If you are using <tt class=" ">size</tt> as a read/write property, you must rewrite these references to set the <tt class=" ">width</tt> and <tt class=" ">height</tt> properties directly.    </p>
+    <p>If your code specifies size and position values with units and relies on the units being ignored on iOS, it will break in 2.0. This should only cause problems if you specify a unit <i class=" ">other than</i> DIPs, which is the default unit on iOS.    </p>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

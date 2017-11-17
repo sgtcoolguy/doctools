@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Models - Access a Model</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-49153277" class="content">
+                        <h1>Models - Access a Model</h1>
+    <p>Any callback in the application that is passed the <tt class=" ">request</tt> object can access the Models programmatically. If the <tt class=" ">actions</tt> property in the model definition is set, some of the methods cannot be invoked. The <tt class=" ">actions</tt> property restricts which CRUD operations can be invoked on the models.    </p>
+<ol class=" "><li class=" ">    <p>Retrieve an instance to API Builder using the <tt class=" ">request.server</tt> property.    </p>
+</li><li class=" ">    <p>Retrieve the Model instance using API Builder&apos;s <tt class=" ">getModel(&apos;name&apos;)</tt> method by passing it the name of the model.    </p>
+</li><li class=" ">    <p>Invoke one of the following methods on the Model instance and pass it a callback function, which is passed an <tt class=" ">error</tt> and <tt class=" ">results</tt> object:    </p>
+<ol class=" "><li class=" ">    <p class="highlight javascript"><tt class=" ">create(object, callback)</tt>: Creates a model    </p>
+</li><li class=" ">    <p class="highlight javascript"><tt class=" ">query(options, callback)</tt>: Retrieves models specified by the query    </p>
+</li><li class=" ">    <p class="highlight javascript"><tt class=" ">findAll(callback)</tt>: Retrieves all models    </p>
+</li><li class=" ">    <p class="highlight javascript"><tt class=" ">findById(id, callback)</tt>: Retrieves the model specified by the id parameter    </p>
+</li><li class=" ">    <p class="highlight javascript"><tt class=" ">update(instance, callback)</tt>: Updates the passed model    </p>
+</li><li class=" ">    <p class="highlight javascript"><tt class=" ">deleteAll(callback)</tt>: Deletes all models    </p>
+</li><li class=" ">    <p class="highlight javascript"><tt class=" ">delete(instance, callback)</tt>: Deletes the passed model    </p>
+</li></ol></li></ol>    <p><strong class=" ">Example</strong>:    </p>
+    <p>The Route example below retrieves all car model.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">web/routes/testroute.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="web/routes/testroute.js">
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">var</code><code class="plain"> TestRoute = Arrow.Router.extend({</code></div>
+<div class="line"><code class="plain">    name: </code><code class="string">&apos;car&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    path: </code><code class="string">&apos;/car&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    method: </code><code class="string">&apos;GET&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    description: </code><code class="string">&apos;get some cars&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    action: </code><code class="keyword">function</code><code class="plain"> (req, res, next) {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">var</code><code class="plain"> model = req.server.getModel(</code><code class="string">&apos;car&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        model.findAll(</code><code class="keyword">function</code><code class="plain">(err, results){</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">if</code><code class="plain"> (err) {</code></div>
+<div class="line"><code class="plain">                next(err);</code></div>
+<div class="line"><code class="plain">            } </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">                req.log.info(</code><code class="string">&apos;got cars &apos;</code><code class="plain"> + JSON.stringify(results));</code></div>
+<div class="line"><code class="plain">                res.render(</code><code class="string">&apos;car&apos;</code><code class="plain">, {cars:results});</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">        });</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">module.exports = TestRoute;</code></div>
+</div>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

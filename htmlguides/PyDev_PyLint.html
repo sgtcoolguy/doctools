@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>PyLint  can be used with PyDev</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30083066" class="content">
+                        <h1>PyLint  can be used with PyDev</h1>
+    <p>NOTE: <a class="external-link external-link" href="http://www.logilab.org/projects/pylint">PyLint</a> is <strong class=" ">disabled by default</strong>, so, if you want to activate it, you should go to the pylint preferences page, <strong class=" ">specify its location</strong> (it MUST be installed in the site-packages) and activate it (note: after activating it, you can clean your project on the project menu so that the files are checked with pylint, or you can do it on deltas as you go and change your files).    </p>
+    <p>    <img src="images/pydev.org/images/pylint/pylint_prefs.png" alt="images/pydev.org/images/pylint/pylint_prefs.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border">
+    <br>Well, moving on: The integration is done so that it is integrated with the eclipse builder. That means that whenever you change a file it automatically passes pylint (if autobuild is on &#x2013; check the menu Project &gt; Build Automatically. If it is not, you can request a build when you want with Ctrl+B, so that the deltas are analyzed).    </p>
+    <p>This, however, has a drawback: PyLint can be slow at sometimes, and if you work in big projects it can be kind of slow (anyway, you can stop the builder process at any time if you want) - you should expect that it takes some secs. for each file it analyzes, so, if you are working with about 700 files - like I am - it can take a long time - more than 40 minutes to get all the info on the project...    </p>
+    <p>For this cases, I have provided an option on the maximum delta to use PyLint on. So, if you have all of the sudden 100 changed files because of a cvs update, PyLint will not be run unless the limit you specify allows it.    </p>
+    <p>Oh, if you don&apos;t see the problems on your problems view, don&apos;t forget to enable it in the problems view filter.    </p>
+    <p>    <img src="images/pydev.org/images/pylint/pylint.png" alt="images/pydev.org/images/pylint/pylint.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border">
+        </p>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">// jscs:disable
+<span id='HandlebarsRendererEngine'>/**
+</span> * @class HandlebarsRendererEngine
+ * Renderer engine for Handlebar templates.
+ * @extends ArrowRendererEngine
+ * @pseudo
+ */
+
+<span id='HandlebarsRendererEngine-property-skipread'>/**
+</span> * @property skipread
+ * @hide
+ */
+// jscs:enable
+
+var handlebars = require(&#39;handlebars&#39;),
+	fs = require(&#39;fs&#39;),
+	util = require(&#39;./util&#39;),
+	watchers = [];
+
+// jscs:disable jsDoc
+
+exports.extension = &#39;hbs&#39;;
+
+function render(app, filename, opts) {
+	filename = util.resolveLayoutFilename(app, filename);
+	var tpl = handlebars.compile(fs.readFileSync(filename).toString(), {noEscape: true});
+	return tpl(opts).toString();
+}
+
+exports.createRenderer = function (content, filename, app) {
+	var tpl = handlebars.compile(content, {noEscape: true});
+	return function (filePath, opts, callback) {
+		util.render(app, tpl(opts || {}).toString(), opts, exports.extension, render, callback);
+	};
+};
+
+<span id='HandlebarsRendererEngine-property-Handlebars'>/**
+</span> * @property {Object} Handlebars
+ * handlebars module instance to access its APIs.
+ */
+exports.Handlebars = handlebars;
+
+<span id='HandlebarsRendererEngine-method-registerHelper'>/**
+</span> * @method registerHelper
+ * Registers a handlebar helper function.
+ * @param {String} name Field name.
+ * @param {Function} callback Helper function.
+ */
+exports.registerHelper = handlebars.registerHelper.bind(handlebars);
+<span id='HandlebarsRendererEngine-method-registerPartial'>/**
+</span> * @method registerPartial
+ * Registers a partial template.
+ * @param {String} name Name of the partial template.
+ * @param {String} template Template string.
+ */
+exports.registerPartial = handlebars.registerPartial.bind(handlebars);
+
+function isProduction() {
+	return process.env.NODE_ENV === &#39;production&#39; ||
+		(process.env.serverId &amp;&amp; process.env.appid);
+}
+
+<span id='HandlebarsRendererEngine-method-registerPartials'>/**
+</span> * Loops through a directory and sets up all of the
+ * associated files as Handlebar Partials.
+ *
+ * @param {String} dir Path of the directory to use as partials directory
+ * @param {Boolean} watch Set to `true` to monitor and update file changes.
+ */
+exports.registerPartials = function (dir, watch) {
+	var fs = require(&#39;fs&#39;),
+		path = require(&#39;path&#39;),
+		ext = &#39;.&#39; + exports.extension;
+	fs.readdirSync(dir)
+		.filter(function (fn) { return path.extname(fn) === ext; })
+		.forEach(function (fn) {
+			var f = path.join(dir, fn),
+				stat = fs.statSync(f);
+			if (stat.isDirectory()) {
+				exports.registerPartials(f);
+			} else {
+				var fileName = path.basename(f).replace(ext, &#39;&#39;);
+				handlebars.registerPartial(fileName, fs.readFileSync(f, &#39;utf8&#39;));
+			}
+		});
+	if (watch === undefined &amp;&amp; !isProduction() || watch) {
+		var watcher = fs.watch(dir, {persistent: true, recursive: true}, function (event, filename) {
+			// according to the docs, filename isn&#39;t always provided
+			if (filename) {
+				var name = path.basename(filename).replace(ext, &#39;&#39;);
+				filename = path.join(dir, filename);
+				if (fs.existsSync(filename)) {
+					handlebars.registerPartial(name, fs.readFileSync(filename, &#39;utf8&#39;));
+				}
+			}
+		});
+		watchers.push(watcher);
+	}
+};
+
+exports.cleanupWatchers = function () {
+	for (var i = 0; i &lt; watchers.length; i++) {
+		watchers[i].close();
+	}
+	watchers = [];
+};
+</pre>
+</body>
+</html>

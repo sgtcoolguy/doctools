@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Creating iOS Extensions - Siri Intents</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-49152581" class="content">
+                        <h1>Creating iOS Extensions - Siri Intents</h1>
+    <p>This following tutorial will guide you through the process of creating a new iOS extension and in this case also shows you how to configure your app to communicate with Siri using the <a class="external-link external-link" href="https://developer.apple.com/reference/intents">Intents framework</a>. This framework is different to some other extensions as it requires special capabilities, provisioning profiles, and privacy-permissions. This document will show you how to do that as well.    </p>
+    <p>The repository for this tutorial can be found open-source on <strong class=" "> <a class="external-link external-link" href="https://github.com/appcelerator-developer-relations/ios-extensions-sample-sirikit">Github</a> </strong>.    </p>
+    <p>    <img src="images/download/attachments/49152581/SiriKit.png" alt="images/download/attachments/49152581/SiriKit.png" class="confluence-embedded-image" width="800" height="315">
+        </p>
+    <div class="section section-2 " id="src-49152581_CreatingiOSExtensions-SiriIntents-Step-by-stepguide">
+        <h2 class="heading "><span>Step-by-step guide</span></h2>
+<ol class=" "><li class=" ">    <p>Create a native Titanium App with <tt class=" ">appc new -p ios,</tt> using Appcelerator Studio, or use your existing project.    </p>
+</li><li class=" ">    <p>The name of the example is TestApp, the <tt class=" ">&lt;id&gt;</tt> in tiapp.xml will be something like <tt class=" ">com.appc.testapp</tt> .    </p>
+</li><li class=" ">    <p>Open Xcode and create new project: <tt class=" ">File/New Project/Other/Empty </tt>    </p>
+</li><li class=" ">    <p>Name it <tt class=" ">TestApp</tt> for this tutorial.    </p>
+</li><li class=" ">    <p>Use <tt class=" ">File/New/Target/Application Extension/Intents Extension</tt> to create the extension target. By default, Xcode will add some demo code to handle Message Intents, but you can implement whatever Intent extension you want here.    </p>
+    <img src="images/download/attachments/49152581/Screen_Shot_2016-12-01_at_08.26.39.png" alt="images/download/attachments/49152581/Screen_Shot_2016-12-01_at_08.26.39.png" class="confluence-embedded-image" width="800">
+    </li><li class=" ">    <p>Name the extension <tt class=" ">testapp</tt> and change the &quot;Organization Identifier&quot; to <tt class=" ">com.appc.testapp</tt> so that the &quot;Bundle Identifier&quot; is <tt class=" ">com.appc.testapp.testapp</tt> - You can also suffix it to something like <tt class=" ">siriextension</tt>, but let&apos;s keeps it simple for now.    </p>
+    <img src="images/download/attachments/49152581/Screen_Shot_2016-12-01_at_08.23.35.png" alt="images/download/attachments/49152581/Screen_Shot_2016-12-01_at_08.23.35.png" class="confluence-embedded-image" width="800">
+    </li><li class=" ">    <p>If you wish, you can activate scheme when prompted, but it doesn&apos;t matter because we won&apos;t need to open the standalone Xcode-project while building.    </p>
+</li><li class=" ">    <p>Create a folder called <tt class=" ">extensions</tt> in the Titanium project (root) folder and copy the Xcode extension project into it.    </p>
+</li><li class=" ">    <p>In the <tt class=" ">tiapp.xml</tt>, include the following properties in the <tt class=" ">&lt;ios&gt;</tt> section of it:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">tiapp.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="tiapp.xml">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">extensions</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">extension</code><code class="plain"> </code><code class="color1">projectPath</code><code class="plain">=</code><code class="string">&quot;extensions/TestApp/TestApp.xcodeproj&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">target</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;testapp&quot;</code><code class="plain">&gt; &lt;!-- or &quot;siriextension&quot; if you name the target differently --&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">provisioning</code><code class="plain">-profiles&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">device</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">dist</code><code class="plain">-appstore/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">dist</code><code class="plain">-adhoc/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">provisioning</code><code class="plain">-profiles&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">target</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">extension</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">extensions</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Create or edit your App-ID in the <a class="external-link external-link" href="https://developer.apple.com/account/ios/identifier/bundle">iOS Developer Center</a> to include the &quot;SiriKit&quot; capability, just like you would do with &quot;Access Groups&quot; or &quot;Push Notifications&quot; for other platform-services. Create one app with a wildcard identifier and one without (e.g. <tt class=" ">com.appc.testapp.*</tt> and <tt class=" ">com.appc.testapp</tt>). The first one is linked in the <tt class=" ">&lt;provisioning-profiles&gt;</tt> section of the target, the latter one is used to build the main target (your app) to the device. Note that SiriKit is supported in the Simulator by Apple, because it doesn&apos;t support Siri so far (Status: iOS 10 / November 2016).    </p>
+    <img src="images/download/attachments/49152581/devcenter-1.png" alt="images/download/attachments/49152581/devcenter-1.png" class="confluence-embedded-image" width="800">
+    </li><li class=" ">    <p>Generate two provisioning profiles (one for your main app and one for the Siri target) in the &quot;<a class="external-link external-link" href="https://developer.apple.com/account/ios/profile/limited">Provisioning Profiles</a>&quot; section.    </p>
+</li><li class=" ">    <p>Add the following to the plist-section of your <tt class=" ">tiapp.xml</tt> (<tt class=" ">&lt;tiapp&gt;</tt> &gt; <tt class=" ">&lt;ios&gt;</tt> &gt; <tt class=" ">&lt;plist&gt;</tt>):    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">tiapp.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="tiapp.xml">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">key</code><code class="plain">&gt;NSSiriUsageDescription&lt;/</code><code class="keyword">key</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">string</code><code class="plain">&gt;Can we use Siri to do great stuff?&lt;/</code><code class="keyword">string</code><code class="plain">&gt;&#xA0;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Create a file called <tt class=" ">TestApp.entitlements</tt> in your Titanium project root. Note: if you also use push-entitlements, copy those keys over there as well since it will override the CLI-generated key and paste the following into it:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">TestApp.entitlements</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="TestApp.entitlements">
+<div class="line"><code class="plain">&lt;?</code><code class="keyword">xml</code><code class="plain"> </code><code class="color1">version</code><code class="plain">=</code><code class="string">&quot;1.0&quot;</code><code class="plain"> </code><code class="color1">encoding</code><code class="plain">=</code><code class="string">&quot;UTF-8&quot;</code><code class="plain">?&gt;</code></div>
+<div class="line"><code class="plain">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;</code><code class="comments">http://www.apple.com/DTDs/PropertyList-1.0.dtd</code><code class="plain">&quot;&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">plist</code><code class="plain"> </code><code class="color1">version</code><code class="plain">=</code><code class="string">&quot;1.0&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">dict</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">key</code><code class="plain">&gt;com.apple.developer.siri&lt;/</code><code class="keyword">key</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">true</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">dict</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">plist</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>You made it!! Use <tt class=" ">appc run -p ios -T device</tt> or Appcelerator Studio to run your app on the device. Remember that iOS currently does not support Siri on the Simulator.    </p>
+</li><li class=" ">    <p>You can test the changes by talking to Siri:    </p>
+    <blockquote>
+    <p>Send a Message with TestApp    </p>
+        </blockquote>
+</li></ol>    <p>It will know that your app uses the Intent Extension for handling messages and will ask you for Siri permissions by displaying the message you specified in your plist. You can also change the UI of the Intent by changing the storyboard in your &quot;testappUI&quot; target or specify multiple intents. Just create another target and link it the same way as we did above.    </p>
+    <p>And finally, use <a class="external-link external-link" href="https://www.appcelerator.com/mobile-app-development-products/hyperloop/">Hyperloop</a> or a <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/guide/iOS_Module_Quick_Start">native module</a> to handle the Intent&apos;s responses. Since there dozens of classes and delegates to implement here, you should look for the ones your Intent uses and it will be notified by your extension. This guide may be updated with some samples for that as well, but you can also check some of the existing guides for that:    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://developer.apple.com/library/content/documentation/Intents/Conceptual/SiriIntegrationGuide/SiriDomains.html#//apple_ref/doc/uid/TP40016875-CH9-SW11">https://developer.apple.com/library/content/documentation/Intents/Conceptual/SiriIntegrationGuide/SiriDomains.html#//apple_ref/doc/uid/TP40016875-CH9-SW11</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://jamesonquave.com/blog/adding-siri-to-ios-10-apps-in-swift-tutorial/">http://jamesonquave.com/blog/adding-siri-to-ios-10-apps-in-swift-tutorial/</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://willowtreeapps.com/blog/a-deeper-look-at-sirikit-for-ios-10/">http://willowtreeapps.com/blog/a-deeper-look-at-sirikit-for-ios-10/</a>    </p>
+</li></ul>    <p>Code strong!    </p>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

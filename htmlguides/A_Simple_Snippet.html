@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>A Simple Snippet</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30083226" class="content">
+                        <h1>A Simple Snippet</h1>
+    <div class="section section-2 " id="src-30083226_ASimpleSnippet-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="A_Simple_Snippet.html#src-30083226_ASimpleSnippet-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="A_Simple_Snippet.html#src-30083226_ASimpleSnippet-TheCode">The Code</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30083226_ASimpleSnippet-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>In this recipe we show how to create a simple Ruble snippet, bind it to a activation trigger, and optionally place it in a menu.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083226_ASimpleSnippet-TheCode">
+        <h2 class="heading "><span>The Code</span></h2>
+    <p>In the snippet below, we create a very simple snippet, bind it to the activation character &quot;foo&quot; and place it in a menu. This is the entire Ruble file, though you could ad the menu items and commands to your own existing file.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">bundle </code><code class="keyword">do</code><code class="plain"> |bundle|</code></div>
+<div class="line"><code class="plain">  bundle.display_name = </code><code class="string">&apos;My Ruble&apos;</code></div>
+<div class="line"><code class="plain">  bundle.menu </code><code class="string">&apos;My Ruble&apos;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |menu|</code></div>
+<div class="line"><code class="plain">    menu.command </code><code class="string">&apos;My Snippet&apos;</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">snippet </code><code class="string">&quot;My Snippet&quot;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |snip|</code></div>
+<div class="line"><code class="plain">  snip.trigger = </code><code class="string">&quot;foo&quot;</code></div>
+<div class="line"><code class="plain">  snip.expansion = </code><code class="string">&quot;my_super_snippet&quot;</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    <p>Once created and activated, type &quot;foo&quot; + TAB in your document and see &quot;my_super_snippet&quot; added to the document.    </p>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

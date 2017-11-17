@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Setting Activation Characters</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-30083220" class="content">
+                        <h1>Setting Activation Characters</h1>
+    <div class="section section-2 " id="src-30083220_SettingActivationCharacters-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>In this recipe we show how it is possible to use a Ruble command to modify the activation characters for the HTML, CSS, and JS editors.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083220_SettingActivationCharacters-TheCode">
+        <h2 class="heading "><span>The Code</span></h2>
+    <p>Below is a sample to change the activation characters for the CSS editor. The activation characters are set to &apos;.&apos;, &apos;#&apos;, and &apos;:&apos;. This happens to be the default, so you will not see any change; however, by altering the content of the string in the call to node.put, you can modify the set of characters that will cause content assist to appear automatically.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">bundle </code><code class="keyword">do</code><code class="plain"> |bundle|</code></div>
+<div class="line"><code class="plain">  bundle.author = </code><code class="string">&apos;Kevin Lindsey&apos;</code></div>
+<div class="line"><code class="plain">  bundle.copyright = </code><code class="string">&quot;Copyright 2011 Appcelerator, Inc. Distributed under the MIT license.&quot;</code></div>
+<div class="line"><code class="plain">  bundle.display_name = </code><code class="string">&apos;CSS Prefs&apos;</code></div>
+<div class="line"><code class="plain">  bundle.description = </code><code class="string">&quot;A simple bundle showing how to set CSS preferences&quot;</code></div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">  bundle.menu </code><code class="string">&quot;CSS Prefs&quot;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |m|</code></div>
+<div class="line"><code class="plain">    m.command </code><code class="string">&quot;Set Activation Characters&quot;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
+<div class="line"><code class="plain">      cmd.invoke </code><code class="keyword">do</code><code class="plain"> |ctx|</code></div>
+<div class="line"><code class="plain">        pluginId = </code><code class="string">&quot;com.aptana.editor.css&quot;</code></div>
+<div class="line"><code class="plain">        prefKey = </code><code class="string">&quot;CSS_ACTIVATION_CHARACTERS&quot;</code></div>
+<div class="line"><code class="plain">        </code></div>
+<div class="line"><code class="plain">        node = org.eclipse.core.runtime.preferences.InstanceScope.</code><code class="keyword">new</code><code class="plain">.getNode pluginId</code></div>
+<div class="line"><code class="plain">        node.put prefKey, </code><code class="string">&quot;.#:&quot;</code></div>
+<div class="line"><code class="plain">        node.flush</code></div>
+<div class="line"><code class="plain">        </code></div>
+<div class="line"><code class="plain">        CONSOLE.puts </code><code class="string">&quot;CSS activation character preference has been updated&quot;</code></div>
+<div class="line"><code class="plain">      end</code></div>
+<div class="line"><code class="plain">    end</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083220_SettingActivationCharacters-PluginIdsandPreferenceKeys">
+        <h2 class="heading "><span>Plugin Ids and Preference Keys</span></h2>
+    <p>In order to set the activate characters for a specific language, you need to know the editor&apos;s plugin id and the associated preference key. Below is a table providing that information. Replace the &quot;pluginId&quot; and &quot;prefKey&quot; assignments in the above example to the setting appropriate for the language you wish to update.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Language    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Plugin Id    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Preference Key    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CSS    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>com.aptana.editor.css    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>CSS_ACTIVATION_CHARACTERS    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>HTML    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>com.aptana.editor.html    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>HTML_ACTIVATION_CHARACTERS    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>JS    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>com.aptana.editor.js    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>JS_ACTIVATION_CHARACTERS    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=30083220"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

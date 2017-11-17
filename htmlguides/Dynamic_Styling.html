@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dynamic Styling</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-41845657" class="content">
+                        <h1>Dynamic Styling</h1>
+    <p>Demonstrates different approaches to <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/guide/Dynamic_Styles">changing styles at runtime</a> in Alloy. The sample application displays a menu of options that discuss or demonstrate the different approaches and techniques for dynamic styling. See each section below for a discussion of each approach.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
+            <div class="title">App folder location</div>
+            <p><i class=" ">alloy</i>/test/apps/<strong class=" ">advanced/dynamic_styling</strong>    </p>
+    </div>
+        <p>    </p>
+    <p>    <img src="images/download/attachments/41845657/dynamic_styling.png" alt="images/download/attachments/41845657/dynamic_styling.png" class="confluence-embedded-image">
+        </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Dynamic_Styling.html#src-41845657_DynamicStyling-RawStyleModules">Raw Style Modules</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Dynamic_Styling.html#src-41845657_DynamicStyling-CreatingandUsingStyleObjects">Creating and Using Style Objects</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Dynamic_Styling.html#src-41845657_DynamicStyling-CreatingStyledTitaniumProxies">Creating Styled Titanium Proxies</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Dynamic_Styling.html#src-41845657_DynamicStyling-AddingandRemovingTSSClasses">Adding and Removing TSS Classes</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Dynamic_Styling.html#src-41845657_DynamicStyling-AutostyleProperty">Autostyle Property</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-41845657_DynamicStyling-RawStyleModules">
+        <h2 class="heading "><span>Raw Style Modules</span></h2>
+    <p>    <span style="color: #222222;">
+Although not often needed, you can access the raw style data used in the Alloy project, you can     </span>
+<tt class=" ">require()</tt>    <span style="color: #222222;">
+ the styles, as shown below:    </span>
+    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/features/rawStyle.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/features/rawStyle.js">
+<div class="line"><code class="plain">var rawStyles = JSON.stringify(require(</code><code class="string">&apos;alloy/styles/features/rawStyle&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">console.log(rawStyles);</code></div>
+<div class="line"><code class="comments">// output</code></div>
+<div class="line"><code class="plain">[</code></div>
+<div class="line"><code class="plain">  {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;isApi&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;priority&quot;</code><code class="plain">: </code><code class="value">1000.0001</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;key&quot;</code><code class="plain">: </code><code class="string">&quot;Window&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;style&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;backgroundColor&quot;</code><code class="plain">: </code><code class="string">&quot;#efefef&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;fullscreen&quot;</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;navBarHidden&quot;</code><code class="plain">: </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;isApi&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;priority&quot;</code><code class="plain">: </code><code class="value">1000.0002</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;key&quot;</code><code class="plain">: </code><code class="string">&quot;Label&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;style&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;color&quot;</code><code class="plain">: </code><code class="string">&quot;#181818&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;height&quot;</code><code class="plain">: </code><code class="string">&quot;SIZE&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;textAlign&quot;</code><code class="plain">: </code><code class="string">&quot;left&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;isApi&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;priority&quot;</code><code class="plain">: </code><code class="value">1000.0028</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;key&quot;</code><code class="plain">: </code><code class="string">&quot;WebView&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;style&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;width&quot;</code><code class="plain">: </code><code class="string">&quot;100%&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;top&quot;</code><code class="plain">: </code><code class="string">&quot;10dp&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;isClass&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;priority&quot;</code><code class="plain">: </code><code class="value">10000.0003</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;key&quot;</code><code class="plain">: </code><code class="string">&quot;container&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;style&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;top&quot;</code><code class="plain">: </code><code class="string">&quot;50dp&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;bottom&quot;</code><code class="plain">: </code><code class="value">0</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;right&quot;</code><code class="plain">: </code><code class="string">&quot;10dp&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;left&quot;</code><code class="plain">: </code><code class="string">&quot;10dp&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;isClass&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;priority&quot;</code><code class="plain">: </code><code class="value">10000.0004</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;key&quot;</code><code class="plain">: </code><code class="string">&quot;blue&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;style&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;color&quot;</code><code class="plain">: </code><code class="string">&quot;#00f&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;isClass&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;priority&quot;</code><code class="plain">: </code><code class="value">10000.0005</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;key&quot;</code><code class="plain">: </code><code class="string">&quot;shadow&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;style&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;shadowColor&quot;</code><code class="plain">: </code><code class="string">&quot;#88f&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;shadowOffset&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;x&quot;</code><code class="plain">: </code><code class="value">1</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;y&quot;</code><code class="plain">: </code><code class="value">3</code></div>
+<div class="line"><code class="plain">      }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;isClass&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;priority&quot;</code><code class="plain">: </code><code class="value">10000.0006</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;key&quot;</code><code class="plain">: </code><code class="string">&quot;dark&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;style&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;backgroundColor&quot;</code><code class="plain">: </code><code class="string">&quot;#888&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;color&quot;</code><code class="plain">: </code><code class="string">&quot;#003&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;isClass&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;priority&quot;</code><code class="plain">: </code><code class="value">10000.0007</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;key&quot;</code><code class="plain">: </code><code class="string">&quot;large&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;style&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;font&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;fontSize&quot;</code><code class="plain">: </code><code class="string">&quot;32dp&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;fontWeight&quot;</code><code class="plain">: </code><code class="string">&quot;bold&quot;</code></div>
+<div class="line"><code class="plain">      }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;isClass&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;priority&quot;</code><code class="plain">: </code><code class="value">10000.0008</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;key&quot;</code><code class="plain">: </code><code class="string">&quot;huge&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;style&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;font&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;fontSize&quot;</code><code class="plain">: </code><code class="string">&quot;64dp&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;fontWeight&quot;</code><code class="plain">: </code><code class="string">&quot;bold&quot;</code></div>
+<div class="line"><code class="plain">      }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;isClass&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;priority&quot;</code><code class="plain">: </code><code class="value">10000.0029</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;key&quot;</code><code class="plain">: </code><code class="string">&quot;content&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;style&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;font&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;fontSize&quot;</code><code class="plain">: </code><code class="string">&quot;16dp&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;fontWeight&quot;</code><code class="plain">: </code><code class="string">&quot;normal&quot;</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;height&quot;</code><code class="plain">: </code><code class="string">&quot;SIZE&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;top&quot;</code><code class="plain">: </code><code class="string">&quot;10dp&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;isClass&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;priority&quot;</code><code class="plain">: </code><code class="value">10000.003</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;key&quot;</code><code class="plain">: </code><code class="string">&quot;container&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;style&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;layout&quot;</code><code class="plain">: </code><code class="string">&quot;vertical&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">]</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-41845657_DynamicStyling-CreatingandUsingStyleObjects">
+        <h2 class="heading "><span>Creating and Using Style Objects</span></h2>
+    <p>    <span style="color: #222222;">
+This section uses an Alloy view-controller&apos;s <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Alloy.Controller-method-createStyle">createStyle()</a> method to create a new style object, which is then passed as a parameter to the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI-method-createLabel">Ti.UI.createLabel()</a> method.     </span>
+The following code is representative of that used in the sample app.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/features/createStyle.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/features/createStyle.js">
+<div class="line"><code class="plain">var styleArgs = {</code></div>
+<div class="line"><code class="plain">    apiName: </code><code class="string">&apos;Ti.UI.Label&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    classes: [</code><code class="string">&apos;blue&apos;</code><code class="plain">,</code><code class="string">&apos;shadow&apos;</code><code class="plain">,</code><code class="string">&apos;large&apos;</code><code class="plain">],</code></div>
+<div class="line"><code class="plain">    id: </code><code class="string">&apos;tester&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    borderWidth: </code><code class="value">2</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    borderRadius: </code><code class="value">16</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    borderColor: </code><code class="string">&apos;#000&apos;</code></div>
+<div class="line"><code class="plain">};</code></div>
+<div class="line"><code class="plain">var styleObject = $.createStyle(styleArgs);</code></div>
+<div class="line"><code class="plain">testLabel = Ti.UI.createLabel(styleObject);</code></div>
+<div class="line"><code class="plain">testLabel.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, changeStyle);</code></div>
+<div class="line"><code class="plain">$.container.add(testLabel);</code></div>
+</div>
+    </div>
+    <p>The &quot;blue&quot;, &quot;shadow&quot;, and &quot;large&quot; styles are defined in the project&apos;s global TSS file.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/app.tss</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/app.tss">
+<div class="line"><code class="string">&apos;.blue&apos;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    color: </code><code class="string">&apos;#00f&apos;</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="string">&apos;.shadow&apos;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    shadowColor: </code><code class="string">&apos;#88f&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    shadowOffset: {x:</code><code class="value">1</code><code class="plain">,y:</code><code class="value">3</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="string">&apos;.large&apos;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    font: {</code></div>
+<div class="line"><code class="plain">        fontSize: </code><code class="string">&apos;32dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        fontWeight: </code><code class="string">&apos;bold&apos;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>In the sample view, click the label to cycle through a variety of styles applied in this manner.    </p>
+    <p>    <img src="images/download/attachments/41845657/create_style.png" alt="images/download/attachments/41845657/create_style.png" class="confluence-embedded-image">
+        </p>
+    </div>
+    <div class="section section-2 " id="src-41845657_DynamicStyling-CreatingStyledTitaniumProxies">
+        <h2 class="heading "><span>Creating Styled Titanium Proxies</span></h2>
+    <p>This sample view is functionally identical to the previous &quot;Creating Style Objects&quot; sample (click the label to cycle it through a series of different styles). The difference is that it uses the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Alloy.Controller.UI-method-create">Alloy.Controller.UI.create()</a> method to create and style the Label object in a single method call, rather than making <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Alloy.Controller-method-createStyle">createStyle()</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI-method-createLabel">Ti.UI.createLabel()</a> calls. The <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Alloy.Controller.UI-method-create">create()</a> method takes as its first parameter the API name of the object to create, which can either be the full class name (&quot;Titanium.UI.Button&quot;) or the Alloy XML element name (&quot;Button&quot;). It&apos;s second parameter is a object hash whose fields specify the styles to apply to the new object.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controller/createStyle.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controller/createStyle.js">
+<div class="line"><code class="plain">var styleArgs = {</code></div>
+<div class="line"><code class="plain">    classes: [</code><code class="string">&apos;blue&apos;</code><code class="plain">,</code><code class="string">&apos;shadow&apos;</code><code class="plain">,</code><code class="string">&apos;large&apos;</code><code class="plain">],</code></div>
+<div class="line"><code class="plain">    id: </code><code class="string">&apos;tester&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    borderWidth: </code><code class="value">2</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    borderRadius: </code><code class="value">16</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    borderColor: </code><code class="string">&apos;#000&apos;</code></div>
+<div class="line"><code class="plain">};</code></div>
+<div class="line"><code class="plain">testLabel = $.UI.create(</code><code class="string">&apos;Label&apos;</code><code class="plain">, styleArgs);</code></div>
+<div class="line"><code class="plain">testLabel.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, changeStyle);</code></div>
+<div class="line"><code class="plain">$.container.add(testLabel);</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-41845657_DynamicStyling-AddingandRemovingTSSClasses">
+        <h2 class="heading "><span>Adding and Removing TSS Classes</span></h2>
+    <p>The &quot;Add/Remove Classes&quot; sample app section demonstrates using <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Alloy.Controller-method-addClass">addClass()</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Alloy.Controller-method-removeClass">removeClass()</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Alloy.Controller-method-resetClass">resetClass()</a> methods to style objects that have already been created, either from an XML view, or by calling <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Alloy.Controller.UI-method-create">Alloy.Controller.UI.create()</a> or one of the Ti.UI.create* methods, such as as <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI-method-createLabel">Titanium.UI.createLabel()</a>. This sample also demonstrates Alloy&apos;s &quot;auto-styling&quot; feature, which is also demonstrated in the <a class="document-link " href="Dynamic_Styling.html#src-41845657_DynamicStyling-AutostyleProperty">Autostyle Property</a> section below.    </p>
+    <p>This affects the result of adding and removing TSS classes at runtime, as shown below. The two Label elements are both styled with same classes (&quot;medium shadow&quot;) but the top Label element has <tt class=" ">autoStyle</tt> set to <tt class=" ">true</tt>, while the bottom Label element does not.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/views/classes.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/classes.xml">
+<div class="line"><code class="plain">&lt;Label id=</code><code class="string">&quot;label1&quot;</code><code class="plain"> </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;medium shadow&quot;</code><code class="plain">&gt;autoStyle=</code><code class="string">&quot;true&quot;</code><code class="plain">&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">&lt;Label id=</code><code class="string">&quot;label2&quot;</code><code class="plain"> </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;medium shadow&quot;</code><code class="plain"> autoStyle=</code><code class="string">&quot;false&quot;</code><code class="plain">&gt;autoStyle=</code><code class="string">&quot;false&quot;</code><code class="plain">&lt;/Label&gt;</code></div>
+</div>
+    </div>
+    <p>The blue button acts as a toggle that calls <tt class=" ">addClass()</tt> and <tt class=" ">removeClass()</tt> on both Labels to add and remove the &quot;redbg bigger&quot; classes from each Label. Initially, they both look identical, and also when the &quot;Add classes&quot; toggle is pressed. However, when those styles are removed, the auto-styled Label returns to its original state (&quot;medium shadow&quot; styles applied); the Label which is not auto-styled is set to its default styled state.    </p>
+    <p>    <img src="images/download/attachments/41845657/add-remove-1.png" alt="images/download/attachments/41845657/add-remove-1.png" class="confluence-embedded-image" width="500">
+        </p>
+    </div>
+    <div class="section section-2 " id="src-41845657_DynamicStyling-AutostyleProperty">
+        <h2 class="heading "><span>Autostyle Property</span></h2>
+    <p>    <span style="color: #222222;">
+A XML view component whose     </span>
+<tt class=" ">autostyle</tt>    <span style="color: #222222;">
+ attribute is set to <tt class=" ">true</tt> has its assigned classes stored to it&apos;s runtime proxy object, making them available This can observed by viewing the console output when you run the Autostyle sample, in which only &quot;label2&quot; has auto-styling enabled. The sample     </span>
+prints the <tt class=" ">id</tt>, <tt class=" ">classes</tt>, and <tt class=" ">apiName</tt> of all UI components created from XML to the console.    </p>
+    <p>    <span style="color: #222222;">
+As shown below, only the output for <tt class=" ">label2</tt> includes a <tt class=" ">classes</tt> field, since it&apos;s the only element with auto-styling enabled.     </span>
+    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Console output</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Console output">
+<div class="line"><code class="plain">[INFO]  ******** label1 ********</code></div>
+<div class="line"><code class="plain">[INFO]  {</code></div>
+<div class="line"><code class="plain">[INFO]    </code><code class="string">&quot;apiName&quot;</code><code class="plain">: </code><code class="string">&quot;Ti.UI.Label&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">[INFO]    </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;label1&quot;</code></div>
+<div class="line"><code class="plain">[INFO]  }</code></div>
+<div class="line"><code class="plain">[INFO]   </code></div>
+<div class="line"><code class="plain">[INFO]  ******** label2 ********</code></div>
+<div class="line"><code class="plain">[INFO]  {</code></div>
+<div class="line"><code class="plain">[INFO]    </code><code class="string">&quot;apiName&quot;</code><code class="plain">: </code><code class="string">&quot;Ti.UI.Label&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">[INFO]    </code><code class="string">&quot;classes&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">[INFO]      </code><code class="string">&quot;blue&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">[INFO]      </code><code class="string">&quot;huge&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">[INFO]      </code><code class="string">&quot;shadow&quot;</code></div>
+<div class="line"><code class="plain">[INFO]    ]</code></div>
+<div class="line"><code class="plain">[INFO]    </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;label2&quot;</code></div>
+<div class="line"><code class="plain">[INFO]  }</code></div>
+</div>
+    </div>
+    <p>    <span style="color: #222222;">
+Autostyle is necessary to take full advantage of the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Alloy.Controller-method-addClass">addClass()</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Alloy.Controller-method-removeClass">removeClass()</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Alloy.Controller-method-resetClass">resetClass()</a> methods    </span>
+    <span style="color: #222222;">
+ to properly update the view as classes are removed and added.     </span>
+    <span style="color: #222222;">
+For a better demonstration of the benefits of enabling auto-styling, see the discussion above for     </span>
+<a class="document-link " href="Dynamic_Styling.html#src-41845657_DynamicStyling-AddingandRemovingTSSClasses">Adding and Removing TSS Classes</a>    <span style="color: #222222;">
+.     </span>
+    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>There is a small performance overhead associated with enabling auto-styling on components, which is why <tt class=" ">autoStyle</tt> is not disabled for all components by default. You should use <tt class=" ">autoStyle</tt> only on elements that will actually use the ability to add/remove classes at runtime.    </p>
+    </div>
+        </div>
+    <div class="section section-2 " id="src-41845657_DynamicStyling-SeeAlso">
+        <h2 class="heading "><span>See Also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/titanium/3.0/#!/guide/Dynamic_Styles">Dynamic Styles</a>    </p>
+</li></ul>    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

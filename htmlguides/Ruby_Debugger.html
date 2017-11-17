@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Ruby Debugger</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+
+        <div id="src-30083024" class="content">
+                        <h1>Ruby Debugger</h1>
+    <div class="section section-2 " id="src-30083024_RubyDebugger-Chapters">
+        <h2 class="heading "><span>Chapters</span></h2>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-Pre-requisites">Pre-requisites</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-Usingruby-debug">Using ruby-debug</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-Installingruby-debug-ideonWindows">Installing ruby-debug-ide on Windows</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-Ruby1.8">Ruby 1.8</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-Ruby1.9">Ruby 1.9</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-Troubleshooting">Troubleshooting</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-StartingaDebugSession">Starting a Debug Session</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-DebugViews">Debug Views</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-VariablesView">Variables View</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-ShowConstantsandClasses">Show Constants and Classes</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-Arrays">Arrays</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-Hashes">Hashes</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-BreakpointsView">Breakpoints View</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-ExpressionsView">Expressions View</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-DisplayView">Display View</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_RubyDebugger-AutomaticCodeReloading">Automatic Code Reloading</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Ruby_Debugger.html#src-30083024_safe-id-UnVieURlYnVnZ2VyLURlYnVnZ2luZ2luUnVieWdlbXMvbGlicmFyaWVz">Debugging in Ruby gems/libraries</a>    </p>
+</li></ul>    <p>This page gives an overview of how to use the Ruby debugger.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083024_RubyDebugger-Pre-requisites">
+        <h2 class="heading "><span>Pre-requisites</span></h2>
+    <p>Studio has the ability to integrate with ruby-debug.    </p>
+    <p>ruby-debug is a faster debugging gem that has become a standard for Ruby. There is a command line interface for the library, but the shared core is re-used with the IDE version of the gem.    </p>
+    <div class="section section-3 " id="src-30083024_RubyDebugger-Usingruby-debug">
+        <h3 class="heading "><span>Using ruby-debug</span></h3>
+    <p>We have worked with the author of the ruby-debug gem to provide ruby-debug as a backend debugger. To use ruby-debug as your debugger you&apos;ll need to install the <strong class=" ">ruby-debug-ide</strong> gem and it&apos;s dependencies. There are specific versions for Ruby 1.8 versus Ruby 1.9. To install for Ruby 1.9, be sure to install the <strong class=" ">ruby-debug-ide19</strong> gem. You can install the gems inside our Terminal view or editor using the standard <strong class=" ">[sudo] gem install ruby-debug-ide</strong> or <strong class=" ">[sudo] gem install ruby-debug-ide19</strong> command.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083024_RubyDebugger-Installingruby-debug-ideonWindows">
+        <h2 class="heading "><span>Installing ruby-debug-ide on Windows</span></h2>
+    <div class="section section-3 " id="src-30083024_RubyDebugger-Ruby1.8">
+        <h3 class="heading "><span>Ruby 1.8</span></h3>
+    <p>Use the installer from <a class="external-link external-link" href="http://railsinstaller.org">railsinstaller.org</a>. It uses Ruby 1.8.7, and also installs a git environment compatible with Studio, DevKit, and the rails gems.    </p>
+    <p>Once installed, you should be able to run &quot;gem install ruby-debug-ide&quot; from a Command prompt or our Terminal view. During the install it will print out a message informing you that it&apos;s temporarily altering PATH for DevKit. If it does not, you may want to re-install.    </p>
+    </div>
+    <div class="section section-3 " id="src-30083024_RubyDebugger-Ruby1.9">
+        <h3 class="heading "><span>Ruby 1.9</span></h3>
+    <p>Install a build from <a class="external-link external-link" href="http://rubyinstaller.org">rubyinstaller.org</a>.    </p>
+    <p>Here&apos;s the steps I followed:<br>1. Download Ruby 1.9.2 and DevKit exe installs from <a class="external-link external-link" href="http://rubyinstaller.org/downloads/">http://rubyinstaller.org/downloads/</a><br>2. Install Ruby to c:/Ruby192/, make sure it&apos;s added to your PATH.<br>3. Install DevKit to c:/DevKit<br>4. Open the Command Line    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cd c:/DevKit</code></div>
+<div class="line"><code class="plain">ruby dk.rb init</code></div>
+<div class="line"><code class="plain">ruby dk.rb install</code></div>
+<div class="line"><code class="plain">gem install ruby-debug-ide19 --platform=ruby</code></div>
+<div class="line"><code class="plain">gem install sqlite3       # follow the post-install instructions to grab a sqlite3.dll and copy it into C:\Ruby192\bin</code></div>
+<div class="line"><code class="plain">gem install rails</code></div>
+</div>
+    </div>
+    <p>The steps for installing DevKit, setting it up and installing the gems came from the rubyinstaller.org docs at <a class="external-link external-link" href="https://github.com/oneclick/rubyinstaller/wiki/Development-Kit">https://github.com/oneclick/rubyinstaller/wiki/Development-Kit</a>. You should be sure to check those docs for the latest instructions in case they have changed.    </p>
+    <div class="section section-4 " id="src-30083024_RubyDebugger-Troubleshooting">
+        <h4 class="heading "><span>Troubleshooting</span></h4>
+    <p>A few users have reported issues with the debugger spitting out an error on starting the process, looking like:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">Fast Debugger (ruby-debug-ide </code><code class="value">0.4</code><code class="plain">.</code><code class="value">16</code><code class="plain">, ruby-debug-base </code><code class="value">0.11</code><code class="plain">) listens on </code><code class="value">127.0</code><code class="plain">.</code><code class="value">0.1</code><code class="plain">:</code><code class="value">55585</code></div>
+<div class="line"><code class="plain">Fatal exception in DebugThread loop: The requested service provider could not be loaded or initialized. - socket(</code><code class="value">2</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">Backtrace:</code></div>
+<div class="line"><code class="plain">c:/Ruby192/lib/ruby/gems/</code><code class="value">1.9</code><code class="plain">.</code><code class="value">1</code><code class="plain">/gems/ruby-debug-ide-</code><code class="value">0.4</code><code class="plain">.</code><code class="value">16</code><code class="plain">/lib/ruby-debug-ide.rb:</code><code class="value">135</code><code class="plain">:in </code><code class="string">&apos;initialize&apos;</code><code class="plain"> from:</code></div>
+<div class="line"><code class="plain">c:/Ruby192/lib/ruby/gems/</code><code class="value">1.9</code><code class="plain">.</code><code class="value">1</code><code class="plain">/gems/ruby-debug-ide-</code><code class="value">0.4</code><code class="plain">.</code><code class="value">16</code><code class="plain">/lib/ruby-debug-ide.rb:</code><code class="value">135</code><code class="plain">:in </code><code class="string">&apos;new&apos;</code><code class="plain"> from:</code></div>
+<div class="line"><code class="plain">c:/Ruby192/lib/ruby/gems/</code><code class="value">1.9</code><code class="plain">.</code><code class="value">1</code><code class="plain">/gems/ruby-debug-ide-</code><code class="value">0.4</code><code class="plain">.</code><code class="value">16</code><code class="plain">/lib/ruby-debug-ide.rb:</code><code class="value">135</code><code class="plain">:in </code><code class="string">&apos;block in start_control&apos;</code></div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+    <p>A couple things have been found to cause the issue:<br>1. Using RadRails/RDT 2.x versions along with Studio 3.x. Those old versions of the IDE try to install the 1.8 versions of the ruby-debug gems, which do not work with Ruby 1.8.<br>2. An old/bad lib being found. Explicitly set an environment variable of RUBYLIB to C:\Ruby192\lib\ruby\1.9.1 on the debug launch configuration or in your system.<br>To see the full details on this see: <a class="external-link external-link" href="https://aptanastudio.tenderapp.com/discussions/problems/2896-issues-with-aptana-30-radrails">https://aptanastudio.tenderapp.com/discussions/problems/2896-issues-with-aptana-30-radrails</a>    </p>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083024_RubyDebugger-StartingaDebugSession">
+        <h2 class="heading "><span>Starting a Debug Session</span></h2>
+    <p>To start a Ruby debug session:    </p>
+<ol class=" "><li class=" ">    <p>Open your ruby file and set a breakpoint like you would set a breakpoint in a java file. (Typically double-clicking or right-clicking on the left-hand gutter/ruler of the editor on the line where you&apos;d like the breakpoint toggled).    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Run &gt; Debug As &gt; Ruby Application</strong>. The Debug perspective will open.    </p>
+</li><li class=" ">    <p>In the launch view use step into, step over, step return to step through the code. Use the <strong class=" ">Resume</strong> button to resume the application.    </p>
+</li></ol>    <p>    <img src="images/download/attachments/30083024/rubyDebugPerspective.png" alt="images/download/attachments/30083024/rubyDebugPerspective.png" class="confluence-embedded-image">
+        </p>
+    </div>
+    <div class="section section-2 " id="src-30083024_RubyDebugger-DebugViews">
+        <h2 class="heading "><span>Debug Views</span></h2>
+    <p>The debug perspective contains the following views per default:    </p>
+<ul class=" "><li class=" ">    <p>Debug    </p>
+</li><li class=" ">    <p>Variables    </p>
+</li><li class=" ">    <p>Breakpoints    </p>
+</li><li class=" ">    <p>Editor    </p>
+</li><li class=" ">    <p>Outline    </p>
+</li><li class=" ">    <p>Console    </p>
+</li><li class=" ">    <p>Tasks    </p>
+</li></ul>    <p>In addition to these there are two more view for the debug perspective: the Expression and Display view. The Expression view will be opened for displaying the results of inspect commands (runtime evaluation). The Display view allows to enter arbitrary ruby commands for evaluation.    </p>
+    <div class="section section-3 " id="src-30083024_RubyDebugger-VariablesView">
+        <h3 class="heading "><span>Variables View</span></h3>
+    <p>The Variables View shows the variables available in the stack trace which is selected in the Debug view.    </p>
+    <div class="section section-4 " id="src-30083024_RubyDebugger-ShowConstantsandClasses">
+        <h4 class="heading "><span>Show Constants and Classes</span></h4>
+    <p>Check Show Constants to display constants, check Show Class Variables to display class variables.    </p>
+    <p>    <img src="images/download/attachments/30083024/VariableViewShowClassesAndConstants.png" alt="images/download/attachments/30083024/VariableViewShowClassesAndConstants.png" class="confluence-embedded-image">
+        </p>
+    <p>If you compare the default variable view with the screenshot above you will notice that there are a lot more menu commands available. They are for java debug targets. You can customize the variable view to show ruby debug commands only: Go to <strong class=" ">Window &gt; Preferences &gt; General &gt; Capabilities</strong> and deselect <strong class=" ">Development</strong>. It is a little bewildering to switch off <strong class=" ">Development</strong> here, but it means only to disable Java development and not Ruby development.    </p>
+    <p>    <img src="images/download/attachments/30083024/VariableViewWithTypes.png" alt="images/download/attachments/30083024/VariableViewWithTypes.png" class="confluence-embedded-image">
+        </p>
+    <p>In the above screenshot there is a variable barney of type person. The object is represented by the return value of the to_s method, in this case &quot;#&lt;Person:0x2ae7d20&gt;&quot;. There is one instance variable @name of type String and value &quot;Barney&quot;.    </p>
+    </div>
+    <div class="section section-4 " id="src-30083024_RubyDebugger-Arrays">
+        <h4 class="heading "><span>Arrays</span></h4>
+    <p>Assume the following code:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">class</code><code class="plain"> Person</code></div>
+<div class="line"><code class="plain">  def initialize(name)</code></div>
+<div class="line"><code class="plain">   </code><code class="color1">@name</code><code class="plain"> = name</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">  def to_s()</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> </code><code class="color1">@name</code><code class="plain">.to_s</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">persons = []</code></div>
+<div class="line"><code class="plain">persons &amp;lt;&amp;lt; Person.</code><code class="keyword">new</code><code class="plain">(</code><code class="string">&apos;Barney&apos;</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">persons &amp;lt;&amp;lt; Person.</code><code class="keyword">new</code><code class="plain">(</code><code class="string">&apos;Moe&apos;</code><code class="plain">)</code></div>
+</div>
+    </div>
+    <p>After the last assignment the variable view shows the content of the array. Note that the name appears as description for the object, because to_s is overriden.    </p>
+    <p>    <img src="images/download/attachments/30083024/ArrayInVariablesView.png" alt="images/download/attachments/30083024/ArrayInVariablesView.png" class="confluence-embedded-image">
+        </p>
+    </div>
+    <div class="section section-4 " id="src-30083024_RubyDebugger-Hashes">
+        <h4 class="heading "><span>Hashes</span></h4>
+    <p>In order to show how hashes are presented in the variables view, a hash is created:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">persons = Hash[ Person.</code><code class="keyword">new</code><code class="plain">(</code><code class="string">&apos;Lisa&apos;</code><code class="plain">) =&amp;gt; Person.</code><code class="keyword">new</code><code class="plain">(</code><code class="string">&apos;Marge&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="plain">                            Person.</code><code class="keyword">new</code><code class="plain">(</code><code class="string">&apos;Maggie&apos;</code><code class="plain">) =&amp;gt; Person.</code><code class="keyword">new</code><code class="plain">(</code><code class="string">&apos;Marge&apos;</code><code class="plain">)]</code></div>
+</div>
+    </div>
+    <p>The view shows the name of the hash with the number of elements in the first place. If you expand the item, there will be a line for every key/value pair in the hash. Expanding a key/value pair will show the content of the value. If you want to know more about the key, select &quot;Inspect key&quot; from the context menu:    </p>
+    <p>    <img src="images/download/attachments/30083024/HashInVariablesView.png" alt="images/download/attachments/30083024/HashInVariablesView.png" class="confluence-embedded-image">
+        </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-30083024_RubyDebugger-BreakpointsView">
+        <h3 class="heading "><span>Breakpoints View</span></h3>
+    <p>Use the Breakpoints view to remove ruby breakpoints.    </p>
+    </div>
+    <div class="section section-3 " id="src-30083024_RubyDebugger-ExpressionsView">
+        <h3 class="heading "><span>Expressions View</span></h3>
+    <p><strong class=" ">TODO</strong> Need to re-implement the Expressions View first!    </p>
+    <p>Results of ruby expression evaluation are displayed here. Evaluation takes place:    </p>
+<ul class=" "><li class=" ">    <p>If you select text in the editor, open the context menu and run &quot;Inspect&quot; or a quick inspect expression with &quot;Inspect...&quot;    </p>
+</li><li class=" ">    <p>If you use the display view to enter ruby expressions    </p>
+</li><li class=" ">    <p>If you select &quot;inspect key&quot; in the context menu of a hash value in the variable view    </p>
+</li></ul>    <p>    <img src="images/download/attachments/30083024/ExpressionViewWithInspectResult.png" alt="images/download/attachments/30083024/ExpressionViewWithInspectResult.png" class="confluence-embedded-image">
+        </p>
+    </div>
+    <div class="section section-3 " id="src-30083024_RubyDebugger-DisplayView">
+        <h3 class="heading "><span>Display View</span></h3>
+    <p>The following example shows an expression which creates a hash with all global variables mapped to their values (the &quot;Content Assist&quot; menu entry is only valid in the context of a java program):    </p>
+    <p>    <img src="images/download/attachments/30083024/DisplayView.png" alt="images/download/attachments/30083024/DisplayView.png" class="confluence-embedded-image">
+        </p>
+    <p>The Expressions view shows the re-itemized list:    </p>
+    <p>    <img src="images/download/attachments/30083024/ExpressionViewWithGlobalVariables.png" alt="images/download/attachments/30083024/ExpressionViewWithGlobalVariables.png" class="confluence-embedded-image">
+        </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083024_RubyDebugger-AutomaticCodeReloading">
+        <h2 class="heading "><span>Automatic Code Reloading</span></h2>
+    <p>If there is a debug session every file you edit and save will be reloaded from the interpreter. This allows to debug and change a ruby application without restarting. While this is a convenient feature, there are some drawbacks to consider:    </p>
+<ul class=" "><li class=" ">    <p>The code reload does not affect the current stack trace. The current stack frame will not be reentered and will be finished with the old code. So, if you change the code of a method this method will be finished with old code and the next call to this method will use the new code. That means that Drop to Frame functionality is not available.    </p>
+</li><li class=" ">    <p>The interpreter reloads the file with the updated content and therefore also executes the code at the main level. That might turn the application in an undesirable state.    </p>
+</li><li class=" ">    <p>You cannot delete methods by reloading.    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30083024_safe-id-UnVieURlYnVnZ2VyLURlYnVnZ2luZ2luUnVieWdlbXMvbGlicmFyaWVz">
+        <h2 class="heading "><span>Debugging in Ruby gems/libraries</span></h2>
+    <p>To add a breakpoint to a file not inside the workspace (under the project), you&apos;ll need to choose File &gt; Open File... and then navigate to the external file. At that point you can toggle breakpoints in the left-hand gutter as with a file inside the workspace.    </p>
+    </div>
+        </div>
+    
+        
+    </div>
+</body>
+</html>

@@ -27,5 +27,5 @@ date
 ## Review the locally generated docs
 LOCAL_PATH='http://localhost/platform/latest/#!/api'
 open $LOCAL_PATH
-open -a TextWrangler API_local_build_report.txt
+open -a Atom API_local_build_report.txt
 say "API local build complete"
