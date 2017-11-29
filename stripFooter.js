@@ -21,6 +21,7 @@ for (i in fileNames) {
 }
 
 // ** There is a bug in this program: regardless of the last file in the fileNames array, the program will throw an error (see below). The program still executes as it should and the div.footer element is removed regardless.
+// ** this can be fixed by using the map method instead of the for loop
 /*
 		at Error (native)
     at Object.fs.openSync (fs.js:584:18)

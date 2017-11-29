@@ -98,6 +98,13 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">codeblocks</pre>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Contains Codeblock, JSON, and Javascript files, used for defining custom functions for use in Flows.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
         <p><tt class=" ">conf</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
@@ -109,7 +116,21 @@
         <p><tt class=" ">docs</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains generated docs for your project&apos;s APIs    </p>
+        <p>Contains generated docs for your project&apos;s APIs.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">endpoints</pre>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Contains Endpoint JSON files, these are OpenAPI 2.0 (Swagger) documents used to create custom entry points for the application, with execution logic defined by linked Flows    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">flows</pre>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Contains Flow JSON files, used for defining business logic for Endpoints.    </p>
             </td>
         </tr>
     <tr>
@@ -117,7 +138,7 @@
         <p><tt class=" ">index.js</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Entry point to the application if it is used as a module    </p>
+        <p>Entry point to the application if it is used as a module.    </p>
             </td>
         </tr>
     <tr>
@@ -125,7 +146,7 @@
         <p><tt class=" ">logs</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains generated log files when running your project locally    </p>
+        <p>Contains generated log files when running your project locally.    </p>
             </td>
         </tr>
     <tr>
@@ -146,10 +167,26 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>nodes    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Contains custom nodes for use in Flows. Nodes must be node.js packages in their own folders named <tt class=" ">nodehandler-*</tt>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
         <p><tt class=" ">package.json</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>NPM configuration file to declare project dependencies and other build or runtime configurations. For details, see <a class="document-link " href="#!/guide/NodeJS_Configuration">NodeJS Configuration</a>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">serviceconnectors</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Contains installed service connectors used within Flows for connecting to and interacting with external services.    </p>
             </td>
         </tr>
     <tr>
@@ -165,7 +202,7 @@
         <p><tt class=" ">web/public</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains static assets, such as CSS, HTML, image or JavaScript files, for your Web interface    </p>
+        <p>Contains static assets, such as CSS, HTML, image, or JavaScript files, for your Web interface.    </p>
             </td>
         </tr>
     <tr>
@@ -173,7 +210,7 @@
         <p><tt class=" ">web/routes</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains Route JavaScript file, used to define the API endpoint and logic for your Web interface    </p>
+        <p>Contains Route JavaScript files, used to define the API endpoint and logic for your Web interface.    </p>
             </td>
         </tr>
     <tr>
@@ -226,7 +263,7 @@
 </li><li class=" ">    <p>application logs &#x2013; explicit log calls made in the application    </p>
 </li></ul>    <p>To capture access logs, use the <tt class=" ">appc-logger</tt> module, and to capture application logs, you can either use the standard JavaScript <tt class=" ">console.log()</tt> and <tt class=" ">console.error()</tt> methods, or you can use the <tt class=" ">appc-logger</tt> module.    </p>
     <p>By default, when an application is initialized, it loads and creates an <tt class=" ">appc-logger</tt> instance.  The <tt class=" ">appc-logger</tt> instance is bound to the server instance, which will automatically capture access logs for the application.    </p>
-    <p>To make log calls, use the <tt class=" ">logger</tt> property from either the API Builder instance, request object or response object to invoke <a class="external-link external-link" href="#!/api/Arrow.Logger"><tt class=" ">appc-logger</tt> APIs</a>.    </p>
+    <p>To make log calls, use the <tt class=" ">logger</tt> property from either the API Builder instance, request object or response object to invoke <a class="external-link external-link" href="#!/api/Arrow.Logger"> <tt class=" ">appc-logger</tt> APIs</a>.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>

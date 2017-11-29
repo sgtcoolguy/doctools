@@ -2,7 +2,7 @@
   {
     "tagname": "class",
     "name": "Arrow.Collection",
-    "doc": "<p>An Arrow Collection is an array of Arrow Model instances with some logic\nto manipulate the models.</p>\n\n<p>To create a Collection, load the <code>arrow</code> module, then use the Collection constructor\nto create an instance of a Collection. You can optionally pass in an array of Model instances\nto initialize the collection.</p>\n\n<pre><code>var Arrow = require('arrow'),\n    Collection = <a href=\"#!/api/Arrow.Collection\" rel=\"Arrow.Collection\" class=\"docClass\">Arrow.Collection</a>,\n    myModels = new Collection(ModelClass, [Model instances...]);\n...\nvar lastModel = myModels.slice(-1);\n</code></pre>\n",
+    "doc": "<p>An API Builder Collection is an array of API Builder Model instances with some logic\nto manipulate the models.</p>\n\n<p>To create a Collection, load the <code>arrow</code> module, then use the Collection constructor\nto create an instance of a Collection. You can optionally pass in an array of Model instances\nto initialize the collection.</p>\n\n<pre><code>var Arrow = require('arrow'),\n    Collection = <a href=\"#!/api/Arrow.Collection\" rel=\"Arrow.Collection\" class=\"docClass\">Arrow.Collection</a>,\n    myModels = new Collection(ModelClass, [Model instances...]);\n...\nvar lastModel = myModels.slice(-1);\n</code></pre>\n",
     "extends": null,
     "mixins": [
 
@@ -771,7 +771,7 @@
   {
     "tagname": "class",
     "name": "Arrow.Connector",
-    "doc": "<p>A Connector allows your application to access data from an external source,\nsuch as a MySQL database or cloud storage.</p>\n\n<p><strong>Note:</strong> Some methods in this class are left unimplemented, which you can implement when\ncreating a Connector instance.</p>\n\n<p>To create an Arrow Connector programmatically, load the <code>arrow</code> module, then call the\n<a href=\"Arrow.Connector.extend\">Connector.extend</a> method. Pass the method an object which implements\nmethods to access the data source (described below).</p>\n\n<p>Alternatively, you can generate a new Connector project to create a modular connector\nthat can be packaged and reused. For information, see the\n<a href=\"http://docs.appcelerator.com/platform/latest/#!/guide/Arrow_Connectors\">Arrow Connector guides</a>.</p>\n\n<p>To add an existing connector to the project, see\n<a href=\"http://docs.appcelerator.com/platform/latest/#!/guide/Add_a_Connector\">Arrow Connector guides</a>.</p>\n\n<h3>Create a New Connector</h3>\n\n<p>To create a connector, either in the application or in a connector project, you must pass an\nimplementation object to the <a href=\"Arrow.Connector.extend\">Connector.extend</a> method.  The object\nimplements the methods in this class as well as the Model methods below.\nAt minimum, you should implement the <a href=\"#!/api/Arrow.Connector-method-connect\" rel=\"Arrow.Connector-method-connect\" class=\"docClass\">connect</a> method and the starred Model methods.</p>\n\n<pre><code>var Arrow = require('arrow');\nvar Connector = <a href=\"#!/api/Arrow.Connector-method-extend\" rel=\"Arrow.Connector-method-extend\" class=\"docClass\">Arrow.Connector.extend</a>({\n       connect: function (callback) {\n           // Connect to the external data source\n        callback();\n    },\n       create: function (Model, value, callback) {\n           // Create a model\n        var result;\n        try {\n            result = Model.instance(values);\n        } catch(e) {\n            callback(e);\n        }\n        callback(null, result);\n    }, // more Model methods\n});\n</code></pre>\n\n<h4>Model Methods</h4>\n\n<p>The following model methods may be defined in the implementation object.  Important methods\nto implement basic functionality are starred:</p>\n\n<ul>\n<li><a href=\"#!/api/Arrow.Model-method-count\" rel=\"Arrow.Model-method-count\" class=\"docClass\">count</a></li>\n<li><a href=\"#!/api/Arrow.Model-method-create\" rel=\"Arrow.Model-method-create\" class=\"docClass\">create</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-delete\" rel=\"Arrow.Model-method-delete\" class=\"docClass\">delete</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-deleteAll\" rel=\"Arrow.Model-method-deleteAll\" class=\"docClass\">deleteAll</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-find\" rel=\"Arrow.Model-method-find\" class=\"docClass\">find</a></li>\n<li><a href=\"#!/api/Arrow.Model-method-findByID\" rel=\"Arrow.Model-method-findByID\" class=\"docClass\">findByID</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-findAll\" rel=\"Arrow.Model-method-findAll\" class=\"docClass\">findAll</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-query\" rel=\"Arrow.Model-method-query\" class=\"docClass\">query</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-save\" rel=\"Arrow.Model-method-save\" class=\"docClass\">save</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-upsert\" rel=\"Arrow.Model-method-upsert\" class=\"docClass\">upsert</a></li>\n</ul>\n\n\n<p>When implementing the Model methods, the first parameter will be the Model class,\nfollowed by the Model's method parameters.  For example, the Model's <code>create(values, callback)</code>\nmethod will have the <code>create: function (Model, values, callback)</code> method signature in the\nimplementation object.</p>\n\n<h4>Unimplemented Methods</h4>\n\n<p>The following methods are left unimplemented by the Connector class but may be implemented\nwhen creating a new connector:</p>\n\n<ul>\n<li><a href=\"#!/api/Arrow.Connector-method-createModelsFromSchema\" rel=\"Arrow.Connector-method-createModelsFromSchema\" class=\"docClass\">createModelsFromSchema</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-coerceCustomType\" rel=\"Arrow.Connector-method-coerceCustomType\" class=\"docClass\">coerceCustomType</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-endRequest\" rel=\"Arrow.Connector-method-endRequest\" class=\"docClass\">endRequest</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-fetchConfig\" rel=\"Arrow.Connector-method-fetchConfig\" class=\"docClass\">fetchConfig</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-fetchMetadata\" rel=\"Arrow.Connector-method-fetchMetadata\" class=\"docClass\">fetchMetadata</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-fetchSchema\" rel=\"Arrow.Connector-method-fetchSchema\" class=\"docClass\">fetchSchema</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-getCustomType\" rel=\"Arrow.Connector-method-getCustomType\" class=\"docClass\">getCustomType</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-login\" rel=\"Arrow.Connector-method-login\" class=\"docClass\">login</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-loginRequired\" rel=\"Arrow.Connector-method-loginRequired\" class=\"docClass\">loginRequired</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-postCreate\" rel=\"Arrow.Connector-method-postCreate\" class=\"docClass\">postCreate</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-startRequest\" rel=\"Arrow.Connector-method-startRequest\" class=\"docClass\">startRequest</a></li>\n</ul>\n\n\n<p>You may also define a <code>constructor</code> function to execute some custom logic when the connector\nis created. The new connector instance is the value passed to <code>this</code> in the function.\nThe constructor is not passed any arguments and does not return any values.</p>\n\n<h4>Connect Lifecycle</h4>\n\n<p>The connector instance will call the following methods to connect to the data source\nbefore the server starts (if provided by the implementation):</p>\n\n<ol>\n<li><a href=\"#!/api/Arrow.Connector-method-fetchMetadata\" rel=\"Arrow.Connector-method-fetchMetadata\" class=\"docClass\">fetchMetadata</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-fetchConfig\" rel=\"Arrow.Connector-method-fetchConfig\" class=\"docClass\">fetchConfig</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-connect\" rel=\"Arrow.Connector-method-connect\" class=\"docClass\">connect</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-fetchSchema\" rel=\"Arrow.Connector-method-fetchSchema\" class=\"docClass\">fetchSchema</a></li>\n</ol>\n\n\n<h4>Request Lifecycle</h4>\n\n<p>If a request requires a login or if you want to intercept the request before or after it\ncompletes, you can implement the following methods:</p>\n\n<ol>\n<li><a href=\"#!/api/Arrow.Connector-method-startRequest\" rel=\"Arrow.Connector-method-startRequest\" class=\"docClass\">startRequest</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-loginRequired\" rel=\"Arrow.Connector-method-loginRequired\" class=\"docClass\">loginRequired</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-login\" rel=\"Arrow.Connector-method-login\" class=\"docClass\">login</a></li>\n<li>Connector makes the request.</li>\n<li><a href=\"#!/api/Arrow.Connector-method-endRequest\" rel=\"Arrow.Connector-method-endRequest\" class=\"docClass\">endRequest</a></li>\n</ol>\n\n",
+    "doc": "<p>A Connector allows your application to access data from an external source,\nsuch as a MySQL database or cloud storage.</p>\n\n<p><strong>Note:</strong> Some methods in this class are left unimplemented, which you can implement when\ncreating a Connector instance.</p>\n\n<p>To create an API Builder Connector programmatically, load the <code>arrow</code> module, then call the\n<a href=\"Arrow.Connector.extend\">Connector.extend</a> method. Pass the method an object which implements\nmethods to access the data source (described below).</p>\n\n<p>Alternatively, you can generate a new Connector project to create a modular connector\nthat can be packaged and reused. For information, see the\n<a href=\"https://docs.axway.com/bundle/API_Builder_allOS_en/page/api_builder_connectors.html\">API Builder Connector guides</a>.</p>\n\n<p>To add an existing connector to the project, see\n<a href=\"https://docs.axway.com/bundle/API_Builder_allOS_en/page/add_a_connector.html\">API Builder Connector guides</a>.</p>\n\n<h3>Create a New Connector</h3>\n\n<p>To create a connector, either in the application or in a connector project, you must pass an\nimplementation object to the <a href=\"Arrow.Connector.extend\">Connector.extend</a> method.  The object\nimplements the methods in this class as well as the Model methods below.\nAt minimum, you should implement the <a href=\"#!/api/Arrow.Connector-method-connect\" rel=\"Arrow.Connector-method-connect\" class=\"docClass\">connect</a> method and the starred Model methods.</p>\n\n<pre><code>var Arrow = require('arrow');\nvar Connector = <a href=\"#!/api/Arrow.Connector-method-extend\" rel=\"Arrow.Connector-method-extend\" class=\"docClass\">Arrow.Connector.extend</a>({\n       connect: function (callback) {\n           // Connect to the external data source\n        callback();\n    },\n       create: function (Model, value, callback) {\n           // Create a model\n        var result;\n        try {\n            result = Model.instance(values);\n        } catch(e) {\n            callback(e);\n        }\n        callback(null, result);\n    }, // more Model methods\n});\n</code></pre>\n\n<h4>Model Methods</h4>\n\n<p>The following model methods may be defined in the implementation object.  Important methods\nto implement basic functionality are starred:</p>\n\n<ul>\n<li><a href=\"#!/api/Arrow.Model-method-count\" rel=\"Arrow.Model-method-count\" class=\"docClass\">count</a></li>\n<li><a href=\"#!/api/Arrow.Model-method-create\" rel=\"Arrow.Model-method-create\" class=\"docClass\">create</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-delete\" rel=\"Arrow.Model-method-delete\" class=\"docClass\">delete</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-deleteAll\" rel=\"Arrow.Model-method-deleteAll\" class=\"docClass\">deleteAll</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-find\" rel=\"Arrow.Model-method-find\" class=\"docClass\">find</a></li>\n<li><a href=\"#!/api/Arrow.Model-method-findByID\" rel=\"Arrow.Model-method-findByID\" class=\"docClass\">findByID</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-findAll\" rel=\"Arrow.Model-method-findAll\" class=\"docClass\">findAll</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-query\" rel=\"Arrow.Model-method-query\" class=\"docClass\">query</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-save\" rel=\"Arrow.Model-method-save\" class=\"docClass\">save</a> *</li>\n<li><a href=\"#!/api/Arrow.Model-method-upsert\" rel=\"Arrow.Model-method-upsert\" class=\"docClass\">upsert</a></li>\n</ul>\n\n\n<p>When implementing the Model methods, the first parameter will be the Model class,\nfollowed by the Model's method parameters.  For example, the Model's <code>create(values, callback)</code>\nmethod will have the <code>create: function (Model, values, callback)</code> method signature in the\nimplementation object.</p>\n\n<h4>Unimplemented Methods</h4>\n\n<p>The following methods are left unimplemented by the Connector class but may be implemented\nwhen creating a new connector:</p>\n\n<ul>\n<li><a href=\"#!/api/Arrow.Connector-method-createModelsFromSchema\" rel=\"Arrow.Connector-method-createModelsFromSchema\" class=\"docClass\">createModelsFromSchema</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-coerceCustomType\" rel=\"Arrow.Connector-method-coerceCustomType\" class=\"docClass\">coerceCustomType</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-endRequest\" rel=\"Arrow.Connector-method-endRequest\" class=\"docClass\">endRequest</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-fetchConfig\" rel=\"Arrow.Connector-method-fetchConfig\" class=\"docClass\">fetchConfig</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-fetchMetadata\" rel=\"Arrow.Connector-method-fetchMetadata\" class=\"docClass\">fetchMetadata</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-fetchSchema\" rel=\"Arrow.Connector-method-fetchSchema\" class=\"docClass\">fetchSchema</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-getCustomType\" rel=\"Arrow.Connector-method-getCustomType\" class=\"docClass\">getCustomType</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-login\" rel=\"Arrow.Connector-method-login\" class=\"docClass\">login</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-loginRequired\" rel=\"Arrow.Connector-method-loginRequired\" class=\"docClass\">loginRequired</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-postCreate\" rel=\"Arrow.Connector-method-postCreate\" class=\"docClass\">postCreate</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-startRequest\" rel=\"Arrow.Connector-method-startRequest\" class=\"docClass\">startRequest</a></li>\n</ul>\n\n\n<p>You may also define a <code>constructor</code> function to execute some custom logic when the connector\nis created. The new connector instance is the value passed to <code>this</code> in the function.\nThe constructor is not passed any arguments and does not return any values.</p>\n\n<h4>Connect Lifecycle</h4>\n\n<p>The connector instance will call the following methods to connect to the data source\nbefore the server starts (if provided by the implementation):</p>\n\n<ol>\n<li><a href=\"#!/api/Arrow.Connector-method-fetchMetadata\" rel=\"Arrow.Connector-method-fetchMetadata\" class=\"docClass\">fetchMetadata</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-fetchConfig\" rel=\"Arrow.Connector-method-fetchConfig\" class=\"docClass\">fetchConfig</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-connect\" rel=\"Arrow.Connector-method-connect\" class=\"docClass\">connect</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-fetchSchema\" rel=\"Arrow.Connector-method-fetchSchema\" class=\"docClass\">fetchSchema</a></li>\n</ol>\n\n\n<h4>Request Lifecycle</h4>\n\n<p>If a request requires a login or if you want to intercept the request before or after it\ncompletes, you can implement the following methods:</p>\n\n<ol>\n<li><a href=\"#!/api/Arrow.Connector-method-startRequest\" rel=\"Arrow.Connector-method-startRequest\" class=\"docClass\">startRequest</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-loginRequired\" rel=\"Arrow.Connector-method-loginRequired\" class=\"docClass\">loginRequired</a></li>\n<li><a href=\"#!/api/Arrow.Connector-method-login\" rel=\"Arrow.Connector-method-login\" class=\"docClass\">login</a></li>\n<li>Connector makes the request.</li>\n<li><a href=\"#!/api/Arrow.Connector-method-endRequest\" rel=\"Arrow.Connector-method-endRequest\" class=\"docClass\">endRequest</a></li>\n</ol>\n\n",
     "extends": null,
     "mixins": [
 
@@ -3121,7 +3121,7 @@
   {
     "tagname": "class",
     "name": "Arrow.Instance",
-    "doc": "<p>An instance of an Arrow Model is one data record in the Model API.\nUse the Arrow Instance API to manage your model data.</p>\n\n<p>To create an Arrow Model instance, call the Model object's <a href=\"Arrow.Model.instance\">instance()</a>\nmethod\nand pass it data you want to set on the model instance.</p>\n\n<pre><code>var Arrow = require('arrow'),\n    Model = <a href=\"#!/api/Arrow.Model\" rel=\"Arrow.Model\" class=\"docClass\">Arrow.Model</a>,\n    UserModels = Model.getModel('user');\n...\nvar newModel = UserModels.instance({first_name: 'John', last_name: 'Doe'});\nnewModel.save(function (err, result) {\n       if (!err) {\n           Arrow.logger.info(result);\n    } else {\n           Arrow.logger.error(error);\n    }\n});\n</code></pre>\n",
+    "doc": "<p>An instance of an API Builder Model is one data record in the Model API.\nUse the API Builder Instance API to manage your model data.</p>\n\n<p>To create an API Builder Model instance, call the Model object's <a href=\"Arrow.Model.instance\">instance()</a>\nmethod\nand pass it data you want to set on the model instance.</p>\n\n<pre><code>var Arrow = require('arrow'),\n    Model = <a href=\"#!/api/Arrow.Model\" rel=\"Arrow.Model\" class=\"docClass\">Arrow.Model</a>,\n    UserModels = Model.getModel('user');\n...\nvar newModel = UserModels.instance({first_name: 'John', last_name: 'Doe'});\nnewModel.save(function (err, result) {\n       if (!err) {\n           Arrow.logger.info(result);\n    } else {\n           Arrow.logger.error(error);\n    }\n});\n</code></pre>\n",
     "extends": null,
     "mixins": [
 
@@ -4332,7 +4332,7 @@
   {
     "tagname": "class",
     "name": "Arrow.Model",
-    "doc": "<p>The Arrow Model API provides an interface to programmatically access\nModels from an Arrow application.  Models provide an interface to access\ndata (or Model Instances) from an <a href=\"http://docs.appcelerator.com/platform/latest/#!/guide/API_Builder_Models\">Arrow Connector</a>.</p>\n\n<p>The Model API is divided into two APIs:</p>\n\n<ul>\n<li>Use the Arrow Model API to manage the Model class (or the interface to the Models)</li>\n<li>Use the <a href=\"http://docs.appcelerator.com/platform/latest/#!/api/Arrow.Instance\">Arrow Instance API</a> to manage the Model records (or the data in\nmodel)</li>\n</ul>\n\n\n<p>To create a new Model programmatically, load the <code>arrow</code> module, then call:</p>\n\n<ul>\n<li><a href=\"#!/api/Arrow-static-method-createModel\" rel=\"Arrow-static-method-createModel\" class=\"docClass\">Arrow.createModel()</a> to create a new Model. This is a static or instance method.</li>\n<li><a href=\"#!/api/Arrow.Model-static-method-define\" rel=\"Arrow.Model-static-method-define\" class=\"docClass\">Model.define()</a> to create a new Model. This is a static method called on the class.</li>\n<li><a href=\"#!/api/Arrow.Model-method-extend\" rel=\"Arrow.Model-method-extend\" class=\"docClass\">Model.extend()</a> to create a new Model by extending the current instance.</li>\n<li><a href=\"#!/api/Arrow.Model-method-reduce\" rel=\"Arrow.Model-method-reduce\" class=\"docClass\">Model.reduce()</a> to create a new Model by reducing the current instance.</li>\n</ul>\n\n\n<p>After you create the Model class, add it to the current server instance using the\n<a href=\"#!/api/Arrow-method-addModel\" rel=\"Arrow-method-addModel\" class=\"docClass\">addModel()</a> method.</p>\n\n<p>To automatically generate the standardized APIs, add the model to the Arrow instance before invoking\nthe Arrow instance's <code>start()</code> method.</p>\n\n<p>For example:</p>\n\n<pre><code>var Arrow = require('arrow'),\n    Model = <a href=\"#!/api/Arrow.Model\" rel=\"Arrow.Model\" class=\"docClass\">Arrow.Model</a>,\n    UserModels = Model.getModel('user');\n...\nvar PersonModels = Model.reduce('person', {\n       fields: {\n           first_name: {type:String, description:'Given name', required:true},\n        last_name: {type:String, description:'Family name', required:true}\n    }\n});\n\nserver.addModel(PersonModels);\n</code></pre>\n\n<p>Alternatively, you can create a model definition file that is automatically loaded by the\nArrow project.  For details, see the\n<a href=\"http://docs.appcelerator.com/platform/latest/#!/guide/Arrow_Models\">Arrow Models guide</a>.</p>\n",
+    "doc": "<p>The API Builder Model API provides an interface to programmatically access\nModels from an API Builder application.  Models provide an interface to access\ndata (or Model Instances) from an <a href=\"https://docs.axway.com/bundle/API_Builder_allOS_en/page/api_builder_connectors.html\">API Builder Connector</a>.</p>\n\n<p>The Model API is divided into two APIs:</p>\n\n<ul>\n<li>Use the API Builder Model API to manage the Model class (or the interface to the Models)</li>\n<li>Use the <a href=\"http://docs.appcelerator.com/platform/latest/#!/api/Arrow.Instance\">API Builder Instance API</a> to manage the Model records (or the data in\nmodel)</li>\n</ul>\n\n\n<p>To create a new Model programmatically, load the <code>arrow</code> module, then call:</p>\n\n<ul>\n<li><a href=\"#!/api/Arrow-static-method-createModel\" rel=\"Arrow-static-method-createModel\" class=\"docClass\">Arrow.createModel()</a> to create a new Model. This is a static or instance method.</li>\n<li><a href=\"#!/api/Arrow.Model-static-method-define\" rel=\"Arrow.Model-static-method-define\" class=\"docClass\">Model.define()</a> to create a new Model. This is a static method called on the class.</li>\n<li><a href=\"#!/api/Arrow.Model-method-extend\" rel=\"Arrow.Model-method-extend\" class=\"docClass\">Model.extend()</a> to create a new Model by extending the current instance.</li>\n<li><a href=\"#!/api/Arrow.Model-method-reduce\" rel=\"Arrow.Model-method-reduce\" class=\"docClass\">Model.reduce()</a> to create a new Model by reducing the current instance.</li>\n</ul>\n\n\n<p>After you create the Model class, add it to the current server instance using the\n<a href=\"#!/api/Arrow-method-addModel\" rel=\"Arrow-method-addModel\" class=\"docClass\">addModel()</a> method.</p>\n\n<p>To automatically generate the standardized APIs, add the model to the API Builder instance before invoking\nthe API Builder instance's <code>start()</code> method.</p>\n\n<p>For example:</p>\n\n<pre><code>var Arrow = require('arrow'),\n    Model = <a href=\"#!/api/Arrow.Model\" rel=\"Arrow.Model\" class=\"docClass\">Arrow.Model</a>,\n    UserModels = Model.getModel('user');\n...\nvar PersonModels = Model.reduce('person', {\n       fields: {\n           first_name: {type:String, description:'Given name', required:true},\n        last_name: {type:String, description:'Family name', required:true}\n    }\n});\n\nserver.addModel(PersonModels);\n</code></pre>\n\n<p>Alternatively, you can create a model definition file that is automatically loaded by the\nAPI Builder project.  For details, see the\n<a href=\"https://docs.axway.com/bundle/API_Builder_allOS_en/page/api_builder_models.html\">API Builder Models guide</a>.</p>\n",
     "extends": null,
     "mixins": [
 
@@ -7376,7 +7376,7 @@
   {
     "tagname": "class",
     "name": "ArrowQueryOptions",
-    "doc": "<p>Standard query options used by Arrow for query requests.</p>\n",
+    "doc": "<p>Standard query options used by API Builder for query requests.</p>\n",
     "extends": null,
     "mixins": [
 
@@ -9528,7 +9528,7 @@
   {
     "tagname": "class",
     "name": "Arrow.API",
-    "doc": "<p>An API provides a way for a client to access your application, execute custom logic and\ninternally access the application's models and APIs, then return data back to the client application.\nUse an API to perform a custom operation on model data that is not exposed as one of the\nstandardized methods.</p>\n\n<h3>Create an API Endpoint</h3>\n\n<p>To create an API, define a new API instance with the API constructor,\nthen add the instance to the server instance and bind the API instance to the\nArrow server's app instance.</p>\n\n<p>Pass an implementation object, Arrow configuration object and Arrow instance to the constructor.\nSet any API properties on the implementation object (except the ones marked non-creation),\nbut the following properties are required to be set: <a href=\"#!/api/Arrow.API-property-action\" rel=\"Arrow.API-property-action\" class=\"docClass\">action</a>, <a href=\"#!/api/Arrow.API-property-description\" rel=\"Arrow.API-property-description\" class=\"docClass\">description</a>,\n<a href=\"#!/api/Arrow.API-property-group\" rel=\"Arrow.API-property-group\" class=\"docClass\">group</a> and <a href=\"#!/api/Arrow.API-property-path\" rel=\"Arrow.API-property-path\" class=\"docClass\">path</a>.</p>\n\n<p>After creating the API instance, add the API instance to the Arrow instance by calling the Arrow\ninstance's <a href=\"#!/api/Arrow-method-addAPI\" rel=\"Arrow-method-addAPI\" class=\"docClass\">addAPI()</a> method, then call the API instance's <a href=\"#bind\">bind()</a> method\nand pass it an app instance.</p>\n\n<pre><code> var Arrow = require('arrow');\n var server = new Arrow();\n // since the API relies on a model,\n // need to wait for the model to be loaded before creating the API\n server.on('starting', function() {\n     var fooAPI = new <a href=\"#!/api/Arrow.API\" rel=\"Arrow.API\" class=\"docClass\">Arrow.API</a>({\n         group: 'foo',\n         path: '/api/foo/',\n         method: 'GET',\n         description: 'Get all the Foo objects',\n         model: 'foo',\n         action: function(request, response, next) {\n             request.model.findAll(function(err, results) {\n                 if (err) {\n                     next(err);\n                 } else {\n                     next(null, results);\n                 }\n             });\n         }\n     }, server.config, server);\n     server.add(fooAPI);\n     fooAPI.bind(server.app);\n }\n server.start();\n</code></pre>\n\n<p>Alternatively, you can create an API definition file that is automatically loaded by the Arrow Project.\nFor details, see the <a href=\"http://docs.appcelerator.com/platform/latest/#!/guide/Arrow_APIs\">Arrow APIs guide</a>.</p>\n\n<h3>Invoke an API Endpoint</h3>\n\n<p>To invoke an API endpoint within the application, use the Arrow instance's <a href=\"Arrow#getAPI\">getAPI()</a> method.\nAn API is identified by its path and method (HTTP verb), or its nickname if you defined one when\ncreating the API. After retrieving the API instance, call its <a href=\"#execute\">execute()</a> method.</p>\n\n<pre><code>server.getAPI('foo', 'GET').execute({}, function (err, results) {\n       if (err) {\n           server.logger.error(err);\n    } else {\n           // do something with results\n    }\n});\n</code></pre>\n",
+    "doc": "<p>An API provides a way for a client to access your application, execute custom logic and\ninternally access the application's models and APIs, then return data back to the client application.\nUse an API to perform a custom operation on model data that is not exposed as one of the\nstandardized methods.</p>\n\n<h3>Create an API Endpoint</h3>\n\n<p>To create an API, define a new API instance with the API constructor,\nthen add the instance to the server instance and bind the API instance to the\nAPI Builder server's app instance.</p>\n\n<p>Pass an implementation object, API Builder configuration object and API Builder instance to the constructor.\nSet any API properties on the implementation object (except the ones marked non-creation),\nbut the following properties are required to be set: <a href=\"#!/api/Arrow.API-property-action\" rel=\"Arrow.API-property-action\" class=\"docClass\">action</a>, <a href=\"#!/api/Arrow.API-property-description\" rel=\"Arrow.API-property-description\" class=\"docClass\">description</a>,\n<a href=\"#!/api/Arrow.API-property-group\" rel=\"Arrow.API-property-group\" class=\"docClass\">group</a> and <a href=\"#!/api/Arrow.API-property-path\" rel=\"Arrow.API-property-path\" class=\"docClass\">path</a>.</p>\n\n<p>After creating the API instance, add the API instance to the API Builder instance by calling the API Builder\ninstance's <a href=\"#!/api/Arrow-method-addAPI\" rel=\"Arrow-method-addAPI\" class=\"docClass\">addAPI()</a> method, then call the API instance's <a href=\"#bind\">bind()</a> method\nand pass it an app instance.</p>\n\n<pre><code> var Arrow = require('arrow');\n var server = new Arrow();\n // since the API relies on a model,\n // need to wait for the model to be loaded before creating the API\n server.on('starting', function() {\n     var fooAPI = new <a href=\"#!/api/Arrow.API\" rel=\"Arrow.API\" class=\"docClass\">Arrow.API</a>({\n         group: 'foo',\n         path: '/api/foo/',\n         method: 'GET',\n         description: 'Get all the Foo objects',\n         model: 'foo',\n         action: function(request, response, next) {\n             request.model.findAll(function(err, results) {\n                 if (err) {\n                     next(err);\n                 } else {\n                     next(null, results);\n                 }\n             });\n         }\n     }, server.config, server);\n     server.add(fooAPI);\n     fooAPI.bind(server.app);\n }\n server.start();\n</code></pre>\n\n<p>Alternatively, you can create an API definition file that is automatically loaded by the API Builder project.\nFor details, see the <a href=\"https://docs.axway.com/bundle/API_Builder_allOS_en/page/api_builder_apis.html\">API Builder APIs guide</a>.</p>\n\n<h3>Invoke an API Endpoint</h3>\n\n<p>To invoke an API endpoint within the application, use the API Builder instance's <a href=\"Arrow#getAPI\">getAPI()</a> method.\nAn API is identified by its path and method (HTTP verb), or its nickname if you defined one when\ncreating the API. After retrieving the API instance, call its <a href=\"#execute\">execute()</a> method.</p>\n\n<pre><code>server.getAPI('foo', 'GET').execute({}, function (err, results) {\n       if (err) {\n           server.logger.error(err);\n    } else {\n           // do something with results\n    }\n});\n</code></pre>\n",
     "extends": null,
     "mixins": [
 
@@ -10148,7 +10148,7 @@
             {
               "type": "Object",
               "name": "config",
-              "doc": "<p>Arrow configuration object.</p>\n",
+              "doc": "<p>API Builder configuration object.</p>\n",
               "deprecated": false,
               "platforms": null,
               "inline_platforms": null,
@@ -10162,7 +10162,7 @@
             {
               "type": "Arrow",
               "name": "arrow",
-              "doc": "<p>Arrow instance.</p>\n",
+              "doc": "<p>API Builder instance.</p>\n",
               "deprecated": false,
               "platforms": null,
               "inline_platforms": null,
@@ -10969,7 +10969,7 @@
   {
     "tagname": "class",
     "name": "Arrow",
-    "doc": "<p>The top-level module for managing Arrow Projects.</p>\n\n<p>An Arrow Project is a Node.js server application that runs in the API Runtime Services.\nTo create a server, load the Arrow module, then use the Arrow constructor to create an\nArrow instance and invoke its <a href=\"#!/api/Arrow-method-start\" rel=\"Arrow-method-start\" class=\"docClass\">start() method</a>.</p>\n\n<pre><code>var Arrow = require('arrow'),\n    server = new Arrow();\n\n// Add event listeners or invoke APIs on the Arrow instance\n   var myModel = <a href=\"#!/api/Arrow-method-createModel\" rel=\"Arrow-method-createModel\" class=\"docClass\">Arrow.createModel</a>('foo', {...});\nserver.addModel(myModel);\n\nserver.on('starting', function () {\n       server.logger.trace('Starting server...');\n});\n\nserver.start();\n</code></pre>\n\n<h3>Components</h3>\n\n<p>An Arrow Project is comprised of several components. You can either define the\ncomponents using JavaScript files placed in specific directories, which are automatically loaded\nwhen creating an Arrow instance, or programmatically create components after initializing an Arrow instance.</p>\n\n<p>For information about the project structure of Arrow Projects, see\n<a href=\"http://docs.appcelerator.com/platform/latest/#!/guide/API_Builder\">API Builder guides</a>.</p>\n\n<h4>Express and Third-Party Middleware</h4>\n\n<p>Arrow uses Express for its web framework. By default, Arrow creates an Express app instance\nwhen creating an Arrow instance, then binds its API endpoints to the app instance.\nYou can access the Express app instance using the <code>app</code> property of the Arrow instance,\nthen invoke <a href=\"http://expressjs.com/4x/api.html\">Express API calls</a> on the app instance.</p>\n\n<pre><code>server.app.all('/api/*', function (req, res, next) {\n       req.server.logger.info('Intercepted the request!');\n       next();\n});\n</code></pre>\n\n<p>Do not pass the error code to the response object's <code>send()</code> method. Use the <code>status()</code> method\ninstead. If you pass a number value to the <code>send()</code> method, an error will be thrown.</p>\n\n<pre><code>// Throws an error\nres.send(500);\n\n// Invoke the following methods instead.\nres.status(500).send('Uh oh. Something bad happened.');\n</code></pre>\n\n<p>Arrow also loads the body-parser, cookie-parser and busboy modules to provide additional\nparsing capabilities as well as the compression module.</p>\n\n<p>For Express template engines, Arrow uses ejs, handlebars, marked and react modules.\nAccess the template engines using the <a href=\"#!/api/Arrow.Middleware\" rel=\"Arrow.Middleware\" class=\"docClass\">Arrow.Middleware</a> API.</p>\n\n<h4>Connectors</h4>\n\n<p><a href=\"#!/api/Arrow.Connector\" rel=\"Arrow.Connector\" class=\"docClass\">Connectors</a> allow an Arrow Project to access data stored\nin an external source.  Connectors are structured like Arrow Projects where they have\ntheir own models, dependencies and configuration files.</p>\n\n<p>You can either use an existing connector or create your own connector.</p>\n\n<h4>Models</h4>\n\n<p><a href=\"#!/api/Arrow.Model\" rel=\"Arrow.Model\" class=\"docClass\">Models</a> provide an interface for the Arrow Project to access\ndata.  By default, the application will generate standardized endpoints for a client to access\nthe data from the Arrow Project.</p>\n\n<h4>APIs</h4>\n\n<p><a href=\"#!/api/Arrow.API\" rel=\"Arrow.API\" class=\"docClass\">APIs</a> provide a way for a client to access your application, execute custom\nlogic and internally access the application's models, then return data back to the\nclient application.</p>\n\n<p>Create an API to execute a custom operation with model data.</p>\n\n<h4>Blocks</h4>\n\n<p><a href=\"#!/api/Arrow.Block\" rel=\"Arrow.Block\" class=\"docClass\">Blocks</a> are functions that run before or after an API endpoint is executed.\nThey can be used to modify the API request, to modify the API response or to execute common\ntasks like audit logging, caching, rate limiting or recording analytics. Multiple blocks can\nbe executed before or after an API request. Blocks are optional.</p>\n\n<h4>Webs</h4>\n\n<p>Webs are endpoints that render HTML to the client application.\nWebs are comprised of routes, renderers, templates and static assets.</p>\n\n<p><a href=\"#!/api/Arrow.Router\" rel=\"Arrow.Router\" class=\"docClass\">Routes</a> provide the endpoint to access the Web and logic to access the data.</p>\n\n<p><a href=\"#!/api/ArrowRendererEngine\" rel=\"ArrowRendererEngine\" class=\"docClass\">Renderers</a> (or template engines) apply local data to your templates\nto generate HTML. To access a renderer or create your own renderer, use the <a href=\"#!/api/Arrow.Middleware\" rel=\"Arrow.Middleware\" class=\"docClass\">Arrow.Middleware</a> API.</p>\n\n<p>Templates are the files you want to render. Place all templates in the <code>./web/views</code> folder\nwith an appropriate extension--either <code>ejs</code>, <code>hbs</code>, <code>html</code>, <code>jsx</code>, <code>md</code> or a custom one that\nyou can define. API Builder Tools selects the renderer engine based on the file extension.</p>\n\n<p>Place all assets, such as images, style sheets, static HTML files, etc., in the <code>./web/public</code>\nfolder.</p>\n\n<h4>Logger</h4>\n\n<p>The <a href=\"#!/api/Arrow.Logger\" rel=\"Arrow.Logger\" class=\"docClass\">Arrow.Logger</a> provides a wrapper for <a href=\"https://www.npmjs.com/package/bunyan\">bunyan</a>,\na JSON logging utility.  By default, API Builder Tools creates a logger instance, which can be accessed\nusing the <code>logger</code> property of the Arrow instance.</p>\n\n<pre><code>server.logger.trace('breadcrumbs...');\nserver.logger.info('%s %s', key, value);\nserver.logger.error(err);\n</code></pre>\n\n<h3>Lifecycle</h3>\n\n<p>The following sections describe the sequence of events that occur when initializing and starting\nan Arrow Project, then making requests to the server.</p>\n\n<h4>Initialization Sequence</h4>\n\n<p>When creating a new Arrow instance, the following events occur:</p>\n\n<ol>\n<li>Loads the configuration files.</li>\n<li>Creates an Express app instance unless you pass <code>loadOnly</code> as <code>true</code> in the constructor.</li>\n<li>Creates the API Builder Console unless its disabled.</li>\n<li>Creates a Logger instance.</li>\n<li>Registers the connectors.</li>\n<li>Loads the model and block files.</li>\n<li>Loads API and Web files and binds the endpoints to the Express app instance.</li>\n<li>Fires the <code>loaded</code> event.</li>\n</ol>\n\n\n<p>At this point, you may add event listeners or programmatically add any other Arrow components.</p>\n\n<h4>Startup Sequence</h4>\n\n<p>After invoking the <code>start()</code> method on the Arrow instance:</p>\n\n<ol>\n<li>Fires the <code>starting</code> event.</li>\n<li>Registers and binds the model's standardized API endpoints to the Express app instance.</li>\n<li>Fires the <code>listening</code> event.</li>\n<li>Binds the server to a port.</li>\n<li>Fires the <code>listen</code> event.</li>\n<li>Fires the <code>started</code> event.</li>\n</ol>\n\n\n<p>The client can now make requests to the server.</p>\n\n<h4>Request Sequence</h4>\n\n<p>When a client makes a request to the Arrow Project, API Builder Tools first authenticates the request,\nthen proceeds by making a series of middleware calls, where the <code>next()</code> function needs to be\ncalled after completing each operation.</p>\n\n<ol>\n<li>Authenticate the request. If you are using a custom security plugin, calls the <code>matchURL()</code>\nand <code>validateRequest()</code> methods if defined.</li>\n<li>For Models, calls the Connector's <code>startRequest()</code>, <code>loginRequired()</code> and <code>login()</code> methods\nif defined.</li>\n<li>Calls any defined pre-Blocks.</li>\n<li>Calls the API, Model or Router logic.</li>\n<li>Calls any defined post-Blocks.</li>\n<li>For Models, calls the Connector's <code>endRequest()</code> method if defined.</li>\n<li>Fires the <code>after</code> event.</li>\n</ol>\n\n\n<h3>Arrow Middleware Calls</h3>\n\n<p>Each Arrow middleware call (<code>action</code> or <code>execute</code> property) is passed the same three objects:</p>\n\n<ul>\n<li><a href=\"http://expressjs.com/4x/api.html#req\">Express Request object</a></li>\n<li><a href=\"http://expressjs.com/4x/api.html#res\">Express Response object</a></li>\n<li>Middleware function to call next. Always call the <code>next()</code> function to execute the next\nmiddleware call in the sequence.</li>\n</ul>\n\n\n<p>In addition to the Express APIs, the request object is also passed a reference to the Arrow\ninstance as the <code>server</code> property. Use the instance to invoke APIs, such as accessing\nmodel data or invoking an API endpoint. Both the request and response objects are passed a\nreference to the Logger instance as the <code>logger</code> property to log messages.</p>\n\n<p>For <a href=\"#!/api/Arrow.API\" rel=\"Arrow.API\" class=\"docClass\">Arrow.API</a> instances, the request and response objects are also passed the <code>model</code>\nand <code>responseModel</code> properties, which references the models passed to the API constructor.</p>\n",
+    "doc": "<p>The top-level module for managing Arrow Projects.</p>\n\n<p>An Arrow Project is a Node.js server application that runs in the API Runtime Services.\nTo create a server, load the Arrow module, then use the Arrow constructor to create an\nArrow instance and invoke its <a href=\"#!/api/Arrow-method-start\" rel=\"Arrow-method-start\" class=\"docClass\">start() method</a>.</p>\n\n<pre><code>var Arrow = require('arrow'),\n    server = new Arrow();\n\n// Add event listeners or invoke APIs on the Arrow instance\n   var myModel = <a href=\"#!/api/Arrow-method-createModel\" rel=\"Arrow-method-createModel\" class=\"docClass\">Arrow.createModel</a>('foo', {...});\nserver.addModel(myModel);\n\nserver.on('starting', function () {\n       server.logger.trace('Starting server...');\n});\n\nserver.start();\n</code></pre>\n\n<h3>Components</h3>\n\n<p>An API Builder project is comprised of several components. You can either define the\ncomponents using JavaScript files placed in specific directories, which are automatically loaded\nwhen creating an API Builder instance, or programmatically create components after initializing an API Builder instance.</p>\n\n<p>For information about the project structure of API Builder projects, see\n<a href=\"https://docs.axway.com/bundle/API_Builder_allOS_en/page/api_builder.html\">API Builder guides</a>.</p>\n\n<h4>Express and Third-Party Middleware</h4>\n\n<p>API Builder uses Express for its web framework. By default, API Builder creates an Express app instance\nwhen creating an API Builder instance, then binds its API endpoints to the app instance.\nYou can access the Express app instance using the <code>app</code> property of the API Builder instance,\nthen invoke <a href=\"http://expressjs.com/4x/api.html\">Express API calls</a> on the app instance.</p>\n\n<pre><code>server.app.all('/api/*', function (req, res, next) {\n       req.server.logger.info('Intercepted the request!');\n       next();\n});\n</code></pre>\n\n<p>Do not pass the error code to the response object's <code>send()</code> method. Use the <code>status()</code> method\ninstead. If you pass a number value to the <code>send()</code> method, an error will be thrown.</p>\n\n<pre><code>// Throws an error\nres.send(500);\n\n// Invoke the following methods instead.\nres.status(500).send('Uh oh. Something bad happened.');\n</code></pre>\n\n<p>API Builder also loads the body-parser, cookie-parser and busboy modules to provide additional\nparsing capabilities as well as the compression module.</p>\n\n<p>For Express template engines, API Builder uses ejs, handlebars, marked and react modules.\nAccess the template engines using the <a href=\"#!/api/Arrow.Middleware\" rel=\"Arrow.Middleware\" class=\"docClass\">Arrow.Middleware</a> API.</p>\n\n<h4>Connectors</h4>\n\n<p><a href=\"#!/api/Arrow.Connector\" rel=\"Arrow.Connector\" class=\"docClass\">Connectors</a> allow an API Builder project to access data stored\nin an external source.  Connectors are structured like API Builder projects where they have\ntheir own models, dependencies and configuration files.</p>\n\n<p>You can either use an existing connector or create your own connector.</p>\n\n<h4>Models</h4>\n\n<p><a href=\"#!/api/Arrow.Model\" rel=\"Arrow.Model\" class=\"docClass\">Models</a> provide an interface for the API Builder project to access\ndata.  By default, the application will generate standardized endpoints for a client to access\nthe data from the API Builder project.</p>\n\n<h4>APIs</h4>\n\n<p><a href=\"#!/api/Arrow.API\" rel=\"Arrow.API\" class=\"docClass\">APIs</a> provide a way for a client to access your application, execute custom\nlogic and internally access the application's models, then return data back to the\nclient application.</p>\n\n<p>Create an API to execute a custom operation with model data.</p>\n\n<h4>Blocks</h4>\n\n<p><a href=\"#!/api/Arrow.Block\" rel=\"Arrow.Block\" class=\"docClass\">Blocks</a> are functions that run before or after an API endpoint is executed.\nThey can be used to modify the API request, to modify the API response or to execute common\ntasks like audit logging, caching, rate limiting or recording analytics. Multiple blocks can\nbe executed before or after an API request. Blocks are optional.</p>\n\n<h4>Webs</h4>\n\n<p>Webs are endpoints that render HTML to the client application.\nWebs are comprised of routes, renderers, templates and static assets.</p>\n\n<p><a href=\"#!/api/Arrow.Router\" rel=\"Arrow.Router\" class=\"docClass\">Routes</a> provide the endpoint to access the Web and logic to access the data.</p>\n\n<p><a href=\"#!/api/ArrowRendererEngine\" rel=\"ArrowRendererEngine\" class=\"docClass\">Renderers</a> (or template engines) apply local data to your templates\nto generate HTML. To access a renderer or create your own renderer, use the <a href=\"#!/api/Arrow.Middleware\" rel=\"Arrow.Middleware\" class=\"docClass\">Arrow.Middleware</a> API.</p>\n\n<p>Templates are the files you want to render. Place all templates in the <code>./web/views</code> folder\nwith an appropriate extension--either <code>ejs</code>, <code>hbs</code>, <code>html</code>, <code>jsx</code>, <code>md</code> or a custom one that\nyou can define. API Builder Tools selects the renderer engine based on the file extension.</p>\n\n<p>Place all assets, such as images, style sheets, static HTML files, etc., in the <code>./web/public</code>\nfolder.</p>\n\n<h4>Logger</h4>\n\n<p>The <a href=\"#!/api/Arrow.Logger\" rel=\"Arrow.Logger\" class=\"docClass\">Arrow.Logger</a> provides a wrapper for <a href=\"https://www.npmjs.com/package/bunyan\">bunyan</a>,\na JSON logging utility.  By default, API Builder Tools creates a logger instance, which can be accessed\nusing the <code>logger</code> property of the API Builder instance.</p>\n\n<pre><code>server.logger.trace('breadcrumbs...');\nserver.logger.info('%s %s', key, value);\nserver.logger.error(err);\n</code></pre>\n\n<h3>Lifecycle</h3>\n\n<p>The following sections describe the sequence of events that occur when initializing and starting\nan API Builder project, then making requests to the server.</p>\n\n<h4>Initialization Sequence</h4>\n\n<p>When creating a new API Builder instance, the following events occur:</p>\n\n<ol>\n<li>Loads the configuration files.</li>\n<li>Creates an Express app instance unless you pass <code>loadOnly</code> as <code>true</code> in the constructor.</li>\n<li>Creates the API Builder Console unless its disabled.</li>\n<li>Creates a Logger instance.</li>\n<li>Registers the connectors.</li>\n<li>Loads the model and block files.</li>\n<li>Loads API and Web files and binds the endpoints to the Express app instance.</li>\n<li>Fires the <code>loaded</code> event.</li>\n</ol>\n\n\n<p>At this point, you may add event listeners or programmatically add any other API Builder components.</p>\n\n<h4>Startup Sequence</h4>\n\n<p>After invoking the <code>start()</code> method on the API Builder instance:</p>\n\n<ol>\n<li>Fires the <code>starting</code> event.</li>\n<li>Registers and binds the model's standardized API endpoints to the Express app instance.</li>\n<li>Fires the <code>listening</code> event.</li>\n<li>Binds the server to a port.</li>\n<li>Fires the <code>listen</code> event.</li>\n<li>Fires the <code>started</code> event.</li>\n</ol>\n\n\n<p>The client can now make requests to the server.</p>\n\n<h4>Request Sequence</h4>\n\n<p>When a client makes a request to the API Builder project, API Builder Tools first authenticates the request,\nthen proceeds by making a series of middleware calls, where the <code>next()</code> function needs to be\ncalled after completing each operation.</p>\n\n<ol>\n<li>Authenticate the request. If you are using a custom security plugin, calls the <code>matchURL()</code>\nand <code>validateRequest()</code> methods if defined.</li>\n<li>For Models, calls the Connector's <code>startRequest()</code>, <code>loginRequired()</code> and <code>login()</code> methods\nif defined.</li>\n<li>Calls any defined pre-Blocks.</li>\n<li>Calls the API, Model or Router logic.</li>\n<li>Calls any defined post-Blocks.</li>\n<li>For Models, calls the Connector's <code>endRequest()</code> method if defined.</li>\n<li>Fires the <code>after</code> event.</li>\n</ol>\n\n\n<h3>API Builder Middleware Calls</h3>\n\n<p>Each API Builder middleware call (<code>action</code> or <code>execute</code> property) is passed the same three objects:</p>\n\n<ul>\n<li><a href=\"http://expressjs.com/4x/api.html#req\">Express Request object</a></li>\n<li><a href=\"http://expressjs.com/4x/api.html#res\">Express Response object</a></li>\n<li>Middleware function to call next. Always call the <code>next()</code> function to execute the next\nmiddleware call in the sequence.</li>\n</ul>\n\n\n<p>In addition to the Express APIs, the request object is also passed a reference to the API Builder\ninstance as the <code>server</code> property. Use the instance to invoke APIs, such as accessing\nmodel data or invoking an API endpoint. Both the request and response objects are passed a\nreference to the Logger instance as the <code>logger</code> property to log messages.</p>\n\n<p>For <a href=\"#!/api/Arrow.API\" rel=\"Arrow.API\" class=\"docClass\">Arrow.API</a> instances, the request and response objects are also passed the <code>model</code>\nand <code>responseModel</code> properties, which references the models passed to the API constructor.</p>\n",
     "extends": null,
     "mixins": [
 
@@ -11015,11 +11015,11 @@
           },
           "private": null,
           "id": "property-",
-          "linenr": 1796,
+          "linenr": 2143,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1796
+              "linenr": 2143
             }
           ],
           "shortDoc": "Disconnect all connectors if provided a disconnect method\nDelete the models associated with the connector (generated ...",
@@ -11337,7 +11337,7 @@
           "tagname": "method",
           "name": "constructor",
           "owner": "Arrow",
-          "doc": "<p>Loads the configuration files in the <code>./conf</code> folder and initializes an Arrow instance.</p>\n",
+          "doc": "<p>Loads the configuration files in the <code>./conf</code> folder and initializes an API Builder instance.</p>\n",
           "params": [
             {
               "type": "Object",
@@ -11356,7 +11356,7 @@
             {
               "type": "Boolean",
               "name": "loadOnly",
-              "doc": "<p>Set to <code>true</code> to only load the Arrow components.\nDoes not create the Express app instance or starts the admin console.</p>\n",
+              "doc": "<p>Set to <code>true</code> to only load the API Builder components.\nDoes not create the Express app instance or starts the admin console.</p>\n",
               "deprecated": false,
               "platforms": null,
               "inline_platforms": null,
@@ -11387,7 +11387,7 @@
               "linenr": 181
             }
           ],
-          "shortDoc": "Loads the configuration files in the ./conf folder and initializes an Arrow instance. ...",
+          "shortDoc": "Loads the configuration files in the ./conf folder and initializes an API Builder instance. ...",
           "html_meta": {
           }
         },
@@ -11428,11 +11428,11 @@
           },
           "private": null,
           "id": "method-addAPI",
-          "linenr": 2121,
+          "linenr": 2478,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2121
+              "linenr": 2478
             }
           ],
           "shortDoc": "Adds an API on this instance. ...",
@@ -11476,14 +11476,88 @@
           },
           "private": null,
           "id": "method-addBlock",
-          "linenr": 2206,
+          "linenr": 2580,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2206
+              "linenr": 2580
             }
           ],
           "shortDoc": "Adds the block(s) on this instance. ...",
+          "html_meta": {
+          }
+        },
+        {
+          "tagname": "method",
+          "name": "addCORsHeaders",
+          "owner": "Arrow",
+          "doc": "<p>Adds required CORS headers to the response (assuming its a valid and allowed CORS request)\nImplementation is based on https://www.w3.org/TR/2014/REC-cors-20140116/</p>\n",
+          "params": [
+            {
+              "type": "object",
+              "name": "config",
+              "doc": "<ul>\n<li>arrow configuration.cors (support 2 additional fields,\n                       1) defMethods: array of methods found in the API definition\n                       2) defHeaders: array of headers found in the API definition</li>\n</ul>\n\n",
+              "deprecated": false,
+              "platforms": null,
+              "inline_platforms": null,
+              "optional": false,
+              "default": null,
+              "properties": [
+
+              ],
+              "html_type": "object"
+            },
+            {
+              "type": "Object",
+              "name": "req",
+              "doc": "<ul>\n<li>Express' request object</li>\n</ul>\n\n",
+              "deprecated": false,
+              "platforms": null,
+              "inline_platforms": null,
+              "optional": false,
+              "default": null,
+              "properties": [
+
+              ],
+              "html_type": "Object"
+            },
+            {
+              "type": "object",
+              "name": "resp",
+              "doc": "<ul>\n<li>Express' response object</li>\n</ul>\n\n",
+              "deprecated": false,
+              "platforms": null,
+              "inline_platforms": null,
+              "optional": false,
+              "default": null,
+              "properties": [
+
+              ],
+              "html_type": "object"
+            }
+          ],
+          "return": {
+            "type": "Object",
+            "name": "return",
+            "doc": "\n",
+            "properties": null,
+            "html_type": "Object"
+          },
+          "throws": null,
+          "inheritable": null,
+          "inheritdoc": null,
+          "meta": {
+          },
+          "private": null,
+          "id": "method-addCORsHeaders",
+          "linenr": 488,
+          "files": [
+            {
+              "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
+              "linenr": 488
+            }
+          ],
+          "shortDoc": "Adds required CORS headers to the response (assuming its a valid and allowed CORS request)\nImplementation is based on...",
           "html_meta": {
           }
         },
@@ -11524,11 +11598,11 @@
           },
           "private": null,
           "id": "method-addModel",
-          "linenr": 2034,
+          "linenr": 2391,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2034
+              "linenr": 2391
             }
           ],
           "shortDoc": "Adds a model class(es) on this instance. ...",
@@ -11572,11 +11646,11 @@
           },
           "private": null,
           "id": "method-createAPIsFromModel",
-          "linenr": 1548,
+          "linenr": 1873,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1548
+              "linenr": 1873
             }
           ],
           "shortDoc": "Generates the standardized APIs from a particular model. ...",
@@ -11607,11 +11681,11 @@
           },
           "private": null,
           "id": "method-createAPIsFromModels",
-          "linenr": 1538,
+          "linenr": 1863,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1538
+              "linenr": 1863
             }
           ],
           "shortDoc": "Generates the standardized APIs from all loaded models. ...",
@@ -11667,11 +11741,11 @@
           },
           "private": null,
           "id": "method-createLogger",
-          "linenr": 1845,
+          "linenr": 2202,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1845
+              "linenr": 2202
             }
           ],
           "shortDoc": "Creates a logger instance. ...",
@@ -11733,11 +11807,11 @@
           },
           "private": null,
           "id": "method-createModel",
-          "linenr": 2028,
+          "linenr": 2385,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2028
+              "linenr": 2385
             }
           ],
           "shortDoc": "Creates a model class. ...",
@@ -11781,11 +11855,11 @@
           },
           "private": null,
           "id": "method-definePubSub",
-          "linenr": 567,
+          "linenr": 674,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 567
+              "linenr": 674
             }
           ],
           "shortDoc": "Prepares appc-pubsub for usage within Arrow. ...",
@@ -11843,11 +11917,11 @@
           },
           "private": null,
           "id": "method-endRequestTransaction",
-          "linenr": 2571,
+          "linenr": 2971,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2571
+              "linenr": 2971
             }
           ],
           "shortDoc": "called at the end of a request once it's done sending ...",
@@ -11919,11 +11993,11 @@
           },
           "private": null,
           "id": "method-executeSecurityMiddleware",
-          "linenr": 1111,
+          "linenr": 1317,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1111
+              "linenr": 1317
             }
           ],
           "shortDoc": "Creates and executes a security middleware call, which authenticates the request. ...",
@@ -11981,11 +12055,11 @@
           },
           "private": null,
           "id": "method-get",
-          "linenr": 1053,
+          "linenr": 1259,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1053
+              "linenr": 1259
             }
           ],
           "shortDoc": "Returns a configuration value for the key (or a provided default value if not found). ...",
@@ -12041,11 +12115,11 @@
           },
           "private": null,
           "id": "method-getAPI",
-          "linenr": 2100,
+          "linenr": 2457,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2100
+              "linenr": 2457
             }
           ],
           "shortDoc": "Returns an API for the given path and optional method in the case where more than one method. ...",
@@ -12074,11 +12148,11 @@
           },
           "private": null,
           "id": "method-getAPIs",
-          "linenr": 2092,
+          "linenr": 2449,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2092
+              "linenr": 2449
             }
           ],
           "shortDoc": "Gets an array of APIs available to the instance. ...",
@@ -12140,11 +12214,11 @@
           },
           "private": null,
           "id": "method-getBlock",
-          "linenr": 2142,
+          "linenr": 2499,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2142
+              "linenr": 2499
             }
           ],
           "shortDoc": "Gets a block by name. ...",
@@ -12173,11 +12247,11 @@
           },
           "private": null,
           "id": "method-getBlocks",
-          "linenr": 2217,
+          "linenr": 2591,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2217
+              "linenr": 2591
             }
           ],
           "shortDoc": "Gets all blocks. ...",
@@ -12239,11 +12313,11 @@
           },
           "private": null,
           "id": "method-getCodeblock",
-          "linenr": 2225,
+          "linenr": 2599,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2225
+              "linenr": 2599
             }
           ],
           "shortDoc": "Gets a codeblock by name. ...",
@@ -12272,11 +12346,11 @@
           },
           "private": null,
           "id": "method-getCodeblocks",
-          "linenr": 2240,
+          "linenr": 2614,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2240
+              "linenr": 2614
             }
           ],
           "shortDoc": "Gets all codeblocks. ...",
@@ -12332,11 +12406,11 @@
           },
           "private": null,
           "id": "method-getComponentDir",
-          "linenr": 553,
+          "linenr": 658,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 553
+              "linenr": 658
             }
           ],
           "shortDoc": "Returns the full path of the component directory. ...",
@@ -12400,11 +12474,11 @@
           },
           "private": null,
           "id": "method-getConnector",
-          "linenr": 2262,
+          "linenr": 2636,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2262
+              "linenr": 2636
             }
           ],
           "shortDoc": "Gets a connector by name. ...",
@@ -12439,11 +12513,11 @@
           },
           "private": null,
           "id": "method-getConnectors",
-          "linenr": 2357,
+          "linenr": 2731,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2357
+              "linenr": 2731
             }
           ],
           "shortDoc": "Gets a list of registered connectors. ...",
@@ -12485,11 +12559,11 @@
           },
           "private": null,
           "id": "method-getEndpoint",
-          "linenr": 2174,
+          "linenr": 2548,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2174
+              "linenr": 2548
             }
           ],
           "shortDoc": "Gets an endpoint by path ...",
@@ -12518,11 +12592,11 @@
           },
           "private": null,
           "id": "method-getEndpoints",
-          "linenr": 2183,
+          "linenr": 2557,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2183
+              "linenr": 2557
             }
           ],
           "shortDoc": "Gets all loaded endpoints ...",
@@ -12564,11 +12638,11 @@
           },
           "private": null,
           "id": "method-getFlow",
-          "linenr": 2165,
+          "linenr": 2522,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2165
+              "linenr": 2522
             }
           ],
           "shortDoc": "Gets the flow definition by id. ...",
@@ -12597,11 +12671,11 @@
           },
           "private": null,
           "id": "method-getFlows",
-          "linenr": 2157,
+          "linenr": 2514,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2157
+              "linenr": 2514
             }
           ],
           "shortDoc": "Gets all the flow definitions availabe to the instance. ...",
@@ -12630,11 +12704,11 @@
           },
           "private": null,
           "id": "method-getGlobal",
-          "linenr": 461,
+          "linenr": 581,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 461
+              "linenr": 581
             }
           ],
           "shortDoc": "Gets a reference to the first instantiated Arrow server. ...",
@@ -12663,11 +12737,11 @@
           },
           "private": null,
           "id": "method-getMiddleware",
-          "linenr": 420,
+          "linenr": 543,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 420
+              "linenr": 543
             }
           ],
           "shortDoc": "Returns the middleware instance containing the Express app instance. ...",
@@ -12729,11 +12803,11 @@
           },
           "private": null,
           "id": "method-getModel",
-          "linenr": 2067,
+          "linenr": 2424,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2067
+              "linenr": 2424
             }
           ],
           "shortDoc": "Gets a model by name. ...",
@@ -12762,14 +12836,93 @@
           },
           "private": null,
           "id": "method-getModels",
-          "linenr": 2134,
+          "linenr": 2491,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2134
+              "linenr": 2491
             }
           ],
           "shortDoc": "Gets all models availabe to the instance. ...",
+          "html_meta": {
+          }
+        },
+        {
+          "tagname": "method",
+          "name": "getRegisteredNodeSpec",
+          "owner": "Arrow",
+          "doc": "<p>gets the schema for a specific node handlers</p>\n",
+          "params": [
+            {
+              "type": "string",
+              "name": "type",
+              "doc": "<ul>\n<li>type/name of the schema</li>\n</ul>\n\n",
+              "deprecated": false,
+              "platforms": null,
+              "inline_platforms": null,
+              "optional": false,
+              "default": null,
+              "properties": [
+
+              ],
+              "html_type": "string"
+            }
+          ],
+          "return": {
+            "type": "Object",
+            "name": "return",
+            "doc": "<ul>\n<li>the schema for the handler</li>\n</ul>\n\n",
+            "properties": null,
+            "html_type": "Object"
+          },
+          "throws": null,
+          "inheritable": null,
+          "inheritdoc": null,
+          "meta": {
+          },
+          "private": null,
+          "id": "method-getRegisteredNodeSpec",
+          "linenr": 2531,
+          "files": [
+            {
+              "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
+              "linenr": 2531
+            }
+          ],
+          "shortDoc": "gets the schema for a specific node handlers ...",
+          "html_meta": {
+          }
+        },
+        {
+          "tagname": "method",
+          "name": "getRegisteredNodeSpecs",
+          "owner": "Arrow",
+          "doc": "<p>gets all the schemas for the node handlers</p>\n",
+          "params": [
+
+          ],
+          "return": {
+            "type": "Object",
+            "name": "return",
+            "doc": "<ul>\n<li>the schemas for the handlers</li>\n</ul>\n\n",
+            "properties": null,
+            "html_type": "Object"
+          },
+          "throws": null,
+          "inheritable": null,
+          "inheritdoc": null,
+          "meta": {
+          },
+          "private": null,
+          "id": "method-getRegisteredNodeSpecs",
+          "linenr": 2540,
+          "files": [
+            {
+              "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
+              "linenr": 2540
+            }
+          ],
+          "shortDoc": "gets all the schemas for the node handlers ...",
           "html_meta": {
           }
         },
@@ -12828,11 +12981,11 @@
           },
           "private": null,
           "id": "method-getRoute",
-          "linenr": 2191,
+          "linenr": 2565,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2191
+              "linenr": 2565
             }
           ],
           "shortDoc": "Gets a route by name. ...",
@@ -12863,11 +13016,11 @@
           },
           "private": null,
           "id": "method-inspect",
-          "linenr": 2486,
+          "linenr": 2880,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2486
+              "linenr": 2880
             }
           ],
           "shortDoc": "returns an util.inspect description ...",
@@ -12911,11 +13064,11 @@
           },
           "private": null,
           "id": "method-isModelDuplicate",
-          "linenr": 1093,
+          "linenr": 1299,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1093
+              "linenr": 1299
             }
           ],
           "shortDoc": "returns false if the model name passed in does not exist. ...",
@@ -12973,11 +13126,11 @@
           },
           "private": null,
           "id": "method-loadApi",
-          "linenr": 625,
+          "linenr": 732,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 625
+              "linenr": 732
             }
           ],
           "shortDoc": "Loads an API from an API file. ...",
@@ -13035,11 +13188,11 @@
           },
           "private": null,
           "id": "method-loadBlock",
-          "linenr": 680,
+          "linenr": 791,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 680
+              "linenr": 791
             }
           ],
           "shortDoc": "Loads a Block from a Block file. ...",
@@ -13097,11 +13250,11 @@
           },
           "private": null,
           "id": "method-loadCodeblock",
-          "linenr": 813,
+          "linenr": 946,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 813
+              "linenr": 946
             }
           ],
           "shortDoc": "Loads a Codeblock from a Codeblock file. ...",
@@ -13159,11 +13312,11 @@
           },
           "private": null,
           "id": "method-loadComponents",
-          "linenr": 878,
+          "linenr": 1067,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 878
+              "linenr": 1067
             }
           ],
           "shortDoc": "Loads all project components. ...",
@@ -13221,11 +13374,11 @@
           },
           "private": null,
           "id": "method-loadConnector",
-          "linenr": 776,
+          "linenr": 909,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 776
+              "linenr": 909
             }
           ],
           "shortDoc": "Loads a Connector from a Connector file. ...",
@@ -13283,11 +13436,11 @@
           },
           "private": null,
           "id": "method-loadEndpoint",
-          "linenr": 722,
+          "linenr": 847,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 722
+              "linenr": 847
             }
           ],
           "shortDoc": "Loads an endpoint from a file. ...",
@@ -13345,11 +13498,11 @@
           },
           "private": null,
           "id": "method-loadFlow",
-          "linenr": 704,
+          "linenr": 815,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 704
+              "linenr": 815
             }
           ],
           "shortDoc": "Loads a Flow from a flow file. ...",
@@ -13407,11 +13560,11 @@
           },
           "private": null,
           "id": "method-loadModel",
-          "linenr": 647,
+          "linenr": 754,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 647
+              "linenr": 754
             }
           ],
           "shortDoc": "Loads a Model from a Model file. ...",
@@ -13483,11 +13636,11 @@
           },
           "private": null,
           "id": "method-loadModelsForConnector",
-          "linenr": 2512,
+          "linenr": 2912,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2512
+              "linenr": 2912
             }
           ],
           "shortDoc": "Called by a connector to attempt to load any connector bundled models. ...",
@@ -13545,11 +13698,11 @@
           },
           "private": null,
           "id": "method-loadRoute",
-          "linenr": 752,
+          "linenr": 885,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 752
+              "linenr": 885
             }
           ],
           "shortDoc": "Loads a Route from a Route file. ...",
@@ -13599,11 +13752,11 @@
           },
           "private": null,
           "id": "method-registerConnector",
-          "linenr": 2372,
+          "linenr": 2764,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2372
+              "linenr": 2764
             }
           ],
           "shortDoc": "Registers a connector. ...",
@@ -13661,11 +13814,11 @@
           },
           "private": null,
           "id": "method-registerModelsForConnector",
-          "linenr": 2493,
+          "linenr": 2887,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2493
+              "linenr": 2887
             }
           ],
           "shortDoc": "Dynamically loads the models into the server if the connector updates them dynamically\n(i.e. ...",
@@ -13709,11 +13862,11 @@
           },
           "private": null,
           "id": "method-reload",
-          "linenr": 1724,
+          "linenr": 2048,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1724
+              "linenr": 2048
             }
           ],
           "shortDoc": "Reloads any changes found in Models, Blocks, Routes or APIs. ...",
@@ -13757,11 +13910,11 @@
           },
           "private": null,
           "id": "method-removeAPI",
-          "linenr": 2447,
+          "linenr": 2841,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2447
+              "linenr": 2841
             }
           ],
           "shortDoc": "Removes an API. ...",
@@ -13819,11 +13972,11 @@
           },
           "private": null,
           "id": "method-removeAPIByFilename",
-          "linenr": 1704,
+          "linenr": 2028,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1704
+              "linenr": 2028
             }
           ],
           "shortDoc": "Removes an API from the server. ...",
@@ -13867,11 +14020,11 @@
           },
           "private": null,
           "id": "method-removeBlock",
-          "linenr": 2439,
+          "linenr": 2833,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2439
+              "linenr": 2833
             }
           ],
           "shortDoc": "Removes a block. ...",
@@ -13915,11 +14068,11 @@
           },
           "private": null,
           "id": "method-removeConnector",
-          "linenr": 2431,
+          "linenr": 2825,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2431
+              "linenr": 2825
             }
           ],
           "shortDoc": "Removes a connector. ...",
@@ -13963,11 +14116,11 @@
           },
           "private": null,
           "id": "method-removeModel",
-          "linenr": 2423,
+          "linenr": 2817,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2423
+              "linenr": 2817
             }
           ],
           "shortDoc": "Removes a model from this instance. ...",
@@ -14011,11 +14164,11 @@
           },
           "private": null,
           "id": "method-removeRoute",
-          "linenr": 2462,
+          "linenr": 2856,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2462
+              "linenr": 2856
             }
           ],
           "shortDoc": "Removes a route. ...",
@@ -14059,11 +14212,11 @@
           },
           "private": null,
           "id": "method-sortAPIsOrRoutes",
-          "linenr": 1572,
+          "linenr": 1897,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1572
+              "linenr": 1897
             }
           ],
           "shortDoc": "Sort the APIs or Routes (we need wildcard paths to be registered later in the process). ...",
@@ -14113,11 +14266,11 @@
           },
           "private": null,
           "id": "method-start",
-          "linenr": 1222,
+          "linenr": 1413,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1222
+              "linenr": 1413
             }
           ],
           "shortDoc": "Starts the server. ...",
@@ -14161,11 +14314,11 @@
           },
           "private": null,
           "id": "method-stop",
-          "linenr": 1740,
+          "linenr": 2070,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1740
+              "linenr": 2070
             }
           ],
           "shortDoc": "Stops the Arrow server instance. ...",
@@ -14196,11 +14349,11 @@
           },
           "private": null,
           "id": "method-toJSON",
-          "linenr": 2479,
+          "linenr": 2873,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2479
+              "linenr": 2873
             }
           ],
           "shortDoc": "returns an Arrow toJSON description ...",
@@ -14231,11 +14384,11 @@
           },
           "private": null,
           "id": "method-trackInstantiations",
-          "linenr": 428,
+          "linenr": 551,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 428
+              "linenr": 551
             }
           ],
           "shortDoc": "Tracks all instantiations. ...",
@@ -14348,7 +14501,7 @@
           "tagname": "event",
           "name": "loaded",
           "owner": "Arrow",
-          "doc": "<p>Fired after initializing the Arrow instance.</p>\n",
+          "doc": "<p>Fired after initializing the API Builder instance.</p>\n",
           "params": [
 
           ],
@@ -14365,7 +14518,7 @@
               "linenr": 205
             }
           ],
-          "shortDoc": "Fired after initializing the Arrow instance. ...",
+          "shortDoc": "Fired after initializing the API Builder instance. ...",
           "html_meta": {
           }
         },
@@ -14373,7 +14526,7 @@
           "tagname": "event",
           "name": "reloaded",
           "owner": "Arrow",
-          "doc": "<p>Fired after reloading an Arrow component.</p>\n",
+          "doc": "<p>Fired after reloading an API Builder component.</p>\n",
           "params": [
 
           ],
@@ -14390,7 +14543,7 @@
               "linenr": 209
             }
           ],
-          "shortDoc": "Fired after reloading an Arrow component. ...",
+          "shortDoc": "Fired after reloading an API Builder component. ...",
           "html_meta": {
           }
         },
@@ -14510,7 +14663,7 @@
       },
       {
         "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-        "linenr": 11
+        "linenr": 22
       }
     ],
     "html_meta": {
@@ -14637,11 +14790,11 @@
           },
           "private": null,
           "id": "static-method-createLogger",
-          "linenr": 1853,
+          "linenr": 2210,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 1853
+              "linenr": 2210
             }
           ],
           "shortDoc": "Creates a logger instance. ...",
@@ -14699,11 +14852,11 @@
           },
           "private": null,
           "id": "static-method-createModel",
-          "linenr": 2017,
+          "linenr": 2374,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2017
+              "linenr": 2374
             }
           ],
           "shortDoc": "Creates a model class. ...",
@@ -14769,11 +14922,11 @@
           },
           "private": null,
           "id": "static-method-getConnector",
-          "linenr": 2248,
+          "linenr": 2622,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2248
+              "linenr": 2622
             }
           ],
           "shortDoc": "Returns a registered connector by name. ...",
@@ -14804,11 +14957,11 @@
           },
           "private": null,
           "id": "static-method-getConnectors",
-          "linenr": 2351,
+          "linenr": 2725,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2351
+              "linenr": 2725
             }
           ],
           "shortDoc": "Gets a list of registered connectors. ...",
@@ -14872,11 +15025,11 @@
           },
           "private": null,
           "id": "static-method-getModel",
-          "linenr": 2055,
+          "linenr": 2412,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2055
+              "linenr": 2412
             }
           ],
           "shortDoc": "Gets a model by name. ...",
@@ -15056,11 +15209,11 @@
           },
           "private": null,
           "id": "static-method-registerConnector",
-          "linenr": 2366,
+          "linenr": 2758,
           "files": [
             {
               "filename": "/Users/bimmel/Documents/Repositories/arrow/lib/arrow.js",
-              "linenr": 2366
+              "linenr": 2758
             }
           ],
           "shortDoc": "Registers a connector. ...",
@@ -15210,7 +15363,7 @@
   {
     "tagname": "class",
     "name": "Arrow.Block",
-    "doc": "<p>A Block is a function that is executed before or after calling an API endpoint.</p>\n\n<p>To create a block, pass the constructor an implementation object, Arrow configuration object\nand Arrow instance to create a block instance, then pass the Block instance to the\nArrow instance's <a href=\"#!/api/Arrow-method-addBlock\" rel=\"Arrow-method-addBlock\" class=\"docClass\">addBlock()</a> method.</p>\n\n<pre><code>var block = new <a href=\"#!/api/Arrow.Block\" rel=\"Arrow.Block\" class=\"docClass\">Arrow.Block</a>({\n    name: 'blocky',\n    execute: function (request, response, next) {\n        next();\n    }\n});\nserver.addBlock(block);\n</code></pre>\n\n<p>To use a block, assign it to the <code>before</code> or <code>after</code> property of the implementation object\npassed to the API or Model constructor. A Block is identified by its <code>name</code> property.\nYou may specify more than one block by using an array. The blocks will be executed in order.</p>\n\n<pre><code>var fooAPI = new <a href=\"#!/api/Arrow.API\" rel=\"Arrow.API\" class=\"docClass\">Arrow.API</a>({\n    group: 'foo',\n    path: '/api/foo/',\n    method: 'GET',\n    description: 'Get all the Foo objects',\n    before: ['block1', 'block2'],\n    model: 'testuser',\n    action: function(request, response, next) {\n        request.model.findAll(function(err, results) {\n            if (err) {\n                next(err);\n            } else {\n                next(null, results);\n            }\n        });\n    }\n}, server.config, server);\nfooAPI.bind(server.app);\n</code></pre>\n\n<p>Alternatively, you can define your Blocks using JavaScript files. For details, see the\n<a href=\"http://docs.appcelerator.com/platform/latest/#!/guide/Arrow_Blocks\">Arrow Blocks guide</a>.</p>\n",
+    "doc": "<p>A Block is a function that is executed before or after calling an API endpoint.</p>\n\n<p>To create a block, pass the constructor an implementation object, API Builder configuration object\nand API Builder instance to create a block instance, then pass the Block instance to the\nAPI Builder instance's <a href=\"#!/api/Arrow-method-addBlock\" rel=\"Arrow-method-addBlock\" class=\"docClass\">addBlock()</a> method.</p>\n\n<pre><code>var block = new <a href=\"#!/api/Arrow.Block\" rel=\"Arrow.Block\" class=\"docClass\">Arrow.Block</a>({\n    name: 'blocky',\n    execute: function (request, response, next) {\n        next();\n    }\n});\nserver.addBlock(block);\n</code></pre>\n\n<p>To use a block, assign it to the <code>before</code> or <code>after</code> property of the implementation object\npassed to the API or Model constructor. A Block is identified by its <code>name</code> property.\nYou may specify more than one block by using an array. The blocks will be executed in order.</p>\n\n<pre><code>var fooAPI = new <a href=\"#!/api/Arrow.API\" rel=\"Arrow.API\" class=\"docClass\">Arrow.API</a>({\n    group: 'foo',\n    path: '/api/foo/',\n    method: 'GET',\n    description: 'Get all the Foo objects',\n    before: ['block1', 'block2'],\n    model: 'testuser',\n    action: function(request, response, next) {\n        request.model.findAll(function(err, results) {\n            if (err) {\n                next(err);\n            } else {\n                next(null, results);\n            }\n        });\n    }\n}, server.config, server);\nfooAPI.bind(server.app);\n</code></pre>\n\n<p>Alternatively, you can define your Blocks using JavaScript files. For details, see the\n<a href=\"https://docs.axway.com/bundle/API_Builder_allOS_en/page/api_builder_blocks.html\">API Builder Blocks guide</a>.</p>\n",
     "extends": null,
     "mixins": [
 
@@ -15245,7 +15398,7 @@
           "name": "arrow",
           "owner": "Arrow.Block",
           "type": "Arrow",
-          "doc": "<p>Arrow instance associated with the Block instance.</p>\n",
+          "doc": "<p>API Builder instance associated with the Block instance.</p>\n",
           "default": null,
           "properties": null,
           "inheritable": null,
@@ -15454,7 +15607,7 @@
             {
               "type": "Object",
               "name": "config",
-              "doc": "<p>Arrow configuration object.</p>\n",
+              "doc": "<p>API Builder configuration object.</p>\n",
               "deprecated": false,
               "platforms": null,
               "inline_platforms": null,
@@ -15468,7 +15621,7 @@
             {
               "type": "Arrow",
               "name": "arrow",
-              "doc": "<p>Arrow instance.</p>\n",
+              "doc": "<p>API Builder instance.</p>\n",
               "deprecated": false,
               "platforms": null,
               "inline_platforms": null,
@@ -15708,7 +15861,7 @@
   {
     "tagname": "class",
     "name": "Arrow.Logger",
-    "doc": "<p>The Arrow Logger class provides a wrapper for <a href=\"https://www.npmjs.com/package/bunyan\">bunyan</a>,\na JSON logging utility. You can access a local instance of the log utility using the <code>logger</code>\nproperty of the Arrow instance.</p>\n",
+    "doc": "<p>The API Builder Logger class provides a wrapper for <a href=\"https://www.npmjs.com/package/bunyan\">bunyan</a>,\na JSON logging utility. You can access a local instance of the log utility using the <code>logger</code>\nproperty of the API Builder instance.</p>\n",
     "extends": null,
     "mixins": [
 
@@ -16470,8 +16623,8 @@
           "params": [
             {
               "type": "Arrow",
-              "name": "Arrow",
-              "doc": "<p>instance.</p>\n",
+              "name": "API",
+              "doc": "<p>Builder instance.</p>\n",
               "deprecated": false,
               "platforms": null,
               "inline_platforms": null,
@@ -21669,7 +21822,7 @@
   {
     "tagname": "class",
     "name": "Arrow.Middleware",
-    "doc": "<p>The Middleware class sets up additional features for the Express app instance, such as the adding\nbusboy, body-parser, cookie-parser and compression modules and initializing the renderer engines used\nby the Arrow Web components. To access the middleware instance, use the Arrow instance's\n<code>middleware</code> property.</p>\n\n<h3>Renderer Engines</h3>\n\n<p>API Builder Tools provides renderer engines for EJS, Handlebars, HTML, Markdown and React templates.\nThe renderer engines are used by the Arrow Web component to render HTML to a web client.\nTo access the renderers, use the <a href=\"#!/api/Arrow.Middleware-static-method-getRendererEngine\" rel=\"Arrow.Middleware-static-method-getRendererEngine\" class=\"docClass\">getRendererEngine()</a>\nmethod and pass it the extension of the renderer engine to retrieve. The renderer engine provides\naccess to the module's APIs.</p>\n\n<p>To create a custom renderer engine, create an object that implements the\n<a href=\"#!/api/ArrowRendererEngine-method-createRenderer\" rel=\"ArrowRendererEngine-method-createRenderer\" class=\"docClass\">createRenderer()</a> method and specifies the\n<a href=\"#!/api/ArrowRendererEngine-property-extension\" rel=\"ArrowRendererEngine-property-extension\" class=\"docClass\">extension</a>. Pass the object to the Middleware instance's\n<a href=\"#!/api/Arrow.Middleware-method-registerRendererEngine\" rel=\"Arrow.Middleware-method-registerRendererEngine\" class=\"docClass\">registerRendererEngine())</a> method.</p>\n\n<p>For example, to implement a renderer engine for Jade templates:</p>\n\n<pre><code>var jade = require('jade'),\n    engine = {};\nengine.jade = jade;\nengine.createRenderer = function (content, filename, app) {\n    return function(filename, opts, callback) {\n        if (!content) {\n            content = require('fs').readFileSync(filename, 'utf8').toString();\n        }\n        callback(null, jade.render(content, opts));\n    }\n};\nengine.extension = 'jade';\nserver.middleware.registerRendererEngine(engine);\n</code></pre>\n\n<p>Any view with a <code>jade</code> extension will be routed to the Jade renderer engine.</p>\n",
+    "doc": "<p>The Middleware class sets up additional features for the Express app instance, such as the adding\nbusboy, body-parser, cookie-parser and compression modules and initializing the renderer engines used\nby the API Builder Web components. To access the middleware instance, use the API Builder instance's\n<code>middleware</code> property.</p>\n\n<h3>Renderer Engines</h3>\n\n<p>API Builder Tools provides renderer engines for EJS, Handlebars, HTML, Markdown and React templates.\nThe renderer engines are used by the API Builder Web component to render HTML to a web client.\nTo access the renderers, use the <a href=\"#!/api/Arrow.Middleware-static-method-getRendererEngine\" rel=\"Arrow.Middleware-static-method-getRendererEngine\" class=\"docClass\">getRendererEngine()</a>\nmethod and pass it the extension of the renderer engine to retrieve. The renderer engine provides\naccess to the module's APIs.</p>\n\n<p>To create a custom renderer engine, create an object that implements the\n<a href=\"#!/api/ArrowRendererEngine-method-createRenderer\" rel=\"ArrowRendererEngine-method-createRenderer\" class=\"docClass\">createRenderer()</a> method and specifies the\n<a href=\"#!/api/ArrowRendererEngine-property-extension\" rel=\"ArrowRendererEngine-property-extension\" class=\"docClass\">extension</a>. Pass the object to the Middleware instance's\n<a href=\"#!/api/Arrow.Middleware-method-registerRendererEngine\" rel=\"Arrow.Middleware-method-registerRendererEngine\" class=\"docClass\">registerRendererEngine())</a> method.</p>\n\n<p>For example, to implement a renderer engine for Jade templates:</p>\n\n<pre><code>var jade = require('jade'),\n    engine = {};\nengine.jade = jade;\nengine.createRenderer = function (content, filename, app) {\n    return function(filename, opts, callback) {\n        if (!content) {\n            content = require('fs').readFileSync(filename, 'utf8').toString();\n        }\n        callback(null, jade.render(content, opts));\n    }\n};\nengine.extension = 'jade';\nserver.middleware.registerRendererEngine(engine);\n</code></pre>\n\n<p>Any view with a <code>jade</code> extension will be routed to the Jade renderer engine.</p>\n",
     "extends": null,
     "mixins": [
 
@@ -22199,7 +22352,7 @@
   {
     "tagname": "class",
     "name": "Arrow.Router",
-    "doc": "<p>A Route is one part of the Arrow Web component, which is used to display HTML content\nto the client application. A Route defines the API endpoint used by the application and\nthe logic to execute to render the view files.</p>\n\n<h3>Create a Router Endpoint</h3>\n\n<p>To create a Router, define a new Router instance with the Router constructor,\nthen bind the Router instance to the Arrow server's app instance.</p>\n\n<p>Pass an implementation object, Arrow configuration object and Arrow instance to the constructor.\nSet any Router properties on the implementation object except the ones marked non-creation.\nThe <a href=\"#!/api/Arrow.Router-property-name\" rel=\"Arrow.Router-property-name\" class=\"docClass\">name</a> property must be set.</p>\n\n<p>To render a view file, in the <code>action</code> function, invoke the <a href=\"http://expressjs.com/4x/api.html#res.render\">render()</a>\nmethod on the response object. Pass the view file, located in the <code>./web/views</code> folder,\nto render minus the file extension and the data to apply to the template. API Builder Tools selects the\nrenderer engine to use based on the extension of the view file.</p>\n\n<p>After creating the Router instance, call its <a href=\"#bind\">bind()</a> method and pass it an app instance.</p>\n\n<pre><code>var foo = new <a href=\"#!/api/Arrow.Router\" rel=\"Arrow.Router\" class=\"docClass\">Arrow.Router</a>({\n    name: 'foo',\n    path: '/foo',\n    method: 'GET',\n    description: 'Render the foo view',\n    action: function (req, res, next) {\n        res.render('foo', {foobar: 'hello', foobaz: 'world'});\n        next();\n    }\n}, server.config, server);\nfoo.bind(server.app);\n</code></pre>\n\n<p>Alternatively, you can define your Routes using JavaScript files, which are automatically loaded\nby the Arrow Project. For details, see the\n<a href=\"http://docs.appcelerator.com/platform/latest/#!/guide/Arrow_Web\">Arrow Web guide</a>.</p>\n",
+    "doc": "<p>A Route is one part of the API Builder Web component, which is used to display HTML content\nto the client application. A Route defines the API endpoint used by the application and\nthe logic to execute to render the view files.</p>\n\n<h3>Create a Router Endpoint</h3>\n\n<p>To create a Router, define a new Router instance with the Router constructor,\nthen bind the Router instance to the API Builder server's app instance.</p>\n\n<p>Pass an implementation object, API Builder configuration object and API Builder instance to the constructor.\nSet any Router properties on the implementation object except the ones marked non-creation.\nThe <a href=\"#!/api/Arrow.Router-property-name\" rel=\"Arrow.Router-property-name\" class=\"docClass\">name</a> property must be set.</p>\n\n<p>To render a view file, in the <code>action</code> function, invoke the <a href=\"http://expressjs.com/4x/api.html#res.render\">render()</a>\nmethod on the response object. Pass the view file, located in the <code>./web/views</code> folder,\nto render minus the file extension and the data to apply to the template. API Builder Tools selects the\nrenderer engine to use based on the extension of the view file.</p>\n\n<p>After creating the Router instance, call its <a href=\"#bind\">bind()</a> method and pass it an app instance.</p>\n\n<pre><code>var foo = new <a href=\"#!/api/Arrow.Router\" rel=\"Arrow.Router\" class=\"docClass\">Arrow.Router</a>({\n    name: 'foo',\n    path: '/foo',\n    method: 'GET',\n    description: 'Render the foo view',\n    action: function (req, res, next) {\n        res.render('foo', {foobar: 'hello', foobaz: 'world'});\n        next();\n    }\n}, server.config, server);\nfoo.bind(server.app);\n</code></pre>\n\n<p>Alternatively, you can define your Routes using JavaScript files, which are automatically loaded\nby the API Builder project. For details, see the\n<a href=\"https://docs.axway.com/bundle/API_Builder_allOS_en/page/api_builder_web.html\">API Builder Web guide</a>.</p>\n",
     "extends": null,
     "mixins": [
 
@@ -22287,7 +22440,7 @@
           "name": "arrow",
           "owner": "Arrow.Router",
           "type": "Arrow",
-          "doc": "<p>Arrow instance associated with the Router instance.</p>\n",
+          "doc": "<p>API Builder instance associated with the Router instance.</p>\n",
           "default": null,
           "properties": null,
           "inheritable": null,
@@ -22552,7 +22705,7 @@
             {
               "type": "Object",
               "name": "config",
-              "doc": "<p>Arrow configuration object.</p>\n",
+              "doc": "<p>API Builder configuration object.</p>\n",
               "deprecated": false,
               "platforms": null,
               "inline_platforms": null,
