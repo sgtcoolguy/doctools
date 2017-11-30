@@ -18,32 +18,105 @@
 
         <div id="src-43299747" class="content">
                         <h1>API Builder Release Notes</h1>
-    <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-APIBuilderTools2.0.2-24May2017">
-        <h2 class="heading "><span>API Builder Tools 2.0.2 - 24 May 2017</span></h2>
-    <p>    <span style="color: #222222;">
-API Builder Tools 2.0.2 is a patch release that includes three new features and several bug fixes.    </span>
-    </p>
-    <div class="section section-3 " id="src-43299747_APIBuilderReleaseNotes-Newfeatures">
-        <h3 class="heading "><span>New features</span></h3>
-<ul class=" "><li class=" ">    <p>APIs defined as Swagger Endpoints can now be tested similar to the APIs generated from models    </p>
-</li><li class=" ">    <p>Individual API Endpoints defined in a Swagger defined API can now be deleted on the API Details view    </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
-Requests to APIs defined as Swagger Endpoints are now available in Logs View    </span>
-    </p>
+    <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-APIBuilderTools3.0.0-30November2017">
+        <h2 class="heading "><span>API Builder Tools 3.0.0 - 30 November 2017</span></h2>
+    <p>API Builder Tools 3.0.0 is a major release that includes several new features, improvements, service connectors, additional changes, fixed issues, and a few known issues.    </p>
+    <div class="section section-3 issue-link" id="src-43299747_APIBuilderReleaseNotes-Newfeaturesandimprovements">
+        <h3 class="heading issue-link"><span>New features and improvements</span></h3>
+<ul class=" "><li class=" ">    <p>API Builder Tools 3.0.0 (Included in CLI 7.0.0) continues to improve the API work flow for creating, importing, and building better Data APIs and API-First APIs, faster. Specifically, the following new capabilities and features have been added:    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">API-First APIs</strong> &#x2013; Create RESTful APIs using the API-First pattern by importing a Swagger 2.0 specification via the API Builder Console. Now, API Builder allows low or no code API creation workflows for Data APIs and API-First APIs.    </p>
+</li><li class=" ">    <p><strong class=" ">API Orchestrations</strong> &#x2013; Create API graphical flows using the using the API Orchestration flow editor interface to drag, drop, configure, and save flows. For API Builder 3.0, the flow editor node library includes support for model nodes, service connector, and utility nodes (custom, code block, compose, condition, delay, HTTP, JSON, and set context). The API Builder flow editor and runtime support parallel execution paths that can result in simpler flow definitions with lower latencies.    </p>
+</li><li class=" ">    <p><strong class=" ">API Mocking</strong> &#x2013; Optionally, create mock implementations of APIs during the Swagger import workflow. This will enable API developers to publish a working version of the APIs for API consumers while they continue to work on the actual implementation.    </p>
+</li><li class=" ">    <p><strong class=" ">Axway Flow SDK</strong> &#x2013; Create custom nodes for the flow editor using the standalone Axway Flow SDK utility. By offering the Axway Flow SDK as a standalone utility, new flow editor nodes can be developed and consumed in the API Builder Console without upgrading to a new release of API Builder Tools. In addition, the Axway Marketplace will progressively offer new nodes for specific needs.    </p>
+</li></ul></li></ul>    </div>
+    <div class="section section-3 " id="src-43299747_APIBuilderReleaseNotes-Serviceconnectors">
+        <h3 class="heading "><span>Service connectors</span></h3>
+<ul class=" "><li class=" ">    <p>As part of the API Builder Tools 3.0.0 release, 20 new API Builder Service Connectors are offered to consumers via the <a class="external-link external-link" href="http://marketplace.axway.com">Axway Marketplace</a>. The service connectors provide access to popular SaaS based cloud services in areas such as marketing, customer relationship management (CRM), storage, and social media. The service connectors are loaded and made available to the API Builder flow editor and can be used to implement the API business logic alongside model and other utility nodes. For API Builder Tools 3.0.0, the offered service connectors are: Amazon S3&#x2122;, Concur&#x2122;, Eloqua&#x2122;, Facebook&#x2122;, HubSpot&#x2122;, HubSpot CRM&#x2122;, Google Drive&#x2122;, MailChimp&#x2122;, Marketo&#x2122;, Microsoft Dynamics CRM&#x2122;, MS Office OneDrive&#x2122;, MS SharePoint&#x2122;, NetSuite CRM&#x2122;, Pardot&#x2122;, Salesforce Service Cloud&#x2122;, ServiceNow&#x2122;, SugarCRM&#x2122;, Twitter&#x2122;, Zendesk&#x2122;, and Zoho&#x2122;.    </p>
 </li></ul>    </div>
+    <div class="section section-3 " id="src-43299747_APIBuilderReleaseNotes-Additionalchanges">
+        <h3 class="heading "><span>Additional changes</span></h3>
+<ul class=" "><li class=" ">    <p>API Builder Tools 3.0.0 includes the following additional changes:    </p>
+<ul class=" "><li class=" ">    <p>The legacy API Builder UI (pre-2.x) has been removed. Now, users must use the API Builder Console.    </p>
+</li><li class=" ">    <p>The documentation generator has been removed. Now, it is recommended that <tt class=" ">/apidoc/swagger.json</tt> be used for API Documentation.    </p>
+</li><li class=" ">    <p>Flows created for the original flow engine introduced in API Builder Tools 2.0.0 will no longer work and must be re-created or upgraded.    </p>
+</li></ul></li></ul>    </div>
     <div class="section section-3 " id="src-43299747_APIBuilderReleaseNotes-Fixedissues">
         <h3 class="heading "><span>Fixed issues</span></h3>
-<ul class=" "><li class=" ">    <p>Inline schemas are now supported    </p>
-<ul class=" "><li class=" ">    <p>The Swagger API generated by API Builder Tools 2.0.0 did not include the inline schema defined for the parameters    </p>
-</li></ul></li><li class=" ">    <p>Generated Swagger Spec for model-first APIs now correctly reflects the response schemas    </p>
-<ul class=" "><li class=" ">    <p>Array type information is maintained for composite models    </p>
-</li><li class=" ">    <p>Models are now included for manually defined APIs    </p>
-</li></ul></li><li class=" ">    <p>Other minor bug fixes and improvements    </p>
+<ul class=" "><li class=" ">    <p>Previously, users were unable to build APIs when running API Builder in a Microsoft Windows environment where the user home path was not on the default drive. Users would receive an &quot;You are not logged in. Please login again,&quot; error message when they attempted to builds APIs. Now, users are able to build APIs without receiving the login error message.    </p>
+</li><li class=" ">    <p>Previously, users were unable to pack or unpack large files when attempting to publish applications. Additionally, tar.gz 1.0.5 packaged with Node.js 6 has known security vulnerabilities. Now, the vulnerable tag.gz module has been replaced and users can pack and unpack large files when publishing applications.    </p>
+</li></ul>    </div>
+    <div class="section section-3 " id="src-43299747_APIBuilderReleaseNotes-Knownissues">
+        <h3 class="heading "><span>Known issues</span></h3>
+<ul class=" "><li class=" ">    <p>The legacy Distinct() APIs have inconsistent or non-compliant return types.    </p>
+</li><li class=" ">    <p>Clicking on joined models in the Source column on the Models tab of the API Builder Console does not work. The details of the joined model should be displayed.    </p>
+</li><li class=" ">    <p>If a Swagger definition uses the <tt class=" ">allOf</tt> parameter, the body generated in the method test window is incorrect.    </p>
+</li><li class=" ">    <p>Filtering the API Builder Console administrator access using IPv6 addresses may cause ENOTFOUND errors.    </p>
+</li><li class=" ">    <p>When attempting to create and save a flow for an imported Swagger endpoint that contains a path or paths defined by references such as <tt class=" ">GET /find</tt>, a Page Not Found (404) error will be displayed in the API Builder Console and the flow cannot be saved. For example, a Swagger document with a path reference may look similar to this:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="string">&quot;swagger&quot;</code><code class="plain">: </code><code class="string">&quot;2.0&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	</code><code class="string">&quot;paths&quot;</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;x-path&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">			</code><code class="string">&quot;get&quot;</code><code class="plain">: {}</code></div>
+<div class="line"><code class="plain">		},</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;/find&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">			</code><code class="string">&quot;$ref&quot;</code><code class="plain">: </code><code class="string">&quot;#/paths/x-path&quot;</code></div>
+<div class="line"><code class="plain">		}</code></div>
+<div class="line"><code class="plain">	}</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>Currently, Swagger documents with path references can be imported and the imported endpoint will be correctly displayed in API Lists, but a flow cannot be created and saved successfully. When the flow editor <strong class=" ">Save</strong> button is clicked, a Page Not Found error is displayed. The error occurs because the API Builder Console cannot find the method as it is not in an expected location.    </p>
+</li><li class=" ">    <p>When rendering the flow editor, the API Builder Console may fail to render the Scalable Vector Graphics (SVG) icons correctly in the FIrefox browser. The render failure may result in blank icons being displayed in the tool panel and in the flow diagram. This is due to a long-standing bug in Firefox that fails to scale SVG graphics correctly. To fix, edit the SVG icon and add height and width. For example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;svg ... height=</code><code class="string">&quot;80&quot;</code><code class="plain"> width=</code><code class="string">&quot;80&quot;</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>The API Builder Console does not recognize a required consumes value for form parameters if it is appended and the endpoint load will fail. For example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="string">&quot;consumes&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="string">&quot;multipart/form-data; charset=utf-8&quot;</code></div>
+<div class="line"><code class="plain">],</code></div>
+</div>
+    </div>
+    <p>The appended character set (<tt class=" ">charset=utf-8</tt>) will cause the endpoint load to fail.    </p>
+</li><li class=" ">    <p>When deleting endpoints which contain references within paths, a Page Not Found (404) error may be displayed in the API Builder Console. For example, a Swagger document with references within paths may look similar to this:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="string">&quot;swagger&quot;</code><code class="plain">: </code><code class="string">&quot;2.0&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	</code><code class="string">&quot;paths&quot;</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;x-path&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">			</code><code class="string">&quot;get&quot;</code><code class="plain">: {}</code></div>
+<div class="line"><code class="plain">		},</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;/find&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">			</code><code class="string">&quot;$ref&quot;</code><code class="plain">: </code><code class="string">&quot;#/paths/x-path&quot;</code></div>
+<div class="line"><code class="plain">		},</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;/search&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">			</code><code class="string">&quot;$ref&quot;</code><code class="plain">: </code><code class="string">&quot;#/paths/x-path&quot;</code></div>
+<div class="line"><code class="plain">		}</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">	}</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>The API Builder Console will fail to find GET /find since it is inside a <tt class=" ">$ref</tt>. If the API Builder Console has modified the referenced <tt class=" ">$ref</tt>, it could cause unexpected behavior for other paths referencing #/paths/x-path such as /search - deleting GET /find could unexpectedly delete GET /search too.    </p>
+</li><li class=" ">    <p>Endpoints named with special characters cannot be viewed in the API Builder Console. For example, if you attempt to view the <tt class=" ">[test].json</tt> endpoint, you will receive a Page Not Found error message.    </p>
+</li><li class=" ">    <p>Editing large object parameters on the     <span style="color: #10181f;">
+API Orchestration    </span>
+ page in the API Builder Console may cause multiple, confusing node configuration panel scroll bars to appear.    </p>
+</li><li class=" ">    <p>When editing flows in the console log in terminal, multiple lines with an unknown format are ignored and the following message is received: unknown format &quot;multiline&quot; ignored in schema at path &quot;#&quot;    </p>
+</li><li class=" ">    <p>Currently, you cannot develop generated node handlers inside your application. Any <tt class=" ">node_modules</tt> inside your <tt class=" ">nodehandler-foo</tt> folder will be loaded as node modules and will crash the application.    </p>
+</li><li class=" ">    <p>Currently, you need to use a code block node handler or use a combination of the compose node handler and the condition node handler to evaluate JAVA script and switch on the value.    </p>
 </li></ul>    </div>
     </div>
     <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-RecentReleases">
         <h2 class="heading "><span>Recent Releases</span></h2>
-<ul class="childpages-macro "><li class=" ">    <p><a class="document-link " href="API_Builder_Tools_2.0.2_Release_Note.html">API Builder Tools 2.0.2 Release Note</a>    </p>
+<ul class="childpages-macro "><li class=" ">    <p><a class="document-link " href="API_Builder_Tools_3.0.0_Release_Note.html">API Builder Tools 3.0.0 Release Note</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Tools_2.0.2_Release_Note.html">API Builder Tools 2.0.2 Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Tools_2.0.0_Release_Note.html">API Builder Tools 2.0.0 Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Arrow_Builder_5.3.1_Release_Note.html">Arrow Builder 5.3.1 Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Arrow_Builder_1.10.1_Release_Note.html">Arrow Builder 1.10.1 Release Note</a>    </p>

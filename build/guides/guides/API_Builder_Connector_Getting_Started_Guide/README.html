@@ -14,9 +14,6 @@
 </link></link></link></meta></meta></head>
 <body>
     <div class="container">
-		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
-		</div>
         <div class="header"/>
 
         <div id="src-49153267" class="content">
@@ -37,8 +34,8 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Getting_Started_Guide-section-src-49153267_APIBuilderConnectorGettingStartedGuide-Nextsteps">Next steps</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-49153267_APIBuilderConnectorGettingStartedGuide-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p>This guide covers the basics to create and build a Connector. A Connector is a component of a project that allows you to access data from an external source. A Connector is set up the same as a Builder project except you have logic for your connector in the <tt class=" ">lib</tt> folder, and do not have API, Block or Web components.    </p>
-    <p>For this example, the connector will integrate with the Twitter REST API. You will need to create a new Twitter app and generate the OAuth access tokens. To create a new Twitter app, go to <a class="external-link external-link" href="https://apps.twitter.com/" target="_blank">https://apps.twitter.com/</a>, then generate the access token from the app&apos;s <strong class=" ">Keys and Access Tokens</strong> tab.    </p>
+    <p>This guide covers the basics to create and build a Connector. A Connector is a component of a project that allows you to access data from an external source. A Connector is set up the same as a Builder project except you have logic for your connector in the <tt class=" ">lib</tt> folder, and do not have API, Block or Web components. For information on generating API-First Connectors, refer to <a class="document-link unresolved" href="#!/guide/API_Builder_Connector_Getting_Started_Guide-section-src-49153267">Connector Builder</a>.    </p>
+    <p>For this example, the connector will integrate with the Twitter REST API. You will need to create a new Twitter app and generate the OAuth access tokens. To create a new Twitter app, go to <a class="external-link external-link" href="https://apps.twitter.com/" target="_blank">https://apps.twitter.com/</a>, then generate the access token from the app&apos;s Keys and Access Tokens tab.    </p>
     </div>
     <div class="section section-2 " id="src-49153267_APIBuilderConnectorGettingStartedGuide-Createaconnector">
         <h2 class="heading "><span>Create a connector</span></h2>
@@ -126,11 +123,11 @@
 <div class="line"><code class="plain">/Users/jdoe/workspace/com.connector.twitternew/lib/index.js</code></div>
 </div>
     </div>
-    <p>Follow the log instructions and open the <tt class=" ">./lib/index.js</tt> file. You will see an exposed create function that uses the <tt class=" ">Connector.extend()</tt> method to create a new connector. In the object passed to the <tt class=" ">extend()</tt> method, you will see a capabilities field with an array of <tt class=" ">Capability</tt> constants. The constants are used to indicate to API Builder, which operations the connector can perform. We will add capabilities incrementally.    </p>
+    <p>Follow the log instructions and open the ./lib/index.js file. You will see an exposed create function that uses the <tt class=" ">Connector.extend()</tt> method to create a new connector. In the object passed to the <tt class=" ">extend()</tt> method, you will see a capabilities field with an array of <tt class=" ">Capability</tt> constants. The constants are used to indicate to API Builder, which operations the connector can perform. We will add capabilities incrementally.    </p>
     <p>Let&apos;s start with connecting to a datasource.    </p>
 <ol class=" "><li class=" ">    <p>Add the <tt class=" ">defaultConfig</tt> field to the parameter object passed to the <tt class=" ">extend()</tt> method. The <tt class=" ">defaultConfig</tt> field tells API Builder to copy the example configuration file to the project&apos;s <tt class=" ">conf</tt> directory when the user adds the connector to the project.    </p>
 </li><li class=" ">    <p>Uncomment the line containing <tt class=" ">Capabilities.ConnectsToADataSource.</tt>    </p>
-</li><li class=" ">    <p>Add the<tt class=" "> postCreate() </tt>function to attach a helper function to the connector instance that can be used by other connector methods.    </p>
+</li><li class=" ">    <p>Add the <tt class=" ">postCreate()</tt> function to attach a helper function to the connector instance that can be used by other connector methods.    </p>
 </li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./lib/index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./lib/index.js">
@@ -178,25 +175,7 @@
     <p>API Builder generates some new files in the <tt class=" ">lib</tt> folder. You will need to implement some logic to connect to and disconnect from the datasource.    </p>
     <div class="section section-3 " id="src-49153267_APIBuilderConnectorGettingStartedGuide-Addconnectlogic">
         <h3 class="heading "><span>Add connect logic</span></h3>
-    <p>Open <tt class=" ">./lib/lifecycle/connect.js</tt> and replace the contents of the file with the following. The <tt class=" ">connect.js</tt> file contains logic to implement the connector&apos;s <a class="external-link external-link" href="#!/api/Arrow.Connector-method-connect"> <tt class=" ">connect()</tt> method</a>, which authorizes the connector to talk to the Twitter APIs.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                    <div class="title">./lib/lifecycle/connect.js</div>
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./lib/lifecycle/connect.js">
-<div class="line"><code class="plain">var Twitter = require(</code><code class="string">&apos;twitter&apos;</code><code class="plain">);</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">exports.connect = function (next) {</code></div>
-<div class="line"><code class="plain">  </code><code class="comments">// Initialize the client</code></div>
-<div class="line"><code class="plain">  </code><code class="comments">// Use this.config to get values from the configuration file</code></div>
-<div class="line"><code class="plain">  </code><code class="keyword">this</code><code class="plain">.client = </code><code class="keyword">new</code><code class="plain"> Twitter({</code></div>
-<div class="line"><code class="plain">    consumer_key: </code><code class="keyword">this</code><code class="plain">.config.consumer_key,</code></div>
-<div class="line"><code class="plain">    consumer_secret: </code><code class="keyword">this</code><code class="plain">.config.consumer_secret,</code></div>
-<div class="line"><code class="plain">    access_token_key: </code><code class="keyword">this</code><code class="plain">.config.access_token_key,</code></div>
-<div class="line"><code class="plain">    access_token_secret: </code><code class="keyword">this</code><code class="plain">.config.access_token_secret</code></div>
-<div class="line"><code class="plain">  });    </code></div>
-<div class="line"><code class="plain">  next();</code></div>
-<div class="line"><code class="plain">};</code></div>
-</div>
-    </div>
+    <p>Open <tt class=" ">./lib/lifecycle/connect.js</tt> and replace the contents of the file with the following. The <tt class=" ">connect.js</tt> file contains logic to implement the connector&apos;s <tt class=" ">connect()</tt> method, which authorizes the connector to talk to the Twitter APIs.    </p>
     <p>Next, let&apos;s implement some logic to retrieve the tweets.    </p>
     </div>
     <div class="section section-3 " id="src-49153267_APIBuilderConnectorGettingStartedGuide-Addretrievelogic">
@@ -215,7 +194,25 @@
 </div>
     </div>
 </li><li class=" ">    <p>Remove the <tt class=" ">distinct.js</tt> and <tt class=" ">query.js</tt> files. We will not be implementing these for the example.    </p>
-</li><li class=" ">    <p>Open <tt class=" ">./lib/methods/findAll.js</tt> and replace the contents of the file with the following. The <tt class=" ">findAll.js</tt> file implements the connector&apos;s <tt class=" ">findAll()</tt> method, which retrieves all tweets from the user&apos;s Twitter account, or at least, as many tweets as Twitter will allow us to fetch.    </p>
+</li><li class=" ">    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">./lib/lifecycle/connect.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./lib/lifecycle/connect.js">
+<div class="line"><code class="plain">var Twitter = require(</code><code class="string">&apos;twitter&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">exports.connect = function (next) {</code></div>
+<div class="line"><code class="plain">  </code><code class="comments">// Initialize the client</code></div>
+<div class="line"><code class="plain">  </code><code class="comments">// Use this.config to get values from the configuration file</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">this</code><code class="plain">.client = </code><code class="keyword">new</code><code class="plain"> Twitter({</code></div>
+<div class="line"><code class="plain">    consumer_key: </code><code class="keyword">this</code><code class="plain">.config.consumer_key,</code></div>
+<div class="line"><code class="plain">    consumer_secret: </code><code class="keyword">this</code><code class="plain">.config.consumer_secret,</code></div>
+<div class="line"><code class="plain">    access_token_key: </code><code class="keyword">this</code><code class="plain">.config.access_token_key,</code></div>
+<div class="line"><code class="plain">    access_token_secret: </code><code class="keyword">this</code><code class="plain">.config.access_token_secret</code></div>
+<div class="line"><code class="plain">  });    </code></div>
+<div class="line"><code class="plain">  next();</code></div>
+<div class="line"><code class="plain">};</code></div>
+</div>
+    </div>
+    <p>Open <tt class=" ">./lib/methods/findAll.js</tt> and replace the contents of the file with the following. The <tt class=" ">findAll.js</tt> file implements the connector&apos;s <tt class=" ">findAll()</tt> method, which retrieves all tweets from the user&apos;s Twitter account, or at least, as many tweets as Twitter will allow us to fetch.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./lib/methods/findAll.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./lib/methods/findAll.js">

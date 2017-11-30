@@ -14,9 +14,6 @@
 </link></link></link></meta></meta></head>
 <body>
     <div class="container">
-		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
-		</div>
         <div class="header"/>
 
         <div id="src-49153271" class="content">
@@ -39,7 +36,7 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-Declaredependencies">Declare dependencies</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p>A Connector project is similar in structure to a project. This guide covers how to manage your Connector project.    </p>
+    <p>A Connector project is similar in structure to a project. This guide covers how to manage your Connector project. For information on generating API-First Connectors, refer to <a class="document-link unresolved" href="#!/guide/API_Builder_Connector_Project-section-src-49153271">Connector Builder</a>.    </p>
     <p>To add a connector to your project, see <a class="document-link " href="#!/guide/Add_a_Connector">Add a Connector</a>.    </p>
     </div>
     <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-Projectstructure">
@@ -179,8 +176,8 @@
     <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-Connectorlogic">
         <h2 class="heading "><span>Connector logic</span></h2>
     <p>Place all the connector logic in the <tt class=" ">lib</tt> folder.  There must be an <tt class=" ">index.js</tt> file in your <tt class=" ">lib</tt> folder, which is the first file loaded by the connector.    </p>
-    <p>The boilerplate <tt class=" ">index.js</tt> file expose a <tt class=" ">create()</tt> method, which is passed the API Builder class.  The method must return a Connector instance, which is created using the <tt class=" ">Arrow.Connector.extend()</tt>method.  Uncomment each Capability constant in the <tt class=" ">capabilities</tt> field to have API Builder generate boilerplate logic for each capability you want the Connector to support.  Each method will have its own JavaScript file. You may also pass the <tt class=" ">extend()</tt> method an object, which implements the methods of the Connector class and a few methods from the Model class.    </p>
-    <p>To start developing your connector, run the project in one console window, then edit the files with the connector logic in another console or editor.  As you save your files, API Builder will automatically update your connector and restart the server instance, allowing you to work on and test the connector incrementally.    </p>
+    <p>The boilerplate <tt class=" ">index.js</tt> file expose a <tt class=" ">create()</tt> method, which is passed the API Builder class. The method must return a Connector instance, which is created using the <tt class=" ">Arrow.Connector.extend()</tt> method. Uncomment each Capability constant in the <tt class=" ">capabilities</tt> field to have API Builder generate boilerplate logic for each capability you want the Connector to support. Each method will have its own JavaScript file. You may also pass the <tt class=" ">extend()</tt> method an object, which implements the methods of the Connector class and a few methods from the Model class.    </p>
+    <p>To start developing your connector, run the project in one console window, then edit the files with the connector logic in another console or editor. As you save your files, API Builder will automatically update your connector and restart the server instance, allowing you to work on and test the connector incrementally.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">lib/index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="lib/index.js">
@@ -221,7 +218,7 @@
     </div>
     <div class="section section-3 " id="src-49153271_APIBuilderConnectorProject-Capabilities">
         <h3 class="heading "><span>Capabilities</span></h3>
-    <p>API Builder is based on Arrow and starting with API Builder 1.2.48 or Appcelerator CLI 4.1.3, the connector configuration object passed to the <tt class=" ">Connect.extend()</tt> method supports a <tt class=" ">capabilities</tt> property.  The first time you run a project after adding a Capability constant to the <tt class=" ">capabilities</tt> property, API Builder will generate boilerplate logic, which you can modify.  The table below explains what each capability constant exposes and creates. If a certain connector is not exposed through a capability, you can implement the method in the object passed to the <tt class=" ">Connector.extend()</tt> method.    </p>
+    <p>API Builder is based on Arrow and starting with API Builder 1.2.48 or Appcelerator CLI 4.1.3, the connector configuration object passed to the <tt class=" ">Connector.extend()</tt> method supports a <tt class=" ">capabilities</tt> property.  The first time you run a project after adding a Capability constant to the <tt class=" ">capabilities</tt> property, API Builder will generate boilerplate logic, which you can modify.  The table below explains what each capability constant exposes and creates. If a certain connector is not exposed through a capability, you can implement the method in the object passed to the <tt class=" ">Connector.extend()</tt> method.    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -826,7 +823,7 @@
 <div class="line"><code class="plain">};</code></div>
 </div>
     </div>
-    <p>Since Release 5.0.0, you may specify specific models to generate from a connector. Set the <tt class=" ">generateModels</tt> key to an array of model names you want to include.    </p>
+    <p>You may specify specific models to generate from a connector. Set the <tt class=" ">generateModels</tt> key to an array of model names you want to include.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">module.exports = {</code></div>
