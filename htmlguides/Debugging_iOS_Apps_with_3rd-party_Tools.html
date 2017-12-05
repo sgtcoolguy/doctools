@@ -18,10 +18,12 @@
 
         <div id="src-49160781" class="content">
                         <h1>Debugging iOS Apps with 3rd-party Tools</h1>
-    <p>No matter the route you take, you must ensure that your project is using the included jscore framework option first.    </p>
+    <p>No matter the route you take, you must ensure that your project is using the included jscore framework option first. That is unless you are using SDK 7.0.x+ for Safari while debugging with iOS. In 7.0.x+, if that tag is not in your <tt class=" ">tiapp.xml</tt> file, it defaults to <tt class=" ">true</tt> and uses the JSCore bundled in iOS.    </p>
     <div class="section section-2 " id="src-49160781_DebuggingiOSAppswith3rd-partyTools-Enableuse-jscore-framework">
         <h2 class="heading "><span>Enable use-jscore-framework</span></h2>
+    <p>With Titanium SDK 6.x, developers must add a tag to enable the iOS debugger in order to use Safari (or iOS-webkit-debug-proxy). With SDK 7.x and later, this value is assumed to be true unless you explicitly add the tag with <tt class=" ">false</tt> as the value.    </p>
     <p>The key is to enable the <tt class=" ">use-jscore-framework</tt> option in <tt class=" ">tiapp.xml</tt>:    </p>
+    <p>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">tiapp</code><code class="plain">&gt;</code></div>
@@ -44,10 +46,9 @@
     <p>Be sure to turn on use-jscore-framework as listed in <a class="external-link " href="https://wiki.appcelerator.org/display/~bimmel/2016/10/19/Daily+Update+10-19-16#DailyUpdate10-19-16-Enableuse-jscore-framework">Enable use-jscore-framework</a>.    </p>
 <ol class=" "><li class=" ">    <p>Launch the app on the device or a simulator. Note: if using a device, make its connected by an USB cable before debugging.    </p>
 <ol class=" "><li class=" ">    <p>Launch you application via Studio or command-line: <tt class=" ">appc run -p ios</tt>    </p>
-</li></ol></li><li class=" ">    <p>Launch Safari and enable the <strong class=" ">Develop</strong> mode (<strong class=" ">Safari</strong> &gt; <strong class=" ">Preferences</strong> &gt; <strong class=" ">Advanced</strong> and enable <strong class=" ">Show Develop menu in menu bar</strong>).    </p>
+</li></ol></li><li class=" ">    <p>Launch Safari and enable the <strong class=" ">Develop</strong> mode (<strong class=" ">Safari</strong> &gt; <strong class=" ">Preferences</strong> &gt; <strong class=" ">Advanced</strong> and enable <strong class=" ">Show Develop menu in menu bar</strong>). Note: it is important to have the Web Inspector enabled to allow connections for debugging. Otherwise, neither Studio nor Safari&apos;s debugger will be able to connect to the device using the web-inspector based protocol.    </p>
     <img src="images/download/attachments/49160781/enabled_develop_safari.png" alt="images/download/attachments/49160781/enabled_develop_safari.png" class="confluence-embedded-image" width="500">
-        <p>    </p>
-</li><li class=" ">    <p>Once the app is up and running, connecting to the debugger depends on whether you are using a simulator or device.    </p>
+    </li><li class=" ">    <p>Once the app is up and running, connecting to the debugger depends on whether you are using a simulator or device.    </p>
 <ol class=" "><li class=" ">    <p>Simulator: <strong class=" ">Safari</strong> &gt; <strong class=" ">Developer</strong> &gt; <strong class=" ">Simulator</strong> &gt; <strong class=" ">JSContext</strong>    </p>
 </li><li class=" ">    <p>Device: <strong class=" ">Safari</strong> &gt; <strong class=" ">Developer</strong> &gt; <strong class=" ">&lt;device name&gt;</strong> &gt; <strong class=" ">JSContext</strong>    </p>
 </li></ol></li></ol>    <div class="section section-3 " id="src-49160781_DebuggingiOSAppswith3rd-partyTools-SafariBreakpoints">
@@ -59,17 +60,6 @@
 </li><li class=" ">    <p>Launch the app/build via <strong class=" ">Studio</strong> or the <strong class=" ">CLI</strong>. You should be able to connect and control the debugger before the app fully launches.    </p>
 </li></ol>    </div>
     </div>
-    <div class="section section-2 " id="src-49160781_DebuggingiOSAppswith3rd-partyTools-UsingGoogleChromeandios-webkit-debug-proxy">
-        <h2 class="heading "><span>Using Google Chrome and ios-webkit-debug-proxy</span></h2>
-    <p>Be sure to turn on use-jscore-framework as listed in <a class="external-link " href="https://wiki.appcelerator.org/display/~bimmel/2016/10/19/Daily+Update+10-19-16#DailyUpdate10-19-16-Enableuse-jscore-framework">Enable use-jscore-framework</a>.<br><br>Google has created a proxy middleman utility that provides the ability to use Google&apos;s Chrome tooling with iOS simulators/webkit. You can download it at <a class="external-link external-link" href="https://github.com/google/ios-webkit-debug-proxy">ios-webkit-debug-proxy</a>.    </p>
-    <p>From our experience, we haven&apos;t been able to reliably use this to hit breakpoints and inspect the state of the app. However, we have found that the Console tab works for evaluating arbitary code in the context of the app.    </p>
-<ol class=" "><li class=" ">    <p>Launch the Simulator.    </p>
-</li><li class=" ">    <p>Launch the app.    </p>
-</li><li class=" ">    <p>Open Terminal and start <tt class=" ">ios-webkit-debug-proxy</tt>.    </p>
-</li><li class=" ">    <p>Open Google Chrome to <tt class=" ">http://localhost:9221/</tt>.    </p>
-</li><li class=" ">    <p>Click on the link for the simulator (<tt class=" ">http://localhost:9222/</tt>).    </p>
-</li><li class=" ">    <p>Click on the <tt class=" ">http://localhost:9222/devtools/devtools.html?ws=localhost:9222/devtools/page/1</tt> for the inspectable page.    </p>
-</li></ol>    </div>
         </div>
     
         
