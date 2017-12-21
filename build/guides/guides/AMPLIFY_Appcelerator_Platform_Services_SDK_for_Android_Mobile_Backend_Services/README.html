@@ -267,7 +267,7 @@
     <p>For Cloud API methods that involve uploading large files, such as <tt class=" ">APSPhotos.create()</tt> or <tt class=" ">APSFiles.create()</tt>, there is an overloaded version that takes an optional <tt class=" ">progressHandler</tt> parameter. This parameter takes an <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/aps/APSProgressHandler.html" target="_blank">APSProgressHandler</a> instance, which must provide an <tt class=" ">onProgress</tt> handler. This handler is periodically triggered as the file transfer continues, and is passed an integer between 0-100 indicating the current upload progress.    </p>
     <div class="section section-4 " id="src-49153767_safe-id-QU1QTElGWUFwcGNlbGVyYXRvclBsYXRmb3JtU2VydmljZXNTREtmb3JBbmRyb2lkTW9iaWxlQmFja2VuZFNlcnZpY2VzLUV4YW1wbGU6QVBTRmlsZXNDcmVhdGVDYWxsd2l0aFByb2dyZXNzSGFuZGxlcg">
         <h4 class="heading "><span>Example: APSFiles Create Call with Progress Handler</span></h4>
-    <p>The following example uploads a file from the device (<tt class=" ">/res/raw/reference.pdf</tt>) to the MBS storage server. Since the method call requires that uploaded data be an instance of <tt class=" ">java.io.File</tt>, the application needs to copy the resource to a read-write directory before uploading it. Storing the file locally requires that the <a class="external-link external-link" href="http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE" target="_blank">WRITE_EXTERNAL_STORAGE</a> permission be included in your AndroidManifest.xml file.    </p>
+    <p>The following example uploads a file from the device (<tt class=" ">/res/raw/reference.pdf</tt>) to the MBS storage server. Since the method call requires that uploaded data be an instance of <tt class=" ">java.io.File</tt>, the application needs to copy the resource to a read-write directory before uploading it. Storing the file locally requires that the <a class="external-link external-link" href="http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE" target="_blank">WRITE_EXTERNAL_STORAGE</a> permission is included in your AndroidManifest.xml file.    </p>
     <p>The progress callback calls the <tt class=" ">setProgress()</tt> method on a <tt class=" ">ProgressBar</tt> object, displaying the status of the upload. After the request successfully completes, the application displays a toast notification.    </p>
     <div class="tablewrap">
         <table>
@@ -348,7 +348,7 @@
 </li></ul>    <p>For example, to <a class="external-link external-link" href="/arrowdb/latest/#!/api/Posts-method-create">create a post</a>, pass the <tt class=" ">sendRequest()</tt> method the following information:    </p>
 <ul class=" "><li class=" ">    <p>REST API method endpoint: <tt class=" ">posts/create.json</tt>    </p>
 </li><li class=" ">    <p>The HTTP method to use: <tt class=" ">POST</tt>    </p>
-</li><li class=" ">    <p>Data to send with the request: at minimum, you must specify the <tt class=" ">content</tt> property.    </p>
+</li><li class=" ">    <p>Data to send with the request: at a minimum, you must specify the <tt class=" ">content</tt> property.    </p>
 </li></ul>    <p>The following uses the <tt class=" ">sendRequest()</tt> API to create a new Post object.    </p>
     <div class="tablewrap">
         <table>
@@ -525,7 +525,7 @@
 </li></ul>    <p>Once the project is setup, the application needs to register with MBS to receive push notifications. The application should do this once the application starts, for example, in the <tt class=" ">onCreate()</tt> method of the application&apos;s main activity.    </p>
     <p>To register for push notifications, the application needs to retrieve the device token using the <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/aps/APSCloudPush.html#retrieveDeviceToken(com.appcelerator.aps.APSRetrieveDeviceTokenHandler)" target="_blank"><tt class=" ">APSCloudPush.getInstance.retrieveDeviceToken()</tt></a> method, then pass the token to either the <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/aps/APSPushNotifications.html#subscribe(java.util.Map,com.appcelerator.aps.APSResponseHandler)" target="_blank"><tt class=" ">APSPushNotifications.subscribe()</tt></a> or <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/aps/APSPushNotifications.html#subscribeToken(java.util.Map,com.appcelerator.aps.APSResponseHandler)" target="_blank"><tt class=" ">APSPushNotifications.subscribeToken()</tt></a> method to subscribe to a push channel.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>Call <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/aps/APSServiceManager.html#getInstance()" target="_blank"><tt class=" ">APSServiceManager.getInstance()</tt></a> before calling any methods on <tt class=" ">APSCloudPush</tt>, otherwise an exception will be thrown.    </p>
+            <p>Call <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/aps/APSServiceManager.html#getInstance()" target="_blank"><tt class=" ">APSServiceManager.getInstance()</tt></a> before calling any methods on <tt class=" ">APSCloudPush</tt>, otherwise, an exception will be thrown.    </p>
     </div>
         <p>For example, the code below can be added to the main activity&apos;s <tt class=" ">onCreate()</tt> method to subscribe the device to the <tt class=" ">friend_channel</tt>:    </p>
     <div class="tablewrap">
@@ -579,7 +579,7 @@
     </div>
     <div class="section section-3 " id="src-49153767_AMPLIFYAppceleratorPlatformServicesSDKforAndroidMobileBackendServices-CloudPushsampleapplication">
         <h3 class="heading "><span>CloudPush sample application</span></h3>
-    <p>The SDK includes the <tt class=" ">APSCloudPushExample</tt> application that demonstrates use of the <tt class=" ">APSPushNotifications</tt> and <tt class=" ">APSCloudPush</tt> APIs. To run the sample application, you&apos;ll first need to create an Android application in Dashboard (or use an existing application), and configure its push notification settings to include a GCM or FCM sender ID and application key. <tt class=" ">APSCloudPush</tt> requires Google Play services, so you&apos;ll also need to add that library as a dependency to your project.    </p>
+    <p>The SDK includes the <tt class=" ">APSCloudPushExample</tt> application that demonstrates the use of the <tt class=" ">APSPushNotifications</tt> and <tt class=" ">APSCloudPush</tt> APIs. To run the sample application, you&apos;ll first need to create an Android application in Dashboard (or use an existing application) and configure its push notification settings to include a GCM or FCM sender ID and application key. <tt class=" ">APSCloudPush</tt> requires Google Play services, so you&apos;ll also need to add that library as a dependency to your project.    </p>
     <p><strong class=" ">To import and run the APSCloudPushExample application</strong>:    </p>
 <ol class=" "><li class=" ">    <p>In Eclipse, select <strong class=" ">File </strong>&gt;<strong class=" "> Import </strong>&gt;<strong class=" "> General </strong>&gt;<strong class=" "> Existing Projects into Workspace</strong> and click <strong class=" ">Browse</strong>.    </p>
 </li><li class=" ">    <p>Navigate to the <strong class=" "><tt class=" ">appcelerator-sdk-android-&lt;VERSION&gt;/examples/APSCloudPushExample</tt></strong> folder and click <strong class=" ">Open</strong>.    </p>
@@ -599,7 +599,7 @@
         </tr>
 </tbody>        </table>
             </div>
-</li><li class=" ">    <p>Run the application in an Android device or emulator.    </p>
+</li><li class=" ">    <p>Run the application on an Android device or emulator.    </p>
 </li></ol>    </div>
     </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=49153767"><span>Edit</span></a>

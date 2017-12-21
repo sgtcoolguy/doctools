@@ -20,11 +20,11 @@
                         <h1>API Runtime Services Troubleshooting</h1>
     <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="API_Runtime_Services_Troubleshooting.html#src-46245598_APIRuntimeServicesTroubleshooting-Introduction">Introduction</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="API_Runtime_Services_Troubleshooting.html#src-46245598_APIRuntimeServicesTroubleshooting-Exceptionsthrownupondeployment">Exceptions thrown upon deployment</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Runtime_Services_Troubleshooting.html#src-46245598_APIRuntimeServicesTroubleshooting-Exceptionsarethrownupondeployment">Exceptions are thrown upon deployment</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="API_Runtime_Services_Troubleshooting.html#src-46245598_safe-id-QVBJUnVudGltZVNlcnZpY2VzVHJvdWJsZXNob290aW5nLUV4Y2VwdGlvbmluYXBwLmpzb3V0c2lkZXN0YXJ0KCltZXRob2Q">Exception in app.js outside start() method</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Runtime_Services_Troubleshooting.html#src-46245598_safe-id-QVBJUnVudGltZVNlcnZpY2VzVHJvdWJsZXNob290aW5nLUV4Y2VwdGlvbmluc2lkZWFwcC5qc3N0YXJ0KCltZXRob2Q">Exception inside app.js start() method</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="API_Runtime_Services_Troubleshooting.html#src-46245598_safe-id-QVBJUnVudGltZVNlcnZpY2VzVHJvdWJsZXNob290aW5nLUV4Y2VwdGlvbmluYWNvbnRyb2xsZXIsb3V0c2lkZWFmdW5jdGlvbg">Exception in a controller, outside a function</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="API_Runtime_Services_Troubleshooting.html#src-46245598_APIRuntimeServicesTroubleshooting-Exceptionsthrownatruntime">Exceptions thrown at runtime</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Runtime_Services_Troubleshooting.html#src-46245598_safe-id-QVBJUnVudGltZVNlcnZpY2VzVHJvdWJsZXNob290aW5nLUV4Y2VwdGlvbmluYWNvbnRyb2xsZXIsb3V0c2lkZW9mYWZ1bmN0aW9u">Exception in a controller, outside of a function</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="API_Runtime_Services_Troubleshooting.html#src-46245598_APIRuntimeServicesTroubleshooting-Exceptionsarethrownatruntime">Exceptions are thrown at runtime</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="API_Runtime_Services_Troubleshooting.html#src-46245598_APIRuntimeServicesTroubleshooting-Exceptioninsynchronouscallshandlingrequests">Exception in synchronous calls handling requests</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Runtime_Services_Troubleshooting.html#src-46245598_safe-id-QVBJUnVudGltZVNlcnZpY2VzVHJvdWJsZXNob290aW5nLUV4Y2VwdGlvbmluYXN5bmNocm9ub3VzY2FsbGJhY2tzaGFuZGxpbmdyZXF1ZXN0cyhvcmJhY2tncm91bmRqb2JzKQ">Exception in asynchronous callbacks handling requests (or background jobs)</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Runtime_Services_Troubleshooting.html#src-46245598_APIRuntimeServicesTroubleshooting-Applicationcrasheswhilehandlingrequests">Application crashes while handling requests</a>    </p>
@@ -36,8 +36,8 @@
     <p>This document summarizes the kinds of exceptions you may encounter when deploying or running an API Runtime Services application, or when installing or upgrading the <tt class=" ">acs</tt> NPM package on your system.    </p>
     <p>The <tt class=" ">appc cloud list</tt> and <tt class=" ">appc cloud loglist</tt> CLI commands are used to troubleshoot deployment or runtime issues. Note that <tt class=" ">appc cloud loglist</tt> may not immediately retrieve the latest logs from the server; you may need to wait a few seconds and try running the command again. Also, users should not expect this command to pull logs from the start date; the output will always return the latest logs. For example, if a start date is used and there are more than a 1000 lines up through today&apos;s date from the start date, the logs will only return a page with lines starting from today&apos;s date going back to the start date and not from the start date to today.    </p>
     </div>
-    <div class="section section-2 " id="src-46245598_APIRuntimeServicesTroubleshooting-Exceptionsthrownupondeployment">
-        <h2 class="heading "><span>Exceptions thrown upon deployment</span></h2>
+    <div class="section section-2 " id="src-46245598_APIRuntimeServicesTroubleshooting-Exceptionsarethrownupondeployment">
+        <h2 class="heading "><span>Exceptions are thrown upon deployment</span></h2>
     <div class="section section-3 " id="src-46245598_safe-id-QVBJUnVudGltZVNlcnZpY2VzVHJvdWJsZXNob290aW5nLUV4Y2VwdGlvbmluYXBwLmpzb3V0c2lkZXN0YXJ0KCltZXRob2Q">
         <h3 class="heading "><span>Exception in app.js outside start() method</span></h3>
     <p>The following code references an undefined variable outside application&apos;s <tt class=" ">start()</tt> method.    </p>
@@ -124,8 +124,8 @@
 </div>
     </div>
     </div>
-    <div class="section section-3 " id="src-46245598_safe-id-QVBJUnVudGltZVNlcnZpY2VzVHJvdWJsZXNob290aW5nLUV4Y2VwdGlvbmluYWNvbnRyb2xsZXIsb3V0c2lkZWFmdW5jdGlvbg">
-        <h3 class="heading "><span>Exception in a controller, outside a function</span></h3>
+    <div class="section section-3 " id="src-46245598_safe-id-QVBJUnVudGltZVNlcnZpY2VzVHJvdWJsZXNob290aW5nLUV4Y2VwdGlvbmluYWNvbnRyb2xsZXIsb3V0c2lkZW9mYWZ1bmN0aW9u">
+        <h3 class="heading "><span>Exception in a controller, outside of a function</span></h3>
     <p>The following code references an undefined variable inside a controller, outside any function definition:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -167,8 +167,8 @@
     </div>
     </div>
     </div>
-    <div class="section section-2 " id="src-46245598_APIRuntimeServicesTroubleshooting-Exceptionsthrownatruntime">
-        <h2 class="heading "><span>Exceptions thrown at runtime</span></h2>
+    <div class="section section-2 " id="src-46245598_APIRuntimeServicesTroubleshooting-Exceptionsarethrownatruntime">
+        <h2 class="heading "><span>Exceptions are thrown at runtime</span></h2>
     <div class="section section-3 " id="src-46245598_APIRuntimeServicesTroubleshooting-Exceptioninsynchronouscallshandlingrequests">
         <h3 class="heading "><span>Exception in synchronous calls handling requests</span></h3>
     <p>The following code references an undefined variable inside a controller function.    </p>

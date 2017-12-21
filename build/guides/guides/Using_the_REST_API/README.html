@@ -49,8 +49,8 @@
             </div>
     <p>For POST and PUT requests, you send an HTTP request with the <tt class=" ">multipart/form-data</tt> media type, where each parameter is sent as a separate form field.    </p>
     <p>API responses are returned as JSON objects. In most cases, the response JSON includes two objects:    </p>
-<ul class=" "><li class=" ">    <p><tt class=" ">meta -</tt> Object containing response metadata, including the response status code and error message, if any.    </p>
-</li><li class=" ">    <p><tt class=" ">response -</tt> Object containing the actual data for the request. The <tt class=" ">response</tt> object is omitted for some requests, such as delete requests, that return no data.    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">meta -</tt> An object containing response metadata, including the response status code and error message, if any.    </p>
+</li><li class=" ">    <p><tt class=" ">response -</tt> An object containing the actual data for the request. The <tt class=" ">response</tt> object is omitted for some requests, such as delete requests, that return no data.    </p>
 </li></ul>    </div>
     <div class="section section-2 " id="src-49153750_UsingtheRESTAPI-Authentication">
         <h2 class="heading "><span>Authentication</span></h2>
@@ -59,7 +59,7 @@
     <div class="section section-2 " id="src-49153750_UsingtheRESTAPI-Usersessionsandcookies">
         <h2 class="heading "><span>User sessions and cookies</span></h2>
     <p>To create a user and perform actions which require a logged-in user, the <tt class=" ">session_id</tt> cookie must be saved and reused with each API call.    </p>
-    <p>To get a session ID, use the <tt class=" ">users/login.json</tt> method to login in to the application. If the API call is successful, the <tt class=" ">session_id</tt> field is returned in the <tt class=" ">meta</tt> object of the response. For example:    </p>
+    <p>To get a session ID, use the <tt class=" ">users/login.json</tt> method to login into the application. If the API call is successful, the <tt class=" ">session_id</tt> field is returned in the <tt class=" ">meta</tt> object of the response. For example:    </p>
     <div class="tablewrap">
         <table>
         <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
@@ -216,7 +216,7 @@
     </div>
     <div class="section section-2 " id="src-49153750_UsingtheRESTAPI-ObjectIDs">
         <h2 class="heading "><span>Object IDs</span></h2>
-    <p>All returned data objects contain unique IDs which are 24-digit hexadecimal strings. These IDs may be use to efficiently return data for a single object:    </p>
+    <p>All returned data objects contain unique IDs which are 24-digit hexadecimal strings. These IDs may be used to efficiently return data for a single object:    </p>
     <div class="tablewrap">
         <table>
         <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
@@ -263,7 +263,7 @@
             <p>For <a class="document-link " href="#!/guide/Search_and_Query_APIs">query</a> operations, the <tt class=" ">page</tt> and <tt class=" ">per_page</tt> paging mechanism described below only applies to applications created before Mobile Backend Services 1.1.5. For applications created with Mobile Backend Services 1.1.5 and later, you must use range-based queries, as discussed in <a class="document-link " href="#!/guide/Search_and_Query_APIs">Query Pagination</a>.    </p>
     </div>
         <p>API calls which return arrays of objects take optional <tt class=" ">page</tt> and <tt class=" ">per_page</tt> arguments to specify the number of objects to return. By default, ten objects are returned on each page, and the request may specify up to 20 results per page. Page numbers start at 1; if unspecified, the page defaults to page 1.    </p>
-    <p>Data about the current page is included in the <tt class=" ">meta</tt> object. For paged responses, the <tt class=" ">meta</tt> object includes the <tt class=" ">page</tt>, <tt class=" ">per_page</tt>, <tt class=" ">total_pages</tt> and <tt class=" ">total_results</tt> keys:    </p>
+    <p>Data about the current page is included in the <tt class=" ">meta</tt> object. For paged responses, the <tt class=" ">meta</tt> object includes the <tt class=" ">page</tt>, <tt class=" ">per_page</tt>, <tt class=" ">total_pages</tt>, and <tt class=" ">total_results</tt> keys:    </p>
     <div class="tablewrap">
         <table>
         <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>

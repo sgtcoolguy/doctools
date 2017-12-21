@@ -77,6 +77,18 @@
         <h3 class="heading "><span>Known issues</span></h3>
 <ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TISTUD-8878" target="_blank">TISTUD-8878</a> - Axway Appcelerator Studio support for JDK 9    </p>
 <ul class=" "><li class=" ">    <p>Studio 5.0.0 and lower does not support JDK 9. It is currently slated to be supported with Studio 6.0.0.    </p>
+</li><li class=" ">    <p>To manually fix this issue, follow these steps:    </p>
+<ol class=" "><li class=" ">    <p>Make sure you have JDK 1.8.131 on your system. Look for this: <tt class=" ">/Library/Java/JavaVirtualMachines/jdk1.8.0_1131.jdk</tt>    </p>
+</li><li class=" ">    <p>Edit the <tt class=" ">Appcelerator Studio.ini</tt> file which is located here: <tt class=" ">/Applications/Appcelerator/ Studio/AppceleratorStudio.app/Contents/MacOS/AppceleratorStudio.ini</tt>    </p>
+</li><li class=" ">    <p>Force Studio to use <tt class=" ">jdk1.8.0_131.jdk</tt> by adding the following <tt class=" ">-vm</tt> argument before the <tt class=" ">-vmargs</tt> entry:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-vm /Library/Java/JavaVirtualMachines/jdk1.</code><code class="value">8</code><code class="plain">.0_131.jdk/Contents/Home/bin/java</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Restart Studio.    </p>
+</li></ol></li></ul></li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TISTUD-8953" target="_blank">TISTUD-8953</a> - Mac: Studio won&apos;t start, hangs on initial dialog    </p>
+<ul class=" "><li class=" ">    <p>Studio 5.0.0.GA does not support JDK 1.8.0_152 and higher    </p>
 </li></ul></li></ul>    </div>
     </div>
     <div class="section section-2 " id="src-40929417_AxwayAppceleratorStudioReleaseNotes-RecentReleases">

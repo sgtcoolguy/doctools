@@ -26,10 +26,10 @@
 <ul class=" "><li class=" ">    <p>View Cloud application keys    </p>
 </li><li class=" ">    <p>Configure application settings for Cloud services    </p>
 </li><li class=" ">    <p>Provide SMTP or <a class="external-link external-link" href="http://messagegears.com/">Message Gears</a> account information to send e-mails for notifications    </p>
-</li></ul>    <p>Before configuring Cloud settings, make sure you select the correct environment from the <strong class=" ">Environment</strong> menu.  The changes you make in the Cloud tab only affects the selected environment.    </p>
+</li></ul>    <p>Before configuring Cloud settings, make sure you select the correct environment from the <strong class=" ">Environment</strong> menu. The changes you make in the Cloud tab only affects the selected environment.    </p>
     <div class="section section-2 " id="src-43298784_ConfiguringCloudServices-Keys">
         <h2 class="heading "><span>Keys</span></h2>
-    <p>Click the <strong class=" ">Keys</strong> button to display the Cloud App Key.  Click <strong class=" ">Show</strong> to display it.  Use the App Key to make requests to the Cloud service.    </p>
+    <p>Click the <strong class=" ">Keys</strong> button to display the Cloud App Key.  Click <strong class=" ">Show</strong> to display it. Use the App Key to make requests to the Cloud service.    </p>
     <p>    <img src="images/download/attachments/43298784/Keys.png" alt="images/download/attachments/43298784/Keys.png" class="confluence-embedded-image" width="600">
         </p>
     </div>
@@ -38,24 +38,24 @@
     <p>Click the <strong class=" ">Settings</strong> button to configure application settings for Cloud services.    </p>
 <ul class=" "><li class=" ">    <p><strong class=" ">Description</strong>: Enter a description for the Cloud application.    </p>
 </li><li class=" ">    <p><strong class=" ">Friend Request Type</strong>: Configures the behavior for the <a class="external-link external-link" href="http://docs.appcelerator.com/cloud/latest/#!/api/Friends">Friends</a> objects. Select either:    </p>
-<ul class=" "><li class=" ">    <p><strong class=" ">Two Way</strong> (default): Once a user approves a friend request, both users are friends like in Facebook.    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">Two Way</strong> (default): Once a user approves a friend request, both users are friends like on Facebook.    </p>
 </li><li class=" ">    <p><strong class=" ">One Way</strong>: Once user A approves user B&apos;s friend request, the user B becomes a friend of user A, but user A does not become a friend of user B.  Similar to the following behavior of Twitter.    </p>
-</li></ul></li><li class=" ">    <p><strong class=" ">New User Email Vertification</strong>: Before using this option, you need to setup your SMTP settings.  Once enabled, you can choose whether to send an e-mail to a user to verify their new user account.    </p>
-</li><li class=" ">    <p><strong class=" ">Allow User Creatio</strong>: Choose to enable or disable creating user accounts programmatically from the application.  If this option is disable, you can only use Dashboard to create new user accounts.    </p>
+</li></ul></li><li class=" ">    <p><strong class=" ">New User Email Verification</strong>: Before using this option, you need to setup your SMTP settings.  Once enabled, you can choose whether to send an e-mail to a user to verify their new user account.    </p>
+</li><li class=" ">    <p><strong class=" ">Allow User Creation</strong>: Choose to enable or disable creating user accounts programmatically from the application.  If this option is disabled, you can only use Dashboard to create new user accounts.    </p>
     <img src="images/download/attachments/43298784/Settings.png" alt="images/download/attachments/43298784/Settings.png" class="confluence-embedded-image" width="600">
     </li></ul>    <p>Click <strong class=" ">Save Changes</strong> to save any setting changes you made.    </p>
     </div>
     <div class="section section-2 " id="src-43298784_ConfiguringCloudServices-Email">
         <h2 class="heading "><span>Email</span></h2>
-    <p>On the Email configuration tab you can configure Dashboard to send email using SMTP or Message Gears on behalf of your application. To send an email you use  <a class="external-link external-link" href="http://docs.appcelerator.com/cloud/latest/#!/api/Emails-method-email_from_template">custom_mailer/email_from_template.json</a>  REST method, the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Modules.Cloud.Emails-method-send">Cloud.Emails.send()</a> method, or equivalent native <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/ios/Classes/APSEmails.html#//api/name/send:withBlock:">iOS</a> or <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/aps/APSEmails.html#send(java.util.Map,%20com.appcelerator.aps.APSResponseHandler)">Android</a> method. To send an email you must specify an email template that you previously created in Dashboard (see  <a class="document-link " href="Managing_Email_Templates.html">Managing Email Templates</a>  for details).    </p>
+    <p>On the <strong class=" ">Email</strong> configuration tab, you can configure Dashboard to send email using SMTP or Message Gears on behalf of your application. To send an email you use  <a class="external-link external-link" href="http://docs.appcelerator.com/cloud/latest/#!/api/Emails-method-email_from_template">custom_mailer/email_from_template.json</a> REST method, the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Modules.Cloud.Emails-method-send">Cloud.Emails.send()</a> method, or equivalent native <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/ios/Classes/APSEmails.html#//api/name/send:withBlock:">iOS</a> or <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/aps/APSEmails.html#send(java.util.Map,%20com.appcelerator.aps.APSResponseHandler)">Android</a> method. To send an email you must specify an email template that you previously created in Dashboard (see  <a class="document-link " href="Managing_Email_Templates.html">Managing Email Templates</a> for details).    </p>
     <p><strong class=" ">Notes:</strong>    </p>
 <ul class=" "><li class=" ">    <p>If not specified, the <strong class=" ">End Point</strong> URL for Message Gears defaults to  <strong class=" ">https://api.messagegears.net/3.1/WebService</strong>.    </p>
-</li></ul>    <p><strong class=" ">To configure your application to send email:</strong>    </p>
-<ol class=" "><li class=" ">    <p>In the <strong class=" ">Provider</strong> field select either <strong class=" ">SMTP</strong> or <strong class=" ">Message Gears</strong> and<strong class=" "> </strong> enter your SMTP or Message Gears server or account settings.    </p>
-</li><li class=" ">    <p>To have all sent emails sent to a specified email for testing purposes:     </p>
-<ol class=" "><li class=" ">    <p>In the <strong class=" ">Test Mode</strong> field  <strong class=" ">Enable.</strong>    </p>
-</li><li class=" ">    <p>In the <strong class=" ">Administrator&apos;s Email</strong> field enter the email address where emails should be sent.    </p>
-</li></ol></li><li class=" ">    <p>Click  <strong class=" ">Save Changes.</strong>    </p>
+</li></ul>    <p><strong class=" ">To configure your application to send an email:</strong>    </p>
+<ol class=" "><li class=" ">    <p>In the Provider field, select either <strong class=" ">SMTP</strong> or <strong class=" ">Message Gears</strong> and enter your SMTP or Message Gears server or account settings.    </p>
+</li><li class=" ">    <p>To have all sent emails sent to a specified email for testing purposes:    </p>
+<ol class=" "><li class=" ">    <p>In the <strong class=" ">Test Mode</strong> field, select <strong class=" ">Enable</strong>.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Administrator&apos;s Email</strong> field, enter the email address where emails should be sent.    </p>
+</li></ol></li><li class=" ">    <p>Click <strong class=" ">Save Changes</strong>.    </p>
     <img src="images/download/attachments/43298784/email.png" alt="images/download/attachments/43298784/email.png" class="confluence-embedded-image" width="600">
     </li></ol>    </div>
         </div>
