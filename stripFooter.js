@@ -9,7 +9,7 @@ var shell = require('shelljs');
 shell.ls('htmlguides/*.html').map(function(file) {
   $ = cheerio.load(fs.readFileSync(file).toString());
   if ($('div.footer').length > 0) {
-		console.log("Removing footer element from ../" + fileNames[i]);
+		console.log("Removing footer element from ../" + file);
 		$('div.footer').remove();
     fs.writeFileSync(file,$.html());
   }
