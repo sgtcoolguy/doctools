@@ -229,7 +229,7 @@
         <h4 class="heading "><span>new_pagination</span></h4>
     <p>When <tt class=" ">new_pagination=true</tt> is included in a query, the number of records evaluated in the database is limited to 5000.    </p>
     <p>By default, MBS puts no limit on the number of records that are evaluated in the database. This means, for example, that if you execute an open-ended query for all MBS objects of some type, and apply a sort and filter on the results, all records in the database are evaluated, sorted, and filtered in memory.    </p>
-    <p>For applications that have relatively small numbers of total records (&lt; 5000), this operation can by completed efficiently with no noticeable impact on your application&apos;s performance. However, if a table has a very large number (&gt;= 1 million) records these kinds of operations are very inefficient, and your users will notice a performance hit.    </p>
+    <p>For applications that have relatively small numbers of total records (&lt; 5000), this operation can be completed efficiently with no noticeable impact on your application&apos;s performance. However, if a table has a very large number (&gt;= 1 million) records these kinds of operations are very inefficient, and your users will notice a performance hit.    </p>
     </div>
     <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-skip">
         <h4 class="heading "><span>skip</span></h4>
@@ -237,7 +237,7 @@
     </div>
     <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-where">
         <h4 class="heading "><span>where</span></h4>
-    <p>Constrains values for fields. The value should be encoded JSON. Each value in the search query needs to be less that 1024 bytes. If the value is larger than 1024 bytes, the query does not return any results.    </p>
+    <p>Constrains values for fields. The value should be encoded JSON. Each value in the search query needs to be less than 1024 bytes. If the value is larger than 1024 bytes, the query does not return any results.    </p>
     <p>Each type of MBS object has a set of predefined fields that can be queried with the <tt class=" ">where</tt> operator. See each object&apos;s individual <tt class=" ">query</tt> method for details.    </p>
     <p>In addition, you can query the <a class="document-link " href="Custom_Objects_and_Fields.html">custom fields</a> on any object. Note, however, that you can only query simple values, such as Strings, Dates, Numbers, or Booleans. If a custom field takes an array or object as a value, you can&apos;t query any of the values stored in the array or object.    </p>
     <p>For more information, see <a class="document-link " href="Custom_Objects_and_Fields.html">Supported Data Types</a>.    </p>
@@ -498,7 +498,7 @@
 <div class="line"><code class="plain">where={</code><code class="string">&quot;tags&quot;</code><code class="plain">:{ </code><code class="string">&quot;$all&quot;</code><code class="plain">: [ </code><code class="string">&apos;employee&apos;</code><code class="plain">, </code><code class="string">&apos;manager&apos;</code><code class="plain"> ] } </code></div>
 </div>
     </div>
-    <p>If you have assigned custom coordinates to your user objects, you can search by users&apos; coordinates. For example, if you want to find users named joe near longitude -122.1 and latitude 37.1.    </p>
+    <p>If you have assigned custom coordinates to your user objects, you can search by users&apos; coordinates. For example, if you want to find users named &quot;joe&quot; near longitude -122.1 and latitude 37.1.    </p>
     <div class="tablewrap">
         <table>
         <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
@@ -512,7 +512,7 @@
         </tr>
 </tbody>        </table>
             </div>
-    <p>To find users named joe near longitude -122.1 and latitude 37.1 with maximum distance of 5 miles (convert 5 miles to radians, 5/3959 = 0.00126)    </p>
+    <p>To find users named &quot;joe&quot; near longitude -122.1 and latitude 37.1 with maximum distance of 5 miles (convert 5 miles to radians, 5/3959 = 0.00126)    </p>
     <div class="tablewrap">
         <table>
         <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
@@ -526,7 +526,7 @@
         </tr>
 </tbody>        </table>
             </div>
-    <p>To search for the keywords <tt class=" ">javascript</tt>, <tt class=" ">ruby</tt> or <tt class=" ">python</tt>, but not <tt class=" ">php</tt>:    </p>
+    <p>To search for the keywords <tt class=" ">javascript</tt>, <tt class=" ">ruby</tt>, or <tt class=" ">python</tt>, but not <tt class=" ">php</tt>:    </p>
     <div class="tablewrap">
         <table>
         <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
@@ -567,7 +567,7 @@
     </div>
     <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-unsel">
         <h4 class="heading "><span>unsel</span></h4>
-    <p>Selects which fields to not return from the query. Do not use this parameter if you are using the <tt class=" ">sel</tt> parameter.    </p>
+    <p>Selects which fields not return from the query. Do not use this parameter if you are using the <tt class=" ">sel</tt> parameter.    </p>
     <p>Assign an array of field names to filter to the <tt class=" ">all</tt> field to search all JSON fields including fields in nested objects. Currently, this is the only supported option.    </p>
     <p>If you want to hide displaying a field from the <tt class=" ">custom_field</tt> object, simply pass the field name of the <tt class=" ">custom_field</tt> object.    </p>
     <p>If you want to hide displaying a field from a nested object, then both the name of the nested object and field need to be specified.    </p>
@@ -836,7 +836,7 @@
     </div>
     <div class="section section-4 " id="src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5Zm9ybmV4dHBhZ2VvZnJlc3VsdHMscmVzdWx0c2luYXNjZW5kaW5nb3JkZXI">
         <h4 class="heading "><span>Query for next page of results, results in ascending order</span></h4>
-    <p>In this example, the next page of Statuses objects are queried whose <tt class=" ">_id</tt> field is less than <tt class=" ">&quot;53fe1c25759220e9f6754194&quot;</tt> and sorted in descending order on the custom <tt class=" ">score</tt> field.    </p>
+    <p>In this example, the next page of Statuses objects is queried whose <tt class=" ">_id</tt> field is less than <tt class=" ">&quot;53fe1c25759220e9f6754194&quot;</tt> and sorted in descending order on the custom <tt class=" ">score</tt> field.    </p>
     <div class="tablewrap">
         <table>
         <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
@@ -1108,7 +1108,7 @@
         <h2 class="heading "><span>Search API overview</span></h2>
     <p>    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>The search API is deprecated since Release 1.3.0. Applications created before Arrow Cloud Release 1.3.0 can continue to use the deprecated search API, but new applications will need to use the query API with the  <tt class=" ">$text</tt>  query operator.    </p>
+            <p>The search API is deprecated since Release 1.3.0. Applications created before Arrow Cloud Release 1.3.0 can continue to use the deprecated search API, but new applications will need to use the query API with the <tt class=" ">$text</tt> query operator.    </p>
     </div>
         <p>Several MBS objects provide a search API that performs a case-insensitive, full-text search of the given keywords on a list of predefined fields. Please refer to individual object&apos;s API documentation for a list of searchable fields. For instance, the <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Places-method-search">Places.search</a> method will search within <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Places-property-name">Places.name</a> and <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Places-property-tags">Places.tags</a>.    </p>
     <p>The Search API is fixed in terms of the searchable fields; use the <a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-QueryAPIAvailability">query</a> API to perform more flexible searches.    </p>
@@ -1124,7 +1124,7 @@
     </div>
     <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-per_page.1">
         <h4 class="heading "><span>per_page</span></h4>
-    <p>Number of results per page. The default is 10.    </p>
+    <p>The number of results per page. The default is 10.    </p>
     </div>
     <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-q">
         <h4 class="heading "><span>q</span></h4>

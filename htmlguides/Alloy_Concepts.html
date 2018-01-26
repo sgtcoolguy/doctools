@@ -23,11 +23,11 @@
 </li><li class=" ">    <p><a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-Model-View-Controller">Model-View-Controller</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Alloy_Concepts.html#src-34636240_safe-id-QWxsb3lDb25jZXB0cy1BbGxveTpNVkN3aXRoQmFja2JvbmU">Alloy: MVC with Backbone</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-AlloyandtheTitaniumSDK">Alloy and the Titanium SDK</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-ConventionoverConfiguration">Convention over Configuration</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-Platform-SpecificResources">Platform-Specific Resources</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-Conventionoverconfiguration">Convention over configuration</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-Platform-specificresources">Platform-specific resources</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-Widgets">Widgets</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-Builtins">Builtins</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-CompilationProcess">Compilation Process</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-Compilationprocess">Compilation process</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-34636240_AlloyConcepts-Overview">
         <h2 class="heading "><span>Overview</span></h2>
     <p>This guide covers the important concepts related to the Alloy framework, including the model-view-controller framework, convention-over-configuration design, widgets, and built-in support from Backbone.js and Underscore.js.    </p>
@@ -35,22 +35,22 @@
     <div class="section section-2 " id="src-34636240_AlloyConcepts-Model-View-Controller">
         <h2 class="heading "><span>Model-View-Controller</span></h2>
     <p>Alloy utilizes the model-view-controller (MVC) pattern, which separates the application into three different components:    </p>
-<ul class=" "><li class=" ">    <p><strong class=" ">Models</strong> provide the business logic, containing the rules, data and state of the application.    </p>
-</li><li class=" ">    <p><strong class=" ">Views</strong> provide the GUI components to the user, either presenting data or allowing the user to interact with the model data.    </p>
-</li><li class=" ">    <p><strong class=" ">Controllers</strong> provide the glue between the model and view components in the form of application logic.    </p>
-</li></ul>    <p>For example, in a calendar application, the models include events, reminders, invitations and contacts. The views present the calendar data and reminders to the user or allow the user to add events. For reminders, the controller checks the model data and launches a &apos;reminder&apos; view to the user. For adding events, the controller opens an &apos;add event&apos; view, then adds the event into the model data once the user entered the data.    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">Models</strong> provide the business logic, containing the rules, data and state of the application    </p>
+</li><li class=" ">    <p><strong class=" ">Views</strong> provide the GUI components to the user, either presenting data or allowing the user to interact with the model data    </p>
+</li><li class=" ">    <p><strong class=" ">Controllers</strong> provide the glue between the model and view components in the form of application logic    </p>
+</li></ul>    <p>For example, in a calendar application, the models include events, reminders, invitations, and contacts. The views present the calendar data and reminders to the user or allow the user to add events. For reminders, the controller checks the model data and launches a &apos;reminder&apos; view to the user. For adding events, the controller opens an &apos;add event&apos; view, then adds the event into the model data once the user entered the data.    </p>
     <p>An advantage of MVC is the ability to reuse code by separating the functionality. For example, you can have specific views for different devices, while keeping the controller code relatively the same and the model data unchanged.    </p>
     <div class="section section-3 " id="src-34636240_safe-id-QWxsb3lDb25jZXB0cy1BbGxveTpNVkN3aXRoQmFja2JvbmU">
         <h3 class="heading "><span>Alloy: MVC with Backbone</span></h3>
     <p>Backbone.js is a lightweight MVC framework, originally designed for web applications. Alloy models are built on top of Backbone.js, taking advantage of Backbone&apos;s rich Model and Collection APIs. You define models using a Javascript file that exports a special JSON object, which uses Backbone&apos;s extend functionality to customize models and collections. See <a class="document-link " href="Alloy_Models.html">Alloy Models</a> for more information on creating model objects and <a class="external-link external-link" href="http://backbonejs.org/">http://backbonejs.org/</a> for more information on Backbone.js.    </p>
-    <p>Alloy views are built from Titanium UI components. You define views using XML markup and style them using Alloy <i class=" ">Titanium Style Sheets (.tss)</i>, which abstracts the creation of these components without using Titanium API calls.  Alloy generates the code to create your views. See <a class="document-link " href="Alloy_Views.html">Alloy Views</a> for more information on creating views.    </p>
+    <p>Alloy views are built from Titanium UI components. You define views using XML markup and style them using Alloy <i class=" ">Titanium Style Sheets (.tss)</i>, which abstracts the creation of these components without using Titanium API calls. Alloy generates the code to create your views. See <a class="document-link " href="Alloy_Views.html">Alloy Views</a> for more information on creating views.    </p>
     <p>Alloy controllers generally have a one-to-one relationship with Alloy views. Controllers directly use the Titanium SDK API without an abstraction layer.  The controller has access to all of the view components.  See <a class="document-link " href="Alloy_Controllers.html">Alloy Controllers</a> for more information on creating controllers.    </p>
     <p>Additionally, Alloy provides built-in support for Underscore.js, which provides a set of utility functions, such as array and iterative helpers. Refer to <a class="external-link external-link" href="http://underscorejs.org/">http://underscorejs.org/</a> for more information.    </p>
     </div>
     </div>
     <div class="section section-2 " id="src-34636240_AlloyConcepts-AlloyandtheTitaniumSDK">
         <h2 class="heading "><span>Alloy and the Titanium SDK</span></h2>
-    <p>Alloy uses Titanium SDK to abstracts the creation of UI components through the use of XML markup and style sheets.  If Alloy has not implemented a feature of the Titanium SDK or if the feature is not UI related, you can always use the Titanium SDK API in the Alloy controller code or create a CommonJS module to implement a feature.  The table below lists what Alloy directly abstracts from the Titanium SDK.    </p>
+    <p>Alloy uses Titanium SDK to abstracts the creation of UI components through the use of XML markup and style sheets. If Alloy has not implemented a feature of the Titanium SDK or if the feature is not UI related, you can always use the Titanium SDK API in the Alloy controller code or create a CommonJS module to implement a feature. The table below lists what Alloy directly abstracts from the Titanium SDK.    </p>
     <p>For assets, such as images, any references to the <tt class=" ">Resources</tt> folder in the Titanium SDK documentation should be replaced with the <tt class=" ">app/assets</tt> folder to use it for Alloy.  For example, the <a class="document-link " href="Icons_and_Splash_Screens.html">Icons and Splash Screens</a> guide tells you to place files in either the <tt class=" ">Resources/android</tt> or <tt class=" ">Resources/iphone</tt> folder.  For Alloy, the files should be placed in either the <tt class=" ">app/assets/android</tt> or <tt class=" ">app/assets/iphone</tt> folder.    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
@@ -168,8 +168,8 @@
 </tbody>        </table>
             </div>
     </div>
-    <div class="section section-2 " id="src-34636240_AlloyConcepts-ConventionoverConfiguration">
-        <h2 class="heading "><span>Convention over Configuration</span></h2>
+    <div class="section section-2 " id="src-34636240_AlloyConcepts-Conventionoverconfiguration">
+        <h2 class="heading "><span>Convention over configuration</span></h2>
     <p>To simplify development, Alloy uses a directory structure and naming conventions to organize the application rather than configuration files. Alloy expects to find files in specific locations. Any folder or file not adhering to the below naming conventions is ignored by Alloy. For example, at generation time, Alloy will look for the mandatory files <tt class=" ">app/views/index.xml</tt> and <tt class=" ">app/controllers/index.js</tt>, then the optional corresponding file <tt class=" ">app/styles/index.tss</tt>.  Alloy requires these files to create the initial view-controller <tt class=" ">Resources/&lt;platform&gt;/alloy/controllers/index.js</tt>.    </p>
     <p>The following is a list of directories and files that can be found in an Alloy project:    </p>
     <div class="tablewrap">
@@ -267,7 +267,7 @@
         <p><tt class=" ">app/specs</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Like the <tt class=" ">app/lib</tt> folder except it is only used if the deploy type is <strong class=" ">not</strong> production (since <u class=" "> <strong class=" ">Alloy 1.2.0</strong> </u>).<br>See  <a class="document-link " href="Alloy_Controllers.html#src-34636384_AlloyControllers-LibraryCodeandCommonJSModules">Library Code</a>  for more information.    </p>
+        <p>Like the <tt class=" ">app/lib</tt> folder except it is only used if the deploy type is <strong class=" ">not</strong> production (since <strong class=" ">Alloy 1.2.0</strong>).<br>See <a class="document-link " href="Alloy_Controllers.html#src-34636384_AlloyControllers-LibraryCodeandCommonJSModules">Library Code</a> for more information.    </p>
             </td>
         </tr>
     <tr>
@@ -307,7 +307,7 @@
         <p><tt class=" ">i18n</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Since Alloy 1.8.0 and Titanium 5.2.0  <a class="document-link " href="Internationalization.html">Language Strings</a>   are sourced from  <tt class=" ">app/i18n</tt>  and Alloy will generate the  <tt class=" ">i18n</tt>  folder in the project root. Before Alloy 1.8.0 and Titanium 5.2.0 you were expected to manage the  <tt class=" ">i18n</tt>  folder in the project root, just like you do without Alloy.    </p>
+        <p>Since Alloy 1.8.0 and Titanium 5.2.0  <a class="document-link " href="Internationalization.html">Language Strings</a>  are sourced from  <tt class=" ">app/i18n</tt>  and Alloy will generate the <tt class=" ">i18n</tt> folder in the project root. Before Alloy 1.8.0 and Titanium 5.2.0 you were expected to manage the <tt class=" ">i18n</tt> folder in the project root, just like you do without Alloy.    </p>
             </td>
         </tr>
     <tr>
@@ -315,15 +315,15 @@
         <p><tt class=" ">Resources</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains the Titanium files generated by the Alloy interface from the <tt class=" ">app</tt> directory. All files will be overwritten each time the application is built.<br>Since <u class=" ">Alloy 1.3.0</u>, Alloy creates a separate Titanium project for each platform you build for in the <tt class=" ">Resources/&lt;platform&gt;</tt> folder.<br>See <a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-CompilationProcess">Compilation Process</a> for more information.    </p>
+        <p>Contains the Titanium files generated by the Alloy interface from the <tt class=" ">app</tt> directory. All files will be overwritten each time the application is built.<br>Since Alloy 1.3.0, Alloy creates a separate Titanium project for each platform you build for in the <tt class=" ">Resources/&lt;platform&gt;</tt> folder.<br>See <a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-CompilationProcess">Compilation Process</a> for more information.    </p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
     <p><strong class=" ">Notes:</strong> the <tt class=" ">lib</tt>, <tt class=" ">migrations</tt>, <tt class=" ">themes</tt> and <tt class=" ">widgets</tt> folders are not automatically generated when creating a new project. The <tt class=" ">migrations</tt> and <tt class=" ">widgets</tt> folder will be generated by the Alloy command-line interface if any of those components are generated. The <tt class=" ">lib</tt> and <tt class=" ">themes</tt> folders will need to be manually created.    </p>
     <p>The <tt class=" ">alloy.jmk</tt> file is not automatically generated when creating a new project. Use the command-line interface to generate this file.    </p>
-    <div class="section section-3 " id="src-34636240_AlloyConcepts-Platform-SpecificResources">
-        <h3 class="heading "><span>Platform-Specific Resources</span></h3>
+    <div class="section section-3 " id="src-34636240_AlloyConcepts-Platform-specificresources">
+        <h3 class="heading "><span>Platform-specific resources</span></h3>
     <p>Controllers, views and styles can have platform-specific resources. Just add a folder named <tt class=" ">android</tt>, <tt class=" ">ios</tt>, <tt class=" ">mobileweb</tt> or <tt class=" ">windows</tt> under the component folder and add your platform-specific files for Android, iOS, Mobile Web or Windows Phone into the folder, respectively.    </p>
     <p>For example, an iOS-specific view and an Android-specific controller would be look like this:    </p>
 <ul class=" "><li class=" ">    <p>app    </p>
@@ -361,41 +361,41 @@
 <div class="line"><code class="plain">});</code></div>
 </div>
     </div>
-    <p>See <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Alloy.builtins">Alloy builtins API documentation</a> for the functionality and usage of builtins.    </p>
+    <p>See <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy.builtins">Alloy builtins API documentation</a> for the functionality and usage of builtins.    </p>
     </div>
-    <div class="section section-2 " id="src-34636240_AlloyConcepts-CompilationProcess">
-        <h2 class="heading "><span>Compilation Process</span></h2>
-    <p>This section provides a brief overview of how the Alloy command-line interface converts the files in the <tt class=" ">app</tt> folder to a Titanium project in the <tt class=" ">Resources/&lt;platform&gt;</tt> folder for each platform you build your project for.  <u class=" ">Before Alloy 1.3.0</u>, Alloy creates only one Titanium project in the <tt class=" ">Resources</tt> folder.    </p>
+    <div class="section section-2 " id="src-34636240_AlloyConcepts-Compilationprocess">
+        <h2 class="heading "><span>Compilation process</span></h2>
+    <p>This section provides a brief overview of how the Alloy command-line interface converts the files in the <tt class=" ">app</tt> folder to a Titanium project in the <tt class=" ">Resources/&lt;platform&gt;</tt> folder for each platform you build your project for. Before Alloy 1.3.0, Alloy creates only one Titanium project in the <tt class=" ">Resources</tt> folder.    </p>
     <div class="section section-3 " id="src-34636240_AlloyConcepts-Cleanup">
         <h3 class="heading "><span>Cleanup</span></h3>
     <p>The <tt class=" ">Resources</tt> folder is cleaned of any previous built files.    </p>
     </div>
-    <div class="section section-3 " id="src-34636240_AlloyConcepts-BuildConfiguration">
-        <h3 class="heading "><span>Build Configuration</span></h3>
-    <p>If the build configuration file, <tt class=" ">alloy.jmk</tt>, exists, it is loaded.  The &apos;pre:load&apos; task executes at this point if it is defined.    </p>
+    <div class="section section-3 " id="src-34636240_AlloyConcepts-Buildconfiguration">
+        <h3 class="heading "><span>Build configuration</span></h3>
+    <p>If the build configuration file, <tt class=" ">alloy.jmk</tt>, exists, it is loaded. The &apos;pre:load&apos; task executes at this point if it is defined.    </p>
     </div>
-    <div class="section section-3 " id="src-34636240_safe-id-QWxsb3lDb25jZXB0cy1BbGxveUZyYW1ld29yayxBc3NldHNhbmRMaWI">
-        <h3 class="heading "><span>Alloy Framework, Assets and Lib</span></h3>
-    <p>Alloy framework files, which include the Backbone.js and Underscore.js libraries, sync adapters and base controller class, are copied to the <tt class=" ">Resources/&lt;platform&gt;/alloy</tt> folder.  The Alloy base library, <tt class=" ">alloy.js</tt>, is copied to the <tt class=" ">Resources</tt> folder. These files are necessary to run any Alloy project.    </p>
+    <div class="section section-3 " id="src-34636240_safe-id-QWxsb3lDb25jZXB0cy1BbGxveUZyYW1ld29yayxhc3NldHNhbmRsaWI">
+        <h3 class="heading "><span>Alloy Framework, assets and lib</span></h3>
+    <p>Alloy framework files, which include the Backbone.js and Underscore.js libraries, sync adapters and base controller class, are copied to the <tt class=" ">Resources/&lt;platform&gt;/alloy</tt> folder. The Alloy base library, <tt class=" ">alloy.js</tt>, is copied to the <tt class=" ">Resources</tt> folder. These files are necessary to run any Alloy project.    </p>
     <p>The project configuration file, <tt class=" ">config.json</tt>, is processed and copied to <tt class=" ">Resources/&lt;platform&gt;/alloy/CFG.js</tt>.    </p>
     <p>The files in the <tt class=" ">assets</tt> and <tt class=" ">lib</tt> folders, as well as the files in the theme&apos;s assets folder, are copied to the <tt class=" ">Resources</tt> folder.    </p>
     <p>The &apos;pre:compile&apos; task executes at this point if it is defined.    </p>
     </div>
-    <div class="section section-3 " id="src-34636240_AlloyConcepts-Model-View-ControllerandWidgetGeneration">
-        <h3 class="heading "><span>Model-View-Controller and Widget Generation</span></h3>
-    <p>The model files are processed.  The compiler creates a JavaScript file per model and copies them to the <tt class=" ">Resources/&lt;platform&gt;/alloy/models</tt> folder.    </p>
-    <p>The widget files are processed.  The compiler creates a folder per widget that contains JavaScript files per view-controller and copies them to the <tt class=" ">Resources/&lt;platform&gt;/alloy/widgets</tt> folder.    </p>
-    <p>The style, view and controller files, as well as the files in the theme&apos;s style folder and the <tt class=" ">app.tss</tt> global style file, are processed.  The compiler creates a JavaScript file per view-controller and copies them to the <tt class=" ">Resources/&lt;platform&gt;/alloy/controllers</tt> folder.    </p>
+    <div class="section section-3 " id="src-34636240_AlloyConcepts-Model-View-ControllerandWidgetgeneration">
+        <h3 class="heading "><span>Model-View-Controller and Widget generation</span></h3>
+    <p>The model files are processed. The compiler creates a JavaScript file per model and copies them to the <tt class=" ">Resources/&lt;platform&gt;/alloy/models</tt> folder.    </p>
+    <p>The widget files are processed. The compiler creates a folder per widget that contains JavaScript files per view-controller and copies them to the <tt class=" ">Resources/&lt;platform&gt;/alloy/widgets</tt> folder.    </p>
+    <p>The style, view, and controller files, as well as the files in the theme&apos;s style folder and the <tt class=" ">app.tss</tt> global style file, are processed. The compiler creates a JavaScript file per view-controller and copies them to the <tt class=" ">Resources/&lt;platform&gt;/alloy/controllers</tt> folder.    </p>
     </div>
-    <div class="section section-3 " id="src-34636240_AlloyConcepts-MainApplication">
-        <h3 class="heading "><span>Main Application</span></h3>
-    <p>Alloy creates a skeleton <tt class=" ">app.js</tt> file from a template.  The contents of this file require some Alloy modules and calls the main view-controller <tt class=" ">index.js</tt>.  If an initializer file, <tt class=" ">alloy.js</tt>, exists, the entire contents of the file are copied into the <tt class=" ">app.js</tt> file right before the call to initiate the main view-controller.    </p>
+    <div class="section section-3 " id="src-34636240_AlloyConcepts-Mainapplication">
+        <h3 class="heading "><span>Main application</span></h3>
+    <p>Alloy creates a skeleton <tt class=" ">app.js</tt> file from a template. The contents of this file require some Alloy modules and calls the main view-controller <tt class=" ">index.js</tt>. If an initializer file, <tt class=" ">alloy.js</tt>, exists, the entire contents of the file are copied into the <tt class=" ">app.js</tt> file right before the call to initiate the main view-controller.    </p>
     <p>Before the file is written to the <tt class=" ">Resources</tt> directory, the &apos;compile:app.js&apos; task executes if one is defined in the build configuration file.    </p>
     </div>
-    <div class="section section-3 " id="src-34636240_AlloyConcepts-CodeOptimization">
-        <h3 class="heading "><span>Code Optimization</span></h3>
-    <p>The generated code is processed through UglifyJS to optimize the code for speed and compactness.  The code is optionally beautified.    </p>
-    <p>If the code is compiled for a specific platform, all conditional code that should not be executed for that platform is removed.  For example, if the application contains code sections specifically for iOS but the application is compiled for an Android platform, all of the iOS conditional code is removed.    </p>
+    <div class="section section-3 " id="src-34636240_AlloyConcepts-Codeoptimization">
+        <h3 class="heading "><span>Code optimization</span></h3>
+    <p>The generated code is processed through UglifyJS to optimize the code for speed and compactness. The code is optionally beautified.    </p>
+    <p>If the code is compiled for a specific platform, all conditional code that should not be executed for that platform is removed. For example, if the application contains code sections specifically for iOS but the application is compiled for an Android platform, all of the iOS conditional code is removed.    </p>
     <p>Required Alloy builtin libraries are copied to the <tt class=" ">Resources/&lt;platform&gt;/alloy</tt> folder and optimized in the same process as described before.    </p>
     <p>Then, the &apos;post:compile&apos; task executes if one is defined in the build configuration file.    </p>
     </div>

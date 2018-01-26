@@ -22,7 +22,7 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Overview">Overview</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Marketplaceaccessandsearch">Marketplace access and search</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Installaserviceconnector">Install a service connector</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Installalegacyconnector">Install a legacy connector</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Installamodel-firstconnector">Install a model-first connector</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Searchingforconnectors">Searching for connectors</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Searchsuggestions">Search suggestions</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Pre-builtconnectors">Pre-built connectors</a>    </p>
@@ -38,7 +38,7 @@
     <p>Currently, the Marketplace lists the following component types for API Builder:    </p>
 <ul class=" "><li class=" ">    <p><tt class=" ">Connectors</tt>: Used for building APIs    </p>
 </li></ul>    <p>To search through the connectors available on the Marketplace, select Connector in the Categories list. To search through the API Builder connectors, select API Builder in the API Management list.    </p>
-    <p>The following legacy API Builder connectors are offered on the <a class="external-link external-link" href="https://marketplace.axway.com/home" target="_blank">Axway Marketplace</a>: ArrowDB, Box.com, CompositeJS, Elastic Search, Google Custom Search, HL7 FHIR Swagger Docs, LokiJS, Microsoft Azure, Microsoft SQL Server, MongoDB, MySQL, OData, Oracle Database, Redis, Salesforce, SOAP, Swagger, and Twilio.    </p>
+    <p>The following API Builder model-first connectors are offered on the <a class="external-link external-link" href="https://marketplace.axway.com/home" target="_blank">Axway Marketplace</a>: ArrowDB, Box.com, CompositeJS, Elastic Search, Google Custom Search, HL7 FHIR Swagger Docs, LokiJS, Microsoft Azure, Microsoft SQL Server, MongoDB, MySQL, OData, Oracle Database, Redis, Salesforce, SOAP, Swagger, and Twilio.    </p>
     <p>Beginning with API Builder V3.0.0 (Included in CLI 7.0.0), the following new API Builder service connectors are offered on the <a class="external-link external-link" href="https://marketplace.axway.com/home" target="_blank">Axway Marketplace</a>: Amazon S3&#x2122; , Concur&#x2122;, Eloqua&#x2122;, Facebook&#x2122;, Google Drive&#x2122;, Hubspot CRM&#x2122;, Hubspot&#x2122;, Mailchimp&#x2122;, Marketo&#x2122;, Microsoft Dynamics&#x2122;, Netsuite&#x2122;, OneDrive&#x2122;, Pardot&#x2122;, Salesforce Service Cloud<a class="external-link external-link" href="https://marketplace.axway.com/apps/184736" target="_blank">&#x2122;</a>, Service Now&#x2122;, SharePoint Native&#x2122;, SugarCRM&#x2122;, Twitter&#x2122;, Zendesk&#x2122;, and Zoho&#x2122;.    <span id="src-49157965_heading-cli-options"><a name="src-49157965_heading-cli-options"/></span>
     </p>
     </div>
@@ -60,11 +60,11 @@
 <div class="line"><code class="plain">appc run</code></div>
 </div>
     </div>
-</li><li class=" ">    <p>Open the API Orchestration flow editor in the API Builder Console and verify that the service connector is listed and is available to use in flows.    </p>
+</li><li class=" ">    <p>Open the API Orchestration flow editor in the API Builder Console and verify that the service connector is listed and is available for use in node flows.    </p>
 </li></ol>    </div>
-    <div class="section section-2 " id="src-49157965_PlatformMarketplace-Installalegacyconnector">
-        <h2 class="heading "><span>Install a legacy connector</span></h2>
-    <p>At the time of this publication, selecting a legacy API Builder connector from the <a class="external-link external-link" href="https://marketplace.axway.com/" target="_blank">Axway Marketplace</a> and clicking Download will redirect you to a third party site (<a class="external-link external-link" href="https://github.com/appcelerator/" target="_blank">https://github.com/appcelerator</a>) for the selected connector. For example, if you click Download for the MongoDB Connector you will be redirected to: <a class="external-link external-link" href="https://github.com/appcelerator/appc.mongo" target="_blank">https://github.com/appcelerator/appc.mongo</a>    </p>
+    <div class="section section-2 " id="src-49157965_PlatformMarketplace-Installamodel-firstconnector">
+        <h2 class="heading "><span>Install a model-first connector</span></h2>
+    <p>At the time of this publication, selecting an API Builder model-first connector from the <a class="external-link external-link" href="https://marketplace.axway.com/" target="_blank">Axway Marketplace</a> and clicking Download will redirect you to a third party site (<a class="external-link external-link" href="https://github.com/appcelerator/" target="_blank">https://github.com/appcelerator</a>) for the selected connector. For example, if you click Download for the MongoDB Connector you will be redirected to: <a class="external-link external-link" href="https://github.com/appcelerator/appc.mongo" target="_blank">https://github.com/appcelerator/appc.mongo</a>    </p>
     <p>To download and install the selected connector, execute the provided Appcelerator CLI <tt class=" ">install</tt> command from within your API project. For example, the install command for the MongoDB Connector is: <tt class=" ">appc install connector/appc.mongo</tt>    </p>
     <p>The <tt class=" ">install</tt> command will place the connector in the <tt class=" ">connectors</tt> directory of your project.    </p>
     </div>
@@ -74,7 +74,7 @@
     <p>If you are unsure of the exact connector name, you can search the Marketplace search function.    </p>
     <div class="section section-3 " id="src-49157965_PlatformMarketplace-Searchsuggestions">
         <h3 class="heading "><span>Search suggestions</span></h3>
-    <p>If you know the component name starts with a certain string or character, try entering the first letters of the component name, for example sales. This example will return a list of components in order of relevance. To narrow the list of components to those specific to API Builder, select API Builder in the API Management list.    </p>
+    <p>If you know the component name starts with a certain string or character, try entering the first letters of the component name, for example, sales. This example will return a list of components in order of relevance. To narrow the list of components to those specific to API Builder, select API Builder in the API Management list.    </p>
     </div>
     </div>
     <div class="section section-2 " id="src-49157965_PlatformMarketplace-Pre-builtconnectors">

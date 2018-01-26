@@ -72,7 +72,7 @@
     </div>
     <div class="section section-2 " id="src-49153267_APIBuilderConnectorGettingStartedGuide-Configurationfile">
         <h2 class="heading "><span>Configuration file</span></h2>
-    <p>The boilerplate sample contains the <tt class=" ">conf/default.js</tt> configuration file. This file is used for testing the connector. You will also need to create a configuration file called <tt class=" ">example.config.js</tt>. When you install the connector, this file is copied in the project&apos;s <tt class=" ">conf</tt> directory. You need to add settings to configure your connector in these files, specifically add the settings to the <tt class=" ">connectors</tt> object. For the Twitter connector, it will need the app keys, OAuth tokens, and an account name of the Twitter feed to access. Create the <tt class=" ">conf/example.config.js</tt> file, then add the content below to it. You will also need to add the following keys to the connectors object in the <tt class=" ">conf/default.js</tt> file and add your Twitter app information to it for testing purposes.    </p>
+    <p>The boilerplate sample contains the <tt class=" ">conf/default.js</tt> configuration file. This file is used for testing the connector. You will also need to create a configuration file called <tt class=" ">example.config.js</tt>. When you install the connector, this file is copied to the project&apos;s <tt class=" ">conf</tt> directory. You need to add settings to configure your connector in these files, specifically add the settings to the <tt class=" ">connectors</tt> object. For the Twitter connector, it will need the app keys, OAuth tokens, and an account name of the Twitter feed to access. Create the <tt class=" ">conf/example.config.js</tt> file, then add the content below to it. You will also need to add the following keys to the connectors object in the <tt class=" ">conf/default.js</tt> file and add your Twitter app information to it for testing purposes.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./conf/example.config.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./conf/example.config.js">
@@ -181,7 +181,7 @@
     <div class="section section-3 " id="src-49153267_APIBuilderConnectorGettingStartedGuide-Addretrievelogic">
         <h3 class="heading "><span>Add retrieve logic</span></h3>
     <p>To allow the connector to retrieve model data, implement the <tt class=" ">CanRetrieve</tt> capability.    </p>
-<ol class=" "><li class=" ">    <p>Open the <tt class=" ">./lib/index.js</tt> file, uncomment the line containing <tt class=" ">Capabilities.CanRetrieve</tt> and save the file. The log output tells us to update four new files that API Builder just generated.    </p>
+<ol class=" "><li class=" ">    <p>Open the <tt class=" ">./lib/index.js</tt> file, uncomment the line containing <tt class=" ">Capabilities.CanRetrieve</tt>, and save the file. The log output tells us to update four new files that API Builder just generated.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">The </code><code class="string">&quot;CanRetrieve&quot;</code><code class="plain"> capability has been enabled, so we need to make a couple of changes:</code></div>
@@ -259,7 +259,7 @@
     </div>
 </li></ol>    <p>Let&apos;s see if the connector&apos;s retrieve logic works.    </p>
     <p>In a web browser:    </p>
-<ol class=" "><li class=" ">    <p>Navigate to the Admin Console. You can access it using the following URL: <tt class=" ">http://localhost:8080/api-create-ui</tt>.    </p>
+<ol class=" "><li class=" ">    <p>Navigate to the Admin Console. You can access it using the following URL: <tt class=" ">http://localhost:8080/api-create-ui</tt>    </p>
 </li><li class=" ">    <p>In the top navigation bar, click the <strong class=" ">Data</strong> tab.    </p>
 </li><li class=" ">    <p>In the left navigation bar, click <strong class=" ">tweet</strong>.    </p>
 </li></ol>    <p>The Admin console will retrieve and display the user&apos;s tweets.    </p>
@@ -276,7 +276,7 @@
 <div class="line"><code class="plain">Please go take a look at the TODOs in these </code><code class="keyword">new</code><code class="plain"> files, then </code><code class="keyword">do</code><code class="plain"> an `appc run` or `npm test` to </code><code class="keyword">try</code><code class="plain"> out the </code><code class="keyword">new</code><code class="plain"> capabilities.</code></div>
 </div>
     </div>
-</li><li class=" ">    <p>Open <tt class=" ">./lib/methods/create.js</tt> and replace the contents of the file with the following. The <tt class=" ">create.js</tt> file implements the connector&apos;s <tt class=" ">create()</tt> method, which allows the connector to post a tweet in the user&apos;s Twitter feed.    </p>
+</li><li class=" ">    <p>Open <tt class=" ">./lib/methods/create.js</tt> and replace the contents of the file with the following. The <tt class=" ">create.js</tt> file implements the connector&apos;s <tt class=" ">create()</tt> method, which allows the connector to post a tweet on the user&apos;s Twitter feed.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./lib/methods/create.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./lib/methods/create.js">
@@ -336,7 +336,7 @@
     </div>
 </li></ol>    <p>Let&apos;s test the delete logic.    </p>
     <p>In the Admin console, you should still see the list of tweets. If not, click <strong class=" ">Data</strong> in the top navigation bar, then click <strong class=" ">tweet</strong> in the left navigation bar.    </p>
-<ol class=" "><li class=" ">    <p>Click the tweet you previously added in the list. A dialog appears.    </p>
+<ol class=" "><li class=" ">    <p>Click the tweet you previously added to the list. A dialog appears.    </p>
 </li><li class=" ">    <p>Click <strong class=" ">Delete</strong>.    </p>
 </li></ol>    <p>The new status message will be removed from the list of tweets.    </p>
     </div>
@@ -379,7 +379,7 @@
 <div class="line"><code class="plain">appc publish</code></div>
 </div>
     </div>
-    <p>By default, the access level for the connector is set to private, so only the creator can access the connector. To share the connector with other people or publicly, specify a different access level with the <tt class=" ">appc access</tt> command and add people or orgs to your component using the <tt class=" ">appc user</tt> and <tt class=" ">appc org</tt> commands.    </p>
+    <p>By default, the access level for the connector is set to private, so only the creator can access the connector. To share the connector with other people or publicly, specify a different access level with the <tt class=" ">appc access</tt> command and add people or organizations to your component using the <tt class=" ">appc user</tt> and <tt class=" ">appc org</tt> commands.    </p>
     </div>
     <div class="section section-2 " id="src-49153267_APIBuilderConnectorGettingStartedGuide-Nextsteps">
         <h2 class="heading "><span>Next steps</span></h2>

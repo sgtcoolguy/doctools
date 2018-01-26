@@ -18,7 +18,7 @@
 
         <div id="src-37548619" class="content">
                         <h1>Managing Email Templates</h1>
-    <p>The Email Templates screen lets you create and edit plain text and HTML email templates. The email template&apos;s subject and body can contain  <a class="document-link " href="#!/guide/Managing_Email_Templates-section-src-37548619_ManagingEmailTemplates-placeholder">placeholder values</a>  that are dynamically replaced with values you specify when sending the email using the Mobile Backend Services (MBS) <a class="external-link external-link" href="/arrowdb/latest/#!/api/Emails-method-email_from_template">email_from_template</a>  REST API, <a class="external-link external-link" href="#!/api/Titanium.Cloud.Emails-method-send">Titanium.Cloud.Emails.send()</a> method or equivalent native <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/ios/Classes/APSEmails.html#//api/name/send:withBlock:" target="_blank">iOS</a> or <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/aps/APSEmails.html" target="_blank">Android</a> method. The email can be sent as plain text, HTML, or multi-part using these methods.    </p>
+    <p>The Email Templates screen lets you create and edit plain text and HTML email templates. The email template&apos;s subject and body can contain <a class="document-link " href="#!/guide/Managing_Email_Templates-section-src-37548619_ManagingEmailTemplates-placeholder">placeholder values</a> that are dynamically replaced with values you specify when sending the email using the Mobile Backend Services (MBS) <a class="external-link external-link" href="/arrowdb/latest/#!/api/Emails-method-email_from_template">email_from_template</a>  REST API, <a class="external-link external-link" href="#!/api/Titanium.Cloud.Emails-method-send">Titanium.Cloud.Emails.send()</a> method or equivalent native <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/ios/Classes/APSEmails.html#//api/name/send:withBlock:" target="_blank">iOS</a> or <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/aps/APSEmails.html" target="_blank">Android</a> method. The email can be sent as plain text, HTML, or multi-part using these methods.    </p>
     <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Email_Templates-section-src-37548619_ManagingEmailTemplates-Creatinganemailtemplate">Creating an email template</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Email_Templates-section-src-37548619_ManagingEmailTemplates-Sendingemailbasedonatemplate">Sending email based on a template </a>    </p>
@@ -39,26 +39,21 @@ Click <strong class=" ">Create Email Template</strong>.    </span>
 </li><li class=" ">    <p>    <span style="color: #484848;">
 Click the <strong class=" ">Code </strong>tab, and provide values for the following fields:    </span>
     </p>
-<ol class=" "><li class=" ">    <p><strong class=" ">Name</strong>     <span style="color: #484848;">
- &#x2013; Name of the email template. You will specify this name when <a class="document-link " href="#!/guide/Managing_Email_Templates">sending</a> the email.    </span>
-    </p>
+<ol class=" "><li class=" ">    <p><strong class=" ">Name</strong> &#x2013; Name of the email template. You will specify this name when <a class="document-link " href="#!/guide/Managing_Email_Templates">sending</a> the email.    </p>
 </li><li class=" ">    <p><strong class=" ">Subject</strong> &#x2013; The email&apos;s subject. The subject can contain <a class="document-link " href="#!/guide/Managing_Email_Templates-section-src-37548619_ManagingEmailTemplates-placeholder">placeholder values</a> in double curly brackets.    </p>
 </li><li class=" ">    <p>    <span style="color: #484848;">
  <strong class=" ">Body (HTML)</strong> &#x2013; The email&apos;s HTML-formatted body text. The body can contain <a class="document-link " href="#!/guide/Managing_Email_Templates-section-src-37548619_ManagingEmailTemplates-placeholder">placeholder values</a> in double curly brackets.    </span>
     </p>
 </li><li class=" ">    <p>    <span style="color: #484848;">
- <strong class=" ">Body (Plain Text)</strong> &#x2013; The emails&apos;s plain text-formatted body text.     <span style="color: #484848;">
-The body can contain     </span>
+ <strong class=" ">Body (Plain Text)</strong> &#x2013; The email&apos;s plain text-formatted body text.     <span style="color: #484848;">
+The body can contain    </span>
  <a class="document-link " href="#!/guide/Managing_Email_Templates-section-src-37548619_ManagingEmailTemplates-placeholder">placeholder values</a>     <span style="color: #484848;">
- in double curly brackets.    </span>
+in double curly brackets.    </span>
      </span>
     </p>
-</li></ol></li><li class=" ">    <p>    <span style="color: #484848;">
-Click     </span>
- <strong class=" ">Preview</strong>  to view a rendered version of the HTML body text.    </p>
+</li></ol></li><li class=" ">    <p>Click <strong class=" ">Preview</strong> to view a rendered version of the HTML body text.    </p>
     <img src="images/download/attachments/37548619/email_template.png" alt="images/download/attachments/37548619/email_template.png" class="confluence-embedded-image">
-        <p>    </p>
-</img></li><li class=" ">    <p>    <span style="color: #484848;">
+    </img></li><li class=" ">    <p>    <span style="color: #484848;">
 Click <strong class=" ">Save Changes</strong>.    </span>
     </p>
 </li></ol>    <p>    <span style="color: #484848;">
@@ -120,7 +115,7 @@ Below is the sample HTML used in the above screenshot:    </span>
     <div class="section section-2 " id="src-37548619_ManagingEmailTemplates-Sendingemailbasedonatemplate">
         <h2 class="heading "><span>Sending email based on a template</span></h2>
     <p>    <span id="src-37548619_ManagingEmailTemplates-send"><a class="confluence-anchor-link" name="src-37548619_ManagingEmailTemplates-send"/></span>
-To send an email based on a template, call the <tt class=" ">email_from_template</tt> MBS method from your own application. For example, the following code example uses the <a class="external-link external-link" href="#!/api/Titanium.Cloud.Emails-method-send">Titianium.Cloud.Emails.send()</a> method to send an email based on the &apos;welcome_template&apos; to a user.    </p>
+To send an email based on a template, call the <tt class=" ">email_from_template</tt> MBS method from your own application. For example, the following code example uses the <a class="external-link external-link" href="#!/api/Titanium.Cloud.Emails-method-send">Titanium.Cloud.Emails.send()</a> method to send an email based on the &apos;welcome_template&apos; to a user.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">Cloud.Emails.send({</code></div>
@@ -140,7 +135,7 @@ To send an email based on a template, call the <tt class=" ">email_from_template
     <div class="section section-2 " id="src-37548619_ManagingEmailTemplates-Usingplaceholderfields">
         <h2 class="heading "><span>Using placeholder fields</span></h2>
     <p>    <span id="src-37548619_ManagingEmailTemplates-placeholder"><a class="confluence-anchor-link" name="src-37548619_ManagingEmailTemplates-placeholder"/></span>
-The template&apos;s subject and body can contain placeholder fields delineated by double curly brackets (<tt class=" ">{{}}</tt>). When <a class="document-link " href="#!/guide/Managing_Email_Templates-section-src-37548619_ManagingEmailTemplates-se">sending an email</a>, you include a parameter for each placeholder field that specifies the value to insert. For example, suppose that your email template&apos;s subject field contains <strong class=" ">Hi {{first_name}}!</strong>. When sending the email you would include a parameter named <tt class=" ">first_name</tt>, as shown below:    </p>
+The template&apos;s subject and body can contain placeholder fields delineated by double curly brackets (<tt class=" ">{{}}</tt>). When <a class="document-link " href="#!/guide/Managing_Email_Templates-section-src-37548619_ManagingEmailTemplates-se">sending an email</a>, you include a parameter for each placeholder field that specifies the value to insert. For example, suppose that your email template&apos;s subject field contains <strong class=" ">Hi {{first_name}}!</strong>. When sending the email you would include a <tt class=" ">first_name</tt> parameter, as shown below:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">curl -F </code><code class="string">&quot;recipients=joe@company.com&quot;</code><code class="plain"> -F </code><code class="string">&quot;template=welcome&quot;</code><code class="plain"> -F </code><code class="string">&quot;first_name=Joe&quot;</code><code class="plain"> https:</code><code class="comments">//api.cloud.appcelerator.com/v1/custom_mailer/email_from_template.json?key=&lt;YOUR APP APP KEY&gt;</code></div>
