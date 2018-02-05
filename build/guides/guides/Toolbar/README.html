@@ -14,56 +14,64 @@
 </link></link></link></meta></meta></head>
 <body>
     <div class="container">
-		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/" target="_blank">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
-		</div>
         <div class="header"/>
 
         <div id="src-41845781" class="content">
                         <h1>Toolbar</h1>
-    <p>Demonstrates adding a Toolbar control to an iOS application.    </p>
+    <p>Demonstrates adding a Toolbar control to an iOS or Android application.    </p>
     <div class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
             <div class="title">App Folder Location</div>
-            <p>alloy/test/apps/<strong class=" ">ui/toolbar</strong>    </p>
+            <p><tt class=" ">alloy/test/apps/ui/toolbar</tt>    </p>
     </div>
-        <p>A <a class="external-link external-link" href="#!/api/Titanium.UI.iOS.Toolbar">Toolbar</a> can contain Button controls and certain other controls, such as TextFields and Labels. To provide spacing between items in the toolbar, you can insert a &lt;FlexSpace/&gt; element to fill the space between items (as seen in the example) or a &lt;FixedSpace/&gt; element whose <tt class=" ">width</tt> attribute specifies the spacer width to add.    </p>
-    <p>    <img src="images/download/attachments/41845781/screenshot.png" alt="images/download/attachments/41845781/screenshot.png" class="confluence-embedded-image" width="250">
+        <p>A <a class="external-link external-link" href="#!/api/Titanium.UI.iOS.Toolbar">Toolbar</a> can contain Button controls and certain other controls, such as TextFields and Labels. iOS notes: To provide spacing between items in the toolbar, you can insert a <tt class=" ">&lt;FlexSpace/&gt;</tt> element to fill the space between items (as seen in the example) or a <tt class=" ">&lt;FixedSpace/&gt;</tt> element whose <tt class=" ">width</tt> attribute specifies the spacer width to add.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>iOS    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Android    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/41845781/Simulator_Screen_Shot_-_iPhone_6s_-_2018-02-01_at_21.22.48.png" alt="images/download/attachments/41845781/Simulator_Screen_Shot_-_iPhone_6s_-_2018-02-01_at_21.22.48.png" class="confluence-embedded-image" width="250">
         </img></p>
-    <p>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>    <img src="images/download/attachments/41845781/Screenshot_1517517350.png" alt="images/download/attachments/41845781/Screenshot_1517517350.png" class="confluence-embedded-image" width="250">
+        </img></p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div class="section section-2 " id="src-41845781_Toolbar-Example">
+        <h2 class="heading "><span>Example</span></h2>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
-<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">  &lt;Window&gt;</code></div>
-<div class="line"><code class="plain">    &lt;Toolbar platform=</code><code class="string">&quot;ios&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">      &lt;!-- These get added to the Toolbar </code><code class="string">&quot;items&quot;</code><code class="plain"> array --&gt;</code></div>
-<div class="line"><code class="plain">      &lt;Items&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Button&gt;button </code><code class="value">1</code><code class="plain">&lt;/Button&gt;</code></div>
-<div class="line"><code class="plain">        &lt;FlexSpace/&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Button&gt;button </code><code class="value">2</code><code class="plain">&lt;/Button&gt;</code></div>
-<div class="line"><code class="plain">      &lt;/Items&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/Toolbar&gt;</code></div>
-<div class="line"><code class="plain">    &lt;Label platform=</code><code class="string">&quot;android,mobileweb&quot;</code><code class="plain">&gt;Ti.UI.iOS.Toolbar only supported on iOS&lt;/Label&gt;</code></div>
-<div class="line"><code class="plain">  &lt;/Window&gt;</code></div>
-<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Toolbar</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;!-- These get added to the Toolbar &quot;items&quot; array --&gt;</code></div>
+<div class="line"><code class="plain">      &lt;</code><code class="keyword">Items</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain">&gt;Action 1&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">FlexSpace</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;ios&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain">&gt;Action 2&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/</code><code class="keyword">Items</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Toolbar</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <div class="section section-2 " id="src-41845781_Toolbar-SeeAlso">
-        <h2 class="heading "><span>See Also</span></h2>
+    </div>
+    <div class="section section-2 " id="src-41845781_Toolbar-Seealso">
+        <h2 class="heading "><span>See also</span></h2>
 <ul class=" "><li class=" ">    <p>    <span style="color: #000000;">
-    <span style="color: #000000;">
-<a class="external-link external-link" href="#!/api/Titanium.UI.iPhone.SystemButton-property-FLEXIBLE_SPACE">Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE</a> API reference    </span>
-    </span>
+<a class="external-link external-link" href="#!/api/Titanium.UI.iOS.SystemButton-property-FLEXIBLE_SPACE">Ti.UI.iOS.SystemButton.FLEXIBLE_SPACE</a> API reference    </span>
     </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
-    <span style="color: #000000;">
-    <span style="color: #000000;">
-    <span style="color: #000000;">
-<a class="external-link external-link" href="#!/api/Titanium.UI.iPhone.SystemButton-property-FIXED_SPACE">Titanium.UI.iPhone.SystemButton.FIXED_SPACE</a> API reference    </span>
-    </span>
-    </span>
-    </span>
-    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.iOS.SystemButton-property-FIXED_SPACE">Ti.UI.iOS.SystemButton.FIXED_SPACE</a> API reference    </p>
 </li></ul>    </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845781"><span>Edit</span></a>
     

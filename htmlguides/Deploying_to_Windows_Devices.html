@@ -14,9 +14,6 @@
 </head>
 <body>
     <div class="container">
-		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
-		</div>
         <div class="header"></div>
 
         <div id="src-43308601" class="content">
@@ -92,7 +89,7 @@
 <ol class=" "><li class=" ">    <p>Package the application as a Windows Store app. For instructions, see <a class="document-link " href="Distributing_Windows_Applications.html">Distributing Windows Applications</a>.    </p>
 </li><li class=" ">    <p>Enable the <strong class=" ">Allow all trusted apps to install</strong> group policy    </p>
 </li><li class=" ">    <p>Install the public certificate that was used to sign the package to the tablet&apos;s <strong class=" ">Trusted Root Certification Authorities</strong> store    </p>
-</li><li class=" ">    <p>Execute a PowerShell command to install the package to the tablet with the <tt class=" ">Add-AppxPackage</tt> command.    </p>
+</li><li class=" ">    <p>Execute a PowerShell command to install the package to the tablet with the <tt class=" ">Add-AppDevPackage</tt> PowerShell script.    </p>
 </li></ol>    <p>After you package the application, copy the project&apos;s <tt class=" ">generated.cer</tt> and <tt class=" ">./dist/&lt;PACKAGE_NAME&gt;_Win32.appx</tt> files to to a USB drive and plug it into the tablet.    </p>
     <div class="section section-3 " id="src-43308601_DeployingtoWindowsDevices-EditGroupPolicySettings">
         <h3 class="heading "><span>Edit Group Policy Settings</span></h3>
@@ -117,14 +114,13 @@
     </div>
     <div class="section section-3 " id="src-43308601_DeployingtoWindowsDevices-InstallthePackage">
         <h3 class="heading "><span>Install the Package</span></h3>
-    <p>Open PowerShell and execute the <tt class=" ">Add-AppxPackage</tt> command to install the application.    </p>
+    <p>Open PowerShell and execute the <tt class=" ">Add-AppDevPackage</tt> command to install the application.    </p>
 <ol class=" "><li class=" ">    <p>Go to the <strong class=" ">Start</strong> screen and type &quot;powershell.&quot;    </p>
 </li><li class=" ">    <p>Click <strong class=" ">PowerShell</strong>.    </p>
 </li><li class=" ">    <p>Execute the following command to install the package:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="keyword">import</code><code class="plain">-module appx</code></div>
-<div class="line"><code class="plain">add-appxpackage &lt;PACKAGE_NAME&gt;_Win32.appx</code></div>
+<div class="line"><code class="plain">&lt;TITANIUM_PROJECT_DIR&gt;\build\windows\win10.x86\AppPackages\ProjectFolder\&lt;PACKAGE_NAME&gt;\Add-AppDevPackage.ps1</code></div>
 </div>
     </div>
 </li></ol>    <p>The application will be installed to the device and you can access it from the <strong class=" ">All apps</strong> screen.    </p>

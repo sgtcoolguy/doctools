@@ -60,7 +60,7 @@ echo "Executing sh deploy.sh -o arrow -o alloy -o modules -s prod\n"
 sh deploy.sh -o arrow -o alloy -o modules -s prod >> messages.txt
 node stripFooter.js >> message.txt ## not 100% necessary if building for test reasons
 node redirects.js >> message.txt ## not 100% necessary if building for test reasons
-node banner.js >> message.txt ## add banners to each HTML doc
+# node banner.js >> message.txt ## add banners to each HTML doc
 echo "Executing sh clouddeploy.sh -s prod\n"
 sh clouddeploy.sh -s prod >> messages.txt
 echo "Executing bash clouddeploy.sh prod\n"

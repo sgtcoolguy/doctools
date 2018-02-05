@@ -14,9 +14,6 @@
 </head>
 <body>
     <div class="container">
-		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
-		</div>
         <div class="header"></div>
 
         <div id="src-46253574" class="content">
@@ -33,10 +30,8 @@
     <p>Each Titanium project that want to use Hyperloop requires the Hyperloop-services to be enabled. By default, Hyperloop is disabled and you can enable it for your projects via the CLI or within Studio.    </p>
     <div class="section section-3 " id="src-46253574_EnablingHyperloop-Requirements">
         <h3 class="heading "><span>Requirements</span></h3>
-<ul class=" "><li class=" ">    <p>Studio: 4.7.0+    </p>
-</li><li class=" ">    <p>SDK: 5.4.0+    </p>
-</li><li class=" ">    <p>CLI: 5.4.0+    </p>
-</li></ul>    <p>    </p>
+    <p>Refer to <a class="document-link " href="Hyperloop_Requirements.html">Hyperloop Requirements</a> for instructions on what and how to install the necessary requirements for Hyperloop.    </p>
+    <p>    </p>
     <p><strong class=" ">Please note:</strong>    </p>
 <ul class=" "><li class=" ">    <p>If you attempt to create an app that is called &quot;Hyperloop&quot; (the app-name in the <strong class=" ">tiapp.xml</strong>) you may experience failures in the build process, because it is a reserved word. Please use a different project name for this case.    </p>
 </li><li class=" ">    <p>Hyperloop expects Xcode to be in <strong class=" ">/Applications/Xcode.app</strong> to reference system-libraries, so please ensure that Xcode is located at the this location.    </p>
@@ -45,7 +40,7 @@
     <div class="section section-2 " id="src-46253574_EnablingHyperloop-EnablingviaCLI">
         <h2 class="heading "><span>Enabling via CLI</span></h2>
     <p>When creating a new project, the CLI will check if you are entitled to use Hyperloop. If the you are, the CLI will prompt you with the following message: &quot;Would you like to enable Hyperloop for this app (This may take a while...)&quot;. If you enable Hyperloop, it will take some time to retrieve the module and set up your project.    </p>
-    <p><strong class=" ">Note: </strong>If you have any issue enabling Hyperloop from the CLI, OR you are not asked if you want to enable Hyperloop, ensure you are logged into the platform with the appropriate subscription, use <strong class=" ">appc login</strong> to confirm you are logged in.    </p>
+    <p><strong class=" ">Note: </strong>If you have any issue enabling Hyperloop from the CLI, or, you are not asked if you want to enable Hyperloop, ensure you are logged into the platform with the appropriate subscription, use the <tt class=" ">appc login</tt> command to confirm you are logged in.    </p>
     </div>
     <div class="section section-2 " id="src-46253574_EnablingHyperloop-EnablingviaStudio">
         <h2 class="heading "><span>Enabling via Studio</span></h2>
@@ -53,36 +48,27 @@
         <h3 class="heading "><span>Creating new Hyperloop-enabled project</span></h3>
     <p>With Appcelerator Studio open and logged in, follow these steps to create a new Hyperloop-enabled project:    </p>
 <ol class=" "><li class=" ">    <p>Open <strong class=" ">New Mobile App</strong> <strong class=" ">Project</strong> wizard.    </p>
-    <img src="images/download/attachments/46253574/image2016-7-7_9_45_37.png" alt="images/download/attachments/46253574/image2016-7-7_9_45_37.png" class="confluence-embedded-image" width="500">
-    </li><li class=" ">    <p>Under <strong class=" ">AMPLIFY Appcelerator Services</strong> section, you will see Hyperloop listed along with Cloud, Test, Performance, and Analytics (if you are entitled to use it). <strong class=" ">Check the Enable AMPLIFY Appcelerator Services</strong> toggle.    </p>
+    <img src="images/download/attachments/46253574/enable-hyperloop.png" alt="images/download/attachments/46253574/enable-hyperloop.png" class="confluence-embedded-image" width="500">
+    </li><li class=" ">    <p>In the <strong class=" ">Enable AMPLIFY Appcelerator Platform Services</strong> section, you will see Hyperloop listed along with Cloud and Analytics (if you are entitled to use it). <strong class=" ">Check the Enable AMPLIFY Appcelerator Services</strong> toggle.    </p>
 </li><li class=" ">    <p>Click <strong class=" ">Finish</strong>.    </p>
-</li><li class=" ">    <p>During the project creation, Studio will prompt you with a <strong class=" ">confirmation to enable Hyperloop</strong>. The prompt should say something like this: &quot;Would you like to enable Hyperloop for this app (This may take a while...)&quot;. Click <strong class=" ">Yes</strong> to confirm.    </p>
+</li><li class=" ">    <p>During the project creation, Studio will prompt you with a <strong class=" ">confirmation to enable Hyperloop</strong>. The prompt should say something like this: &quot;Would you like to enable Hyperloop for this app (This may take a while...)&quot;. Click <strong class=" ">Yes</strong> to confirm. You may also see the same confirmation request for Appcelerator Test in which case you can click No and continue on.    </p>
 </li></ol>    <p>To confirm that Hyperloop was set up, you can open the <tt class=" ">tiapp.xml</tt> file in the Service section.    </p>
-    <p>    <img src="images/download/attachments/46253574/image2016-7-7_9_45_56.png" alt="images/download/attachments/46253574/image2016-7-7_9_45_56.png" class="confluence-embedded-image">
+    <p>    <img src="images/download/attachments/46253574/hyperloop-enabled.png" alt="images/download/attachments/46253574/hyperloop-enabled.png" class="confluence-embedded-image" width="500">
         </p>
-    <p>After enabling Hyperloop, the following tags should have been added to the tiapp.xml file, you can validate them here:    </p>
+    <p>After enabling Hyperloop, the following tags should have been added to the <tt class=" ">tiapp.xml</tt> file, you can validate them here:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;plugins&gt;</code></div>
-<div class="line"><code class="plain">     &lt;plugin&gt;hyperloop&lt;/plugin&gt;</code></div>
-<div class="line"><code class="plain">&lt;/plugins&gt;&#xA0;</code></div>
-</div>
-    </div>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&#xA0;&lt;modules&gt;</code></div>
-<div class="line"><code class="plain">     &lt;module platform=</code><code class="string">&quot;android&quot;</code><code class="plain">&gt;hyperloop&lt;/module&gt;</code></div>
-<div class="line"><code class="plain">     &lt;module platform=</code><code class="string">&quot;iphone&quot;</code><code class="plain">&gt;hyperloop&lt;/module&gt;</code></div>
-<div class="line"><code class="plain">&lt;/modules&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">modules</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">module</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;android&quot;</code><code class="plain">&gt;hyperloop&lt;/</code><code class="keyword">module</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">module</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;iphone&quot;</code><code class="plain">&gt;hyperloop&lt;/</code><code class="keyword">module</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	...</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">modules</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     </div>
     <div class="section section-3 " id="src-46253574_EnablingHyperloop-EnablingHyperlooponnon-Hyperloopprojects">
         <h3 class="heading "><span>Enabling Hyperloop on non-Hyperloop projects</span></h3>
     <p>If Hyperloop was disabled or not available when the project was created, you can enable Hyperloop from the <tt class=" ">tiapp.xml</tt> editor service section by clicking on <strong class=" ">Enable Services</strong> and selecting <strong class=" ">Hyperloop</strong>.    </p>
-    <p>    <img src="images/download/attachments/46253574/image2016-7-7_10_0_44.png" alt="images/download/attachments/46253574/image2016-7-7_10_0_44.png" class="confluence-embedded-image">
-        </p>
-    <p>    </p>
     </div>
     </div>
         </div>

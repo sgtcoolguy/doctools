@@ -14,9 +14,6 @@
 </head>
 <body>
     <div class="container">
-		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
-		</div>
         <div class="header"></div>
 
         <div id="src-46253491" class="content">
@@ -25,9 +22,9 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="iOS_Hyperloop_Programming_Guide.html#src-46253491_iOSHyperloopProgrammingGuide-Requirements">Requirements</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="iOS_Hyperloop_Programming_Guide.html#src-46253491_iOSHyperloopProgrammingGuide-Classes">Classes</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="iOS_Hyperloop_Programming_Guide.html#src-46253491_iOSHyperloopProgrammingGuide-Instantiation">Instantiation</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="iOS_Hyperloop_Programming_Guide.html#src-46253491_iOSHyperloopProgrammingGuide-MethodsandProperties">Methods and Properties</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="iOS_Hyperloop_Programming_Guide.html#src-46253491_iOSHyperloopProgrammingGuide-Methodsandproperties">Methods and properties</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="iOS_Hyperloop_Programming_Guide.html#src-46253491_iOSHyperloopProgrammingGuide-Namedmethods">Named methods</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="iOS_Hyperloop_Programming_Guide.html#src-46253491_safe-id-aU9TSHlwZXJsb29wUHJvZ3JhbW1pbmdHdWlkZS1Db25zdGFudHMsRW51bWVyYXRpb25zYW5kRnVuY3Rpb25z">Constants, Enumerations and Functions</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="iOS_Hyperloop_Programming_Guide.html#src-46253491_safe-id-aU9TSHlwZXJsb29wUHJvZ3JhbW1pbmdHdWlkZS1Db25zdGFudHMsZW51bWVyYXRpb25zLGFuZGZ1bmN0aW9ucw">Constants, enumerations, and functions</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="iOS_Hyperloop_Programming_Guide.html#src-46253491_iOSHyperloopProgrammingGuide-Casting">Casting</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="iOS_Hyperloop_Programming_Guide.html#src-46253491_iOSHyperloopProgrammingGuide-Blocks">Blocks</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="iOS_Hyperloop_Programming_Guide.html#src-46253491_iOSHyperloopProgrammingGuide-Functionpointers">Function pointers</a>    </p>
@@ -41,36 +38,37 @@
 </li></ul>    <p>This document provides information on iOS Hyperloop programming requirements, classes, instantiation, methods and properties, named methods, constants, enumerations, and functions, casting, blocks, function pointers, creating your own classes, using 3rd party libraries, and additional resources.    </p>
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Requirements">
         <h2 class="heading "><span>Requirements</span></h2>
-    <p>You&#x2019;ll need to have the following minimum requirements to use Hyperloop for iOS:    </p>
-<ul class=" "><li class=" ">    <p>Titanium SDK 6.0.0+    </p>
-</li></ul>    </div>
+    <p>See <a class="document-link " href="Hyperloop_Requirements.html#src-53871456_HyperloopRequirements-Requirements">Hyperloop Requirements</a> for software requirements for using Hyperloop with Android.    </p>
+    </div>
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Classes">
         <h2 class="heading "><span>Classes</span></h2>
-    <p>Classes in Hyperloop map to the underlying classes defined in Objective-C. For example, if you have a class such as  UIView  defined in the  UIKit  framework, you would reference it using a standard require such as:    </p>
+    <p>Classes in Hyperloop map to the underlying classes defined in Objective-C. For example, if you have a class such as <tt class=" ">UIView</tt> defined in the UIKit framework, you would reference it using a standard require such as:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> UIView = require(</code><code class="string">&apos;UIKit/UIView&apos;</code><code class="plain">);</code></div>
 </div>
     </div>
-    <p>This will return the  UIView  class object. Meaning, it&#x2019;s not an instance of a  UIView  , but the  UIView  class itself (or in Objective-C parlance, the interface defined with  @interface ).    </p>
-    <p>Once you have the Class reference returned from  require , you can call normal JavaScript property and functions against it. Remember, at this point calling functions or properties against the class object above will be accessing Class level Objective-C methods (not instance level).    </p>
-    <p>For example, you could get the  layerClass  of the  UIView  using the example:    </p>
+    <p>This will return the <tt class=" ">UIView</tt> class object. Meaning, it&#x2019;s not an instance of a UIView, but the <tt class=" ">UIView</tt> class itself (or in Objective-C parlance, the interface defined with <tt class=" ">@interface</tt>).    </p>
+    <p>Once you have the Class reference returned from <tt class=" ">require</tt>, you can call normal JavaScript property and functions against it. Remember, at this point calling functions or properties against the class object above will be accessing Class level Objective-C methods (not instance level).    </p>
+    <p>For example, you could get the <tt class=" ">layerClass</tt> of the <tt class=" ">UIView</tt> using the example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> layerClass = UIView.layerClass;</code></div>
 </div>
     </div>
-    <p>You can use layerClass now because it is defined by the Class method.    </p>
     </div>
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Instantiation">
         <h2 class="heading "><span>Instantiation</span></h2>
-    <p>To instantiate a native Class and create an instance, you can use the normal  <tt class=" ">alloc init </tt> style pattern from Objective-C:    </p>
+    <p>To instantiate a native Class and create an instance, you can use the normal  <tt class=" ">alloc init </tt>    <span style="color: #333333;">
+style pattern from Objective-C:     </span>
+    </p>
+    <p>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> view = UIView.alloc().init();</code></div>
 </div>
     </div>
-    <p>Or, to simplify and make it more standard JavaScript convention, for default initializers you can use  <tt class=" ">new</tt> :    </p>
+    <p>Or, to simplify and make it more standard JavaScript convention, for default initializers you can use <tt class=" ">new</tt>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> view = </code><code class="keyword">new</code><code class="plain"> UIView();</code></div>
@@ -83,8 +81,8 @@
 </div>
     </div>
     </div>
-    <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-MethodsandProperties">
-        <h2 class="heading "><span>Methods and Properties</span></h2>
+    <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Methodsandproperties">
+        <h2 class="heading "><span>Methods and properties</span></h2>
     <p>Methods is Objective-C are mapped to JavaScript functions. Properties in Objective-C are mapped to JavaScript property accessors.    </p>
     <p>For example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -109,8 +107,8 @@
         <h2 class="heading "><span>Named methods</span></h2>
     <p>If you have a selector with multiple parameters, the name of the function will be slightly different since JavaScript cannot receive multiple parameters as part of a function call. For example, to send a message with the selector <tt class=" ">addAttribute:value:range:</tt> you would use the function named <tt class=" ">addAttributeValueRange</tt> instead. Hyperloop will camel-case each receiver name in the selector and remove the &quot;:&quot; character to formulate the name of the method. Arguments should then be passed to the function in the same order as you would in Objective-C.    </p>
     </div>
-    <div class="section section-2 " id="src-46253491_safe-id-aU9TSHlwZXJsb29wUHJvZ3JhbW1pbmdHdWlkZS1Db25zdGFudHMsRW51bWVyYXRpb25zYW5kRnVuY3Rpb25z">
-        <h2 class="heading "><span>Constants, Enumerations and Functions</span></h2>
+    <div class="section section-2 " id="src-46253491_safe-id-aU9TSHlwZXJsb29wUHJvZ3JhbW1pbmdHdWlkZS1Db25zdGFudHMsZW51bWVyYXRpb25zLGFuZGZ1bmN0aW9ucw">
+        <h2 class="heading "><span>Constants, enumerations, and functions</span></h2>
     <p>Constants, enumerations, and functions defined in the Framework are available in the Framework package. For example, to reference the enum <tt class=" ">UISemanticContentAttribute</tt> you would reference it such as:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -118,7 +116,7 @@
 <div class="line"><code class="plain">view.semanticContentAttribute = UISemanticContentAttributeUnspecified;</code></div>
 </div>
     </div>
-    <p>The constants, enumerations and functions are read-only properties of the UIKit framework.    </p>
+    <p>The constants, enumerations, and functions are read-only properties of the UIKit framework.    </p>
     </div>
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Casting">
         <h2 class="heading "><span>Casting</span></h2>
@@ -174,7 +172,7 @@
 <div class="line"><code class="plain">@end</code></div>
 </div>
     </div>
-    <p>You can also pass an Array of Strinsg as the third argument which are the protocols to implement for the new class:    </p>
+    <p>You can also pass an Array of Strings as the third argument which are the protocols to implement for the new class:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> MyView = Hyperloop.defineClass(</code><code class="string">&apos;MyClass&apos;</code><code class="plain">, </code><code class="string">&apos;UIView&apos;</code><code class="plain">, [</code><code class="string">&apos;UIAppearance&apos;</code><code class="plain">]);</code></div>
@@ -221,10 +219,9 @@
         <h2 class="heading column"><span>Using third-party libraries</span></h2>
     <p>You can use Third-Party libraries in Hyperloop that are available in the dependency-manager <a class="external-link external-link" href="https://cocoapods.org/">CocoaPods</a>.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>As of Hyperloop 2.2.0, CocoaPods 0.39 and below will no longer be supported. Use Cocoapods 1.x, we recommend the latest version.    </p>
+            <p>As of Hyperloop 2.2.0, CocoaPods 0.39 and below will no longer be supported and we recommend that you use Cocoapods 1.x or the latest version.    </p>
     </div>
-        <p>    </p>
-    <div class="section section-3 " id="src-46253491_iOSHyperloopProgrammingGuide-CocoaPods">
+        <div class="section section-3 " id="src-46253491_iOSHyperloopProgrammingGuide-CocoaPods">
         <h3 class="heading "><span>CocoaPods</span></h3>
     <p>Hyperloop supports CocoaPods as a way to manage Third-party dependencies in your Hyperloop enabled project.    </p>
     <p>You must first install CocoaPods if you do not already have it installed. You can install using: <tt class=" ">sudo gem install cocoapods</tt>    </p>
@@ -242,8 +239,8 @@
 <div class="line"><code class="keyword">end</code></div>
 </div>
     </div>
-    <p>Note that <tt class=" ">MyProject</tt> should be the name of your Titanium project. The above example will use the <a class="external-link external-link" href="https://github.com/Jawbone/JBChartView">JBChartView</a> framework as a dependency.    </p>
-    <p>That&#x2019;s it! CocoaPods and the Hyperloop compiler will do the rest &#x2013; managing pulling down the required dependencies, compiling them and integrating them into the Xcode build.    </p>
+    <p>Note that <tt class=" ">MyProject</tt> would be replaced with the name of your Titanium project. The above example will use the <a class="external-link external-link" href="https://github.com/Jawbone/JBChartView">JBChartView</a> framework as a dependency.    </p>
+    <p>That&#x2019;s it! CocoaPods and the Hyperloop compiler will do the rest to manage pulling down the required dependencies, compiling them and integrating them into the Xcode build.    </p>
     <p>Let&#x2019;s now use the imported project:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -256,7 +253,7 @@
     </div>
     <div class="section section-3 " id="src-46253491_safe-id-aU9TSHlwZXJsb29wUHJvZ3JhbW1pbmdHdWlkZS1DdXN0b21GcmFtZXdvcmtzJkxpYnJhcmllcw">
         <h3 class="heading "><span>Custom Frameworks &amp; Libraries</span></h3>
-    <p>Using Hyperloop 2.2.0 and later, you can simply drop your native iOS framework (static or dynamic) into your app/platform/ios (Alloy) or platform/ios (Classic Titanium). The below configuration via appc.js is not necessary anymore and has beend deprecated as of Hyperloop 2.2.0. It will be removed in Hyperloop 3.0.0.    </p>
+    <p>Using Hyperloop 2.2.0 and later, you can drop your native iOS framework (static or dynamic) into your <tt class=" ">app/platform/ios</tt> (Alloy) or <tt class=" ">platform/ios</tt> (Classic Titanium) folder. The following configuration via <tt class=" ">appc.js</tt> is not necessary anymore and has beend deprecated as of Hyperloop 2.2.0. It will be removed in Hyperloop 3.0.0.    </p>
     <p>In addition to CocoaPods, you can include third-party or first-party custom code by including a reference in <tt class=" ">appc.js</tt> under the <tt class=" ">thirdparty</tt> property. For example, to include custom objective-c from the project&#x2019;s src directory you could provide:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">appc.js</div>
@@ -279,7 +276,7 @@
 <ul class=" "><li class=" ">    <p>The <tt class=" ">source</tt> property can be either an Array or String of source directories to include in the compile. This is optional.    </p>
 </li><li class=" ">    <p>The <tt class=" ">header</tt> property can be either an Array or String of header directories to include in the compile. This is required.    </p>
 </li><li class=" ">    <p>The <tt class=" ">resource</tt> property can be either an Array or String of resource directories to search for resources or files to compile (images, story boards, xibs, etc). These files will be flattened and copied directly into the root of the application and can be loaded with <tt class=" ">NSBundle</tt>.    </p>
-</li><li class=" ">    <p>This has been deprecated in Hyperloop 2.2.0 and will be removed in Hyperloop 3.0.0. Place it into your iOS platform directory instead and it will be automatically detected.    </p>
+</li><li class=" ">    <p>This has been deprecated in Hyperloop 2.2.0 and will be removed in Hyperloop 3.0.0. Place it into your iOS platform folder instead and it will be automatically detected.    </p>
 </li></ul>    <p>To provide additional compiler flags, you can add them in the <tt class=" ">xcodebuild</tt> property of <tt class=" ">ios</tt> such as:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">appc.js</div>
@@ -329,13 +326,13 @@
     </div>
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Resources">
         <h2 class="heading "><span>Resources</span></h2>
-    <p>Any Xcode resources that are found in your <tt class=" ">Resources</tt> directory (for Classic projects) or <tt class=" ">app </tt>directory (for Alloy projects) will be automatically be compiled and/or copied to your application root directory. Any intermediate folders will be flattened automatically.    </p>
+    <p>Any Xcode resources that are found in your <tt class=" ">Resources</tt> folder (for Classic projects) or <tt class=" ">app </tt>folder (for Alloy projects) will be automatically be compiled and/or copied to your application root directory. Any intermediate folders will be flattened automatically.    </p>
     <p>The following resources will be compiled automatically:    </p>
 <ul class=" "><li class=" ">    <p>Storyboard (*.storyboard)    </p>
 </li><li class=" ">    <p>XC Data Model (*.xcdatamodel, *.xcdatamodeld, *.xcmappingmodel)    </p>
 </li><li class=" ">    <p>Interface Builder (*.xib)    </p>
 </li></ul>    <p>The other resources will be copied such as PNG files.    </p>
-    <p>It is recommended a Best Practice that you place any platform specific files under <tt class=" ">Resources/iphone</tt> (Titanium classic) or <tt class=" ">app/assets/iphone</tt> (Alloy). Y<i class=" ">ou can also use <tt class=" ">ios</tt> instead</i>    </p>
+    <p>It is recommended  that you place any platform specific files under <tt class=" ">Resources/iphone</tt> (Titanium classic) or <tt class=" ">app/assets/iphone</tt> (Alloy).    </p>
     </div>
         </div>
     

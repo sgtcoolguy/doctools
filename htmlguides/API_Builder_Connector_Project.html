@@ -14,9 +14,6 @@
 </head>
 <body>
     <div class="container">
-		<div id="banner" class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-			<p>You can now find Appcelerator documentation at <a href="https://docs.axway.com/">https://docs.axway.com/</a>. This site will be taken down in the near future.</p>
-		</div>
         <div class="header"></div>
 
         <div id="src-49153271" class="content">
@@ -28,13 +25,13 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-Createaconnector">Create a connector</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-Testtheconnector">Test the connector</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-Publishtheconnector">Publish the connector</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-Connectorlogic">Connector logic</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-ConnectorLogicConnectorlogic">Connector logic</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-Capabilities">Capabilities</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-Initialization">Initialization</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-Connectionlifecycle">Connection lifecycle</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-CRUDmethods">CRUD methods</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-Requestlifecycle">Request lifecycle</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-Connectorconfigurationfile">Connector configuration file</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-ConnectorConfigurationFileConnectorconfigurationfile">Connector configuration file</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-ModelsandAPIendpoints">Models and API endpoints</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Connector_Project.html#src-49153271_APIBuilderConnectorProject-Declaredependencies">Declare dependencies</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-Introduction">
@@ -176,8 +173,8 @@
     <p>By default, the access level for the connector is set to private, so only the creator can access the connector. To share the connector with other people or publicly, specify a different access level with the <tt class=" ">appc access</tt> command and add people or organizations to your component using the <tt class=" ">appc user</tt> and <tt class=" ">appc org</tt> commands.    </p>
     </div>
     </div>
-    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-Connectorlogic">
-        <h2 class="heading "><span>Connector logic</span></h2>
+    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-ConnectorLogicConnectorlogic">
+        <h2 class="heading "><span id="src-49153271_APIBuilderConnectorProject-ConnectorLogic" class="confluence-anchor-link"></span><span>Connector logic</span></h2>
     <p>Place all the connector logic in the <tt class=" ">lib</tt> folder.  There must be an <tt class=" ">index.js</tt> file in your <tt class=" ">lib</tt> folder, which is the first file loaded by the connector.    </p>
     <p>The boilerplate <tt class=" ">index.js</tt> file expose a <tt class=" ">create()</tt> method, which is passed the API Builder class. The method must return a Connector instance, which is created using the <tt class=" ">Arrow.Connector.extend()</tt> method. Uncomment each Capability constant in the <tt class=" ">capabilities</tt> field to have API Builder generate boilerplate logic for each capability you want the Connector to support. Each method will have its own JavaScript file. You may also pass the <tt class=" ">extend()</tt> method an object, which implements the methods of the Connector class and a few methods from the Model class.    </p>
     <p>To start developing your connector, run the project in one console window, then edit the files with the connector logic in another console or editor. As you save your files, API Builder will automatically update your connector and restart the server instance, allowing you to work on and test the connector incrementally.    </p>
@@ -774,8 +771,8 @@
             </div>
     </div>
     </div>
-    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-Connectorconfigurationfile">
-        <h2 class="heading "><span>Connector configuration file</span></h2>
+    <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-ConnectorConfigurationFileConnectorconfigurationfile">
+        <h2 class="heading "><span id="src-49153271_APIBuilderConnectorProject-ConnectorConfigurationFile" class="confluence-anchor-link"></span><span>Connector configuration file</span></h2>
     <p>To have the Appcelerator CLI create a default configuration file for your connector when it is installed, create a sample configuration file that exports a JSON object in the <tt class=" ">conf</tt> directory, then reference the file in the connector logic with the <tt class=" ">defaultConfig</tt> property in the implementation object passed to the <tt class=" ">Arrow.Connector.extend()</tt> method.    </p>
     <p>For example, create a file called <tt class=" ">example.config.js</tt> in the <tt class=" ">conf</tt> directory and add the following content to it:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
