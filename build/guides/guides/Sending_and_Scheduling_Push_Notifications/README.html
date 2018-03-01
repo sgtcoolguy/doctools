@@ -39,10 +39,10 @@
     </p>
     <p>Dashboard let you send push notifications to your Android and iOS application users. Mobile Backend Services acts the <i class=" ">push provider</i> on behalf of your application; that is, it communicates with the Google Cloud Messaging (GCM) or the Firebase Cloud Messaging (FCM) for Android service or Apple Push Notification Service (APNS). <a class="external-link external-link" href="http://firebase.google.com/docs/cloud-messaging/" target="_blank">Firebase Cloud Messaging</a> (FCM) is the new version of GCM.    </p>
     <p>Before you can send a push notification from Dashboard, the following must be done first:    </p>
-<ul class=" "><li class=" ">    <p>In Dashboard, <a class="external-link external-link" href="#!/guide/Configuring_push_services">configure Mobile Backend Services</a> to communicate with either FCM or GCM for Android service or APNS.    </p>
+<ul class=" "><li class=" ">    <p>In Dashboard, <a class="document-link " href="#!/guide/Configuring_push_services">configure Mobile Backend Services</a> to communicate with either FCM or GCM for Android service or APNS.    </p>
 </li><li class=" ">    <p>Your application needs to do the following:    </p>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/guide/Subscribing_to_push_notifications-section-37551717_Subscribingtopushnotifications-Obtainingadevicetoken">Obtain a device token</a> from APNS or from FCM or GCM, respectively.    </p>
-</li><li class=" ">    <p>Subscribe the user to at least one push notification channel. Channels provide a publish-subscribe model for push notifications. There are two ways an application can subscribe a user to receive push notifications: <a class="external-link external-link" href="#!/guide/Subscribing_to_push_notifications-section-37551717_Subscribingtopushnotifications-SubscribingtoPushNotificationswithUserSessions">session-based subscriptions</a> and <a class="external-link external-link" href="#!/guide/Subscribing_to_push_notifications-section-37551717_Subscribingtopushnotifications-SubscribingtoPushNotificationswithDeviceTokens">token-based subscriptions</a>.    </p>
+<ul class=" "><li class=" ">    <p><a class="document-link " href="#!/guide/Subscribing_to_push_notifications">Obtain a device token</a> from APNS or from FCM or GCM, respectively.    </p>
+</li><li class=" ">    <p>Subscribe the user to at least one push notification channel. Channels provide a publish-subscribe model for push notifications. There are two ways an application can subscribe a user to receive push notifications: <a class="document-link " href="#!/guide/Subscribing_to_push_notifications">session-based subscriptions</a> and <a class="document-link " href="#!/guide/Subscribing_to_push_notifications">token-based subscriptions</a>.    </p>
 </li></ul></li></ul>    <p>How your application subscribes its users (session- or token-base subscriptions) determine, to a degree, your options for delivering notifications. In short, if you need to send notifications to specific API Builder users, use session-based subscriptions. For instance, a mobile banking app would want to notify individual account holders. If you don&apos;t need to target specific users, token-based subscriptions are a good approach, as it doesn&apos;t require the additional step of setting up an API Builder account.    </p>
     </div>
     <div class="section section-2 " id="src-43298780_SendingandSchedulingPushNotifications-Sendingpushnotifications">
@@ -51,7 +51,7 @@
 <ul class=" "><li class=" ">    <p><strong class=" ">Notification recipients and channel &#x2013; </strong>If your application users were subscribed using <i class=" ">session-based subscriptions</i>, you can send a notification to specific API Builder users subscribed to a particular channel. For token-based subscriptions, you can send notifications to all users subscribed to a particular channel, or all users regardless of their channel subscriptions.    </p>
 </li><li class=" ">    <p><strong class=" ">Notification schedule &#x2013; </strong>You can send a notification immediately, or schedule it to be sent at a future date and time. Scheduled notifications can be one-time or recurring.    </p>
 </li><li class=" ">    <p><strong class=" ">Notification payload &#x2013; </strong>The content of the notification, which consists minimally of an alert string to display, and optionally a sound to play or badge display. See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-AboutNotificationPayloads">About Notification Payloads</a>.    </p>
-</li></ul>    <p>To send a notification to users located in a geographic area, the application must have first provided their current location to API Builder. For details, see <a class="external-link external-link" href="#!/guide/Subscribing_to_push_notifications-section-37551717_Subscribingtopushnotifications-UpdatingSubscriptionswithDeviceLocation">Updating Subscriptions with Device Location</a>.    </p>
+</li></ul>    <p>To send a notification to users located in a geographic area, the application must have first provided their current location to API Builder. For details, see <a class="document-link " href="#!/guide/Subscribing_to_push_notifications">Updating Subscriptions with Device Location</a>.    </p>
     <p>Appcelerator Dashboard provides two views for sending notifications, <strong class=" ">Standard</strong> and <strong class=" ">Advanced.</strong> The Standard view provides an easy way to send notifications without having to understand the payload structure. In the Advanced view, you manually create the JSON payload. The advanced form provides additional flexibility, such as including custom payload fields.    </p>
     <p>If you prefer can use the <a class="external-link external-link" href="/arrowdb/latest/#!/api/PushNotifications-method-notify">PushNotification.notify</a> or <a class="external-link external-link" href="/arrowdb/latest/#!/api/PushNotifications-method-notify_token">PushNotification.notify_tokens</a> REST APIs to send push notifications.    </p>
     <p><strong class=" ">To send a push notification from Dashboard:</strong>    </p>
@@ -67,7 +67,7 @@
 </li><li class=" ">    <p>Select the desired recipients from the list of users. To locate a particular user, enter their username in the search field.    </p>
 </li><li class=" ">    <p>In the <strong class=" ">Channel Name</strong> field enter the name of the target channel subscription. Note: You must specify a channel when sending a notification to specific users.    </p>
 </li></ol></li><li class=" ">    <p>To send a notification to all users located within a geographic selection, select <strong class=" ">Geographic Selection,</strong> then:    </p>
-<ol class=" "><li class=" ">    <p>Click the add (<strong class=" ">+</strong>) button in the <strong class=" ">Place</strong> field and select an existing <a class="external-link external-link" href="#!/guide/Managing_Places">Place</a>. This defines the center points of the geographic selection. The selected Place must have a defined latitude and longitude.    </p>
+<ol class=" "><li class=" ">    <p>Click the add (<strong class=" ">+</strong>) button in the <strong class=" ">Place</strong> field and select an existing place. This defines the center points of the geographic selection. The selected Place must have a defined latitude and longitude.    </p>
 </li><li class=" ">    <p>In the <strong class=" ">Radius</strong> field, enter the distance (in Miles or Meters) from the selected Place to define the size of the geographic selection.    </p>
 </li></ol></li></ol></li><li class=" ">    <p>To specify when to deliver the notification, in the <strong class=" ">Send When</strong> field, select one of the following options:    </p>
 <ol class=" "><li class=" ">    <p>To send the notification immediately, select <strong class=" ">Send Now.</strong>    </p>
@@ -79,7 +79,7 @@
 </li><li class=" ">    <p>In the <strong class=" ">Sound</strong> field, select <strong class=" ">None, Default,</strong> or <strong class=" ">Custom. </strong>See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-sounds">Notification Sounds</a> for details.    </p>
 </li><li class=" ">    <p>For iOS devices:    </p>
 <ol class=" "><li class=" ">    <p>In the <strong class=" ">Content-Available</strong> field, check the box to indicate that new content is available. This is used to support Newsstand apps and background content downloads.    </p>
-</li><li class=" ">    <p>In the <strong class=" ">Category</strong> field, enter the name of the category to use for interactive notifications. See <a class="external-link external-link" href="#!/guide/iOS_Interactive_Notifications">iOS Interactive Notifications</a>.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Category</strong> field, enter the name of the category to use for interactive notifications. See <a class="document-link " href="#!/guide/iOS_Interactive_Notifications">iOS Interactive Notifications</a>.    </p>
 </li></ol></li><li class=" ">    <p>For Android devices:    </p>
 <ol class=" "><li class=" ">    <p>in the <strong class=" ">Vibrate</strong> field, select No or Yes to have the device vibrate or not upon receipt of the notification.    </p>
 </li><li class=" ">    <p>In the <strong class=" ">Title</strong> field (Android, only), select the title to display in the Alert message. See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-title">Notification Titles</a> for details.    </p>
@@ -106,11 +106,11 @@ Click <strong class=" ">Send Now</strong>.     </span>
 <ul class=" "><li class=" ">    <p><tt class=" ">icon</tt> &#x2013; The name of the image file to display as the icon, minus its extension.    </p>
 </li><li class=" ">    <p><tt class=" ">title</tt> &#x2013; Title displayed above the alert text. Defaults to the application name.    </p>
 </li><li class=" ">    <p><tt class=" ">vibrate</tt> &#x2013; A boolean that the device to vibrate momentarily upon receipt.    </p>
-</li></ul>    <p>See <a class="document-link unresolved" href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780">Android-specific notification fields</a> for more information about specifying these fields.    </p>
+</li></ul>    <p>See Android-specific notification fields for more information about specifying these fields.    </p>
     <p>iOS 8 devices and later support the following additional fields:    </p>
 <ul class=" "><li class=" ">    <p><tt class=" ">category</tt> &#x2013;     <span style="color: #000000;">
 The name of the category to use for interactive notifications. See     </span>
-<a class="external-link external-link" href="#!/guide/iOS_Interactive_Notifications">iOS Interactive Notifications</a>    <span style="color: #000000;">
+<a class="document-link " href="#!/guide/iOS_Interactive_Notifications">iOS Interactive Notifications</a>    <span style="color: #000000;">
  for more information.    </span>
     </p>
 </li><li class=" ">    <p><tt class=" ">content-available</tt> &#x2013;  If set to <strong class=" ">1</strong>, indicates that new content is available.     <span style="color: #000000;">
@@ -192,9 +192,9 @@ As of Titanium SDK v3.4.0, you can create interactive notifications, which users
     <p>Your Titanium application defines one or more a <i class=" ">notification categories</i>, each of which consists of one or more <i class=" ">notification actions</i>. When you <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-Sendingpushnotifications">create a push notification</a> in Dashboard, the <strong class=" ">Category</strong> form field lets you specify the category of interactive notification to display when the push notification arrives.    </p>
     <p><strong class=" ">To create an interactive notification:</strong>    </p>
 <ol class=" "><li class=" ">    <p>In your Titanium application:    </p>
-<ol class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/guide/iOS_Interactive_Notifications-section-40930452_iOSInteractiveNotifications-CreateaNotificationAction">Create and configure notification actions</a>.    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="#!/guide/iOS_Interactive_Notifications-section-40930452_iOSInteractiveNotifications-CreateaNotificationCategory">Create notification categories</a> and assign notification actions to them.    </p>
-</li><li class=" ">    <p class="_mce_tagged_br"><a class="external-link external-link" href="#!/guide/iOS_Interactive_Notifications-section-40930452_iOSInteractiveNotifications-RegisterNotificationCategories">Register the application</a> for the desired notification categories, and to receive push notifications.    </p>
+<ol class=" "><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Interactive_Notifications">Create and configure notification actions</a>.    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Interactive_Notifications">Create notification categories</a> and assign notification actions to them.    </p>
+</li><li class=" ">    <p class="_mce_tagged_br"><a class="document-link " href="#!/guide/iOS_Interactive_Notifications">Register the application</a> for the desired notification categories, and to receive push notifications.    </p>
 </li><li class=" ">    <p>Register an event listener for the <tt class=" ">remotenotificationaction</tt> event, to respond to user actions when they interact with the notification.    </p>
 </li></ol></li><li class=" ">    <p>In Dashboard, send a new push notification and set the <strong class=" ">Category</strong> field to the desired notification category to use.    </p>
     <img src="images/download/attachments/43298780/push_notification.png" alt="images/download/attachments/43298780/push_notification.png" class="confluence-embedded-image">
@@ -205,7 +205,7 @@ As of Titanium SDK v3.4.0, you can create interactive notifications, which users
     <p>The <strong class=" ">Content-Available</strong> form field lets you silently notify a Titanium or native iOS/Android application, without alerting the user at all. A silent push is often used to alert the application that new content is available to download. Once the download (or another task) initiated by the silent push is complete, the application can display a notification to the user that new content is available.    </p>
     <p>    <img src="images/download/attachments/43298780/content-available.png" alt="images/download/attachments/43298780/content-available.png" class="confluence-embedded-image">
         </img></p>
-    <p>For detailed steps on enabling silent push notifications in your Titanium application, see <a class="external-link external-link" href="#!/guide/iOS_Background_Services-section-37539664_iOSBackgroundServices-SilentPush">Silent Push</a> in the Titanium SDK guides.    </p>
+    <p>For detailed steps on enabling silent push notifications in your Titanium application, see <a class="document-link " href="#!/guide/iOS_Background_Services">Silent Push</a> in the Titanium SDK guides.    </p>
     </div>
     <div class="section section-4 " id="src-43298780_SendingandSchedulingPushNotifications-badgesNotificationBadges">
         <h4 class="heading "><span id="src-43298780_SendingandSchedulingPushNotifications-badges" class="confluence-anchor-link"/><span>Notification Badges</span></h4>
@@ -229,19 +229,19 @@ As of Titanium SDK v3.4.0, you can create interactive notifications, which users
 <ul class=" "><li class=" ">    <p><tt class=" ">title</tt>    </p>
 </li><li class=" ">    <p><tt class=" ">icon</tt>    </p>
 </li><li class=" ">    <p><tt class=" ">vibrate</tt>    </p>
-</li></ul>    <p>Titanium application may also specify any of the properties in <a class="external-link external-link" href="#!/api/Titanium.Android.Notification">Titanium.Android.Notification</a>, except for <tt class=" ">contentIntent</tt> or <tt class=" ">deleteIntent</tt>. For instance, you can add a <tt class=" ">tickerText</tt> field to the notification payload     <span style="color: #484848;">
+</li></ul>    <p>Titanium application may also specify any of the properties in Titanium.Android.Notification, except for <tt class=" ">contentIntent</tt> or <tt class=" ">deleteIntent</tt>. For instance, you can add a <tt class=" ">tickerText</tt> field to the notification payload     <span style="color: #484848;">
 that scrolls the specified text across the notification area.    </span>
     </p>
     <div class="section section-5 " id="src-43298780_SendingandSchedulingPushNotifications-titleTitlefield">
         <h5 class="heading "><span id="src-43298780_SendingandSchedulingPushNotifications-title" class="confluence-anchor-link"/><span>Title field</span></h5>
-    <p><strong class=" ">Title</strong> &#x2013; A string to display above the alert message in the notification area. If not specified in the payload, the application&apos;s name is displayed, as specified by the <strong class=" ">&lt;name&gt;</strong> element in your <a class="external-link external-link" href="#!/guide/tiapp.xml_and_timodule.xml_Reference">project&apos;s tiapp.xml</a> file.    </p>
+    <p><strong class=" ">Title</strong> &#x2013; A string to display above the alert message in the notification area. If not specified in the payload, the application&apos;s name is displayed, as specified by the <strong class=" ">&lt;name&gt;</strong> element in your <a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference">project&apos;s tiapp.xml</a> file.    </p>
     <p>    <img src="images/download/attachments/43298780/title_alert.png" alt="images/download/attachments/43298780/title_alert.png" class="confluence-embedded-image" width="341" height="168">
         </img></p>
     </div>
     <div class="section section-5 " id="src-43298780_SendingandSchedulingPushNotifications-Iconfield">
         <h5 class="heading "><span>Icon field</span></h5>
     <p>    <span id="src-43298780_SendingandSchedulingPushNotifications-icon"><a class="confluence-anchor-link" name="src-43298780_SendingandSchedulingPushNotifications-icon"/></span>
-The <tt class=" ">icon</tt> payload field specifies an image to display with the notification on Android devices. (For image specifications, see <a class="document-link " href="#!/guide/Icons_and_Splash_Screens-section-src-29004897_IconsandSplashScreens-NotificationIcons">Icons and Splash Screens: Notification Icons</a>.) It&apos;s value is the name of a local image file, minus the extension of the icon to display. The file must be placed your project&apos;s <strong class=" ">/res/drawable</strong> folder for native Android applications, or the <strong class=" ">/Resources</strong> folder Titanium applications. By default, the application&apos;s icon is displayed with the notification.    </p>
+The <tt class=" ">icon</tt> payload field specifies an image to display with the notification on Android devices. (For image specifications, see <a class="document-link " href="#!/guide/Icons_and_Splash_Screens">Icons and Splash Screens: Notification Icons</a>.) It&apos;s value is the name of a local image file, minus the extension of the icon to display. The file must be placed your project&apos;s <tt class=" ">/res/drawable</tt> folder for native Android applications, or the <tt class=" ">/Resources</tt> folder Titanium applications. By default, the application&apos;s icon is displayed with the notification.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">{</code></div>
@@ -269,10 +269,9 @@ The <tt class=" ">icon</tt> payload field specifies an image to display with the
         <h3 class="heading "><span>&apos;Subscription not found&apos; error</span></h3>
     <p>In general, this error indicates that the recipients you selected are not subscribed to the specified channel. If you&apos;re sending a notification to specific API Builder users, make sure that those users are subscribed to the specified channel. Or, if you&apos;re sending a token-based notification (not addressed to specific users) make sure that channel name you specified has at least one subscriber. See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-Viewingsubscribeddevices">Viewing subscribed devices</a> for more information.    </p>
     <p>When <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-SendingandSchedulingPushNotifications-sendSendingpushnotifications">sending</a> a geo-based push notification, this error can also indicate that no devices were found in the selected geographic area. Try the following:    </p>
-<ul class=" "><li class=" ">    <p>Make sure your application is sending its current location to API Builder. See <a class="external-link external-link" href="#!/guide/Subscribing_to_push_notifications-section-37551717_Subscribingtopushnotifications-UpdatingSubscriptionswithDeviceLocation">Updating Subscriptions with Device Location</a>. Devices must report their location to API Builder to enable geo-based push.    </p>
+<ul class=" "><li class=" ">    <p>Make sure your application is sending its current location to API Builder. See <a class="document-link " href="#!/guide/Subscribing_to_push_notifications">Updating Subscriptions with Device Location</a>. Devices must report their location to API Builder to enable geo-based push.    </p>
 </li><li class=" ">    <p>Try using a larger <strong class=" ">Radius</strong> value to encompass a larger geographic area.    </p>
-</li></ul>    <p>    </p>
-    </div>
+</li></ul>    </div>
     </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=43298780"><span>Edit</span></a>
     
