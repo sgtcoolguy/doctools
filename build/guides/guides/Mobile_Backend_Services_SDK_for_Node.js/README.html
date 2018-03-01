@@ -26,7 +26,7 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Mobile_Backend_Services_SDK_for_Node.js-section-src-49153772_MobileBackendServicesSDKforNode.js-Userloginexample">User login example</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Mobile_Backend_Services_SDK_for_Node.js-section-src-49153772_MobileBackendServicesSDKforNode.js-Photoorfileuploadexample">Photo or file upload example</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Mobile_Backend_Services_SDK_for_Node.js-section-src-49153772_MobileBackendServicesSDKforNode.js-GenericMobileBackServicesAPIs">Generic Mobile Back Services APIs</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Mobile_Backend_Services_SDK_for_Node.js-section-src-49153772_MobileBackendServicesSDKforNode.js-Userloginsessionmanagement">User login session management</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Mobile_Backend_Services_SDK_for_Node.js-section-src-49153772_MobileBackendServicesSDKforNode.js-UserloginsessionmanagementUserloginsessionmanagement">User login session management</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Mobile_Backend_Services_SDK_for_Node.js-section-src-49153772_MobileBackendServicesSDKforNode.js-Cookie-basedsessionmanagement">Cookie-based session management</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Mobile_Backend_Services_SDK_for_Node.js-section-src-49153772_MobileBackendServicesSDKforNode.js-Manualsessionmanagement">Manual session management</a>    </p>
 </li></ul></li></ul>    <p>The Mobile Back Services (MBS) Node SDK lets you easily integrate MBS services with your Node.js application. The SDK provides two APIs:    </p>
@@ -96,7 +96,7 @@
 </li></ul>    <p>To access the results from the returned object, use the object&apos;s <tt class=" ">body</tt> property to access the HTTP response body. The body object will contain a <tt class=" ">meta</tt> object, which contains the metadata of the response, and a <tt class=" ">response</tt> object, which contains the results of the method call.    </p>
     <div class="section section-4 " id="src-49153772_MobileBackendServicesSDKforNode.js-Userloginexample">
         <h4 class="heading "><span>User login example</span></h4>
-    <p>The following example uses the standard MBS APIs to log in a user. It defines a custom <tt class=" ">login()</tt> function that takes the <tt class=" ">username</tt> and <tt class=" ">password</tt> properties from the HTTP request body, and in turn, passes those values as input to the  <tt class=" ">User.login() </tt>method. On successful login, the user&apos;s information is displayed in the console or, in case of an error, the error response is displayed.    </p>
+    <p>The following example uses the standard MBS APIs to log in a user. It defines a custom <tt class=" ">login()</tt> function that takes the <tt class=" ">username</tt> and <tt class=" ">password</tt> properties from the HTTP request body, and in turn, passes those values as input to the  <tt class=" ">User.login()</tt> method. On successful login, the user&apos;s information is displayed in the console or, in case of an error, the error response is displayed.    </p>
     <div class="tablewrap">
         <table>
         <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
@@ -239,7 +239,7 @@ The following example uses the standard MBS APIs to upload a photo or a file. It
             </div>
     </div>
     </div>
-    <div class="section section-2 " id="src-49153772_MobileBackendServicesSDKforNode.js-Userloginsessionmanagement">
+    <div class="section section-2 " id="src-49153772_MobileBackendServicesSDKforNode.js-UserloginsessionmanagementUserloginsessionmanagement">
         <h2 class="heading "><span>User login session management</span></h2>
     <p>Most of the MBS APIs require a user to be logged in, so it is important to have a way to manage user sessions in your Node.js application. The MBS Node SDK provides two ways of managing MBS login sessions in a Node.js application:    </p>
 <ul class=" "><li class=" ">    <p><strong class=" ">Cookie-based</strong>. Cookies are used to store session information and passed between the client and server.    </p>
@@ -282,8 +282,7 @@ The following example uses the standard MBS APIs to upload a photo or a file. It
             </div>
     <p><strong class=" ">Important</strong>    </p>
 <ul class=" "><li class=" ">    <p>The MBS Node SDK sets the cookie header in the response object, which must be done <i class=" ">before</i> sending any response data (for example, by calling the response object&apos;s <tt class=" ">send</tt> method). If you send any response data <i class=" ">before</i> the API callback function is invoked, the MBS Node SDK will throw an exception when it tries to set the cookie headers, with a message like, &quot;Can&apos;t render headers after they are sent to the client.&quot;    </p>
-</li><li class=" ">    <p>Session information is stored in a cookie named <tt class=" ">_session_id</tt>. You can also manually set this session ID cookie on the client side. For example, if you are calling your API Runtime service from a Titanium application that uses MBS directly, you can retrieve the active session ID from the <a class="external-link external-link" href="#!/api/Titanium.Cloud-
-property-sessionId">Titanium.Cloud.sessionId</a> property, and adding a <tt class=" ">Set-Cookie</tt> header when making a request to the API Runtime service.    </p>
+</li><li class=" ">    <p>Session information is stored in a cookie named <tt class=" ">_session_id</tt>. You can also manually set this session ID cookie on the client side. For example, if you are calling your API Runtime service from a Titanium application that uses MBS directly, you can retrieve the active session ID from the Titanium.Cloud.sessionId property, and adding a <tt class=" ">Set-Cookie</tt> header when making a request to the API Runtime service.    </p>
 </li></ul>    </div>
     <div class="section section-3 " id="src-49153772_MobileBackendServicesSDKforNode.js-Manualsessionmanagement">
         <h3 class="heading "><span>Manual session management</span></h3>

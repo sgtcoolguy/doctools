@@ -184,7 +184,7 @@
     <div class="section section-2 " id="src-49153774_CustomObjectsandFields-Indexingsizelimitforcustomobjectsandfields">
         <h2 class="heading "><span>Indexing size limit for custom objects and fields</span></h2>
     <p>To support efficient data query operations, MBS indexes the field names and values of each custom object, or custom fields you add to a predefined object. For example, suppose you create a custom object, <tt class=" ">cars</tt>, with the fields <tt class=" ">make</tt> and <tt class=" ">model</tt>. Mobile Backend Services will create two index entries in the MongoDB database, one for each field. The total size of an index entry, including meta-data added by MBS, must be less than <strong class=" ">1024 bytes</strong> (1KB).    </p>
-    <p>If a custom field&apos;s name or value exceeds this size, then no index entry for that field is created. Consequently, if you run a custom <a class="external-link " href="https://wiki.appcelerator.org/display/~lbadenhop/Search+and+Query+APIs">query</a> against that field, nothing will be returned.    </p>
+    <p>If a custom field&apos;s name or value exceeds this size, then no index entry for that field is created. Consequently, if you run a custom <a class="document-link " href="Search_and_Query_APIs.html">query</a> against that field, nothing will be returned.    </p>
     <p>For instance, in the previous example, suppose the string value assigned to <tt class=" ">model</tt> was greater than 1KB. If you queried the <tt class=" ">cars</tt> collection for objects whose <tt class=" ">model</tt> matched that value, no objects would be returned:    </p>
     <div class="tablewrap">
         <table>

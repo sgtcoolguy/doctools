@@ -22,7 +22,7 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-QueryAPIoverview">Query API overview</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-QueryAPIavailability">Query API availability</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-Queryparameters">Query parameters</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-Querypagination">Query pagination</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-QuerypaginationQuerypagination">Query pagination</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-Range-basedquerypaginationexamples">Range-based query pagination examples</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5b25jdXN0b21maWVsZCxyZXN1bHRzaW5hc2NlbmRpbmdvcmRlcg">Query on custom field, results in ascending order</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5b25jdXN0b21maWVsZCxyZXN1bHRzaW5kZXNjZW5kaW5nb3JkZXI">Query on custom field, results in descending order</a>    </p>
@@ -41,12 +41,12 @@
         <div class="section section-2 " id="src-49153849_SearchandQueryAPIs-QueryAPIoverview">
         <h2 class="heading "><span>Query API overview</span></h2>
     <p>The query API provides an interface for applying database-style query constraints on predefined objects and <a class="document-link " href="Custom_Objects_and_Fields.html">custom fields</a>.    </p>
-    <p>When no query parameters are provided, all objects of the specified type are returned with default pagination. You can control pagination of queries with the <tt class=" ">skip</tt> and <tt class=" ">limit</tt> parameters, or by using a custom <tt class=" ">where</tt> clause. See <a class="external-link external-link" href="http://wiki.appcelerator.org">Query Pagination</a> for more information.    </p>
+    <p>When no query parameters are provided, all objects of the specified type are returned with default pagination. You can control pagination of queries with the <tt class=" ">skip</tt> and <tt class=" ">limit</tt> parameters, or by using a custom <tt class=" ">where</tt> clause. See <a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-Querypagination">Query Pagination</a> for more information.    </p>
     <p>You can also control the sort order of query results using the <tt class=" ">order</tt> parameter, and specify the fields you want to include (or exclude) from results using the <tt class=" ">sel</tt> and <tt class=" ">unsel</tt> query parameters.    </p>
     <div class="section section-3 " id="src-49153849_SearchandQueryAPIs-QueryAPIavailability">
         <h3 class="heading "><span>Query API availability</span></h3>
     <p>The following MBS object provide query methods:  <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/ACLs-method-query">ACLs</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Chats-method-query">Chats</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Checkins-method-query">Checkins</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/CustomObjects-method-query">CustomObjects</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Events-method-query">Events</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Files-method-query">Files</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/GeoFences-method-query">GeoFences</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/KeyValues-method-query">KeyValues</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Likes-method-query">Likes</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Logs">Logs</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Messages-method-query">Messages</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Photos-method-query">Photos</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Places-method-query">Places</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Posts-method-query">Posts</a>,<br><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/PushNotifications-method-query">PushNotifications</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/PushSchedules-method-query">PushSchedules</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Reviews-method-query">Reviews</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Statuses-method-query">Statuses</a>, and <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Users-method-query">Users</a>.    </p>
-    <p>For security reasons, when querying for <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Users">Users</a> the <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Emails">email</a> field is not returned in the User object unless you have <a class="external-link " href="https://wiki.appcelerator.org/display/~lbadenhop/Admin+Access">admin access</a><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/guide/admin_access">.</a>    </p>
+    <p>For security reasons, when querying for <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Users">Users</a> the <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Emails">email</a> field is not returned in the User object unless you have <a class="document-link " href="Admin_Access.html">admin access</a><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/guide/admin_access">.</a>    </p>
     </div>
     <div class="section section-3 " id="src-49153849_SearchandQueryAPIs-Queryparameters">
         <h3 class="heading "><span>Query parameters</span></h3>
@@ -66,7 +66,7 @@
 </li><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-unsel">unsel</a>    </p>
 </li></ul>    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-count">
         <h4 class="heading "><span>count</span></h4>
-    <p>If the query includes <tt class=" ">count=true</tt> , the response&apos;s meta-object contains a  <tt class=" ">count</tt>  field whose value is the total number of objects that matched the query criteria. If the query matches more than 5000 objects, the count field contains the value &quot;5000+&quot;. For more information, see <a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-QueryPagination">Query Pagination</a>.    </p>
+    <p>If the query includes <tt class=" ">count=true</tt> , the response&apos;s meta-object contains a  <tt class=" ">count</tt>  field whose value is the total number of objects that matched the query criteria. If the query matches more than 5000 objects, the count field contains the value &quot;5000+&quot;. For more information, see <a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-Querypagination">Query Pagination</a>.    </p>
     </div>
     <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-page">
         <h4 class="heading "><span>page</span></h4>
@@ -233,7 +233,7 @@
     </div>
     <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-skip">
         <h4 class="heading "><span>skip</span></h4>
-    <p>The number of records to skip. The value must be greater than or equal to 0, and no greater than 4999, or an HTTP 400 error will be returned. To skip 5000 records or more you need to perform a range-based query. See <a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-QueryPagination">Query Pagination</a> for more information.    </p>
+    <p>The number of records to skip. The value must be greater than or equal to 0, and no greater than 4999, or an HTTP 400 error will be returned. To skip 5000 records or more you need to perform a range-based query. See <a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-Querypagination">Query Pagination</a> for more information.    </p>
     </div>
     <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-where">
         <h4 class="heading "><span>where</span></h4>
@@ -435,7 +435,7 @@
 </tbody>        </table>
             </div>
     <p>You can combine any of the above to build a more complex query.    </p>
-    <p>For more information on constructing geographic coordinate queries, see <a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-Geographiccoordinates">Geographic Coordinates in Custom Fields</a> and <a class="document-link " href="Custom_Objects_and_Fields.html">Custom Objects &amp; Fields</a> for a general creation of custom objects and field queries.    </p>
+    <p>For more information on constructing geographic coordinate queries, see <a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-Geographiccoordinates">Geographic Coordinates in Custom Fields</a> and <a class="document-link " href="Custom_Objects_and_Fields.html">Custom Objects and Fields</a> for a general creation of custom objects and field queries.    </p>
     <p>If you want to find users with age older than 28:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -581,8 +581,8 @@
     </div>
     </div>
     </div>
-    <div class="section section-2 " id="src-49153849_SearchandQueryAPIs-Querypagination">
-        <h2 class="heading "><span>Query pagination</span></h2>
+    <div class="section section-2 " id="src-49153849_SearchandQueryAPIs-QuerypaginationQuerypagination">
+        <h2 class="heading "><span id="src-49153849_SearchandQueryAPIs-Querypagination" class="confluence-anchor-link"></span><span>Query pagination</span></h2>
     <p>Starting with Mobile Backend Services (ArrowDB) 1.1.5, we have made the following changes:    </p>
 <ul class=" "><li class=" ">    <p>Skip is limited to 0-4999; as a result, you can not skip beyond 5000 records.    </p>
 </li><li class=" ">    <p>If the query includes <tt class=" ">count=true</tt>, the query response&apos;s <tt class=" ">meta</tt> object contains a <tt class=" ">count</tt> field whose value is the total number of objects that match the query criteria. If the query matches more than 5000 objects, the <tt class=" ">count</tt> field contains the value &quot;5000+&quot;. If your query result set includes more than 5000 records, you should perform range-based queries for pagination. This is done by including a where parameter on an object field using the <tt class=" ">$gt</tt> or <tt class=" ">$lt</tt> operators, as discussed below.    </p>
@@ -649,10 +649,10 @@
     <p>For additional examples, see <a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-Range-basedQueryPaginationExamples">Range-based Query Pagination Examples</a>.    </p>
     <div class="section section-3 " id="src-49153849_SearchandQueryAPIs-Range-basedquerypaginationexamples">
         <h3 class="heading "><span>Range-based query pagination examples</span></h3>
-<ul class=" "><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5b25DdXN0b21GaWVsZCxSZXN1bHRzaW5Bc2NlbmRpbmdPcmRlcg">Query on Custom Field, Results in Ascending Order</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5b25DdXN0b21GaWVsZCxSZXN1bHRzaW5EZXNjZW5kaW5nT3JkZXI">Query on Custom Field, Results in Descending Order</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5Zm9yTmV4dFBhZ2VvZlJlc3VsdHMsUmVzdWx0c2luQXNjZW5kaW5nT3JkZXI">Query for Next Page of Results, Results in Ascending Order</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-QueryforPreviousPageofResults">Query for Previous Page of Results</a>    </p>
+<ul class=" "><li class=" ">    <p>Query on Custom Field, Results in Ascending Order    </p>
+</li><li class=" ">    <p>Query on Custom Field, Results in Descending Order    </p>
+</li><li class=" ">    <p>Query for Next Page of Results, Results in Ascending Order    </p>
+</li><li class=" ">    <p>Query for Previous Page of Results    </p>
 </li></ul>    <div class="section section-4 " id="src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5b25jdXN0b21maWVsZCxyZXN1bHRzaW5hc2NlbmRpbmdvcmRlcg">
         <h4 class="heading "><span>Query on custom field, results in ascending order</span></h4>
     <p>In this example, the query returns Statuses objects whose custom <tt class=" ">score</tt> field is less than 100, and sorts results on the <tt class=" ">score</tt> in ascending order (<tt class=" ">&amp;order=score</tt>). The query matches 100 total records.    </p>

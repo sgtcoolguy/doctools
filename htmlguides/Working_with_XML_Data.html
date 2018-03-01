@@ -58,25 +58,25 @@
 </li></ul>    <p>Consider this code snippet, which parses RSS (XML) data retrieved from a blog:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">xhr.onload = function() {</code></div>
+<div class="line"><code class="plain">xhr.onload = </code><code class="keyword">function</code><code class="plain">() {</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Data is returned from the blog, start parsing</code></div>
-<div class="line"><code class="plain">	var xml = </code><code class="keyword">this</code><code class="plain">.responseXML;</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> xml = </code><code class="keyword">this</code><code class="plain">.responseXML;</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// the blog&apos;s title is in a node named &quot;channel&quot;</code></div>
-<div class="line"><code class="plain">	var channel = xml.documentElement.getElementsByTagName(</code><code class="string">&quot;channel&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> channel = xml.documentElement.getElementsByTagName(</code><code class="string">&quot;channel&quot;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// begin looping through blog posts</code></div>
-<div class="line"><code class="plain">	var data = [];</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> data = [];</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// blog posts are in nodes named &quot;item&quot;</code></div>
-<div class="line"><code class="plain">	var items = xml.documentElement.getElementsByTagName(</code><code class="string">&quot;item&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">	</code><code class="keyword">for</code><code class="plain"> (var i = </code><code class="value">0</code><code class="plain">; i &lt; items.length; i++) {</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> items = xml.documentElement.getElementsByTagName(</code><code class="string">&quot;item&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">for</code><code class="plain"> (</code><code class="keyword">var</code><code class="plain"> i = 0; i &lt; items.length; i++) {</code></div>
 <div class="line"><code class="plain">		data.push({</code></div>
-<div class="line"><code class="plain">			postTitle: items.item(i).getElementsByTagName(</code><code class="string">&quot;title&quot;</code><code class="plain">).item(</code><code class="value">0</code><code class="plain">).text,</code></div>
-<div class="line"><code class="plain">			postLink: items.item(i).getElementsByTagName(</code><code class="string">&quot;link&quot;</code><code class="plain">).item(</code><code class="value">0</code><code class="plain">).text</code></div>
+<div class="line"><code class="plain">			postTitle: items.item(i).getElementsByTagName(</code><code class="string">&quot;title&quot;</code><code class="plain">).item(0).textContent,</code></div>
+<div class="line"><code class="plain">			postLink: items.item(i).getElementsByTagName(</code><code class="string">&quot;link&quot;</code><code class="plain">).item(0).textContent</code></div>
 <div class="line"><code class="plain">		});</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// fire an app-level event to notify the UI that the blog data is available</code></div>
-<div class="line"><code class="plain">	Ti.App.fireEvent(</code><code class="string">&apos;net:rssDataReturned&apos;</code><code class="plain">,{</code></div>
-<div class="line"><code class="plain">		blogTitle: channel.item(</code><code class="value">0</code><code class="plain">).getElementsByTagName(</code><code class="string">&quot;title&quot;</code><code class="plain">).item(</code><code class="value">0</code><code class="plain">).text,</code></div>
+<div class="line"><code class="plain">	Ti.App.fireEvent(</code><code class="string">&apos;net:rssDataReturned&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">		blogTitle: channel.item(0).getElementsByTagName(</code><code class="string">&quot;title&quot;</code><code class="plain">).item(0).textContent,</code></div>
 <div class="line"><code class="plain">		blogPosts: data</code></div>
 <div class="line"><code class="plain">	});</code></div>
 <div class="line"><code class="plain">};</code></div>
