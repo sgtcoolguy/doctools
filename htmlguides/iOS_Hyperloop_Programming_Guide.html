@@ -233,7 +233,7 @@ style pattern from Objective-C:     </span>
 <div class="line"><code class="plain">install! </code><code class="string">&apos;cocoapods&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">         </code><code class="color2">:integrate_targets</code><code class="plain"> =&gt; </code><code class="keyword">false</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">platform </code><code class="color2">:ios</code><code class="plain">, </code><code class="string">&apos;7.0&apos;</code></div>
+<div class="line"><code class="plain">platform </code><code class="color2">:ios</code><code class="plain">, </code><code class="string">&apos;8.0&apos;</code></div>
 <div class="line"><code class="plain">target </code><code class="string">&apos;MyProject&apos;</code><code class="plain"> </code><code class="keyword">do</code></div>
 <div class="line"><code class="plain">    pod </code><code class="string">&apos;JBChartView&apos;</code></div>
 <div class="line"><code class="keyword">end</code></div>
@@ -250,6 +250,23 @@ style pattern from Objective-C:     </span>
 <div class="line"><code class="plain">chart.maximumValue = 100;</code></div>
 </div>
     </div>
+    <div class="confbox admonition admonition-warning aui-message problem shadowed information-macro">
+            <p>Note for Ad-Hoc builds: The build can fail if some frameworks importted via CocoaPods contain Bitcode and some not. You can fix this issue by disabling Bitcode for third-party frameworks in that case. Add the following snippet to your Podfile:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Podfile</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Podfile">
+<div class="line"><code class="comments"># Fix build error for mixed Bitcode frameworks in CocoaPods</code></div>
+<div class="line"><code class="plain">post_install </code><code class="keyword">do</code><code class="plain"> |installer|</code></div>
+<div class="line"><code class="plain">  installer.pods_project.targets.</code><code class="keyword">each</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |target|</code></div>
+<div class="line"><code class="plain">    target.build_configurations.</code><code class="keyword">each</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |config|</code></div>
+<div class="line"><code class="plain">      config.build_settings[</code><code class="string">&apos;ENABLE_BITCODE&apos;</code><code class="plain">] = </code><code class="string">&apos;NO&apos;</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">end</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">end</code></div>
+<div class="line"><code class="keyword">end</code></div>
+</div>
+    </div>
+    </div>
+        <p>    </p>
     </div>
     <div class="section section-3 " id="src-46253491_safe-id-aU9TSHlwZXJsb29wUHJvZ3JhbW1pbmdHdWlkZS1DdXN0b21GcmFtZXdvcmtzJkxpYnJhcmllcw">
         <h3 class="heading "><span>Custom Frameworks &amp; Libraries</span></h3>
