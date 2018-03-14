@@ -44,9 +44,10 @@
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-BundleModuleAssets">Bundle Module Assets</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-Assetsfolder">Assets folder</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-Platformfolder">Platform folder</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-DistributeyourmodulethroughtheAppceleratorMarketplace">Distribute your module through the Appcelerator Marketplace</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-Knownissues">Known issues</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-Conflictingjarfilesdetected">Conflicting jar files detected</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-DistributeyourmodulethroughtheAxwayMarketplace">Distribute your module through the Axway Marketplace</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-Troubleshooting">Troubleshooting</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_safe-id-QW5kcm9pZE1vZHVsZVByb2plY3QtQ29uZmxpY3RpbmdKQVJmaWxlcy9Hb29nbGVQbGF5U2VydmljZXM">Conflicting JAR files / Google Play Services</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-AndroidNDKbuildfails">Android NDK build fails</a>    </p>
 </li></ul></li></ul>    <div class="section section-2 " id="src-43289002_AndroidModuleProject-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
     <p>This guide covers how to manage your module project as well as how to add third-party frameworks and bundle assets with your module.  You can use Studio, Eclipse or the Appc-CLI to build Android modules.    </p>
@@ -55,7 +56,7 @@
         <h2 class="heading "><span>Prerequisites</span></h2>
     <p>To develop an Android-based Module, you need to install the following tools and setup a few additional environment variables:    </p>
 <ul class=" "><li class=" ">    <p>Titanium SDK    </p>
-</li><li class=" ">    <p>Android SDK 6.0.x (API 23)    </p>
+</li><li class=" ">    <p>Android SDK API 26+    </p>
 </li><li class=" ">    <p>Studio or the Appcelerator Command-Line Interface (CLI) for creating modules, and building and running test applications    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Installing_the_Android_NDK">Android NDK</a> and add an ANDROID_NDK environment variable pointing to the NDK directory. See <a class="document-link " href="#!/guide/Installing_the_Android_NDK">Installing the Android NDK</a>.    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Installing_gperf">gperf</a> must be installed and in your system PATH. See <a class="document-link " href="#!/guide/Installing_gperf">Installing gperf</a>.    </p>
@@ -98,7 +99,7 @@
         <p><tt class=" ">documentation/</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The directory where you should place your module documentation for end-users. The file <a class="external-link external-link" href="http://index.md/" target="_blank">index.md</a> is a Markdown-formatted template file that you should use when writing your module documentation. You may also write your documentation using the <a class="document-link " href="#!/guide/TDoc_Specification">TDoc Specification</a>. This is only required for module distributed in the Appcelerator Marketplace. You can safely ignore this directory if you do not intend to distribute your module.    </p>
+        <p>The directory where you should place your module documentation for end-users. The file index.md<a class="external-link external-link" href="http://index.md/" target="_blank"> is a Markdown-formatted template file that you should use when writing your module documentation. You may also write your documentation using the </a><a class="document-link " href="#!/guide/TDoc_Specification">TDoc Specification</a><a class="external-link external-link" href="http://index.md/" target="_blank">. This is only required for module distributed in the Appcelerator Marketplace. You can safely ignore this directory if you do not intend to distribute your module.</a>    </p>
             </td>
         </tr>
     <tr>
@@ -212,7 +213,7 @@
         <p>Path to the Android SDK <tt class=" ">platforms</tt> folder    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>/Users/&lt;USERNAME&gt;/ opts /android- sdk /platforms/android-23    </p>
+        <p>/Users/&lt;USERNAME&gt;/ opts /android- sdk /platforms/android-25    </p>
             </td>
         </tr>
     <tr>
@@ -223,7 +224,7 @@
         <p>Path to the Google APIs <tt class=" ">add-ons</tt> folder    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>/Users/&lt;USERNAME&gt;/ opts /android- sdk /add-ons/addon-google_apis-google-23    </p>
+        <p>/Users/&lt;USERNAME&gt;/ opts /android- sdk /add-ons/addon-google_apis-google-25    </p>
             </td>
         </tr>
     <tr>
@@ -239,10 +240,7 @@
         </tr>
 </tbody>        </table>
             </div>
-    <div class="confbox panel panel">
-            <div class="title">Titanium SDK 6.0.0 Changes</div>
-        <p>    </p>
-    </div>
+    <p>    </p>
     </div>
     <div class="section section-3 " id="src-43289002_AndroidModuleProject-Manifestfile">
         <h3 class="heading "><span>Manifest file</span></h3>
@@ -271,7 +269,7 @@
         <p>architectures    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The binary architectures the module supports as a delimited list. Example: x86 armeabi-v7a    </p>
+        <p>The binary architectures the module supports as a delimited list. Example: x86 arm64-v8a    </p>
             </td>
         </tr>
     <tr>
@@ -303,7 +301,7 @@
         <p>copyright    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>This is a human-readable copyright string for your module. For example, &quot;Copyright (c) 2017 by Axway Appcelerator, Inc.&quot;    </p>
+        <p>This is a human-readable copyright string for your module. For example, &quot;Copyright (c) 2018 by Axway Appcelerator, Inc.&quot;    </p>
             </td>
         </tr>
     <tr>
@@ -343,7 +341,7 @@
         <p>minsdk    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The is a generated value for the minimum Titanium SDK version that was used when creating your module. The current minimum version for new Android modules is 6.0.0.    </p>
+        <p>The is a generated value for the minimum Titanium SDK version that was used when creating your module. The current minimum version for new Android modules is 7.0.0.    </p>
             </td>
         </tr>
     <tr>
@@ -365,13 +363,11 @@
     <p>To create a new module project, run the following Appcelerator CLI command:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">appc new -d </code><code class="plain">/PATH/TO/WORKSPACE</code><code class="plain"> -n &lt;MODULE_NAME&gt; --</code><code class="functions">id</code><code class="plain"> &lt;MODULE_ID&gt;</code></div>
-<div class="line"><code class="comments">### when prompted for the project type, select &quot;Titanium Module&quot; </code></div>
+<div class="line"><code class="plain">appc new -d </code><code class="plain">/PATH/TO/WORKSPACE</code><code class="plain"> -n &lt;MODULE NAME&gt; --</code><code class="functions">id</code><code class="plain"> &lt;MODULE ID&gt;</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="comments">### Example</code></div>
-<div class="line"><code class="plain">$ ti create -n </code><code class="functions">test</code><code class="plain"> --</code><code class="functions">id</code><code class="plain"> com.example.</code><code class="functions">test</code></div>
-<div class="line"><code class="plain">Appcelerator Command-Line Interface, version 6.2.2</code></div>
-<div class="line"><code class="plain">Copyright (c) 2014-2017, Appcelerator, Inc.  All Rights Reserved.</code></div>
+<div class="line"><code class="plain">$ appc new -n &lt;MODULE NAME&gt; --</code><code class="functions">id</code><code class="plain"> &lt;MODULE ID&gt;</code></div>
+<div class="line"><code class="plain">Appcelerator Command-Line Interface, version 7.1.2</code></div>
+<div class="line"><code class="plain">Copyright (c) 2014-2018, Appcelerator, Inc.  All Rights Reserved.</code></div>
 <div class="line"><code class="plain">? What </code><code class="functions">type</code><code class="plain"> of project are you creating? </code></div>
 <div class="line"><code class="plain">  Native App </code></div>
 <div class="line"><code class="plain">  Arrow App </code></div>
@@ -492,8 +488,8 @@
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Gradle dummy project file">
 <div class="line"><code class="plain">apply plugin: </code><code class="string">&apos;com.android.application&apos;</code></div>
 <div class="line"><code class="plain">android {</code></div>
-<div class="line"><code class="plain">    compileSdkVersion 23</code></div>
-<div class="line"><code class="plain">    buildToolsVersion </code><code class="string">&quot;23.0.3&quot;</code></div>
+<div class="line"><code class="plain">    compileSdkVersion 25</code></div>
+<div class="line"><code class="plain">    buildToolsVersion </code><code class="string">&quot;25.0.2&quot;</code></div>
 <div class="line"><code class="plain">    defaultConfig {</code></div>
 <div class="line"><code class="plain">      applicationId </code><code class="string">&quot;com.example.deps&quot;</code></div>
 <div class="line"><code class="plain">    }</code></div>
@@ -521,7 +517,7 @@
     <div class="section section-3 " id="src-43289002_AndroidModuleProject-OverridingbundledAndroidSupportLibraries">
         <h3 class="heading "><span>Overriding bundled Android Support Libraries</span></h3>
     <p>By default Titanium comes bundled with a set of Android Support Libraries. These are locked to a specific version with each release, which can cause incompatibility with the latest version of a third-party library you might want to use in your module. To solve this it is possible to override the bundled Android Support Libraries with a newer version from within your modules. To override the bundle, place them inside your module&apos;s <tt class=" ">lib</tt> directory as you would for any other library.    </p>
-    <p>We currently bundle the following Android Support Libraries with Titanium SDK 6.1.0 and later, all in version 23.0.4:    </p>
+    <p>We currently bundle the following Android Support Libraries with Titanium SDK 6.2.0 and later, all in version 25.3.1:    </p>
 <ul class=" "><li class=" ">    <p>appcompat-v7    </p>
 <ul class=" "><li class=" ">    <p>support-annotation    </p>
 </li><li class=" ">    <p>support-vector-drawable    </p>
@@ -538,12 +534,7 @@
 </li><li class=" ">    <p>support-core-utils-25.3.1.aar    </p>
 </li><li class=" ">    <p>support-fragment-25.3.1.aar    </p>
 </li><li class=" ">    <p>support-media-compat-25.3.1.aar    </p>
-</li></ul>    <p>    </p>
-    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
-            <div class="title">Quality of life improvements planned</div>
-            <p>This is a brand new feature in Titanium 6.1.0 and we are already looking into improving this so you won&apos;t need to copy the actual libraries yourself. Since Google is rapidly changing those libraries and their dependencies there is quite some work to be done there. Stay tuned for further updates!    </p>
-    </div>
-        </div>
+</li></ul>    </div>
     <div class="section section-3 " id="src-43289002_AndroidModuleProject-AddingAndroidLibrariestoStudio">
         <h3 class="heading "><span>Adding Android Libraries to Studio</span></h3>
     <p>To properly resolve any imports of your used Android Libraries in Studio, you need to add the JARs they are contained in to Studio&apos;s Java build path. Before you add any import statements to your code, build the project at least once. This is required to process the AAR files and extract the JAR files they contain. After that, add the required JARs to Studio just as described in the <a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-AddaThird-PartyJAR">Add a Third-Party JAR</a> section of this guide. The extracted JAR files can be found under <tt class=" ">build/android/intermediates/exploded-aar</tt>. There you&apos;ll find a directory for each AAR file. Inside each of those directories, add the <tt class=" ">classes.jar</tt> and any additional JAR files under the <tt class=" ">lib</tt> directory.    </p>
@@ -557,10 +548,9 @@
     <p>Files in the <tt class=" ">assets</tt> folder are added to the JAR library&apos;s <tt class=" ">assets</tt> folder. To access these files, use the Android Class&apos;s <tt class=" ">getResource()</tt>method to retrieve a <tt class=" ">URL</tt> object or <a class="external-link external-link" href="http://developer.android.com/reference/java/lang/Class.html#getResourceAsStream(java.lang.String)" target="_blank"> <tt class=" ">getResourceAsStream()</tt> </a> method to retrieve an <tt class=" ">InputStream</tt> object.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="comments">// Original file was in assets/image.png</code></div>
-<div class="line"><code class="plain">URL url = getClass().getClassLoader().getResource(</code><code class="string">&quot;assets/image.png&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">Log.i(</code><code class="string">&quot;GETFILE&quot;</code><code class="plain">, url.toString());</code></div>
-<div class="line"><code class="comments">// do something with the URL</code></div>
+<div class="line"><code class="comments">// original file was in assets/image.png</code></div>
+<div class="line"><code class="plain">URL url = getClass().getClassLoader().getResource(</code><code class="string">&apos;assets/image.png&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">Log.i(</code><code class="string">&apos;GETFILE&apos;</code><code class="plain">, url.toString());</code></div>
 </div>
     </div>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
@@ -572,53 +562,58 @@
     <p>Files in the <tt class=" ">platform</tt> folder are distributed in the module&apos;s ZIP file and copied over to the application&apos;s <tt class=" ">platform</tt> folder.  Add an <tt class=" ">android</tt> subfolder, then add any of the resource directories defined in  <a class="external-link external-link" href="http://developer.android.com/guide/topics/resources/providing-resources.html" target="_blank">Android Developer: Providing Resources</a>. To access these files, you can use Android&apos;s <tt class=" ">AssetManager</tt> class or the Titanium SDK <tt class=" ">TiRHelper</tt> helper library.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="comments">// Original file was in android/platform/android/res/drawable/image.png</code></div>
+<div class="line"><code class="comments">// original file was in android/platform/android/res/drawable/image.png</code></div>
 <div class="line"><code class="plain">int result = 0;</code></div>
 <div class="line"><code class="keyword">try</code><code class="plain"> {</code></div>
-<div class="line"><code class="plain">    result = TiRHelper.getApplicationResource(</code><code class="string">&quot;drawable.image&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    result = TiRHelper.getApplicationResource(</code><code class="string">&apos;drawable.image&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    Log.i(</code><code class="string">&quot;GOODSTUFF&quot;</code><code class="plain">, </code><code class="keyword">new</code><code class="plain"> Integer(result).toString());</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// do something with the result</code></div>
 <div class="line"><code class="plain">} </code><code class="keyword">catch</code><code class="plain"> (ResourceNotFoundException e) {</code></div>
-<div class="line"><code class="plain">    Log.e(</code><code class="string">&quot;BADSTUFF&quot;</code><code class="plain">, </code><code class="string">&quot;[ERROR] EXCEPTION -- RESOURCE NOT FOUND&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">}		</code></div>
+<div class="line"><code class="plain">    Log.e(</code><code class="string">&apos;BADSTUFF&apos;</code><code class="plain">, </code><code class="string">&apos;[ERROR] EXCEPTION -- RESOURCE NOT FOUND&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>    </p>
     </div>
     </div>
-    <div class="section section-2 " id="src-43289002_AndroidModuleProject-DistributeyourmodulethroughtheAppceleratorMarketplace">
-        <h2 class="heading "><span>Distribute your module through the Appcelerator Marketplace</span></h2>
-    <p>To distribute your module through the Titanium+Plus Marketplace, you&apos;ll first need to package normally. Once you have tested your module locally and are ready to distribute it, you can then submit it to the marketplace for distribution. There are several prerequisites you&apos;ll need before you can distribute:    </p>
+    <div class="section section-2 " id="src-43289002_AndroidModuleProject-DistributeyourmodulethroughtheAxwayMarketplace">
+        <h2 class="heading "><span>Distribute your module through the Axway Marketplace</span></h2>
+    <p>To distribute your module through the <a class="external-link external-link" href="https://marketplace.axway.com/home" target="_blank">Axway Marketplace</a>, you&apos;ll first need to package normally. Once you have tested your module locally and are ready to distribute it, you can then submit it to the marketplace for distribution. There are several prerequisites you&apos;ll need before you can distribute:    </p>
 <ul class=" "><li class=" ">    <p>You must have a valid Titanium developer account.    </p>
 </li><li class=" ">    <p>You must have fully completed filling our your manifest values.    </p>
 </li><li class=" ">    <p>You must have a valid license text in the LICENSE file in your project.    </p>
-</li><li class=" ">    <p>You must have a valid documentation file in the <a class="external-link external-link" href="http://index.md/" target="_blank">index.md</a> file in your documentation directory of your project.    </p>
+</li><li class=" ">    <p>You must have a valid documentation file in the index.md<a class="external-link external-link" href="http://index.md/" target="_blank"> file in your documentation directory of your project.</a>    </p>
 </li><li class=" ">    <p>You must specify some additional metadata upon upload such as the price (which can be free).    </p>
-</li><li class=" ">    <p>If you are charging for your module, you must establish a payment setup with Appcelerator so we can pay you.    </p>
-</li><li class=" ">    <p>You must accept the Titanium+Plus Marketplace terms of service agreement.    </p>
+</li><li class=" ">    <p>If you are charging for your module, you must establish a payment setup with Axway so we can pay you.    </p>
+</li><li class=" ">    <p>You must accept the Axway Marketplace terms of service agreement.    </p>
 </li></ul>    <p>Once you have upload your module and completed the necessary submission steps, your module will be queued for submission and availability in the marketplace directory.    </p>
     </div>
-    <div class="section section-2 " id="src-43289002_AndroidModuleProject-Knownissues">
-        <h2 class="heading "><span>Known issues</span></h2>
-    <div class="section section-3 " id="src-43289002_AndroidModuleProject-Conflictingjarfilesdetected">
-        <h3 class="heading "><span>Conflicting jar files detected</span></h3>
-    <p>When building an application that includes two or more modules that contains the same library, in particular, the <tt class=" ">google-play-services.jar</tt>, the JAR files may conflict indicating that each module is using a different version of the library (<a class="external-link external-link" href="https://jira.appcelerator.org/browse/MOD-1985" target="_blank">MOD-1985</a>).    </p>
+    <div class="section section-2 " id="src-43289002_AndroidModuleProject-Troubleshooting">
+        <h2 class="heading "><span>Troubleshooting</span></h2>
+    <div class="section section-3 " id="src-43289002_safe-id-QW5kcm9pZE1vZHVsZVByb2plY3QtQ29uZmxpY3RpbmdKQVJmaWxlcy9Hb29nbGVQbGF5U2VydmljZXM">
+        <h3 class="heading "><span>Conflicting JAR files / Google Play Services</span></h3>
+    <p>When building an application that includes two or more modules that contains the same library, in particular, the <tt class=" ">google-play-services.jar</tt>, the JAR files may conflict indicating that each module is using a different version of the library.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Error Log</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Error Log">
-<div class="line"><code class="plain">[ERROR] Application Installer abnormal process termination. Process exit value was </code><code class="value">1</code></div>
+<div class="line"><code class="plain">[ERROR] Application Installer abnormal process termination. Process </code><code class="functions">exit</code><code class="plain"> value was 1</code></div>
 <div class="line"><code class="plain">[ERROR] :  Conflicting jar files detected:</code></div>
 <div class="line"><code class="plain">[ERROR] :  </code></div>
 <div class="line"><code class="plain">[ERROR] :  The following modules have different </code><code class="string">&quot;google-play-services.jar&quot;</code><code class="plain"> files</code></div>
-<div class="line"><code class="plain">[ERROR] :     mymodule   (version </code><code class="value">3.0</code><code class="plain">.</code><code class="value">3</code><code class="plain">) (hash=8b95ece0c3ae132fb898ec8beef1cb2d)</code></div>
-<div class="line"><code class="plain">[ERROR] :     ti.map     (version </code><code class="value">2.2</code><code class="plain">.</code><code class="value">3</code><code class="plain">) (hash=a9b753b4c63719e24d0022e341c57b2e)</code></div>
+<div class="line"><code class="plain">[ERROR] :     mymodule   (version 3.0.3) (</code><code class="functions">hash</code><code class="plain">=8b95ece0c3ae132fb898ec8beef1cb2d)</code></div>
+<div class="line"><code class="plain">[ERROR] :     ti.map     (version 2.2.3) (</code><code class="functions">hash</code><code class="plain">=a9b753b4c63719e24d0022e341c57b2e)</code></div>
 <div class="line"><code class="plain">[ERROR] :  </code></div>
-<div class="line"><code class="plain">[ERROR] :  You can either select a version of these modules where the conflicting jar file is the same or you</code></div>
-<div class="line"><code class="plain">[ERROR] :  can </code><code class="keyword">try</code><code class="plain"> copying the jar file from one module</code><code class="string">&apos;s &quot;lib&quot; folder to the other module&apos;</code><code class="plain">s </code><code class="string">&quot;lib&quot;</code><code class="plain"> folder.&#xA0;</code></div>
+<div class="line"><code class="plain">[ERROR] :  You can either </code><code class="functions">select</code><code class="plain"> a version of these modules where the conflicting jar </code><code class="functions">file</code><code class="plain"> is the same or you</code></div>
+<div class="line"><code class="plain">[ERROR] :  can try copying the jar </code><code class="functions">file</code><code class="plain"> from one module</code><code class="string">&apos;s &quot;lib&quot; folder to the other module&apos;</code><code class="plain">s </code><code class="string">&quot;lib&quot;</code><code class="plain"> folder.&#xA0;</code></div>
 </div>
     </div>
-    <p>To resolve this issue, you can either delete one of the JAR files from one of the modules or copy the JAR file from one module&apos;s <tt class=" ">lib</tt> folder to the other&apos;s to make both versions the same.  This solution only works on a per-application basis and is not a global solution.    </p>
-    <p>If you include the Google Play services library in your module, you many need to include instructions telling the developer how to workaround this issue if they include other modules that use the Google Play services library, such as the <tt class=" ">ti.map</tt> or <tt class=" ">ti.cloudpush</tt> modules.    </p>
+    <p>Prior to Titanium SDK 7.0.0, to resolve this issue, you can either delete one of the JAR files from one of the modules or copy the JAR file from one module&apos;s <tt class=" ">lib</tt> folder to the other&apos;s to make both versions the same. This solution only works on a per-application basis and is not a global solution. In Titanium 7.0.0 and later, use the t<a class="external-link external-link" href="https://github.com/appcelerator-modules/ti.playservices" target="_blank">i.playservices</a> module to handle play services dependencies centralized. Simply add it to your timodule.xml and users will be notified if they do not include the module in their project.    </p>
+    </div>
+    <div class="section section-3 " id="src-43289002_AndroidModuleProject-AndroidNDKbuildfails">
+        <h3 class="heading "><span>Android NDK build fails</span></h3>
+    <p>If the Android NDK build fails, it can be because of various reasons:    </p>
+<ul class=" "><li class=" ">    <p>Your module has compile errors. Usually the build on the &quot;javac&quot; compile step already, but in case it does not, scroll up in the logs to see the actual error)    </p>
+</li><li class=" ">    <p>Your NDK version is outdated (Check for the latest version <a class="external-link external-link" href="https://developer.android.com/ndk/index.html" target="_blank">here</a>)    </p>
+</li><li class=" ">    <p>Your project path contains spaces, which is not recommended for projects in general but especially causes build failures like <tt class=" ">/android-ndk/build/core/build-local.mk:158: *** Android NDK: Aborting</tt>, which is an Android NDK error for spaces in projects OR invalid directories for the Android NDK. Please note that spaces in a sub-directory can also cause this.    </p>
+</li></ul>    <p>In any case, ensure to run your Titanium module build with log-level &quot;trace&quot; (e.g. <tt class=" ">appc run -p android -build-only -l trace</tt>) to see the whole build command. If you find issues that are not listed here, feel free to let us know via <a class="external-link external-link" href="http://jira.appcelerator.org" target="_blank">JIRA</a> or <a class="external-link external-link" href="http://tislack.org" target="_blank">TiSlack</a>.    </p>
     </div>
     </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=43289002"><span>Edit</span></a>

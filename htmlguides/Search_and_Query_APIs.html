@@ -22,7 +22,7 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-QueryAPIoverview">Query API overview</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-QueryAPIavailability">Query API availability</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-Queryparameters">Query parameters</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-QuerypaginationQuerypagination">Query pagination</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-Querypagination">Query pagination</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_SearchandQueryAPIs-Range-basedquerypaginationexamples">Range-based query pagination examples</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5b25jdXN0b21maWVsZCxyZXN1bHRzaW5hc2NlbmRpbmdvcmRlcg">Query on custom field, results in ascending order</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Search_and_Query_APIs.html#src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5b25jdXN0b21maWVsZCxyZXN1bHRzaW5kZXNjZW5kaW5nb3JkZXI">Query on custom field, results in descending order</a>    </p>
@@ -454,7 +454,7 @@
 <div class="line"><code class="plain">where = {</code><code class="string">&quot;age&quot;</code><code class="plain">: {</code><code class="string">&quot;$nin&quot;</code><code class="plain">:[28,38]}}</code></div>
 </div>
     </div>
-    <p>If you want to find a user whose email is &quot;john@<a class="external-link external-link" href="http://example.com">example.com</a>&quot; and type is User:    </p>
+    <p>If you want to find a user whose email is &quot;john@example.com&quot; and type is User:    </p>
     <div class="tablewrap">
         <table>
         <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
@@ -581,8 +581,8 @@
     </div>
     </div>
     </div>
-    <div class="section section-2 " id="src-49153849_SearchandQueryAPIs-QuerypaginationQuerypagination">
-        <h2 class="heading "><span id="src-49153849_SearchandQueryAPIs-Querypagination" class="confluence-anchor-link"></span><span>Query pagination</span></h2>
+    <div class="section section-2 " id="src-49153849_SearchandQueryAPIs-Querypagination">
+        <h2 class="heading "><span>Query pagination</span></h2>
     <p>Starting with Mobile Backend Services (ArrowDB) 1.1.5, we have made the following changes:    </p>
 <ul class=" "><li class=" ">    <p>Skip is limited to 0-4999; as a result, you can not skip beyond 5000 records.    </p>
 </li><li class=" ">    <p>If the query includes <tt class=" ">count=true</tt>, the query response&apos;s <tt class=" ">meta</tt> object contains a <tt class=" ">count</tt> field whose value is the total number of objects that match the query criteria. If the query matches more than 5000 objects, the <tt class=" ">count</tt> field contains the value &quot;5000+&quot;. If your query result set includes more than 5000 records, you should perform range-based queries for pagination. This is done by including a where parameter on an object field using the <tt class=" ">$gt</tt> or <tt class=" ">$lt</tt> operators, as discussed below.    </p>

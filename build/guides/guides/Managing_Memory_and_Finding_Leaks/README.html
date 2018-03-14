@@ -29,7 +29,7 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Memory_and_Finding_Leaks-section-src-29004941_ManagingMemoryandFindingLeaks-References">References</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-29004941_ManagingMemoryandFindingLeaks-Objective">
         <h2 class="heading "><span>Objective</span></h2>
-    <p>In this section, you will learn how to monitor for and solve memory leaks in your apps. The processes for monitoring memory usage varies by platform. You&apos;ll learn separately how to perform this feat on iOS and Android.    </p>
+    <p>In this section, you will learn how to monitor for and solve memory leaks in your apps. The processes for monitoring memory usage varies by platform. You&apos;ll learn separately how to perform this feat on iOS, Android and Windows.    </p>
     </div>
     <div class="section section-2 " id="src-29004941_ManagingMemoryandFindingLeaks-Contents">
         <h2 class="heading "><span>Contents</span></h2>
@@ -38,7 +38,7 @@
             <p>Let&apos;s start with a clarification: we&apos;re talking memory, <i class=" ">not</i> storage in this section. Memory, sometimes called RAM, is the volatile location in which your app and its data are retained while they&apos;re being processed by the CPU. Storage is the long-term location where app data is retained while you&apos;re not using the app or device. In a desktop computer, the distinction is a bit easier: memory is done with chips; storage is done with the hard drive, floppy disk, or CD-ROM.    </p>
     <p>In a mobile device, both memory and storage are implemented as chips. Storage uses Flash memory chips, slow, but such chips don&apos;t lose their contents when power is removed. Memory uses RAM-style chips (DRAM, etc.), which are fast but volatile (contents lost when power removed).    </p>
     </div>
-        <p>CPUs in smartphones and tablets are amazingly advanced. The JavaScript Core and V8 interpreters that Titanium uses are quite fast and well-optimized for mobile apps. Computation speed is rarely an issue with apps. Memory is typically the largest bottleneck, a factor you&apos;ll need to actively manage as your apps grow in complexity.    </p>
+        <p>CPUs in smartphones and tablets are amazingly advanced. The JavaScript Core and V8 interpreters that Titanium uses are quite fast and well-optimized for mobile apps. Computation speed is rarely an issue with apps these days. Memory is typically the largest bottleneck, a factor you&apos;ll need to actively manage as your apps grow in complexity.    </p>
     <p>In this section, we&apos;ll see what factors go into determining how much memory your app uses. We&apos;ll see how Titanium frees memory, which will require a peek under the covers to see how JavaScript manages memory. And we&apos;ll look at issues that can cause memory leaks--memory allocations that grow over time to the point where your app could crash.    </p>
     <p>Memory limits vary by operating system and device and are not clearly documented by the vendors. Based on our sleuthing, here are the limits you must be concerned with:    </p>
     <div class="confbox admonition admonition-warning aui-message problem shadowed information-macro">
@@ -46,14 +46,10 @@
             <p>The numbers for iOS are rough estimates. Apple does not publish information about their app termination threshold, managed by processes called &quot;watchdog&quot; (responsible for monitoring) and &quot;jetsam&quot; (responsible for warnings/purging). App termination is controlled entirely at the discretion of these processes and their behavior may change at any time.    </p>
     <p>The upside of this is that if you see a crash or device log referencing jetsam, this certainly indicates a memory issue.    </p>
     </div>
-    <ul class=" "><li class=" ">    <p>iPhone - limited to 10% of system memory, or about 12MB on an iPhone 3G    </p>
-</li><li class=" ">    <p>iPad - limited to between 30-50 MB; smaller is always better    </p>
-</li><li class=" ">    <p>Android, prior to version 4 (ICS) - 16 MB    </p>
-</li><li class=" ">    <p>Android 4 (Ice Cream Sandwich/ICS) - 24 MB    </p>
-</li><li class=" ">    <p>Android, pre-Froyo (1.x - 2.1): 16MB    </p>
-</li><li class=" ">    <p>Android Froyo (2.2), Gingerbread (2.3): 24MB    </p>
-</li><li class=" ">    <p>Android Honeycomb (3.x), ICS (4.0): 32MB heap, optional &quot;large heap&quot; of 128MB (<a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-Androidspecificapplicationproperties">see here</a> for how to enable this)    </p>
-</li></ul>    <p>Compared to the memory space available to the desktop, these are severely restricted amounts. Furthermore, both iOS and Android can force-reclaim memory or force-quit an app when the system needs more free memory. You&apos;ll want to limit your memory use and free allocations when you can. Let&apos;s see how JavaScript frees memory and then how you can release memory in your Titanium app.    </p>
+    <ul class=" "><li class=" ">    <p>iPhone: Limited to 10% of system memory    </p>
+</li><li class=" ">    <p>iPad: Limited to between 30-50 MB; smaller is always better    </p>
+</li><li class=" ">    <p>Android: 24-32MB heap, optional &quot;large heap&quot; of 128MB (<a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-Androidspecificapplicationproperties">see here</a> for how to enable this)    </p>
+</li></ul>    <p>Compared to the memory space available to the desktop, these are severely restricted amounts. Furthermore, iOS, Android and WIndows can force-reclaim memory or force-quit an app when the system needs more free memory. You&apos;ll want to limit your memory use and free allocations when you can. Let&apos;s see how JavaScript frees memory and then how you can release memory in your Titanium app.    </p>
     <div class="section section-3 " id="src-29004941_ManagingMemoryandFindingLeaks-JavaScriptgarbagecollection">
         <h3 class="heading "><span>JavaScript garbage collection</span></h3>
     <p>In some languages, the programmer must explicitly allocate and de-allocate memory within their programs. This manual process can take quite a bit of work and is often the source of bugs. JavaScript instead uses an automatic technique called <i class=" ">garbage collection</i>. With garbage collection, the JavaScript interpreter determines when objects are no longer needed, then destroys them to free the memory they were using.    </p>
@@ -124,21 +120,19 @@
     </div>
     <div class="section section-3 " id="src-29004941_ManagingMemoryandFindingLeaks-MonitoringallocationsoniOS">
         <h3 class="heading "><span>Monitoring allocations on iOS</span></h3>
-    <p>Apple&apos;s Instruments application is a handy tool for monitoring and discovering memory leaks. Here&apos;s how you can use it for this purpose:    </p>
-    <p>    </p>
-    <p>In more recent versions of Xcode, to run an Ti app from the XCode build, you will need to change your workspace setting:    </p>
-    <p>Xcode Preferences &gt; Locations &gt; Derived Data &gt; Advanced &gt; Select custom and &quot;Relative to workspace&quot;.    </p>
-    <p>    </p>
+    <p>To run a Titanium app from the Xcode build, you have two choices:    </p>
+<ol class=" "><li class=" ">    <p>Change your Xcode Workspace settings in <strong class=" ">Xcode &gt;  Preferences</strong> &gt; <strong class=" ">Locations</strong> &gt; <strong class=" ">Derived Data</strong> &gt; <strong class=" ">Advanced</strong> &gt; Select <strong class=" ">Custom</strong> and &quot;<strong class=" ">Relative to Workspace</strong>&quot;    </p>
+    <img src="images/download/attachments/29004941/Xcode9Workspace.png" alt="images/download/attachments/29004941/Xcode9Workspace.png" class="confluence-embedded-image" width="900">
+    </img></li><li class=" ">    <p>Copy the contents of your <tt class=" ">Resources/</tt> (same for Alloy by including the generated Alloy code) directory to the &quot;Resources&quot; group in Xcode    </p>
+</li></ol>    <p>Lets continue! Apple&apos;s Instruments application is a handy tool for monitoring and discovering memory leaks. Here&apos;s how you can use it for this purpose:    </p>
 <ol class=" "><li class=" ">    <p>Open your app in the iOS simulator.    </p>
 </li><li class=" ">    <p>Open Instruments:    </p>
-<ul class=" "><li class=" ">    <p>For Xcode 4.4 and later, start Xcode and from the menu, select <strong class=" ">Xcode</strong> -&gt; <strong class=" ">Open Developer Tools</strong> -&gt; <strong class=" ">Instruments</strong>.    </p>
-</li><li class=" ">    <p>For Xcode 4.3 and earlier, open /Developer/Applications/Instruments.    </p>
-</li></ul></li><li class=" ">    <p>In the Choose a Template window, click <strong class=" ">Allocations</strong> and click <strong class=" ">Choose</strong>.    </p>
-</li><li class=" ">    <p>Attach your application to Instruments.    </p>
-<ol class=" "><li class=" ">    <p>For Xcode 6.x and later, click <strong class=" ">Choose Target</strong>, click <strong class=" ">More...</strong> under <strong class=" ">System</strong>, then scroll down and click your app&apos;s name.    </p>
-</li><li class=" ">    <p>For Xcode 5.x and earlier, click <strong class=" ">Choose Target</strong>, <strong class=" ">Attach to Process</strong>, then scroll down under <strong class=" ">System</strong> and click your app&apos;s name.    </p>
-</li></ol></li><li class=" ">    <p>Click <strong class=" ">Record</strong>. Wait a moment till data begins recording.    </p>
-</li><li class=" ">    <p>In the Instrument Detail filter box, enter a filter string, such as TiUI to show only relevant allocation information. Note: <strong class=" ">ONLY For Xcode 6.x, target simulator</strong>, the objects<br>are squashed in <strong class=" ">All Heap Allocations </strong>so you have to expand this by clicking on the <i class=" ">right detail arrow</i> button, before you can see the relevant allocation information. This is not<br>necessary if you are <strong class=" ">targeting device</strong>. <strong class=" ">Xcode 7.x and greater</strong> has fixed this as well.    </br></br></p>
+<ul class=" "><li class=" ">    <p>Start Xcode and from the menu, select <strong class=" ">Xcode</strong> -&gt; <strong class=" ">Open Developer Tools</strong> -&gt; <strong class=" ">Instruments</strong>.    </p>
+</li><li class=" ">    <p>In the Choose a Template window, click <strong class=" ">Allocations</strong> and click <strong class=" ">Choose</strong>.    </p>
+</li></ul></li><li class=" ">    <p>Attach your application to Instruments.    </p>
+<ol class=" "><li class=" ">    <p>Click <strong class=" ">Choose Target</strong>, click <strong class=" ">More...</strong> under <strong class=" ">System</strong>, then scroll down and click your app&apos;s name.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">Record</strong>. Wait a moment till data begins recording.    </p>
+</li></ol></li><li class=" ">    <p>In the Instrument Detail filter box, enter a filter string, such as &quot;<tt class=" ">TiUI</tt>&quot; to show only relevant allocation information.    </p>
 </li><li class=" ">    <p>Click and use your app while watching these values in Instruments:    </p>
 </li></ol>    <div class="tablewrap">
         <table class="confluenceTable">
@@ -224,17 +218,17 @@
     <p>If you make a change to your app, the most reliable way to gather new statistics in Instruments is to close it and start over.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <div class="title">Tracking memory more accurately</div>
-            <p>On iOS, the runtime and other systems may frequently allocate (or deallocate) objects which can&apos;t be managed directly through your javascript code. In general, when checking your app for memory leaks, you should be filtering for objects with the &quot;Ti&quot; prefix.    </p>
-    <p>Also note that by attaching the profiler after the app has started, you do not get any information on already-created objects until they are touched by the memory management system. To get more accurate information, you may need to open the xcode project generated in your project&apos;s <tt class=" ">build/iphone</tt> folder, and choose <strong class=" ">Product -&gt; Profile</strong>, then configure the resulting Instruments launch as described here.    </p>
+            <p>On iOS, the runtime and other systems may frequently allocate (or deallocate) objects which can&apos;t be managed directly through your javascript code. In general, when checking your app for memory leaks, you should be filtering for objects with the &quot;<tt class=" ">Ti</tt>&quot; prefix.    </p>
+    <p>Also note that by attaching the profiler after the app has started, you do not get any information on already-created objects until they are touched by the memory management system. To get more accurate information, you may need to open the Xcode project generated in your project&apos;s <tt class=" ">build/iphone</tt> folder, and choose <strong class=" ">Product -&gt; Profile</strong>, then configure the resulting Instruments launch as described here.    </p>
     </div>
-        <p>    <img src="images/download/attachments/29004941/instruments.png" alt="images/download/attachments/29004941/instruments.png" class="confluence-embedded-image" width="600">
+        <p>    <img src="images/download/attachments/29004941/instruments.png" alt="images/download/attachments/29004941/instruments.png" class="confluence-embedded-image" width="800">
         </img></p>
     </div>
     <div class="section section-3 " id="src-29004941_ManagingMemoryandFindingLeaks-MonitoringallocationsonAndroid">
         <h3 class="heading "><span>Monitoring allocations on Android</span></h3>
-    <p>Android&apos;s DDMS tool can show you memory leaks &#x2013; both memory allocations that are not freed and objects that aren&apos;t garbage collected. Following the procedure shown here, you can watch as memory use and object allocations grow. You&apos;ll need to pair that information, with knowledge of your app to determine where within your app the cause might be.    </p>
+    <p>Android&apos;s <a class="external-link external-link" href="https://developer.android.com/studio/profile/monitor.html" target="_blank">DDMS Tool</a> can show you memory leaks &#x2013; both memory allocations that are not freed and objects that aren&apos;t garbage collected. Following the procedure shown here, you can watch as memory use and object allocations grow. You&apos;ll need to pair that information, with knowledge of your app to determine where within your app the cause might be.    </p>
 <ol class=" "><li class=" ">    <p>Build your app for the Android emulator at least once.    </p>
-</li><li class=" ">    <p>In your text editor, open &lt;Project&gt;/build/android/AndroidManifest.xml.    </p>
+</li><li class=" ">    <p>In your text editor, open <tt class=" ">&lt;project&gt;/build/android/AndroidManifest.xml</tt>.    </p>
 </li><li class=" ">    <p>Copy the <tt class=" ">&lt;application&gt;</tt> node, a sample of which is shown here (your app name would vary, of course):    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -243,7 +237,7 @@
 <div class="line"><code class="plain">  android:debuggable=</code><code class="string">&quot;false&quot;</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-</li><li class=" ">    <p>Paste that into your app&apos;s TiApp.xml file, modifying the <tt class=" ">&lt;android&gt;</tt> node as shown:    </p>
+</li><li class=" ">    <p>Paste that into your app&apos;s tiapp.xml file, modifying the <tt class=" ">&lt;android&gt;</tt> node as shown:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;android xmlns:android=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">&gt;</code></div>
@@ -271,7 +265,7 @@
         <h3 class="heading "><span>Monitoring allocations on Windows</span></h3>
     <p>Microsoft Visual Studio has &quot;Diagnostic Tools&quot; for monitoring memory usage.    </p>
 <ol class=" "><li class=" ">    <p>Open Visual Studio    </p>
-</li><li class=" ">    <p>Select <strong class=" ">Debug -&gt; Performance Profiler...</strong> from Visual Studio menu    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Debug </strong>&gt;<strong class=" "> Performance Profiler...</strong> from Visual Studio menu    </p>
 </li><li class=" ">    <p>Select <strong class=" ">Choose Target</strong> drop down list and choose target to profile. For instance choose <strong class=" ">Installed App...</strong> for monitoring installed Windows Store app. This tool also supports analyzing target against simulators and remote machine. Please refer to <a class="external-link external-link" href="http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&amp;l=EN-US&amp;k=k(vs.debug.remote.overview)&amp;rd=true" target="_blank">Remote Debugging</a> for more information.    </p>
     <img src="images/download/attachments/29004941/win1.png" alt="images/download/attachments/29004941/win1.png" class="confluence-embedded-image" width="300">
     </img></li><li class=" ">    <p>Choose <strong class=" ">Memory Usage</strong> from <strong class=" ">Available Tools</strong> section, to investigate application memory to find issues such as memory leaks.    </p>
@@ -288,19 +282,19 @@
     <div class="section section-4 " id="src-29004941_ManagingMemoryandFindingLeaks-Goal">
         <h4 class="heading "><span>Goal</span></h4>
     <p>You&apos;ll examine an app that has a memory leak deliberately included. You&apos;ll apply various fixed and check your work until you have eliminated the leak.    </p>
-    <p>(This lab is written to work on iOS / OS X. See the notes at the end of the lab for Android information.)    </p>
+    <p>(This lab is written to work on iOS / macOS. See the notes at the end of the lab for Android and Windows information.)    </p>
     </div>
     <div class="section section-4 " id="src-29004941_ManagingMemoryandFindingLeaks-Steps">
         <h4 class="heading "><span>Steps</span></h4>
-<ol class=" "><li class=" ">    <p>Download the AppLeak project from <a class="external-link external-link" href="http://assets.appcelerator.com.s3.amazonaws.com/app_u/code/AppLeak.zip" target="_blank">http://assets.appcelerator.com.s3.amazonaws.com/app_u/code/AppLeak.zip</a>. Extract it and then import the project into Studio. Confirm that the tiapp.xml file has appropriate values for your environment then close that file.    </p>
-</li><li class=" ">    <p>Open test1.js in Studio. This file contains the leak, which you will fix.    </p>
+<ol class=" "><li class=" ">    <p>Download or clone the AppLeak project from <a class="external-link external-link" href="https://github.com/appcelerator-developer-relations/appc-sample-app-leak" target="_blank">Github</a>. Extract it and then import the project into Studio or your CLI workspace. Confirm that the tiapp.xml file has appropriate values for your environment then close that file.    </p>
+</li><li class=" ">    <p>Open test1.js in Studio or your Editor. This file contains the leak, which you will fix.    </p>
 </li><li class=" ">    <p>Build the project for the iPhone or iPad simulator.    </p>
 </li><li class=" ">    <p>Open Instruments and attach it to your app&apos;s process:    </p>
 <ol class=" "><li class=" ">    <p>In the Choose a Template window, click Allocations and then click Choose.    </p>
 </li><li class=" ">    <p>Click Choose Target, Attach to Process, then under System, click AppLeak.    </p>
 </li><li class=" ">    <p>Click Record. Wait a moment till data begins recording.    </p>
-</li><li class=" ">    <p>In the Instrument Detail filter box, enter <strong class=" ">TiUITable</strong>    </p>
-</li></ol></li><li class=" ">    <p>In the simulator, click the Test 1 button. In Instruments, the # Living column for TiUITableViewRowProxy should show 5 objects are in memory; these objects correspond to the rows in the table. Close the modal window, then click Test 1 again. This time, # Living should increase to 10. The original 5 rows were not released and 5 new rows are allocated in memory. While the actual usage is small, if you were to repeatedly show this window enough times the app would exhaust its available memory and crash.    </p>
+</li><li class=" ">    <p>In the Instrument Detail filter box, enter <tt class=" ">TiUITable</tt>    </p>
+</li></ol></li><li class=" ">    <p>In the simulator, click the Test 1 button. In Instruments, the # Living column for <tt class=" ">TiUITableViewRowProxy</tt> should show 5 objects are in memory; these objects correspond to the rows in the table. Close the modal window, then click Test 1 again. This time, # Living should increase to 10. The original 5 rows were not released and 5 new rows are allocated in memory. While the actual usage is small, if you were to repeatedly show this window enough times the app would exhaust its available memory and crash.    </p>
 </li><li class=" ">    <p>Close the simulator. That will stop the data recording in Instruments.    </p>
 </li><li class=" ">    <p>In Studio, in test1.js, examine the code and speculate on the cause of the leak.    </p>
 </li><li class=" ">    <p>Add this code after the existing app-level event listener:    </p>

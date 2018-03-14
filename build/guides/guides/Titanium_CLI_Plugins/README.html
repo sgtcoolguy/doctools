@@ -577,8 +577,8 @@
         <h2 class="heading "><span>Function and Event Hooks</span></h2>
     <p>CLI hooks allow you to execute code when the CLI commands are invoked.  Hooks are evaluated for every command regardless if they are used or not.  The build, clean and create commands have additional hooks compared to the other CLI commands.  Hooks are available as either functions or events.    </p>
     <p>Functions are designed to modify the build process by modifying the build arguments and results.  Functions have a pre and post callbacks, which are executed before and after a execution step.  By default, the function is a post callback if you only specify one.  The callbacks are passed in a data object and a callback.  Both parameters are optional.  After you are done executing your function hook and if you passed in the callback, invoke the callback function and pass it an error and data object.  If you do not invoke the callback, the CLI process stops and cannot continue to the next step.    </p>
-    <p>Events are not designed to modify the build process and can only stop the build process using the <tt class=" ">process.exit()</tt> method.  Event hooks only execute one callback.  The callback is passed a builder object and a callback.  After you are done executing your event hook, invoke the callback function without any parameters.    </p>
-    <p>To add a hook to the CLI, create a JavaScript file in your plugin&apos;s <tt class=" ">hooks</tt> folder.  To globally add the hook to always be executed, add the path of the file to the <tt class=" ">paths.commands</tt> CLI configuration setting.  To add it locally to a project, add the plugin containing the hook to your project and add a plugin entry to the project&apos;s tiapp.xml file.   Note that local hooks cannot call every hook event.  The earliest hook a local plugin can call is <tt class=" ">cli:post-validate</tt>.    </p>
+    <p>E vents are not designed to modify the build process and can only stop the build process using the <tt class=" ">process.exit()</tt> method.  Event hooks only execute one callback.  The callback is passed a builder object and a callback.  After you are done executing your event hook, invoke the callback function without any parameters.    </p>
+    <p>To add a hook to the CLI, create a JavaScript file in your plugin&apos;s <tt class=" ">hooks</tt> folder.  To globally add the hook to always be executed, add the path of the file to the  <tt class=" ">paths.commands</tt>  CLI configuration setting.  To add it locally to a project, add the plugin containing the hook to your project and add a plugin entry to the project&apos;s tiapp.xml file.   Note that local hooks cannot call every hook event.  The earliest hook a local plugin can call is <tt class=" ">cli:post-validate</tt>.    </p>
     <p>In the hook file, call the <tt class=" ">init</tt> method to setup your hook events and functions.  Use the CLI object&apos;s <tt class=" ">on</tt> method to bind hook events and functions to callbacks.  This is explained in further detail in the next section.    </p>
     <p>For multiple executed hooks, set the priority to change when the hook is executed.  By default, all hooks have a priority value of 1000.  A hook with a lower priority value is executed before one with a higher priority.    </p>
     <div class="section section-3 " id="src-37549163_TitaniumCLIPlugins-ListeningtoHooks">
@@ -617,7 +617,7 @@
     <p>When invoking a CLI command, the hooks are fired in the order below if a global plugin is loaded. For local plugins, hooks can only be monitored starting with the <tt class=" ">cli:post-validate</tt> event hook.    </p>
     <p>Certain commands, such as the build, clean or create command, fire additional hook events.  For builds, the events vary by platform, and whether you are building a production application or not.    </p>
 <ol class=" "><li class=" ">    <p><strong class=" ">Invoke a CLI command </strong>    </p>
-</li><li class=" ">    <p>cli:go (First hook that can be monitored by global plugins)<a class="external-link external-link" href="http://cligopre" target="_blank"/>    </p>
+</li><li class=" ">    <p>cli:go (First hook that can be monitored by global plugins)    </p>
 </li><li class=" ">    <p>[command.config] if invoking the build, clean or create command    </p>
 </li><li class=" ">    <p>cli:command-loaded    </p>
 </li><li class=" ">    <p>cli:pre-validate    </p>
@@ -627,7 +627,7 @@
 </li><li class=" ">    <p>[help:header] if the help menu is invoked    </p>
 </li><li class=" ">    <p>cli:post-execute or other command hooks if invoking the build, clean or create command (see description below)    </p>
 </li></ol>    <p><strong class=" ">Android build hooks</strong>    </p>
-    <p>The following hooks are fired after the cli:pre-execute hook when building a project for the Android platform:    </p>
+    <p>The following hooks are fired after the  cli:pre-execute   hook when building a project for the Android platform:    </p>
 <ol class=" "><li class=" ">    <p>build.pre.construct    </p>
 </li><li class=" ">    <p>build.pre.compile    </p>
 </li><li class=" ">    <p>build.android.startEmulator    </p>
@@ -1185,7 +1185,7 @@ build.ios.writeExtensionEntitlements    </span>
         <p>Array    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Arguments passed to the function specified by the <tt class=" ">fn</tt> property.    </p>
+        <p>Arguments passed to the function specified by the  <tt class=" ">fn</tt>  property.    </p>
             </td>
         </tr>
     <tr>
@@ -1450,7 +1450,7 @@ build.ios.writeExtensionEntitlements    </span>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>    <span style="color: #484848;">
 This is a standard JavaScript Error object. Refer to the     </span>
-<a class="external-link external-link" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.11" target="_blank">ECMAScript Language Specification Section 15.11</a>    <span style="color: #484848;">
+ <a class="external-link external-link" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.11" target="_blank">ECMAScript Language Specification Section 15.11</a>     <span style="color: #484848;">
  for more information.    </span>
     </p>
             </td>
@@ -1458,7 +1458,7 @@ This is a standard JavaScript Error object. Refer to the     </span>
 </tbody>        </table>
             </div>
     <p>    <span style="color: #484848;">
-<br>    </br></span>
+ <br>     </br></span>
     </p>
     </div>
     <div class="section section-5 " id="src-37549163_TitaniumCLIPlugins-getLevels">
@@ -1725,7 +1725,7 @@ This is a standard JavaScript Error object. Refer to the     </span>
 <div class="line"><code class="plain">parallel (Object context, Array&lt;Functions&gt; tasks, Function callback): </code><code class="keyword">void</code></div>
 </div>
     </div>
-    <p><strong class=" ">Parameters</strong>:    </p>
+    <p><strong class=" ">Parameters</strong> :    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -1784,7 +1784,7 @@ This is a standard JavaScript Error object. Refer to the     </span>
 <div class="line"><code class="plain">series (Object context, Array&lt;Functions&gt; tasks, Function callback): </code><code class="keyword">void</code></div>
 </div>
     </div>
-    <p><strong class=" ">Parameters</strong>:    </p>
+    <p><strong class=" ">Parameters</strong> :    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -1868,7 +1868,7 @@ This is a standard JavaScript Error object. Refer to the     </span>
 </div>
     </div>
     <p>    <span style="color: #000000;">
-<br>    </br></span>
+ <br>     </br></span>
     </p>
     <p>    <span style="color: #000000;">
 Example    </span>
@@ -1898,7 +1898,7 @@ Example    </span>
 <div class="line"><code class="plain">detect ([Object cli], Function callback): </code><code class="keyword">void</code></div>
 </div>
     </div>
-    <p><strong class=" ">Parameters</strong>:    </p>
+    <p><strong class=" ">Parameters</strong> :    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -2341,7 +2341,7 @@ Example    </span>
 <div class="line"><code class="plain">resize (String src, Array&lt;Object&gt; dest, [Function callback], [Object logger]): </code><code class="keyword">void</code></div>
 </div>
     </div>
-    <p><strong class=" ">Parameters:</strong>    </p>
+    <p><strong class=" ">Parameters:</strong>     </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -2462,7 +2462,7 @@ Example    </span>
 <div class="line"><code class="plain">}, logger);</code></div>
 </div>
     </div>
-    <p>    </p>
+    <p>     </p>
     </div>
     </div>
     <div class="section section-4 " id="src-37549163_TitaniumCLIPlugins-jdk">
@@ -2554,7 +2554,7 @@ Detects if Java and the JDK are installed.    </span>
         </tr>
 </tbody>        </table>
             </div>
-    <p><strong class=" ">Example:</strong>     </p>
+    <p><strong class=" ">Example:</strong>       </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">nodeappc.jdk.detect(config, function(result){</code></div>
@@ -2606,7 +2606,7 @@ Detects all network interfaces.    </span>
         </tr>
 </tbody>        </table>
             </div>
-    <p><strong class=" ">Example:</strong>     </p>
+    <p><strong class=" ">Example:</strong>       </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">nodeappc.net.interfaces(function(result){</code></div>
@@ -2962,7 +2962,7 @@ Converts an object into an escaped URL-safe string.    </span>
 <div class="line"><code class="plain">capitalize (String str): String</code></div>
 </div>
     </div>
-    <p><strong class=" ">Parameters:</strong>    </p>
+    <p><strong class=" ">Parameters:</strong>     </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -3002,7 +3002,7 @@ Converts an object into an escaped URL-safe string.    </span>
 <div class="line"><code class="plain">levenshtein (String str1, String str2): Number</code></div>
 </div>
     </div>
-    <p><strong class=" ">Parameters:</strong>    </p>
+    <p><strong class=" ">Parameters:</strong>     </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -3102,7 +3102,7 @@ Converts an object into an escaped URL-safe string.    </span>
         </tr>
 </tbody>        </table>
             </div>
-    <p><strong class=" ">Returns:</strong>    </p>
+    <p><strong class=" ">Returns:</strong>     </p>
     <p>Padded string.    </p>
     <p>    </p>
     </div>
@@ -3164,7 +3164,7 @@ Converts an object into an escaped URL-safe string.    </span>
         </tr>
 </tbody>        </table>
             </div>
-    <p><strong class=" ">Returns:</strong>    </p>
+    <p><strong class=" ">Returns:</strong>     </p>
     <p>Formatted string.    </p>
     <p>    </p>
     </div>
@@ -3177,7 +3177,7 @@ Converts an object into an escaped URL-safe string.    </span>
 <div class="line"><code class="plain">lpad (String str, Number len, [String pad]): String</code></div>
 </div>
     </div>
-    <p><strong class=" ">Parameters:</strong>    </p>
+    <p><strong class=" ">Parameters:</strong>     </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -3228,7 +3228,7 @@ Converts an object into an escaped URL-safe string.    </span>
             </div>
     <p><strong class=" ">Returns:</strong>    </p>
     <p>Padded string.    </p>
-    <p>    </p>
+    <p>     </p>
     </div>
     <div class="section section-5 " id="src-37549163_TitaniumCLIPlugins-suggestmethod">
         <h5 class="heading "><span>suggest method</span></h5>
@@ -3310,7 +3310,7 @@ Converts an object into an escaped URL-safe string.    </span>
 <div class="line"><code class="plain">wrap (String str, [Number width]): String</code></div>
 </div>
     </div>
-    <p><strong class=" ">Parameters:</strong>    </p>
+    <p><strong class=" ">Parameters:</strong>     </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -3446,7 +3446,7 @@ Converts an object into an escaped URL-safe string.    </span>
         </tr>
 </tbody>        </table>
             </div>
-    <p><strong class=" ">Example:</strong>    </p>
+    <p><strong class=" ">Example:</strong>     </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var commands = [</code><code class="string">&quot;/usr/local/bin/grep&quot;</code><code class="plain">, </code><code class="string">&quot;/usr/bin/grep&quot;</code><code class="plain">];   </code></div>
@@ -3577,7 +3577,7 @@ Converts an object into an escaped URL-safe string.    </span>
         </tr>
 </tbody>        </table>
             </div>
-    <p><strong class=" ">Example:</strong>    </p>
+    <p><strong class=" ">Example:</strong>     </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// Finds all the PNG images in the project</code></div>
@@ -3592,7 +3592,7 @@ Converts an object into an escaped URL-safe string.    </span>
 <div class="line"><code class="plain">});</code></div>
 </div>
     </div>
-    <p>    </p>
+    <p>     </p>
     </div>
     </div>
     <div class="section section-4 " id="src-37549163_TitaniumCLIPlugins-time">
@@ -3706,7 +3706,7 @@ Converts an object into an escaped URL-safe string.    </span>
             </div>
     <p><strong class=" ">Returns</strong>:    </p>
     <p>Formatted string describing the difference between the date.    </p>
-    <p><strong class=" ">Example:</strong>    </p>
+    <p><strong class=" ">Example:</strong>     </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var date1 = </code><code class="keyword">new</code><code class="plain"> Date(</code><code class="value">1980</code><code class="plain">, </code><code class="value">1</code><code class="plain">, </code><code class="value">21</code><code class="plain">, </code><code class="value">20</code><code class="plain">, </code><code class="value">41</code><code class="plain">, </code><code class="value">0</code><code class="plain">, </code><code class="value">0</code><code class="plain">),</code></div>
@@ -3728,7 +3728,7 @@ Converts an object into an escaped URL-safe string.    </span>
 <div class="line"><code class="plain">timestamp (</code><code class="keyword">void</code><code class="plain">): String</code></div>
 </div>
     </div>
-    <p><strong class=" ">Returns</strong>:    </p>
+    <p><strong class=" ">Returns</strong> :    </p>
     <p>Timestamp.    </p>
     <p><strong class=" ">Example:</strong>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -3801,7 +3801,7 @@ Converts an object into an escaped URL-safe string.    </span>
         </tr>
 </tbody>        </table>
             </div>
-    <p>    </p>
+    <p>     </p>
     </div>
     <div class="section section-5 " id="src-37549163_TitaniumCLIPlugins-findmethod">
         <h5 class="heading "><span>find method</span></h5>
@@ -3812,7 +3812,7 @@ Converts an object into an escaped URL-safe string.    </span>
 <div class="line"><code class="plain">find (Array&lt;Object&gt; modules, Array&lt;String&gt;/String platform, Array&lt;String&gt;/String deployType, String sdkVersion, Array&lt;String&gt; searchPaths, Object logger, Function callback): </code><code class="keyword">void</code></div>
 </div>
     </div>
-    <p><strong class=" ">Parameters</strong>:     </p>
+    <p><strong class=" ">Parameters</strong>:      </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -4062,7 +4062,7 @@ Converts an object into an escaped URL-safe string.    </span>
 <div class="line"><code class="plain">find (Array&lt;Object&gt; plugins, Array&lt;String&gt; searchPaths, Object logger, Function callback): </code><code class="keyword">void</code></div>
 </div>
     </div>
-    <p><strong class=" ">Parameters</strong>:     </p>
+    <p><strong class=" ">Parameters</strong>:      </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -4137,7 +4137,7 @@ Converts an object into an escaped URL-safe string.    </span>
     </div>
     <div class="section section-5 " id="src-37549163_TitaniumCLIPlugins-scopedDetectmethod.1">
         <h5 class="heading "><span>scopedDetect method</span></h5>
-    <p>Only scans the specified paths for Titanium plugins.    </p>
+    <p>Only scans the specified paths for Titanium plugins.     </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Syntax</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Syntax">

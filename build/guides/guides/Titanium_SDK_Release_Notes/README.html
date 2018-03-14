@@ -18,8 +18,8 @@
 
         <div id="src-43316487" class="content">
                         <h1>Titanium SDK Release Notes</h1>
-    <div class="section section-2 " id="src-43316487_TitaniumSDKReleaseNotes-TitaniumSDK7.1.0.RC-1March2018">
-        <h2 class="heading "><span>Titanium SDK 7.1.0.RC - 1 March 2018</span></h2>
+    <div class="section section-2 " id="src-43316487_TitaniumSDKReleaseNotes-TitaniumSDK7.1.0.GA-14March2018">
+        <h2 class="heading "><span>Titanium SDK 7.1.0.GA - 14 March 2018</span></h2>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_Release_Notes-section-src-43316487_TitaniumSDKReleaseNotes-Aboutthisrelease">About this release</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_Release_Notes-section-src-43316487_TitaniumSDKReleaseNotes-NoticeoffeatureandbehaviorChanges">Notice of feature and behavior Changes</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_Release_Notes-section-src-43316487_TitaniumSDKReleaseNotes-Androidplatform">Android platform</a>    </p>
@@ -41,7 +41,7 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_Release_Notes-section-src-43316487_TitaniumSDKReleaseNotes-NewAPIs">New APIs</a>    </p>
 </li></ul></li></ul>    <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-Aboutthisrelease">
         <h3 class="heading "><span>About this release</span></h3>
-    <p>Titanium SDK 7.1.0.RC is a minor release of the SDK, addressing high-priority issues from previous releases.    </p>
+    <p>Titanium SDK 7.1.0.GA is a minor release of the SDK, addressing high-priority issues from previous releases.    </p>
     <p>    <span id="src-43316487_issues"><a name="src-43316487_issues"/></span>
     </p>
     </div>
@@ -49,9 +49,7 @@
         <h3 class="heading "><span>Notice of feature and behavior Changes</span></h3>
     <div class="section section-4 " id="src-43316487_TitaniumSDKReleaseNotes-Androidplatform">
         <h4 class="heading "><span>Android platform</span></h4>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25606" target="_blank">TIMOB-25606</a> - Android: Apply clang-format formatting to all Java sources    </p>
-<ul class=" "><li class=" ">    <p>Bulk re-formatting of Android sources via clang-format    </p>
-</li></ul></li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25607" target="_blank">TIMOB-25607</a> - Remove deprecated Ti.map API    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25607" target="_blank">TIMOB-25607</a> - Remove deprecated Ti.map API    </p>
 <ul class=" "><li class=" ">    <p>Deprecated Ti.map    </p>
 </li></ul></li></ul>    </div>
     </div>
@@ -78,7 +76,7 @@
     <div class="section section-4 " id="src-43316487_TitaniumSDKReleaseNotes-Windowsplatform">
         <h4 class="heading "><span>Windows platform</span></h4>
 <ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25648" target="_blank">TIMOB-25648</a> - Windows: Implement Ti.UI.Label.minimumFontSize    </p>
-<ul class=" "><li class=" ">    <p>Added parity for Windows platform of Ti.UI.Label.minimumFontSize    </p>
+<ul class=" "><li class=" ">    <p>Added parity for Windows platform of Ti.UI.Label.minimumFontSize and maxLines    </p>
 </li></ul></li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25743" target="_blank">TIMOB-25743</a> - Windows: Auto-increment version numbering    </p>
 <ul class=" "><li class=" ">    <p>Implemented automatic version increment. If you omit the build number, it will be generated behind scenes (available only on <tt class=" ">development</tt> and <tt class=" ">test</tt> build).    </p>
 </li><li class=" ">    <p>For instance when you have 1.0 version in tiapp.xml, we generate the 4th segment 1.0.0.x version number and increment this build number on each build. (numbering spec: Major.Minor.Build.Revision&gt;). For example: <tt class=" ">&lt;version&gt;1.0&lt;version&gt;</tt>    </p>
@@ -94,8 +92,17 @@
 </li></ul></li></ul>    </div>
     <div class="section section-4 " id="src-43316487_TitaniumSDKReleaseNotes-Multipleplatforms">
         <h4 class="heading "><span>Multiple platforms</span></h4>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-24610" target="_blank">TIMOB-24610</a> - Support transpiling user JS code to ES5, or minimum target OS/JS engine support    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-24610" target="_blank">TIMOB-24610</a> - Support ES6 by transpiling to ES5 via new tiapp.xml &quot;transpile&quot; property    </p>
 <ul class=" "><li class=" ">    <p>Added transpiling user JavaScript code to ES5 or minimum target OS/JS engine support    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;tiapp&gt;</code></div>
+<div class="line"><code class="plain">  &lt;transpile&gt;</code><code class="keyword">true</code><code class="plain">&lt;/transpile&gt;</code></div>
+<div class="line"><code class="plain">&lt;/tiapp&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Adding this property and having it set to true will enable transpilation during the build process using <tt class=" ">babel-preset-env</tt> to target the underlying JS engine version. For Android we target the version of v8 we build with. For iOS we target the version of iOS&apos;s included JavaScriptCore engine for the minimum iOS version the SDK targets.    </p>
+    <p>When using the flag be aware of the following this causes code to run in <a class="external-link external-link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode" target="_blank">strict mode</a>, which has the potential to cause errors to be thrown. Review <a class="external-link external-link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode/Transitioning_to_strict_mode" target="_blank">Transitioning to strict mode on MDN</a> to become familiar with some common issues.    </p>
 </li></ul></li></ul>    </div>
     </div>
     <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-Communitycredits">
@@ -128,15 +135,18 @@
 </li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25769" target="_blank">TIMOB-25769</a> - Android: Allow video-upload in Ti.UI.WebView    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25771" target="_blank">TIMOB-25771</a> - Android: Apps fail to build as of 7.0.2 if system requires proxy to access Internet    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25773" target="_blank">TIMOB-25773</a> - Android: App won&apos;t compile if the folder contains space and dash    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25825" target="_blank">TIMOB-25825</a> - Android: JNIUtil error message on app launch    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25843" target="_blank">TIMOB-25843</a> - Android: 7.1.0.RC - Setting data in Ti.UI.TableView does not work as before    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25849" target="_blank">TIMOB-25849</a> - Android: openPhotoGallery - width and height = 0 in 7.1.0 RC    </p>
 </li></ul>    </div>
     <div class="section section-4 " id="src-43316487_TitaniumSDKReleaseNotes-iOSplatforms">
         <h4 class="heading "><span>iOS platforms</span></h4>
 <ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-20604" target="_blank">TIMOB-20604</a> - iOS: ti.geofence not tracking location on    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-23183" target="_blank">TIMOB-23183</a> - iOS Non-public API usage: The app references non-public symbols in &lt;APPLICATION NAME&gt; : _ptrace    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25201" target="_blank">TIMOB-25201</a> - iOS: tintColor doesn&apos;t work on imageView if dimensions (height, width) are provided    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25739" target="_blank">TIMOB-25739</a> - iOS 11: Location permissions do not indicate missing &quot;WhenInUse&quot; privacy-key    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25762" target="_blank">TIMOB-25762</a> - iOS 11.3 beta: Loading HTML in Webview errors when accessing EventListener    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25765" target="_blank">TIMOB-25765</a> - iOS 11: Scrollview layout error when set window with includeOpaqueBars and extendEdges    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25829" target="_blank">TIMOB-25829</a> - Hyperloop: iOS - CocoaPods 1.4.0 breaks metabase generation    </p>
 </li></ul>    </div>
     <div class="section section-4 " id="src-43316487_TitaniumSDKReleaseNotes-Windowsplatforms">
         <h4 class="heading "><span>Windows platforms</span></h4>
@@ -145,6 +155,7 @@
 </li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25581" target="_blank">TIMOB-25581</a> - Windows: borderWidth should be changed 0 to 1 when borderColor is set    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25595" target="_blank">TIMOB-25595</a> - Windows: selecting search result with searchbar and in tableview shows empty row    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25598" target="_blank">TIMOB-25598</a> - Windows: Not being able to debug issues due to exceptions shown    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25692" target="_blank">TIMOB-25692</a> - Windows: Pickers populated at run time do not fire change events    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25696" target="_blank">TIMOB-25696</a> - Windows: Network.TCP causes app crash    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25794" target="_blank">TIMOB-25794</a> - Windows: Adding a hyperloop created UI element to a View crashes the app    </p>
 </li></ul>    </div>
@@ -168,7 +179,7 @@
     <div class="section section-4 " id="src-43316487_TitaniumSDKReleaseNotes-Windowsplatform.1">
         <h4 class="heading "><span>Windows platform</span></h4>
 <ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25616" target="_blank">TIMOB-25616</a> - Windows: Add option to suppress/force uninstallation on deploy    </p>
-<ul class=" "><li class=" ">    <p>Added feature to prevent uninstalling existing apps in order to complete installation when the same app version is already installed unless user explicitly specifics the <tt class=" ">--forceUnInstall </tt> option    </p>
+<ul class=" "><li class=" ">    <p>Added feature to prevent uninstalling existing apps in order to complete installation when the same app version is already installed unless user explicitly specifics the <tt class=" ">--forceUnInstall</tt> option    </p>
 </li><li class=" ">    <p>Example: <tt class=" ">appc ti build -p windows --wp-sdk 10.0 --target wp-device --skipInstallDependencies -l trace --forceUnInstall</tt>    </p>
 </li></ul></li></ul>    </div>
     </div>
@@ -423,11 +434,13 @@
         </tr>
 </tbody>        </table>
             </div>
+    <p>    </p>
     </div>
     </div>
     <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-RecentReleases">
         <h3 class="heading "><span>Recent Releases</span></h3>
-<ul class="childpages-macro "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_7.1.0.RC_Release_Note">Titanium SDK 7.1.0.RC Release Note</a>    </p>
+<ul class="childpages-macro "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_7.1.0.GA_Release_Note">Titanium SDK 7.1.0.GA Release Note</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_7.1.0.RC_Release_Note">Titanium SDK 7.1.0.RC Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_7.0.2.GA_Release_Note">Titanium SDK 7.0.2.GA Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_7.0.2.RC_Release_Note">Titanium SDK 7.0.2.RC Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_7.0.1.GA_Release_Note">Titanium SDK 7.0.1.GA Release Note</a>    </p>
@@ -441,7 +454,6 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_6.2.1.GA_Release_Note">Titanium SDK 6.2.1.GA Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_6.2.0.GA_Release_Note">Titanium SDK 6.2.0.GA Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_6.2.0.RC_Release_Note">Titanium SDK 6.2.0.RC Release Note</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_6.1.2.GA_Release_Note">Titanium SDK 6.1.2.GA Release Note</a>    </p>
 </li></ul>    <p>    </p>
     </div>
     </div>

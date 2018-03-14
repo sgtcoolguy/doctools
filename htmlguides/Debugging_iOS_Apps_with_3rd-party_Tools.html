@@ -18,7 +18,8 @@
 
         <div id="src-49160781" class="content">
                         <h1>Debugging iOS Apps with 3rd-party Tools</h1>
-    <p>You can debug your Titanium App using the Safari DevTools. No matter the route you take, you must ensure that your project is using the built-in JavaScriptCore framework. For projects running Titanium SDK 7.0.0 and later, this option is enabled by default. For older projects, it can be enabled as seen below. Searching for Android Debugging? <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/guide/Debugging_Android_Apps_with_3rd-party_Tools">Here</a> you go!    </p>
+    <p>You can debug your Titanium App using the Safari DevTools. No matter the route you take, you must ensure that your project is using the built-in JavaScriptCore framework. For projects running Titanium SDK 7.0.0 and later, this option is enabled by default. For older projects, it can be enabled as seen below.    </p>
+    <p>Searching for Android Debugging? <a class="document-link " href="Debugging_Android_Apps_with_3rd-party_Tools.html">Here</a> you go!    </p>
     <div class="section section-2 " id="src-49160781_DebuggingiOSAppswith3rd-partyTools-Enableuse-jscore-framework">
         <h2 class="heading "><span>Enable use-jscore-framework</span></h2>
     <p>With Titanium SDK 6.x, developers must add a tag to enable the iOS debugger in order to use Safari (or iOS-webkit-debug-proxy). With SDK 7.x and later, this value is assumed to be true unless you explicitly add the tag with <tt class=" ">false</tt> as the value.    </p>
@@ -37,13 +38,12 @@
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">tiapp</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>    </p>
     <p>Once enabled, this will force the SDK to use the pre-packaged JSCore framework/engine as the JavaScript engine internally (rather than our older TiCore framework).    </p>
     <p>Since iOS 7, the pre-packaged JScore framework has contained a debugging agent and protocol using webinspectord. We make use of this service/protocol with our newest iOS debugger in SDK 6.0.0 as does Safari in it&apos;s tooling.    </p>
     </div>
     <div class="section section-2 " id="src-49160781_DebuggingiOSAppswith3rd-partyTools-DebuggingwithSafariDevTools">
         <h2 class="heading "><span>Debugging with Safari DevTools</span></h2>
-    <p>Be sure to turn on use-jscore-framework as listed in <a class="external-link " href="https://wiki.appcelerator.org/display/~bimmel/2016/10/19/Daily+Update+10-19-16#DailyUpdate10-19-16-Enableuse-jscore-framework">Enable use-jscore-framework</a>.    </p>
+    <p>Be sure to turn on use-jscore-framework as listed in <a class="document-link " href="Debugging_iOS_Apps_with_3rd-party_Tools.html#src-49160781_DebuggingiOSAppswith3rd-partyTools-Enableuse-jscore-framework">Enable use-jscore-framework</a>.    </p>
 <ol class=" "><li class=" ">    <p>Launch the app on the device or a simulator. Note: if using a device, make its connected by an USB cable before debugging.    </p>
 <ol class=" "><li class=" ">    <p>Launch you application via Studio or command-line: <tt class=" ">appc run -p ios</tt>    </p>
 </li></ol></li><li class=" ">    <p>Launch Safari and enable the <strong class=" ">Develop</strong> mode (<strong class=" ">Safari</strong> &gt; <strong class=" ">Preferences</strong> &gt; <strong class=" ">Advanced</strong> and enable <strong class=" ">Show Develop menu in menu bar</strong>). Note: it is important to have the Web Inspector enabled to allow connections for debugging. Otherwise, neither Studio nor Safari&apos;s debugger will be able to connect to the device using the web-inspector based protocol.    </p>

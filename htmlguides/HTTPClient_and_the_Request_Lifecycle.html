@@ -26,7 +26,7 @@
 </li><li class=" ">    <p><a class="document-link " href="HTTPClient_and_the_Request_Lifecycle.html#src-29004904_HTTPClientandtheRequestLifecycle-ReferencesandFurtherReading">References and Further Reading</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-29004904_HTTPClientandtheRequestLifecycle-Objective">
         <h2 class="heading "><span>Objective</span></h2>
-    <p>In this chapter, you will learn how to access and interact with remote servers via the HTTP protocol. You will also examine the XHLHTTPRequest (XHR) lifecycle and how it is implemented within Titanium.    </p>
+    <p>In this chapter, you will learn how to access and interact with remote servers via the HTTP protocol. You will also examine the XMLHTTPRequest (XHR) lifecycle and how it is implemented within Titanium.    </p>
     </div>
     <div class="section section-2 " id="src-29004904_HTTPClientandtheRequestLifecycle-Contents">
         <h2 class="heading "><span>Contents</span></h2>
@@ -38,7 +38,7 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Ti.Network.HTTPClient skeleton</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Ti.Network.HTTPClient skeleton">
-<div class="line"><code class="plain">var url = </code><code class="string">&quot;https://www.appcelerator.com&quot;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">var url = </code><code class="string">&apos;https://www.appcelerator.com&apos;</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">var xhr = Ti.Network.createHTTPClient({</code></div>
 <div class="line"><code class="plain">    onload: function(e) {</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// this function is called when data is returned from the server and available for use</code></div>
@@ -53,9 +53,9 @@
 <div class="line"><code class="plain">        Ti.API.debug(e.error);</code></div>
 <div class="line"><code class="plain">        alert(</code><code class="string">&apos;error&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    },</code></div>
-<div class="line"><code class="plain">    timeout:</code><code class="value">5000</code><code class="plain">  </code><code class="comments">/* in milliseconds */</code></div>
+<div class="line"><code class="plain">    timeout: </code><code class="value">5000</code><code class="plain"> </code><code class="comments">// milliseconds</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain">xhr.open(</code><code class="string">&quot;GET&quot;</code><code class="plain">, url);</code></div>
+<div class="line"><code class="plain">xhr.open(</code><code class="string">&apos;GET&apos;</code><code class="plain">, url);</code></div>
 <div class="line"><code class="plain">xhr.send();  </code><code class="comments">// request is actually sent with this statement</code></div>
 </div>
     </div>
@@ -81,13 +81,13 @@
 <div class="line"><code class="plain">var xhr = Ti.Network.createHTTPClient();</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">xhr.onload = function(e) {</code></div>
-<div class="line"><code class="plain">	</code><code class="comments">//handle response, which at minimum will be an HTTP status code</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// handle response, which at minimum will be an HTTP status code</code></div>
 <div class="line"><code class="plain">};</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">xhr.open(</code><code class="string">&apos;POST&apos;</code><code class="plain">,</code><code class="string">&apos;http://www.myblog.com/post.php&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">xhr.open(</code><code class="string">&apos;POST&apos;</code><code class="plain">, </code><code class="string">&apos;http://www.myblog.com/post.php&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">xhr.send({</code></div>
 <div class="line"><code class="plain">	title: </code><code class="string">&apos;My awesome blog&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	body: </code><code class="string">&apos;Today I met Susy at the laundromat.  Best day EVAR\!&apos;</code></div>
+<div class="line"><code class="plain">	body: </code><code class="string">&apos;Today I met Susy at the laundromat. Best day EVER\!&apos;</code></div>
 <div class="line"><code class="plain">});</code></div>
 </div>
     </div>
@@ -104,8 +104,8 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var client = Ti.Network.createHTTPClient();</code></div>
-<div class="line"><code class="plain">client.open(</code><code class="string">&apos;POST&apos;</code><code class="plain">,</code><code class="string">&apos;http://someserver.com/files/new&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">client.setRequestHeader(</code><code class="string">&apos;Content-Type&apos;</code><code class="plain">,</code><code class="string">&apos;text/csv&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">client.open(</code><code class="string">&apos;POST&apos;</code><code class="plain">, </code><code class="string">&apos;http://someserver.com/files/new&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">client.setRequestHeader(</code><code class="string">&apos;Content-Type&apos;</code><code class="plain">, </code><code class="string">&apos;text/csv&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">client.send(</code><code class="string">&apos;foo,bar,foo,bar&apos;</code><code class="plain">);</code></div>
 </div>
     </div>
@@ -113,60 +113,52 @@
     <div class="section section-3 " id="src-29004904_HTTPClientandtheRequestLifecycle-XHRlifecycle">
         <h3 class="heading "><span>XHR lifecycle</span></h3>
     <p><tt class=" ">HTTPClient</tt> implements the <a class="external-link external-link" href="http://www.w3.org/TR/XMLHttpRequest/#states">five XHR ready states</a> defined by the W3 specification. Should you need to, your app can react to these state changes with the <tt class=" ">onreadystatechange</tt> callback. The five states are:    </p>
-<ul class=" "><li class=" ">    <p>UNSENT (numeric value 0) &#x2013; The object has been constructed. Titanium doesn&apos;t report on this state with the <tt class=" ">onreadystatechange</tt> handler.    </p>
-</li><li class=" ">    <p>OPENED (numeric value 1) &#x2013; The open() method has been successfully invoked. During this state request headers can be set using setRequestHeader() and the request can be made using the send() method.    </p>
-</li><li class=" ">    <p>HEADERS_RECEIVED (numeric value 2) &#x2013; All redirects (if any) have been followed and all HTTP headers of the final response have been received. Several response members of the object are now available.    </p>
-</li><li class=" ">    <p>LOADING (numeric value 3) &#x2013; The response entity body is being received.    </p>
-</li><li class=" ">    <p>DONE (numeric value 4) &#x2013; The data transfer has been completed or something went wrong during the transfer (e.g. infinite redirects).    </p>
+<ul class=" "><li class=" ">    <p>UNSENT &#x2013; The object has been constructed. Titanium doesn&apos;t report on this state with the <tt class=" ">onreadystatechange</tt> handler.    </p>
+</li><li class=" ">    <p>OPENED &#x2013; The open() method has been successfully invoked. During this state request headers can be set using setRequestHeader() and the request can be made using the send() method.    </p>
+</li><li class=" ">    <p>HEADERS_RECEIVED &#x2013; All redirects (if any) have been followed and all HTTP headers of the final response have been received. Several response members of the object are now available.    </p>
+</li><li class=" ">    <p>LOADING &#x2013; The response entity body is being received.    </p>
+</li><li class=" ">    <p>DONE &#x2013; The data transfer has been completed or something went wrong during the transfer (e.g. infinite redirects).    </p>
 </li></ul>    <p>In code, it would look like this:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Monitoring ready state changes</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Monitoring ready state changes">
 <div class="line"><code class="plain">var xhr = Ti.Network.createHTTPClient({</code></div>
 <div class="line"><code class="plain">    onload: function(e) {</code></div>
-<div class="line"><code class="plain">		</code><code class="comments">// function called in readyState DONE (4)</code></div>
-<div class="line"><code class="plain">		Ti.API.info(</code><code class="string">&apos;onload called, readyState = &apos;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.readyState);</code></div>
+<div class="line"><code class="plain">        Ti.API.info(</code><code class="string">&apos;onload called&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    },</code></div>
 <div class="line"><code class="plain">    onerror: function(e) {</code></div>
-<div class="line"><code class="plain">		</code><code class="comments">// function called in readyState DONE (4)</code></div>
-<div class="line"><code class="plain">		Ti.API.info(</code><code class="string">&apos;onerror called, readyState = &apos;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.readyState);</code></div>
+<div class="line"><code class="plain">        Ti.API.info(</code><code class="string">&apos;onerror called&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    },</code></div>
 <div class="line"><code class="plain">    ondatastream: function(e) {</code></div>
-<div class="line"><code class="plain">		</code><code class="comments">// function called as data is downloaded</code></div>
-<div class="line"><code class="plain">		Ti.API.info(</code><code class="string">&apos;ondatastream called, readyState = &apos;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.readyState);</code></div>
+<div class="line"><code class="plain">        Ti.API.info(</code><code class="string">&apos;ondatastream called&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    },</code></div>
 <div class="line"><code class="plain">    onsendstream: function(e) {</code></div>
-<div class="line"><code class="plain">		</code><code class="comments">// function called as data is uploaded</code></div>
-<div class="line"><code class="plain">		Ti.API.info(</code><code class="string">&apos;onsendstream called, readyState = &apos;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.readyState);</code></div>
+<div class="line"><code class="plain">        Ti.API.info(</code><code class="string">&apos;onsendstream called&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    },</code></div>
-<div class="line"><code class="plain">	onreadystatechange: function(e) {</code></div>
-<div class="line"><code class="plain">		</code><code class="keyword">switch</code><code class="plain">(</code><code class="keyword">this</code><code class="plain">.readyState) {</code></div>
-<div class="line"><code class="plain">			</code><code class="keyword">case</code><code class="plain"> </code><code class="value">0</code><code class="plain">:</code></div>
-<div class="line"><code class="plain">				</code><code class="comments">// after HTTPClient declared, prior to open()</code></div>
-<div class="line"><code class="plain">				</code><code class="comments">// though Ti won&apos;t actually report on this readyState</code></div>
-<div class="line"><code class="plain">				Ti.API.info(</code><code class="string">&apos;case 0, readyState = &apos;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.readyState);</code></div>
-<div class="line"><code class="plain">			</code><code class="keyword">break</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">			</code><code class="keyword">case</code><code class="plain"> </code><code class="value">1</code><code class="plain">:</code></div>
-<div class="line"><code class="plain">				</code><code class="comments">// open() has been called, now is the time to set headers</code></div>
-<div class="line"><code class="plain">				Ti.API.info(</code><code class="string">&apos;case 1, readyState = &apos;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.readyState);</code></div>
-<div class="line"><code class="plain">			</code><code class="keyword">break</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">			</code><code class="keyword">case</code><code class="plain"> </code><code class="value">2</code><code class="plain">:</code></div>
-<div class="line"><code class="plain">				</code><code class="comments">// headers received, xhr.status should be available now</code></div>
-<div class="line"><code class="plain">				Ti.API.info(</code><code class="string">&apos;case 2, readyState = &apos;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.readyState);</code></div>
-<div class="line"><code class="plain">			</code><code class="keyword">break</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">			</code><code class="keyword">case</code><code class="plain"> </code><code class="value">3</code><code class="plain">:</code></div>
-<div class="line"><code class="plain">				</code><code class="comments">// data is being received, onsendstream/ondatastream being called now</code></div>
-<div class="line"><code class="plain">				Ti.API.info(</code><code class="string">&apos;case 3, readyState = &apos;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.readyState);</code></div>
-<div class="line"><code class="plain">			</code><code class="keyword">break</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">			</code><code class="keyword">case</code><code class="plain"> </code><code class="value">4</code><code class="plain">:</code></div>
-<div class="line"><code class="plain">				</code><code class="comments">// done, onload or onerror should be called now</code></div>
-<div class="line"><code class="plain">				Ti.API.info(</code><code class="string">&apos;case 4, readyState = &apos;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.readyState);</code></div>
-<div class="line"><code class="plain">			</code><code class="keyword">break</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">		}</code></div>
-<div class="line"><code class="plain">	},</code></div>
-<div class="line"><code class="plain">    timeout:</code><code class="value">5000</code><code class="plain">  </code><code class="comments">/* in milliseconds */</code></div>
+<div class="line"><code class="plain">    onreadystatechange: function(e) {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">switch</code><code class="plain">(</code><code class="keyword">this</code><code class="plain">.readyState) {</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">case</code><code class="plain"> Ti.Network.HTTPClient.UNSENT:</code></div>
+<div class="line"><code class="plain">                Ti.API.info(</code><code class="string">&apos;readyState: UNSENT&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">break</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">case</code><code class="plain"> Ti.Network.HTTPClient.OPENED:</code></div>
+<div class="line"><code class="plain">                Ti.API.info(</code><code class="string">&apos;readyState: OPENED&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">break</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">case</code><code class="plain"> Ti.Network.HTTPClient.HEADERS_RECEIVED:</code></div>
+<div class="line"><code class="plain">                Ti.API.info(</code><code class="string">&apos;readyState: HEADERS_RECEIVED&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">break</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">case</code><code class="plain"> Ti.Network.HTTPClient.LOADING:</code></div>
+<div class="line"><code class="plain">                Ti.API.info(</code><code class="string">&apos;readyState: LOADING&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">break</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">case</code><code class="plain"> Ti.Network.HTTPClient.DONE:</code></div>
+<div class="line"><code class="plain">                Ti.API.info(</code><code class="string">&apos;readyState: DONE&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">break</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">default</code><code class="plain">:</code></div>
+<div class="line"><code class="plain">                Ti.API.info(</code><code class="string">&apos;readyState: UNKNOWN &apos;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.readyState);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    timeout: </code><code class="value">5000</code><code class="plain">  </code><code class="comments">// milliseconds</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain">xhr.open(</code><code class="string">&quot;GET&quot;</code><code class="plain">, </code><code class="string">&apos;http://training.appcelerator.com.s3.amazonaws.com/atp_doc.pdf&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">xhr.open(</code><code class="string">&apos;GET&apos;</code><code class="plain">, </code><code class="string">&apos;https://www.appcelerator.com/blog/&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">xhr.send();  </code><code class="comments">// request is actually sent with this statement</code></div>
 </div>
     </div>
