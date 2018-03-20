@@ -60,7 +60,7 @@
     </div>
     <p>    </p>
     <p>All UI elements which have an <tt class=" ">id</tt> attribute in a view are automatically defined and available as a property prefixed by the special variable <tt class=" ">$</tt> in the controller. The <tt class=" ">$</tt> is a reference to the controller. For example, the <tt class=" ">$.label</tt> prefix in the controller is used to access the <tt class=" ">Ti.UI.Label</tt> object instance in the view. This reference is used to directly access properties or methods of this object. For example, calling <tt class=" ">$.label.hide()</tt> hides the label from the view or you can change the label text with <tt class=" ">$.label.text</tt>.    </p>
-    <p>To access external controllers and views, use the <tt class=" ">Alloy.createController</tt> and <tt class=" ">Controller.getView</tt> methods, respectively. See the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy">Alloy API documentation</a> for more details.    </p>
+    <p>To access external controllers and views, use the <tt class=" ">Alloy.createController</tt> and <tt class=" ">Controller.getView</tt> methods, respectively. See <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy">Alloy API documentation</a> for more details.    </p>
     <p>If the top-level UI object does not have an ID defined, reference it using the name of the controller prefixed by the <tt class=" ">$</tt>. Since the Window object in the view does not contain an ID, the controller uses <tt class=" ">$.index</tt> to grab the top-level UI object from the view. However, if an <tt class=" ">id</tt> attribute was defined, for example, <tt class=" ">&lt;Window id=&apos;window&apos;&gt;</tt>, the controller needs to use <tt class=" ">$.window</tt> to gain access to the Window object; <tt class=" ">$.index</tt> will be undefined and the application will throw an error when calling <tt class=" ">$.index.open()</tt>.    </p>
     <div class="section section-3 " id="src-34636384_AlloyControllers-Events">
         <h3 class="heading "><span>Events</span></h3>
@@ -97,7 +97,7 @@
     </div>
     <div class="section section-3 " id="src-34636384_AlloyControllers-Inheritance">
         <h3 class="heading "><span>Inheritance</span></h3>
-    <p>Controllers can inherit from other controllers by assigning it a base (parent) controller: <tt class=" ">exports.baseController = &apos;baseControllerName&apos;</tt>. As in the CommonJS model, the controller inherits any exported functions from the base controller. These functions can also be overwritten.    </p>
+    <p>Controllers can inherit from other controllers by assigning them as a base (parent) controller: <tt class=" ">exports.baseController = &apos;baseControllerName&apos;</tt>. As in the CommonJS model, the controller inherits any exported functions from the base controller. These functions can also be overwritten.    </p>
     <p>For example, the animal view-controller defines a label object with a speak method:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/controllers/animal.js</div>
@@ -115,7 +115,7 @@
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>Then, the following code inherits from the animal view-controller and override the speak method and label text property to customize it for a dog controller.    </p>
+    <p>Then, the following code inherits from the animal view-controller and overrides the speak method and label text property to customize it for a dog controller.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/controllers/dog.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/dog.js">
@@ -139,7 +139,7 @@
 </li><li class=" ">    <p><tt class=" ">ENV_TEST</tt> : true if the current compiler target is built for testing on a device    </p>
 </li><li class=" ">    <p><tt class=" ">ENV_PRODUCTION</tt> : true if the current compiler target is built for production (running after a packaged installation)    </p>
 </li><li class=" ">    <p><tt class=" ">DIST_ADHOC</tt> (<strong class=" ">since Alloy 1.4.0</strong>) : true if the current compiler target is built for iOS Ad Hoc distribution, for example, if you set the <tt class=" ">-T dist-adhoc</tt> option when building with the Titanium CLI. Note that the <tt class=" ">ENV_PRODUCTION</tt> constant will be true too since this deployment is only for production builds.    </p>
-</li><li class=" ">    <p><tt class=" ">DIST_STORE</tt> (<strong class=" ">since Alloy 1.4.0</strong>) : true if the current compiler target is built for deployment to the Google Play Store or iTunes App Store, for example, if you set the <tt class=" ">-T dist-store</tt> option when building the Titanium CLI. Note that the <tt class=" ">ENV_PRODUCTION</tt> constant will be true too since this deployment is only for production builds.    </p>
+</li><li class=" ">    <p><tt class=" ">DIST_STORE</tt> (<strong class=" ">since Alloy 1.4.0</strong>) : true if the current compiler target is built for deployment to the Google Play Store or iTunes App Store, for example, if you set the <tt class=" ">-T dist-store</tt> option when building with the Titanium CLI. Note that the <tt class=" ">ENV_PRODUCTION</tt> constant will be true too since this deployment is only for production builds.    </p>
 </li></ul>    <p>For example, since iOS devices do not include a back button, the application can conditionally add one to a window controller:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -217,12 +217,12 @@
 <div class="line"><code class="plain">parent.close();</code></div>
 </div>
     </div>
-    <p>Other non-controller JavaScript code can access the globals variable but need to require the Alloy module. See <a class="document-link " href="Alloy_Controllers.html#src-34636384_safe-id-QWxsb3lDb250cm9sbGVycy1FeHRlbmRpbmdBbGxveSxVbmRlcnNjb3JlLmpzYW5kQmFja2JvbmUuanM">Extending Alloy</a> below.    </p>
+    <p>Other non-controller JavaScript code can access the Globals variable but need to require the Alloy module. See <a class="document-link " href="Alloy_Controllers.html#src-34636384_safe-id-QWxsb3lDb250cm9sbGVycy1FeHRlbmRpbmdBbGxveSxVbmRlcnNjb3JlLmpzYW5kQmFja2JvbmUuanM">Extending Alloy</a> below.    </p>
     </div>
     </div>
     <div class="section section-2 " id="src-34636384_safe-id-QWxsb3lDb250cm9sbGVycy1Jbml0aWFsaXplcmZpbGUoYWxsb3kuanMp">
         <h2 class="heading "><span>Initializer file (alloy.js)</span></h2>
-    <p>The initializer file <tt class=" ">app/alloy.js</tt> can be used to execute some code near the beginning of the application&apos;s lifecycle. The contents of this file will be executed right before the initial <tt class=" ">index.js</tt> controller is loaded, allowing you to execute code before any UI components are loaded and to override builtin Alloy functions before they are executed. The code in this file also has access to the <tt class=" ">Alloy</tt> namespace.    </p>
+    <p>The initializer file <tt class=" ">app/alloy.js</tt> can be used to execute some code near the beginning of the application&apos;s lifecycle. The contents of this file will be executed right before the initial <tt class=" ">index.js</tt> controller is loaded, allowing you to execute code before any UI components are loaded and to override built-in Alloy functions before they are executed. The code in this file also has access to the <tt class=" ">Alloy</tt> namespace.    </p>
     <p>For instance, the default <tt class=" ">isTablet</tt> method returns true if it is identified as an iPad, an Android device in the large or extra large group, or if either dimension exceeds 400 dp for Mobile Web application. To override that behavior, you can add the following code to <tt class=" ">alloy.js</tt>.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">

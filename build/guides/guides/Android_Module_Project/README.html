@@ -44,7 +44,8 @@
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-BundleModuleAssets">Bundle Module Assets</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-Assetsfolder">Assets folder</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-Platformfolder">Platform folder</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-DistributeyourmodulethroughtheAxwayMarketplace">Distribute your module through the Axway Marketplace</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_safe-id-QW5kcm9pZE1vZHVsZVByb2plY3QtRm9ybWF0L0xpbnRzb3VyY2UtY29kZQ">Format / Lint source-code</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-DistributeyourmodulethroughtheAxwayMarketplace">Distribute your module through the Axway Marketplace</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-Troubleshooting">Troubleshooting</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_safe-id-QW5kcm9pZE1vZHVsZVByb2plY3QtQ29uZmxpY3RpbmdKQVJmaWxlcy9Hb29nbGVQbGF5U2VydmljZXM">Conflicting JAR files / Google Play Services</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Project-section-src-43289002_AndroidModuleProject-AndroidNDKbuildfails">Android NDK build fails</a>    </p>
@@ -573,6 +574,16 @@
 </div>
     </div>
     </div>
+    </div>
+    <div class="section section-2 " id="src-43289002_safe-id-QW5kcm9pZE1vZHVsZVByb2plY3QtRm9ybWF0L0xpbnRzb3VyY2UtY29kZQ">
+        <h2 class="heading "><span>Format / Lint source-code</span></h2>
+    <p>The Titanium SDK uses clang-format to have a unified code-style in its source-code (clang-format for iOS and Android, ESLint for the CLI). You can do the same by following the following few steps:    </p>
+<ol class=" "><li class=" ">    <p>Copy the <tt class=" ">.clang-format</tt> file from <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/.clang-format" target="_blank">here</a> to the &quot;<tt class=" ">android/</tt>&quot; directory of your module project, e.g. <tt class=" ">&lt;module-root&gt;/ios/.clang-format</tt>    </p>
+</li><li class=" ">    <p>Install the <a class="external-link external-link" href="https://clang.llvm.org/docs/ClangFormat.html" target="_blank">clang-format CLI</a>: <tt class=" ">npm install -g clang-format</tt>    </p>
+</li><li class=" ">    <p>Optional: Ensure that you have your module project in Git to be able to restore the old files in case you do not like the predefined format    </p>
+</li><li class=" ">    <p>Format your source with: <tt class=" ">clang-format -style=file -i src/&lt;yourmodule&gt;/*.java</tt>    </p>
+</li><li class=" ">    <p>Thats it! All *.java files have been formatted.    </p>
+</li></ol>    <p>Now that you have a format, you can also extend your .clang-format with more formatting rules or adjust existing ones to match your own code style.    </p>
     </div>
     <div class="section section-2 " id="src-43289002_AndroidModuleProject-DistributeyourmodulethroughtheAxwayMarketplace">
         <h2 class="heading "><span>Distribute your module through the Axway Marketplace</span></h2>

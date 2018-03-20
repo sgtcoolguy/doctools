@@ -27,7 +27,8 @@
 </li><li class=" ">    <p><a class="document-link " href="iOS_Launch_Files.html#src-46245490_iOSLaunchFiles-CustomisingtheBackgroundColor">Customising the Background Color</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="iOS_Launch_Files.html#src-46245490_safe-id-aU9TTGF1bmNoRmlsZXMtT3B0aW9uQjpVc2VhY3VzdG9tU3Rvcnlib2FyZA">Option B: Use a custom Storyboard</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="iOS_Launch_Files.html#src-46245490_iOSLaunchFiles-Usingimages">Using images</a>    </p>
-</li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="iOS_Launch_Files.html#src-46245490_iOSLaunchFiles-DealingwithLaunchFileCache">Dealing with Launch File Cache</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="iOS_Launch_Files.html#src-46245490_iOSLaunchFiles-AdvancedUse-Cases">Advanced Use-Cases</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="iOS_Launch_Files.html#src-46245490_iOSLaunchFiles-DealingwithLaunchFileCache">Dealing with Launch File Cache</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-46245490_iOSLaunchFiles-Whatthisguideisabout">
         <h2 class="heading "><span>What this guide is about</span></h2>
     <p>    <span style="color: #333333;">
@@ -50,7 +51,7 @@ This guide walks you through using Launch Files instead of traditional Launch Im
     <p>    <img src="images/download/attachments/46245490/ipadpro.png" alt="images/download/attachments/46245490/ipadpro.png" class="confluence-embedded-image" width="500">
         </p>
     <p>Split View and Slide Over for the iPad also requires Launch Files. Since your app might now be opened as Slide Over in either landscape or portrait you would otherwise need 6 more launch images to cover the different sizes of iPad screens out there.    </p>
-    <p>Launch Files allow you to trim your IPA considerably. You only need a single storyboard and a logo in a handful of densities to cover all iOS devices.    </p>
+    <p>Launch Files allow you to strip down the size of your final <tt class=" ">.ipa</tt> considerably. You only need a single storyboard and a logo in a handful of densities to cover all iOS devices.    </p>
     </div>
     <div class="section section-2 " id="src-46245490_safe-id-aU9TTGF1bmNoRmlsZXMtSG93dG9lbmFibGVMYXVuY2hGaWxlcz8">
         <h2 class="heading "><span>How to enable Launch Files?</span></h2>
@@ -164,7 +165,7 @@ This guide walks you through using Launch Files instead of traditional Launch Im
     <div class="section section-4 " id="src-46245490_iOSLaunchFiles-Usingimages">
         <h4 class="heading "><span>Using images</span></h4>
     <p>To use an image in your custom Storyboard, simply set the <tt class=" ">Image</tt> property of an <i class=" ">Image View</i> to the path under <tt class=" ">app/assets/</tt> without the image modifier (<tt class=" ">~ipad</tt>, <tt class=" ">@2x</tt>) or extension:    </p>
-    <p>    <img src="images/download/attachments/46245490/image.png" alt="images/download/attachments/46245490/image.png" class="confluence-embedded-image" width="500">
+    <p>    <img src="images/download/attachments/46245490/image.png" alt="images/download/attachments/46245490/image.png" class="confluence-embedded-image" width="300">
         </p>
     <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-20429">Currently</a>    <span style="color: #707070;">
@@ -173,9 +174,19 @@ This guide walks you through using Launch Files instead of traditional Launch Im
  file if you use a custom storyboard. You need to rename this image before you can use it.    </span>
     </p>
     </div>
-        <p>If you have the <a class="document-link " href="tiapp.xml_and_timodule.xml_Reference.html#src-29004921_tiapp.xmlandtimodule.xmlReference-tiapp.xmlandtimodule.xmlReference-use-app-thinning">optional app-thinning</a> enabled, you will have to use the name of the generated asset catalog. This is a hash based on the image path. To find out the hash for your image build the app, look up the right <tt class=" ">[hash].imageset</tt> under <tt class=" ">build/iphone/Assets.xcassets/</tt> and use the <tt class=" ">[hash]</tt> part.    </p>
+        <p><strong class=" ">Important</strong>: If you have the <a class="document-link " href="tiapp.xml_and_timodule.xml_Reference.html#src-29004921_tiapp.xmlandtimodule.xmlReference-tiapp.xmlandtimodule.xmlReference-use-app-thinning">optional app-thinning</a> enabled, you will have to use the name of the generated asset catalog. This is a hash based on the image path. To find out the hash for your image build the app, look up the right <tt class=" ">[hash].imageset</tt> under <tt class=" ">build/iphone/Assets.xcassets/</tt> and use the <tt class=" ">[hash]</tt> part.    </p>
     </div>
     </div>
+    </div>
+    <div class="section section-2 " id="src-46245490_iOSLaunchFiles-AdvancedUse-Cases">
+        <h2 class="heading "><span>Advanced Use-Cases</span></h2>
+    <p>Using native Storyboards, you can even do complex complex layouts inside your launch-screen, for example split-screen layouts. To do so, open the <tt class=" ">LaunchScreen.storyboard</tt> in Xcode and start adding UI-elements from the bottom right &quot;Object library&quot;:    </p>
+    <p>    <img src="images/download/attachments/46245490/SplitScreenStoryboard.png" alt="images/download/attachments/46245490/SplitScreenStoryboard.png" class="confluence-embedded-image" width="800">
+        </p>
+    <p>Now drag the &quot;Split View Controller&quot; element to the center, remove the old &quot;View Controller&quot; and set the Split View Controller as the &quot;Initial View Controller&quot;. Finally, add a label to the detail-view by searching and dragging the &quot;Label&quot; object into your space:    </p>
+    <p>    <img src="images/download/attachments/46245490/InitialVC.png" alt="images/download/attachments/46245490/InitialVC.png" class="confluence-embedded-image" width="800">
+        </p>
+    <p>Thats it! Save the storyboard, clean the build directory and cache (see chapter below) and run your app. If you want to include images, make sure to check the &quot;<strong class=" ">Use images</strong>&quot; paragraph above to handle image hashes.    </p>
     </div>
     <div class="section section-2 " id="src-46245490_iOSLaunchFiles-DealingwithLaunchFileCache">
         <h2 class="heading "><span>Dealing with Launch File Cache</span></h2>

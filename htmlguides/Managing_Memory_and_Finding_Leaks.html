@@ -26,7 +26,8 @@
 </li><li class=" ">    <p><a class="document-link " href="Managing_Memory_and_Finding_Leaks.html#src-29004941_ManagingMemoryandFindingLeaks-MonitoringallocationsonAndroid">Monitoring allocations on Android</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Managing_Memory_and_Finding_Leaks.html#src-29004941_ManagingMemoryandFindingLeaks-MonitoringallocationsonWindows">Monitoring allocations on Windows</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Managing_Memory_and_Finding_Leaks.html#src-29004941_ManagingMemoryandFindingLeaks-Hands-onPractice">Hands-on Practice</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Managing_Memory_and_Finding_Leaks.html#src-29004941_ManagingMemoryandFindingLeaks-References">References</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Managing_Memory_and_Finding_Leaks.html#src-29004941_ManagingMemoryandFindingLeaks-Androidnotes">Android notes</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Managing_Memory_and_Finding_Leaks.html#src-29004941_ManagingMemoryandFindingLeaks-References">References</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-29004941_ManagingMemoryandFindingLeaks-Objective">
         <h2 class="heading "><span>Objective</span></h2>
     <p>In this section, you will learn how to monitor for and solve memory leaks in your apps. The processes for monitoring memory usage varies by platform. You&apos;ll learn separately how to perform this feat on iOS, Android and Windows.    </p>
@@ -49,7 +50,7 @@
     <ul class=" "><li class=" ">    <p>iPhone: Limited to 10% of system memory    </p>
 </li><li class=" ">    <p>iPad: Limited to between 30-50 MB; smaller is always better    </p>
 </li><li class=" ">    <p>Android: 24-32MB heap, optional &quot;large heap&quot; of 128MB (<a class="document-link " href="tiapp.xml_and_timodule.xml_Reference.html#src-29004921_tiapp.xmlandtimodule.xmlReference-Androidspecificapplicationproperties">see here</a> for how to enable this)    </p>
-</li></ul>    <p>Compared to the memory space available to the desktop, these are severely restricted amounts. Furthermore, iOS, Android and WIndows can force-reclaim memory or force-quit an app when the system needs more free memory. You&apos;ll want to limit your memory use and free allocations when you can. Let&apos;s see how JavaScript frees memory and then how you can release memory in your Titanium app.    </p>
+</li></ul>    <p>Compared to the memory space available to the desktop, these are severely restricted amounts. Furthermore, iOS, Android and Windows can force-reclaim memory or force-quit an app when the system needs more free memory. You&apos;ll want to limit your memory use and free allocations when you can. Let&apos;s see how JavaScript frees memory and then how you can release memory in your Titanium app.    </p>
     <div class="section section-3 " id="src-29004941_ManagingMemoryandFindingLeaks-JavaScriptgarbagecollection">
         <h3 class="heading "><span>JavaScript garbage collection</span></h3>
     <p>In some languages, the programmer must explicitly allocate and de-allocate memory within their programs. This manual process can take quite a bit of work and is often the source of bugs. JavaScript instead uses an automatic technique called <i class=" ">garbage collection</i>. With garbage collection, the JavaScript interpreter determines when objects are no longer needed, then destroys them to free the memory they were using.    </p>
@@ -121,13 +122,13 @@
     <div class="section section-3 " id="src-29004941_ManagingMemoryandFindingLeaks-MonitoringallocationsoniOS">
         <h3 class="heading "><span>Monitoring allocations on iOS</span></h3>
     <p>To run a Titanium app from the Xcode build, you have two choices:    </p>
-<ol class=" "><li class=" ">    <p>Change your Xcode Workspace settings in <strong class=" ">Xcode &gt;  Preferences</strong> &gt; <strong class=" ">Locations</strong> &gt; <strong class=" ">Derived Data</strong> &gt; <strong class=" ">Advanced</strong> &gt; Select <strong class=" ">Custom</strong> and &quot;<strong class=" ">Relative to Workspace</strong>&quot;    </p>
+<ol class=" "><li class=" ">    <p>Change your Xcode Workspace settings in <strong class=" ">Xcode</strong> &gt;<strong class=" "> Preferences</strong> &gt; <strong class=" ">Locations</strong> &gt; <strong class=" ">Derived Data</strong> &gt; <strong class=" ">Advanced</strong> &gt; Select <strong class=" ">Custom</strong> in the Build Location options and select <strong class=" ">Relative to Workspace </strong>from the drop down.    </p>
     <img src="images/download/attachments/29004941/Xcode9Workspace.png" alt="images/download/attachments/29004941/Xcode9Workspace.png" class="confluence-embedded-image" width="900">
     </li><li class=" ">    <p>Copy the contents of your <tt class=" ">Resources/</tt> (same for Alloy by including the generated Alloy code) directory to the &quot;Resources&quot; group in Xcode    </p>
 </li></ol>    <p>Lets continue! Apple&apos;s Instruments application is a handy tool for monitoring and discovering memory leaks. Here&apos;s how you can use it for this purpose:    </p>
 <ol class=" "><li class=" ">    <p>Open your app in the iOS simulator.    </p>
 </li><li class=" ">    <p>Open Instruments:    </p>
-<ul class=" "><li class=" ">    <p>Start Xcode and from the menu, select <strong class=" ">Xcode</strong> -&gt; <strong class=" ">Open Developer Tools</strong> -&gt; <strong class=" ">Instruments</strong>.    </p>
+<ul class=" "><li class=" ">    <p>Start Xcode and from the menu, select <strong class=" ">Xcode</strong> &gt; <strong class=" ">Open Developer Tools</strong> &gt; <strong class=" ">Instruments</strong>.    </p>
 </li><li class=" ">    <p>In the Choose a Template window, click <strong class=" ">Allocations</strong> and click <strong class=" ">Choose</strong>.    </p>
 </li></ul></li><li class=" ">    <p>Attach your application to Instruments.    </p>
 <ol class=" "><li class=" ">    <p>Click <strong class=" ">Choose Target</strong>, click <strong class=" ">More...</strong> under <strong class=" ">System</strong>, then scroll down and click your app&apos;s name.    </p>
@@ -136,18 +137,18 @@
 </li><li class=" ">    <p>Click and use your app while watching these values in Instruments:    </p>
 </li></ol>    <div class="tablewrap">
         <table class="confluenceTable">
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
         <p><strong class=" ">Column </strong>    </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
+                <td class="confluenceTh" rowspan="1" colspan="1">
         <p><strong class=" ">Shows</strong>    </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
+                <td class="confluenceTh" rowspan="1" colspan="1">
         <p><strong class=" ">Notes</strong>    </p>
             </td>
         </tr>
-    <tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
         <p><strong class=" ">Persistent Bytes<br>(or Live Bytes)</strong>    </p>
             </td>
@@ -219,7 +220,7 @@
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <div class="title">Tracking memory more accurately</div>
             <p>On iOS, the runtime and other systems may frequently allocate (or deallocate) objects which can&apos;t be managed directly through your javascript code. In general, when checking your app for memory leaks, you should be filtering for objects with the &quot;<tt class=" ">Ti</tt>&quot; prefix.    </p>
-    <p>Also note that by attaching the profiler after the app has started, you do not get any information on already-created objects until they are touched by the memory management system. To get more accurate information, you may need to open the Xcode project generated in your project&apos;s <tt class=" ">build/iphone</tt> folder, and choose <strong class=" ">Product -&gt; Profile</strong>, then configure the resulting Instruments launch as described here.    </p>
+    <p>Also note that by attaching the profiler after the app has started, you do not get any information on already-created objects until they are touched by the memory management system. To get more accurate information, you may need to open the Xcode project generated in your project&apos;s <tt class=" ">build/iphone</tt> folder, and choose <strong class=" ">Product </strong>&gt;<strong class=" "> Profile</strong>, then configure the resulting Instruments launch as described here.    </p>
     </div>
         <p>    <img src="images/download/attachments/29004941/instruments.png" alt="images/download/attachments/29004941/instruments.png" class="confluence-embedded-image" width="800">
         </p>
@@ -232,22 +233,22 @@
 </li><li class=" ">    <p>Copy the <tt class=" ">&lt;application&gt;</tt> node, a sample of which is shown here (your app name would vary, of course):    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;application android:icon=</code><code class="string">&quot;@drawable/appicon&quot;</code></div>
-<div class="line"><code class="plain">  android:label=</code><code class="string">&quot;AppLeak&quot;</code><code class="plain"> android:name=</code><code class="string">&quot;AppleakApplication&quot;</code></div>
-<div class="line"><code class="plain">  android:debuggable=</code><code class="string">&quot;false&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">application</code><code class="plain"> </code><code class="color1">android:icon</code><code class="plain">=</code><code class="string">&quot;@drawable/appicon&quot;</code></div>
+<div class="line"><code class="plain">  </code><code class="color1">android:label</code><code class="plain">=</code><code class="string">&quot;AppLeak&quot;</code><code class="plain"> </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;AppleakApplication&quot;</code></div>
+<div class="line"><code class="plain">  </code><code class="color1">android:debuggable</code><code class="plain">=</code><code class="string">&quot;false&quot;</code><code class="plain">&gt;</code></div>
 </div>
     </div>
 </li><li class=" ">    <p>Paste that into your app&apos;s tiapp.xml file, modifying the <tt class=" ">&lt;android&gt;</tt> node as shown:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;android xmlns:android=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">  &lt;manifest&gt;</code></div>
-<div class="line"><code class="plain">    &lt;application android:icon=</code><code class="string">&quot;@drawable/appicon&quot;</code></div>
-<div class="line"><code class="plain">      android:label=</code><code class="string">&quot;AppLeak&quot;</code><code class="plain"> android:name=</code><code class="string">&quot;AppleakApplication&quot;</code></div>
-<div class="line"><code class="plain">      android:debuggable=</code><code class="string">&quot;true&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/application&gt;</code></div>
-<div class="line"><code class="plain">  &lt;/manifest&gt;</code></div>
-<div class="line"><code class="plain">&lt;/android&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">android</code><code class="plain"> </code><code class="color1">xmlns:android</code><code class="plain">=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">manifest</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">application</code><code class="plain"> </code><code class="color1">android:icon</code><code class="plain">=</code><code class="string">&quot;@drawable/appicon&quot;</code></div>
+<div class="line"><code class="plain">      </code><code class="color1">android:label</code><code class="plain">=</code><code class="string">&quot;AppLeak&quot;</code><code class="plain"> </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;AppleakApplication&quot;</code></div>
+<div class="line"><code class="plain">      </code><code class="color1">android:debuggable</code><code class="plain">=</code><code class="string">&quot;true&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">application</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/</code><code class="keyword">manifest</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">android</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     <p>Notice that we&apos;ve set debuggable to true and added and completed a couple of the nodes.    </p>
@@ -264,8 +265,8 @@
     <div class="section section-3 " id="src-29004941_ManagingMemoryandFindingLeaks-MonitoringallocationsonWindows">
         <h3 class="heading "><span>Monitoring allocations on Windows</span></h3>
     <p>Microsoft Visual Studio has &quot;Diagnostic Tools&quot; for monitoring memory usage.    </p>
-<ol class=" "><li class=" ">    <p>Open Visual Studio    </p>
-</li><li class=" ">    <p>Select <strong class=" ">Debug </strong>&gt;<strong class=" "> Performance Profiler...</strong> from Visual Studio menu    </p>
+<ol class=" "><li class=" ">    <p>Open Visual Studio.    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Debug </strong>&gt;<strong class=" "> Performance Profiler...</strong> from Visual Studio menu.    </p>
 </li><li class=" ">    <p>Select <strong class=" ">Choose Target</strong> drop down list and choose target to profile. For instance choose <strong class=" ">Installed App...</strong> for monitoring installed Windows Store app. This tool also supports analyzing target against simulators and remote machine. Please refer to <a class="external-link external-link" href="http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&amp;l=EN-US&amp;k=k(vs.debug.remote.overview)&amp;rd=true">Remote Debugging</a> for more information.    </p>
     <img src="images/download/attachments/29004941/win1.png" alt="images/download/attachments/29004941/win1.png" class="confluence-embedded-image" width="300">
     </li><li class=" ">    <p>Choose <strong class=" ">Memory Usage</strong> from <strong class=" ">Available Tools</strong> section, to investigate application memory to find issues such as memory leaks.    </p>
@@ -287,20 +288,20 @@
     <div class="section section-4 " id="src-29004941_ManagingMemoryandFindingLeaks-Steps">
         <h4 class="heading "><span>Steps</span></h4>
 <ol class=" "><li class=" ">    <p>Download or clone the AppLeak project from <a class="external-link external-link" href="https://github.com/appcelerator-developer-relations/appc-sample-app-leak">Github</a>. Extract it and then import the project into Studio or your CLI workspace. Confirm that the tiapp.xml file has appropriate values for your environment then close that file.    </p>
-</li><li class=" ">    <p>Open test1.js in Studio or your Editor. This file contains the leak, which you will fix.    </p>
+</li><li class=" ">    <p>Open <tt class=" ">test1.js</tt> in Studio or your Editor. This file contains the leak, which you will fix.    </p>
 </li><li class=" ">    <p>Build the project for the iPhone or iPad simulator.    </p>
 </li><li class=" ">    <p>Open Instruments and attach it to your app&apos;s process:    </p>
 <ol class=" "><li class=" ">    <p>In the Choose a Template window, click Allocations and then click Choose.    </p>
 </li><li class=" ">    <p>Click Choose Target, Attach to Process, then under System, click AppLeak.    </p>
 </li><li class=" ">    <p>Click Record. Wait a moment till data begins recording.    </p>
-</li><li class=" ">    <p>In the Instrument Detail filter box, enter <tt class=" ">TiUITable</tt>    </p>
+</li><li class=" ">    <p>In the Instrument Detail filter box, enter <tt class=" ">TiUITable</tt>.    </p>
 </li></ol></li><li class=" ">    <p>In the simulator, click the Test 1 button. In Instruments, the # Living column for <tt class=" ">TiUITableViewRowProxy</tt> should show 5 objects are in memory; these objects correspond to the rows in the table. Close the modal window, then click Test 1 again. This time, # Living should increase to 10. The original 5 rows were not released and 5 new rows are allocated in memory. While the actual usage is small, if you were to repeatedly show this window enough times the app would exhaust its available memory and crash.    </p>
 </li><li class=" ">    <p>Close the simulator. That will stop the data recording in Instruments.    </p>
-</li><li class=" ">    <p>In Studio, in test1.js, examine the code and speculate on the cause of the leak.    </p>
+</li><li class=" ">    <p>In Studio, in <tt class=" ">test1.js</tt>, examine the code and speculate on the cause of the leak.    </p>
 </li><li class=" ">    <p>Add this code after the existing app-level event listener:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">test1win.addEventListener(</code><code class="string">&apos;close&apos;</code><code class="plain">, function() {</code></div>
+<div class="line"><code class="plain">test1win.addEventListener(</code><code class="string">&apos;close&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">() {</code></div>
 <div class="line"><code class="plain">	Ti.App.removeEventListener(</code><code class="string">&apos;bad:idea&apos;</code><code class="plain">, doSomething);</code></div>
 <div class="line"><code class="plain">});</code></div>
 </div>
@@ -309,7 +310,9 @@
 </li><li class=" ">    <p>Repeat the Instruments testing steps listed above. This time, you should see the numbers in the # Transitory column increase as you open and close the Test 1 window. These values represent objects that have been garbage collected. You might see # Living go up above the 5 active rows occasionally; this simply reflects Instruments reacting more slowly than you clicking through the app. Note that because these objects are managed by garbage collection, you may not see them released immediately.    </p>
 </li><li class=" ">    <p>Close the Simulator and Instruments; don&apos;t save the log results.    </p>
 </li></ol>    <p>The app-level listener added within <tt class=" ">build()</tt> remains in scope after the window is closed. This forces the objects the window contains to remain in scope, which means they cannot be garbage collected. When <tt class=" ">build()</tt> runs again, a new window and table are created, which also cannot be garbage collected. You&apos;ve got a leak! By removing the event listener when the window closes, the rest of the objects can be marked as ready for garbage collection. Even though a new set of objects are created by <tt class=" ">build()</tt>, the old ones are gone from memory and this leak is fixed.    </p>
-    <p><strong class=" ">Android notes</strong>    </p>
+    </div>
+    <div class="section section-4 " id="src-29004941_ManagingMemoryandFindingLeaks-Androidnotes">
+        <h4 class="heading "><span>Android notes</span></h4>
     <p>Memory leaks can be a problem for Android, even though we didn&apos;t highlight that platform in this lab. You can use the DDMS tool, and its Allocation Tracker component to watch for such leaks. We choose to use Instruments in this lab because the output is by far more obvious and the steps to discover a leak are simpler.    </p>
     </div>
     </div>

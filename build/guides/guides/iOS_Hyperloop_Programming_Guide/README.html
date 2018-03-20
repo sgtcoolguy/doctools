@@ -31,14 +31,14 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Hyperloop_Programming_Guide-section-src-46253491_iOSHyperloopProgrammingGuide-Creatingyourownclasses">Creating your own classes</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Hyperloop_Programming_Guide-section-src-46253491_iOSHyperloopProgrammingGuide-Usingthird-partylibraries">Using third-party libraries</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Hyperloop_Programming_Guide-section-src-46253491_iOSHyperloopProgrammingGuide-CocoaPods">CocoaPods</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Hyperloop_Programming_Guide-section-src-46253491_safe-id-aU9TSHlwZXJsb29wUHJvZ3JhbW1pbmdHdWlkZS1DdXN0b21GcmFtZXdvcmtzJkxpYnJhcmllcw">Custom Frameworks &amp; Libraries</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Hyperloop_Programming_Guide-section-src-46253491_iOSHyperloopProgrammingGuide-Customframeworksandlibraries">Custom frameworks and libraries</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Hyperloop_Programming_Guide-section-src-46253491_iOSHyperloopProgrammingGuide-UsingSwift">Using Swift</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Hyperloop_Programming_Guide-section-src-46253491_iOSHyperloopProgrammingGuide-CustomizingyourXcodeBuild">Customizing your Xcode Build</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Hyperloop_Programming_Guide-section-src-46253491_iOSHyperloopProgrammingGuide-CustomizingyourXcodebuild">Customizing your Xcode build</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Hyperloop_Programming_Guide-section-src-46253491_iOSHyperloopProgrammingGuide-Resources">Resources</a>    </p>
 </li></ul>    <p>This document provides information on iOS Hyperloop programming requirements, classes, instantiation, methods and properties, named methods, constants, enumerations, and functions, casting, blocks, function pointers, creating your own classes, using 3rd party libraries, and additional resources.    </p>
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Requirements">
         <h2 class="heading "><span>Requirements</span></h2>
-    <p>See <a class="document-link " href="#!/guide/Hyperloop_Requirements-section-src-53871456_HyperloopRequirements-Requirements">Hyperloop Requirements</a> for software requirements for using Hyperloop with Android.    </p>
+    <p>See <a class="document-link " href="#!/guide/Hyperloop_Requirements-section-src-53871456_HyperloopRequirements-Requirements">Hyperloop Requirements</a> for software requirements for using Hyperloop.    </p>
     </div>
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Classes">
         <h2 class="heading "><span>Classes</span></h2>
@@ -83,7 +83,7 @@ style pattern from Objective-C:     </span>
     </div>
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Methodsandproperties">
         <h2 class="heading "><span>Methods and properties</span></h2>
-    <p>Methods is Objective-C are mapped to JavaScript functions. Properties in Objective-C are mapped to JavaScript property accessors.    </p>
+    <p>Methods in Objective-C are mapped to JavaScript functions. Properties in Objective-C are mapped to JavaScript property accessors.    </p>
     <p>For example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -131,7 +131,7 @@ style pattern from Objective-C:     </span>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> tiView = Ti.UI.createView({ </code></div>
-<div class="line"><code class="plain">  backgroundColor : </code><code class="string">&quot;red&quot;</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">  backgroundColor : </code><code class="string">&apos;red&apos;</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> nativeView = UIView.cast(tiView);</code></div>
 <div class="line"><code class="plain">console.log(</code><code class="string">&apos;color should be red&apos;</code><code class="plain">, nativeView.backgroundColor);</code></div>
@@ -223,7 +223,7 @@ style pattern from Objective-C:     </span>
     </div>
         <div class="section section-3 " id="src-46253491_iOSHyperloopProgrammingGuide-CocoaPods">
         <h3 class="heading "><span>CocoaPods</span></h3>
-    <p>Hyperloop supports CocoaPods as a way to manage Third-party dependencies in your Hyperloop enabled project.    </p>
+    <p>Hyperloop supports CocoaPods as a way to manage Third-party dependencies in your Hyperloop-enabled project.    </p>
     <p>You must first install CocoaPods if you do not already have it installed. You can install using: <tt class=" ">sudo gem install cocoapods</tt>    </p>
     <p>Once you have CocoaPods installed you can create a Podfile in your Titanium project directory such as:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -266,12 +266,14 @@ style pattern from Objective-C:     </span>
 </div>
     </div>
     </div>
-        <p>    </p>
+        </div>
+    <div class="section section-3 " id="src-46253491_iOSHyperloopProgrammingGuide-Customframeworksandlibraries">
+        <h3 class="heading "><span>Custom frameworks and libraries</span></h3>
+    <p>    </p>
+    <div class="confbox admonition admonition-warning aui-message problem shadowed information-macro">
+            <p>The following functionality has been deprecated in Hyperloop 2.2.0 and will be removed in future versions of Hyperloop. Since Hyperloop 2.2.0, you can drop your native iOS framework (static or dynamic) into your <tt class=" ">app/platform/ios</tt> (Alloy) or <tt class=" ">platform/ios</tt> (Classic Titanium) folder. The manual configuration via the <tt class=" ">hyperloop.ios.thirdparty</tt> object of the <tt class=" ">appc.js</tt> is not necessary anymore.    </p>
     </div>
-    <div class="section section-3 " id="src-46253491_safe-id-aU9TSHlwZXJsb29wUHJvZ3JhbW1pbmdHdWlkZS1DdXN0b21GcmFtZXdvcmtzJkxpYnJhcmllcw">
-        <h3 class="heading "><span>Custom Frameworks &amp; Libraries</span></h3>
-    <p>Using Hyperloop 2.2.0 and later, you can drop your native iOS framework (static or dynamic) into your <tt class=" ">app/platform/ios</tt> (Alloy) or <tt class=" ">platform/ios</tt> (Classic Titanium) folder. The following configuration via <tt class=" ">appc.js</tt> is not necessary anymore and has beend deprecated as of Hyperloop 2.2.0. It will be removed in Hyperloop 3.0.0.    </p>
-    <p>In addition to CocoaPods, you can include third-party or first-party custom code by including a reference in <tt class=" ">appc.js</tt> under the <tt class=" ">thirdparty</tt> property. For example, to include custom objective-c from the project&#x2019;s src directory you could provide:    </p>
+        <p>In addition to CocoaPods, you can include third-party or first-party custom code by including a reference in <tt class=" ">appc.js</tt> under the <tt class=" ">thirdparty</tt> property. For example, to include custom objective-c from the project&#x2019;s src directory you could provide:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">appc.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="appc.js">
@@ -293,7 +295,6 @@ style pattern from Objective-C:     </span>
 <ul class=" "><li class=" ">    <p>The <tt class=" ">source</tt> property can be either an Array or String of source directories to include in the compile. This is optional.    </p>
 </li><li class=" ">    <p>The <tt class=" ">header</tt> property can be either an Array or String of header directories to include in the compile. This is required.    </p>
 </li><li class=" ">    <p>The <tt class=" ">resource</tt> property can be either an Array or String of resource directories to search for resources or files to compile (images, story boards, xibs, etc). These files will be flattened and copied directly into the root of the application and can be loaded with <tt class=" ">NSBundle</tt>.    </p>
-</li><li class=" ">    <p>This has been deprecated in Hyperloop 2.2.0 and will be removed in Hyperloop 3.0.0. Place it into your iOS platform folder instead and it will be automatically detected.    </p>
 </li></ul>    <p>To provide additional compiler flags, you can add them in the <tt class=" ">xcodebuild</tt> property of <tt class=" ">ios</tt> such as:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">appc.js</div>
@@ -317,9 +318,12 @@ style pattern from Objective-C:     </span>
     <div class="section section-3 " id="src-46253491_iOSHyperloopProgrammingGuide-UsingSwift">
         <h3 class="heading "><span>Using Swift</span></h3>
     <p>In addition to Objective-C, you can import third-party libraries written in Swift. Any <tt class=" ">*.swift</tt> files found in your <tt class=" ">src</tt> directories will automatically be compiled and available to use in your JavaScript just like Objective-C APIs.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p>It is recommended to use CocoaPods and the use_frameworks! flag to properly manage Swift frameworks.    </p>
     </div>
-    <div class="section section-3 " id="src-46253491_iOSHyperloopProgrammingGuide-CustomizingyourXcodeBuild">
-        <h3 class="heading "><span>Customizing your Xcode Build</span></h3>
+        </div>
+    <div class="section section-3 " id="src-46253491_iOSHyperloopProgrammingGuide-CustomizingyourXcodebuild">
+        <h3 class="heading "><span>Customizing your Xcode build</span></h3>
     <p>You can further customize the Xcode build by defining an <tt class=" ">appc.js</tt> file in the root of your project. This project will provide some additional configuration which the Hyperloop compiler will read when invoking Xcode.    </p>
     <p>For example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -338,7 +342,7 @@ style pattern from Objective-C:     </span>
 <div class="line"><code class="plain">};</code></div>
 </div>
     </div>
-    <p>Any <tt class=" ">flags</tt> added to the <tt class=" ">xcodebuild</tt> property will be passed to <tt class=" ">xcodebuild</tt> . Any <tt class=" ">frameworks</tt> in the array provided will be automatically added to the xcode project. <i class=" ">Note: any referenced frameworks in your Hyperloop code are automatically added for you. However, this gives you even more control to custom your compile environment.</i>    </p>
+    <p>Any <tt class=" ">flags</tt> added to the <tt class=" ">xcodebuild</tt> property will be passed to <tt class=" ">xcodebuild</tt> . Any <tt class=" ">frameworks</tt> in the array provided will be automatically added to the xcode project. <i class=" ">Note: Any referenced frameworks in your Hyperloop code are automatically added for you. However, this gives you even more control to custom your compile environment.</i>    </p>
     </div>
     </div>
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Resources">
@@ -349,7 +353,7 @@ style pattern from Objective-C:     </span>
 </li><li class=" ">    <p>XC Data Model (*.xcdatamodel, *.xcdatamodeld, *.xcmappingmodel)    </p>
 </li><li class=" ">    <p>Interface Builder (*.xib)    </p>
 </li></ul>    <p>The other resources will be copied such as PNG files.    </p>
-    <p>It is recommended  that you place any platform specific files under <tt class=" ">Resources/iphone</tt> (Titanium classic) or <tt class=" ">app/assets/iphone</tt> (Alloy).    </p>
+    <p>It is recommended that you place any platform specific files under <tt class=" ">Resources/iphone</tt> (Titanium classic) or <tt class=" ">app/assets/iphone</tt> (Alloy).    </p>
     </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=46253491"><span>Edit</span></a>
     

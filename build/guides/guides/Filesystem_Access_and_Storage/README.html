@@ -21,8 +21,8 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Filesystem_Access_and_Storage-section-src-29004902_FilesystemAccessandStorage-Storagelocations">Storage locations</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Filesystem_Access_and_Storage-section-src-29004902_FilesystemAccessandStorage-Fileoperations">File operations</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Filesystem_Access_and_Storage-section-src-29004902_FilesystemAccessandStorage-Gettingafilehandle">Getting a file handle</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/Filesystem_Access_and_Storage-section-src-29004902_FilesystemAccessandStorage-Reading">Reading</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Filesystem_Access_and_Storage-section-src-29004902_FilesystemAccessandStorage-Writing">Writing</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Filesystem_Access_and_Storage-section-src-29004902_FilesystemAccessandStorage-Reading">Reading</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Filesystem_Access_and_Storage-section-src-29004902_FilesystemAccessandStorage-Appending">Appending</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Filesystem_Access_and_Storage-section-src-29004902_FilesystemAccessandStorage-Creatingandcopying">Creating and copying</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Filesystem_Access_and_Storage-section-src-29004902_FilesystemAccessandStorage-Renamingfiles">Renaming files</a>    </p>
@@ -39,9 +39,11 @@
         <h2 class="heading "><span>Contents</span></h2>
     <p>Depending on your app&apos;s needs, storing data as a file might make more sense than storing the information in the database or in a property. Got a few details to store? Put them in the app&apos;s properties. Got a lot of structured, related data? That&apos;s what a database is for. But if you&apos;re storing binary data, such as images, we recommend you store it in files. Fortunately, Titanium makes it simple to perform basic filesystem <a class="external-link external-link" href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete" target="_blank">CRUD</a> operations.    </p>
     <p>Let&apos;s start by examining the modules available to you:    </p>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.Filesystem">Titanium.Filesystem</a> is the top level Filesystem module. You use it to create files and directories, and to get handles to existing files (which you&apos;ll then use to read from or write to those files). This module also contains methods that let you determine if storage space is available or if external (SD card) storage is present. With <tt class=" ">Ti.Filesystem</tt>, you can also obtain handles to the various directories accessible by your application.    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.Filesystem.File">Titanium.Filesystem.File</a> is the file-level object, which includes properties and methods that support common filesystem based operations such as reading, writing, and more.    </p>
-</li></ul>    <p>A few of the ways you might use the filesystem include:    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.Filesystem" target="_blank">Ti.Filesystem</a> is the top level Filesystem module. You use it to create files and directories, and to get handles to existing files (which you&apos;ll then use to read from or write to those files). This module also contains methods that let you determine if storage space is available or if external (SD card) storage is present. With <tt class=" ">Ti.Filesystem</tt>, you can also obtain handles to the various directories accessible by your application.    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.Filesystem.File" target="_blank">Ti.Filesystem.File</a> is the file-level object, which includes properties and methods that support common filesystem based operations such as reading, writing, and more.    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.Filesystem.FileStream" target="_blank">Ti.Filesystem.FileStream</a> is a wrapper around Ti.Filesystem.File that implements a <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.IOStream" target="_blank">Ti.IOStream</a> interface    </p>
+</li></ul>    <p>    </p>
+    <p>A few of the ways you might use the filesystem include:    </p>
 <ul class=" "><li class=" ">    <p>Accessing files that ship with your application    </p>
 </li><li class=" ">    <p>Saving data your app downloads from a web service    </p>
 </li><li class=" ">    <p>Saving data generated by the user to a file, which you might access later or upload to a service    </p>
@@ -52,9 +54,12 @@
 <ul class=" "><li class=" ">    <p><strong class=" ">Ti.Filesystem.applicationDataDirectory</strong>: A read/write directory accessible by your app. Place your application-specific files in this directory. The contents of this directory persist until you remove the files or until the user uninstalls the application.    </p>
 </li><li class=" ">    <p><strong class=" ">Ti.Filesystem.resourcesDirectory</strong>: A read-only directory where your application resources are located; this directory corresponds to the <i class=" ">project</i>/Resources directory in Studio. The contents of this directory persist until the user uninstalls the application.    </p>
 </li><li class=" ">    <p><strong class=" ">Ti.Filesystem.tempDirectory</strong>: A read-write directory where your application can place temporary files. The contents of this directory persist until your application fully closes, at which time the operating system could delete your files.    </p>
-</li><li class=" ">    <p><strong class=" ">Ti.Filesystem.externalStorageDirectory</strong>: A read-write directory on the external storage device (SD card) accessible by your app, if such a location exists. Check first with <tt class=" ">Ti.Filesystem.isExternalStoragePresent()</tt> (which returns a Boolean).  Available only for the Android platform.    </p>
-</li><li class=" ">    <p><strong class=" ">Ti.Filesystem.applicationCacheDirectory</strong>: A read-write directory where your application can cache data.  The contents of this directory persist after your application fully closes but at the discretion of the operating system.  For the Android platform, the cache is limited to 25 MB and the files remain for the lifetime of the application.  For the iOS platform, there is no size limit but the data only remains there until iOS cleans the directory if it requires the disk space.    </p>
-</li></ul>    <p>    </p>
+</li><li class=" ">    <p><strong class=" ">Ti.Filesystem.externalStorageDirectory</strong>: A read-write directory on the external storage device (SD card) accessible by your app, if such a location exists. Check first with <tt class=" ">Ti.Filesystem.isExternalStoragePresent()</tt> (which returns a Boolean).  Available only for the Android and Windows platforms.    </p>
+</li><li class=" ">    <p><strong class=" ">Ti.Filesystem.applicationCacheDirectory</strong>: A read-write directory where your application can cache data.  The contents of this directory persist after your application fully closes but at the discretion of the operating system.    </p>
+<ul class=" "><li class=" ">    <p>For the Android platform, the cache quota will change over time dependent on the app usage, and system wide storage, the data will be persisted until disk space is required.    </p>
+</li><li class=" ">    <p>For the iOS platform, there is no size limit but the data only remains there until iOS cleans the directory if it requires the disk space.    </p>
+</li><li class=" ">    <p>For the Windows platform, there is not size limit, and the data stored here will be ignored when a users backs up their storage to the cloud.    </p>
+</li></ul></li></ul>    <p>    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <p>The <tt class=" ">Ti.Filesystem.resourcesDirectory</tt> is read-only on a device, but is read/write in the simulator/emulator.    </p>
     </div>
@@ -71,42 +76,67 @@
 </div>
     </div>
     </div>
-    <div class="section section-4 " id="src-29004902_FilesystemAccessandStorage-Reading">
-        <h4 class="heading "><span>Reading</span></h4>
-    <p>Reading from a file is simple enough: get a handle then call the <tt class=" ">read()</tt> method. Keep in mind that the <tt class=" ">read()</tt> method returns the contents of the file as a blob. That&apos;s great if your file contains binary data. But if you&apos;re working with a text file, grab the <tt class=" ">text</tt> property of that blob to get the plain text contents of the file. Or, you can use the <tt class=" ">mimeType</tt> property to determine the file&apos;s <a class="external-link external-link" href="http://en.wikipedia.org/wiki/MIME_type" target="_blank">MIME type</a>. Like this:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,</code><code class="string">&apos;yourfile.txt&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">var contents = f.read();</code></div>
-<div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;Output as a blob: &apos;</code><code class="plain"> + contents); </code><code class="comments">// useful if contents are binary</code></div>
-<div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;Output text of the file: &apos;</code><code class="plain"> + contents.text);</code></div>
-<div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;Output the file\&apos;s MIME type: &apos;</code><code class="plain"> + contents.mimeType); </code><code class="comments">// e.g. text/plain</code></div>
-</div>
-    </div>
-    </div>
     <div class="section section-4 " id="src-29004902_FilesystemAccessandStorage-Writing">
         <h4 class="heading "><span>Writing</span></h4>
     <p>Again, writing to files is straightforward. Get a handle, call <tt class=" ">write()</tt>. Depending on your app, what comes before that call that might be a bit more involved. For example, when saving the state of a JavaScript object, you&apos;ll call <tt class=" ">JSON.stringify()</tt> first. Later, you can read in the file and rehydrate the object with <tt class=" ">JSON.parse()</tt>.    </p>
+    <p>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, </code><code class="string">&apos;emptyfile.txt&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">f.write(</code><code class="string">&apos;The file is no longer empty!&apos;</code><code class="plain">); </code><code class="comments">// write to the file</code></div>
 </div>
     </div>
-    <p>    <img src="images/download/attachments/29004902/Screen_shot_2012-01-04_at_10.33.34_AM.png" alt="images/download/attachments/29004902/Screen_shot_2012-01-04_at_10.33.34_AM.png" class="confluence-embedded-image confluence-content-image-border image-right" height="200">
-        </img></p>
+    <p>    </p>
+    </div>
+    <div class="section section-4 " id="src-29004902_FilesystemAccessandStorage-Reading">
+        <h4 class="heading "><span>Reading</span></h4>
+    <p>Reading from a file is simple enough: get a handle then call the <tt class=" ">read()</tt> method. Keep in mind that the <tt class=" ">read()</tt> method returns the contents of the file as a blob. That&apos;s great if your file contains binary data. But if you&apos;re working with a text file, grab the <tt class=" ">text</tt> property of that blob to get the plain text contents of the file. Or, you can use the <tt class=" ">mimeType</tt> property to determine the file&apos;s <a class="external-link external-link" href="http://en.wikipedia.org/wiki/MIME_type" target="_blank">MIME type</a>. Like this:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,</code><code class="string">&apos;yourfile.txt&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">f.write(</code><code class="string">&apos;The file is no longer empty!&apos;</code><code class="plain">); </code><code class="comments">// write to the file</code></div>
+<div class="line"><code class="plain">var contents = f.read();</code></div>
+<div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;Output as a blob: &apos;</code><code class="plain"> + contents); </code><code class="comments">// useful if contents are binary</code></div>
+<div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;Output text of the file: &apos;</code><code class="plain"> + contents.text);</code></div>
+<div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;Output the file\&apos;s MIME type: &apos;</code><code class="plain"> + contents.mimeType); </code><code class="comments">// e.g. text/plain</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="comments">// Will output</code></div>
+<div class="line"><code class="comments">// [INFO]  Output as a blob: The file is no longer empty!</code></div>
+<div class="line"><code class="comments">// [INFO]  Output text of the file: The file is no longer empty!</code></div>
+<div class="line"><code class="comments">// [INFO]  Output the file&apos;s MIME type: text/plain</code></div>
+</div>
+    </div>
+    <p>    </p>
     </div>
     <div class="section section-4 " id="src-29004902_FilesystemAccessandStorage-Appending">
         <h4 class="heading "><span>Appending</span></h4>
-    <p>There is no distinct (cross-platform) append method, but you can use <tt class=" ">write()</tt> to append to a file. In your statement, pass <tt class=" ">true</tt> as the second argument, as shown in the following code. The results of which are shown in the graphic to the right.    </p>
+    <p>To append the the file use the append() method, this takes a string, a Blob or a Ti.Filesystem.File object    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var log = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, </code><code class="string">&apos;logfile.txt&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">log.write(</code><code class="string">&apos;My log file\n&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">for</code><code class="plain"> (var i = </code><code class="value">0</code><code class="plain">; i &lt; </code><code class="value">10</code><code class="plain">; i++) {</code></div>
-<div class="line"><code class="plain">	log.write(i + </code><code class="string">&apos;: new log statement\n&apos;</code><code class="plain">, </code><code class="keyword">true</code><code class="plain">); </code><code class="comments">// Boolean argument causes write() to append</code></div>
+<div class="line"><code class="plain">	log.append(i + </code><code class="string">&apos;: new log statement\n&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="plain">alert(log.read().text);</code></div>
+<div class="line"><code class="plain">var extraLog = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, </code><code class="string">&apos;extralogfile.txt&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">extraLog.write(</code><code class="string">&apos;You can also append files!&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">log.append(extraLog);</code></div>
+<div class="line"><code class="plain">Ti.API.info(log.read().text);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="comments">// Will output</code></div>
+<div class="line"><code class="comments">// [INFO]  My log file</code></div>
+<div class="line"><code class="comments">// [INFO]  0: new log statement</code></div>
+<div class="line"><code class="comments">// [INFO]  1: new log statement</code></div>
+<div class="line"><code class="comments">// [INFO]  2: new log statement</code></div>
+<div class="line"><code class="comments">// [INFO]  3: new log statement</code></div>
+<div class="line"><code class="comments">// [INFO]  4: new log statement</code></div>
+<div class="line"><code class="comments">// [INFO]  5: new log statement</code></div>
+<div class="line"><code class="comments">// [INFO]  6: new log statement</code></div>
+<div class="line"><code class="comments">// [INFO]  7: new log statement</code></div>
+<div class="line"><code class="comments">// [INFO]  8: new log statement</code></div>
+<div class="line"><code class="comments">// [INFO]  9: new log statement</code></div>
+<div class="line"><code class="comments">// [INFO]  You can also append files!</code></div>
 </div>
     </div>
     </div>
@@ -123,7 +153,25 @@
 <div class="line"><code class="plain">f.write(</code><code class="string">&apos;writing to the file would be enough to create it&apos;</code><code class="plain">);</code></div>
 </div>
     </div>
-    <p>Titanium doesn&apos;t include a specific copy() method. Instead, you copy a file by combining reading and writing, like this:    </p>
+    <p>On Android and Windows there is a specific copy method, it can be used like the below    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">var</code><code class="plain"> oldfile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,</code><code class="string">&apos;old.txt&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">oldfile.write(</code><code class="string">&apos;Copying files!&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> newPath = Ti.Filesystem.applicationDataDirectory + </code><code class="string">&apos;new.txt&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">oldfile.copy(newPath); </code><code class="comments">// both old.txt and new.txt exist now</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> newfile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, </code><code class="string">&apos;new.txt&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;oldfile exists at &apos;</code><code class="plain"> + oldfile.nativePath + </code><code class="string">&apos;: &apos;</code><code class="plain"> + oldfile.exists());</code></div>
+<div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;newfile exists at &apos;</code><code class="plain"> + newfile.nativePath + </code><code class="string">&apos;: &apos;</code><code class="plain"> + newfile.exists());</code></div>
+<div class="line">&#xA0;</div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Will log (paths are correct on Android)</code></div>
+<div class="line"><code class="comments">// [INFO]  oldfile exists at file:///data/user/0/com.ti.app/app_appdata/old.txt: true </code></div>
+<div class="line"><code class="comments">// [INFO]  newfile exists at file:///data/user/0/com.ti.capp/app_appdata/new.txt: true</code></div>
+</div>
+    </div>
+    <p>iOS doesn&apos;t have a copy method so you can copy a file like below.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var oldfile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,</code><code class="string">&apos;old.txt&apos;</code><code class="plain">);</code></div>
@@ -134,7 +182,7 @@
     </div>
     <div class="section section-4 " id="src-29004902_FilesystemAccessandStorage-Renamingfiles">
         <h4 class="heading "><span>Renaming files</span></h4>
-    <p>Renaming files follows the same format as above: get a handle, do the operation. But, we need to keep in mind how the file handles are, er, handled. After renaming the file, our file handle will still point to the old name. If you expect it to be automatically updated to point to the new file name, you could be in for some unexpected To demonstrate <tt class=" ">rename()</tt> and this file handle behavior, the following code example previews directories and how you can output a directory listing.    </p>
+    <p>Renaming files follows the same format as above: get a handle, do the operation. But, we need to keep in mind how the file handles are, er, handled. After renaming the file, our file handle will still point to the old name. If you expect it to be automatically updated to point to the new file name, you could be in for some unexpected behaviour. To demonstrate <tt class=" ">rename()</tt> and this file handle behavior, the following code example previews directories and how you can output a directory listing.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// get a handle to the directory</code></div>
@@ -170,13 +218,14 @@
     <p>We&apos;ll end our discussion of file with a look at deleting files. As before, grab a handle and do the operation. The <tt class=" ">deleteFile()</tt> returns a Boolean value indicating whether the operation succeed. This means it won&apos;t throw an error if the file doesn&apos;t exist or is read-only. You&apos;ll just get <tt class=" ">false</tt> back.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,</code><code class="string">&apos;delete_me.txt&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, </code><code class="string">&apos;delete_me.txt&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">f.write(</code><code class="string">&apos;foo&apos;</code><code class="plain">); </code><code class="comments">// make sure there&apos;s content there so we&apos;re sure the file exists</code></div>
 <div class="line"><code class="comments">// Before deleting, maybe we could confirm the file exists and is writable</code></div>
 <div class="line"><code class="comments">// but we don&apos;t really need to as deleteFile() would just return false if it failed</code></div>
-<div class="line"><code class="keyword">if</code><code class="plain"> (f.exists() &amp;&amp; f.writeable) {</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (f.exists() &amp;&amp; f.writable) {</code></div>
 <div class="line"><code class="plain">	var success = f.deleteFile();</code></div>
-<div class="line"><code class="plain">	Ti.API.info((success==</code><code class="keyword">true</code><code class="plain">) ? </code><code class="string">&apos;success&apos;</code><code class="plain"> : </code><code class="string">&apos;fail&apos;</code><code class="plain">); </code><code class="comments">// outputs &apos;success&apos;</code></div>
+<div class="line"><code class="plain">	Ti.API.info((success == </code><code class="keyword">true</code><code class="plain">) ? </code><code class="string">&apos;success&apos;</code><code class="plain"> : </code><code class="string">&apos;fail&apos;</code><code class="plain">); </code><code class="comments">// outputs &apos;success&apos;</code></div>
+<div class="line"><code class="plain">	Ti.API.info(f.exists());</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
@@ -188,10 +237,10 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// create our starting file</code></div>
-<div class="line"><code class="plain">var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,</code><code class="string">&apos;myfile.txt&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, </code><code class="string">&apos;myfile.txt&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">f.write(</code><code class="string">&apos;foo&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="comments">// get a handle to the as-yet non-existent directory</code></div>
-<div class="line"><code class="plain">var dir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,</code><code class="string">&apos;mysubdir&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var dir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, </code><code class="string">&apos;mysubdir&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">dir.createDirectory(); </code><code class="comments">// this creates the directory</code></div>
 <div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;Directory list to start: &apos;</code><code class="plain"> + dir.getDirectoryListing()); </code><code class="comments">// it&apos;s empty</code></div>
 <div class="line">&#xA0;</div>
@@ -201,12 +250,12 @@
 <div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;Dir list after move: &apos;</code><code class="plain"> + dir.getDirectoryListing());</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// delete the directory</code></div>
-<div class="line"><code class="keyword">if</code><code class="plain">(dir.deleteDirectory()==</code><code class="keyword">false</code><code class="plain">) {</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain">(dir.deleteDirectory() === </code><code class="keyword">false</code><code class="plain">) {</code></div>
 <div class="line"><code class="plain">	Ti.API.info(</code><code class="string">&apos;You cannot delete a directory containing files&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">	dir.deleteDirectory(</code><code class="keyword">true</code><code class="plain">); </code><code class="comments">// force a recursive directory, which will delete contents</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line"><code class="comments">// if we try to list the directory, the output is null because the directory doesn&apos;t exist</code></div>
-<div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;Dir list after deleteDirectory(): &apos;</code><code class="plain"> + dir.getDirectoryListing());</code></div>
+<div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;Dir list after deleteDirectory(true): &apos;</code><code class="plain"> + dir.getDirectoryListing());</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">&#xA0;</code></div>
 <div class="line"><code class="comments">// clean the cache directory</code></div>
@@ -248,8 +297,8 @@
     </div>
     <div class="section section-3 " id="src-29004902_FilesystemAccessandStorage-ReferencesandFurtherReading">
         <h3 class="heading "><span>References and Further Reading</span></h3>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.Filesystem">API docs: Ti.Filesystem</a>    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.ImageView-method-toImage">API docs - imageView.toImage()</a>    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.Filesystem" target="_blank">API docs: Ti.Filesystem</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.View-method-toImage" target="_blank">API docs - imageView.toImage()</a>    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="http://assets.appcelerator.com.s3.amazonaws.com/app_u/ebook/5.4_localdata.zip" target="_blank">Finished code</a>    </p>
 </li></ul>    </div>
     </div>

@@ -18,11 +18,11 @@
 
         <div id="src-49158655" class="content">
                         <h1>Integrating Windows Runtime Components in C#</h1>
-    <div class="section section-2 " id="src-49158655_safe-id-SW50ZWdyYXRpbmdXaW5kb3dzUnVudGltZUNvbXBvbmVudHNpbkMjLS8qPCFbQ0RBVEFbKi9kaXYucmJ0b2MxNTIxMDY2MjA4ODA4e3BhZGRpbmc6MHB4O31kaXYucmJ0b2MxNTIxMDY2MjA4ODA4dWx7bGlzdC1zdHlsZTpkaXNjO21hcmdpbi1sZWZ0OjBweDt9ZGl2LnJidG9jMTUyMTA2NjIwODgwOGxpe21hcmdpbi1sZWZ0OjBweDtwYWRkaW5nLWxlZnQ6MHB4O30vKl1dPiovSW50cm9kdWN0aW9uI0ludGVncmF0aW5nV2luZG93c1J1bnRpbWVDb21w">
+    <div class="section section-2 " id="src-49158655_safe-id-SW50ZWdyYXRpbmdXaW5kb3dzUnVudGltZUNvbXBvbmVudHNpbkMjLS8qPCFbQ0RBVEFbKi9kaXYucmJ0b2MxNTIxNTcwMTAxODg5e3BhZGRpbmc6MHB4O31kaXYucmJ0b2MxNTIxNTcwMTAxODg5dWx7bGlzdC1zdHlsZTpkaXNjO21hcmdpbi1sZWZ0OjBweDt9ZGl2LnJidG9jMTUyMTU3MDEwMTg4OWxpe21hcmdpbi1sZWZ0OjBweDtwYWRkaW5nLWxlZnQ6MHB4O30vKl1dPiovSW50cm9kdWN0aW9uI0ludGVncmF0aW5nV2luZG93c1J1bnRpbWVDb21w">
         <h2 class="heading "><span>/*&lt;![CDATA[*/
-div.rbtoc1521066208808 {padding: 0px;}
-div.rbtoc1521066208808 ul {list-style: disc;margin-left: 0px;}
-div.rbtoc1521066208808 li {margin-left: 0px;padding-left: 0px;}
+div.rbtoc1521570101889 {padding: 0px;}
+div.rbtoc1521570101889 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1521570101889 li {margin-left: 0px;padding-left: 0px;}
 
 /*]]&gt;*/</span></h2>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Integrating_Windows_Runtime_Components_in_C_.html#src-49158655_safe-id-SW50ZWdyYXRpbmdXaW5kb3dzUnVudGltZUNvbXBvbmVudHNpbkMjLUludHJvZHVjdGlvbg">Introduction</a>    </p>
@@ -41,17 +41,17 @@ div.rbtoc1521066208808 li {margin-left: 0px;padding-left: 0px;}
     </div>
     <div class="section section-2 " id="src-49158655_safe-id-SW50ZWdyYXRpbmdXaW5kb3dzUnVudGltZUNvbXBvbmVudHNpbkMjLUNyZWF0ZXNpbXBsZVdpbmRvd3NSdW50aW1lY29tcG9uZW50aW5DIw">
         <h2 class="heading "><span>Create simple Windows Runtime component in C#</span></h2>
-    <p>This section we are going to create a basic Windows Runtime Component in C# that exposes few methods. For basic information about Windows Runtime Components in C#, refer to official document from Microsoft here: <a class="external-link external-link" href="https://msdn.microsoft.com/en-us/library/br230301.aspx">Creating Windows Runtime Components in C# and Visual Basic</a>.    </p>
-<ol class=" "><li class=" ">    <p>In Visual Studio, choose <strong class=" ">File</strong>, <strong class=" ">New</strong>, <strong class=" ">Project</strong>. In the <strong class=" ">Installed Templates</strong> section of the <strong class=" ">New Project</strong> dialog box, choose <strong class=" ">Visual C#</strong>, <strong class=" ">Windows</strong> and <strong class=" ">Universal</strong>. Then choose the <strong class=" ">Windows Runtime Components (Universal Windows)</strong> and enter <tt class=" ">MyComponent</tt> for the project name.    </p>
+    <p>This section we are going to create a basic Windows Runtime Component in C# that exposes few methods. For basic information about Windows Runtime Components in C#, refer to official document from Microsoft here: <a class="external-link external-link" href="https://docs.microsoft.com/en-us/windows/uwp/winrt-components/creating-windows-runtime-components-in-csharp-and-visual-basic">Creating Windows Runtime Components in C# and Visual Basic</a>.    </p>
+<ol class=" "><li class=" ">    <p>In Visual Studio, choose <strong class=" ">File</strong>, <strong class=" ">New</strong>, <strong class=" ">Project</strong>. In the <strong class=" ">Installed Templates</strong> section of the <strong class=" ">New Project</strong> dialog box, choose <strong class=" ">Visual C#</strong>, <strong class=" ">Windows </strong><strong class=" ">Universal</strong>. Then choose the <strong class=" ">Windows Runtime Component (Universal Windows)</strong> and enter <tt class=" ">MyComponent</tt> for the project name.    </p>
 </li><li class=" ">    <p>In Solution Explorer, rename the <tt class=" ">Class1.cs</tt> to MyComponent.cs that is the class basically what we want to export.    </p>
-</li><li class=" ">    <p>Then, changes the name of the namespace to <tt class=" ">MyComponent</tt>, and change the name of the class to <tt class=" ">MyClass</tt>.    </p>
+</li><li class=" ">    <p>Then, changes the name of the namespace to <tt class=" ">MyComponent</tt>, and change the name of the class to <tt class=" ">Speaker</tt>.    </p>
 </li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">MyComponent.cs</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="MyComponent.cs">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
 <div class="line"><code class="keyword">namespace</code><code class="plain"> MyComponent</code></div>
 <div class="line"><code class="plain">{</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">sealed</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> MyClass</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">sealed</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> Speaker</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -65,11 +65,11 @@ div.rbtoc1521066208808 li {margin-left: 0px;padding-left: 0px;}
 <div class="line">&#xA0;</div>
 <div class="line"><code class="keyword">namespace</code><code class="plain"> MyComponent</code></div>
 <div class="line"><code class="plain">{</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">sealed</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> MyClass</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">sealed</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> Speaker</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">int</code><code class="plain"> SampleNumber { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">        </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> SayHello(</code><code class="keyword">string</code><code class="plain"> str)</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> sayHello(</code><code class="keyword">string</code><code class="plain"> str)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> String.Format(</code><code class="string">&quot;Hello, {0}!&quot;</code><code class="plain">, str);</code></div>
 <div class="line"><code class="plain">        }</code></div>
@@ -100,8 +100,7 @@ div.rbtoc1521066208808 li {margin-left: 0px;padding-left: 0px;}
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="functions">cd</code><code class="plain"> </code><code class="plain">/PATH/TO/WORKSPACE</code></div>
-<div class="line"><code class="plain">appc new -n </code><code class="functions">test</code><code class="plain"> --</code><code class="functions">id</code><code class="plain"> com.example.</code><code class="functions">test</code></div>
-<div class="line"><code class="comments">### when prompted for the project type, select &quot;Titanium Module&quot;</code></div>
+<div class="line"><code class="plain">appc new --name </code><code class="functions">test</code><code class="plain"> --</code><code class="functions">id</code><code class="plain"> com.example.</code><code class="functions">test</code><code class="plain"> --</code><code class="functions">type</code><code class="plain"> timodule</code></div>
 </div>
     </div>
     </div>
@@ -138,7 +137,7 @@ div.rbtoc1521066208808 li {margin-left: 0px;padding-left: 0px;}
 <div class="line"><code class="plain">                Test&amp; operator=(Test&amp;&amp;)      = </code><code class="keyword">default</code><code class="plain">;</code></div>
 <div class="line"><code class="preprocessor">#endif</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> JSExportInitialize();</code></div>
-<div class="line"><code class="plain">                TITANIUM_FUNCTION_DEF(SayHello);</code></div>
+<div class="line"><code class="plain">                TITANIUM_FUNCTION_DEF(sayHello);</code></div>
 <div class="line"><code class="plain">                TITANIUM_FUNCTION_DEF(sayNumber);</code></div>
 <div class="line"><code class="plain">                TITANIUM_PROPERTY_DEF(sampleNumber);</code></div>
 <div class="line"><code class="plain">                </code><code class="comments">//</code></div>
@@ -163,7 +162,7 @@ div.rbtoc1521066208808 li {margin-left: 0px;padding-left: 0px;}
 <div class="line"><code class="plain">                </code><code class="comments">//</code></div>
 <div class="line"><code class="plain">                </code><code class="comments">// This is Custom Windows Runtime Component we are developing</code></div>
 <div class="line"><code class="plain">                </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">                MyComponent::MyClass^ myClass__;</code></div>
+<div class="line"><code class="plain">                MyComponent::Speaker^ speaker__;</code></div>
 <div class="line"><code class="plain">        };</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -199,9 +198,9 @@ div.rbtoc1521066208808 li {margin-left: 0px;padding-left: 0px;}
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            Titanium::Module::postCallAsConstructor(js_context, arguments);  </code></div>
 <div class="line"><code class="plain">            </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">            </code><code class="comments">// Let&apos;s create MyClass instance on the constructor for now. In JavaScript</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Let&apos;s create Speaker instance on the constructor for now. In JavaScript</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">            myClass__ = ref </code><code class="keyword">new</code><code class="plain"> MyComponent::MyClass();</code></div>
+<div class="line"><code class="plain">            speaker__ = ref </code><code class="keyword">new</code><code class="plain"> MyComponent::Speaker();</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">//</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Overridden method</code></div>
@@ -216,56 +215,56 @@ div.rbtoc1521066208808 li {margin-left: 0px;padding-left: 0px;}
 <div class="line"><code class="plain">            TITANIUM_MODULE_LOG_INFO(</code><code class="string">&quot;Test::afterPropertiesSet() is called&quot;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// Expose SayHello method as static method and just delegate it to MyClass</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Expose sayHello method as static method and just delegate it to Speaker</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">        TITANIUM_FUNCTION(Test, SayHello)</code></div>
+<div class="line"><code class="plain">        TITANIUM_FUNCTION(Test, sayHello)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">// We can call Windows Runtime Components static method like this</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">// We call ConvertUTF8String function to convert Platform::String^ to std::string here</code></div>
-<div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> get_context().CreateString(TitaniumWindows::Utility::ConvertUTF8String(MyComponent::MyClass::SayHello(</code><code class="string">&quot;World&quot;</code><code class="plain">)));</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> get_context().CreateString(TitaniumWindows::Utility::ConvertUTF8String(MyComponent::Speaker::sayHello(</code><code class="string">&quot;World&quot;</code><code class="plain">)));</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">         </code></div>
 <div class="line"><code class="plain">        </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// Expose sayNumber method as instance method and just delegate it to MyClass</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Expose sayNumber method as instance method and just delegate it to Speaker</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">//</code></div>
 <div class="line"><code class="plain">        TITANIUM_FUNCTION(Test, sayNumber)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">            </code><code class="comments">// Note that myClass__ can be nullptr.</code></div>
-<div class="line"><code class="plain">            </code><code class="comments">// MyClass instantiates it only when constructor is called</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Note that speaker__ can be nullptr.</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Speaker instantiates it only when constructor is called</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">// We call ConvertUTF8String function to convert Platform::String^ to std::string here</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">            </code><code class="keyword">if</code><code class="plain"> (myClass__) {</code></div>
-<div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> get_context().CreateString(TitaniumWindows::Utility::ConvertUTF8String(myClass__-&gt;sayNumber()));</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">if</code><code class="plain"> (speaker__) {</code></div>
+<div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> get_context().CreateString(TitaniumWindows::Utility::ConvertUTF8String(speaker__-&gt;sayNumber()));</code></div>
 <div class="line"><code class="plain">            }</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> get_context().CreateUndefined();</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// Expose name property setter and just delegate it to MyClass</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Expose name property setter and just delegate it to Speaker</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">//</code></div>
 <div class="line"><code class="plain">        TITANIUM_PROPERTY_SETTER(Test, sampleNumber)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">            </code><code class="comments">// Note that myClass__ can be nullptr.</code></div>
-<div class="line"><code class="plain">            </code><code class="comments">// MyClass instantiates it only when constructor is called</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Note that speaker__ can be nullptr.</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Speaker instantiates it only when constructor is called</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">            </code><code class="keyword">if</code><code class="plain"> (myClass__) {</code></div>
-<div class="line"><code class="plain">                myClass__-&gt;SampleNumber = </code><code class="keyword">static_cast</code><code class="plain">&lt;</code><code class="color1">int</code><code class="plain">&gt;(argument);</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">if</code><code class="plain"> (speaker__) {</code></div>
+<div class="line"><code class="plain">                speaker__-&gt;SampleNumber = </code><code class="keyword">static_cast</code><code class="plain">&lt;</code><code class="color1">int</code><code class="plain">&gt;(argument);</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">            }</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">false</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// Expose sampleNumber property getter and just delegate it to MyClass</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Expose sampleNumber property getter and just delegate it to Speaker</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">//</code></div>
 <div class="line"><code class="plain">        TITANIUM_PROPERTY_GETTER(Test, sampleNumber)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">            </code><code class="comments">// Note that myClass__ can be nullptr.</code></div>
-<div class="line"><code class="plain">            </code><code class="comments">// MyClass instantiates it only when constructor is called</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Note that speaker__ can be nullptr.</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Speaker instantiates it only when constructor is called</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">//</code></div>
-<div class="line"><code class="plain">            </code><code class="keyword">if</code><code class="plain"> (myClass__) {</code></div>
-<div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> get_context().CreateNumber(myClass__-&gt;SampleNumber);</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">if</code><code class="plain"> (speaker__) {</code></div>
+<div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> get_context().CreateNumber(speaker__-&gt;SampleNumber);</code></div>
 <div class="line"><code class="plain">            }</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> get_context().CreateUndefined();</code></div>
 <div class="line"><code class="plain">        }</code></div>
@@ -274,7 +273,7 @@ div.rbtoc1521066208808 li {margin-left: 0px;padding-left: 0px;}
 <div class="line"><code class="plain">            JSExport&lt;Test&gt;::SetClassVersion(1);</code></div>
 <div class="line"><code class="plain">            JSExport&lt;Test&gt;::SetParent(JSExport&lt;Titanium::Module&gt;::Class());</code></div>
 <div class="line"><code class="plain">         </code></div>
-<div class="line"><code class="plain">            TITANIUM_ADD_FUNCTION(Test, SayHello);</code></div>
+<div class="line"><code class="plain">            TITANIUM_ADD_FUNCTION(Test, sayHello);</code></div>
 <div class="line"><code class="plain">            TITANIUM_ADD_FUNCTION(Test, sayNumber);</code></div>
 <div class="line"><code class="plain">            TITANIUM_ADD_PROPERTY(Test, sampleNumber);</code></div>
 <div class="line"><code class="plain">        }</code></div>
@@ -307,7 +306,7 @@ div.rbtoc1521066208808 li {margin-left: 0px;padding-left: 0px;}
     <p>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">appc ti build -p windows --build-only --run-cmake</code></div>
+<div class="line"><code class="plain">appc run -p windows --build-only --run-cmake</code></div>
 </div>
     </div>
     <p>Then Titanium CLI will generate module zip that contains your Windows Runtime Component.    </p>

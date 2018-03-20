@@ -29,8 +29,12 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Hyperloop_Programming_Guide-section-src-46253495_AndroidHyperloopProgrammingGuide-Casting">Casting</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Hyperloop_Programming_Guide-section-src-46253495_AndroidHyperloopProgrammingGuide-Interfaces">Interfaces</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Hyperloop_Programming_Guide-section-src-46253495_AndroidHyperloopProgrammingGuide-Creatingyourownclasses">Creating your own classes</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Hyperloop_Programming_Guide-section-src-46253495_AndroidHyperloopProgrammingGuide-AccessingnativeXMLLayouts">Accessing native XML Layouts</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Hyperloop_Programming_Guide-section-src-46253495_AndroidHyperloopProgrammingGuide-UsingThird-partylibraries">Using Third-party libraries</a>    </p>
-</li></ul>    <p>This document provides information on Android Hyperloop requirements, classes, instantiation, methods and fields, casting, interfaces, creating your own classes, and using 3rd party libraries.    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Hyperloop_Programming_Guide-section-src-46253495_AndroidHyperloopProgrammingGuide-Manualdependencies"> Manual dependencies</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Hyperloop_Programming_Guide-section-src-46253495_AndroidHyperloopProgrammingGuide-GradleDependencies">Gradle Dependencies</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Hyperloop_Programming_Guide-section-src-46253495_AndroidHyperloopProgrammingGuide-Third-partyExamples">Third-party Examples</a>    </p>
+</li></ul></li></ul>    <p>This document provides information on Android Hyperloop requirements, classes, instantiation, methods and fields, casting, interfaces, creating your own classes, and using 3rd party libraries.    </p>
     <div class="section section-2 " id="src-46253495_AndroidHyperloopProgrammingGuide-Requirements">
         <h2 class="heading "><span>Requirements</span></h2>
     <div class="section section-3 " id="src-46253495_AndroidHyperloopProgrammingGuide-Software">
@@ -39,7 +43,7 @@
     </div>
     <div class="section section-3 " id="src-46253495_AndroidHyperloopProgrammingGuide-Configuretiapp.xml">
         <h3 class="heading "><span>Configure  tiapp.xml</span></h3>
-    <p>Configure the module in <tt class=" ">tiapp.xml</tt>:    </p>
+    <p>Make sure to add the Hyperloop module to the <tt class=" ">&lt;modules&gt;</tt> section of the <tt class=" ">tiapp.xml</tt>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">modules</code><code class="plain">&gt;</code></div>
@@ -57,7 +61,6 @@
 <div class="line"><code class="keyword">var</code><code class="plain"> View = require(</code><code class="string">&apos;android.view.View&apos;</code><code class="plain">);</code></div>
 </div>
     </div>
-    <p>    </p>
     <p>This will return the <tt class=" ">View</tt> class object (it&#x2019;s not an instance of a <tt class=" ">View</tt>, but the <tt class=" ">View</tt> class itself).    </p>
     <p>Once you have the Class reference returned from <tt class=" ">require</tt>, you can call normal JavaScript property and functions against it. Remember, at this point calling functions or properties against the class object above will be accessing Class level (static) Java methods (not instance level).    </p>
     <p>For example, you could get the generated view id of the <tt class=" ">View</tt> using the example:    </p>
@@ -117,7 +120,7 @@
     <p>You can also cast a Titanium UI Component into its equivalent. For example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="keyword">var</code><code class="plain"> tiView = Ti.UI.createView({backgroundColor : </code><code class="string">&quot;red&quot;</code><code class="plain">});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> tiView = Ti.UI.createView({ backgroundColor : </code><code class="string">&apos;red&apos;</code><code class="plain"> });</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> nativeView = </code><code class="keyword">new</code><code class="plain"> View(tiView);</code></div>
 <div class="line"><code class="plain">console.log(</code><code class="string">&apos;X (relative to parent): &apos;</code><code class="plain">, nativeView.getLeft());</code></div>
 </div>
@@ -128,10 +131,10 @@
     <p>Interfaces may be implemented using a Javascript syntax similar to an anonymous Java class. Call the constructor of the interface type with a JavaScript object that contains properties that match the interface method names, and corresponding values as function that implement them. For example, to create an instance that implements <tt class=" ">android.view.View.OnTouchListener</tt>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="keyword">var</code><code class="plain"> OnTouchListener = require(</code><code class="string">&apos;android.view.View.OnTouchListener&apos;</code><code class="plain">),</code></div>
-<div class="line"><code class="plain">	listener = </code><code class="keyword">new</code><code class="plain"> OnTouchListener({</code></div>
-<div class="line"><code class="plain">		onTouch: </code><code class="keyword">function</code><code class="plain">(v, event) {</code></div>
-<div class="line"><code class="plain">			</code><code class="comments">// Do some work here</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> OnTouchListener = require(</code><code class="string">&apos;android.view.View.OnTouchListener&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> listener = </code><code class="keyword">new</code><code class="plain"> OnTouchListener({</code></div>
+<div class="line"><code class="plain">	onTouch: </code><code class="keyword">function</code><code class="plain">(v, event) {</code></div>
+<div class="line"><code class="plain">		</code><code class="comments">// Do some work here</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">});</code></div>
@@ -151,7 +154,8 @@
 <div class="line"><code class="plain">&#xA0;</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> MyView = android.view.View.extend({</code></div>
 <div class="line"><code class="plain">    onDraw: </code><code class="keyword">function</code><code class="plain">(canvas) {</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// implementation here</code></div>
+<div class="line"><code class="plain">      </code><code class="keyword">this</code><code class="plain">.</code><code class="keyword">super</code><code class="plain">.onDraw(canvas);</code></div>
+<div class="line"><code class="plain">      </code><code class="comments">// implementation here</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> customView = </code><code class="keyword">new</code><code class="plain"> MyView(activity); </code><code class="comments">// Add your custom view to the content...</code></div>
@@ -163,16 +167,72 @@
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">class</code><code class="plain"> MyView </code><code class="keyword">extends</code><code class="plain"> android.view.View {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> onDraw(Canvas canvas) {</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// implementation here</code></div>
+<div class="line"><code class="plain">      </code><code class="comments">// implementation here</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
     </div>
+    <div class="section section-2 " id="src-46253495_AndroidHyperloopProgrammingGuide-AccessingnativeXMLLayouts">
+        <h2 class="heading "><span>Accessing native XML Layouts</span></h2>
+    <p>In native Android development, you have many situations where you are inflating native XML layouts in your source-code. In Hyperloop, you can do the same with just a few lines of code:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var Activity = require(</code><code class="string">&apos;android.app.Activity&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    Context = require(</code><code class="string">&apos;android.content.Context&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="plain">    Inflater = require(</code><code class="string">&apos;android.view.LayoutInflater&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="plain">    activity = </code><code class="keyword">new</code><code class="plain"> Activity(Ti.Android.currentActivity);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Load the layout inflater</code></div>
+<div class="line"><code class="plain">var inflater = Inflater.cast(activity.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE));</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="comments">// Load the &quot;main_content.xml&quot; from [app]/platform/android/res/layout/</code></div>
+<div class="line"><code class="comments">// This can also be used for other kind of resources, like images, colors and values </code></div>
+<div class="line"><code class="plain">var resId = activity.getResources().getIdentifier(</code><code class="string">&apos;main_content&apos;</code><code class="plain">, </code><code class="string">&apos;layout&apos;</code><code class="plain">, activity.getPackageName());</code></div>
+<div class="line"><code class="plain">var view = inflater.inflate(resId, </code><code class="keyword">null</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Add &quot;view&quot; your Titanium view here ...</code></div>
+</div>
+    </div>
+    <p>Learn more about a native XML layouts in our <a class="external-link external-link" href="https://github.com/appcelerator/hyperloop-examples/blob/master/app/controllers/android/nativelayout.js" target="_blank">Native Layout Example</a> as part of the <a class="external-link external-link" href="https://github.com/appcelerator/hyperloop-examples" target="_blank">Hyperloop Examples</a> app.    </p>
+    </div>
     <div class="section section-2 " id="src-46253495_AndroidHyperloopProgrammingGuide-UsingThird-partylibraries">
         <h2 class="heading "><span>Using Third-party libraries</span></h2>
+    <div class="section section-3 " id="src-46253495_AndroidHyperloopProgrammingGuide-Manualdependencies">
+        <h3 class="heading "><span>Manual dependencies</span></h3>
     <p>You can use Third-party libraries in Hyperloop such as JARs and AARs.    </p>
-    <p>Place the <strong class=" ">JAR </strong>and<strong class=" "> AAR files</strong> into the <tt class=" ">platform/android</tt> folder of your app. Hyperloop will pick up the JAR files and will generate necessary bindings. For JARs, they will be included in your app. For AAR files, they will extract resources, extract and use the class.jar, *.so file, and so on.    </p>
+    <p>Place the <strong class=" ">JAR </strong>and<strong class=" "> AAR files</strong> into the <tt class=" ">platform/android</tt> (Classic) or <tt class=" ">app/platform/android</tt> (Alloy) folder of your app. Hyperloop will pick up the JAR files and will generate necessary bindings. For JARs, they will be included in your app. For AAR files, they will extract resources, extract and use the class.jar, *.so file, and so on.    </p>
+    </div>
+    <div class="section section-3 " id="src-46253495_AndroidHyperloopProgrammingGuide-GradleDependencies">
+        <h3 class="heading "><span>Gradle Dependencies</span></h3>
+    <p>Instead of placing your Android archives into your project manually, you can also use Gradle to pull down any library and its dependencies. Here is a quick example of using the Mapbox Android SDK via Gradle:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">build.gradle</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="build.gradle">
+<div class="line"><code class="plain">apply plugin: </code><code class="string">&apos;java&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">repositories {</code></div>
+<div class="line"><code class="plain">	google()</code></div>
+<div class="line"><code class="plain">	mavenCentral()</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">dependencies {</code></div>
+<div class="line"><code class="plain">	implementation </code><code class="string">&apos;com.mapbox.mapboxsdk:mapbox-android-sdk:5.5.0&apos;</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">task getDeps(type: Copy) {</code></div>
+<div class="line"><code class="plain">	from sourceSets.main.runtimeClasspath</code></div>
+<div class="line"><code class="plain">	exclude </code><code class="string">&apos;support-*&apos;</code><code class="plain"> </code><code class="comments">// The support libraries are packaged with Titanium already</code></div>
+<div class="line"><code class="plain">	into </code><code class="string">&apos;platform/android/&apos;</code><code class="plain"> </code><code class="comments">// Use &quot;app/platform/android&quot; for Alloy</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>In the above Gradle file, the Mapbox Android SDK is downloaded to <tt class=" ">platform/android</tt> (Classic) and can be changed to <tt class=" ">app/platform/android</tt> if used in Alloy. You can see a full example of using Gradle, CocoaPods (iOS) and modern ES6+ in the <a class="external-link external-link" href="https://github.com/hyperloop-modules/ti.mapbox" target="_blank">Ti.Mapbox module</a>.    </p>
+    </div>
+    <div class="section section-3 " id="src-46253495_AndroidHyperloopProgrammingGuide-Third-partyExamples">
+        <h3 class="heading "><span>Third-party Examples</span></h3>
+    <p>Make sure to check out more Android third-party libraries (like Localytics, SSDP, Shimmer) in our <a class="external-link external-link" href="https://github.com/appcelerator/hyperloop-examples/tree/master/app/controllers/android/libraries" target="_blank">Hyperloop Sample App</a>.    </p>
+    </div>
     </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=46253495"><span>Edit</span></a>
     

@@ -48,8 +48,8 @@ else
 	echo "Skipping updating the repos."
 fi
 
-echo "Checking status of NPM modules.\n"
-sudo sh updateNPMModules.sh ## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
+# echo "Checking status of NPM modules.\n"
+# sudo sh updateNPMModules.sh ## confirm that npm modules are installed in titanium_mobile and titanium_mobile_windows
 
 ## ask user if this is an SDK major or minor change. If it is, the repo_update.sh script must be updated to ensure we are pulling from the correct stream
 printf "Is this a SDK major or minor change? [y]es?"

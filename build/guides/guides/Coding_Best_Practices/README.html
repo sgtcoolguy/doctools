@@ -18,19 +18,22 @@
 
         <div id="src-30082362" class="content">
                         <h1>Coding Best Practices</h1>
+    <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-JavaScriptandgeneralrecommendations">JavaScript and general recommendations</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-Avoidtheglobalscope">Avoid the global scope</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-Avoidlocalobjectsinglobaleventlisteners">Avoid local objects in global event listeners</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-Donotnamecustomeventswithspaces">Do not name custom events with spaces</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-Deferscriptloading">Defer script loading</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-Titanium-specificRecommendations">Titanium-specific Recommendations</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_safe-id-Q29kaW5nQmVzdFByYWN0aWNlcy1Eb24ndEV4dGVuZFRpdGFuaXVtUHJvdG90eXBlcw">Don&apos;t Extend Titanium Prototypes</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-Titanium-specificrecommendations">Titanium-specific recommendations</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_safe-id-Q29kaW5nQmVzdFByYWN0aWNlcy1Eb24ndGV4dGVuZFRpdGFuaXVtcHJvdG90eXBlcw">Don&apos;t extend Titanium prototypes</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-Codingstrategiesformultiplatformapps">Coding strategies for multiplatform apps</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_safe-id-Q29kaW5nQmVzdFByYWN0aWNlcy1Eb24ndHN0b3Jlc2Vuc2l0aXZlZGF0YWlubm9uLUphdmFTY3JpcHRmaWxlcw">Don&apos;t store sensitive data in non-JavaScript files</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-Setlocalvariablestoavoidcallingnativemethods">Set local variables to avoid calling native methods</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-AppArchitectureRecommendations">App Architecture Recommendations</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-Apparchitecturerecommendations">App architecture recommendations</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-ModularcomponentswithCommonJS">Modular components with CommonJS</a>    </p>
-</li></ul></li></ul>    <p>The Appcelerator-approved standard for mobile apps developed on the Titanium Mobile platform specifies a <strong class=" ">single-context</strong>, <strong class=" ">modular pattern</strong>, with <strong class=" ">well-structured code</strong>, and <strong class=" ">well-organized resources</strong>. By following these standards, developers will create apps that meet the preceding checklist of Stable, Rapid, Performant, and Readable.    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-Customobjectsascomponents">Custom objects as components</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Coding_Best_Practices-section-src-30082362_CodingBestPractices-Classical-basedpatterns">Classical-based patterns</a>    </p>
+</li></ul></li></ul></li></ul>    <p>The Appcelerator-approved standard for apps developed on the Titanium platform specifies a <strong class=" ">single-context</strong>, <strong class=" ">modular pattern</strong>, with <strong class=" ">well-structured code</strong>, and <strong class=" ">well-organized resources</strong>. By following these standards, developers will create apps that meet the preceding checklist of Stable, Rapid, Performant, and Readable.    </p>
     <div class="section section-2 " id="src-30082362_CodingBestPractices-JavaScriptandgeneralrecommendations">
         <h2 class="heading "><span>JavaScript and general recommendations</span></h2>
     <div class="section section-3 " id="src-30082362_CodingBestPractices-Avoidtheglobalscope">
@@ -80,20 +83,20 @@
                     <div class="title">Lazy script loading in app.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Lazy script loading in app.js">
 <div class="line"><code class="comments">//muse be loaded at launch</code></div>
-<div class="line"><code class="plain">var WindowOne = require(</code><code class="string">&apos;ui/WindowOne&apos;</code><code class="plain">).WindowOne;</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> WindowOne = require(</code><code class="string">&apos;ui/WindowOne&apos;</code><code class="plain">).WindowOne;</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">var win1 = </code><code class="keyword">new</code><code class="plain"> WindowOne();</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win1 = </code><code class="keyword">new</code><code class="plain"> WindowOne();</code></div>
 <div class="line"><code class="plain">win1.open();</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">win1.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, function() {</code></div>
+<div class="line"><code class="plain">win1.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">() {</code></div>
 <div class="line"><code class="plain">  </code><code class="comments">//load window two JavaScript when needed...</code></div>
-<div class="line"><code class="plain">  var WindowTwo = require(</code><code class="string">&apos;ui/WindowTwo&apos;</code><code class="plain">).WindowTwo;</code></div>
-<div class="line"><code class="plain">  var win2 = </code><code class="keyword">new</code><code class="plain"> WindowTwo();</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">var</code><code class="plain"> WindowTwo = require(</code><code class="string">&apos;ui/WindowTwo&apos;</code><code class="plain">).WindowTwo;</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">var</code><code class="plain"> win2 = </code><code class="keyword">new</code><code class="plain"> WindowTwo();</code></div>
 <div class="line"><code class="plain">  win2.open();</code></div>
-<div class="line"><code class="plain">  win2.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, function() {</code></div>
+<div class="line"><code class="plain">  win2.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">() {</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">//load window three JavaScript when needed...</code></div>
-<div class="line"><code class="plain">    var WindowThree = require(</code><code class="string">&apos;ui/WindowThree&apos;</code><code class="plain">).WindowThree;</code></div>
-<div class="line"><code class="plain">    var win3 = </code><code class="keyword">new</code><code class="plain"> WindowTwo();</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> WindowThree = require(</code><code class="string">&apos;ui/WindowThree&apos;</code><code class="plain">).WindowThree;</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> win3 = </code><code class="keyword">new</code><code class="plain"> WindowTwo();</code></div>
 <div class="line"><code class="plain">    win3.open();</code></div>
 <div class="line"><code class="plain">  });</code></div>
 <div class="line"><code class="plain">});</code></div>
@@ -103,12 +106,12 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Deferred loading to build a namespace</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Deferred loading to build a namespace">
-<div class="line"><code class="plain">var someNameSpace = function() {</code></div>
-<div class="line"><code class="plain">	var API = {</code></div>
-<div class="line"><code class="plain">		init: function() {</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> someNameSpace = </code><code class="keyword">function</code><code class="plain">() {</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> API = {</code></div>
+<div class="line"><code class="plain">		init: </code><code class="keyword">function</code><code class="plain">() {</code></div>
 <div class="line"><code class="plain">			</code><code class="comments">// create your UI here or do whatever</code></div>
 <div class="line"><code class="plain">		}</code></div>
-<div class="line"><code class="plain">		reset: function() {</code></div>
+<div class="line"><code class="plain">		reset: </code><code class="keyword">function</code><code class="plain">() {</code></div>
 <div class="line"><code class="plain">			</code><code class="comments">// null objects, clean up, etc</code></div>
 <div class="line"><code class="plain">		}</code></div>
 <div class="line"><code class="plain">	};</code></div>
@@ -118,15 +121,15 @@
 <div class="line"><code class="plain">	</code><code class="keyword">return</code><code class="plain"> API;</code></div>
 <div class="line"><code class="plain">};</code></div>
 <div class="line"><code class="comments">// And to use it</code></div>
-<div class="line"><code class="plain">var test = </code><code class="keyword">new</code><code class="plain"> someNameSpace();</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> test = </code><code class="keyword">new</code><code class="plain"> someNameSpace();</code></div>
 </div>
     </div>
     </div>
     </div>
-    <div class="section section-2 " id="src-30082362_CodingBestPractices-Titanium-specificRecommendations">
-        <h2 class="heading "><span>Titanium-specific Recommendations</span></h2>
-    <div class="section section-3 " id="src-30082362_safe-id-Q29kaW5nQmVzdFByYWN0aWNlcy1Eb24ndEV4dGVuZFRpdGFuaXVtUHJvdG90eXBlcw">
-        <h3 class="heading "><span>Don&apos;t Extend Titanium Prototypes</span></h3>
+    <div class="section section-2 " id="src-30082362_CodingBestPractices-Titanium-specificrecommendations">
+        <h2 class="heading "><span>Titanium-specific recommendations</span></h2>
+    <div class="section section-3 " id="src-30082362_safe-id-Q29kaW5nQmVzdFByYWN0aWNlcy1Eb24ndGV4dGVuZFRpdGFuaXVtcHJvdG90eXBlcw">
+        <h3 class="heading "><span>Don&apos;t extend Titanium prototypes</span></h3>
     <p>Many users attempt to add to the Ti namespace as a means to persist data across contexts, extend / override native methods, etc. This can sometimes work but is very unreliable for the following reasons:    </p>
 <ol class=" "><li class=" ">    <p>The Titanium end objects are really not true JavaScript objects. They are proxy representations of native operating system components. As such, they are constructed to pass through properties and method invocations. Your extensions could conflict with native functionality or interfere with proper operation of the proxy objects.    </p>
 </li><li class=" ">    <p>Sometimes you might be able to store things on the namespace but it&apos;s not changeable (i.e. an array stored on the namespace might not be able to be modified - mutable, etc.). Other-times your stored objects will be completely null.    </p>
@@ -150,7 +153,7 @@
     <p>Each time you request the value of a device-related property, Titanium has to query the operating system for the value. For example, if you read from <tt class=" ">Ti.Platform.osname</tt> or <tt class=" ">Ti.Platform.displayCaps.platformHeight</tt>, Titanium must take a &quot;trip across the bridge&quot; to request the value from the operating system. Doing so takes a few cycles and if used too frequently could possibly slow your program. Something like the following would be more efficient:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var isAndroid = (Ti.Platform.osname==</code><code class="string">&apos;android&apos;</code><code class="plain">) ? </code><code class="keyword">true</code><code class="plain"> : </code><code class="keyword">false</code><code class="plain">;</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> isAndroid = (Ti.Platform.osname==</code><code class="string">&apos;android&apos;</code><code class="plain">) ? </code><code class="keyword">true</code><code class="plain"> : </code><code class="keyword">false</code><code class="plain">;</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="keyword">if</code><code class="plain">(isAndroid) {</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// do Android specific stuff</code></div>
@@ -161,8 +164,8 @@
     </div>
     </div>
     </div>
-    <div class="section section-2 " id="src-30082362_CodingBestPractices-AppArchitectureRecommendations">
-        <h2 class="heading "><span>App Architecture Recommendations</span></h2>
+    <div class="section section-2 " id="src-30082362_CodingBestPractices-Apparchitecturerecommendations">
+        <h2 class="heading "><span>App architecture recommendations</span></h2>
     <div class="section section-3 " id="src-30082362_CodingBestPractices-ModularcomponentswithCommonJS">
         <h3 class="heading "><span>Modular components with CommonJS</span></h3>
     <p>Appcelerator&apos;s primary recommended architecture a modular app architecture constructed with CommonJS modules. In fact, we have a whole Best Practices section devoted to <a class="document-link " href="#!/guide/CommonJS_Modules_in_Titanium">CommonJS Modules in Titanium</a>. CommonJS modules are discrete and independent building blocks, eliminating concerns about global variables and naming conflicts. In our testing, it is a highly performant architecture compared to some other solutions. This pattern is also used by other JavaScript-based environments, such as Node.js.    </p>
@@ -170,17 +173,17 @@
                     <div class="title">MyModule.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="MyModule.js">
 <div class="line"><code class="comments">// variables defined in this file are private</code></div>
-<div class="line"><code class="plain">var defaultMessage = </code><code class="string">&quot;Hello world&quot;</code><code class="plain">;</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> defaultMessage = </code><code class="string">&quot;Hello world&quot;</code><code class="plain">;</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// we make objects, variables, functions available to the</code></div>
 <div class="line"><code class="comments">// calling context by adding them to the exports object</code></div>
-<div class="line"><code class="plain">exports.sayHello = function(msg) {</code></div>
+<div class="line"><code class="plain">exports.sayHello = </code><code class="keyword">function</code><code class="plain">(msg) {</code></div>
 <div class="line"><code class="plain">	Ti.API.info(</code><code class="string">&apos;Hello &apos;</code><code class="plain">+msg);</code></div>
 <div class="line"><code class="plain">};</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// we can assign other objects, functions, and variables to</code></div>
 <div class="line"><code class="comments">// exports and they will be available to the calling context</code></div>
-<div class="line"><code class="plain">exports.helloWorld = function() {</code></div>
+<div class="line"><code class="plain">exports.helloWorld = </code><code class="keyword">function</code><code class="plain">() {</code></div>
 <div class="line"><code class="plain">	Ti.API.info(defaultMessage);</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
@@ -200,20 +203,20 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// create an object literal to be your app&apos;s namespace</code></div>
-<div class="line"><code class="plain">var myapp = {};</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> myapp = {};</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// the following could be in a separate &quot;ui.js&quot; file and include()&apos;d into your app.js</code></div>
-<div class="line"><code class="plain">(function(){</code></div>
+<div class="line"><code class="plain">(</code><code class="keyword">function</code><code class="plain">(){</code></div>
 <div class="line"><code class="plain">	myapp.ui = {}; </code><code class="comments">// this sub-namespace extends the app&apos;s namespace object</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">	myapp.ui.createApplicationWindow = function() {</code></div>
-<div class="line"><code class="plain">		var win = Ti.UI.createWindow({</code></div>
+<div class="line"><code class="plain">	myapp.ui.createApplicationWindow = </code><code class="keyword">function</code><code class="plain">() {</code></div>
+<div class="line"><code class="plain">		</code><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({</code></div>
 <div class="line"><code class="plain">			backgroundColor:</code><code class="string">&apos;white&apos;</code></div>
 <div class="line"><code class="plain">		});</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">		var header = Ti.UI.createLabel({</code></div>
+<div class="line"><code class="plain">		</code><code class="keyword">var</code><code class="plain"> header = Ti.UI.createLabel({</code></div>
 <div class="line"><code class="plain">			text: </code><code class="string">&apos;My App Heading&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">			top: </code><code class="value">10</code></div>
+<div class="line"><code class="plain">			top: 10</code></div>
 <div class="line"><code class="plain">		});</code></div>
 <div class="line"><code class="plain">		win.add(header);</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> win;</code></div>
@@ -225,19 +228,19 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// create an object literal to be your app&apos;s namespace</code></div>
-<div class="line"><code class="plain">var myapp = {};</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> myapp = {};</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// the following could be in a separate &quot;ui.js&quot; file and include()&apos;d into your app.js</code></div>
-<div class="line"><code class="plain">myapp.ui = function() {</code></div>
-<div class="line"><code class="plain">	var API = {</code></div>
-<div class="line"><code class="plain">		createApplicationWindow: function() {</code></div>
-<div class="line"><code class="plain">			var win = Ti.UI.createWindow({</code></div>
+<div class="line"><code class="plain">myapp.ui = </code><code class="keyword">function</code><code class="plain">() {</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> API = {</code></div>
+<div class="line"><code class="plain">		createApplicationWindow: </code><code class="keyword">function</code><code class="plain">() {</code></div>
+<div class="line"><code class="plain">			</code><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({</code></div>
 <div class="line"><code class="plain">				backgroundColor:</code><code class="string">&apos;white&apos;</code></div>
 <div class="line"><code class="plain">			});</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">			var header = Ti.UI.createLabel({</code></div>
+<div class="line"><code class="plain">			</code><code class="keyword">var</code><code class="plain"> header = Ti.UI.createLabel({</code></div>
 <div class="line"><code class="plain">				text: </code><code class="string">&apos;My App Heading&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">				top: </code><code class="value">10</code></div>
+<div class="line"><code class="plain">				top: 10</code></div>
 <div class="line"><code class="plain">			});</code></div>
 <div class="line"><code class="plain">			win.add(header);</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">return</code><code class="plain"> win;</code></div>
@@ -250,16 +253,16 @@
     </div>
     <div class="section section-4 " id="src-30082362_CodingBestPractices-Classical-basedpatterns">
         <h4 class="heading "><span>Classical-based patterns</span></h4>
-    <p>In general, Appcelerator does not recommend classical-inheritance based models because JavaScript is not a class-based language. For an in-depth look at inheritance patterns in JavaScript, we recommend you read Douglas Crockford&apos;s <a class="external-link external-link" href="http://javascript.crockford.com/prototypal.html" target="_blank">Protypal Inheritance in JavaScript</a> and <a class="external-link external-link" href="http://javascript.crockford.com/inheritance.html" target="_blank">Classical Inheritance in JavaScript</a> articles.    </p>
+    <p>In general, Appcelerator does not recommend classical-inheritance based models because JavaScript is not a class-based language. For an in-depth look at inheritance patterns in JavaScript, we recommend you read Douglas Crockford&apos;s <a class="external-link external-link" href="http://crockford.com/javascript/prototypal.html" target="_blank">Prototypal Inheritance in JavaScript</a> and <a class="external-link external-link" href="http://crockford.com/javascript/inheritance.html" target="_blank">Classical Inheritance in JavaScript</a> articles.    </p>
     <p>Classical inheritance is familiar for programmers coming from Java and other class-based languages. They rightly claim that this pattern enforces discipline and logically structured code that is generally easy to read, debug, and document. However, it&apos;s our belief that such a pattern confuses the idea of &apos;classes&apos; and &apos;objects&apos; in Javascript, forces the programmer to define his or her own inheritance rules, and is slower to implement in a rapid-prototype setting.    </p>
     <p>The code below is a fragment of this pattern:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var SomeUIClass = function() {</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> SomeUIClass = </code><code class="keyword">function</code><code class="plain">() {</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// ----- DEFINE PRIVATE PROPERTIES AND METHODS -----</code></div>
-<div class="line"><code class="plain">	var UIGroup = Ti.UI.createView({ zIndex:</code><code class="value">5</code><code class="plain"> }),</code></div>
-<div class="line"><code class="plain">	    UIBg = Ti.UI.createView({ borderRadius:</code><code class="value">10</code><code class="plain">, opacity:</code><code class="value">0.2</code><code class="plain">, width:</code><code class="value">150</code><code class="plain">, height:</code><code class="value">150</code><code class="plain">, backgroundColor:</code><code class="string">&quot;#000&quot;</code><code class="plain"> }),</code></div>
-<div class="line"><code class="plain">	    UIInd = Ti.UI.createActivityIndicator({ height:</code><code class="value">50</code><code class="plain">, width:</code><code class="value">50</code><code class="plain">, bottom:</code><code class="value">175</code><code class="plain">, style:Ti.UI.iPhone.ActivityIndicatorStyle.BIG });</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> UIGroup = Ti.UI.createView({ zIndex:5 }),</code></div>
+<div class="line"><code class="plain">	    UIBg = Ti.UI.createView({ borderRadius:10, opacity:0.2, width:150, height:150, backgroundColor:</code><code class="string">&quot;#000&quot;</code><code class="plain"> }),</code></div>
+<div class="line"><code class="plain">	    UIInd = Ti.UI.createActivityIndicator({ height:50, width:50, bottom:175, style:Ti.UI.iPhone.ActivityIndicatorStyle.BIG });</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// ----- DEFINE PUBLIC PROPERTIES AND METHODS -----</code></div>
 <div class="line">&#xA0;</div>
@@ -267,8 +270,8 @@
 <div class="line"><code class="plain">	</code><code class="keyword">this</code><code class="plain">.somePublicProp = </code><code class="keyword">null</code><code class="plain">;</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// ----- Public Methods -----</code></div>
-<div class="line"><code class="plain">	</code><code class="keyword">this</code><code class="plain">.display = function() {};</code></div>
-<div class="line"><code class="plain">	</code><code class="keyword">this</code><code class="plain">.toggle = function(toggle) {};</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">this</code><code class="plain">.display = </code><code class="keyword">function</code><code class="plain">() {};</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">this</code><code class="plain">.toggle = </code><code class="keyword">function</code><code class="plain">(toggle) {};</code></div>
 <div class="line"><code class="plain">};</code></div>
 </div>
     </div>

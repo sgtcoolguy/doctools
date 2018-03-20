@@ -78,7 +78,7 @@
     <p>Since Android devices are available in different screen sizes and densities, Google recommends using a nine-patch image as the recommended graphics format to support different devices. A nine-patch image is a PNG with regions specified as stretchable or not stretchable. For example, if you have an image with a logo centered against a solid background, you can create a nine-patch image with the area around the logo as stretchable. If the image needs to be stretched for a larger device, the solid background color will be stretched, leaving the logo untouched.    </p>
     <p>To create a nine-patch image, you can either use the Android SDK draw9patch tool or a graphics editor. If you are using a graphics editor, create a one-pixel transparent or white border around your PNG image, then change the top and left border to black pixels where you want the image to stretch. Mark the entire right and bottom borders with black pixels to indicate the drawable areas when the image is scaled. If you do not specify the whole image as drawable, the image may not scale properly, causing it to be squished in part of the screen. For more information, refer to the <a class="external-link external-link" href="http://developer.android.com/tools/help/draw9patch.html">Android Draw 9-Patch help tutorial</a> for directions on using the draw9patch tool or refer to the <a class="external-link external-link" href="http://developer.android.com/guide/topics/graphics/2d-graphics.html#nine-patch">Android nine-patch image specification</a> for information on creating a nine-patch image in a graphics editor.    </p>
     <p>Name the file <tt class=" ">default.9.png</tt>, place it in the <tt class=" ">Resources/android</tt> folder and remove the <tt class=" ">default.png</tt> image. If both of these files exist, the build will fail with an error.    </p>
-    <p>To use multiple density-specific splash screen images, copy your nine-patch image(s) to <tt class=" ">.</tt>/<tt class=" ">platform/android/res/drawable[-xdpi]/</tt> (Alloy: <tt class=" ">app/platform/android/...</tt>) in your project root directory (not the Resources folder), where <tt class=" ">xdpi</tt> can be a density group to specify more than one image for different screen densities or use the <tt class=" ">-nodpi</tt> suffix to have it support all resolutions. Rename the file(s) to <tt class=" ">background.9.png</tt>. For example, the following project specifies splash images for multiple densities (note: For Alloy, it&apos;s relative to your <tt class=" ">app/</tt> directory as described above):    </p>
+    <p>To use multiple density-specific splash screen images, copy your nine-patch image(s) to  <tt class=" ">.</tt> / <tt class=" ">platform/android/res/drawable[-xdpi]/</tt>  (Alloy: <tt class=" ">app/platform/android/...</tt>) in your project root directory (not the Resources folder), where  <tt class=" ">xdpi</tt>  can be a density group to specify more than one image for different screen densities or use the  <tt class=" ">-nodpi</tt>  suffix to have it support all resolutions. Rename the file(s) to  <tt class=" ">background.9.png</tt> . For example, the following project specifies splash images for multiple densities (note: For Alloy, it&apos;s relative to your <tt class=" ">app/</tt> directory as described above):    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">SampleProjectClassic</code></div>
@@ -109,9 +109,9 @@
         <p>    </p>
     <p><strong class=" ">Splash Screen with a Custom Theme</strong>    </p>
     <p>If you are using a custom theme to display the splash screen, override the default root activity to use the custom theme:    </p>
-<ol class=" "><li class=" ">    <p>Create a theme XML file in the <tt class=" ">./platform/android/res/values/</tt> (Alloy: <tt class=" ">app</tt><tt class=" ">/platform/android/res/values/</tt>) folder. Do NOT name the file <tt class=" ">theme.xml</tt>. Titanium uses this name as its default theme file, which is required to build the application. If you create a file called theme.xml, it will overwrite the default Titanium one and break the build process. Add the <tt class=" ">windowBackground</tt> items to the custom theme referencing the background nine-patch image.    </p>
+<ol class=" "><li class=" ">    <p>Create a theme XML file in the <tt class=" ">./platform/android/res/values/</tt> (Alloy: <tt class=" ">app</tt>  <tt class=" ">/platform/android/res/values/</tt>) folder. Do NOT name the file <tt class=" ">theme.xml</tt>. Titanium uses this name as its default theme file, which is required to build the application. If you create a file called theme.xml, it will overwrite the default Titanium one and break the build process. Add the <tt class=" ">windowBackground</tt> items to the custom theme referencing the background nine-patch image.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>Only add the <tt class=" ">windowBackground</tt> items only to the theme of the default root activity. If you add <tt class=" ">windowBackground</tt> items to other themes for other activities, the image may not be displayed properly.    </p>
+            <p>Only add the  <tt class=" ">windowBackground</tt>  items only to the theme of the default root activity. If you add <tt class=" ">windowBackground</tt> items to other themes for other activities, the image may not be displayed properly.    </p>
     </div>
         <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">platform/android/res/values/mytheme.xml</div>
@@ -156,7 +156,6 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">tiapp.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="tiapp.xml">
-<div class="line"><code class="plain">&lt;?xml version=</code><code class="string">&quot;1.0&quot;</code><code class="plain"> encoding=</code><code class="string">&quot;UTF-8&quot;</code><code class="plain">?&gt;</code></div>
 <div class="line"><code class="plain">&lt;ti:app xmlns:ti=</code><code class="string">&quot;http://ti.appcelerator.org&quot;</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    ...</code></div>
 <div class="line"><code class="plain">    &lt;android xmlns:android=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">&gt;</code></div>
@@ -177,7 +176,7 @@
     </div>
     <p>For additional information on themes, see <a class="document-link " href="Android_Themes.html">Android Themes</a>.    </p>
 </li></ol>    <p>By default, when you create a new project, Android uses the name <tt class=" ">default.png</tt> for the splash screen (with a lowercase &quot;d&quot;). The dimensions and location where you place that that file vary according to the target device density and screen size. These characteristics correspond to the density and <a class="external-link external-link" href="http://developer.android.com/guide/practices/screens_support.html#range">generalized size</a> of the user&apos;s display. Examine the <tt class=" ">Resources/android/images</tt> (Alloy: <tt class=" ">app/assets/android/images</tt>) folder and you&apos;ll find a series of folders with names like <tt class=" ">res-long-land-hdpi</tt> (which corresponds to a device with a &quot;long&quot;/rectangular screen in landscape orientation with an HDPI screen).    </p>
-    <p>Titanium provides default splash screen graphics of the appropriate size in each of the folders inside <tt class=" ">Resources/android/images </tt>(Alloy: <tt class=" ">app/assets/android/images</tt>). You can use those as a guide to creating the images for your app. Simply create each graphic with your own, matching the size and density.    </p>
+    <p>Titanium provides default splash screen graphics of the appropriate size in each of the folders inside <tt class=" ">Resources/android/images </tt>(Alloy:  <tt class=" ">app/assets/android/images</tt>). You can use those as a guide to creating the images for your app. Simply create each graphic with your own, matching the size and density.    </p>
     <p>If you do not want to provide separate images for each density and orientation in your project, delete the folders. Then, provide a single <tt class=" ">default.png</tt> file in either <tt class=" ">Resources</tt> (Alloy: <tt class=" ">app/assets</tt>) or <tt class=" ">Resources/android</tt> <tt class=" ">(</tt>Alloy:<tt class=" "> app/assers/android)</tt> to match the dimensions that most closely match the device you expect most of your users to be running. Keep in mind that this could result in a splash screen that is stretched or compressed suboptimally for your users&apos; devices.    </p>
     <div class="confbox admonition admonition-warning aui-message problem shadowed information-macro">
             <p>Do not use the <tt class=" ">&lt;supports-screens/&gt;</tt> element with the <tt class=" ">android:anyDensity</tt> attribute set to false to disable multiple density support. Google does not recommend <a class="external-link external-link" href="http://developer.android.com/guide/topics/manifest/supports-screens-element.html#any">changing the default value</a>. Setting this attribute to false may cause undesired behavior.    </p>
@@ -195,7 +194,7 @@
     <p>For all icon files (image files prefixed with <tt class=" ">appicon</tt>), the images need to be square, that is, the height and width must be equal. Icon files cannot have an alpha channel. If you omit any appicon files and have a <u class=" ">file called <tt class=" ">DefaultIcon.png</tt> in the root folder of the project</u> that is 1024 x 1024px, the Titanium SDK will generate any missing icon files from the file. <u class=" ">If any app icon files are missing, the build will fail.</u> The build will not fail if you omit spotlight and settings icons.    </p>
     <p>For launch image files (image files prefixed with <tt class=" ">Default</tt>), if you omit any files, the build will not fail.    </p>
     <p>For the iTuneArtwork files, if you omit any iTunesArtwork file and have a <u class=" ">file called <tt class=" ">DefaultIcon.png</tt> in the root folder of the project,</u> the Titanium SDK will generate any missing iTuneArtwork files. The image must be at least 1024 x 1024px to generate the iTunesArtwork and iTunesArtwork@2x files. If any files are omitted, the build will not fail.    </p>
-    <p>Since Titanium 5.0.0, application icons and launch images are added to the Asset Catalog to support App Thinning. Due to the change, you can no longer reference the image assets from the filesystem. For example, you can no longer set the <tt class=" ">backgroundImage</tt> property to a launch image. Note that the localized launch images in the <tt class=" ">i18n</tt> folder are not supported in Asset Catalog.    </p>
+    <p>Since Titanium 5.0.0, application icons and launch images are added to the Asset Catalog to support App Thinning. Due to the change, you can no longer reference the image assets from the filesystem. For example, you can no longer set the  <tt class=" ">backgroundImage</tt>  property to a launch image. Note that the localized launch images in the  <tt class=" ">i18n</tt>  folder are not supported in Asset Catalog.    </p>
     <p>For more information, see <a class="external-link external-link" href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html#//apple_ref/doc/uid/TP40006556-CH27-SW1">iOS Human Interface Guidelines: Icons and Image Sizes</a>.    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
@@ -1995,7 +1994,7 @@ For more information, see <a class="document-link " href="Android_Notifications.
         </tr>
 </tbody>        </table>
             </div>
-    <p>    </p>
+    <p>For more information about app submission, see <a class="document-link " href="Distributing_Windows_Applications.html">Distributing Windows Applications</a>.    </p>
     </div>
     </div>
     <div class="section section-3 " id="src-29004897_IconsandSplashScreens-LocalizedSplashScreens">
@@ -2030,11 +2029,11 @@ For more information, see <a class="document-link " href="Android_Notifications.
 </li><li class=" ">    <p>Default-Portrait-736h@3x.png    </p>
 </li><li class=" ">    <p>Default-Portrait-2436h@3x.png    </p>
 </li></ul></li><li class=" ">    <p>es    </p>
-<ul class=" "><li class=" ">    <p>Default@2x.png<a class="external-link external-link" href="mailto:Default@2x.png"></a>    </p>
-</li><li class=" ">    <p>Default-568h@2x.png<a class="external-link external-link" href="mailto:Default-568h@2x.png"></a>    </p>
-</li><li class=" ">    <p>Default-667h@2x.png<a class="external-link external-link" href="mailto:Default-667h@2x.png"></a>    </p>
-</li><li class=" ">    <p>Default-Portrait-736h@3x.png<a class="external-link external-link" href="mailto:Default-Portrait-736h@3x.png"></a>    </p>
-</li><li class=" ">    <p>Default-Portrait-2436h@3x.png<a class="external-link external-link" href="mailto:Default-Portrait-2436h@3x.png"></a>    </p>
+<ul class=" "><li class=" ">    <p>Default@2x.png    </p>
+</li><li class=" ">    <p>Default-568h@2x.png    </p>
+</li><li class=" ">    <p>Default-667h@2x.png    </p>
+</li><li class=" ">    <p>Default-Portrait-736h@3x.png    </p>
+</li><li class=" ">    <p>Default-Portrait-2436h@3x.png    </p>
 </li></ul></li></ul></li></ul>    <p>In this example, each iOS device has a unique splash screen image for English and Spanish. Add more languages like &quot;es&quot; for Spain for &quot;de&quot; for Germany.    </p>
     </div>
     <div class="section section-4 " id="src-29004897_IconsandSplashScreens-Windows">
@@ -2055,7 +2054,7 @@ For more information, see <a class="document-link " href="Android_Notifications.
         <h3 class="heading "><span>Adding your iTunes Artwork to your project</span></h3>
     <p>Adding iTunes artwork to your project gives your app a polished look when you are testing or deploying to end users. iTunes artwork is only used for Ad-Hoc builds. Do not include this file when distributing your application to the App Store. In order to get your application&apos;s icon to appear in iTunes there are a few simple steps to follow.    </p>
 <ol class=" "><li class=" ">    <p>Create a 512x512px and 1024x1024px (Retina) version of your applications icon in PNG format.    </p>
-</li><li class=" ">    <p>Save the PNG file to your application <tt class=" ">Resources/iphone</tt> (Alloy: <tt class=" ">app/assets/iphone</tt>) folder as <tt class=" ">iTunesArtwork.png</tt> and <tt class=" ">iTunesArtwork@2x.png</tt>    </p>
+</li><li class=" ">    <p>Save the PNG file to your application <tt class=" ">Resources/iphone</tt> (Alloy: <tt class=" ">app/assets/iphone</tt>) folder as  <tt class=" ">iTunesArtwork.png</tt> and <tt class=" ">iTunesArtwork@2x.png</tt>    </p>
 </li><li class=" ">    <p>Right-click the file in Studio and choose <strong class=" ">rename</strong>. Remove the <strong class=" ">.png</strong> extension from the filename, make it simply <tt class=" ">iTunesArtwork</tt> and <tt class=" ">iTunesArtwork</tt>.    </p>
 </li><li class=" ">    <p>Do a clean build of your project for device.    </p>
 </li></ol>    <p>With those steps you should see your application icon show up in iTunes.    </p>
