@@ -23,85 +23,76 @@
             <div class="title">App Folder Location</div>
             <p>alloy/test/apps/<strong class=" ">ui/popover</strong>    </p>
     </div>
-        <p>    <span style="color: #484848;">
-    <img src="images/download/attachments/41845765/popover.gif" alt="images/download/attachments/41845765/popover.gif" class="confluence-embedded-image" width="500">
-<br>    </br></img></span>
-    </p>
-    <p>    <span style="color: #484848;">
-<a class="external-link external-link" href="#!/api/Titanium.UI.iPad.Popover">Popovers</a> are used to present temporary information in a non-modal manner. The popover remains visible until the user taps outside of the popover window, or it is explicitly dismissed. The main index.xml view presents two buttons, &quot;Popover&quot; and &quot;Popover with content view&quot; that call the view-controller&apos;s <tt class=" ">openPopover()</tt> and    </span>
- <tt class=" ">openPopoverWithContentView()</tt>, respectively, when clicked.    </p>
+        <img src="images/download/attachments/41845765/popover.gif" alt="images/download/attachments/41845765/popover.gif" class="confluence-embedded-image" width="500">
+        <p><a class="external-link external-link" href="#!/api/Titanium.UI.iPad.Popover">Popovers</a> are used to present temporary information in a non-modal manner. The popover remains visible until the user taps outside of the popover window, or it is explicitly dismissed. The main <tt class=" ">index.xml</tt> view presents two buttons, &quot;Popover&quot; and &quot;Popover with content view&quot; that call the view-controller&apos;s <tt class=" ">openPopover()</tt> and <tt class=" ">openPopoverWithContentView()</tt>, respectively, when clicked.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
-<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">    &lt;Window layout=</code><code class="string">&quot;vertical&quot;</code><code class="plain"> backgroundColor=</code><code class="string">&quot;white&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Button id=</code><code class="string">&quot;button1&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;openPopover&quot;</code><code class="plain"> top=</code><code class="string">&quot;20&quot;</code><code class="plain">&gt;popover&lt;/Button&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Button id=</code><code class="string">&quot;button2&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;openPopoverWithContentView&quot;</code><code class="plain">&gt;popover with content view&lt;/Button&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/Window&gt;</code></div>
-<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">layout</code><code class="plain">=</code><code class="string">&quot;vertical&quot;</code><code class="plain"> </code><code class="color1">backgroundColor</code><code class="plain">=</code><code class="string">&quot;white&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;button1&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;openPopover&quot;</code><code class="plain"> </code><code class="color1">top</code><code class="plain">=</code><code class="string">&quot;20&quot;</code><code class="plain">&gt;popover&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;button2&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;openPopoverWithContentView&quot;</code><code class="plain">&gt;popover with content view&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>    <span style="color: #484848;">
-The popover.xml and popover_with_window.xml views each declare a &lt;Popover&gt; element that, in turn, contains a &lt;ContentView&gt; element. The &lt;ContentView&gt; element contains the actual content that is displayed by the popup.<br>    </br></span>
-    </p>
+    <p>The <tt class=" ">popover.xml</tt> and <tt class=" ">popover_with_window.xml</tt> views each declare a <tt class=" ">&lt;Popover&gt;</tt> element that, in turn, contains a <tt class=" ">&lt;ContentView&gt;</tt> element. The <tt class=" ">&lt;ContentView&gt;</tt> element contains the actual content that is displayed by the popup.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/popover.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/popover.xml">
-<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">  &lt;Popover title=</code><code class="string">&quot;popover&quot;</code><code class="plain"> height=</code><code class="string">&quot;300&quot;</code><code class="plain"> width=</code><code class="string">&quot;250&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">    &lt;ContentView&gt;</code></div>
-<div class="line"><code class="plain">      &lt;NavigationWindow id=</code><code class="string">&quot;navWindow&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Window&gt;</code></div>
-<div class="line"><code class="plain">          &lt;LeftNavButton&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Button onClick=</code><code class="string">&quot;showAlert&quot;</code><code class="plain">&gt;left&lt;/Button&gt;</code></div>
-<div class="line"><code class="plain">          &lt;/LeftNavButton&gt;</code></div>
-<div class="line"><code class="plain">          &lt;RightNavButton&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Button onClick=</code><code class="string">&quot;showAlert&quot;</code><code class="plain">&gt;right&lt;/Button&gt;</code></div>
-<div class="line"><code class="plain">          &lt;/RightNavButton&gt;</code></div>
-<div class="line"><code class="plain">          &lt;Label&gt;I&apos;m a popover&lt;/Label&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/Window&gt;</code></div>
-<div class="line"><code class="plain">      &lt;/NavigationWindow&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/ContentView&gt;</code></div>
-<div class="line"><code class="plain">  &lt;/Popover&gt;</code></div>
-<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">Popover</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;popover&quot;</code><code class="plain"> </code><code class="color1">height</code><code class="plain">=</code><code class="string">&quot;300&quot;</code><code class="plain"> </code><code class="color1">width</code><code class="plain">=</code><code class="string">&quot;250&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">ContentView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;</code><code class="keyword">NavigationWindow</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;navWindow&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">          &lt;</code><code class="keyword">LeftNavButton</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;showAlert&quot;</code><code class="plain">&gt;left&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">          &lt;/</code><code class="keyword">LeftNavButton</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">          &lt;</code><code class="keyword">RightNavButton</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;showAlert&quot;</code><code class="plain">&gt;right&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">          &lt;/</code><code class="keyword">RightNavButton</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">          &lt;</code><code class="keyword">Label</code><code class="plain">&gt;I&apos;m a popover&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/</code><code class="keyword">NavigationWindow</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">ContentView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/</code><code class="keyword">Popover</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/popover_with_window.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/popover_with_window.xml">
-<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">  &lt;Popover title=</code><code class="string">&quot;popover&quot;</code><code class="plain"> height=</code><code class="string">&quot;300&quot;</code><code class="plain"> width=</code><code class="string">&quot;250&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">    &lt;ContentView&gt;</code></div>
-<div class="line"><code class="plain">      &lt;NavigationWindow id=</code><code class="string">&quot;navWindow&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Window&gt;</code></div>
-<div class="line"><code class="plain">          &lt;RightNavButton&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Button title=</code><code class="string">&quot;Open Window&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;open_window&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">          &lt;/RightNavButton&gt;</code></div>
-<div class="line"><code class="plain">          &lt;Label&gt;This is a window in a popover&lt;/Label&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/Window&gt;</code></div>
-<div class="line"><code class="plain">      &lt;/NavigationWindow&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/ContentView&gt;</code></div>
-<div class="line"><code class="plain">  &lt;/Popover&gt;</code></div>
-<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">Popover</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;popover&quot;</code><code class="plain"> </code><code class="color1">height</code><code class="plain">=</code><code class="string">&quot;300&quot;</code><code class="plain"> </code><code class="color1">width</code><code class="plain">=</code><code class="string">&quot;250&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">ContentView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;</code><code class="keyword">NavigationWindow</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;navWindow&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">          &lt;</code><code class="keyword">RightNavButton</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Open Window&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;open_window&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">          &lt;/</code><code class="keyword">RightNavButton</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">          &lt;</code><code class="keyword">Label</code><code class="plain">&gt;This is a window in a popover&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/</code><code class="keyword">NavigationWindow</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">ContentView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/</code><code class="keyword">Popover</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>    <span style="color: #484848;">
-When a button on the main view is clicked, the main view-controller gets a reference to a popover XML view, and calls its show() method, passing it a <a class="external-link external-link" href="#!/api/PopoverParams">PopoverParams</a> object whose <tt class=" ">view</tt> property that specifies the view to which the popover should be anchored.<br>    </br></span>
-    </p>
+    <p>When a button on the main view is clicked, the main view-controller gets a reference to a popover XML view, and calls its show() method, passing it a <a class="external-link external-link" href="#!/api/PopoverParams">PopoverParams</a> object whose <tt class=" ">view</tt> property that specifies the view to which the popover should be anchored.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/controllers/index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
-<div class="line"><code class="plain">function openPopover() {</code></div>
+<div class="line"><code class="keyword">function</code><code class="plain"> openPopover() {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (Ti.Platform.osname === </code><code class="string">&apos;ipad&apos;</code><code class="plain">) {</code></div>
-<div class="line"><code class="plain">        var popover = Alloy.createController(</code><code class="string">&apos;popover&apos;</code><code class="plain">).getView();</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">var</code><code class="plain"> popover = Alloy.createController(</code><code class="string">&apos;popover&apos;</code><code class="plain">).getView();</code></div>
 <div class="line"><code class="plain">        popover.show({view:$.button1});</code></div>
 <div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> {</code></div>
 <div class="line"><code class="plain">        alert(</code><code class="string">&apos;Popover only supported on iPad&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="plain">function openPopoverWithContentView() {</code></div>
+<div class="line"><code class="keyword">function</code><code class="plain"> openPopoverWithContentView() {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (Ti.Platform.osname === </code><code class="string">&apos;ipad&apos;</code><code class="plain">) {</code></div>
-<div class="line"><code class="plain">        var popover = Alloy.createController(</code><code class="string">&apos;popover_with_window&apos;</code><code class="plain">).getView();</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">var</code><code class="plain"> popover = Alloy.createController(</code><code class="string">&apos;popover_with_window&apos;</code><code class="plain">).getView();</code></div>
 <div class="line"><code class="plain">        popover.show({view:$.button2});</code></div>
 <div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> {</code></div>
 <div class="line"><code class="plain">        alert(</code><code class="string">&apos;Popover only supported on iPad&apos;</code><code class="plain">);</code></div>
@@ -109,13 +100,12 @@ When a button on the main view is clicked, the main view-controller gets a refer
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div class="section section-2 " id="src-41845765_Popover-SeeAlso">
-        <h2 class="heading "><span>See Also</span></h2>
+    <div class="section section-2 " id="src-41845765_Popover-Seealso">
+        <h2 class="heading "><span>See also</span></h2>
 <ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.iPad.Popover">Titanium.UI.iPad.Popover</a> API reference    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="#!/api/PopoverParams">PopoverParams (abstract type</a>) API reference    </p>
-</li></ul>    <p>    </p>
-    </div>
-        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845765"><span>Edit</span></a>
+</li></ul>    </div>
+        </img></div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845765"><span>Edit</span></a>
     
         
     </div>

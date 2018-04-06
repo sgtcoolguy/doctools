@@ -237,7 +237,7 @@
     <p>To display any UI with a module, create a view proxy and view in pairs. Create the four files below for your Xcode project and save them in the module&apos;s <tt class=" ">iphone/Classes</tt> directory.    </p>
     <p>In Xcode, for each file:    </p>
 <ol class=" "><li class=" ">    <p>Right-click the project and select <strong class=" ">New File...</strong>    </p>
-</li><li class=" ">    <p>For the header files, select <strong class=" ">Header File</strong>, and for the source files, select <strong class=" ">Objective-C </strong><strong class=" ">File</strong>, then click <strong class=" ">Next</strong>.    </p>
+</li><li class=" ">    <p>For the header files, select <strong class=" ">Header File</strong>, and for the source files, select <strong class=" ">Objective-C </strong> <strong class=" ">File</strong>, then click <strong class=" ">Next</strong>.    </p>
 </li><li class=" ">    <p>For the Objective-C files, enter the name of the file and click <strong class=" ">Next</strong> to proceed to the last dialog.    </p>
 </li><li class=" ">    <p>For the header files, enter the name of the file in the <strong class=" ">Save As</strong> field.    </p>
 </li><li class=" ">    <p>For both files, select the module&apos;s <tt class=" ">Classes</tt> folder.    </p>
@@ -305,11 +305,11 @@
     </div>
     <p>The <tt class=" ">ComExampleTestViewProxy</tt> class extends the <tt class=" ">TiViewProxy</tt> class. This class exposes the view to the JavaScript and acts as an intermediary between the JavaScript and the native view. Normally, you do not need to implement any APIs in this class, but you can hook into the View&apos;s lifecycle events.    </p>
     <p>The <tt class=" ">ComExampleTestView</tt> class extends the <tt class=" ">TiUIView</tt> class. The TiUIView can be added to other Titanium views and windows, which makes it the perfect place for a UIView to be added so that it can be displayed in a Titanium app. This class creates the native view to display. The class implements three methods of the <tt class=" ">TiUIView</tt> class and a custom setter method:    </p>
-<ul class=" "><li class=" ">    <p><strong class=" "><tt class=" ">initializeState</tt></strong>: This method is called when the view is initialized. In this example, we are using this method as a place to create a native UIView which is called square.    </p>
-</li><li class=" ">    <p><strong class=" "><tt class=" ">frameSizeChanged</tt></strong>: This method is called when the view&apos;s dimensions change. The method calls a TiUtils helper function to update the dimensions of square. In JavaScript, this occurs when the <tt class=" ">width</tt>, <tt class=" ">height</tt>, <tt class=" ">top</tt>, <tt class=" ">bottom</tt>, <tt class=" ">left</tt> or <tt class=" ">right</tt> properties are invoked.    </p>
-</li><li class=" ">    <p><strong class=" "><tt class=" ">setColor_</tt></strong>: All setter methods in a View class must end with an underscore (_), which exposes the property to the JavaScript application. When <tt class=" ">color</tt> property is invoked, the method updates the background color of the square.    </p>
-</li></ul>    <p>Notice that there is no code tying <tt class=" ">ComExampleTestView</tt> to <tt class=" ">ComExampleTestViewProxy</tt>. The naming convention is what causes the View to be connected to its ViewProxy.    </p>
-    <p>To call the method to create the view from JavaScript, call the module&apos;s <tt class=" ">createView</tt><tt class=" ">()</tt> method. The name of the method is the name of the view class without the module ID, then prefixed with <tt class=" ">create</tt>. For example, if the class was called <tt class=" ">ComExampleTestMyView</tt> (rather than <tt class=" ">ComExampleTestView</tt>), the method would be called <tt class=" ">createMyView()</tt> (rather than <tt class=" ">createView()</tt>).    </p>
+<ul class=" "><li class=" ">    <p><strong class=" "> <tt class=" ">initializeState</tt> </strong>: This method is called when the view is initialized. In this example, we are using this method as a place to create a native UIView which is called square.    </p>
+</li><li class=" ">    <p><strong class=" "> <tt class=" ">frameSizeChanged</tt> </strong>: This method is called when the view&apos;s dimensions change. The method calls a TiUtils helper function to update the dimensions of square. In JavaScript, this occurs when the <tt class=" ">width</tt>, <tt class=" ">height</tt>, <tt class=" ">top</tt>, <tt class=" ">bottom</tt>, <tt class=" ">left</tt> or <tt class=" ">right</tt> properties are invoked.    </p>
+</li><li class=" ">    <p><strong class=" "> <tt class=" ">setColor_</tt> </strong>: All setter methods in a View class must end with an underscore (_), which exposes the property to the JavaScript application. When <tt class=" ">color</tt> property is invoked, the method updates the background color of the square.    </p>
+</li></ul>    <p>Notice that there is no code tying  <tt class=" ">ComExampleTestView</tt> to  <tt class=" ">ComExampleTestViewProxy</tt>. The naming convention is what causes the View to be connected to its ViewProxy.    </p>
+    <p>To call the method to create the view from JavaScript, call the module&apos;s <tt class=" ">createView</tt> <tt class=" ">()</tt> method. The name of the method is the name of the view class without the module ID, then prefixed with <tt class=" ">create</tt>. For example, if the class was called <tt class=" ">ComExampleTestMyView</tt> (rather than <tt class=" ">ComExampleTestView</tt>), the method would be called <tt class=" ">createMyView()</tt> (rather than <tt class=" ">createView()</tt>).    </p>
     <p>Below is an example of calling <tt class=" ">createView()</tt>, and passing dimensions and color properties to the method.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Example</div>
@@ -327,7 +327,7 @@
         <h3 class="heading "><span>Add a property</span></h3>
     <p>A Proxy is a key/value store like an NSDictionary (Objective-C) or an Object (JavaScript). Without any modification, you can set properties on a Module, Proxy, or ViewProxy and then read them back at will as if they were properties. You can also override the getters and setters and do some custom logic.    </p>
     <p>Modify the default module class files to store and retrieve a string value.    </p>
-    <p>First, modify the <tt class=" ">ComExampleTestModule.h</tt> file to declare a variable to hold the string:    </p>
+    <p>First, modify the  <tt class=" ">ComExampleTestModule.h</tt> file to declare a variable to hold the string:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="color2">@interface</code><code class="plain"> ComExampleTestModule : TiModule {</code></div>
@@ -336,7 +336,7 @@
 <div class="line"><code class="color1">@end</code></div>
 </div>
     </div>
-    <p>Next, modify the example setter and getter to actually set and get the variable you just declared. These methods are already declared in the <tt class=" ">ComExampleTestModule.m</tt> file but not implemented. Titanium requires that all setter methods be declared with the method name starting with <tt class=" ">set</tt> and being passed an <tt class=" ">id</tt> datatype.    </p>
+    <p>Next, modify the example setter and getter to actually set and get the variable you just declared. These methods are already declared in the  <tt class=" ">ComExampleTestModule.m</tt> file but not implemented. Titanium requires that all setter methods be declared with the method name starting with <tt class=" ">set</tt> and being passed an <tt class=" ">id</tt> datatype.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// More methods here ...</code></div>
@@ -355,7 +355,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>In the JavaScript code, the <tt class=" ">foo</tt> string can be accessed using the <tt class=" ">exampleProp</tt> property, and <tt class=" ">getExampleProp()</tt> and <tt class=" ">setExampleProp</tt><tt class=" ">()</tt> methods.    </p>
+    <p>In the JavaScript code, the <tt class=" ">foo</tt> string can be accessed using the <tt class=" ">exampleProp</tt> property, and <tt class=" ">getExampleProp()</tt> and <tt class=" ">setExampleProp</tt> <tt class=" ">()</tt> methods.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <p>If you do not need a custom getter or setter, you can use the <tt class=" ">@property</tt> notation with the <tt class=" ">copy</tt> attribute to create a property.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -411,8 +411,7 @@
 <ul class=" "><li class=" ">    <p>For information about how to structure your module project, add assets or third-party frameworks to your module project or more details on how to use the CLI or Studio, see <a class="document-link " href="iOS_Module_Project.html">iOS Module Project</a>.    </p>
 </li><li class=" ">    <p>For information about how to construct the class components for your project, see <a class="document-link " href="iOS_Module_Quick_Start.html">iOS Module Quick Start</a>.    </p>
 </li><li class=" ">    <p>For more examples of using the module API, see the <a class="external-link external-link" href="https://github.com/appcelerator-modules/ti.moddevguide">ti.moddevguide Github project</a>.    </p>
-</li></ul>    <p>    </p>
-    </div>
+</li></ul>    </div>
         </div>
     
         

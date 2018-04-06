@@ -80,6 +80,7 @@ cd $doctools
 node appendTitles.js >> messages.txt ## not 100% necessary if building for test reasons
 sh copyFavicon.sh >> message.txt ## copy Griffin favicon.ico from ../doctools to various directories
 sh css_fix.sh ## See TIDOC-2739
+sh js_fix.sh ## TIDOC-3141
 
 ## open the message.txt file and you need to manually search for error messages
 open -a Atom messages.txt

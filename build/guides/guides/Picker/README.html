@@ -23,96 +23,95 @@
             <div class="title">App Folder Location</div>
             <p>alloy/test/apps/<strong class=" ">ui/picker</strong>    </p>
     </div>
-        <p>The sample application demonstrates creating single- and multi-column <a class="external-link external-link" href="#!/api/Titanium.UI.Picker">Picker</a>, as well as Alloy short-hand for declaring columns and rows. Note that, on Android, the Picker&apos;s <tt class=" ">useSpinner</tt> property must be set to <tt class=" ">true</tt> to enable multi-column pickers.    </p>
+        <p>The sample application demonstrates creating single- and multi-column <a class="external-link external-link" href="#!/api/Titanium.UI.Picker">Picker</a>, as well as Alloy short-hand for declaring columns and rows. Note that, on Android, the Picker&apos;s<tt class=" "> useSpinner</tt> property must be set to <tt class=" ">true</tt> to enable multi-column pickers.    </p>
     <p>    <img src="images/download/attachments/41845763/screenshot.png" alt="images/download/attachments/41845763/screenshot.png" class="confluence-embedded-image">
         </img></p>
     <p>To declare columns and rows you can use <tt class=" ">&lt;PickerRow/&gt;</tt> and <tt class=" ">&lt;PickerColumn/&gt;</tt> elements, or the shorthand <tt class=" ">&lt;Row/&gt;</tt> and <tt class=" ">&lt;Column/&gt;</tt> elements.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
-<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">    &lt;TabGroup&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Tab title=</code><code class="string">&quot;Single Column&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Window title=</code><code class="string">&quot;Single Column&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;Picker&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;PickerRow title=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;PickerRow title=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;PickerRow title=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;PickerRow title=</code><code class="string">&quot;row 4&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;Require src=</code><code class="string">&quot;pickerrow&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                &lt;/Picker&gt;</code></div>
-<div class="line"><code class="plain">            &lt;/Window&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/Tab&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Tab title=</code><code class="string">&quot;Multi-Column&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Window title=</code><code class="string">&quot;Multi-Column&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;Picker&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;PickerColumn&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;PickerRow title=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;PickerRow title=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;PickerRow title=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;PickerRow title=</code><code class="string">&quot;row 4&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;Require src=</code><code class="string">&quot;pickerrow&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;/PickerColumn&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;PickerColumn&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;Require src=</code><code class="string">&quot;pickerrow&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;PickerRow title=</code><code class="string">&quot;row 5&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;PickerRow title=</code><code class="string">&quot;row 6&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;PickerRow title=</code><code class="string">&quot;row 7&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;PickerRow title=</code><code class="string">&quot;row 8&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;/PickerColumn&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;Require src=</code><code class="string">&quot;pickercolumn&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                &lt;/Picker&gt;</code></div>
-<div class="line"><code class="plain">            &lt;/Window&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/Tab&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Tab title=</code><code class="string">&quot;Shorthand&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Window title=</code><code class="string">&quot;Shorthand&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;Picker&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;Column&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;Row title=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;Row title=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;Row title=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;Row title=</code><code class="string">&quot;row 4&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;/Column&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;Column&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;Row title=</code><code class="string">&quot;row 5&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;Row title=</code><code class="string">&quot;row 6&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;Row title=</code><code class="string">&quot;row 7&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;Row title=</code><code class="string">&quot;row 8&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;/Column&gt;</code></div>
-<div class="line"><code class="plain">                &lt;/Picker&gt;</code></div>
-<div class="line"><code class="plain">            &lt;/Window&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/Tab&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/TabGroup&gt;</code></div>
-<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">TabGroup</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Single Column&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Single Column&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Picker</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">PickerRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">PickerRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">PickerRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">PickerRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 4&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;pickerrow&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">Picker</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Multi-Column&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Multi-Column&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Picker</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">PickerColumn</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">PickerRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">PickerRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">PickerRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">PickerRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 4&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;pickerrow&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">PickerColumn</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">PickerColumn</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;pickerrow&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">PickerRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 5&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">PickerRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 6&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">PickerRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 7&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">PickerRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 8&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">PickerColumn</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;pickercolumn&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">Picker</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Shorthand&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Shorthand&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Picker</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">Column</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">Row</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">Row</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">Row</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">Row</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 4&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">Column</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">Column</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">Row</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 5&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">Row</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 6&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">Row</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 7&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">Row</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 8&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">Column</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">Picker</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">TabGroup</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>The index.tss file sets the Picker object&apos;s <a class="external-link external-link" href="#!/api/Titanium.UI.Picker-property-selectionIndicator">selectionIndicator</a> property to <tt class=" ">true</tt>, and sets <tt class=" ">useSpinner</tt> to true on Android devices.    </p>
+    <p>The <tt class=" ">index.tss</tt> file sets the Picker object&apos;s <a class="external-link external-link" href="#!/api/Titanium.UI.Picker-property-selectionIndicator">selectionIndicator</a> property to <tt class=" ">true</tt>, and sets <tt class=" ">useSpinner</tt> to true on Android devices.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/styles/index.tss</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/styles/index.tss">
-<div class="line"><code class="string">&quot;Window&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">	backgroundColor: </code><code class="string">&apos;#fff&apos;</code></div>
+<div class="line"><code class="plain">&quot;Window&quot;: {</code></div>
+<div class="line"><code class="plain">	backgroundColor: &apos;#fff&apos;</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">&quot;Label&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">	color: </code><code class="string">&apos;#000&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">&quot;Label&quot;: {</code></div>
+<div class="line"><code class="plain">	color: &apos;#000&apos;,</code></div>
 <div class="line"><code class="plain">	font: {</code></div>
-<div class="line"><code class="plain">		fontSize: </code><code class="string">&apos;32dp&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">		fontWeight: </code><code class="string">&apos;bold&apos;</code></div>
+<div class="line"><code class="plain">		fontSize: &apos;32dp&apos;,</code></div>
+<div class="line"><code class="plain">		fontWeight: &apos;bold&apos;</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">&quot;Picker&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">	top: </code><code class="value">0</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	selectionIndicator: </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">&quot;Picker&quot;: {</code></div>
+<div class="line"><code class="plain">	top: 0,</code></div>
+<div class="line"><code class="plain">	selectionIndicator: true</code></div>
 <div class="line"><code class="plain">},</code></div>
-<div class="line"><code class="string">&quot;Picker[platform=android]&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">	useSpinner: </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">&quot;Picker[platform=android]&quot;: {</code></div>
+<div class="line"><code class="plain">	useSpinner: true</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div class="section section-2 " id="src-41845763_Picker-SeeAlso">
-        <h2 class="heading "><span>See Also</span></h2>
-<ul class=" "><li class=" ">    <p><a class="document-link unresolved" href="#!/guide/Picker-section-src-41845763">Date/Time Pickers</a> sample application    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.Picker">Titanium.UI.Picker</a> API reference    </p>
+    <div class="section section-2 " id="src-41845763_Picker-Seealso">
+        <h2 class="heading "><span>See also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.Picker">Titanium.UI.Picker</a> API reference    </p>
 </li></ul>    </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845763"><span>Edit</span></a>
     

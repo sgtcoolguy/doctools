@@ -155,11 +155,8 @@
 </li><li class=" ">    <p><tt class=" ">--apply</tt> &#x2013; Optional. If present, the command writes new localization entries to the target language&apos;s strings.xml file. Existing i18n entries are left untouched. If the XML file doesn&apos;t exist, it is created for you. If this parameter is absent, a preview of the changes are displayed in the terminal window.    </p>
 </li></ul>    <p>The following localization functions are supported:    </p>
 <ul class=" "><li class=" ">    <p><tt class=" ">Titanium.Locale.getString()</tt>    </p>
-</li><li class=" ">    <p><tt class=" ">Ti.Locale.getString()</tt>    </p>
 </li><li class=" ">    <p><tt class=" ">L()</tt>    </p>
-</li></ul>    <p>    <span style="color: #000000;">
-The command extracts the first parameter (the i18n key) from each localization function and, if it&apos;s a string, adds it to the target language&apos;s strings.xml file.     </span>
-For example, suppose a JavaScript file in your application contained the following code:    </p>
+</li></ul>    <p>The command extracts the first parameter (the i18n key) from each localization function and, if it&apos;s a string, adds it to the target language&apos;s strings.xml file. For example, suppose a JavaScript file in your application contained the following code:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var name = Ti.Locale.getString(</code><code class="string">&apos;name&apos;</code><code class="plain">);</code></div>
@@ -173,10 +170,10 @@ For example, suppose a JavaScript file in your application contained the followi
 <div class="line"><code class="plain">appc alloy extract-i18n --apply</code></div>
 </div>
     </div>
-    <p>This generates <tt class=" ">app/i18n/en/strings.xml</tt> or (before Alloy 1.8.0)  <tt class=" ">i18n/en/strings.xml</tt> in your project directory, if it doesn&apos;t exist. The contents of the generated XML file would appear as follows:    </p>
+    <p>This generates <tt class=" ">app/i18n/en/strings.xml</tt> or (before Alloy 1.8.0) <tt class=" ">i18n/en/strings.xml</tt> in your project directory, if it doesn&apos;t exist. The contents of the generated XML file would appear as follows:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;?xml version=</code><code class="string">&quot;1.0&quot;</code><code class="plain"> encoding=</code><code class="string">&quot;UTF-8&quot;</code><code class="plain">?&gt;&lt;resources&gt;</code></div>
+<div class="line"><code class="plain">&lt;resources&gt;</code></div>
 <div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;name&quot;</code><code class="plain">&gt;name&lt;/string&gt;</code></div>
 <div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;color&quot;</code><code class="plain">&gt;color&lt;/string&gt;</code></div>
 <div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;currency&quot;</code><code class="plain">&gt;currency&lt;/string&gt;</code></div>
@@ -184,19 +181,13 @@ For example, suppose a JavaScript file in your application contained the followi
 </div>
     </div>
     <p>If you later add more localization functions to your code and run the same command again, the new entries would be added to strings.xml. Existing entries are left untouched.    </p>
-    <p>To generate a strings.xml for a specific language, pass the two-letter language code as a parameter. For example, the following command creates a strings.xml file for Spanish language locales (<tt class=" ">app/i18n/es/strings.xml</tt> or - before Alloy 1.8.0 - <tt class=" ">i18n/es/strings.xml</tt>):    </p>
+    <p>To generate a strings.xml for a specific language, pass the two-letter language code as a parameter. For example, the following command creates a strings.xml file for Spanish language locales (<tt class=" ">app/i18n/es/strings.xml</tt> or - before Alloy 1.8.0 - <tt class=" ">i18n/es/strings.xml</tt> ):    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&#xA0;appc alloy extract-i18n es --apply</code></div>
 </div>
     </div>
-    <p>    <span style="color: #000000;">
-When called with <tt class=" ">--apply</tt>, the command only adds new i18n entries and leaves existing entries untouched. For this reason,     </span>
-<tt class=" ">alloy extract-i18n --apply</tt>     <span style="color: #000000;">
-is a safe operation, but you can also     </span>
-    <span style="color: #000000;">
-preview changes in the terminal by calling the command without <tt class=" ">--apply</tt>    </span>
-, as shown below.    </p>
+    <p>When called with <tt class=" ">--apply</tt>, the command only adds new i18n entries and leaves existing entries untouched. For this reason,  <tt class=" ">alloy extract-i18n --apply</tt> is a safe operation, but you can also preview changes in the terminal by calling the command without <tt class=" ">--apply</tt> , as shown below.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">appc alloy extract-i18n</code></div>
@@ -206,13 +197,13 @@ preview changes in the terminal by calling the command without <tt class=" ">--a
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">[INFO] ######## BEFORE ########</code></div>
-<div class="line"><code class="plain">&lt;?xml version=</code><code class="string">&quot;1.0&quot;</code><code class="plain"> encoding=</code><code class="string">&quot;UTF-8&quot;</code><code class="plain">?&gt;&lt;resources&gt;</code></div>
+<div class="line"><code class="plain">&lt;resources&gt;</code></div>
 <div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;name&quot;</code><code class="plain">&gt;name&lt;/string&gt;</code></div>
 <div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;color&quot;</code><code class="plain">&gt;color&lt;/string&gt;</code></div>
 <div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;currency&quot;</code><code class="plain">&gt;currency&lt;/string&gt;</code></div>
 <div class="line"><code class="plain">&lt;/resources&gt;</code></div>
 <div class="line"><code class="plain">[INFO] ######## AFTER  ########</code></div>
-<div class="line"><code class="plain">&lt;?xml version=</code><code class="string">&quot;1.0&quot;</code><code class="plain"> encoding=</code><code class="string">&quot;UTF-8&quot;</code><code class="plain">?&gt;&lt;resources&gt;</code></div>
+<div class="line"><code class="plain">&lt;resources&gt;</code></div>
 <div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;name&quot;</code><code class="plain">&gt;name&lt;/string&gt;</code></div>
 <div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;color&quot;</code><code class="plain">&gt;color&lt;/string&gt;</code></div>
 <div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;currency&quot;</code><code class="plain">&gt;currency&lt;/string&gt;</code></div>
@@ -232,7 +223,6 @@ preview changes in the terminal by calling the command without <tt class=" ">--a
 <div class="line"><code class="plain">appc alloy compile --config platform=android,file=app/controller/index.js</code></div>
 </div>
     </div>
-    <p>    </p>
     </div>
     <div class="section section-2 " id="src-37536785_AlloyTaskswiththeCLI-BuildinganApplication">
         <h2 class="heading "><span>Building an Application</span></h2>

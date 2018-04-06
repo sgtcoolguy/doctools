@@ -24,29 +24,29 @@
             <p>alloy/test/apps/<strong class=" ">basics/global_style</strong>    </p>
     </div>
         <img src="images/download/attachments/41845687/ios.png" alt="images/download/attachments/41845687/ios.png" class="confluence-embedded-image" width="250">
-        <p>An Alloy project can include a <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/guide/Alloy_Styles_and_Themes-section-35621526_AlloyStylesandThemes-GlobalStyles">global style file</a> located at app/styles/app.tss. The styles defined by this file apply to all controls and views, but are over-ridden by &quot;local&quot; styles declared by the following:    </p>
-<ul class=" "><li class=" ">    <p>ID or class styles declared by a controller styles (views/index.tss, for example).    </p>
+        <p>An Alloy project can include a <a class="document-link " href="Alloy_Styles_and_Themes.html#src-35621526_AlloyStylesandThemes-Globalstyles">global style file</a> located at <tt class=" ">app/styles/app.tss</tt>. The styles defined by this file apply to all controls and views, but are over-ridden by &quot;local&quot; styles declared by the following:    </p>
+<ul class=" "><li class=" ">    <p>ID or class styles declared by a controller styles (<tt class=" ">views/index.tss</tt>, for example).    </p>
 </li><li class=" ">    <p>Styles assigned directly to an XML element    </p>
 </li></ul>    <p>In this example, the main <strong class=" ">index.xml</strong> view requires <strong class=" ">item.xml.</strong>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
-<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">    &lt;Window&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Require src=</code><code class="string">&quot;item&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/Window&gt;</code></div>
-<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;item&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>The item.xml view contains a &lt;View/&gt; element whose &quot;class&quot; attribute is set to &quot;container&quot;.    </p>
+    <p>The <tt class=" ">item.xml</tt> view contains a <tt class=" ">&lt;View/&gt;</tt> element whose &quot;class&quot; attribute is set to &quot;container&quot;.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/item.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/item.xml">
-<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">    &lt;View </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;container&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Label id=</code><code class="string">&quot;label&quot;</code><code class="plain">&gt;should be bold, red text on blue background&lt;/Label&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/View&gt;</code></div>
-<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;container&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;label&quot;</code><code class="plain">&gt;should be bold, red text on blue background&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     <p>The global style file defines a blue <tt class=" ">backgroundColor</tt> to the &quot;container&quot; class, and a color, font size and weight, and text alignment for all Label objects.    </p>
@@ -57,8 +57,8 @@
 <div class="line"><code class="plain">  backgroundColor: </code><code class="string">&quot;#00f&quot;</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line"><code class="string">&quot;Label&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">  color: </code><code class="string">&quot;#f00&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">  font: {</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">color</code><code class="plain">: </code><code class="string">&quot;#f00&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">font</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">    fontSize: </code><code class="value">24</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    fontWeight: </code><code class="string">&apos;bold&apos;</code></div>
 <div class="line"><code class="plain">  },</code></div>
@@ -66,12 +66,11 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div class="section section-2 " id="src-41845687_GlobalStyles-SeeAlso">
-        <h2 class="heading "><span>See Also</span></h2>
+    <div class="section section-2 " id="src-41845687_GlobalStyles-Seealso">
+        <h2 class="heading "><span>See also</span></h2>
 <ul class=" "><li class=" ">    <p><a class="document-link " href="Global_Styles.html">Global Styles</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Custom_TSS_Queries.html">Custom TSS Queries</a>    </p>
-</li></ul>    <p>    </p>
-    </div>
+</li></ul>    </div>
         </div>
     
         

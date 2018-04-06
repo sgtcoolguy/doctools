@@ -46,49 +46,44 @@ he     </span>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/controllers/baseDialog.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/baseDialog.js">
-<div class="line"><code class="plain">var args = arguments[</code><code class="value">0</code><code class="plain">] || {};</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> args = arguments[0] || {};</code></div>
 <div class="line"><code class="plain">$.message.text = args.message || </code><code class="string">&apos;dialog&apos;</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">exports.openDialog = function(win) {</code></div>
+<div class="line"><code class="plain">exports.openDialog = </code><code class="keyword">function</code><code class="plain">(win) {</code></div>
 <div class="line"><code class="plain">    $.refWin = win;</code></div>
 <div class="line"><code class="plain">    $.refWin.add($.cover);</code></div>
 <div class="line"><code class="plain">    $.refWin.add($.dialog);</code></div>
 <div class="line"><code class="plain">};</code></div>
-<div class="line"><code class="plain">exports.closeDialog = function() {</code></div>
+<div class="line"><code class="plain">exports.closeDialog = </code><code class="keyword">function</code><code class="plain">() {</code></div>
 <div class="line"><code class="plain">    $.refWin.remove($.cover);</code></div>
 <div class="line"><code class="plain">    $.refWin.remove($.dialog);</code></div>
 <div class="line"><code class="plain">    $.refWin = $.cover = $.dialog = </code><code class="keyword">null</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">};</code></div>
 </div>
     </div>
-    <p>The child controller, defined by <strong class=" ">controllers/animatedDialog.js, </strong>inherits from baseController.js and overrides the parent&apos;s <tt class=" ">openDialog()</tt> function with a version that animates the dialog window&apos;s opacity as it opens.    </p>
+    <p>The child controller, defined by <strong class=" ">controllers/animatedDialog.js, </strong>inherits from <tt class=" ">baseController.js</tt> and overrides the parent&apos;s <tt class=" ">openDialog()</tt> function with a version that animates the dialog window&apos;s opacity as it opens.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// Establish inheritance from baseDialog</code></div>
 <div class="line"><code class="plain">exports.baseController = </code><code class="string">&apos;baseDialog&apos;</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">exports.openDialog = function(win) {</code></div>
+<div class="line"><code class="plain">exports.openDialog = </code><code class="keyword">function</code><code class="plain">(win) {</code></div>
 <div class="line"><code class="plain">    $.refWin = win;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// make invisible</code></div>
-<div class="line"><code class="plain">    $.cover.opacity = </code><code class="value">0</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">    $.dialog.opacity = </code><code class="value">0</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    $.cover.opacity = 0;</code></div>
+<div class="line"><code class="plain">    $.dialog.opacity = 0;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// add to reference window</code></div>
 <div class="line"><code class="plain">    $.refWin.add($.cover);</code></div>
 <div class="line"><code class="plain">    $.refWin.add($.dialog);</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// animate in the opacity</code></div>
 <div class="line"><code class="plain">    $.cover.animate({</code></div>
-<div class="line"><code class="plain">        duration: </code><code class="value">500</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        opacity: </code><code class="value">0.5</code></div>
+<div class="line"><code class="plain">        duration: 500,</code></div>
+<div class="line"><code class="plain">        opacity: 0.5</code></div>
 <div class="line"><code class="plain">    });</code></div>
 <div class="line"><code class="plain">    $.dialog.animate({</code></div>
-<div class="line"><code class="plain">        duration: </code><code class="value">500</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        opacity: </code><code class="value">1</code></div>
+<div class="line"><code class="plain">        duration: 500,</code></div>
+<div class="line"><code class="plain">        opacity: 1</code></div>
 <div class="line"><code class="plain">    });</code></div>
 <div class="line"><code class="plain">};</code></div>
 </div>
-    </div>
-    <div class="section section-2 " id="src-41845661_Inheritance-SeeAlso">
-        <h2 class="heading "><span>See Also</span></h2>
-<ul class=" "><li class=" ">    <p><a class="document-link unresolved" href="#!/guide/Inheritance-section-src-41845661">Inheritance</a> in the <a class="document-link unresolved" href="#!/guide/Inheritance-section-src-41845661">Alloy Framework</a> guide    </p>
-</li></ul>    <p>    </p>
     </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845661"><span>Edit</span></a>
     

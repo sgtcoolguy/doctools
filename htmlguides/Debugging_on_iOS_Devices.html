@@ -29,16 +29,19 @@
 </li><li class=" ">    <p><a class="document-link " href="Debugging_on_iOS_Devices.html#src-33623072_DebuggingoniOSDevices-iTunesDeployment">iTunes Deployment</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Debugging_on_iOS_Devices.html#src-33623072_DebuggingoniOSDevices-LaunchtheApplicationandDebug">Launch the Application and Debug</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="Debugging_on_iOS_Devices.html#src-33623072_DebuggingoniOSDevices-TroubleshootingiOSOn-DeviceDebuggingProblems">Troubleshooting iOS On-Device Debugging Problems</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Debugging_on_iOS_Devices.html#src-33623072_DebuggingoniOSDevices-CannotSeetheiOSDeviceOptionintheDebugDrop-DownMenu">Cannot See the iOS Device Option in the Debug Drop-Down Menu</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Debugging_on_iOS_Devices.html#src-33623072_DebuggingoniOSDevices-iTunesFailstoSynctheApplicationtotheDeviceAfterFirstLaunch">iTunes Fails to Sync the Application to the Device After First Launch</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Debugging_on_iOS_Devices.html#src-33623072_DebuggingoniOSDevices-iTunesFailstoSynctheApplicationtotheDeviceAfterFirstLaunch">iTunes Fails to Sync the Application to the Device After First Launch</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Debugging_on_iOS_Devices.html#src-33623072_DebuggingoniOSDevices-DebuggerFailstoConnect">Debugger Fails to Connect</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Debugging_on_iOS_Devices.html#src-33623072_DebuggingoniOSDevices-Wi-FiSyncProblems">Wi-Fi Sync Problems</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Debugging_on_iOS_Devices.html#src-33623072_DebuggingoniOSDevices-TestingNetworkConnection">Testing Network Connection</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="Debugging_on_iOS_Devices.html#src-33623072_DebuggingoniOSDevices-RelatedTopics">Related Topics</a>    </p>
-</li></ul>    </div>
+</li></ul>    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>When using Safari Web Inspector to debug your Titanium iOS apps, see <a class="document-link " href="Debugging_iOS_Apps_with_3rd-party_Tools.html">Debugging iOS Apps with 3rd-party Tools</a> for details!    </p>
+    </div>
+        </div>
     <div class="section section-2 " id="src-33623072_DebuggingoniOSDevices-Overview">
         <h2 class="heading "><span>Overview</span></h2>
-    <p>Titanium SDK 3.0 enables Studio to initiate a debug session on an iOS device. Debugging on an iOS device involves the following steps:    </p>
+    <p>Titanium SDK enables Studio to initiate a debug session on an iOS device. Debugging on an iOS device involves the following steps:    </p>
 <ul class=" "><li class=" ">    <p>User selects the <strong class=" ">Debug on iOS Device</strong>.    </p>
 </li><li class=" ">    <p>Studio builds the application.    </p>
 </li><li class=" ">    <p>Application is synced to the device, either automatically or manually.    </p>
@@ -46,16 +49,14 @@
 </li><li class=" ">    <p>Application initiates debug session with Studio over the local Wi-Fi network.    </p>
 </li></ul>    <p>This page will guide you through the setup, and the launch, of a debug session.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>Debugging on iOS devices is only supported on OS X. You must already be set up to run applications on your iOS device, as documented in <a class="document-link " href="Deploying_to_iOS_devices.html">Deploying to iOS devices</a>.    </p>
+            <p>Debugging on iOS devices is only supported on macOS. You must already be set up to run applications on your iOS device, as documented in <a class="document-link " href="Deploying_to_iOS_devices.html">Deploying to iOS devices</a>.    </p>
     </div>
         </div>
     <div class="section section-2 " id="src-33623072_DebuggingoniOSDevices-Requirements">
         <h2 class="heading "><span>Requirements</span></h2>
     <p>To debug on an iOS device, you must:    </p>
 <ul class=" "><li class=" ">    <p>Be able to to install applications on your iOS device from Studio. (If you haven&apos;t installed an application on your device yet, review the steps in <a class="document-link " href="Deploying_to_iOS_devices.html">Deploying to iOS devices</a>.)    </p>
-</li><li class=" ">    <p>Have Titanium SDK Release 3.0 or later installed.    </p>
-</li><li class=" ">    <p>Have Studio version 3.0 or later installed.    </p>
-</li><li class=" ">    <p>Connect the OS X machine and the device to the same wireless (Wi-Fi) network. The debugger protocol runs over the network (a cable does <i class=" ">not</i> serve as an alternative).    </p>
+</li><li class=" ">    <p>Connect the macOS machine and the device to the same wireless (Wi-Fi) network. The debugger protocol runs over the network (a cable does <i class=" ">not</i> serve as an alternative).    </p>
 </li></ul>    <p>Each time you run the debugger, Studio builds the application and attempts to install it using iTunes. In order to install the application using iTunes, you must either:    </p>
 <ul class=" "><li class=" ">    <p>Connect your device using the USB cable (recommended).    </p>
 </li><li class=" ">    <p>Configure your device to sync with iTunes over Wi-Fi. To sync over Wi-Fi, your device must be connected to a power source, and may require multicast and Universal Plug and Play (UPnP) to be enabled on the router. Wi-Fi sync is slower and less reliable than syncing using the USB cable.    </p>
@@ -66,7 +67,7 @@
         <h2 class="heading "><span>Network Setup</span></h2>
     <p>In order to debug on an iOS device, the device and computer running Studio must be attached to the same wireless (Wi-Fi) network, and the network must allow connections between two clients.    </p>
     <p>Some public Wi-Fi networks are configured so clients can only communicate with the internet, not with each other. These networks are not compatible with on-device debugging for iOS.    </p>
-    <p>If you do not have a suitable Wi-Fi network available, you can create an ad-hoc network on your computer and connect to it using your device. See<br><a class="external-link external-link" href="http://support.apple.com/kb/PH10666">OS X Mountain Lion: Create a computer-to-computer network</a> on the Apple Support site for directions on creating an ad-hoc network.    </p>
+    <p>If you do not have a suitable Wi-Fi network available, you can create an ad-hoc network on your computer and connect to it using your device. See<br><a class="external-link external-link" href="http://support.apple.com/kb/PH10666">macOS: Create a computer-to-computer network</a> on the Apple Support site for directions on creating an ad-hoc network.    </p>
     </div>
     <div class="section section-2 " id="src-33623072_DebuggingoniOSDevices-LaunchingaDebugSession">
         <h2 class="heading "><span>Launching a Debug Session</span></h2>
@@ -105,10 +106,6 @@
     </div>
     <div class="section section-2 " id="src-33623072_DebuggingoniOSDevices-TroubleshootingiOSOn-DeviceDebuggingProblems">
         <h2 class="heading "><span>Troubleshooting iOS On-Device Debugging Problems</span></h2>
-    <div class="section section-3 " id="src-33623072_DebuggingoniOSDevices-CannotSeetheiOSDeviceOptionintheDebugDrop-DownMenu">
-        <h3 class="heading "><span>Cannot See the iOS Device Option in the Debug Drop-Down Menu</span></h3>
-<ul class=" "><li class=" ">    <p>Make sure the Titanium SDK selected in <tt class=" ">tiapp.xml</tt> is Release 3.0 or later.    </p>
-</li></ul>    </div>
     <div class="section section-3 " id="src-33623072_DebuggingoniOSDevices-iTunesFailstoSynctheApplicationtotheDeviceAfterFirstLaunch">
         <h3 class="heading "><span>iTunes Fails to Sync the Application to the Device After First Launch</span></h3>
 <ul class=" "><li class=" ">    <p>Check the <i class=" ">Apps</i> tab in your iTunes. Make sure it&apos;s set to sync automatically, and that the new app appears with a checkmark next to it. If it doesn&apos;t, check the app and hit Apply.    </p>

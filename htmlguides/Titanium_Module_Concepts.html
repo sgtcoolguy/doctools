@@ -19,27 +19,27 @@
         <div id="src-35621751" class="content">
                         <h1>Titanium Module Concepts</h1>
     <p>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-PackagedTitaniumModules">Packaged Titanium Modules</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-NativeModules">Native Modules</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-PackagedTitaniummodules">Packaged Titanium modules</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-Nativemodules">Native modules</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-Proxies">Proxies</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-NativeModuleObjects">Native Module Objects</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-ViewsandViewProxies">Views and View Proxies</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-ConvertingBetweenJavaScriptandNativeObjects">Converting Between JavaScript and Native Objects</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-EventsandCallbacks">Events and Callbacks</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-Nativemoduleobjects">Native module objects</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-Viewsandviewproxies">Views and view proxies</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-ConvertingbetweenJavaScriptandnativeobjects">Converting between JavaScript and native objects</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-Eventsandcallbacks">Events and callbacks</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-Threading">Threading</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-PackagedJavaScriptandHybridModules">Packaged JavaScript and Hybrid Modules</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="Titanium_Module_Concepts.html#src-35621751_TitaniumModuleConcepts-PackagedJavaScriptandhybridmodules">Packaged JavaScript and hybrid modules</a>    </p>
 </li></ul></li></ul>    <p>The Titanium API is made up of <i class=" ">modules</i>--collections of related methods, properties, and constants. There are several types of modules:    </p>
 <ul class=" "><li class=" ">    <p>The Titanium namespace is made up of built-in modules--modules such as <tt class=" ">Titanium.UI</tt> and <tt class=" ">Titanium.Geolocation</tt>. These modules are always available to Titanium applications.    </p>
 </li></ul><ul class=" "><li class=" ">    <p>Packaged modules are optional extensions to the Titanium API that can be imported into your application using the <tt class=" ">require</tt> method. Packaged modules are imported using an identifier (such as <tt class=" ">ti.cloud</tt>). Packaged modules can include native code, JavaScript, or both. Packaged modules are available from the Appcelerator Marketplace, as well as other sources.    </p>
 </li></ul><ul class=" "><li class=" ">    <p>CommonJS modules can be used in your application to structure and organize code. Unlike packaged modules, CommonJS modules are not managed by Studio or the <tt class=" ">titanium</tt> command-line interface. To import a CommonJS module, you import it using the absolute or relative path to the module inside your project&apos;s <tt class=" ">Resources</tt> folder.    </p>
 </li></ul>    <p>This section deals with extending the Titanium API by building packaged modules, which can be sold through the Appcelerator Marketplace or distributed through other means.    </p>
-    <div class="section section-2 " id="src-35621751_TitaniumModuleConcepts-PackagedTitaniumModules">
-        <h2 class="heading "><span>Packaged Titanium Modules</span></h2>
+    <div class="section section-2 " id="src-35621751_TitaniumModuleConcepts-PackagedTitaniummodules">
+        <h2 class="heading "><span>Packaged Titanium modules</span></h2>
     <p>A packaged module is a module that can contain native code, JavaScript, or both. It is built, or packaged, for a specific platform--at this point, packaged modules are supported on Android, iOS and Mobile Web. When you package a module, any native code is compiled and any JavaScript is obfuscated, so the module can be distributed without sharing your source code.    </p>
     <p>Starting with Release 3.3.0, the Titanium CLI generates one module project for multiple platforms.  The module project contains platform-specific resource folders, called <tt class=" ">android</tt>, <tt class=" ">iphone</tt> and <tt class=" ">mobileweb</tt>, as well as common resources for assets, documentation and examples.    </p>
     <p>Since packaged modules can contain native code, a module can generally do anything that native code can do. On Mobile Web, of course, JavaScript <i class=" ">is</i> the native language of the platform. On Android and iOS, there are a number of special considerations for writing native code, as well as a set of module APIs for integrating with Titanium.    </p>
-    <div class="section section-3 " id="src-35621751_TitaniumModuleConcepts-NativeModules">
-        <h3 class="heading "><span>Native Modules</span></h3>
+    <div class="section section-3 " id="src-35621751_TitaniumModuleConcepts-Nativemodules">
+        <h3 class="heading "><span>Native modules</span></h3>
     <p>To write a native module for Android or iOS, you need to be familiar with several concepts:    </p>
 <ul class=" "><li class=" ">    <p>Proxies    </p>
 </li><li class=" ">    <p>Native Module Objects    </p>
@@ -55,7 +55,7 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// 1. Create a proxy object</code></div>
-<div class="line"><code class="plain">var win = Ti.UI.createWindow(); </code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow(); </code></div>
 <div class="line"><code class="comments">// 2. Set a property </code></div>
 <div class="line"><code class="plain">win.title = </code><code class="string">&quot;Hello World&quot;</code><code class="plain">;</code></div>
 <div class="line"><code class="comments">// 3. Call a method on the proxy.</code></div>
@@ -67,38 +67,37 @@
         <p>Although the <tt class=" ">win</tt> object appears like an ordinary JavaScript object to a Titanium application, it is important to remember that there are actually two objects &#x2013; the JavaScript object and the native proxy object. Only properties and methods that are bound to the native proxy object actually invoke calls to the native proxy. Setting an arbitrary property on an object after creation time will add the property to the JavaScript object, but <i class=" ">not</i> the proxy object. Consider the following code:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var win = Ti.UI.createWindow();</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow();</code></div>
 <div class="line"><code class="plain">win.myProp = </code><code class="string">&quot;Some other string&quot;</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">win.title = </code><code class="string">&quot;Hello World&quot;</code><code class="plain">;</code></div>
 </div>
     </div>
     <p>In this example, setting the <tt class=" ">title</tt> property on <tt class=" ">win</tt> causes the title to be set on the native window proxy, but the <tt class=" ">myProp</tt> property is only set on the JavaScript object, and is not passed to the native layer.    </p>
-    <p>    </p>
     </div>
-    <div class="section section-4 " id="src-35621751_TitaniumModuleConcepts-NativeModuleObjects">
-        <h4 class="heading "><span>Native Module Objects</span></h4>
+    <div class="section section-4 " id="src-35621751_TitaniumModuleConcepts-Nativemoduleobjects">
+        <h4 class="heading "><span>Native module objects</span></h4>
     <p>A <i class=" ">module</i> object is the native representation of a Titanium module. It extends a native module type (<tt class=" ">TiModule</tt> on iOS, <tt class=" ">KrollModule</tt> on Android). This native module type inherits from the native proxy type &#x2013; like a proxy, a module exposes a set of properties and methods to JavaScript. In addition, the native module object can have an assigned identifier &#x2013; used to import the module with `require` &#x2013; and a set of lifecycle events that the module can respond to.    </p>
     <p>Your packaged module can only contain a single native module class.    </p>
     <p>Every proxy object has a <i class=" ">parent</i> module. The parent module usually exposes methods for creating its child proxy objects, like the <tt class=" ">Ti.UI</tt> module provides a <tt class=" ">Ti.UI.createButton</tt> method to create a <tt class=" ">Ti.UI.Button</tt> object.    </p>
     </div>
-    <div class="section section-4 " id="src-35621751_TitaniumModuleConcepts-ViewsandViewProxies">
-        <h4 class="heading "><span>Views and View Proxies</span></h4>
+    <div class="section section-4 " id="src-35621751_TitaniumModuleConcepts-Viewsandviewproxies">
+        <h4 class="heading "><span>Views and view proxies</span></h4>
     <p>For UI components, there are some additional classes you&apos;ll need to use. A view proxy is a special proxy type that extends <tt class=" ">TiViewProxy</tt>, which has additional properties and methods specific to the Titanium UI system. Each view proxy has a corresponding Titanium view type, which extends the <tt class=" ">TiUIView</tt> class. The view proxy provides a way for applications to interact with the view from JavaScript. The view object itself may be created and destroyed as needed &#x2013; for example, the controls in a window don&apos;t need to be instantiated until the window is opened.    </p>
     <p>There are several special features about view and view proxies:    </p>
 <ul class=" "><li class=" ">    <p>When you set a property on the view proxy, the underlying native view may not exist. Therefore, the view proxy is responsible for maintaining the properties.    </p>
 </li><li class=" ">    <p>When a view is created, it is initialized with the current set of properties stored by the view proxy.    </p>
 </li><li class=" ">    <p>When a view proxy&apos;s properties are updated, the view is updated as well.    </p>
 </li></ul>    </div>
-    <div class="section section-4 " id="src-35621751_TitaniumModuleConcepts-ConvertingBetweenJavaScriptandNativeObjects">
-        <h4 class="heading "><span>Converting Between JavaScript and Native Objects</span></h4>
+    <div class="section section-4 " id="src-35621751_TitaniumModuleConcepts-ConvertingbetweenJavaScriptandnativeobjects">
+        <h4 class="heading "><span>Converting between JavaScript and native objects</span></h4>
     <p>When you pass an object to a native method, or return an object from a native method or property to JavaScript, objects must be converted from JavaScript objects to native objects, and vice-versa.    </p>
     <p>Each native platform has its own set of helpers for converting between JavaScript objects and native objects. However, there are some similarities on both platforms:    </p>
 <ul class=" "><li class=" ">    <p>Primitive values, such as numbers, strings and arrays can be converted to their equivalent values.    </p>
 </li><li class=" ">    <p>Plain JavaScript objects can be converted to native dictionary objects (Java <tt class=" ">HashMap</tt> or Objective-C <tt class=" ">NSDictionary</tt>, for example).    </p>
 </li><li class=" ">    <p>More complex types can be passed by creating a special proxy class to represent them.    </p>
 </li></ul>    </div>
-    <div class="section section-4 " id="src-35621751_TitaniumModuleConcepts-EventsandCallbacks">
-        <h4 class="heading "><span>Events and Callbacks</span></h4>
+    <div class="section section-4 " id="src-35621751_TitaniumModuleConcepts-Eventsandcallbacks">
+        <h4 class="heading "><span>Events and callbacks</span></h4>
     <p>When performing an asynchronous operation, you can send data back to the JavaScript layer using events or callbacks.    </p>
 <ul class=" "><li class=" ">    <p>An <i class=" ">event</i> results in an event listener function being called on all registered listeners.    </p>
 </li><li class=" ">    <p>A <i class=" ">callback</i> invokes a specific JavaScript function.    </p>
@@ -116,22 +115,20 @@
     </div>
         </div>
     </div>
-    <div class="section section-3 " id="src-35621751_TitaniumModuleConcepts-PackagedJavaScriptandHybridModules">
-        <h3 class="heading "><span>Packaged JavaScript and Hybrid Modules</span></h3>
+    <div class="section section-3 " id="src-35621751_TitaniumModuleConcepts-PackagedJavaScriptandhybridmodules">
+        <h3 class="heading "><span>Packaged JavaScript and hybrid modules</span></h3>
     <p>To package JavaScript as a native module, create a JavaScript module named &lt;module-id&gt;.js in the module&apos;s <tt class=" ">assets</tt> folder. The APIs exported by this module form the API of the packaged module.    </p>
     <p>For Android and iOS modules, the module must be formatted as a CommonJS module. For Mobile Web, the module must use the Asynchronous Module Definition (AMD) format.    </p>
     <p>You can place additional JavaScript CommonJS modules in the assets folder and import them into your main module using <tt class=" ">require</tt>.    </p>
     <p>If your module includes both JavaScript and native code, the native and JavaScript module contents are merged when the module is packaged. For example, if your native module exposes a <tt class=" ">createView</tt> method, and you have a JavaScript module that exposes a <tt class=" ">animateView</tt> method, both of these methods are available on your module:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var myModule = require(</code><code class="string">&quot;com.example.module&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">var view = myModule.createView({ width: </code><code class="value">200</code><code class="plain">, height: </code><code class="value">200</code><code class="plain"> });</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> myModule = require(</code><code class="string">&quot;com.example.module&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> view = myModule.createView({ width: 200, height: 200 });</code></div>
 <div class="line"><code class="plain">win.add(view);</code></div>
 <div class="line"><code class="plain">myModule.animateView(view);</code></div>
 </div>
     </div>
-    <p>    </p>
-<pre class=" "> </pre>    <p>    </p>
     </div>
     </div>
         </div>

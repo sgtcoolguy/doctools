@@ -23,7 +23,7 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-Module">Module</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-Modulelifecycleevents">Module lifecycle events</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-Getthecurrentactivity">Get the current activity</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-Proxy">Proxy </a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-Proxy">Proxy</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-Methods">Methods</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-Properties">Properties</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-Customaccessormethods">Custom accessor methods</a>    </p>
@@ -75,7 +75,7 @@
 </div>
     </div>
     <p>The module must have a default constructor (that is, one that takes no arguments).    </p>
-    <p>A module can also have a parent module: <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/modules/ui/src/java/ti/modules/titanium/ui/UIModule.java" target="_blank">Titanium.UI</a> and <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/modules/app/src/java/ti/modules/titanium/app/AppModule.java" target="_blank">Titanium.App</a> are children of the <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/titanium/src/java/ti/modules/titanium/TitaniumModule.java" target="_blank">Titanium</a> module.    </p>
+    <p>A module can also have a parent module: <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/modules/ui/src/java/ti/modules/platform/ui/UIModule.java" target="_blank">Titanium.UI</a> and <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/modules/app/src/java/ti/modules/platform/app/AppModule.java" target="_blank">Titanium.App</a> are children of the <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/platform/src/java/ti/modules/platform/TitaniumModule.java" target="_blank">Titanium</a> module.    </p>
     <p>The <tt class=" ">@Kroll.module</tt> annotation can also contain a <tt class=" ">propertyAccessors</tt> element, which defines a set of properties exposed by the module. See <a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-Properties">Properties</a> for more information.    </p>
     <div class="section section-3 " id="src-43289000_AndroidModuleArchitecture-Modulelifecycleevents">
         <h3 class="heading "><span>Module lifecycle events</span></h3>
@@ -102,7 +102,7 @@
         </div>
     <div class="section section-3 " id="src-43289000_AndroidModuleArchitecture-Getthecurrentactivity">
         <h3 class="heading "><span>Get the current activity</span></h3>
-    <p>To get access to the current activity, first use <a class="external-link external-link" href="http://docs.appcelerator.com/module-apidoc/latest/android/android/org/appcelerator/titanium/TiApplication.html" target="_blank">TiApplication</a>&apos;s <a class="external-link external-link" href="http://docs.appcelerator.com/module-apidoc/latest/android/org/appcelerator/titanium/TiApplication.html#getInstance()" target="_blank">getInstance()</a> method, and then use the <a class="external-link external-link" href="http://docs.appcelerator.com/module-apidoc/latest/android/org/appcelerator/titanium/TiApplication.html#getCurrentActivity()" target="_blank">getCurrentActivity()</a> method:    </p>
+    <p>To get access to the current activity, first use TiApplication&apos;s getInstance() method, and then use the getCurrentActivity() method:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">TiApplication appContext = TiApplication.getInstance();</code></div>
@@ -113,9 +113,7 @@
     </div>
     <div class="section section-2 " id="src-43289000_AndroidModuleArchitecture-Proxy">
         <h2 class="heading "><span>Proxy</span></h2>
-    <p>    <span style="color: #333333;">
-A Proxy can expose methods, properties, and constants to JavaScript. Each of these can be a primitive type, or a proxy. Proxies also have built-in event management primarily through <tt class=" ">fireEvent</tt> and <tt class=" ">hasListeners</tt>.    </span>
-    </p>
+    <p>A Proxy can expose methods, properties, and constants to JavaScript. Each of these can be a primitive type, or a proxy. Proxies also have built-in event management primarily through <tt class=" ">fireEvent</tt> and <tt class=" ">hasListeners</tt>.    </p>
     <p>A proxy must extend <a class="external-link external-link" href="http://docs.appcelerator.com/module-apidoc/latest/android/org/appcelerator/kroll/KrollProxy.html" target="_blank">KrollProxy</a> and have the <tt class=" ">@Kroll.proxy</tt> annotation. All proxy class names and file names must have the <tt class=" ">Proxy</tt> suffix.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -246,7 +244,7 @@ A Proxy can expose methods, properties, and constants to JavaScript. Each of the
 <div class="line"><code class="plain">             propertyAccessors = { </code><code class="string">&quot;hintText&quot;</code><code class="plain">, </code><code class="string">&quot;value&quot;</code><code class="plain"> })</code></div>
 </div>
     </div>
-    <p>In this case, the proxy has two properties, <tt class=" ">hintText</tt> and <tt class=" ">value</tt>, each with corresponding setter and getter methods, such as <tt class=" ">setHintText</tt> and <tt class=" ">getValue</tt>. These properties are stored in an internal dictionary. You can query properties using <tt class=" ">getProperty</tt><tt class=" ">()</tt> or retrieve the entire dictionary using <tt class=" ">getProperties</tt><tt class=" ">()</tt>.    </p>
+    <p>In this case, the proxy has two properties, <tt class=" ">hintText</tt> and <tt class=" ">value</tt>, each with corresponding setter and getter methods, such as <tt class=" ">setHintText</tt> and <tt class=" ">getValue</tt>. These properties are stored in an internal dictionary. You can query properties using <tt class=" ">getProperty</tt> <tt class=" ">()</tt> or retrieve the entire dictionary using <tt class=" ">getProperties</tt> <tt class=" ">()</tt>.    </p>
     <p>When you define properties this way, you&apos;ll usually want to add a model listener to respond to property changes. When you set a property using the generated getter and setter methods, the model listener is automatically notified.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <p>If you define properties using the <tt class=" ">propertyAccessors</tt> element, you <u class=" "><strong class=" ">cannot</strong></u> override the accessors by defining custom accessor methods. Doing so causes module packaging to fail with a cryptic error. For each property, you must use <i class=" ">either</i> <tt class=" ">propertyAccessors</tt> or custom accessors, but not both.    </p>
@@ -336,7 +334,7 @@ A Proxy can expose methods, properties, and constants to JavaScript. Each of the
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>You can set properties programmatically on the proxy using either <tt class=" ">setProperty()</tt> or <tt class=" ">setPropertyAndFire()</tt>. Both methods update the property dictionary and make the new property value visible to JavaScript. The <tt class=" ">setPropertyAndFire()</tt> method also invokes the <tt class=" ">propertyChanged</tt> callback on the model listener. In the case of a view proxy, you would typically call <tt class=" ">setProperty</tt> to make a value from the native view object visible to the JavaScript layer: for example, when the user sets the text value in a text field, you want to make the value available to JavaScript<i class=" ">. </i>There is no need to fire the <tt class=" ">propertyChanged</tt> callback, since the model listener itself (the view object) is generating the change.    </p>
+    <p>You can set properties programmatically on the proxy using either <tt class=" ">setProperty()</tt>or  <tt class=" ">setPropertyAndFire()</tt>. Both methods update the property dictionary and make the new property value visible to JavaScript. The <tt class=" ">setPropertyAndFire()</tt> method also invokes the <tt class=" ">propertyChanged</tt> callback on the model listener. In the case of a view proxy, you would typically call <tt class=" ">setProperty</tt> to make a value from the native view object visible to the JavaScript layer: for example, when the user sets the text value in a text field, you want to make the value available to JavaScript<i class=" ">. </i>There is no need to fire the <tt class=" ">propertyChanged</tt> callback, since the model listener itself (the view object) is generating the change.    </p>
     <p>You can also use custom accessor methods when using the model listener. In this case, you&apos;d define the property getter and setter methods using the <tt class=" ">@Kroll.setProperty</tt> and <tt class=" ">@Kroll.getProperty</tt> annotations instead of listing the property in the <tt class=" ">propertyAccessors</tt> element. You can do this if you want to validate or transform the value, or if you want to provide optional arguments in the setter. In the setter, you can then call <tt class=" ">setPropertyAndFire</tt> to store the value and notify the model listener.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -357,7 +355,7 @@ A Proxy can expose methods, properties, and constants to JavaScript. Each of the
     </div>
     <div class="section section-3 " id="src-43289000_AndroidModuleArchitecture-Constants">
         <h3 class="heading "><span>Constants</span></h3>
-    <p>A constant is simply a static property on a <tt class=" ">@Kroll.module</tt>. Annotate the property with <tt class=" ">@Kroll.constant</tt> and declare it as both <tt class=" ">static</tt> and <tt class=" ">final</tt>.    </p>
+    <p>A constant is simply a static property on a <tt class=" ">@Kroll.module</tt>. Annotate the property with <tt class=" ">@Kroll.constant</tt>and declare it as both <tt class=" ">static</tt> and <tt class=" ">final</tt>.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="color1">@Kroll</code><code class="plain">.module</code></div>
@@ -400,7 +398,7 @@ A Proxy can expose methods, properties, and constants to JavaScript. Each of the
         <p>int    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/titanium/util/TiConvert.html#toInt(java.lang.Object)" target="_blank">TiConvert.toInt</a>    </p>
+        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/platform/util/TiConvert.html#toInt(java.lang.Object)" target="_blank">TiConvert.toInt</a>    </p>
             </td>
         </tr>
     <tr>
@@ -411,7 +409,7 @@ A Proxy can expose methods, properties, and constants to JavaScript. Each of the
         <p>float    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/titanium/util/TiConvert.html#toFloat(java.lang.Object)" target="_blank">TiConvert.toFloat</a>    </p>
+        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/platform/util/TiConvert.html#toFloat(java.lang.Object)" target="_blank">TiConvert.toFloat</a>    </p>
             </td>
         </tr>
     <tr>
@@ -422,7 +420,7 @@ A Proxy can expose methods, properties, and constants to JavaScript. Each of the
         <p>double    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/titanium/util/TiConvert.html#toDouble(java.lang.Object)" target="_blank">TiConvert.toDouble</a>    </p>
+        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/platform/util/TiConvert.html#toDouble(java.lang.Object)" target="_blank">TiConvert.toDouble</a>    </p>
             </td>
         </tr>
     <tr>
@@ -433,7 +431,7 @@ A Proxy can expose methods, properties, and constants to JavaScript. Each of the
         <p>boolean    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/titanium/util/TiConvert.html#toBoolean(java.lang.Object)" target="_blank">TiConvert.toBoolean</a>    </p>
+        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/platform/util/TiConvert.html#toBoolean(java.lang.Object)" target="_blank">TiConvert.toBoolean</a>    </p>
             </td>
         </tr>
     <tr>
@@ -444,7 +442,7 @@ A Proxy can expose methods, properties, and constants to JavaScript. Each of the
         <p>String    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/titanium/util/TiConvert.html#toString(java.lang.Object)" target="_blank">TiConvert.toString</a> or Cast    </p>
+        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/platform/util/TiConvert.html#toString(java.lang.Object)" target="_blank">TiConvert.toString</a> or Cast    </p>
             </td>
         </tr>
     <tr>
@@ -477,7 +475,7 @@ A Proxy can expose methods, properties, and constants to JavaScript. Each of the
         <p>Date    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/titanium/util/TiConvert.html#toDate(java.lang.Object)" target="_blank">TiConvert.toDate</a> or Cast    </p>
+        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/platform/util/TiConvert.html#toDate(java.lang.Object)" target="_blank">TiConvert.toDate</a> or Cast    </p>
             </td>
         </tr>
     <tr>
@@ -488,7 +486,7 @@ A Proxy can expose methods, properties, and constants to JavaScript. Each of the
         <p>TiBlob    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/titanium/util/TiConvert.html#toBlob(java.lang.Object)" target="_blank">TiConvert.toBlob</a> or Cast    </p>
+        <p><a class="external-link external-link" href="http://builds.appcelerator.com.s3.amazonaws.com/module-apidoc/2.0.0/android/org/appcelerator/platform/util/TiConvert.html#toBlob(java.lang.Object)" target="_blank">TiConvert.toBlob</a> or Cast    </p>
             </td>
         </tr>
     <tr>
@@ -529,7 +527,7 @@ A Proxy can expose methods, properties, and constants to JavaScript. Each of the
     <div class="section section-4 " id="src-43289000_AndroidModuleArchitecture-Filesandblobs">
         <h4 class="heading "><span>Files and blobs</span></h4>
     <p>When a JavaScript Titanium object is passed to Java, the Java method receives a reference to the associated proxy object. Among the most common of these proxy objects are the File and Blob objects.    </p>
-    <p>The Titanium.Blob JavaScript object is represented by an instance of the <tt class=" ">TiBlob</tt> class. Use <tt class=" ">TiBlob</tt> in method signatures where you want to accept or return a Blob.    </p>
+    <p>The Titanium.Blob JavaScript object is represented by an instance of the <tt class=" ">TiBlob</tt>class. Use <tt class=" ">TiBlob</tt> in method signatures where you want to accept or return a Blob.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="color1">@Kroll</code><code class="plain">.method</code></div>
@@ -597,10 +595,10 @@ A Proxy can expose methods, properties, and constants to JavaScript. Each of the
     </div>
     <div class="section section-2 " id="src-43289000_AndroidModuleArchitecture-ViewProxyandView">
         <h2 class="heading "><span>View Proxy and View</span></h2>
-    <p>To display UI elements with a module, create both a View Proxy and a View. A View Proxy is a special Proxy that is used for Views &#x2014; objects which interact with the UI to draw things on the screen. The View Proxy is for exposing methods and properties of the view to JavaScript (just as a normal proxy would do), while a View acts as a model listener for the View Proxy. The view implementation is responsible for taking data from the view proxy, and applying it directly to the native <a class="external-link external-link" href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a> that it exposes.    </p>
+    <p>To display UI elements with a module, create both a View Proxy and a View. A View Proxy is a special Proxy that is used for Views &#x2014; objects which interact with the UI to draw things on the screen. The View Proxy is for exposing methods and properties of the view to JavaScript (just as a normal proxy would do), while a View acts as a model listener for the View Proxy. The view implementation is responsible for taking data from the view proxy, and applying it directly to the native  <a class="external-link external-link" href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>  that it exposes.    </p>
     <div class="section section-3 " id="src-43289000_AndroidModuleArchitecture-ViewProxy">
         <h3 class="heading "><span>View Proxy</span></h3>
-    <p>A View Proxy must extend the <tt class=" ">TiViewProxy</tt> class and have the <tt class=" ">@Kroll.proxy</tt> annotation.  All view proxy class names and file names must have the <tt class=" ">Proxy</tt> suffix. Any class that extend the <tt class=" ">TiViewProxy</tt> class must also implement the <tt class=" ">TiUIView createView(Activity activity)</tt> method, which create and returns the associated View.    </p>
+    <p>A View Proxy must extend the <tt class=" ">TiViewProxy</tt> class and have the <tt class=" ">@Kroll.proxy</tt>annotation.  All view proxy class names and file names must have the <tt class=" ">Proxy</tt> suffix. Any class that extend the <tt class=" ">TiViewProxy</tt> class must also implement the <tt class=" ">TiUIView createView(Activity activity)</tt>method, which create and returns the associated View.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">package</code><code class="plain"> com.example.test;</code></div>

@@ -28,6 +28,7 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Enabling_Hyperloop-section-src-46253574_EnablingHyperloop-EnablingviaStudio">Enabling via Studio</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Enabling_Hyperloop-section-src-46253574_EnablingHyperloop-CreatingnewHyperloop-enabledproject">Creating new Hyperloop-enabled project</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Enabling_Hyperloop-section-src-46253574_EnablingHyperloop-EnablingHyperlooponnon-Hyperloopprojects">Enabling Hyperloop on non-Hyperloop projects</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Enabling_Hyperloop-section-src-46253574_EnablingHyperloop-GettingStarted">Getting Started</a>    </p>
 </li></ul></li></ul>    <div class="section section-2 " id="src-46253574_EnablingHyperloop-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
     <p>This page lists information on how to use Hyperloop with new and existing projects. Hyperloop works as a native module and is pre-packaged with the SDK 7.0.0 and later.    </p>
@@ -49,9 +50,9 @@
     <p>If you&#x2019;d like to use Hyperloop in a new or existing Titanium project, add the following code to your tiapp.xml to configure the module:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;modules&gt;</code></div>
-<div class="line"><code class="plain">	&lt;module&gt;hyperloop&lt;/module&gt;</code></div>
-<div class="line"><code class="plain">&lt;/modules&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">modules</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">module</code><code class="plain">&gt;hyperloop&lt;/</code><code class="keyword">module</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">modules</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     <div class="section section-3 " id="src-46253574_EnablingHyperloop-OnSDKsolderthan7.0.0">
@@ -60,15 +61,15 @@
     <p>For iOS, you&#x2019;ll need to ensure that the <tt class=" ">&lt;use-jscore-framework&gt;</tt> flag is enabled (This is enabled by default in Titanium SDK 7.0.0 and later, only will only be disabled if explicitly set to false here):    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;ios&gt;</code></div>
-<div class="line"><code class="plain">	&lt;use-jscore-framework&gt;</code><code class="keyword">true</code><code class="plain">&lt;/use-jscore-framework&gt;</code></div>
-<div class="line"><code class="plain">&lt;/ios&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">ios</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">use</code><code class="plain">-jscore-framework&gt;true&lt;/</code><code class="keyword">use</code><code class="plain">-jscore-framework&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">ios</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     <p><i class=" ">A</i>lso ensure to have the &quot;run-on-main-thread&quot; property set in the top-level of your tiapp.xml (It is enabled by default in Titanium SDK 7.0.0 and later, only will only be disabled if explicitly set to false here):    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;property name=</code><code class="string">&quot;run-on-main-thread&quot;</code><code class="plain"> type=</code><code class="string">&quot;bool&quot;</code><code class="plain">&gt;</code><code class="keyword">true</code><code class="plain">&lt;/property&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">property</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;run-on-main-thread&quot;</code><code class="plain"> </code><code class="color1">type</code><code class="plain">=</code><code class="string">&quot;bool&quot;</code><code class="plain">&gt;true&lt;/</code><code class="keyword">property</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     </div>
@@ -105,6 +106,10 @@
     <div class="section section-3 " id="src-46253574_EnablingHyperloop-EnablingHyperlooponnon-Hyperloopprojects">
         <h3 class="heading "><span>Enabling Hyperloop on non-Hyperloop projects</span></h3>
     <p>If Hyperloop was disabled or not available when the project was created, you can enable Hyperloop from the <tt class=" ">tiapp.xml</tt> editor service section by clicking on <strong class=" ">Enable Services</strong> and selecting <strong class=" ">Hyperloop</strong>. Please note that this may also require the other changes mentioned above in <strong class=" "><a class="document-link " href="#!/guide/Enabling_Hyperloop-section-src-46253574_EnablingHyperloop-Usingonexistingprojects">Using Hyperloop on existing projects</a></strong>.    </p>
+    </div>
+    <div class="section section-3 " id="src-46253574_EnablingHyperloop-GettingStarted">
+        <h3 class="heading "><span>Getting Started</span></h3>
+    <p>Make sure to follow the <a class="document-link " href="#!/guide/Hyperloop_Guides">Hyperloop Guides</a> section for deep-dives on how to use the native platforms in Titanium.    </p>
     </div>
     </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=46253574"><span>Edit</span></a>

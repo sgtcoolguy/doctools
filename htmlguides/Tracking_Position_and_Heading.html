@@ -57,24 +57,24 @@
     <div class="section section-4 " id="src-29004915_TrackingPositionandHeading-iOSdevelopmentconsiderations">
         <h4 class="heading "><span>iOS development considerations</span></h4>
     <p>iOS users are prompted to grant or deny permission when your application attempts to use geolocation information.    </p>
-    <p>Starting with iOS 8, to use location services, add either the <tt class=" ">NSLocationWhenInUseUsageDescription</tt> or <tt class=" ">NSLocationAlwaysUsageDescription</tt> key to the iOS plist section of the project&apos;s <tt class=" ">tiapp.xml</tt> file.  To localize the message, see <a class="document-link " href="Internationalization.html#src-29004892_Internationalization-LocalizePropertyListKeys">Internationalization: Localize Property List Keys</a>.    </p>
+    <p>Starting with iOS 8, to use location services, add either the<tt class=" "> NSLocationWhenInUseUsageDescription</tt>or <tt class=" ">NSLocationAlwaysUsageDescription</tt>key to the iOS plist section of the project&apos;s <tt class=" ">tiapp.xml</tt> file.  To localize the message, see <a class="document-link " href="Internationalization.html#src-29004892_Internationalization-LocalizePropertyListKeys">Internationalization: Localize Property List Keys</a>.    </p>
     <p>Starting with iOS 11, to request Always permission you must replace the <tt class=" ">NSLocationAlwaysUsageDescription </tt>with<tt class=" "> NSLocationAlwaysAndWhenInUseUsageDescription</tt>. This is because your users now have the ability to still choose &quot;When in use&quot; when the app is requesting the &quot;Always&quot; permission. In the flow of your app you need to take this into consideration.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;ti:app&gt;</code></div>
-<div class="line"><code class="plain">    &lt;ios&gt;</code></div>
-<div class="line"><code class="plain">        &lt;plist&gt;</code></div>
-<div class="line"><code class="plain">            &lt;dict&gt;</code></div>
-<div class="line"><code class="plain">                &lt;key&gt;NSLocationAlwaysUsageDescription&lt;</code><code class="plain">/key</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;string&gt;</code></div>
-<div class="line"><code class="plain">                    Specify the reason </code><code class="keyword">for</code><code class="plain"> accessing the user&apos;s location information.</code></div>
-<div class="line"><code class="plain">                    This appears </code><code class="keyword">in</code><code class="plain"> the alert dialog when asking the user </code><code class="keyword">for</code><code class="plain"> permission to</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">ios</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">plist</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">dict</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">key</code><code class="plain">&gt;NSLocationAlwaysUsageDescription&lt;/</code><code class="keyword">key</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    Specify the reason for accessing the user&apos;s location information.</code></div>
+<div class="line"><code class="plain">                    This appears in the alert dialog when asking the user for permission to</code></div>
 <div class="line"><code class="plain">                    access their location.</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="plain">/string</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="plain">/dict</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="plain">/plist</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">    &lt;</code><code class="plain">/ios</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">&lt;</code><code class="plain">/ti</code><code class="plain">:app&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">dict</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">plist</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">ios</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
 </div>
     </div>
     </div>
@@ -133,7 +133,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p><sup class=" "><i class=" ">Note: Only on iOS is the attribute <tt class=" ">Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE </tt>is required. The property is ignored on other platforms.</i></sup>    </p>
+    <p><sup class=" "> <i class=" ">Note: Only on iOS is the attribute <tt class=" ">Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE </tt>is required. The property is ignored on other platforms.</i> </sup>    </p>
     <p>On iOS you can find out why the permission has been refused. A very thourough example for requesting permissions was created in the 5.1.0 sample app, which is available on GitHub <a class="external-link external-link" href="https://github.com/appcelerator-developer-relations/appc-sample-ti510/blob/master/app/controllers/permissions.js#L159">https://github.com/appcelerator-developer-relations/appc-sample-ti510/blob/master/app/controllers/permissions.js</a>    </p>
     </div>
     <div class="section section-4 " id="src-29004915_TrackingPositionandHeading-Detectiflocationservicesareavailable">

@@ -23,75 +23,69 @@
             <div class="title">App Folder Location</div>
             <p>alloy/test/apps/<strong class=" ">ui/tableview</strong>    </p>
     </div>
-        <p>    <span style="color: #484848;">
-A <a class="external-link external-link" href="#!/api/Titanium.UI.TableView">TableView</a> is used to present vertically scrolling rows of information, optionally organized into sections. A TableView can include a SearchBar to let users search the table contents.<br>    </br></span>
-    </p>
+        <p>A <a class="external-link external-link" href="#!/api/Titanium.UI.TableView">TableView</a> is used to present vertically scrolling rows of information, optionally organized into sections. A TableView can include a SearchBar to let users search the table contents.    </p>
     <p>    <img src="images/download/attachments/41845779/screenshot.png" alt="images/download/attachments/41845779/screenshot.png" class="confluence-embedded-image" width="500">
         </img></p>
-    <p>The main index.xml view displays two TableView controls in separate tabs. The second tab uses sections to organize table rows    </p>
-    <p>To create a table, you add a &lt;TableView/&gt; element that contains one or more &lt;TableViewRow&gt; elements, and optionally &lt;HeaderView/&gt; and &lt;FooterView/&gt; elements. Use &lt;TableViewSection/&gt; elements to organize rows into sections. To include a search bar in the table, include a &lt;SearchBar/&gt; element; to specify the field to search on, add a <tt class=" ">filterAttribute</tt> attribute to the &lt;TableView/&gt; element, as shown below.    </p>
+    <p>The main <tt class=" ">index.xml</tt> view displays two TableView controls in separate tabs. The second tab uses sections to organize table rows.    </p>
+    <p>To create a table, you add a <tt class=" ">&lt;TableView/&gt;</tt> element that contains one or more <tt class=" ">&lt;TableViewRow&gt;</tt> elements, and optionally <tt class=" ">&lt;HeaderView/&gt;</tt> and <tt class=" ">&lt;FooterView/&gt;</tt> elements. Use <tt class=" ">&lt;TableViewSection/&gt;</tt> elements to organize rows into sections. To include a search bar in the table, include a <tt class=" ">&lt;SearchBar/&gt;</tt> element; to specify the field to search on, add a <tt class=" ">filterAttribute</tt> attribute to the <tt class=" ">&lt;TableView/&gt;</tt> element, as shown below.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
-<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">    &lt;TabGroup&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Tab title=</code><code class="string">&quot;Basic Rows&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Window title=</code><code class="string">&quot;Basic Rows&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;TableView&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;HeaderView&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;View backgroundColor=</code><code class="string">&quot;#a00&quot;</code><code class="plain"> height=</code><code class="string">&quot;50dp&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;/HeaderView&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;FooterView&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;View backgroundColor=</code><code class="string">&quot;#0a0&quot;</code><code class="plain"> height=</code><code class="string">&quot;50dp&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;/FooterView&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;TableViewRow&gt;&lt;Label&gt;Row </code><code class="value">1</code><code class="plain">&lt;/Label&gt;&lt;/TableViewRow&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;TableViewRow&gt;&lt;Label&gt;Row </code><code class="value">2</code><code class="plain">&lt;/Label&gt;&lt;/TableViewRow&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;TableViewRow&gt;&lt;Label&gt;Row </code><code class="value">3</code><code class="plain">&lt;/Label&gt;&lt;/TableViewRow&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;TableViewRow&gt;&lt;Label&gt;Row </code><code class="value">4</code><code class="plain">&lt;/Label&gt;&lt;/TableViewRow&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;TableViewRow&gt;&lt;Label&gt;Row </code><code class="value">5</code><code class="plain">&lt;/Label&gt;&lt;/TableViewRow&gt;</code></div>
-<div class="line"><code class="plain">                &lt;/TableView&gt;</code></div>
-<div class="line"><code class="plain">            &lt;/Window&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/Tab&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Tab title=</code><code class="string">&quot;Sections &amp;amp; Rows&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Window title=</code><code class="string">&quot;Sections &amp;amp; Rows&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;TableView filterAttribute=</code><code class="string">&quot;title&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;SearchBar platform=</code><code class="string">&quot;android,ios&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;TableViewSection&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;HeaderView&gt;</code></div>
-<div class="line"><code class="plain">                            &lt;View backgroundColor=</code><code class="string">&quot;#a00&quot;</code><code class="plain"> height=</code><code class="string">&quot;50dp&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;/HeaderView&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;FooterView&gt;</code></div>
-<div class="line"><code class="plain">                            &lt;View backgroundColor=</code><code class="string">&quot;#0a0&quot;</code><code class="plain"> height=</code><code class="string">&quot;50dp&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;/FooterView&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;TableViewRow title=</code><code class="string">&quot;Row 1&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;TableViewRow title=</code><code class="string">&quot;Row 2&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;TableViewRow title=</code><code class="string">&quot;Row 3&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;/TableViewSection&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;TableViewSection headerTitle=</code><code class="string">&quot;Section 2&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;TableViewRow title=</code><code class="string">&quot;Row 1&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;TableViewRow title=</code><code class="string">&quot;Row 2&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;TableViewRow title=</code><code class="string">&quot;Row 3&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;/TableViewSection&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;TableViewSection headerTitle=</code><code class="string">&quot;Section 3&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;TableViewRow title=</code><code class="string">&quot;Row 1&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;TableViewRow title=</code><code class="string">&quot;Row 2&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;TableViewRow title=</code><code class="string">&quot;Row 3&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;/TableViewSection&gt;</code></div>
-<div class="line"><code class="plain">                &lt;/TableView&gt;</code></div>
-<div class="line"><code class="plain">            &lt;/Window&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/Tab&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/TabGroup&gt;</code></div>
-<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">TabGroup</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Basic Rows&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Basic Rows&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">TableView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">HeaderView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">backgroundColor</code><code class="plain">=</code><code class="string">&quot;#a00&quot;</code><code class="plain"> </code><code class="color1">height</code><code class="plain">=</code><code class="string">&quot;50dp&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">HeaderView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">FooterView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">backgroundColor</code><code class="plain">=</code><code class="string">&quot;#0a0&quot;</code><code class="plain"> </code><code class="color1">height</code><code class="plain">=</code><code class="string">&quot;50dp&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">FooterView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewRow</code><code class="plain">&gt;&lt;</code><code class="keyword">Label</code><code class="plain">&gt;Row 1&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;&lt;/</code><code class="keyword">TableViewRow</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewRow</code><code class="plain">&gt;&lt;</code><code class="keyword">Label</code><code class="plain">&gt;Row 2&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;&lt;/</code><code class="keyword">TableViewRow</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewRow</code><code class="plain">&gt;&lt;</code><code class="keyword">Label</code><code class="plain">&gt;Row 3&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;&lt;/</code><code class="keyword">TableViewRow</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewRow</code><code class="plain">&gt;&lt;</code><code class="keyword">Label</code><code class="plain">&gt;Row 4&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;&lt;/</code><code class="keyword">TableViewRow</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewRow</code><code class="plain">&gt;&lt;</code><code class="keyword">Label</code><code class="plain">&gt;Row 5&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;&lt;/</code><code class="keyword">TableViewRow</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">TableView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Sections &amp;amp; Rows&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Sections &amp;amp; Rows&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">TableView</code><code class="plain"> </code><code class="color1">filterAttribute</code><code class="plain">=</code><code class="string">&quot;title&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">SearchBar</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;android,ios&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewSection</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">HeaderView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                            &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">backgroundColor</code><code class="plain">=</code><code class="string">&quot;#a00&quot;</code><code class="plain"> </code><code class="color1">height</code><code class="plain">=</code><code class="string">&quot;50dp&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;/</code><code class="keyword">HeaderView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">FooterView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                            &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">backgroundColor</code><code class="plain">=</code><code class="string">&quot;#0a0&quot;</code><code class="plain"> </code><code class="color1">height</code><code class="plain">=</code><code class="string">&quot;50dp&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;/</code><code class="keyword">FooterView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">TableViewSection</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewSection</code><code class="plain"> </code><code class="color1">headerTitle</code><code class="plain">=</code><code class="string">&quot;Section 2&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">TableViewSection</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewSection</code><code class="plain"> </code><code class="color1">headerTitle</code><code class="plain">=</code><code class="string">&quot;Section 3&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">TableViewSection</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">TableView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">TabGroup</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <div class="section section-2 " id="src-41845779_TableView-SeeAlso">
-        <h2 class="heading "><span>See Also</span></h2>
-<ul class=" "><li class=" ">    <p>    <span style="color: #484848;">
-<a class="external-link external-link" href="#!/api/Titanium.UI.TableView">Titanium.UI.TableView</a> API reference    </span>
-    </p>
-</li><li class=" ">    <p>    <span style="color: #484848;">
-<a class="document-link unresolved" href="#!/guide/TableView-section-src-41845779">TableView Binding</a> sample application<br>    </br></span>
-    </p>
+    <div class="section section-2 " id="src-41845779_TableView-Seealso">
+        <h2 class="heading "><span>See also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.TableView">Titanium.UI.TableView</a> API reference    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/TableView_Binding">TableView Binding</a> sample application    </p>
 </li></ul>    </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845779"><span>Edit</span></a>
     
