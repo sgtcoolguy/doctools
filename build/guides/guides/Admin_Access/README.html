@@ -160,9 +160,9 @@
     </div>
     <div class="section section-2 " id="src-49153856_AdminAccess-Batchdelete">
         <h2 class="heading "><span>Batch delete</span></h2>
-    <p>Mobile Backend Services provides an API endpoint named <tt class=" ">batch_delete</tt> that allows application admins to delete multiple MBS objects in one operation. The method takes a <tt class=" ">where</tt> parameter that constrains the selection of objects to delete. If <tt class=" ">where</tt> is omitted, all objects are deleted. For performance reasons, the number of objects that can be deleted in a single batch delete operation is limited to 100,000. Objects are deleted asynchronously in a separate process, not immediately upon method invocation.    </p>
+    <p>Mobile Backend Services provides an API endpoint named <tt class=" ">batch_delete</tt> that allows application admins to delete multiple MBS objects in one operation. The method takes a <tt class=" ">where</tt> parameter that constrains the selection of objects to delete. If the <tt class=" ">where</tt> parameter is omitted, all objects are deleted. For performance reasons, the number of objects that can be deleted in a single batch delete operation is limited to 100,000. Objects are deleted asynchronously in a separate process, not immediately upon method invocation.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>If <tt class=" ">where</tt> parameter is omitted, all objects are deleted. For example, if the where paremeter is omitted from a batch delete of User objects, all users will be deleted.    </p>
+            <p>If the <tt class=" ">where</tt> parameter is omitted, all objects are deleted. For example, if the <tt class=" ">where</tt> parameter is omitted from a batch delete of User objects, all users will be deleted.    </p>
     </div>
         <p>Certain MBS objects can have dependencies on other objects. For example, when you create a <tt class=" ">Checkins</tt> object you can specify a <a class="external-link external-link" href="/arrowdb/latest/#!/api/Places">Places</a> or <a class="external-link external-link" href="/arrowdb/latest/#!/api/Events">Events</a> object to associate with it. In this case, the Checkins object is a dependency of the Places or Events object. If you delete the Places or Events object, the dependent Checkins object is <strong class=" ">not</strong> deleted.    </p>
     <p>For example, the following deletes all Users objects whose <tt class=" ">favorite_color</tt> custom field is &apos;blue&apos;.    </p>
@@ -203,7 +203,7 @@
 </li></ul>    </div>
     <div class="section section-2 " id="src-49153856_AdminAccess-Admindropcustomcollection">
         <h2 class="heading "><span>Admin drop custom collection</span></h2>
-    <p>An application admin user can also drop a Custom Object collection using <tt class=" ">admin_drop_collection</tt> method. When calling the <tt class=" ">admin_drop_collection</tt> method, the admin user must specify a class name to indicate which custom collection to drop.    </p>
+    <p>An application admin user can also drop a Custom Object collection using the <tt class=" ">admin_drop_collection</tt> method. When calling the <tt class=" ">admin_drop_collection</tt> method, the admin user must specify a class name to indicate which custom collection to drop.    </p>
     <p>For example, the following drops the <tt class=" ">car</tt> collection:    </p>
     <div class="tablewrap">
         <table>

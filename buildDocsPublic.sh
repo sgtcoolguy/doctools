@@ -77,14 +77,14 @@ sh copyFavicon.sh >> message.txt ## copy Griffin favicon.ico from ../doctools to
 cd $APPCWEBDOCS
 
 ## open the message.txt file and you need to manually search for error messages
-open -a Atom messages.txt
+# open -a Atom messages.txt
 bash ../doctools/copy_platform.sh 2>> messages.txt
 bash ../doctools/copy_cloud.sh 2>> messages.txt
 cd $DOCTOOLS
 sh css_fix.sh ## See TIDOC-2739
 
 ## open localhost and manually review the pages
-open http://localhost
+# open http://localhost
 open http://localhost/platform/latest/
 open http://localhost/platform/latest/#!/api
 open http://localhost/arrowdb/latest/

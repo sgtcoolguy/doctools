@@ -96,7 +96,7 @@
 </li></ul>    <p>To access the results from the returned object, use the object&apos;s <tt class=" ">body</tt> property to access the HTTP response body. The body object will contain a <tt class=" ">meta</tt> object, which contains the metadata of the response, and a <tt class=" ">response</tt> object, which contains the results of the method call.    </p>
     <div class="section section-4 " id="src-49153772_MobileBackendServicesSDKforNode.js-Userloginexample">
         <h4 class="heading "><span>User login example</span></h4>
-    <p>The following example uses the standard MBS APIs to log in a user. It defines a custom <tt class=" ">login()</tt> function that takes the <tt class=" ">username</tt> and <tt class=" ">password</tt> properties from the HTTP request body, and in turn, passes those values as input to the  <tt class=" ">User.login()</tt> method. On successful login, the user&apos;s information is displayed in the console or, in case of an error, the error response is displayed.    </p>
+    <p>The following example uses the standard MBS APIs to log in a user. It defines a custom <tt class=" ">login()</tt> function that takes the <tt class=" ">username</tt> and <tt class=" ">password</tt> properties from the HTTP request body, and in turn, passes those values as input to the <tt class=" ">User.login()</tt> method. On successful login, the user&apos;s information is displayed in the console or, in case of an error, the error response is displayed.    </p>
     <div class="tablewrap">
         <table>
         <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
@@ -250,7 +250,7 @@ The following example uses the standard MBS APIs to upload a photo or a file. It
     <p>Cookies are frequently used by MBS applications to store session information and are passed between the client and server.    </p>
     <p>The MBS Node SDK retrieves the session ID from the request&apos;s cookies. If a <tt class=" ">_session_id</tt> cookie is present, it uses that session ID to make the MBS API call. If not, it performs a regular API call without session information.    </p>
     <p>If a session ID is returned in the API response (for example, <tt class=" ">users/login.json</tt>), the session information is added to the response object. Specifically, it adds a <tt class=" ">Set-Cookie</tt> header to pass back to the client.    </p>
-    <p>To manually manage cookie sessions, disable automatic session management by passing an object as the second parameter to the constructor with the <tt class=" ">autoSessionManagement</tt> property set to <tt class=" ">false</tt>. MBS will no longer automatically retrieve and set the session cookie. You must manually set the MBS instance&apos;s <tt class=" ">sessionCookieString</tt> property once you retrieve a cookie string. The cookie string will be available as the <tt class=" ">cookieString</tt> property in the callback&apos;s result object if the API response returns a session ID.    </p>
+    <p>To manually manage cookie sessions, disable automatic session management by passing an object as the second parameter to the constructor with the <tt class=" ">autoSessionManagement</tt> property set to <tt class=" ">false</tt>. MBS will no longer automatically retrieve and set the session cookie. You must manually set the MBS instance&apos;s <tt class=" ">sessionCookieString</tt> property once you retrieve a cookie string. The cookie string will be available in the <tt class=" ">cookieString</tt> property in the callback&apos;s result object if the API response returns a session ID.    </p>
     <p>The example below retrieves and sets the cookie string:    </p>
     <div class="tablewrap">
         <table>
@@ -321,7 +321,7 @@ The following example uses the standard MBS APIs to upload a photo or a file. It
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<pre class=" "> </pre>    </div>
+    </div>
     </div>
         </div>
     

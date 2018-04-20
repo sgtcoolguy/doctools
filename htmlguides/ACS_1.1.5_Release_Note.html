@@ -23,7 +23,7 @@
         <h2 class="heading "><span>New features and behavior changes</span></h2>
 <ul class=" "><li class=" ">    <p><strong class=" ">New Paging Restriction on Queries</strong> &#x2014; Previously, if a query matched 1 million records (for example) ACS performed a sort and limit on those records in memory, which was highly inefficient. There is now a &quot;hard stop&quot; on queries at 5000 records. This means that if a query matches 1 million records, ACS will only look at the first 5000, in random order, and then sort on them. To narrow down query results, developers should now use range-based queries using a <tt class=" ">where</tt> clause. See the <a class="document-link " href="Search_and_Query_APIs.html">documentation and examples</a> for more information.    </p>
 </li><li class=" ">    <p>A new parameter named <strong class=" "><tt class=" ">count</tt></strong> has been added to all query methods. When a query contains <tt class=" ">count=true</tt> as a parameter, the <tt class=" ">meta</tt> object in the response contains a <tt class=" ">count</tt> field whose value is the total number of objects that matched the query. See the examples for more information.    </p>
-</li><li class=" ">    <p>The <tt class=" ">page</tt> and <tt class=" ">per_page</tt> query parameters are no longer supported in ACS 1.1.5, and responses do not contain <tt class=" ">page</tt>, <tt class=" ">per_page</tt>, <tt class=" ">total_pages</tt>, or <tt class=" ">total_results</tt> fields. Applications created with ACS 1.1.4 and earlier can continue to these these parameters, but they will eventually be deprecated and removed. Developers are encouraged to migrate their applications to use the <a class="document-link " href="Search_and_Query_APIs.html">range-based queries</a> available in ACS 1.1.5.    </p>
+</li><li class=" ">    <p>The <tt class=" ">page</tt> and <tt class=" ">per_page</tt> query parameters are no longer supported in ACS 1.1.5, and responses do not contain <tt class=" ">page</tt>, <tt class=" ">per_page</tt>, <tt class=" ">total_pages</tt>, or <tt class=" ">total_results</tt> fields. Applications created with ACS 1.1.4 and earlier can continue to these parameters, but they will eventually be deprecated and removed. Developers are encouraged to migrate their applications to use the <a class="document-link " href="Search_and_Query_APIs.html">range-based queries</a> available in ACS 1.1.5.    </p>
 </li><li class=" ">    <p><strong class=" ">Batch delete</strong> &#x2014; <a class="document-link " href="Admin_Access.html">Batch delete</a> of ACS objects is now performed asynchronously in a separate process, rather than immediately on method invocation.    </p>
 </li><li class=" ">    <p><strong class=" ">Deleted Objects and Dependencies</strong> &#x2014; When an object is deleted that has dependencies, the dependent objects are not deleted. For instance, if you delete a Users object that had a <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Photos">Photos</a> object specified as the user&apos;s primary photo, the corresponding Photos object is not deleted.    </p>
 </li><li class=" ">    <p><strong class=" ">Wildcard regular expressions</strong> are now not allowed in <a class="document-link " href="Search_and_Query_APIs.html">query operations</a>. For example, the ACS query <tt class=" ">where=&quot;color&quot;: {&quot;$regex&quot; :&quot;^.*b&quot;}</tt> will result in the following error:    </p>
@@ -46,7 +46,7 @@
 <div class="line"><code class="plain">  }</code></div>
 </div>
     </div>
-</li><li class=" ">    <p>The response of <tt class=" ">count</tt> methods for all ACS objects now includes a <tt class=" ">method_name</tt> field, and the <tt class=" ">count</tt> field is included in the <tt class=" ">meta</tt> object and not the <tt class=" ">response</tt> object    </p>
+</li><li class=" ">    <p>The response of <tt class=" ">count</tt> methods for all ACS objects now includes a <tt class=" ">method_name</tt> field, and the <tt class=" ">count</tt> field is included in the <tt class=" ">meta</tt> object and not the <tt class=" ">response</tt> object.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -X GET </code><code class="string">&quot;http://${HOST}/v1/checkins/count.json?key=${KEY}&amp;pretty_json=true&quot;</code></div>
@@ -61,7 +61,7 @@
     </div>
 </li></ul>    <div class="section section-3 " id="src-50725326_ACS1.1.5ReleaseNote-Bugfix">
         <h3 class="heading "><span>Bug fix</span></h3>
-<ul class=" "><li class=" ">    <p>Fixed an issue where subscribing a device using the <tt class=" ">subscribe_token</tt> method did not increment the application&apos;s push notifications count    </p>
+<ul class=" "><li class=" ">    <p>Fixed an issue where subscribing a device using the <tt class=" ">subscribe_token</tt> method did not increment the application&apos;s push notifications count.    </p>
 </li></ul>    </div>
     </div>
         </div>

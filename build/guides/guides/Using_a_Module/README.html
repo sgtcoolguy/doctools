@@ -23,7 +23,8 @@
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Using_a_Module-section-src-30082372_UsingaModule-Configuringyourapptouseamodule">Configuring your app to use a module</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Using_a_Module-section-src-30082372_UsingaModule-Updatingthetiapp.xmlfile">Updating the tiapp.xml file</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Using_a_Module-section-src-30082372_UsingaModule-Selectingamoduleversion">Selecting a module version</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/Using_a_Module-section-src-30082372_safe-id-VXNpbmdhTW9kdWxlLVVzaW5ncmVxdWlyZSgpdG9sb2FkdGhlbW9kdWxlaW50aGVhcHAnc2NvZGU">Using require() to load the module in the app&apos;s code</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Using_a_Module-section-src-30082372_safe-id-VXNpbmdhTW9kdWxlLVVzaW5ncmVxdWlyZSgpdG9sb2FkdGhlbW9kdWxlaW50aGVhcHAnc2NvZGVpbkVTNQ">Using require() to load the module in the app&apos;s code in ES5</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Using_a_Module-section-src-30082372_safe-id-VXNpbmdhTW9kdWxlLVVzaW5naW1wb3J0KCl0b2xvYWR0aGVtb2R1bGVpbnRoZWFwcCdzY29kZWluRVM2Kw">Using import() to load the module in the app&apos;s code in ES6+</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Using_a_Module-section-src-30082372_UsingaModule-Troubleshooting">Troubleshooting</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Using_a_Module-section-src-30082372_UsingaModule-Requestedmodulecouldnotbefound">Requested module could not be found</a>    </p>
 </li></ul></li></ul>    <div class="section section-2 " id="src-30082372_UsingaModule-Objective">
@@ -56,15 +57,7 @@
         </tr>
 </thead><tfoot class=" "/><tbody class=" ">    <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>OS X 10.6 (Snow Leopard) and earlier    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">/Library/Application Support/Titanium</tt>    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>OS X 10.7 (Lion) and later    </p>
+        <p>macOS    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p><tt class=" ">~/Library/Application Support/Titanium</tt>    </p>
@@ -72,25 +65,17 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Windows 7    </p>
+        <p>Windows    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p><tt class=" ">%ProgramData%\Titanium\mobilesdk\win32</tt>    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Windows XP    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">C:\Documents and Settings\All Users\Application Data\Titanium</tt>    </p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
     <p>    </p>
     <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
-            <p>By default on Mac OS X 10.7 and later, the <tt class=" ">~/Library</tt> folder is hidden by default. To permanently show it, run the following command from a terminal:    </p>
+            <p>On macOS, the <tt class=" ">~/Library</tt> folder is hidden by default. To permanently show it, run the following command from a terminal:    </p>
     <p><tt class=" "> chflags nohidden ~/Library/</tt>    </p>
     <p>    <span style="color: #303030;">
      </span>
@@ -120,10 +105,12 @@ To open it once, run the following command from a terminal:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;!-- $MODULE_VERSION should be the same as </code><code class="string">&quot;version&quot;</code><code class="plain"> in the module manifest and directory number --&gt;</code></div>
+<div class="line"><code class="plain">&lt;!-- $MODULE_PLATFORM should be the same as </code><code class="string">&quot;platform&quot;</code><code class="plain"> in the module manifest and directory number. One of </code><code class="string">&quot;ios&quot;</code><code class="plain">, </code><code class="string">&quot;android&quot;</code><code class="plain"> or </code><code class="string">&quot;windows&quot;</code><code class="plain"> --&gt;</code></div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">&lt;modules&gt;</code></div>
-<div class="line"><code class="plain">  &lt;module version=</code><code class="string">&quot;$MODULE_VERSION&quot;</code><code class="plain">&gt;$MODULE_ID&lt;/module&gt;</code></div>
-<div class="line"><code class="plain">  &lt;!-- For example, </code><code class="keyword">if</code><code class="plain"> we were adding the calc module: --&gt;</code></div>
-<div class="line"><code class="plain">  &lt;module version=</code><code class="string">&quot;0.1&quot;</code><code class="plain">&gt;org.appcelerator.calc&lt;/module&gt;</code></div>
+<div class="line"><code class="plain">  &lt;module version=</code><code class="string">&quot;$MODULE_VERSION&quot;</code><code class="plain"> platform=</code><code class="string">&quot;$MODULE_PLATFORM&quot;</code><code class="plain">&gt;$MODULE_ID&lt;/module&gt;</code></div>
+<div class="line"><code class="plain">  &lt;!-- For example, </code><code class="keyword">if</code><code class="plain"> we were adding the Ti.Map module --&gt;</code></div>
+<div class="line"><code class="plain">  &lt;module version=</code><code class="string">&quot;3.0.2&quot;</code><code class="plain"> platform=</code><code class="string">&quot;ios&quot;</code><code class="plain">&gt;ti.map&lt;/module&gt;</code></div>
 <div class="line"><code class="plain">&lt;/modules&gt;</code></div>
 </div>
     </div>
@@ -139,14 +126,25 @@ To open it once, run the following command from a terminal:    </p>
     </img></li><li class=" ">    <p>Click <strong class=" ">OK</strong>.    </p>
 </li><li class=" ">    <p>Save tiapp.xml.    </p>
 </li></ol>    </div>
-    <div class="section section-4 " id="src-30082372_safe-id-VXNpbmdhTW9kdWxlLVVzaW5ncmVxdWlyZSgpdG9sb2FkdGhlbW9kdWxlaW50aGVhcHAnc2NvZGU">
-        <h4 class="heading "><span>Using  require()  to load the module in the app&apos;s code</span></h4>
+    <div class="section section-4 " id="src-30082372_safe-id-VXNpbmdhTW9kdWxlLVVzaW5ncmVxdWlyZSgpdG9sb2FkdGhlbW9kdWxlaW50aGVhcHAnc2NvZGVpbkVTNQ">
+        <h4 class="heading "><span>Using  require()  to load the module in the app&apos;s code in ES5</span></h4>
     <p>Within your app&apos;s JavaScript files, you&apos;ll instantiate the module via the <tt class=" ">require()</tt> function:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var Module = require(</code><code class="string">&apos;$MODULE_ID&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="comments">// For example, to load the calc module:</code></div>
-<div class="line"><code class="plain">var Calc = require(</code><code class="string">&apos;org.appcelerator.calc&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="comments">// For example, to load the Map module:</code></div>
+<div class="line"><code class="plain">var Map = require(</code><code class="string">&apos;ti.map&apos;</code><code class="plain">);</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-30082372_safe-id-VXNpbmdhTW9kdWxlLVVzaW5naW1wb3J0KCl0b2xvYWR0aGVtb2R1bGVpbnRoZWFwcCdzY29kZWluRVM2IA">
+        <h4 class="heading "><span>Using  import()  to load the module in the app&apos;s code in ES6+</span></h4>
+    <p>In addition to the ES5-styled <tt class=" ">require()</tt> function, you can also import modules using the <tt class=" ">import()</tt> statement:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">import</code><code class="plain"> Module from </code><code class="string">&apos;$MODULE_ID&apos;</code></div>
+<div class="line"><code class="comments">// For example, to load the Map module:</code></div>
+<div class="line"><code class="keyword">import</code><code class="plain"> Map from </code><code class="string">&apos;ti.map&apos;</code></div>
 </div>
     </div>
     <p>Finally, you&apos;ll use the module&apos;s object, properties, and methods to enable its features and functionality. Each module distributed in the Marketplace should include documentation and a sample app that demonstrates the basic use of the module. That information would be a great place to start with learning how to use a specific module.    </p>
@@ -161,13 +159,18 @@ To open it once, run the following command from a terminal:    </p>
 </li><li class=" ">    <p>Require the module in your project with the following code:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var admob = require(</code><code class="string">&apos;ti.admob&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="comments">// ES5</code></div>
+<div class="line"><code class="plain">var Admob = require(</code><code class="string">&apos;ti.admob&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// ES6+</code></div>
+<div class="line"><code class="comments">// import Admob from &apos;ti.admob&apos;;</code></div>
 </div>
     </div>
 </li><li class=" ">    <p>You can now call methods on the admob singleton object:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var adview = admob.createView({</code></div>
+<div class="line"><code class="plain">var adview = Admob.createView({</code></div>
 <div class="line"><code class="plain">    top: </code><code class="value">0</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    testing: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    adBackgroundColor: </code><code class="string">&apos;black&apos;</code><code class="plain">,</code></div>
