@@ -83,7 +83,7 @@ sh css_fix.sh ## See TIDOC-2739
 sh js_fix.sh ## TIDOC-3141
 
 ## open the message.txt file and you need to manually search for error messages
-open -a Atom messages.txt
+# open -a Atom messages.txt
 
 ## open localhost and manually review the pages
 open http://localhost
