@@ -1,0 +1,87 @@
+<head>
+<title>Appcelerator API Docs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport" content="width=1024">
+<link rel="stylesheet" href="../resources/main.css" type="text/css">
+</head>
+
+<h1 class="name">Alloy.builtins.social</h1>
+<div><div class="sidebar"></div><div class="hierarchy"></div><div class="doc-contents"><p>A collection of useful social media provider utilities. Currently, this module only supports
+Twitter and the following features:</p>
+
+<ul>
+<li>Logging into Twitter and authorizing the application through the OAuth protocol.</li>
+<li>Posting tweets to the user&apos;s Twitter account.</li>
+</ul>
+
+
+<p>To use the social builtin library, require it with the <code>alloy</code> root
+directory in your <code>require</code> call. For example:</p>
+
+<pre class="codeBlock"><code>var social = require(&apos;/alloy/social&apos;).create({
+    consumerSecret: &apos;consumer-secret&apos;,
+    consumerKey: &apos;consumer-key&apos;
+});
+</code></pre>
+
+<h2><a name="Login and Authorization"></a>Login and Authorization</h2>
+
+<p>To use a social media provider, a user must log in and authorize the application to perform
+certain actions, such as accessing profile information or posting messages.</p>
+
+<p>Call <code>authorize</code> to prompt the user to login and authorize the application.  For Twitter, a
+dialog box will appear asking the user for their permission and login credentials.</p>
+
+<p>Before calling <code>authorize</code>, the application will need a consumer key and secret provided by the
+social media service provider for the OAuth protocol, used when calling <code>create</code>.
+For Twitter, these are provided when registering an application:
+<a href="https://dev.twitter.com/apps/new">https://dev.twitter.com/apps/new</a></p>
+
+<h2><a name="Example"></a>Example</h2>
+
+<p>This example authorizes the application, posts a message to the user&apos;s Twitter account, then
+deauthorizes the application.</p>
+
+<pre class="codeBlock"><code>// If not authorized, get authorization from the user
+if(!social.isAuthorized()) {
+    social.authorize();
+}
+
+// Post a message
+</code></pre>
+
+<p>  // Setup both callbacks for confirmation
+  // Note: share() automatically calls authorize() so an explicit call as above is unnecessary
+    social.share({
+        message: &quot;Salut, Monde!&quot;,
+        success: function(e) {alert(&apos;Success!&apos;)},
+        error: function(e) {alert(&apos;Error!&apos;)}
+    });</p>
+
+<pre class="codeBlock"><code>// Deauthorize the application
+social.deauthorize();
+</code></pre>
+</div><div class="members"><div class="members-section"><h3 class="members-title icon-method"><a name="Methods"></a>Methods</h3><div class="subsection"><div id="method-authorize" class="member first-child not-inherited"><a name="method-authorize"></a><div class="title"><a name="[callback]"></a><a name="authorize"></a><div class="meta"></div><span>authorize</span>(<span class="pre">[callback]</span>)</div><div class="description"><div class="long"><p>Authorizes the client to the service provider to access user data.
+If successful, the client will receive an access token, which will be saved for future
+usage.
+Call this function after opening the parent view or else the authorize UI window will
+appear in the background behind the view and unusable to the user.</p>
+<h3 class="pa">Parameters</h3><ul><li><span class="pre">callback</span>: Function (optional)<div class="sub-desc"><p>Callback function executed after successfully retrieving
+an access token.</p>
+</div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div><div id="method-create" class="member  not-inherited"><a name="method-create"></a><div class="title"><a name="settings"></a><a name="create"></a><div class="meta"></div><span>create</span>(<span class="pre">settings</span>): Object</div><div class="description"><div class="long"><p>Initializes an OAuth session to the service provider.
+If a previous access token exists, it will be loaded.</p>
+<h3 class="pa">Parameters</h3><ul><li><span class="pre">settings</span>: ...*<div class="sub-desc"><p>OAuth session settings.</p>
+<ul><li><span class="pre">site</span>: String (optional)<div class="sub-desc"><p>Site to access. Only &apos;twitter&apos; is working.</p>
+Default: &apos;twitter&apos;</div></li><li><span class="pre">consumerSecret</span>: String<div class="sub-desc"><p>Shared secret used to authenticate the key.</p>
+</div></li><li><span class="pre">consumerKey</span>: String<div class="sub-desc"><p>Key used to identify the client to the service provider.</p>
+</div></li></ul></div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">Object</span><div class="sub-desc"><p>Instance of social to make subsequent API calls.</p>
+</div></li></ul></div></div></div><div id="method-deauthorize" class="member  not-inherited"><a name="method-deauthorize"></a><div class="title"><a name=""></a><a name="deauthorize"></a><div class="meta"></div><span>deauthorize</span>(<span class="pre"></span>)</div><div class="description"><div class="long"><p>Deauthorizes the client and clears the access token.</p>
+<h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div><div id="method-isAuthorized" class="member  not-inherited"><a name="method-isAuthorized"></a><div class="title"><a name=""></a><a name="isAuthorized"></a><div class="meta"></div><span>isAuthorized</span>(<span class="pre"></span>): Boolean</div><div class="description"><div class="long"><p>Returns &apos;true&apos; if the client is authorized by the service provider.</p>
+<h3 class="pa">Returns</h3><ul><li><span class="pre">Boolean</span><div class="sub-desc"><p>Returns &apos;true&apos; if authorized else &apos;false&apos;.</p>
+</div></li></ul></div></div></div><div id="method-share" class="member  not-inherited"><a name="method-share"></a><div class="title"><a name="options"></a><a name="share"></a><div class="meta"></div><span>share</span>(<span class="pre">options</span>)</div><div class="description"><div class="long"><p>Sends an update to the service provider. Implicitly calls authorize() to authorize your app.</p>
+<h3 class="pa">Parameters</h3><ul><li><span class="pre">options</span>: ...*<div class="sub-desc"><p>Update parameters.</p>
+<ul><li><span class="pre">message</span>: String<div class="sub-desc"><p>Message to send.</p>
+</div></li><li><span class="pre">success</span>: Function (optional)<div class="sub-desc"><p>Callback function executed after a successful update.</p>
+</div></li><li><span class="pre">error</span>: Function (optional)<div class="sub-desc"><p>Callback function executed after a failed update.</p>
+</div></li></ul></div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div></div></div></div></div>

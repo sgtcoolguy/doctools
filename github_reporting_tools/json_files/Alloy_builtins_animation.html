@@ -1,0 +1,71 @@
+<head>
+<title>Appcelerator API Docs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport" content="width=1024">
+<link rel="stylesheet" href="../resources/main.css" type="text/css">
+</head>
+
+<h1 class="name">Alloy.builtins.animation</h1>
+<div><div class="sidebar"></div><div class="hierarchy"></div><div class="doc-contents"><p>A collection of useful animation utilities. To use the animation builtin library,
+all you need to do is require it with the <code>alloy</code> root directory in your
+<code>require</code> call. For example:</p>
+
+<pre class="codeBlock"><code>var animation = require(&apos;/alloy/animation&apos;);
+animation.crossFade(view1, view2, 500, finishCallback);
+</code></pre>
+</div><div class="members"><div class="members-section"><h3 class="members-title icon-property"><a name="Properties"></a>Properties</h3><div class="subsection"><div id="property-HORIZONTAL" class="member first-child not-inherited"><a name="property-HORIZONTAL"></a><div class="title"><div class="meta"></div><span>HORIZONTAL</span><span>: String</span></div><div class="description"><div class="long"><p>To be used as direction for the flip-method</p>
+</div></div></div><div id="property-VERTICAL" class="member  not-inherited"><a name="property-VERTICAL"></a><div class="title"><div class="meta"></div><span>VERTICAL</span><span>: String</span></div><div class="description"><div class="long"><p>To be used as direction for the flip-method</p>
+</div></div></div></div></div><div class="members-section"><h3 class="members-title icon-method"><a name="Methods"></a>Methods</h3><div class="subsection"><div id="method-chainAnimate" class="member first-child not-inherited"><a name="method-chainAnimate"></a><div class="title"><a name="view, animations, [finishCallback]"></a><a name="chainAnimate"></a><div class="meta"></div><span>chainAnimate</span>(<span class="pre">view, animations, [finishCallback]</span>)</div><div class="description"><div class="long"><p>Executes a series of animations on the target view.</p>
+<h3 class="pa">Parameters</h3><ul><li><span class="pre">view</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to animate.</p>
+</div></li><li><span class="pre">animations</span>: <a href="Titanium_UI_Animation.html" class="docClass">Titanium.UI.Animation</a>[]<div class="sub-desc"><p>A set of animations to execute on <code>view</code> in sequence.</p>
+</div></li><li><span class="pre">finishCallback</span>: function() (optional)<div class="sub-desc"><p>Callback to invoke once the chain animation is complete.</p>
+</div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div><div id="method-crossFade" class="member  not-inherited"><a name="method-crossFade"></a><div class="title"><a name="from, to, duration, [finishCallback]"></a><a name="crossFade"></a><div class="meta"></div><span>crossFade</span>(<span class="pre">from, to, duration, [finishCallback]</span>)</div><div class="description"><div class="long"><p>Transitions from one view to another using a cross-fade animation.</p>
+<h3 class="pa">Parameters</h3><ul><li><span class="pre">from</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to fade out.</p>
+</div></li><li><span class="pre">to</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to fade in.</p>
+</div></li><li><span class="pre">duration</span>: Number<div class="sub-desc"><p>Fade duration in milliseconds.</p>
+</div></li><li><span class="pre">finishCallback</span>: function() (optional)<div class="sub-desc"><p>Callback function, invoked after the fade completes.</p>
+</div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div><div id="method-fadeAndRemove" class="member  not-inherited"><a name="method-fadeAndRemove"></a><div class="title"><a name="from, duration, container, [finishCallback]"></a><a name="fadeAndRemove"></a><div class="meta"></div><span>fadeAndRemove</span>(<span class="pre">from, duration, container, [finishCallback]</span>)</div><div class="description"><div class="long"><p>Fades out a view then removes it from its parent view.</p>
+<h3 class="pa">Parameters</h3><ul><li><span class="pre">from</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to remove.</p>
+</div></li><li><span class="pre">duration</span>: Number<div class="sub-desc"><p>Fade duration in milliseconds.</p>
+</div></li><li><span class="pre">container</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>Parent container view.</p>
+</div></li><li><span class="pre">finishCallback</span>: function() (optional)<div class="sub-desc"><p>Callback function, invoked after the fadeAndRemove completes.</p>
+</div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div><div id="method-fadeIn" class="member  not-inherited"><a name="method-fadeIn"></a><div class="title"><a name="to, duration, [finishCallback]"></a><a name="fadeIn"></a><div class="meta"></div><span>fadeIn</span>(<span class="pre">to, duration, [finishCallback]</span>)</div><div class="description"><div class="long"><p>Fades in the specified view.</p>
+<h3 class="pa">Parameters</h3><ul><li><span class="pre">to</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to fade in.</p>
+</div></li><li><span class="pre">duration</span>: Number<div class="sub-desc"><p>Fade duration in milliseconds.</p>
+</div></li><li><span class="pre">finishCallback</span>: function() (optional)<div class="sub-desc"><p>Callback function, invoked after the fadeIn completes.</p>
+</div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div><div id="method-fadeOut" class="member  not-inherited"><a name="method-fadeOut"></a><div class="title"><a name="to, duration, [finishCallback]"></a><a name="fadeOut"></a><div class="meta"></div><span>fadeOut</span>(<span class="pre">to, duration, [finishCallback]</span>)</div><div class="description"><div class="long"><p>Fades out the specified view.</p>
+<h3 class="pa">Parameters</h3><ul><li><span class="pre">to</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to fade out.</p>
+</div></li><li><span class="pre">duration</span>: Number<div class="sub-desc"><p>Fade duration in milliseconds.</p>
+</div></li><li><span class="pre">finishCallback</span>: function() (optional)<div class="sub-desc"><p>Callback function, invoked after the fadeOut completes.</p>
+</div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div><div id="method-flash" class="member  not-inherited"><a name="method-flash"></a><div class="title"><a name="view, [delay], [finishCallback]"></a><a name="flash"></a><div class="meta"></div><span>flash</span>(<span class="pre">view, [delay], [finishCallback]</span>)</div><div class="description"><div class="long"><p>Flashes the target view twice, fading to partially transparent then back to
+fully-opaque.</p>
+<h3 class="pa">Parameters</h3><ul><li><span class="pre">view</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to animate.</p>
+</div></li><li><span class="pre">delay</span>: Number (optional)<div class="sub-desc"><p>If specified, animation starts after <code>delay</code> milliseconds.</p>
+</div></li><li><span class="pre">finishCallback</span>: function() (optional)<div class="sub-desc"><p>Callback function, invoked after the flash completes.</p>
+</div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div><div id="method-flip" class="member  not-inherited"><a name="method-flip"></a><div class="title"><a name="from, to, [direction], duration, [finishCallback]"></a><a name="flip"></a><div class="meta"></div><span>flip</span>(<span class="pre">from, to, [direction], duration, [finishCallback]</span>)</div><div class="description"><div class="long"><p>Transitions from one view to another using a 3D flip animation.
+The two views need to be positioned on top of each other.</p>
+<ul class="platforms"><li class="platform-iphone" title="iPhone">1.2.2</li><li class="platform-ipad" title="iPad">1.2.2</li></ul><h3 class="pa">Parameters</h3><ul><li><span class="pre">from</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to fade out.</p>
+</div></li><li><span class="pre">to</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to fade in.</p>
+</div></li><li><span class="pre">direction</span>: String (optional)<div class="sub-desc"><p>direction (&apos;horizontal&apos; or &apos;vertical&apos;) to flip.</p>
+</div></li><li><span class="pre">duration</span>: Number<div class="sub-desc"><p>Fade duration in milliseconds.</p>
+</div></li><li><span class="pre">finishCallback</span>: function() (optional)<div class="sub-desc"><p>Callback function, invoked after the fade completes.</p>
+</div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div><div id="method-flipHorizontal" class="member  not-inherited"><a name="method-flipHorizontal"></a><div class="title"><a name="from, to, duration, [finishCallback]"></a><a name="flipHorizontal"></a><div class="meta"></div><span>flipHorizontal</span>(<span class="pre">from, to, duration, [finishCallback]</span>)</div><div class="description"><div class="long"><p>Transitions from one view to another using a horizontal flip animation.</p>
+<ul class="platforms"><li class="platform-iphone" title="iPhone">1.2.2</li><li class="platform-ipad" title="iPad">1.2.2</li></ul><h3 class="pa">Parameters</h3><ul><li><span class="pre">from</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to fade out.</p>
+</div></li><li><span class="pre">to</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to fade in.</p>
+</div></li><li><span class="pre">duration</span>: Number<div class="sub-desc"><p>Fade duration in milliseconds.</p>
+</div></li><li><span class="pre">finishCallback</span>: function() (optional)<div class="sub-desc"><p>Callback function, invoked after the fade completes.</p>
+</div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div><div id="method-flipVertical" class="member  not-inherited"><a name="method-flipVertical"></a><div class="title"><a name="from, to, duration, [finishCallback]"></a><a name="flipVertical"></a><div class="meta"></div><span>flipVertical</span>(<span class="pre">from, to, duration, [finishCallback]</span>)</div><div class="description"><div class="long"><p>Transitions from one view to another using a vertical flip animation.</p>
+<ul class="platforms"><li class="platform-iphone" title="iPhone">1.2.2</li><li class="platform-ipad" title="iPad">1.2.2</li></ul><h3 class="pa">Parameters</h3><ul><li><span class="pre">from</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to fade out.</p>
+</div></li><li><span class="pre">to</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to fade in.</p>
+</div></li><li><span class="pre">duration</span>: Number<div class="sub-desc"><p>Fade duration in milliseconds.</p>
+</div></li><li><span class="pre">finishCallback</span>: function() (optional)<div class="sub-desc"><p>Callback function, invoked after the fade completes.</p>
+</div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div><div id="method-popIn" class="member  not-inherited"><a name="method-popIn"></a><div class="title"><a name="view, [finishCallback]"></a><a name="popIn"></a><div class="meta"></div><span>popIn</span>(<span class="pre">view, [finishCallback]</span>)</div><div class="description"><div class="long"><p>Makes the specified view appear using a &quot;pop-in&quot; animation, which combines a fade-in
+with a slight expanding and contracting animation, to call attention to the new view.</p>
+<h3 class="pa">Parameters</h3><ul><li><span class="pre">view</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to animate.</p>
+</div></li><li><span class="pre">finishCallback</span>: function() (optional)<div class="sub-desc"><p>Callback function, invoked after the popIn completes.</p>
+</div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div><div id="method-shake" class="member  not-inherited"><a name="method-shake"></a><div class="title"><a name="view, [delay], [finishCallback]"></a><a name="shake"></a><div class="meta"></div><span>shake</span>(<span class="pre">view, [delay], [finishCallback]</span>)</div><div class="description"><div class="long"><p>Creates a shake animation, moving the target view back and forth rapidly several times.</p>
+<h3 class="pa">Parameters</h3><ul><li><span class="pre">view</span>: <a href="Titanium_UI_View.html" class="docClass">Titanium.UI.View</a><div class="sub-desc"><p>View to animate.</p>
+</div></li><li><span class="pre">delay</span>: Number (optional)<div class="sub-desc"><p>If specified, animation starts after <code>delay</code> milliseconds.</p>
+</div></li><li><span class="pre">finishCallback</span>: function() (optional)<div class="sub-desc"><p>Callback function, invoked after the shake completes.</p>
+</div></li></ul><h3 class="pa">Returns</h3><ul><li><span class="pre">void</span></li></ul></div></div></div></div></div></div></div>

@@ -1,0 +1,30 @@
+<head>
+<title>Appcelerator API Docs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport" content="width=1024">
+<link rel="stylesheet" href="../resources/main.css" type="text/css">
+</head>
+
+<h1 class="name">Alloy.builtins.moment</h1>
+<div><div class="sidebar"></div><div class="hierarchy"></div><div class="doc-contents"><p>Moment.js is a freely distributable, third-party JavaScript date library
+for parsing, validating, manipulating, and formatting dates.</p>
+
+<p>To use the moment.js library in Alloy,
+require it with the <code>alloy</code> root directory in your <code>require</code> call. For example:</p>
+
+<pre class="codeBlock"><code>var moment = require(&apos;/alloy/moment&apos;);
+var day = moment(&quot;12-25-1995&quot;, &quot;MM-DD-YYYY&quot;);
+Ti.API.info(&quot;Date:&quot; + day.format(&quot;dddd, MMMM Do YYYY, h:mm:ss a&quot;)); // --&gt; Monday, December 25th 1995, 12:00:00 am
+</code></pre>
+
+<p>To change the locale globally, the application calls the moment.locale() function, passing it the new language code.</p>
+
+<pre class="codeBlock"><code>var moment = require(&apos;/alloy/moment&apos;);
+require(&apos;/alloy/moment/lang/de&apos;);
+require(&apos;/alloy/moment/lang/fr&apos;);
+moment.locale(Ti.Locale.currentLocale); // Set current system locale, as a combination of ISO 2-letter language and country codes.
+</code></pre>
+
+<p>For documentation, usage examples and more information, see <a href="http://momentjs.com">http://momentjs.com/</a>.</p>
+</div><div class="members"></div></div>
