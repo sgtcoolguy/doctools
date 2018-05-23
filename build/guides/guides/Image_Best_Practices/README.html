@@ -122,8 +122,12 @@
     </div>
     <div class="section section-3 " id="src-30082525_ImageBestPractices-Cachingremoteimages">
         <h3 class="heading "><span>Caching remote images</span></h3>
-    <p>You can display both local and remote images in an ImageView. When loading remote images, you should set the <tt class=" ">defaultImage</tt> property to a local image, which will be displayed while the remote image is being downloaded.  Remote images are cached automatically on the iOS-, Android- and Windows platform.    </p>
-    <p>Caching remote images helps improves your application&apos;s performance by loading images more quickly, and won&apos;t re-download the images, which consumes users&apos; data quotas unnecessarily.    </p>
+    <p>You can display both local and remote images in an ImageView. When loading remote images, you should set the <tt class=" ">defaultImage</tt> property to a local image, which will be displayed while the remote image is being downloaded. Remote images are cached automatically on the iOS-, Android- and Windows platform.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">Android Note</div>
+            <p>Android 6 and later uses runtime permissions to secure the user&apos;s privacy. Therefore, you should call <tt class=" ">Ti.Filesystem.requestStoragePermissions()</tt> before attempting to load remote images.    </p>
+    </div>
+        <p>Caching remote images helps improves your application&apos;s performance by loading images more quickly, and won&apos;t re-download the images, which consumes users&apos; data quotas unnecessarily.    </p>
     <p>On the Android platform, the cache can even be limited to 25 MB and data remains for the lifetime of the application (as long as it&apos;s installed on device).  On the iOS platform, the cache size is not predetermined (size cannot be guaranteed) and data remains there until iOS cleans the directory (needs more local storage).  To manually clean the cache directory, delete the files in the <tt class=" ">applicationCacheDirectory</tt>.    </p>
     <p>To manually cache remote images, below is a sample utility function that you can use to cache a remote images to the app&apos;s <tt class=" ">applicationDataDirectory</tt>. (In addition to below, you&apos;ll find this code at <a class="external-link external-link" href="https://gist.github.com/1901680" target="_blank">https://gist.github.com/1901680</a>).    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">

@@ -26,8 +26,19 @@
 </li></ul></li><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-Model-viewbinding">Model-view binding</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-Example.1">Example</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-Collectionexample">Collection example</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-CollectionvsModeldatabinding">Collection vs Model data binding</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-GlobalsingletonvsLocalinstance">Global singleton vs Local instance</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-SimplevsComplexdatabinding">Simple vs Complex data binding</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-Backbonebinding">Backbone binding</a>    </p>
-</li></ul>    <div class="section section-2 " id="src-36739592_AlloyDataBinding-Introduction">
+</li><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-Binddeepobjectproperties">Bind deep object properties</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-Usemodelsandpropertiesnameswithspecialcharacters">Use models and properties names with special characters</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-Bindmultiplemodelstothesameview">Bind multiple models to the same view</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-Definetransformationsinthemodel">Define transformations in the model</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-Tipsandtricks">Tips and tricks</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-Lazytransformation">Lazy transformation</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-Populatingamodelafterdatabinding">Populating a model after data binding</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-TrackerasExample">Tracker as Example</a>    </p>
+</li></ul></li></ul></li></ul>    <div class="section section-2 " id="src-36739592_AlloyDataBinding-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
     <p>When data in the collection changes, you may want to update the view simultaneously to keep information synchronized. This concept is known as data binding. Both Alloy and Backbone provide some mechanisms to bind model data to a view.    </p>
     </div>
@@ -398,6 +409,73 @@ model attributes to view properties    </span>
     </div>
     <p>As the collection is updated, the view reflects the changes made to the models. If you want to suppress an update, specify {<tt class=" ">silent: true</tt>} in the <tt class=" ">options</tt> parameters when calling Backbone methods to change model data.    </p>
     </div>
+    <div class="section section-3 " id="src-36739592_AlloyDataBinding-CollectionvsModeldatabinding">
+        <h3 class="heading "><span>Collection vs Model data binding</span></h3>
+    <p>You can bind both a collection of models or an individual model. To bind a model attribute the opening curly bracket is first followed by the model name and then the attribute. To bind a collection you add the  <tt class=" ">dataCollection</tt>  attribute to the container using the collection name as value. The generated code will then loop over the collection and add the child elements to the container for each model.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Model</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;currentCategory&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Collection</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;book&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    </code></div>
+<div class="line"><code class="plain">        &lt;!-- model data binding --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{currentCategory.name}&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">        </code></div>
+<div class="line"><code class="plain">        &lt;!-- collection data binding --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">ScrollView</code><code class="plain"> </code><code class="color1">dataCollection</code><code class="plain">=</code><code class="string">&quot;book&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{title}&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">ScrollView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        </code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-36739592_AlloyDataBinding-GlobalsingletonvsLocalinstance">
+        <h3 class="heading "><span>Global singleton vs Local instance</span></h3>
+    <p>In the above <a class="document-link " href="Alloy_Data_Binding.html">code snippet</a>, the model and collection are global singletons under <tt class=" ">Alloy.Model.currentCategory</tt> and <tt class=" ">Alloy.Collection.book</tt>. You can also use local instances for the current controller by adding <tt class=" ">instance=&quot;true&quot;</tt>  as attribute. You also need to assign them an ID in order to reference them in the XML and controller.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Model</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;currentCategory&quot;</code><code class="plain"> </code><code class="color1">instance</code><code class="plain">=</code><code class="string">&quot;true&quot;</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;c&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Collection</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;book&quot;</code><code class="plain"> </code><code class="color1">instance</code><code class="plain">=</code><code class="string">&quot;true&quot;</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;b&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    </code></div>
+<div class="line"><code class="plain">        &lt;!-- model data binding --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{$.c.name}&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">        </code></div>
+<div class="line"><code class="plain">        &lt;!-- collection data binding --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">ScrollView</code><code class="plain"> </code><code class="color1">dataCollection</code><code class="plain">=</code><code class="string">&quot;$.b&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{title}&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">ScrollView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        </code></div>
+<div class="line"><code class="plain">    &lt;/Win</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-36739592_AlloyDataBinding-SimplevsComplexdatabinding">
+        <h3 class="heading "><span>Simple vs Complex data binding</span></h3>
+    <p>It&#x2019;s important to understand the difference between simple and complex data binding since until Alloy 1.9 they we&#x2019;re implemented in unique ways, resulting in different behaviour.    </p>
+    <p>Simple data binding involves one model attribute where complex data binding involves a combination of strings (including white space) and model attributes or even multiple model attributes:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Model</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;book&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    </code></div>
+<div class="line"><code class="plain">        &lt;!-- simple --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{book.title}&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">        </code></div>
+<div class="line"><code class="plain">        &lt;!-- complex --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;Title: {book.title}&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{book.author.name} {book.author.email}&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">        </code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    </div>
     </div>
     <div class="section section-2 " id="src-36739592_AlloyDataBinding-Backbonebinding">
         <h2 class="heading "><span>Backbone binding</span></h2>
@@ -424,6 +502,151 @@ model attributes to view properties    </span>
             <p>This only works if the Backbone method fires the change event and does not enable {<tt class=" ">silent: true</tt>} as an option.    </p>
     </div>
         </div>
+    <div class="section section-2 " id="src-36739592_AlloyDataBinding-Binddeepobjectproperties">
+        <h2 class="heading "><span>Bind deep object properties</span></h2>
+    <p>Starting with Alloy 1.9, you can <a class="external-link external-link" href="https://jira.appcelerator.org/browse/ALOY-1482">bind deep object properties</a>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Model</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;book&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{book.author.name}&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <p>Before, you needed to use a transformer to create a reference like <tt class=" ">authorName</tt>.    </p>
+    </div>
+    <div class="section section-2 " id="src-36739592_AlloyDataBinding-Usemodelsandpropertiesnameswithspecialcharacters">
+        <h2 class="heading "><span>Use models and properties names with special characters</span></h2>
+    <p>Starting with Alloy 1.9 you can bind models and properties that use <a class="external-link external-link" href="https://jira.appcelerator.org/browse/ALOY-1478">names with special characters</a> like dashes and spaces. Simply wrap the names in square brackets and quotes like you&#x2019;d do in JavaScript:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Model</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;my-model&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;[&apos;my-model&apos;][&apos;my-property&apos;]&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-36739592_AlloyDataBinding-Bindmultiplemodelstothesameview">
+        <h2 class="heading "><span>Bind multiple models to the same view</span></h2>
+    <p>As of Alloy 1.9, you have the ability to <a class="external-link external-link" href="https://jira.appcelerator.org/browse/ALOY-1481">bind multiple models to the same view</a>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Model</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;a&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Model</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;b&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{a.hello} {b.world}&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-36739592_AlloyDataBinding-Definetransformationsinthemodel">
+        <h2 class="heading "><span>Define transformations in the model</span></h2>
+    <p>Until Alloy 1.8.1, only simple model data-binding would call an optional <tt class=" ">transform()</tt>method on the model to allow you to provide derived properties. It was <a class="external-link external-link" href="https://jira.appcelerator.org/browse/ALOY-1368">broken</a> for complex data binding and <a class="external-link external-link" href="https://jira.appcelerator.org/browse/ALOY-1369">not implemented</a> for collection data binding.    </p>
+    <p>Since Alloy 1.8.1, all types of data binding will generate the following logic to determine what object will be bound to the view. Note that only with collection binding you can also define a controller-based transform function to use via the <tt class=" ">dataTransform</tt> XML attribute.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">var</code><code class="plain"> t;</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (_.isFunction(&lt;dataTransform&gt;) { </code><code class="comments">// only for collection binding</code></div>
+<div class="line"><code class="plain">    t = &lt;dataTransform&gt;(model);</code></div>
+<div class="line"><code class="plain">} </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (_.isFunction(model.transform) {</code></div>
+<div class="line"><code class="plain">    t = model.transform();</code></div>
+<div class="line"><code class="plain">} </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">    t = model.toJSON();</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain">$.myLabel.text = t.author.name;</code></div>
+</div>
+    </div>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>This does mean that the transform method need to return all bound properties, not just the transformed ones. Until Alloy 1.8.1 simple collection data binding did not require this and automatically felt back to the model attributes.    </p>
+    </div>
+        <p>You&#x2019;d extend a model with a <tt class=" ">transform()</tt> method as such:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">exports.definition = {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// config</code></div>
+<div class="line"><code class="plain">    extendModel: </code><code class="keyword">function</code><code class="plain">(Model) {</code></div>
+<div class="line"><code class="plain">        _.extend(Model.prototype, {</code></div>
+<div class="line"><code class="plain">            transform: </code><code class="keyword">function</code><code class="plain">( ) {</code></div>
+<div class="line"><code class="plain">                </code><code class="comments">// get model attributes as object</code></div>
+<div class="line"><code class="plain">                </code><code class="keyword">var</code><code class="plain"> t = </code><code class="keyword">this</code><code class="plain">.toJSON();</code></div>
+<div class="line"><code class="plain">                </code></div>
+<div class="line"><code class="plain">                </code><code class="comments">// override/add transformed properties</code></div>
+<div class="line"><code class="plain">                t.titleCaps = t.title.toUpperCase();</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> t;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">        });</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> Model;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">};</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-36739592_AlloyDataBinding-Tipsandtricks">
+        <h2 class="heading "><span>Tips and tricks</span></h2>
+    <div class="section section-3 " id="src-36739592_AlloyDataBinding-Lazytransformation">
+        <h3 class="heading "><span>Lazy transformation</span></h3>
+    <p>The advantage of defining transformations in the model is that you don&#x2019;t need to repeat them in every controller where you use a collection of these models. And of course it already was the only way to transform attributes for model data binding.    </p>
+    <p>A possible disadvantage however is that everywhere you bind the model all transformations are computed were you might only need some or even none at all.    </p>
+    <p>You can handle this using <a class="external-link external-link" href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty()</a>. It&#x2019;s <tt class=" ">get</tt> callback will only be called when the transform key is actually requested. This can improve the performance of you app in particular if you have multiple heavy transformations, like formatting a date:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">var</code><code class="plain"> moment = require(</code><code class="string">&apos;alloy/moment&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">exports.definition = {</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// config</code></div>
+<div class="line"><code class="plain">    extendModel: </code><code class="keyword">function</code><code class="plain">(Model) {</code></div>
+<div class="line"><code class="plain">        _.extend(Model.prototype, {</code></div>
+<div class="line"><code class="plain">            transform: </code><code class="keyword">function</code><code class="plain">( ) {</code></div>
+<div class="line"><code class="plain">                </code><code class="keyword">var</code><code class="plain"> model = </code><code class="keyword">this</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">                </code><code class="keyword">var</code><code class="plain"> t = </code><code class="keyword">this</code><code class="plain">.toJSON();</code></div>
+<div class="line"><code class="plain">                </code></div>
+<div class="line"><code class="plain">                Object.defineProperty(t, </code><code class="string">&apos;dateFormatted&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">                  get: </code><code class="keyword">function</code><code class="plain">( ) {</code></div>
+<div class="line"><code class="plain">                    </code><code class="keyword">return</code><code class="plain"> moment(t.date).format(</code><code class="string">&apos;LLLL&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">                  }</code></div>
+<div class="line"><code class="plain">                });</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> t;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">        });</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> Model;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">};</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-36739592_AlloyDataBinding-Populatingamodelafterdatabinding">
+        <h3 class="heading "><span>Populating a model after data binding</span></h3>
+    <p>When Alloy compiles your views and controllers, the <a class="external-link external-link" href="https://github.com/appcelerator/alloy/blob/master/Alloy/template/component.js#L45">generated view code precedes your controller code</a>. Any models you define for data binding in the XML will also be created at that point. So how would you bind an already existing model? I&#x2019;ve seen several <i class=" ">workarounds</i> for this, but if you think about it it is actually not that much different from binding a collection, which also starts off empty. Just like you call <tt class=" ">fetch()</tt> to populate the collection, you do the exact same thing for the model. Depending on the sync adapter you either pass the query/ID as options or first set the model&#x2019;s id-attribute and then call <tt class=" ">fetch()</tt>.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">index.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="index.xml">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Model</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;book&quot;</code><code class="plain"> </code><code class="color1">instance</code><code class="plain">=</code><code class="string">&quot;true&quot;</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;current&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{book.title}&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;&#xA0;</code></div>
+</div>
+    </div>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">index.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="index.js">
+<div class="line"><code class="plain">$.current.fetch({</code></div>
+<div class="line"><code class="plain">    id: Ti.App.Properties.getString(</code><code class="string">&apos;currentBook&apos;</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">$.index.open();</code></div>
+</div>
+    </div>
+    <div class="section section-4 " id="src-36739592_AlloyDataBinding-TrackerasExample">
+        <h4 class="heading "><span>Tracker as Example</span></h4>
+    <p>The <a class="external-link external-link" href="https://github.com/fokkezb/tracker">Tracker App</a> requires Alloy 1.9 and demonstrates <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/views/rides.xml">collection data binding</a>, <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/views/datapoint.xml">model data binding</a>, <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/controllers/data.js#L11">fetching a collection from a query</a>as well as <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/models/ride.js#L32">lazy transformations</a> and <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/controllers/ride.js#L13">populating an existing model</a>.    </p>
+    </div>
+    </div>
+    </div>
         </div>
     
         

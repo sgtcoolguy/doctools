@@ -20,7 +20,7 @@
                         <h1>TDoc Specification</h1>
     <p>    </p>
     <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
-            <p>To see an example of this spec in use, check out the documentation for <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/apidoc/Titanium/UI/View.yml"><tt class=" ">Titanium.UI.View</tt></a>.    </p>
+            <p>To see an example of this spec in use, check out the documentation for <tt class=" ">Titanium.UI.View</tt>.    </p>
     </div>
         <p><strong class=" ">Contents</strong>    </p>
     <p>    </p>
@@ -95,7 +95,6 @@
 <ul class=" "><li class=" ">    <p>TDoc - The file extension used for the previous API documentation files was &quot;tdoc&quot;; several such files (one per module or proxy). Because of this file extension, the documents themselves are often called simply &quot;TDocs&quot; in our &quot;Titanium vernacular.&quot;    </p>
 </li><li class=" ">    <p>Code Assist or Content Assist - The feature of Studio which provides pop-up help to help you complete your code statements.    </p>
 </li><li class=" ">    <p>JSCA - &quot;JSON for Studio Content Assist&quot;. JSCA files contain the JSON which feeds the content assist available to developers using Studio. The requirement to generate JSCA from the documentation is one of the drivers behind this spec.    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/apidoc/docgen.py">docgen.py</a> - The script that generates the HTML, JSON (&quot;classic&quot;) and JSCA versions of our documentation by first parsing our existing TDocs.    </p>
 </li><li class=" ">    <p>YAML - <a class="external-link external-link" href="http://yaml.org">YAML Ain&apos;t Markup Language</a>. &quot;YAML is a human-readable data serialization format&quot; (Wikipedia).    </p>
 </li></ul>    </div>
     <div class="section section-2 " id="src-29004748_TDocSpecification-ProposedDocumentationSpecification">
@@ -112,13 +111,13 @@
     <p>XML, JSON, Markdown and YAML are common choices when external (outside-the-code) documentation is necessary. Let&apos;s look at these alternatives head-to-head with YAML:    </p>
 <ul class=" "><li class=" ">    <p>XML versus YAML: Even for someone who doesn&apos;t like YAML, this could probably be characterized as &quot;which do you hate more/less&quot;. XML is quite unpopular these days as the busy-ness and clutter of opening and closing tags seems less necessary given other structured-data standards such as JSON and YAML.    </p>
 </li><li class=" ">    <p>JSON versus YAML: JSON and YAML are fairly similar. In the arena of clutter, JSON was a huge improvement over XML, as-is YAML an improvement over JSON. YAML, for example, removes most of the curly braces and quotation marks that distract you while viewing JSON.    </p>
-</li><li class=" ">    <p>Markdown versus YAML: &quot;<a class="external-link external-link" href="http://daringfireball.net/projects/markdown/">Markdown</a> is a text-to-HTML conversion tool for web <i class=" ">writers</i>.&quot; We&apos;ve italicized <i class=" ">writers</i> here to emphasize the fact that Markdown is really meant for writing top-down articles (blog posts, free-form documentation pages, etc.) as opposed to structured documentation. It is, in fact, relatively parseable, as our existing TDoc specification has shown. However, the more you want to annotate it with structured data outside of the free-form text that it caters to, the more unwieldy it becomes. You start inventing ways to delimit parseable data, such as by surrounding certain pieces of text with square brackets or some other braces. We&apos;ve been through this with the existing TDoc specification and <a class="external-link external-link" href="https://github.com/mootools/mootools-core/raw/master/Docs/Core/Core.md">we are not alone</a>. When adding more and more annotations &#x2013; as we wish to do with this new specification &#x2013; it becomes difficult to choose how to mark up the annotations.    </p>
+</li><li class=" ">    <p>Markdown versus YAML: &quot;<a class="external-link external-link" href="http://daringfireball.net/projects/markdown/">Markdown</a> is a text-to-HTML conversion tool for web <i class=" ">writers</i>.&quot; We&apos;ve italicized <i class=" ">writers</i> here to emphasize the fact that Markdown is really meant for writing top-down articles (blog posts, free-form documentation pages, etc.) as opposed to structured documentation. It is, in fact, relatively parseable, as our existing TDoc specification has shown. However, the more you want to annotate it with structured data outside of the free-form text that it caters to, the more unwieldy it becomes. You start inventing ways to delimit parseable data, such as by surrounding certain pieces of text with square brackets or some other braces. We&apos;ve been through this with the existing TDoc specification and we are not alone. When adding more and more annotations &#x2013; as we wish to do with this new specification &#x2013; it becomes difficult to choose how to mark up the annotations.    </p>
 </li></ul>    <p>Our solution is to use the strengths of YAML &#x2013; structured data representation &#x2013; as our primary means of documentation, and to use Markdown&apos;s strength &#x2013; easy text formatting &#x2013; where it&apos;s applicable, namely in the &quot;free form text&quot; YAML properties such as a method&apos;s description or a code example.    </p>
     </div>
     <div class="section section-5 " id="src-29004748_TDocSpecification-ToolSupport">
         <h5 class="heading "><span>Tool Support</span></h5>
     <p>[Insert Your Favorite Programming Language] has a YAML library with which our new TDocs will be instantly parseable.    </p>
-    <p>Additionally, [Insert Your Favorite Editor] offers YAML enhancements either natively or with plugins. Admittedly, if your favorite editor is Windows Notepad or OS X&apos;s TextEdit, there probably is no enhancement available for YAML. But if you&apos;re using <a class="external-link external-link" href="http://www.google.com/search?q=eclipse+yaml">Eclipse</a>, <a class="external-link external-link" href="https://github.com/textmate/yaml.tmbundle">TextMate</a>, <a class="external-link external-link" href="http://www.google.com/search?q=vim+yaml">Vim</a> or another well-supported programmer&apos;s editor, you should have no problem finding enhancements for YAML. The fact is, however, that simple indentation support is all you need to effectively write YAML.    </p>
+    <p>Additionally, [Insert Your Favorite Editor] offers YAML enhancements either natively or with plugins. Admittedly, if your favorite editor is Windows Notepad or OS X&apos;s TextEdit, there probably is no enhancement available for YAML. But if you&apos;re using <a class="external-link external-link" href="http://www.google.com/search?q=eclipse+yaml">Eclipse</a>, <a class="external-link external-link" href="http://www.google.com/search?q=vim+yaml">Vim</a> or another well-supported programmer&apos;s editor, you should have no problem finding enhancements for YAML. The fact is, however, that simple indentation support is all you need to effectively write YAML.    </p>
     </div>
     <div class="section section-5 " id="src-29004748_TDocSpecification-SignificantWhitespace">
         <h5 class="heading "><span>Significant Whitespace</span></h5>
@@ -724,7 +723,7 @@
         <p>constants    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>(<strong class=" ">Optional</strong>). Array of Titanium constant values the parameter can take. You can use a wildcard character at the end of the value to match more than one constant    </p>
+        <p>( <strong class=" ">Optional</strong> ). Array of Titanium constant values the parameter can take. You can use a wildcard character at the end of the value to match more than one constant    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p><tt class=" ">constants: [ Titanium.UI.LANDSCAPE_*, Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT]</tt>    </p>
@@ -828,7 +827,7 @@
     <div class="section section-5 " id="src-29004748_TDocSpecification-PropertySpecification">
         <h5 class="heading "><span>Property Specification</span></h5>
     <p>The type documentation includes a <tt class=" ">properties</tt> key, which is described as an array of property documentation definitions. This section describes the property documentation specification.    </p>
-    <p>*<strong class=" ">NOTE</strong><strong class=" ">: Do **not</strong>* create method documentation for getters/setters for a property. Only create the documentation for the property, and the getters and setters will be documented automatically in our documentation scripts (such as the script that generates our HTML-based API documentation on the developer.appcelerator.com site.) If a property does not have a getter/setter method, use <tt class=" ">accessors: false</tt> in the property documentation.    </p>
+    <p>*<strong class=" ">NOTE</strong> <strong class=" ">: Do **not</strong>* create method documentation for getters/setters for a property. Only create the documentation for the property, and the getters and setters will be documented automatically in our documentation scripts (such as the script that generates our HTML-based API documentation on the developer.appcelerator.com site.) If a property does not have a getter/setter method, use <tt class=" ">accessors: false</tt> in the property documentation.    </p>
     <p>A single property documentation definition may contain the following keys:    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
@@ -1013,7 +1012,7 @@
         <p>constants    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>(<strong class=" ">Optional</strong>). Array of Titanium constant values the property can be assigned. You can use a wildcard character at the end of the value to match more than one constant    </p>
+        <p>( <strong class=" ">Optional</strong> ). Array of Titanium constant values the property can be assigned. You can use a wildcard character at the end of the value to match more than one constant    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p><tt class=" ">constants: [ Titanium.UI.LANDSCAPE_*, Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT]</tt>    </p>
@@ -1396,7 +1395,7 @@
         <p>constants    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>(<strong class=" ">Optional</strong>). Array of Titanium constant values the property can be assigned. You can use a wildcard character at the end of the value to match more than one constant    </p>
+        <p>( <strong class=" ">Optional</strong> ). Array of Titanium constant values the property can be assigned. You can use a wildcard character at the end of the value to match more than one constant    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p><tt class=" ">constants: [ Titanium.UI.LANDSCAPE_*, Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT]</tt>    </p>
@@ -1631,7 +1630,7 @@
     <div class="section section-6 " id="src-29004748_TDocSpecification-Pseudo-TypesUsefultoaSingleModule">
         <h6 class="heading "><span>Pseudo-Types Useful to a Single Module</span></h6>
     <p>If a <i class=" ">pseudo-type</i> has applicability beyond a single type definition, it should go in its own file. If it&apos;s applicable only to types which are all in the same module, it can go in the same folder as the module but in its own file (e.g., <tt class=" ">Titanium/Do/FlubberAdjustmentResult.yml</tt>.    </p>
-    <p>The real-world example documentation for <a class="external-link external-link" href="https://gist.github.com/e6afc266f09188a73756"><tt class=" ">Titanium.UI.View</tt></a> also contains some pseudo-type defintions near the botttom of the file.    </p>
+    <p>The real-world example documentation for <tt class=" ">Titanium.UI.View</tt> also contains some pseudo-type defintions near the botttom of the file.    </p>
     </div>
     <div class="section section-6 " id="src-29004748_TDocSpecification-Pseudo-TypesUsefulinMultipleModules">
         <h6 class="heading "><span>Pseudo-Types Useful in Multiple Modules</span></h6>
@@ -1726,7 +1725,7 @@
     </div>
     <div class="section section-2 " id="src-29004748_TDocSpecification-Real-WorldExample">
         <h2 class="heading "><span>Real-World Example</span></h2>
-    <p>For purposes of a real-world example, <a class="external-link external-link" href="https://gist.github.com/e6afc266f09188a73756"><tt class=" ">Titanium.UI.View</tt></a> was documented following this proposed specification.    </p>
+    <p>For purposes of a real-world example, <tt class=" ">Titanium.UI.View</tt> was documented following this proposed specification.    </p>
     </div>
         </div>
     

@@ -20,6 +20,7 @@
                         <h1>Titanium API Doc Style Guide</h1>
     <div class="section section-2 " id="src-27595540_TitaniumAPIDocStyleGuide-Contents">
         <h2 class="heading "><span>Contents</span></h2>
+    <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Titanium_API_Doc_Style_Guide.html#src-27595540_TitaniumAPIDocStyleGuide-Overview">Overview</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Titanium_API_Doc_Style_Guide.html#src-27595540_TitaniumAPIDocStyleGuide-Guidelines">Guidelines</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Titanium_API_Doc_Style_Guide.html#src-27595540_TitaniumAPIDocStyleGuide-Formatting">Formatting</a>    </p>
@@ -39,7 +40,7 @@
 </li><li class=" ">    <p><tt class=" ">an object describing the font properties for the label</tt> (avoid)    </p>
 </li></ul>    <p>Object and module summaries should describe the object or module. The creator method should be listed in the description, not the summary.    </p>
 <ul class="alternate "><li class=" ">    <p><tt class=" ">A switch control with on and off states.</tt> (preferred)    </p>
-</li><li class=" ">    <p><tt class=" ">A Switch is created by the method `Titanium.UI.createSwitch.`</tt> (avoid)    </p>
+</li><li class=" ">    <p><tt class=" ">A Switch is created by the method `Ti.UI.createSwitch.`</tt> (avoid)    </p>
 </li></ul>    <p>Start method summaries with an active verb:    </p>
 <ul class="alternate "><li class=" ">    <p><tt class=" ">Pours the whisky.</tt> (preferred)    </p>
 </li><li class=" ">    <p><tt class=" ">This method pours the whisky.</tt> (avoid)    </p>
@@ -67,7 +68,7 @@
 </li></ul>    <p>Defining a constant: Need a consistent style here. We should describe both what the constant does, and (if possible) where it&apos;s used. We don&apos;t include a special annotation for constants, but we do use a consistent style for them (ALL_CAPS). It is not necessary to include the term &quot;constant&quot; in the summary unless it makes the description more clear.    </p>
 <ul class="alternate "><li class=" ">    <p>summary: <tt class=" ">Ease-in to the animation. See &lt;Titanium.UI.Animation&gt; for a discussion of animation curves.</tt> (preferred)    </p>
 </li><li class=" ">    <p>summary: <tt class=" ">Constant value representing an &quot;ease-in&quot; animation curve.</tt> (ok)    </p>
-</li><li class=" ">    <p>summary: <tt class=" ">animation curve constant</tt>  (avoid)    </p>
+</li><li class=" ">    <p>summary: <tt class=" ">animation curve constant</tt> (avoid)    </p>
 </li></ul>    <p>Using inline links: Inline links are very useful, but excessive use detracts from readability. Use them where they add information not already supplied by the YAML markup. For example, if the return type of a method is Titanium.Blob, the description text can just use code style &#x2013; `Blob` &#x2013; instead of an inline link.    </p>
     <div class="confbox programlisting preformatted panel">
                 <div class="content">
@@ -137,7 +138,6 @@ properties:
 platforms: [android, iphone, ipad]</code></pre>
         </div>
     </div>
-    <p>    </p>
     </div>
     <div class="section section-2 " id="src-27595540_TitaniumAPIDocStyleGuide-Links">
         <h2 class="heading "><span>Links</span></h2>
@@ -148,7 +148,6 @@ platforms: [android, iphone, ipad]</code></pre>
 [Quick Start](http://docs.appcelerator.com/titanium/latest/#!/guide/Quick_Start)</code></pre>
         </div>
     </div>
-    <p>    </p>
     <p>Do not use the versioned link, which will get outdated, or include `index.html`, which breaks the redirection mechanism.    </p>
     <p>Avoid:    </p>
     <div class="confbox programlisting preformatted panel">
@@ -158,7 +157,6 @@ platforms: [android, iphone, ipad]</code></pre>
 [Quick Start](http://docs.appcelerator.com/titanium/latest/index.html#!/guide/Quick_Start)</code></pre>
         </div>
     </div>
-    <p>    </p>
     </div>
     <div class="section section-2 " id="src-27595540_TitaniumAPIDocStyleGuide-InlineHTML">
         <h2 class="heading "><span>Inline HTML</span></h2>
@@ -173,7 +171,7 @@ platforms: [android, iphone, ipad]</code></pre>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">deprecated:</code></div>
-<div class="line"><code class="plain">    since: </code><code class="string">&quot;3.0&quot;</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;7.0.0&quot;</code></div>
 <div class="line"><code class="plain">    notes: Use [SOMETHING_ELSE](Titanium.UI.SOMETHING_ELSE) instead.</code></div>
 </div>
     </div>
@@ -182,9 +180,9 @@ platforms: [android, iphone, ipad]</code></pre>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">deprecated:</code></div>
-<div class="line"><code class="plain">    since: </code><code class="string">&quot;3.0&quot;</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;7.0.0&quot;</code></div>
 <div class="line"><code class="plain">    notes: Use [SOMETHING_ELSE](Titanium.UI.SOMETHING_ELSE) instead.</code></div>
-<div class="line"><code class="plain">    removed: </code><code class="string">&quot;4.0&quot;</code></div>
+<div class="line"><code class="plain">    removed: </code><code class="string">&quot;8.0.0&quot;</code></div>
 </div>
     </div>
     <p>Removed APIs should stay in the docs (marked as removed) for a full deprecation cycle. That is, if APIs deprecated in release A are <i class=" ">removed</i> in release B, the APIs <i class=" ">removed</i> in release A can be removed from the doc in release B.    </p>
@@ -201,7 +199,7 @@ platforms: [android, iphone, ipad]</code></pre>
       `true` if the current view is awesome.</code></pre>
         </div>
     </div>
-    <p>Optional parameters: specify optional method parameters by specifying &quot;optional: true&quot; and adding a default value.    </p>
+    <p>Optional parameters: specify optional method parameters by specifying &quot;<tt class=" ">optional: true</tt>&quot; and adding a default value.    </p>
     <div class="confbox programlisting preformatted panel">
                 <div class="content">
         <pre><code>parameters:

@@ -18,12 +18,15 @@
 
         <div id="src-29004905" class="content">
                         <h1>Working with JSON Data</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Working_with_JSON_Data-section-src-29004905_WorkingwithJSONData-Objective">Objective</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Working_with_JSON_Data-section-src-29004905_WorkingwithJSONData-Contents">Contents</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Working_with_JSON_Data-section-src-29004905_WorkingwithJSONData-Built-inJSONfunctions">Built-in JSON functions</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Working_with_JSON_Data-section-src-29004905_WorkingwithJSONData-Methodscannotbestringified">Methods cannot be stringified</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Working_with_JSON_Data-section-src-29004905_WorkingwithJSONData-ReceivingandparsingJSONdata">Receiving and parsing JSON data</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Working_with_JSON_Data-section-src-29004905_WorkingwithJSONData-SendingJSONdata">Sending JSON data</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/Working_with_JSON_Data-section-src-29004905_WorkingwithJSONData-Hands-onPractice">Hands-on Practice</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Working_with_JSON_Data-section-src-29004905_WorkingwithJSONData-ReferencesandFurtherReading">References and Further Reading</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Working_with_JSON_Data-section-src-29004905_WorkingwithJSONData-Summary">Summary</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-29004905_WorkingwithJSONData-Objective">
         <h2 class="heading "><span>Objective</span></h2>
     <p>In this chapter, you will learn how to send and receive JSON data from a remote data source via the HTTPClient object.    </p>
@@ -106,46 +109,6 @@
 <div class="line"><code class="plain">xhr.send(blogPost);</code></div>
 </div>
     </div>
-    </div>
-    <div class="section section-3 " id="src-29004905_WorkingwithJSONData-Hands-onPractice">
-        <h3 class="heading "><span>Hands-on Practice</span></h3>
-    <div class="section section-4 " id="src-29004905_WorkingwithJSONData-Goal">
-        <h4 class="heading "><span>Goal</span></h4>
-    <p>In this activity, you will retrieve and parse JSON data and display the information in a TableView    </p>
-    </div>
-    <div class="section section-4 " id="src-29004905_WorkingwithJSONData-Resources">
-        <h4 class="heading "><span>Resources</span></h4>
-    <p>In this activity, you will retrieve a JSON-formatted file from <a class="external-link external-link" href="https://raw.github.com/appcelerator/Documentation-Examples/master/HTTPClient/data/json.txt" target="_blank">https://raw.github.com/appcelerator/Documentation-Examples/master/HTTPClient/data/json.txt</a>. That file contains data formatted like this:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">{</code></div>
-<div class="line"><code class="plain">    </code><code class="string">&quot;fighters&quot;</code><code class="plain">: [</code></div>
-<div class="line"><code class="plain">        {</code></div>
-<div class="line"><code class="plain">            </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;Muhammad Ali&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">&quot;nickname&quot;</code><code class="plain">: </code><code class="string">&quot;The Greatest&quot;</code></div>
-<div class="line"><code class="plain">        },</code></div>
-<div class="line"><code class="plain">        {</code></div>
-<div class="line"><code class="plain">            </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;Chuck Liddell&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">&quot;nickname&quot;</code><code class="plain">: </code><code class="string">&quot;The Iceman&quot;</code></div>
-<div class="line"><code class="plain">        },</code></div>
-<div class="line"><code class="plain">		</code><code class="comments">// etc. </code></div>
-<div class="line"><code class="plain">    ]</code></div>
-<div class="line"><code class="plain">}</code></div>
-</div>
-    </div>
-    </div>
-    <div class="section section-4 " id="src-29004905_WorkingwithJSONData-Steps">
-        <h4 class="heading "><span>Steps</span></h4>
-<ol class=" "><li class=" ">    <p>Create a new Titanium Mobile project.    </p>
-</li><li class=" ">    <p>Replace the code in app.js with code that defines a single window containing a TableView.    </p>
-</li><li class=" ">    <p>Add the code to retrieve the JSON data from the URL given above. When the data is successfully retrieved, parse it and populate the table. For each row:    </p>
-<ul class=" "><li class=" ">    <p>Add a label with large, bold text listing the fighter&apos;s name. Position it at the top-left of the row.    </p>
-</li><li class=" ">    <p>Add a label with smaller, normal text listing the fighter&apos;s nickname. Position it below the first label.    </p>
-</li><li class=" ">    <p>Set the resulting data as the TableView&apos;s data to populate the table.    </p>
-</li></ul></li><li class=" ">    <p>Add the code to handle a network error. Log the HTTP status code, the text retrieved, and any error message. Alert a simple message to the user.    </p>
-</li><li class=" ">    <p>Set the timeout to 5 seconds.    </p>
-</li><li class=" ">    <p>Build and test your app in the simulator/emulator.    </p>
-</li></ol>    </div>
     </div>
     <div class="section section-3 " id="src-29004905_WorkingwithJSONData-ReferencesandFurtherReading">
         <h3 class="heading "><span>References and Further Reading</span></h3>

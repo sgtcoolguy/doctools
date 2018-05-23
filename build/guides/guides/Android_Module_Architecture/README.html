@@ -37,8 +37,7 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-ViewProxy">View Proxy</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-View">View</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-ViewPropertyandmethods">View Property and methods</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-Moreexamples">More examples</a>    </p>
-</li></ul>    <div class="section section-2 " id="src-43289000_AndroidModuleArchitecture-Introduction">
+</li></ul></li></ul>    <div class="section section-2 " id="src-43289000_AndroidModuleArchitecture-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
     <p>The Titanium SDK is based on a modular architecture, which can be utilized to extend the SDK by building modules. The module architecture contains the following key interface components:    </p>
 <ul class=" "><li class=" ">    <p><strong class=" ">Proxy</strong>: A base class that represents the native binding between your JavaScript code and native code    </p>
@@ -75,7 +74,7 @@
 </div>
     </div>
     <p>The module must have a default constructor (that is, one that takes no arguments).    </p>
-    <p>A module can also have a parent module: <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/modules/ui/src/java/ti/modules/platform/ui/UIModule.java" target="_blank">Titanium.UI</a> and <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/modules/app/src/java/ti/modules/platform/app/AppModule.java" target="_blank">Titanium.App</a> are children of the <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/platform/src/java/ti/modules/platform/TitaniumModule.java" target="_blank">Titanium</a> module.    </p>
+    <p>A module can also have a parent module: <tt class=" ">Titanium.UI</tt> and <tt class=" ">Titanium.App</tt> are children of the Titanium module.    </p>
     <p>The <tt class=" ">@Kroll.module</tt> annotation can also contain a <tt class=" ">propertyAccessors</tt> element, which defines a set of properties exposed by the module. See <a class="document-link " href="#!/guide/Android_Module_Architecture-section-src-43289000_AndroidModuleArchitecture-Properties">Properties</a> for more information.    </p>
     <div class="section section-3 " id="src-43289000_AndroidModuleArchitecture-Modulelifecycleevents">
         <h3 class="heading "><span>Module lifecycle events</span></h3>
@@ -93,7 +92,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>The module also provides callbacks that are invoked when the application&apos;s root activity is started, stopped, paused, or resumed. For sample usage of these callbacks, see the <a class="external-link external-link" href="https://github.com/appcelerator-modules/ti.moddevguide/blob/master/android/src/ti/moddevguide/ModdevguideModule.java#L72" target="_blank">lifecycle notices in the sample module</a>.    </p>
+    <p>The module also provides callbacks that are invoked when the application&apos;s root activity is started, stopped, paused, or resumed.    </p>
     <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <div class="title">Activity Lifecycle Events</div>
             <p>Note that on Titanium applications, the root activity is the one that displays the splash screen. If the first UI component is a heavyweight Window (window with its own activity) or TabGroup, not all of the activity lifecycle events may fire for the root activity. Note that since Release 3.2.0, all Window objects are heavyweight and have their own activity associated with it.    </p>
@@ -247,7 +246,7 @@
     <p>In this case, the proxy has two properties, <tt class=" ">hintText</tt> and <tt class=" ">value</tt>, each with corresponding setter and getter methods, such as <tt class=" ">setHintText</tt> and <tt class=" ">getValue</tt>. These properties are stored in an internal dictionary. You can query properties using <tt class=" ">getProperty</tt> <tt class=" ">()</tt> or retrieve the entire dictionary using <tt class=" ">getProperties</tt> <tt class=" ">()</tt>.    </p>
     <p>When you define properties this way, you&apos;ll usually want to add a model listener to respond to property changes. When you set a property using the generated getter and setter methods, the model listener is automatically notified.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>If you define properties using the <tt class=" ">propertyAccessors</tt> element, you <u class=" "><strong class=" ">cannot</strong></u> override the accessors by defining custom accessor methods. Doing so causes module packaging to fail with a cryptic error. For each property, you must use <i class=" ">either</i> <tt class=" ">propertyAccessors</tt> or custom accessors, but not both.    </p>
+            <p>If you define properties using the <tt class=" ">propertyAccessors</tt> element, you <u class=" "> <strong class=" ">cannot</strong> </u> override the accessors by defining custom accessor methods. Doing so causes module packaging to fail with a cryptic error. For each property, you must use <i class=" ">either</i> <tt class=" ">propertyAccessors</tt> or custom accessors, but not both.    </p>
     </div>
         </div>
     <div class="section section-4 " id="src-43289000_AndroidModuleArchitecture-Handlepropertychangesusingthemodellistener">
@@ -544,7 +543,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>The ModDevGuide project includes sample code for retrieving a bitmap from resources. See <a class="external-link external-link" href="https://github.com/appcelerator-modules/ti.moddevguide/blob/master/android/src/ti/moddevguide/ModdevguideModule.java#L166" target="_blank">ModdevguideModule.java</a>.    </p>
+    <p>The ModDevGuide project includes sample code for retrieving a bitmap from resources.    </p>
     <p>A Titanium File object is passed into Java as a <tt class=" ">FileProxy</tt>. Use a <tt class=" ">TiBaseFile</tt> object to get an instance of FileProxy given a <tt class=" ">TiBaseFile</tt>, and vice versa. Many APIs use the <tt class=" ">TiBaseFile</tt> object internally to manipulate files, and you can easily construct a FileProxy from a TiBaseFile    </p>
     <p>The following example shows one way to create a <tt class=" ">TiBaseFile</tt> using <tt class=" ">TiFileFactory</tt>, and use the new instance to construct a <tt class=" ">FileProxy</tt>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -690,10 +689,6 @@
 </div>
     </div>
     </div>
-    </div>
-    <div class="section section-2 " id="src-43289000_AndroidModuleArchitecture-Moreexamples">
-        <h2 class="heading "><span>More examples</span></h2>
-    <p>For more examples of using the module API, see the <a class="external-link external-link" href="https://github.com/appcelerator-modules/ti.moddevguide" target="_blank">ti.moddevguide Github project</a>.    </p>
     </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=43289000"><span>Edit</span></a>
     

@@ -43,7 +43,7 @@
     <p>The Core Motion module provides support for monitoring various hardware sensors on iOS devices, such as the accelerometer, gyroscope, and magnetometer. The Core Motion module allows you to access the measurements provided by these sensors.    </p>
     <div class="section section-3 " id="src-38928815_CoreMotionModule-Requirements">
         <h3 class="heading "><span>Requirements</span></h3>
-    <p>This module only works with devices running iOS 7.  Not all devices have the same hardware sensors, so all features may not be available for all devices.  Be sure to use the API to check the device for the existence of a feature.    </p>
+    <p>Not all devices have the same hardware sensors, so all features may not be available for all devices.  Be sure to use the API to check the device for the existence of a feature.    </p>
     <p>You can only test the Core Motion module on a device.  The Core Motion API cannot be tested on the iOS simulator.    </p>
     <p>Some features may require permission to use &quot;Motion Activity&quot;. iOS requires the user&apos;s approval to use the &quot;Motion Activity&quot; permission. When the application uses the Core Motion API for the first time, iOS prompts the user to either approve or deny access to the Core Motion features of the device. The user can change the permission settings with <strong class=" ">Settings &gt; Privacy</strong>.    </p>
     </div>
@@ -75,7 +75,7 @@
     </div>
     <div class="section section-2 " id="src-38928815_CoreMotionModule-Gettingstarted">
         <h2 class="heading "><span>Getting started</span></h2>
-    <p>The Core Motion module is available as part of the Titanium SDK since Release 3.2.0. To use core motion services in your application, add the module as a dependency to your application.    </p>
+    <p>The Core Motion module is available as part of the Titanium SDK. To use core motion services in your application, add the module as a dependency to your application.    </p>
 <ol class=" "><li class=" ">    <p>Modify the modules section of your <tt class=" ">tiapp.xml</tt> file to include the <tt class=" ">ti.coremotion</tt> module or add the module with Studio&apos;s TiApp Editor (see <a class="document-link " href="Using_a_Module.html">Using a Module</a>):    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -84,7 +84,6 @@
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">modules</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>    </p>
 </li><li class=" ">    <p>Require in the module in your JavaScript code. Use the reference to make API calls to the module.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -93,8 +92,7 @@
 <div class="line"><code class="keyword">if</code><code class="plain"> (Pedometer.isSupported()) {</code></div>
 <div class="line"><code class="plain">    Pedometer.startPedometerUpdates({</code></div>
 <div class="line"><code class="plain">        start: </code><code class="keyword">new</code><code class="plain"> Date(</code><code class="keyword">new</code><code class="plain"> Date().getTime() - 60 * 60 * 1000) </code><code class="comments">// 1 hr ago</code></div>
-<div class="line"><code class="plain">    },&#xA0;</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
+<div class="line"><code class="plain">    },&#xA0;</code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="plain">        Ti.API.info(JSON.stringify(e));</code></div>
 <div class="line"><code class="plain">    });</code></div>
 <div class="line"><code class="plain">} </code><code class="keyword">else</code><code class="plain"> {</code></div>
@@ -199,11 +197,7 @@
 <div class="line"><code class="keyword">var</code><code class="plain"> DeviceMotion = CoreMotion.createDeviceMotion();</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> frames = DeviceMotion.availableAttitudeReferenceFrames();</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">if</code><code class="plain"> (frames &amp; CoreMotion.ATTITUDE_REFERENCE_FRAME_X_TRUE_NORTH_Z_VERTICAL) {</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">} </code><code class="keyword">else</code><code class="plain"> {</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">false</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="keyword">return</code><code class="plain"> (frames &amp; CoreMotion.ATTITUDE_REFERENCE_FRAME_X_TRUE_NORTH_Z_VERTICAL);</code></div>
 </div>
     </div>
     <p>To retrieve the default reference frame, call the  <tt class=" ">getAttitudeReferenceFrame</tt> method.    </p>
@@ -276,8 +270,7 @@
 <div class="line"><code class="plain">            {referenceFrame: ref_frame},</code></div>
 <div class="line"><code class="plain">            updateMotionData    </code></div>
 <div class="line"><code class="plain">        );</code></div>
-<div class="line"><code class="plain">    }</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (ref_frame = DeviceMotion.getAttitudeReferenceFrame()) {</code></div>
+<div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (ref_frame = DeviceMotion.getAttitudeReferenceFrame()) {</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Use the default frame if it exists</code></div>
 <div class="line"><code class="plain">        Ti.API.debug(</code><code class="string">&apos;REFERENCE FRAME: Default &apos;</code><code class="plain"> + ref_frame);</code></div>
 <div class="line"><code class="plain">        DeviceMotion.startDeviceMotionUpdatesUsingReferenceFrame(</code></div>
@@ -320,20 +313,17 @@
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">function</code><code class="plain"> analyzeResults(){</code></div>
+<div class="line"><code class="keyword">function</code><code class="plain"> analyzeResults() {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (accelX &gt; SHAKE_THRESHOLD || accelY &gt; SHAKE_THRESHOLD || accelZ &gt; SHAKE_THRESHOLD) {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">var</code><code class="plain"> err = SHAKE_THRESHOLD * 0.5;</code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (accelX &gt; SHAKE_THRESHOLD &amp;&amp; (accelY &lt; err &amp;&amp; accelZ &lt; err)){</code></div>
-<div class="line"><code class="plain">            alert(</code><code class="string">&quot;Quit shaking me back and forth!&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">        }</code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (accelY &gt; SHAKE_THRESHOLD &amp;&amp; (accelX &lt; err &amp;&amp; accelZ &lt; err)){</code></div>
-<div class="line"><code class="plain">            alert(</code><code class="string">&quot;Quit shaking me up and down!&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">        }</code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (accelZ &gt; SHAKE_THRESHOLD &amp;&amp; (accelX &lt; err &amp;&amp; accelY &lt; err)){</code></div>
-<div class="line"><code class="plain">            alert(</code><code class="string">&quot;Why are you shaking me like that?!&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">        }</code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">else</code><code class="plain"> {</code></div>
-<div class="line"><code class="plain">            alert(</code><code class="string">&quot;Quit shaking me!&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (accelX &gt; SHAKE_THRESHOLD &amp;&amp; (accelY &lt; err &amp;&amp; accelZ &lt; err)) {</code></div>
+<div class="line"><code class="plain">            alert(</code><code class="string">&apos;Quit shaking me back and forth!&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        } </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (accelY &gt; SHAKE_THRESHOLD &amp;&amp; (accelX &lt; err &amp;&amp; accelZ &lt; err)) {</code></div>
+<div class="line"><code class="plain">            alert(</code><code class="string">&apos;Quit shaking me up and down!&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        } </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (accelZ &gt; SHAKE_THRESHOLD &amp;&amp; (accelX &lt; err &amp;&amp; accelY &lt; err)) {</code></div>
+<div class="line"><code class="plain">            alert(</code><code class="string">&apos;Why are you shaking me like that?!&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        } </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">            alert(</code><code class="string">&apos;Quit shaking me!&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        }        </code></div>
 <div class="line"><code class="plain">        accelX = accelY = accelZ = 0;</code></div>
 <div class="line"><code class="plain">    }</code></div>
@@ -394,10 +384,10 @@
 <div class="line"><code class="keyword">var</code><code class="plain"> activities = Alloy.Collections.activities;</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> model = Backbone.Model.extend();</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> CoreMotion = require(</code><code class="string">&apos;ti.coremotion&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> UserActivity = CoreMotion.createUserActivity();</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> last_activity = </code><code class="string">&quot;unknown&quot;</code><code class="plain">;</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> MotionActivity = CoreMotion.createMotionActivity();</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> last_activity = </code><code class="string">&apos;unknown&apos;</code><code class="plain">;</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">UserActivity.startActivityUpdates(updateActivity);</code></div>
+<div class="line"><code class="plain">MotionActivity.startActivityUpdates(updateActivity);</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="keyword">function</code><code class="plain"> updateActivity(e) {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> data = e.activity;</code></div>
@@ -406,22 +396,18 @@
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (data.confidence != CoreMotion.MOTION_ACTIVITY_CONFIDENCE_LOW) {</code></div>
 <div class="line"><code class="plain">        dict.timestamp = data.startDate;</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (data.automotive) {</code></div>
-<div class="line"><code class="plain">            dict.activity = </code><code class="string">&quot;automotive&quot;</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">        }</code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (data.running) {</code></div>
-<div class="line"><code class="plain">            dict.activity = </code><code class="string">&quot;running&quot;</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">        }</code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (data.stationary) {</code></div>
-<div class="line"><code class="plain">            dict.activity = </code><code class="string">&quot;stationary&quot;</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">        }</code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (data.walking) {</code></div>
-<div class="line"><code class="plain">            dict.activity = </code><code class="string">&quot;walking&quot;</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">        }</code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">            dict.activity = </code><code class="string">&apos;automotive&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">        } </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (data.running) {</code></div>
+<div class="line"><code class="plain">            dict.activity = </code><code class="string">&apos;running&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">        } </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (data.stationary) {</code></div>
+<div class="line"><code class="plain">            dict.activity = </code><code class="string">&apos;stationary&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">        } </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (data.walking) {</code></div>
+<div class="line"><code class="plain">            dict.activity = </code><code class="string">&apos;walking&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">        } </code><code class="keyword">else</code><code class="plain"> {</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">        </code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (dict.activity == last_activity) {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (dict.activity === last_activity) {</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">        } </code><code class="keyword">else</code><code class="plain"> {</code></div>
 <div class="line"><code class="plain">            activities.add(</code><code class="keyword">new</code><code class="plain"> model(dict));</code></div>
@@ -463,24 +449,24 @@
 <div class="line"><code class="keyword">var</code><code class="plain"> CoreMotion = require(</code><code class="string">&apos;ti.coremotion&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> Pedometer = CoreMotion.createPedometer();</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">, layout: </code><code class="string">&apos;vertical&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({ backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">, layout: </code><code class="string">&apos;vertical&apos;</code><code class="plain"> });</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">var</code><code class="plain"> step_label = Ti.UI.createLabel({text: </code><code class="string">&quot;0&quot;</code><code class="plain">, top: 25});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> step_label = Ti.UI.createLabel({ text: 0, top: 25 });</code></div>
 <div class="line"><code class="plain">win.add(step_label);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">var</code><code class="plain"> step_history_label = Ti.UI.createLabel({text: </code><code class="string">&quot;Press the button for step history.&quot;</code><code class="plain">, top: 25});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> step_history_label = Ti.UI.createLabel({ text: </code><code class="string">&apos;Press the button for step history.&apos;</code><code class="plain">, top: 25 });</code></div>
 <div class="line"><code class="plain">win.add(step_history_label);</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="keyword">if</code><code class="plain"> (Pedometer.isStepCountingAvailable()) {</code></div>
 <div class="line"><code class="plain">    Pedometer.startPedometerUpdates({</code></div>
 <div class="line"><code class="plain">        start: </code><code class="keyword">new</code><code class="plain"> Date(</code><code class="keyword">new</code><code class="plain"> Date().getTime() - 60 * 60 * 1000)</code></div>
-<div class="line"><code class="plain">    }, </code><code class="keyword">function</code><code class="plain">(e){</code></div>
+<div class="line"><code class="plain">    }, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="plain">        step_label.text = e.numberOfSteps;</code></div>
 <div class="line"><code class="plain">    });</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">var</code><code class="plain"> button = Ti.UI.createButton({title: </code><code class="string">&quot;Last Minute&quot;</code><code class="plain">, top: 25});</code></div>
-<div class="line"><code class="plain">button.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e){</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> button = Ti.UI.createButton({ title: </code><code class="string">&apos;Last Minute&apos;</code><code class="plain">, top: 25 });</code></div>
+<div class="line"><code class="plain">button.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="plain">    Pedometer.queryPedometerData({</code></div>
 <div class="line"><code class="plain">        start: </code><code class="keyword">new</code><code class="plain"> Date(</code><code class="keyword">new</code><code class="plain"> Date().getTime() - 60*1000), </code></div>
 <div class="line"><code class="plain">        end: </code><code class="keyword">new</code><code class="plain"> Date()</code></div>
@@ -512,11 +498,11 @@
 <div class="line"><code class="plain">    Accelerometer.setAccelerometerUpdateInterval(1000);</code></div>
 <div class="line"><code class="plain">    Accelerometer.startAccelerometerUpdates(updateAccelData);</code></div>
 <div class="line"><code class="plain">} </code><code class="keyword">else</code><code class="plain"> {</code></div>
-<div class="line"><code class="plain">	alert(</code><code class="string">&quot;Device does not have an accelerometer.&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">	alert(</code><code class="string">&apos;Device does not have an accelerometer.&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line"><code class="plain">&#xA0;</code></div>
 <div class="line"><code class="comments">// GUI to display measurements</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">, layout: </code><code class="string">&apos;vertical&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({ backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">, layout: </code><code class="string">&apos;vertical&apos;</code><code class="plain"> });</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="keyword">var</code><code class="plain"> progress_bar_args = {</code></div>
 <div class="line"><code class="plain">    max: 1,</code></div>
@@ -573,7 +559,7 @@
 <div class="line"><code class="plain">}</code></div>
 <div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="comments">// GUI to display measurements</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">, layout: </code><code class="string">&apos;vertical&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({ backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">, layout: </code><code class="string">&apos;vertical&apos;</code><code class="plain"> });</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="keyword">var</code><code class="plain"> progress_bar_args = {</code></div>
 <div class="line"><code class="plain">    max: 1,</code></div>
@@ -598,11 +584,11 @@
 <div class="line"><code class="keyword">function</code><code class="plain"> updateGyroData (e) {</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">if</code><code class="plain"> (e.success) {</code></div>
 <div class="line"><code class="plain">	    data = e.rotationRate;</code></div>
-<div class="line"><code class="plain">	    gyroX.message = </code><code class="string">&quot;X: &quot;</code><code class="plain"> + data.x;</code></div>
+<div class="line"><code class="plain">	    gyroX.message = </code><code class="string">&apos;X: &apos;</code><code class="plain"> + data.x;</code></div>
 <div class="line"><code class="plain">	    gyroX.value = Math.abs(data.x);</code></div>
-<div class="line"><code class="plain">	    gyroY.message = </code><code class="string">&quot;Y: &quot;</code><code class="plain"> + data.y;</code></div>
+<div class="line"><code class="plain">	    gyroY.message = </code><code class="string">&apos;Y: &apos;</code><code class="plain"> + data.y;</code></div>
 <div class="line"><code class="plain">	    gyroY.value = Math.abs(data.y);</code></div>
-<div class="line"><code class="plain">	    gyroZ.message = </code><code class="string">&quot;Z: &quot;</code><code class="plain"> + data.z;</code></div>
+<div class="line"><code class="plain">	    gyroZ.message = &apos;Z: &quot; + data.z;</code></div>
 <div class="line"><code class="plain">	    gyroZ.value = Math.abs(data.z);</code></div>
 <div class="line"><code class="plain">	} </code><code class="keyword">else</code><code class="plain"> {</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> (e.error) {</code></div>
@@ -637,18 +623,18 @@
 <div class="line">&#xA0;</div>
 <div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">, layout: </code><code class="string">&apos;vertical&apos;</code><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">var</code><code class="plain"> xMag = Ti.UI.createLabel({text: </code><code class="string">&apos;X: 0&apos;</code><code class="plain">, top: 50});</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> yMag = Ti.UI.createLabel({text: </code><code class="string">&apos;Y: 0&apos;</code><code class="plain">, top: 50});</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> zMag = Ti.UI.createLabel({text: </code><code class="string">&apos;Z: 0&apos;</code><code class="plain">, top: 50});</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> totalMag = Ti.UI.createLabel({text: </code><code class="string">&apos;TOTAL: 0&apos;</code><code class="plain">, top: 50});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> xMag = Ti.UI.createLabel({ text: </code><code class="string">&apos;X: 0&apos;</code><code class="plain">, top: 50 });</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> yMag = Ti.UI.createLabel({ text: </code><code class="string">&apos;Y: 0&apos;</code><code class="plain">, top: 50 });</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> zMag = Ti.UI.createLabel({ text: </code><code class="string">&apos;Z: 0&apos;</code><code class="plain">, top: 50 });</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> totalMag = Ti.UI.createLabel({ text: </code><code class="string">&apos;TOTAL: 0&apos;</code><code class="plain">, top: 50 });</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">win.add(xMag);</code></div>
 <div class="line"><code class="plain">win.add(yMag);</code></div>
 <div class="line"><code class="plain">win.add(zMag);</code></div>
 <div class="line"><code class="plain">win.add(totalMag);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">var</code><code class="plain"> button = Ti.UI.createButton({title: </code><code class="string">&quot;Update Values&quot;</code><code class="plain">, top: 25});</code></div>
-<div class="line"><code class="plain">button.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e){</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> button = Ti.UI.createButton({ title: </code><code class="string">&quot;Update Values&quot;</code><code class="plain">, top: 25 });</code></div>
+<div class="line"><code class="plain">button.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="plain">    updateMagnetometerData(Magnetometer.getMagnetometerData());</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="plain">win.add(button);</code></div>
@@ -657,7 +643,7 @@
 <div class="line"><code class="plain">    xMag.text = </code><code class="string">&quot;X: &quot;</code><code class="plain"> + data.x;</code></div>
 <div class="line"><code class="plain">    yMag.text = </code><code class="string">&quot;Y: &quot;</code><code class="plain"> + data.y;</code></div>
 <div class="line"><code class="plain">    zMag.text = </code><code class="string">&quot;Z: &quot;</code><code class="plain"> + data.z;</code></div>
-<div class="line"><code class="plain">    totalMag.text = </code><code class="string">&quot;Total: &quot;</code><code class="plain"> + Math.sqrt(data.x*data.x + data.y*data.y + data.z*data.z);</code></div>
+<div class="line"><code class="plain">    totalMag.text = </code><code class="string">&quot;Total: &quot;</code><code class="plain"> + Math.sqrt(data.x * data.x + data.y * data.y + data.z * data.z);</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">win.open();</code></div>

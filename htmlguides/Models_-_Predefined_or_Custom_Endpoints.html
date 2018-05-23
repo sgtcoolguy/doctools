@@ -19,23 +19,23 @@
         <div id="src-49153283" class="content">
                         <h1>Models - Predefined or Custom Endpoints</h1>
     <p>By default, API Builder generates the following API endpoints for models:    </p>
-<ul class=" "><li class=" ">    <p><tt class=" ">GET /api/endpoints/&lt;model_name&gt;</tt> : Return all objects (the first 1000 records).    </p>
-</li><li class=" ">    <p><tt class=" ">GET /api/endpoints/&lt;model_name&gt;/query</tt> : Return all objects that satisfy a query.    </p>
-</li><li class=" ">    <p><tt class=" ">GET /api/endpoints/&lt;model_name&gt;/:id</tt> : Return a specific object by id    </p>
-</li><li class=" ">    <p><tt class=" ">GET /api/endpoints/&lt;model_name&gt;/distinct</tt> : Find distinct objects    </p>
-</li><li class=" ">    <p><tt class=" ">GET /api/endpoints/&lt;model_name&gt;/count</tt> : Count objects    </p>
-</li><li class=" ">    <p><tt class=" ">PUT /api/endpoints/&lt;model_name&gt;/:id</tt> : Update a specific user by id    </p>
-</li><li class=" ">    <p><tt class=" ">PUT /api/endpoints/&lt;model_name&gt;/findAndModify</tt> : Find and modify an object    </p>
-</li><li class=" ">    <p><tt class=" ">POST /api/endpoints/&lt;model_name&gt;</tt> : Create a new object    </p>
-</li><li class=" ">    <p><tt class=" ">POST /api/endpoints/&lt;model_name&gt;/upsert</tt> : Create or update an object    </p>
-</li><li class=" ">    <p><tt class=" ">DELETE /api/endpoints/&lt;model_name&gt;/:id</tt> : Delete a specific object by id    </p>
-</li><li class=" ">    <p><tt class=" ">DELETE /api/endpoints/&lt;model_name&gt;</tt> : Delete all objects    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">GET /api/&lt;model_name&gt;</tt> : Return all objects (the first 1000 records).    </p>
+</li><li class=" ">    <p><tt class=" ">GET /api/&lt;model_name&gt;/query</tt> : Return all objects that satisfy a query.    </p>
+</li><li class=" ">    <p><tt class=" ">GET /api/&lt;model_name&gt;/:id</tt> : Return a specific object by id    </p>
+</li><li class=" ">    <p><tt class=" ">GET /api/&lt;model_name&gt;/distinct</tt> : Find distinct objects    </p>
+</li><li class=" ">    <p><tt class=" ">GET /api/&lt;model_name&gt;/count</tt> : Count objects    </p>
+</li><li class=" ">    <p><tt class=" ">PUT /api/&lt;model_name&gt;/:id</tt> : Update a specific user by id    </p>
+</li><li class=" ">    <p><tt class=" ">PUT /api/&lt;model_name&gt;/findAndModify</tt> : Find and modify an object    </p>
+</li><li class=" ">    <p><tt class=" ">POST /api/&lt;model_name&gt;</tt> : Create a new object    </p>
+</li><li class=" ">    <p><tt class=" ">POST /api/&lt;model_name&gt;/upsert</tt> : Create or update an object    </p>
+</li><li class=" ">    <p><tt class=" ">DELETE /api/&lt;model_name&gt;/:id</tt> : Delete a specific object by id    </p>
+</li><li class=" ">    <p><tt class=" ">DELETE /api/&lt;model_name&gt;</tt> : Delete all objects    </p>
 </li></ul>    <p>To disable API Builder from generating these endpoints, set the Model&apos;s <tt class=" ">autogen</tt> property to <tt class=" ">false</tt> when defining the model. You will need to create <a class="document-link " href="API_Builder_APIs.html">API Builder APIs</a> to access the model.    </p>
     <p><strong class=" ">Example:</strong>    </p>
     <p>The following model is disabled from generating pre-defined endpoints. An API endpoint needs to be defined to access the model data as shown below.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                    <div class="title">modes/employee.js</div>
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="modes/employee.js">
+                    <div class="title">models/employee.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/employee.js">
 <div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">var employee = createModel(</code><code class="string">&apos;employee&apos;</code><code class="plain">, {</code></div>
