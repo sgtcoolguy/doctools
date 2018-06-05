@@ -21,7 +21,7 @@
     <p>The Manage Data tab in Appcelerator Dashboard provides a visual interface to the various <a class="external-link external-link" href="/arrowdb/latest/#!/api">Mobile Backend Services APIs</a> for creating, updating, deleting, and querying your application&apos;s Mobile Backend Services (MBS) objects &#x2013; Photos and Chats, for example &#x2013; on behalf of its users. You can also create and edit administrative MBS objects, like access control lists and email templates.    </p>
     <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Mobile_Backend_Services_data_objects-section-src-43298786_ManagingMobileBackendServicesdataobjects-EditingandDeletingobjects">Editing and Deleting objects</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Mobile_Backend_Services_data_objects-section-src-43298786_ManagingMobileBackendServicesdataobjects-FilteringMobileBackendServicesobjectdata">Filtering Mobile Backend Services object data</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Mobile_Backend_Services_data_objects-section-src-43298786_ManagingMobileBackendServicesdataobjects-FilteringFilteringMobileBackendServicesobjectdata">Filtering Mobile Backend Services object data</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Mobile_Backend_Services_data_objects-section-src-43298786_ManagingMobileBackendServicesdataobjects-Deletingapplicationdata">Deleting application data</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Mobile_Backend_Services_data_objects-section-src-43298786_ManagingMobileBackendServicesdataobjects-Exportingapplicationdata">Exporting application data</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Mobile_Backend_Services_data_objects-section-src-43298786_ManagingMobileBackendServicesdataobjects-CreatingMobileBackendServicesobjects">Creating Mobile Backend Services objects</a>    </p>
@@ -37,7 +37,7 @@
     <p>Click an MBS type to view a paginated table that lists all the objects of that type. The column headers displayed depend on the type of object being listed. Click the <strong class=" ">Load More</strong> and <strong class=" ">Previous</strong> buttons at the bottom of the table to paginate forward and back through the list.    </p>
     <p>    <img src="images/download/attachments/43298786/users_latest.png" alt="images/download/attachments/43298786/users_latest.png" class="confluence-embedded-image" width="800">
         </img></p>
-    <p>To filter the list of objects displayed in the table, click <strong class=" ">Filter</strong>. Select a field to filter on, a filter operand (for example, &quot;Equals&quot; or &quot;Starts With&quot;), and the value to filter on. The fields you can filter on vary according to the type of object. See <a class="document-link " href="#!/guide/Managing_Mobile_Backend_Services_data_objects-section-src-43298786_ManagingMobileBackendServicesdataobjects-FilteringArrowDBobjectdata">Filtering Mobile Backend Services object data</a> for more information.    </p>
+    <p>To filter the list of objects displayed in the table, click <strong class=" ">Filter</strong>. Select a field to filter on, a filter operand (for example, &quot;Equals&quot; or &quot;Starts With&quot;), and the value to filter on. The fields you can filter on vary according to the type of object. See <a class="document-link " href="#!/guide/Managing_Mobile_Backend_Services_data_objects-section-src-43298786_ManagingMobileBackendServicesdataobjects-Filtering">Filtering Mobile Backend Services object data</a> for more information.    </p>
     <p>To quickly switch to another object type, click the <strong class=" ">Type</strong> drop-down menu and select the desired MBS type.    </p>
     <p>    <img src="images/download/attachments/43298786/menu_latest.png" alt="images/download/attachments/43298786/menu_latest.png" class="confluence-embedded-image" width="800">
         </img></p>
@@ -46,12 +46,10 @@
         </img></p>
     <div class="section section-2 " id="src-43298786_ManagingMobileBackendServicesdataobjects-EditingandDeletingobjects">
         <h2 class="heading "><span>Editing and Deleting objects</span></h2>
-    <p>To edit an object, either click its name in the table row header or click the <strong class=" ">Edit</strong> button to open the object in an edit form. To delete an object, click its table row to expand it, then click the <strong class=" ">Delete</strong> button.    </p>
-    <p>    <img src="images/download/attachments/43298786/editing_deleting_latest.png" alt="images/download/attachments/43298786/editing_deleting_latest.png" class="confluence-embedded-image" width="700">
-        </img></p>
+    <p>To edit an object, click its name in the table row header to open the edit form. To delete an object, select its table and then click the <strong class=" ">Delete Selected</strong> button and confirm the deletion.    </p>
     </div>
-    <div class="section section-2 " id="src-43298786_ManagingMobileBackendServicesdataobjects-FilteringMobileBackendServicesobjectdata">
-        <h2 class="heading "><span>Filtering Mobile Backend Services object data</span></h2>
+    <div class="section section-2 " id="src-43298786_ManagingMobileBackendServicesdataobjects-FilteringFilteringMobileBackendServicesobjectdata">
+        <h2 class="heading "><span id="src-43298786_ManagingMobileBackendServicesdataobjects-Filtering" class="confluence-anchor-link"/><span>Filtering Mobile Backend Services object data</span></h2>
     <p>Some MBS object tables can be filtered according to one or more queries that you define. To filter a table, click the <strong class=" ">Filter</strong> button in the table header. Clicking this button displays the filter controls, which let you define filter rules.    </p>
 <ul class=" "><li class=" ">    <p>To add a new filter rule, click the add (<strong class=" ">+</strong>) button.    </p>
 </li><li class=" ">    <p>To apply new or modified filters, click <strong class=" ">Apply Filters</strong>.    </p>
@@ -162,8 +160,9 @@ Currently, only prefix matches are supported, that is, the regular expression mu
         <h2 class="heading "><span>Deleting application data</span></h2>
     <p>You can delete all the MBS objects created by your application.    </p>
     <p><strong class=" ">To delete all application data</strong>:    </p>
-<ol class=" "><li class=" ">    <p>Click <strong class=" ">Delete</strong> in the Manage Data Objects table.    </p>
-</li><li class=" ">    <p>Click <strong class=" ">Continue</strong> or <strong class=" ">Cancel</strong> to stop the operation.    </p>
+<ol class=" "><li class=" ">    <p>On the <strong class=" ">Manage Data</strong> tab, click the <strong class=" ">Action Menu</strong> icon in the upper-right of the screen and select <strong class=" ">Delete Data</strong>.    </p>
+</li><li class=" ">    <p>Verify by the deletion of the all the application data for the selected application by entering the name of the application data store.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">I understand that this is permanent and irreversible action. Continue</strong> to permanently delete the application data store data or select <strong class=" ">Cancel</strong> to stop the operation.    </p>
 </li></ol>    </div>
     <div class="section section-2 " id="src-43298786_ManagingMobileBackendServicesdataobjects-Exportingapplicationdata">
         <h2 class="heading "><span>Exporting application data</span></h2>
@@ -174,8 +173,7 @@ Currently, only prefix matches are supported, that is, the regular expression mu
 </li><li class=" ">    <p>A total of 9,800,000 (9.8 million) objects per applications can be exported.    </p>
 </li></ul>    <p>For a given export, if the total number of objects of a specific MBS type data is over 700,000, or if the total number of objects being exported is over 9,800,000, the export will stop.    </p>
     <p><strong class=" ">To export an application&apos;s data</strong>:    </p>
-<ol class=" "><li class=" ">    <p>On the <strong class=" ">Manage Data &gt; Cloud</strong> screen, select the application whose data you want to export.    </p>
-</li><li class=" ">    <p>Click <strong class=" ">Export</strong>.    </p>
+<ol class=" "><li class=" ">    <p>On the <strong class=" ">Manage Data</strong> tab, click the <strong class=" ">Action Menu</strong> icon in the upper-right of the screen and select <strong class=" ">Export Data</strong>.    </p>
 </li><li class=" ">    <p>In the <strong class=" ">Export App Data</strong> dialog box, select <strong class=" ">All</strong> to export all application data, or to export data created during a certain period of time, select <strong class=" ">Between</strong> and select a date range.    </p>
     <img src="images/download/attachments/43298786/export_latest.png" alt="images/download/attachments/43298786/export_latest.png" class="confluence-embedded-image" width="400">
     </img></li><li class=" ">    <p>Click <strong class=" ">Export App Data. </strong>When the export package is ready to download, an email will be sent to your Dashboard user&apos;s registered email address.    </p>
