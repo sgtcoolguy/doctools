@@ -27,7 +27,7 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Viewlogfiles">View log files</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Loggingutilities">Logging utilities</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Aboutloggedexecutiontimes">About logged execution times</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Nodeversion">Node version</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Node.jsversion">Node.js version</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Portbinding">Port binding</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Installcustombinaries">Install custom binaries</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Declaredependencies">Declare dependencies</a>    </p>
@@ -170,7 +170,7 @@
         <p><tt class=" ">nodes</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains custom nodes for use in Flows. Nodes must be node.js packages in their own folders named <tt class=" ">nodehandler-*</tt>.    </p>
+        <p>Contains custom flow-nodes for use in Flows. Flow-nodes must be Node.js packages in their own folders named <tt class=" ">nodehandler-*</tt>.    </p>
             </td>
         </tr>
     <tr>
@@ -299,7 +299,7 @@
 </li></ul>    </div>
     <div class="section section-3 " id="src-49153285_APIBuilderProject-Aboutloggedexecutiontimes">
         <h3 class="heading "><span>About logged execution times</span></h3>
-    <p>The execution time reported by the <tt class=" ">loglist</tt> and <tt class=" ">accesslog</tt> commands report slightly different values. The <tt class=" ">accesslog</tt> command reports the time required by Appcelerator Cloud to handle the initial user request, pass it to your Node application for processing, and deliver the response. In contrast, <tt class=" ">loglist</tt> only reports the execution time for your application itself, not including the time required to process the request and response. Consequently, the <tt class=" ">accesslog</tt> execution times are a slightly longer than those of the corresponding <tt class=" ">loglist</tt> log item. For instance, below is <tt class=" ">accesslog</tt> output:    </p>
+    <p>The execution time reported by the <tt class=" ">loglist</tt> and <tt class=" ">accesslog</tt> commands report slightly different values. The <tt class=" ">accesslog</tt> command reports the time required by Appcelerator Cloud to handle the initial user request, pass it to your Node,js application for processing, and deliver the response. In contrast, <tt class=" ">loglist</tt> only reports the execution time for your application itself, not including the time required to process the request and response. Consequently, the <tt class=" ">accesslog</tt> execution times are a slightly longer than those of the corresponding <tt class=" ">loglist</tt> log item. For instance, below is <tt class=" ">accesslog</tt> output:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">[</code><code class="value">12</code><code class="plain">/</code><code class="value">11</code><code class="plain">/</code><code class="value">2013</code><code class="plain"> </code><code class="value">08</code><code class="plain">:</code><code class="value">43</code><code class="plain">:</code><code class="value">55.790</code><code class="plain">]   </code><code class="value">127.0</code><code class="plain">.</code><code class="value">0.1</code><code class="plain">   /   10074ms</code></div>
@@ -320,11 +320,11 @@
     </div>
     </div>
     </div>
-    <div class="section section-2 " id="src-49153285_APIBuilderProject-Nodeversion">
-        <h2 class="heading "><span>Node version</span></h2>
-    <p>Prior to API Runtime Services (formerly known as Arrow Cloud) 1.2.0, the only Node versions you could use were 0.8.26 and 0.10.22.    </p>
-    <p>Starting with API Runtime Services 1.2.0, you may specify any version of Node. Node 0.8.26, 0.10.22 and 0.12.4 are built in, but other versions will be downloaded from <a class="external-link external-link" href="https://nodejs.org/" target="_blank">https://nodejs.org/</a> when the application is built prior to running <tt class=" ">npm install</tt>.    </p>
-    <p>To specify a Node version, in the <tt class=" ">package.json</tt> file, set the <tt class=" ">engines.node</tt> key to the version of Node you want to use. DO NOT SPECIFY A RANGE. If you do not specify a Node version, the application will use 4.4.7 by default (as of SDK 6.0.0).    </p>
+    <div class="section section-2 " id="src-49153285_APIBuilderProject-Node.jsversion">
+        <h2 class="heading "><span>Node.js version</span></h2>
+    <p>Prior to API Runtime Services (formerly known as Arrow Cloud) 1.2.0, the only Node.js versions you could use were 0.8.26 and 0.10.22.    </p>
+    <p>Starting with API Runtime Services 1.2.0, you may specify any version of Node.js. Node.js 0.8.26, 0.10.22 and 0.12.4 are built in, but other versions will be downloaded from <a class="external-link external-link" href="https://nodejs.org/" target="_blank">https://nodejs.org/</a> when the application is built prior to running <tt class=" ">npm install</tt>.    </p>
+    <p>To specify a Node.js version, in the <tt class=" ">package.json</tt> file, set the <tt class=" ">engines.node</tt> key to the version of Node.js you want to use. DO NOT SPECIFY A RANGE. If you do not specify a Node.js version, the application will use 4.4.7 by default (as of SDK 6.0.0).    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">package.json</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="package.json">
@@ -602,7 +602,7 @@ The following example allows the application to be accessed from     </span>
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Createchildprocesses">
         <h2 class="heading "><span>Create child processes</span></h2>
-    <p>A single instance of Node runs in a single thread. To take advantage of multi-core systems, you can launch a cluster of Node processes to handle the load. Applications can use the core Node <a class="external-link external-link" href="http://nodejs.org/api/cluster.html" target="_blank">Cluster</a> module to easily create child processes that all share server ports.    </p>
+    <p>A single instance of Node.js runs in a single thread. To take advantage of multi-core systems, you can launch a cluster of Node.js processes to handle the load. Applications can use the core Node <a class="external-link external-link" href="http://nodejs.org/api/cluster.html" target="_blank">Cluster</a> module to easily create child processes that all share server ports.    </p>
     <p>To use this feature you application uses <a class="external-link external-link" href="http://nodejs.org/api/cluster.html#cluster_cluster_setupmaster_settings" target="_blank">cluster.setupMaster()</a> to set a path to a custom file to use for each child process. A cluster should listen on port 9000 or greater to avoid port conflicts. If the port your application is trying to listen on is in use, a <tt class=" ">EADDRINUSE</tt> error will result. Your application must also have privileges to listen on the specified port, otherwise, an <tt class=" ">EACCES</tt> error will result.    </p>
     <p><strong class=" ">Example</strong>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
