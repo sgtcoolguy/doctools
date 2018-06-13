@@ -82,6 +82,7 @@ bash ../doctools/copy_platform.sh 2>> messages.txt
 bash ../doctools/copy_cloud.sh 2>> messages.txt
 cd $DOCTOOLS
 sh css_fix.sh ## See TIDOC-2739
+sh js_fix.sh ## See TIDOC-3141
 
 ## open localhost and manually review the pages
 # open http://localhost
