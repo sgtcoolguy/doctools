@@ -522,13 +522,12 @@
 <div class="line"><code class="plain">});</code></div>
 </div>
     </div>
-    <p>In the required view&apos;s controller, the custom properties can be referenced using the <tt class=" ">arguments[0]</tt> variable, for example:    </p>
+    <p>In the required view&apos;s controller, the custom properties can be referenced using the <tt class=" ">$.args</tt> variable, for example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">apps/controllers/foo.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="apps/controllers/foo.js">
-<div class="line"><code class="keyword">var</code><code class="plain"> args = arguments[0] || {}</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> title = args.customTitle || </code><code class="string">&apos;Foobar&apos;</code><code class="plain">;</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> image = args.customImage || </code><code class="string">&apos;default.png&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> title = $.args.customTitle || </code><code class="string">&apos;Foobar&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> image = $.args.customImage || </code><code class="string">&apos;default.png&apos;</code><code class="plain">;</code></div>
 </div>
     </div>
     <p>See  <a class="document-link " href="#!/guide/Alloy_Controllers-section-src-34636384_AlloyControllers-PassingArguments">Alloy Controllers: Passing Arguments</a>  for more details.    </p>
@@ -563,8 +562,8 @@
     </div>
     <div class="section section-3 " id="src-46248608_AlloyXMLMarkup-Addingchildrenviews">
         <h3 class="heading "><span>Adding children views</span></h3>
-    <p>If your Require element is a parent view, you can add children elements to it. These children elements are passed to the parent controller as an array called <tt class=" ">arguments[0].children</tt>. Use this array to access the children views to add them to the parent.    </p>
-    <p>In the example below, you have the index view which is using the <tt class=" ">Require</tt> element to include another view called <tt class=" ">info</tt>. The required view is a yellow box with a brown border. Its controller adds the label view element passed in as the first element of the  <tt class=" ">arguments[0].children</tt> array.    </p>
+    <p>If your Require element is a parent view, you can add children elements to it. These children elements are passed to the parent controller as an array called <tt class=" ">$.args.children</tt>. Use this array to access the children views to add them to the parent.    </p>
+    <p>In the example below, you have the index view which is using the <tt class=" ">Require</tt> element to include another view called <tt class=" ">info</tt>. The required view is a yellow box with a brown border. Its controller adds the label view element passed in as the first element of the <tt class=" ">$.args.children</tt> array.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/info.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/info.xml">
@@ -576,10 +575,8 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">controllers/info.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="controllers/info.js">
-<div class="line"><code class="keyword">var</code><code class="plain"> args = arguments[0] || {};</code></div>
-<div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// add children if there are any</code></div>
-<div class="line"><code class="plain">_.each(args.children || [], </code><code class="keyword">function</code><code class="plain">(child) {</code></div>
+<div class="line"><code class="plain">_.each($.args.children || [], </code><code class="keyword">function</code><code class="plain">(child) {</code></div>
 <div class="line"><code class="plain">    $.info.add(child);</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>

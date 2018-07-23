@@ -38,7 +38,7 @@
         <h2 class="heading "><span>Overview of Sending Push Notifications</span></h2>
     <p>    <span id="src-43298780_SendingandSchedulingPushNotifications-overview"><a class="confluence-anchor-link" name="src-43298780_SendingandSchedulingPushNotifications-overview"></a></span>
     </p>
-    <p>The Dashboard lets you send push notifications to your Android and iOS application users. Mobile Backend Services acts as the <i class=" ">push provider</i> on behalf of your application; that is, it communicates with the Google Cloud Messaging (GCM) or the Firebase Cloud Messaging (FCM) services for Android or the Apple Push Notification Service (APNS). <a class="external-link external-link" href="http://firebase.google.com/docs/cloud-messaging/">Firebase Cloud Messaging</a> (FCM) is the new version of GCM.    </p>
+    <p>The Dashboard lets you send push notifications to your Android and iOS application users. Mobile Backend Services act as the <i class=" ">push provider</i> on behalf of your application; that is, it communicates with the Google Cloud Messaging (GCM) or the Firebase Cloud Messaging (FCM) services for Android or the Apple Push Notification Service (APNS). <a class="external-link external-link" href="http://firebase.google.com/docs/cloud-messaging/">Firebase Cloud Messaging</a> (FCM) is the new version of GCM.    </p>
     <p>Before you can send a push notification from Dashboard, the following must be done first:    </p>
 <ul class=" "><li class=" ">    <p>In Dashboard, <a class="document-link " href="Configuring_push_services.html">configure Mobile Backend Services</a> to communicate with either FCM or GCM for Android service or APNS.    </p>
 </li><li class=" ">    <p>Your application needs to do the following:    </p>
@@ -55,11 +55,15 @@
 </li></ul>    <p>To send a notification to users located in a geographic area, the application must have first provided their current location to API Builder. For details, see <a class="document-link " href="Subscribing_to_push_notifications.html">Updating Subscriptions with Device Location</a>.    </p>
     <p>Appcelerator Dashboard provides two views for sending notifications, <strong class=" ">Standard</strong> and <strong class=" ">Advanced.</strong> The Standard view provides an easy way to send notifications without having to understand the payload structure. In the Advanced view, you manually create the JSON payload. The advanced form provides additional flexibility, such as including custom payload fields.    </p>
     <p>If you prefer can use the <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/PushNotifications-method-notify">PushNotification.notify</a> or <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/PushNotifications-method-notify_token">PushNotification.notify_tokens</a> REST APIs to send push notifications.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>A warning will be displayed if you attempt to perform a push with an expired or disabled iOS certificate.    </p>
+    </div>
+        <p>    </p>
     <p><strong class=" ">To send a push notification from Dashboard:</strong>    </p>
 <ol class=" "><li class=" ">    <p>In Dashboard, select your application from the Apps menu.    </p>
-</li><li class=" ">    <p>From the left-side navigation, select <strong class=" ">Cloud &gt; Push Notifications</strong>.    </p>
-</li><li class=" ">    <p>Click <strong class=" ">Send Push Notification</strong> to open the Send Push Notification form<strong class=" ">. </strong>    </p>
-</li><li class=" ">    <p>Select either the <strong class=" ">Standard</strong> or <strong class=" ">Advanced</strong> tab.    </p>
+</li><li class=" ">    <p>From the left-side navigation, select <strong class=" ">Push Notifications</strong>.    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Send</strong> to open the Send Push Notification form<strong class=" ">. </strong>    </p>
+</li><li class=" ">    <p>Select either the <strong class=" ">Standard</strong> or <strong class=" ">Advanced</strong>.    </p>
 </li><li class=" ">    <p>Select <strong class=" ">Recipients</strong> and (optionally) the notification <strong class=" ">Channel Name</strong>:    </p>
 <ol class=" "><li class=" ">    <p>To send a notification to all users regardless of their channel subscriptions, select <strong class=" ">All Users</strong><strong class=" "> </strong>and leave the <strong class=" ">Channel Name</strong> field blank.    </p>
 </li><li class=" ">    <p>To send a notification to all users subscribed to a particular channel, select <strong class=" ">All Users</strong> and enter the channel name in the <strong class=" ">Channel Name</strong> field.    </p>
@@ -214,11 +218,7 @@ This is used to support Newsstand apps and background content downloads.    </sp
         <h3 class="heading "><span>Notification Features</span></h3>
     <div class="section section-4 " id="src-43298780_safe-id-U2VuZGluZ2FuZFNjaGVkdWxpbmdQdXNoTm90aWZpY2F0aW9ucy1SaWNoTm90aWZpY2F0aW9ucyhpT1MxMGFuZGxhdGVyKQ">
         <h4 class="heading "><span>Rich Notifications (iOS 10 and later)</span></h4>
-    <p>    </p>
-    <div class="confbox admonition admonition-warning aui-message problem shadowed information-macro">
-            <p>The linked documentation may not be available before the 7.2.0.GA release. You can follow <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-23527">TIMOB-23527</a> for details on its state!    </p>
-    </div>
-        <p>Since Titanium SDK 7.2.0,     <span style="color: #484848;">
+    <p>Since Titanium SDK 7.3.0,     <span style="color: #484848;">
 you can create rich notifications for users running iOS 10 or later. Rich notifications can include additional meta-data like a subtitle, location-based triggers, and attachments. While most of the new properties can be configured in existing <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.App.iOS.UserNotificationAction">UserNotificationAction</a> instances, there is one special case to remember when working with rich notifications: If you want to display an attachment, you have to distinguish between local and remote images:    </span>
     </p>
 <ul class=" "><li class=" ">    <p>    <span style="color: #484848;">

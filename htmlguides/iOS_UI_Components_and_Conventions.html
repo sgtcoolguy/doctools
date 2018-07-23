@@ -111,22 +111,22 @@
         </p>
     <p>    <img src="images/download/attachments/29004928/tab_badge.png" alt="images/download/attachments/29004928/tab_badge.png" class="confluence-embedded-image confluence-content-image-border">
         </p>
-    <p>Tab and app badges are indicators of updates, new messages, and so forth. You can apply these badges, with a numeric value, to your app and to tabs within your app. Doing so is quite simple. For tabs, simply set the <tt class=" ">yourTab.badge</tt> property equal to some number to show the tab badge icon. For your app, set the <tt class=" ">Ti.UI.iPhone.appBadge</tt> property equal to a number to show the app badge icon. You might do so when your app initializes or shuts down. You could also use a <a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.App.iOS.BackgroundService-object.html">background service</a> to set your app&apos;s badge as needed.    </p>
+    <p>Tab and app badges are indicators of updates, new messages, and so forth. You can apply these badges, with a numeric value, to your app and to tabs within your app. Doing so is quite simple. For tabs, simply set the <tt class=" ">yourTab.badge</tt> property equal to some number to show the tab badge icon. For your app, set the <tt class=" ">Ti.UI.iOS.appBadge</tt> property equal to a number to show the app badge icon. You might do so when your app initializes or shuts down. You could also use a <a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.App.iOS.BackgroundService-object.html">background service</a> to set your app&apos;s badge as needed.    </p>
     <p>To remove either a tab or app badge, set the corresponding property to <tt class=" ">null</tt>. Setting it to 0 would still display the badge, but with the number zero displayed.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// Sets the app&apos;s icon badge to 23</code></div>
-<div class="line"><code class="plain">Ti.UI.iPhone.appBadge = </code><code class="value">23</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">Ti.UI.iOS.appBadge = </code><code class="value">23</code><code class="plain">;</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">var tabGroup = Titanium.UI.createTabGroup();</code></div>
-<div class="line"><code class="plain">var win1 = Titanium.UI.createWindow({</code></div>
+<div class="line"><code class="plain">var tabGroup = Ti.UI.createTabGroup();</code></div>
+<div class="line"><code class="plain">var win1 = Ti.UI.createWindow({</code></div>
 <div class="line"><code class="plain">    title: </code><code class="string">&apos;Window 1&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    backgroundColor: </code><code class="string">&apos;#fff&apos;</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// Set the badge for this tab to 10</code></div>
-<div class="line"><code class="plain">var tab1 = Titanium.UI.createTab({</code></div>
-<div class="line"><code class="plain">    icon: </code><code class="string">&apos;KS_nav_views.png&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">var tab1 = Ti.UI.createTab({</code></div>
+<div class="line"><code class="plain">    icon: </code><code class="string">&apos;myIcon.png&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    title: </code><code class="string">&apos;Tab 1&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    window: win1,</code></div>
 <div class="line"><code class="plain">    badge: </code><code class="value">10</code></div>

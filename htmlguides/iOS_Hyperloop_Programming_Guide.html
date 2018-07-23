@@ -89,7 +89,8 @@ style pattern from Objective-C:     </span>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">@interface UIView : UIControl</code></div>
 <div class="line"><code class="plain">@property UIColor * backgroundColor;</code></div>
-<div class="line"><code class="plain">- (</code><code class="keyword">void</code><code class="plain">)addSubview:(id)view;</code></div>
+<div class="line"><code class="plain">- (</code><code class="keyword">void</code><code class="plain">)addSubview:(UIView *)view;</code></div>
+<div class="line"><code class="plain">- (</code><code class="keyword">void</code><code class="plain">)setColor:(UIColor *) forMyState:(MyState)state;</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">@end</code></div>
 </div>
@@ -99,9 +100,38 @@ style pattern from Objective-C:     </span>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">view.backgroundColor = UIColor.redColor;</code></div>
 <div class="line"><code class="plain">view.addSubview(label);</code></div>
+<div class="line"><code class="plain">view.setColorForMyState(UIColor.redColor, MyState.TestState);</code></div>
 </div>
     </div>
-    <p>You can also use auto-generated property-setters like <tt class=" ">view.setBackgroundColor()</tt>.    </p>
+    <p>You can also use auto-generated property-setters like <tt class=" ">view.setBackgroundColor()</tt>. Note that methods with multiple arguments are simply concatenated by their signature. More examples of that behavior:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments">/** -- Simple methods with two arguments -- **/</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="comments">// Native (Obj-C)</code></div>
+<div class="line"><code class="plain">[myView insertSubview:anotherView atIndex: 0];</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="comments">// Hyperloop (JavaScript)</code></div>
+<div class="line"><code class="plain">myView.insertSubViewAtIndex(anotherView, index);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">/** -- Complex methods with blocks -- **/</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Native (Obj-C)</code></div>
+<div class="line"><code class="plain">[UIView.animateWithDuration:1000.0 animations:^{</code></div>
+<div class="line"><code class="plain">  </code><code class="comments">// Do animation</code></div>
+<div class="line"><code class="plain">} completion:(BOOL finished)^{</code></div>
+<div class="line"><code class="plain">  </code><code class="comments">// Finished animation</code></div>
+<div class="line"><code class="plain">}];</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Hyperloop</code></div>
+<div class="line"><code class="plain">UIView.animateWithDurationAnimationsCompletion(1000.0, </code><code class="keyword">function</code><code class="plain"> animations () {</code></div>
+<div class="line"><code class="plain">  </code><code class="comments">// Do animation</code></div>
+<div class="line"><code class="plain">}, </code><code class="keyword">function</code><code class="plain"> completion (finished) {</code></div>
+<div class="line"><code class="plain">  </code><code class="comments">// Finished animation</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    <p>Note that for the <tt class=" ">animateWithDuration</tt> method in Hyperloop, you do not need to name the callbacks, but it improves the readability and is a well used JavaScript pattern.    </p>
     </div>
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Namedmethods">
         <h2 class="heading "><span>Named methods</span></h2>

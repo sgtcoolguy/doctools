@@ -78,10 +78,8 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">controllers/requires/simple.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="controllers/requires/simple.js">
-<div class="line"><code class="keyword">var</code><code class="plain"> args = arguments[0];</code></div>
-<div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// add children to simple container, if there are any</code></div>
-<div class="line"><code class="plain">_.each(args.children || [], </code><code class="keyword">function</code><code class="plain">(child) {</code></div>
+<div class="line"><code class="plain">_.each($.args.children || [], </code><code class="keyword">function</code><code class="plain">(child) {</code></div>
 <div class="line"><code class="plain">    Ti.API.info(</code><code class="string">&apos;adding child &apos;</code><code class="plain"> + child.toString());</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// I can inject properties if I want</code></div>
 <div class="line"><code class="plain">    child.top = </code><code class="string">&apos;10dp&apos;</code><code class="plain">;</code></div>
@@ -106,8 +104,7 @@
     <p>The child views are are added programmatically to the main (empty) View. In this case, additional logic checks to see if a child view was passed as an argument before adding it to the parent view.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="keyword">var</code><code class="plain"> args = arguments[0] || {},</code></div>
-<div class="line"><code class="plain">    children = args.children || [];</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> children = $.args.children || [];</code></div>
 <div class="line"><code class="keyword">function</code><code class="plain"> addViewIfExists(id, parent) {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> view;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// find the UI component by id</code></div>

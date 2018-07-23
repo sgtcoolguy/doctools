@@ -34,7 +34,7 @@
     <div class="section section-4 " id="src-29004919_CommunicationBetweenWebViewsandTitanium-Logging">
         <h4 class="heading "><span>Logging</span></h4>
     <p>You can use the <tt class=" ">Ti.API</tt> logging methods within HTML content loaded from the device. Just as a quick refresher, let&apos;s take a look at the logging functions available:    </p>
-<ul class=" "><li class=" ">    <p><tt class=" ">debug(message)} - Creates a Titanium log out of the {{message</tt> parameter and assigns it the log level of <tt class=" ">debug</tt>    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">debug(message) - </tt>Creates a Titanium log out of the<tt class=" "> message</tt> parameter and assigns it the log level of <tt class=" ">debug</tt>    </p>
 </li><li class=" ">    <p><tt class=" ">error(message)</tt> - Creates a Titanium log out of the <tt class=" ">message</tt> parameter and assigns it the log level of <tt class=" ">error</tt>    </p>
 </li><li class=" ">    <p><tt class=" ">info(message)</tt> - Creates a Titanium log out of the <tt class=" ">message</tt> parameter and assigns it the log level of <tt class=" ">info</tt>    </p>
 </li><li class=" ">    <p><tt class=" ">log(type, message)</tt> - Creates a Titanium log out of the <tt class=" ">message</tt> parameter and assigns it the log level of the given parameter <tt class=" ">type</tt>    </p>
@@ -44,8 +44,7 @@
                     <div class="title">logging.html</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="logging.html">
 <div class="line"><code class="plain">&lt;html&gt;</code></div>
-<div class="line"><code class="plain">    &lt;body onload=</code><code class="string">&quot;Ti.API.info(&apos;body loaded!&apos;);&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/body&gt;</code></div>
+<div class="line"><code class="plain">    &lt;body onload=</code><code class="string">&quot;Ti.API.info(&apos;body loaded!&apos;);&quot;</code><code class="plain">&gt;&lt;/body&gt;</code></div>
 <div class="line"><code class="plain">&lt;/html&gt;</code></div>
 </div>
     </div>
@@ -54,7 +53,7 @@
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app.js">
 <div class="line"><code class="plain">var win = Ti.UI.createWindow();</code></div>
 <div class="line"><code class="plain">var webview = Ti.UI.createWebView({</code></div>
-<div class="line"><code class="plain">	url: </code><code class="string">&apos;logging.html&apos;</code></div>
+<div class="line"><code class="plain">    url: </code><code class="string">&apos;logging.html&apos;</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="plain">win.add(webview);</code></div>
 <div class="line"><code class="plain">win.open();</code></div>
@@ -67,50 +66,57 @@
     <p>The <tt class=" ">Ti.API</tt> module gives your <tt class=" ">WebView</tt> the ability to send messages to the Titanium logging console, but application level events via the <tt class=" ">Ti.App</tt> module provide a much higher level of integration. Application level events are events that are not fired or handled by Titanium components, but by the app itself. If you are not already familiar with them, check out the <a class="document-link " href="Event_Handling.html">Event Handling</a> chapter of this book.    </p>
     <p>So how do application level events help us communicate with <tt class=" ">WebViews</tt>? Well they are available to all execution contexts of our Titanium apps, and this includes a <tt class=" ">WebView</tt>&apos;s Javascript execution context. By using calls to <tt class=" ">Ti.App.fireEvent()</tt> and <tt class=" ">Ti.App.addEventListener()</tt>, we can establish bidirectional communication between our native Titanium code and our <tt class=" ">WebView&apos;s</tt> Javascript code.    </p>
     <p>Let&apos;s take a look at an example of how we can use application level events to communicate bidirectionally with a <tt class=" ">WebView</tt>. We will create an app with a native UI button and a button rendered in a <tt class=" ">WebView</tt>. The <tt class=" ">WebView</tt> will listen for events fired from the native button, and the native Titanium code will listen for events fired from the <tt class=" ">WebView</tt> button. Whenever one of these events is received, the appropriate execution context will popup an alert notifying us that the event was received.    </p>
-    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>You&apos;ll notice the prefix of <tt class=" ">app:</tt> added to all application level events. This is a convention used to help identify these global events in Titanium apps.    </p>
-    </div>
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;!DOCTYPE html&gt;</code></div>
 <div class="line"><code class="plain">&lt;html&gt;</code></div>
-<div class="line"><code class="plain">	&lt;head&gt;</code></div>
-<div class="line"><code class="plain">		&lt;script&gt;</code></div>
-<div class="line"><code class="plain">			Ti.App.addEventListener(</code><code class="string">&quot;app:fromTitanium&quot;</code><code class="plain">, function(e) {</code></div>
-<div class="line"><code class="plain">	        	alert(e.message);</code></div>
-<div class="line"><code class="plain">	      	});</code></div>
-<div class="line"><code class="plain">		&lt;/script&gt;</code></div>
-<div class="line"><code class="plain">	&lt;/head&gt;</code></div>
-<div class="line"><code class="plain">	&lt;body&gt;</code></div>
-<div class="line"><code class="plain">		&lt;button onclick=</code><code class="string">&quot;Ti.App.fireEvent(&apos;app:fromWebView&apos;, { message: &apos;event fired from WebView, handled in Titanium&apos; });&quot;</code><code class="plain">&gt;fromWebView&lt;/button&gt;</code></div>
-<div class="line"><code class="plain">	&lt;/body&gt;</code></div>
+<div class="line"><code class="plain">  &lt;head&gt;</code></div>
+<div class="line"><code class="plain">    &lt;meta name=</code><code class="string">&quot;viewport&quot;</code><code class="plain"> content=</code><code class="string">&quot;width=device-width, user-scalable=no&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;script&gt;</code></div>
+<div class="line"><code class="plain">      </code><code class="comments">// Send event from the web-view to the app</code></div>
+<div class="line"><code class="plain">      function sendEventToApp() {</code></div>
+<div class="line"><code class="plain">	    Ti.App.fireEvent(</code><code class="string">&apos;app:fromWebView&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">		  message: </code><code class="string">&apos;Event fired from WebView, handled in Titanium&apos;</code></div>
+<div class="line"><code class="plain">		});</code></div>
+<div class="line"><code class="plain">      }</code></div>
+<div class="line"><code class="plain">	</code></div>
+<div class="line"><code class="plain">	  </code><code class="comments">// Subscribe to global event</code></div>
+<div class="line"><code class="plain">      Ti.App.addEventListener(</code><code class="string">&quot;app:fromTitanium&quot;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">        alert(e.message);</code></div>
+<div class="line"><code class="plain">      });</code></div>
+<div class="line"><code class="plain">    &lt;/script&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/head&gt;</code></div>
+<div class="line"><code class="plain">  &lt;body&gt;</code></div>
+<div class="line"><code class="plain">    &lt;button onclick=</code><code class="string">&quot;sendEventToApp()&quot;</code><code class="plain">&gt;From WebView -&gt; Titanium&lt;/button&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/body&gt;</code></div>
 <div class="line"><code class="plain">&lt;/html&gt;</code></div>
 </div>
     </div>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var win = Ti.UI.createWindow();</code></div>
-<div class="line"><code class="plain">var webview = Ti.UI.createWebView({</code></div>
-<div class="line"><code class="plain">	url: </code><code class="string">&apos;logging.html&apos;</code></div>
+<div class="line"><code class="plain">var webView = Ti.UI.createWebView({</code></div>
+<div class="line"><code class="plain">    url: </code><code class="string">&apos;logging.html&apos;</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="plain">var button = Ti.UI.createButton({</code></div>
-<div class="line"><code class="plain">	title: </code><code class="string">&apos;fromTitanium&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	height: </code><code class="string">&apos;50dp&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	width: </code><code class="string">&apos;130dp&apos;</code></div>
+<div class="line"><code class="plain">    title: </code><code class="string">&apos;From Titanium -&gt; WebView&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="plain">button.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, function(e) {</code></div>
-<div class="line"><code class="plain">	Ti.App.fireEvent(</code><code class="string">&apos;app:fromTitanium&apos;</code><code class="plain">, { message: </code><code class="string">&apos;event fired from Titanium, handled in WebView&apos;</code><code class="plain"> });</code></div>
+<div class="line"><code class="plain">    Ti.App.fireEvent(</code><code class="string">&apos;app:fromTitanium&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">        message: </code><code class="string">&apos;Event fired from Titanium, handled in WebView&apos;</code></div>
+<div class="line"><code class="plain">    });</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="plain">Ti.App.addEventListener(</code><code class="string">&apos;app:fromWebView&apos;</code><code class="plain">, function(e) {</code></div>
-<div class="line"><code class="plain">	alert(e.message);</code></div>
+<div class="line"><code class="plain">    alert(e.message);</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">win.add(webview);</code></div>
+<div class="line"><code class="plain">win.add(webView);</code></div>
 <div class="line"><code class="plain">win.add(button);</code></div>
 <div class="line"><code class="plain">win.open();</code></div>
 </div>
     </div>
     <p>With the above app, we would see the following application flow when testing its functionality:    </p>
-    <p>    <img src="images/download/attachments/29004919/tiapp_arrows.png" alt="images/download/attachments/29004919/tiapp_arrows.png" class="confluence-embedded-image confluence-content-image-border">
+    <p>    <img src="images/download/attachments/29004919/WEBVIEW.jpg" alt="images/download/attachments/29004919/WEBVIEW.jpg" class="confluence-embedded-image" width="500">
         </p>
     <p>As demonstrated above, we can both fire and listen for application level events in content of the <tt class=" ">WebView</tt>. This gives Titanium the ability to react to interactions that occur in the web content. For example, you can set up application level events in your <tt class=" ">WebView</tt> such that your Titanium code can respond to button clicks, page loads, mouse overs, or any other event the <tt class=" ">WebView</tt> can handle.    </p>
     </div>
@@ -125,16 +131,15 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app.js">
-<div class="line"><code class="plain">var webview = Ti.UI.createWebView({</code></div>
-<div class="line"><code class="plain">    url: </code><code class="string">&apos;http://www.google.com&apos;</code></div>
+<div class="line"><code class="plain">var webView = Ti.UI.createWebView({</code></div>
+<div class="line"><code class="plain">    url: </code><code class="string">&apos;https://google.com&apos;</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain">win.add(webview);</code></div>
 <div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">webview.addEventListener(</code><code class="string">&apos;load&apos;</code><code class="plain">,function(e) {</code></div>
-<div class="line"><code class="plain">    var cookies = webview.evalJS(</code><code class="string">&quot;document.cookie&quot;</code><code class="plain">).split(</code><code class="string">&quot;;&quot;</code><code class="plain">); </code></div>
-<div class="line"><code class="plain">    Ti.API.info( </code><code class="string">&quot;# of cookies -&gt; &quot;</code><code class="plain"> + cookies.length  );</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">for</code><code class="plain"> (i = </code><code class="value">0</code><code class="plain">; i &lt;= cookies.length - </code><code class="value">1</code><code class="plain">; i++) {</code></div>
-<div class="line"><code class="plain">            Ti.API.info( </code><code class="string">&quot;cookie -&gt; &quot;</code><code class="plain"> + cookies[i] );</code></div>
+<div class="line"><code class="plain">webView.addEventListener(</code><code class="string">&apos;load&apos;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">    var cookies = webview.evalJS(</code><code class="string">&apos;document.cookie&apos;</code><code class="plain">).split(</code><code class="string">&apos;;&apos;</code><code class="plain">); </code></div>
+<div class="line"><code class="plain">    Ti.API.info(</code><code class="string">&apos;# of cookies -&gt; &apos;</code><code class="plain"> + cookies.length);</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">for</code><code class="plain"> (var i = </code><code class="value">0</code><code class="plain">; i &lt;= cookies.length - </code><code class="value">1</code><code class="plain">; i++) {</code></div>
+<div class="line"><code class="plain">        Ti.API.info(</code><code class="string">&apos;Cookie -&gt; &apos;</code><code class="plain"> + cookies[i]);</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">});</code></div>
 </div>

@@ -20,7 +20,6 @@
                         <h1>Google Maps v2 for Android</h1>
     <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-Introduction">Introduction</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-GettingStarted">Getting Started</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-InstalltheGooglePlayServicesSDK">Install the Google Play Services SDK</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-ObtainandAddaGoogleAPIKey">Obtain and Add a Google API Key</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-ObtaintheSHA-1certificatefingerprint">Obtain the SHA-1 certificate fingerprint</a>    </p>
@@ -33,21 +32,14 @@
 </li><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-Routes">Routes</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-Eventhandling">Event handling</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-Troubleshooting">Troubleshooting</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-Mapappearsblurry">Map appears blurry</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-Mapisblack">Map is black</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-Mapisblank">Map is blank</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-Mapisblank">Map is blank</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="Google_Maps_v2_for_Android.html#src-36739898_GoogleMapsv2forAndroid-Furtherreading">Further reading</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-36739898_GoogleMapsv2forAndroid-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p>The Google Maps v2 add-on module replaces the built-in Titanium.Map module on Android, which uses the Google Maps API v1.  The Google Maps API v1 is deprecated and Google will no longer issue new Maps API v1 keys after March 3rd, 2013. New applications should use this module on Android, which uses the  <a class="external-link external-link" href="https://developers.google.com/maps/documentation/android/">Google Maps Android API v2</a>.    </p>
-    <p>Applications with existing v1 API keys can continue to use the Titanium.Map module on Android, or transition to this new add-on module.    </p>
-    </div>
-    <div class="section section-2 " id="src-36739898_GoogleMapsv2forAndroid-GettingStarted">
-        <h2 class="heading "><span>Getting Started</span></h2>
-    <p>The Google Maps v2 add-on module requires a Google API key to be set in your Android manifest (even for development and testing) and the Google Play services SDK, which can be installed using the Android SDK manager.  This module is only supported by Titanium SDK 3.1.0 and later and will not run on the Android emulator.  Google Play services is also required to be installed on the device.    </p>
+    <p>The Google Maps Ti.Map module requires a Google API key to be set in your Android manifest (even for development and testing) and the Google Play services SDK, which can be installed using the Android SDK manager. Google Play services is also required to be installed on the device.    </p>
     <div class="section section-3 " id="src-36739898_GoogleMapsv2forAndroid-InstalltheGooglePlayServicesSDK">
         <h3 class="heading "><span>Install the Google Play Services SDK</span></h3>
-    <p>The Google Maps v2 module uses Google Maps Android API v2, which requires the Google Play Services SDK.  To install the Google Play Services SDK, launch the Android SDK Manager and select to install Google Play services.    </p>
+    <p>The Google Maps Ti.Map module uses Google Maps Android API v2, which requires the Google Play Services SDK.  To install the Google Play Services SDK, launch the Android SDK Manager and select to install Google Play services.    </p>
 <ol class=" "><li class=" ">    <p>To launch the Android SDK manager:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -69,10 +61,10 @@
 </li><li class=" ">    <p>For the SHA-1 certificate fingerprint, use JDK keytool command to extract the SHA-1 string from either the debug certificate, shipped with the Titanium SDK, or from a release certificate that you generate yourself to distribute an application.  If you are using the Run command from Studio to build and test your application for an Android Device, use the debug certificate.  If you are using the Publish command from Studio to package and distribute your application to the Android App Store, use the release certificate.    </p>
 </li></ol></li></ol>    <div class="section section-4 " id="src-36739898_GoogleMapsv2forAndroid-ObtaintheSHA-1certificatefingerprint">
         <h4 class="heading "><span>Obtain the SHA-1 certificate fingerprint</span></h4>
-    <p>For the debug certificate, the SHA-1 certificate fingerprint is stored in a keystore file that comes with each Titanium SDK.  The keystore is located at <tt class=" ">mobilesdk/&lt;platform&gt;/&lt;sdk_version&gt;/android/dev_keystore</tt> in your Titanium SDK home directory.  For example, to retrieve the SHA-1 fingerprint on Mac OS X, for Titanium SDK 3.1.0.GA in the default install location, run the following command:    </p>
+    <p>For the debug certificate, the SHA-1 certificate fingerprint is stored in a keystore file that comes with each Titanium SDK.  The keystore is located at <tt class=" ">mobilesdk/&lt;platform&gt;/&lt;sdk_version&gt;/android/dev_keystore</tt> in your Titanium SDK home directory.  For example, to retrieve the SHA-1 fingerprint on macOS, for Titanium SDK 7.2.0.GA in the default install location, run the following command:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">keytool -list -</code><code class="functions">v</code><code class="plain"> -keystore ~</code><code class="plain">/Library/Application</code><code class="plain">\ Support</code><code class="plain">/platform/mobilesdk/osx/3</code><code class="plain">.1.0.GA</code><code class="plain">/android/dev_keystore</code></div>
+<div class="line"><code class="plain">keytool -list -</code><code class="functions">v</code><code class="plain"> -keystore ~</code><code class="plain">/Library/Application</code><code class="plain">\ Support</code><code class="plain">/platform/mobilesdk/osx/7</code><code class="plain">.2.0.GA</code><code class="plain">/android/dev_keystore</code></div>
 </div>
     </div>
     <p>If prompted for a password, hit enter (no password).  Use the <tt class=" ">SHA1</tt> string under Certificate fingerprints.    </p>
@@ -122,7 +114,9 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// Create a default Map.View class</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> mapview = MapModule.createView({mapType:MapModule.NORMAL_TYPE});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> mapView = MapModule.createView({</code></div>
+<div class="line"><code class="plain">  mapType:MapModule.NORMAL_TYPE</code></div>
+<div class="line"><code class="plain">});</code></div>
 </div>
     </div>
     </div>
@@ -189,13 +183,13 @@
 <div class="line"><code class="comments">// Add in the module</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> MapModule = require(</code><code class="string">&apos;ti.map&apos;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({ backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain"> });</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="keyword">var</code><code class="plain"> map1 = MapModule.createView({</code></div>
 <div class="line"><code class="plain">    userLocation: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    mapType: MapModule.NORMAL_TYPE,</code></div>
 <div class="line"><code class="plain">    animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    region: {latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
+<div class="line"><code class="plain">    region: { latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
 <div class="line"><code class="plain">    height: </code><code class="string">&apos;50%&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    top: 0,</code></div>
 <div class="line"><code class="plain">    left: 0,</code></div>
@@ -206,7 +200,7 @@
 <div class="line"><code class="plain">    userLocation: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    mapType: MapModule.TERRAIN_TYPE,</code></div>
 <div class="line"><code class="plain">    animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    region: {latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
+<div class="line"><code class="plain">    region: { latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
 <div class="line"><code class="plain">    height: </code><code class="string">&apos;50%&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    top: 0,</code></div>
 <div class="line"><code class="plain">    right: 0,</code></div>
@@ -217,7 +211,7 @@
 <div class="line"><code class="plain">    userLocation: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    mapType: MapModule.SATELLITE_TYPE,</code></div>
 <div class="line"><code class="plain">    animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    region: {latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
+<div class="line"><code class="plain">    region: { latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
 <div class="line"><code class="plain">    height: </code><code class="string">&apos;50%&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    bottom: 0,</code></div>
 <div class="line"><code class="plain">	left: 0,</code></div>
@@ -228,7 +222,7 @@
 <div class="line"><code class="plain">    userLocation: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    mapType: MapModule.HYBRID_TYPE,</code></div>
 <div class="line"><code class="plain">    animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    region: {latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
+<div class="line"><code class="plain">    region: { latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
 <div class="line"><code class="plain">    height: </code><code class="string">&apos;50%&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    bottom: 0,</code></div>
 <div class="line"><code class="plain">    right: 0,</code></div>
@@ -243,7 +237,7 @@
 <div class="line"><code class="plain">win.open();</code></div>
 </div>
     </div>
-    <p>    <img src="images/download/attachments/36739898/MultiMapViewExample.png" alt="images/download/attachments/36739898/MultiMapViewExample.png" class="confluence-embedded-image">
+    <p>    <img src="images/download/attachments/36739898/QuadroMap.jpg" alt="images/download/attachments/36739898/QuadroMap.jpg" class="confluence-embedded-image" width="320">
         </p>
     <p>The previous example displays four map views of the same region in the same window with different map types and options set. From the top-left, going clockwise, you have an example of NORMAL_TYPE, TERRAIN_TYPE, HYBRID_TYPE with traffic conditions and SATELLITE_TYPE.    </p>
     <p>As seen above, changing a few lines of code alters the appearance of each map. The following properties are unique to Map View to manipulate the appearance and behavior of the View class:    </p>
@@ -251,7 +245,7 @@
 <ul class=" "><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.STANDARD_TYPE - </tt>Basic map with labels.    </p>
 </li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.SATELLITE_TYPE - </tt>Satellite imagery without map labels.    </p>
 </li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.TERRAIN_TYPE - </tt>Terrain map with labels.    </p>
-</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt; .HYBRID_TYPE</tt> - SATELLITE_TYPE with map labels.    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.HYBRID_TYPE</tt> - SATELLITE_TYPE with map labels.    </p>
 </li></ul></li><li class=" ">    <p><tt class=" ">region</tt> - This is an object that contains the four properties defining the visible area of the <tt class=" ">View</tt>. The same latitude and longitude of a <tt class=" ">region</tt> can be represented with a different level of zoom via the <tt class=" ">latitudeDelta </tt>and <tt class=" ">longitudeDelta</tt> properties.    </p>
 <ul class=" "><li class=" ">    <p><tt class=" ">latitude</tt>- The latitude of your map&apos;s target region.    </p>
 </li><li class=" ">    <p><tt class=" ">longitude</tt> - The longitude of your map&apos;s target region.    </p>
@@ -269,61 +263,38 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> MapModule = require(</code><code class="string">&apos;ti.map&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow();</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> opera = MapModule.createAnnotation({</code></div>
 <div class="line"><code class="plain">    latitude: -33.8569,</code></div>
 <div class="line"><code class="plain">    longitude: 151.2153,</code></div>
-<div class="line"><code class="plain">    image: </code><code class="string">&apos;SydneyOperaHouse.jpg&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    centerOffset: { x: 80, y: 25 },</code></div>
+<div class="line"><code class="plain">    image: </code><code class="string">&apos;SydneyOperaHouse.png&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    title: </code><code class="string">&apos;Sydney Opera House&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    subtitle: </code><code class="string">&apos;Sydney, New South Wales, Australia&apos;</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> bridge = MapModule.createAnnotation({</code></div>
 <div class="line"><code class="plain">    latitude: -33.852222,</code></div>
 <div class="line"><code class="plain">    longitude: 151.210556,</code></div>
-<div class="line"><code class="plain">    pincolor: MapModule.ANNOTATION_AZURE,</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// Even though we are creating a button, it does not respond to Button events or animates.</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// Use the Map View&apos;s click event and monitor the clicksource property for &apos;leftPane&apos;.</code></div>
-<div class="line"><code class="plain">    leftView: Ti.UI.createButton({title: </code><code class="string">&apos;Detail&apos;</code><code class="plain">}),</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// For eventing, use the Map View&apos;s click event</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// and monitor the clicksource property for &apos;rightPane&apos;.</code></div>
-<div class="line"><code class="plain">    rightButton: </code><code class="string">&apos;SydneyHarbourBridge.jpg&apos;</code><code class="plain">,    </code></div>
+<div class="line"><code class="plain">    pincolor: MapModule.ANNOTATION_PURPLE,  </code></div>
 <div class="line"><code class="plain">    title: </code><code class="string">&apos;Sydney Harbour Bridge&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    subtitle: </code><code class="string">&apos;Port Jackson&apos;</code></div>
+<div class="line"><code class="plain">    subtitle: </code><code class="string">&apos;Port Jackson&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// For eventing, use the Map View&apos;s click event</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// and monitor the clicksource property for &apos;leftButton&apos;.</code></div>
+<div class="line"><code class="plain">    leftButton: Ti.UI.createButton({ title: </code><code class="string">&apos;Detail&apos;</code><code class="plain"> })</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">var</code><code class="plain"> random = MapModule.createAnnotation({</code></div>
-<div class="line"><code class="plain">    latitude: -33.87365,</code></div>
-<div class="line"><code class="plain">    longitude: 151.20689,</code></div>
-<div class="line"><code class="plain">    pincolor: MapModule.ANNOTATION_VIOLET,</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// Even though we are creating a label, it does not respond to Label events.</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// Use the Map View&apos;s events instead.    </code></div>
-<div class="line"><code class="plain">    customView: Ti.UI.createLabel({</code></div>
-<div class="line"><code class="plain">        text: </code><code class="string">&apos;MOVE ME!&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        opacity: </code><code class="string">&apos;80%&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        color: </code><code class="string">&apos;red&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        backgroundColor: </code><code class="string">&apos;gray&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        font: {</code></div>
-<div class="line"><code class="plain">            fontSize: </code><code class="string">&apos;16dp&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            fontWeight: </code><code class="string">&apos;bold&apos;</code></div>
-<div class="line"><code class="plain">        }</code></div>
-<div class="line"><code class="plain">    }),</code></div>
-<div class="line"><code class="plain">    draggable: </code><code class="keyword">true</code></div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> mapview = MapModule.createView({</code></div>
 <div class="line"><code class="plain">    mapType: MapModule.NORMAL_TYPE,</code></div>
-<div class="line"><code class="plain">    region: {latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
-<div class="line"><code class="plain">    annotations: [bridge,opera] </code><code class="comments">//&lt; add these annotations upon creation</code></div>
+<div class="line"><code class="plain">    region: { latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
+<div class="line"><code class="plain">    annotations: [bridge, opera]</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="comments">// Add this annotation after creation</code></div>
-<div class="line"><code class="plain">mapview.addAnnotation(random);</code></div>
+<div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="plain">win.add(mapview);</code></div>
 <div class="line"><code class="plain">win.open();</code></div>
 </div>
     </div>
-    <p>    <img src="images/download/attachments/36739898/CustomAnnotations.png" alt="images/download/attachments/36739898/CustomAnnotations.png" class="confluence-embedded-image">
+    <p>    <img src="images/download/attachments/36739898/Annotations.jpg" alt="images/download/attachments/36739898/Annotations.jpg" class="confluence-embedded-image" width="320">
         </p>
     <p>The previous example creates three annotations and adds them to the  view&#x2013;two on creation and one post creation.  Note that the View&apos;s annotations property accepts an array.  Even if there is only one annotation,  we still need to pass it to the  <tt class=" ">View</tt>  as an entry in an array.  The map view displays three custom annotations:    </p>
 <ul class=" "><li class=" ">    <p>The Sydney Harbour Bridge annotation uses the default pin image, but the info window contains a Button in the left pane, set with the <tt class=" ">leftView</tt> property, and an image of the bridge in the right pane, set with the <tt class=" ">rightButton</tt> property.    </p>
@@ -336,16 +307,16 @@
 </li><li class=" ">    <p><tt class=" ">leftButton</tt>/<tt class=" ">rightButton</tt> &#x2013; Places an image in the left or right side of the annotation&apos;s info window.  Listen to the map view&apos;s <tt class=" ">click</tt> event and check the <tt class=" ">clicksource</tt> property for either <tt class=" ">leftPane</tt> or <tt class=" ">rightPane </tt>to see if the user interacted with this component.  This property takes precedence over the <tt class=" ">leftView</tt>/<tt class=" ">rightView</tt> property.    </p>
 </li><li class=" ">    <p><tt class=" ">leftView</tt>/<tt class=" ">rightView</tt> &#x2013; Places a custom view in the left or right side of the annotation&apos;s info window.  The events of the view component do not fire.  Listen to the map view&apos;s <tt class=" ">click</tt> event and check the <tt class=" ">clicksource</tt> property for either <tt class=" ">leftPane</tt> or <tt class=" ">rightPane </tt>to see if the user interacted with this component.    </p>
 </li><li class=" ">    <p><tt class=" ">pincolor </tt> - The color of the default pin representing an annotation. It can have the following values:    </p>
-<ul class=" "><li class=" ">    <p><tt class=" ">&lt;MapObject&gt; .ANNOTATION_AZURE</tt>    </p>
-</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt; .ANNOTATION_BLUE</tt>    </p>
-</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt; .ANNOTATION_CYAN</tt>    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.ANNOTATION_AZURE</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.ANNOTATION_BLUE</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.ANNOTATION_CYAN</tt>    </p>
 </li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.ANNOTATION_GREEN</tt>    </p>
-</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt; .ANNOTATION_MAGENTA</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.ANNOTATION_MAGENTA</tt>    </p>
 </li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.ANNOTATION_ORANGE</tt>    </p>
 </li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.ANNOTATION_RED</tt>    </p>
-</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt; .ANNOTATION_ROSE</tt>    </p>
-</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt; .ANNOTATION_VIOLET</tt>    </p>
-</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt; .ANNOTATION_YELLOW</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.ANNOTATION_ROSE</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.ANNOTATION_VIOLET</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.ANNOTATION_YELLOW</tt>    </p>
 </li></ul></li><li class=" ">    <p><tt class=" ">subtitle</tt>  - The subtitle text that appears on your annotation when clicked.    </p>
 </li><li class=" ">    <p><tt class=" ">title</tt> - The main title text that appears on your annotation when clicked.    </p>
 </li></ul>    <p>The next section discusses the <tt class=" ">Route</tt> class, a feature to create paths between locations on a <tt class=" ">View</tt>.    </p>
@@ -487,19 +458,9 @@
     </div>
     <div class="section section-2 " id="src-36739898_GoogleMapsv2forAndroid-Troubleshooting">
         <h2 class="heading "><span>Troubleshooting</span></h2>
-    <div class="section section-3 " id="src-36739898_GoogleMapsv2forAndroid-Mapappearsblurry">
-        <h3 class="heading "><span>Map appears blurry</span></h3>
-    <p>For Android 2.3.x, do not place a map view inside a modal window, that is, do not set the Window&apos;s <tt class=" ">modal</tt> property to true.    </p>
-    </div>
-    <div class="section section-3 " id="src-36739898_GoogleMapsv2forAndroid-Mapisblack">
-        <h3 class="heading "><span>Map is black</span></h3>
-<ol class=" "><li class=" ">    <p>For Android 3.x and 4.0.x, do not place a map view inside a modal window, that is, do not set the Window&apos;s <tt class=" ">modal</tt> property to true.    </p>
-</li><li class=" ">    <p>In the tiapp.xml file (or <tt class=" ">AndroidManifest.xml</tt> file), do not set the <tt class=" ">android:anyDensity</tt> attribute in the <tt class=" ">&lt;supports-screens&gt;</tt> element.  Specifically do not set it to false.    </p>
-</li><li class=" ">    <p>Make sure that Google Play services is installed on the device.    </p>
-</li></ol>    </div>
     <div class="section section-3 " id="src-36739898_GoogleMapsv2forAndroid-Mapisblank">
         <h3 class="heading "><span>Map is blank</span></h3>
-    <p>In the <tt class=" ">tiapp.xml</tt> file (or <tt class=" ">AndroidManifest.xml</tt> file), do not set the <tt class=" ">android:anyDensity</tt> attribute in the <tt class=" ">&lt;supports-screens&gt;</tt> element.  Specifically do not set it to true.    </p>
+    <p>In the <tt class=" ">tiapp.xml</tt> file (or <tt class=" ">AndroidManifest.xml</tt> file), do not set the <tt class=" ">android:anyDensity</tt> attribute in the <tt class=" ">&lt;supports-screens&gt;</tt> element.  Specifically do not set it to true. Also, ensure to set a valid Google Maps API key before using native Google Maps features.    </p>
     </div>
     </div>
     <div class="section section-2 " id="src-36739898_GoogleMapsv2forAndroid-Furtherreading">

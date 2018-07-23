@@ -21,7 +21,6 @@
     <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Map_Kit-section-src-37540542_iOSMapKit-Introduction">Introduction</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Map_Kit-section-src-37540542_iOSMapKit-Gettingstarted">Getting started</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Map_Kit-section-src-37540542_iOSMapKit-TransitioningfromTitanium.Map">Transitioning from Titanium.Map</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Map_Kit-section-src-37540542_iOSMapKit-Views">Views</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Map_Kit-section-src-37540542_iOSMapKit-Annotations">Annotations</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Map_Kit-section-src-37540542_iOSMapKit-Routes">Routes</a>    </p>
@@ -30,24 +29,28 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Map_Kit-section-src-37540542_iOSMapKit-Furtherreading">Further reading</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-37540542_iOSMapKit-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p>Since Release 3.2.0, the ti.map add-on module provides native map support using the iOS Map Kit framework.  This module replaces the built-in Titanium.Map module, which no longer supports native maps for iOS.    </p>
+    <p>The ti.map module provides native map support using the iOS Map Kit framework to use native iOS map features in Titanium.    </p>
     </div>
     <div class="section section-2 " id="src-37540542_iOSMapKit-Gettingstarted">
         <h2 class="heading "><span>Getting started</span></h2>
-    <p>The ti.map module is included as part of the Titanium SDK since Release 3.2.0.  To include it in your project, edit your <tt class=" ">tiapp.xml</tt> file to use the module:    </p>
+    <p>The Ti.Map module is included as part of the Titanium SDK.  To include it in your project, edit your <tt class=" ">tiapp.xml</tt> file to use the module:    </p>
 <ul class=" "><li class=" ">    <p>Using the GUI Overview version of the <tt class=" ">tiapp.xml</tt> editor, in the <strong class=" ">Modules</strong> section, click the add button (green plus sign), select the ti.map module, then click the OK button to add it.    </p>
 </li><li class=" ">    <p>If you are using a text editor, add the following to your modules section:    </p>
 </li></ul>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">...</code></div>
 <div class="line"><code class="plain">    &lt;</code><code class="keyword">modules</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;!-- Add this line to your modules section --&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">module</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;iphone&quot;</code><code class="plain">&gt;ti.map&lt;/</code><code class="keyword">module</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;!-- Add this line to your &lt;</code><code class="keyword">modules</code><code class="plain">&gt; section --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">module</code><code class="plain">&gt;ti.map&lt;/</code><code class="keyword">module</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">modules</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">...</code></div>
 </div>
     </div>
-<ul class=" "><li class=" ">    <p>To use the <tt class=" ">userLocation</tt> property in iOS 8 and later, add either the <a class="external-link external-link" href="https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW26" target="_blank"> <tt class=" ">NSLocationWhenInUseUsageDescription</tt> </a> or <a class="external-link external-link" href="https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW18" target="_blank"> <tt class=" ">NSLocationAlwaysUsageDescription</tt> </a> key to the iOS plist section:    </p>
+<ul class=" "><li class=" ">    <p>To use the <tt class=" ">userLocation</tt> property of the map-view, add either the <a class="external-link external-link" href="https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW26" target="_blank"> <tt class=" ">NSLocationWhenInUseUsageDescription</tt> </a> or <a class="external-link external-link" href="https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW18" target="_blank"> <tt class=" ">NSLocationAlwaysUsageDescription</tt> </a> key to the iOS plist section. For iOS 11+, also add the     <span style="color: #6a6a6a;">
+    <span style="color: #000000;">
+<a class="external-link external-link" href="https://developer.apple.com/documentation/corelocation/choosing_the_authorization_level_for_location_services/requesting_always_authorization?language=objc" target="_blank">NSLocationAlwaysAndWhenInUseUsageDescription</a>    </span>
+ key for best user experience:    </span>
+    </p>
 </li></ul>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">...</code></div>
@@ -60,6 +63,12 @@
 <div class="line"><code class="plain">                    This appears in the alert dialog when asking the user for permission to</code></div>
 <div class="line"><code class="plain">                    access their location.</code></div>
 <div class="line"><code class="plain">                &lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">				&lt;!-- iOS 11+ only. Ignored on older iOS versions --&gt;</code></div>
+<div class="line"><code class="plain">				&lt;</code><code class="keyword">key</code><code class="plain">&gt;NSLocationAlwaysAndWhenInUseUsageDescription&lt;/</code><code class="keyword">key</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">				&lt;</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">					Specify additional information on accessing the user location. Refer</code></div>
+<div class="line"><code class="plain">					to the Apple docs for details.</code></div>
+<div class="line"><code class="plain">				&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">            &lt;/</code><code class="keyword">dict</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/</code><code class="keyword">plist</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">ios</code><code class="plain">&gt;</code></div>
@@ -76,23 +85,12 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// Create a default Map.View class</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> mapview = MapModule.createView({mapType:MapModule.NORMAL_TYPE});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> mapView = MapModule.createView({</code></div>
+<div class="line"><code class="plain">  mapType:MapModule.NORMAL_TYPE</code></div>
+<div class="line"><code class="plain">});</code></div>
 </div>
     </div>
     </div>
-    <div class="section section-2 " id="src-37540542_iOSMapKit-TransitioningfromTitanium.Map">
-        <h2 class="heading "><span>Transitioning from Titanium.Map</span></h2>
-    <p>The new add-on module behaves the same as the built-in Titanium.Map proxy with the following exceptions:    </p>
-    <p><strong class=" ">Requirements:</strong>    </p>
-<ul class=" "><li class=" ">    <p>Applications using this module must be built using Xcode 5 or later with Titanium SDK 3.2.0 and later.    </p>
-</li></ul>    <p><strong class=" ">New features:</strong>    </p>
-<ul class=" "><li class=" ">    <p><strong class=" ">View the map in a 3D perspective.  Available for iOS 7 and later.</strong>  Use the new Camera object to create a camera position to view the map.    </p>
-</li><li class=" ">    <p><strong class=" ">New Annotation property, canShowCallout.</strong>  Use to control whether to display the annotation callout when the annotation is selected.    </p>
-</li></ul>    <p><strong class=" ">Behavior changes:</strong>    </p>
-<ul class=" "><li class=" ">    <p><strong class=" ">Route class.</strong> You need to create a Route object before adding it to the map view.  Previously in the Titanium.Map proxy, routes were created using an abstract data type with the <tt class=" ">addRoute</tt> method.    </p>
-</li><li class=" ">    <p><strong class=" ">Dismissing a callout</strong>.  On iOS 6, you can dismiss the callout by clicking on it or anywhere on the map.  On iOS 7, you can only dismiss a callout by clicking anywhere on the map.    </p>
-</li><li class=" ">    <p><strong class=" ">Missing map constant.</strong> The STANDARD_TYPE constant is missing from the map module.  Use the NORMAL_TYPE constant instead.    </p>
-</li></ul>    </div>
     <div class="section section-2 " id="src-37540542_iOSMapKit-Views">
         <h2 class="heading "><span>Views</span></h2>
     <p>The <tt class=" ">View</tt> class is the core UI component of the ti.map module. It allows Titanium to use the iOS map kit framework to view geographic data and add annotations and routes. As it is a native UI component, users will also have access to features like scrolling and multi-touch zoom. In its most basic form, the <tt class=" ">View</tt> can simply display a basic map given a geographic position via latitude and longitude.    </p>
@@ -101,13 +99,13 @@
 <div class="line"><code class="comments">// Add in the module</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> MapModule = require(</code><code class="string">&apos;ti.map&apos;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">});</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> third = Titanium.Platform.displayCaps.platformHeight / 3;</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({ backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain"> });</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> oneThird = Ti.Platform.displayCaps.platformHeight / 3;</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> map1 = MapModule.createView({</code></div>
 <div class="line"><code class="plain">    userLocation: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    mapType: MapModule.NORMAL_TYPE,</code></div>
 <div class="line"><code class="plain">    animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    region: {latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
+<div class="line"><code class="plain">    region: { latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
 <div class="line"><code class="plain">    height: </code><code class="string">&apos;33%&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    top: 0,</code></div>
 <div class="line"><code class="plain">    width: Ti.UI.FILL</code></div>
@@ -117,9 +115,9 @@
 <div class="line"><code class="plain">    userLocation: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    mapType: MapModule.HYBRID_TYPE,</code></div>
 <div class="line"><code class="plain">    animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    region: {latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
+<div class="line"><code class="plain">    region: { latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
 <div class="line"><code class="plain">    height: </code><code class="string">&apos;33%&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    top: third,</code></div>
+<div class="line"><code class="plain">    top: oneThird,</code></div>
 <div class="line"><code class="plain">    width: Ti.UI.FILL</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
@@ -127,9 +125,9 @@
 <div class="line"><code class="plain">    userLocation: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    mapType: MapModule.SATELLITE_TYPE,</code></div>
 <div class="line"><code class="plain">    animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    region: {latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
+<div class="line"><code class="plain">    region: { latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
 <div class="line"><code class="plain">    height: </code><code class="string">&apos;33%&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    top: 2 * third,</code></div>
+<div class="line"><code class="plain">    top: 2 * oneThird,</code></div>
 <div class="line"><code class="plain">    width: Ti.UI.FILL</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
@@ -140,9 +138,9 @@
 <div class="line"><code class="plain">win.open();</code></div>
 </div>
     </div>
-    <p>    <img src="images/download/attachments/37540542/MultiViewMap.png" alt="images/download/attachments/37540542/MultiViewMap.png" class="confluence-embedded-image">
+    <p>    <img src="images/download/attachments/37540542/MultiViewMap-New.jpg" alt="images/download/attachments/37540542/MultiViewMap-New.jpg" class="confluence-embedded-image" width="320">
         </img></p>
-    <p>The previous example displays three map views of the same region in the same window with different map types set. From the top to bottom, you have an example of NORMAL_TYPE, HYBRID_TYPE and SATELLITE_TYPE.    </p>
+    <p>The previous example displays three map views of the same region in the same window with different map types set. From the top to bottom, you have an example of <tt class=" ">NORMAL_TYPE</tt>, <tt class=" ">HYBRID_TYPE</tt> and <tt class=" ">SATELLITE_TYPE</tt>.    </p>
     <p>As seen above, changing a few lines of code alters the appearance of each map. The following properties are unique to Map View to manipulate the appearance and behavior of the View class:    </p>
 <ul class=" "><li class=" ">    <p><tt class=" ">mapType</tt> - Indicates what type of map should be displayed. Choses are:    </p>
 <ul class=" "><li class=" ">    <p><tt class=" ">&lt;MapObject&gt;.STANDARD_TYPE - </tt>Basic map with labels.    </p>
@@ -155,9 +153,9 @@
 </li><li class=" ">    <p><tt class=" ">longitudeDelta</tt> - The measure of longitude east and west from your target regions&apos;s longitude that will be visible in the <tt class=" ">View.</tt>    </p>
 </li></ul></li><li class=" ">    <p><tt class=" ">animate</tt> - A boolean that indicates whether or not map actions, like opening and adding annotations, should be animated.    </p>
 </li><li class=" ">    <p><tt class=" ">userLocation</tt> - A boolean that indicates if the map should show the user&apos;s current device location as a pin on the map.    </p>
-</li><li class=" ">    <p><tt class=" ">camera</tt> - <strong class=" ">Available for iOS 7 and later.</strong> Specify a Camera object to view the map in a 3D perspective.  For more details, see the <a class="document-link " href="#!/guide/iOS_Map_Kit-section-src-37540542_iOSMapKit-Camera">Camera section</a>.    </p>
-</li><li class=" ">    <p><tt class=" ">rotatesEnabled</tt> - <strong class=" ">Available for iOS 7 and later. </strong>A boolean that indicates if the map can be rotated by the user.    </p>
-</li></ul>    <p>There are two more components that add a significant amount of functionality to your map <tt class=" ">View</tt>--<tt class=" ">Annotation</tt> and <tt class=" ">Route</tt>. They allow us to add places of interest to our maps as well as plot paths between them.    </p>
+</li><li class=" ">    <p><tt class=" ">camera</tt> - Specify a Camera object to view the map in a 3D perspective.  For more details, see the <a class="document-link " href="#!/guide/iOS_Map_Kit-section-src-37540542_iOSMapKit-Camera">Camera section</a>.    </p>
+</li><li class=" ">    <p><tt class=" ">rotatesEnabled</tt> - A boolean that indicates if the map can be rotated by the user.    </p>
+</li></ul>    <p>There are two more components that add a significant amount of functionality to your map <tt class=" ">View, </tt><tt class=" ">Annotation</tt> and <tt class=" ">Route</tt> instances. They allow us to add places of interest to our maps as well as plot paths between them.    </p>
     </div>
     <div class="section section-2 " id="src-37540542_iOSMapKit-Annotations">
         <h2 class="heading "><span>Annotations</span></h2>
@@ -166,17 +164,17 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> MapModule = require(</code><code class="string">&apos;ti.map&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow();</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> opera = MapModule.createAnnotation({</code></div>
 <div class="line"><code class="plain">    latitude: -33.8569,</code></div>
 <div class="line"><code class="plain">    longitude: 151.2153,</code></div>
-<div class="line"><code class="plain">    centerOffset: {x: 80, y: 25},</code></div>
-<div class="line"><code class="plain">    image: </code><code class="string">&apos;SydneyOperaHouse.jpg&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    centerOffset: { x: 80, y: 25 },</code></div>
+<div class="line"><code class="plain">    image: </code><code class="string">&apos;SydneyOperaHouse.png&apos;</code><code class="plain">, </code><code class="comments">// 80x80px in this example</code></div>
 <div class="line"><code class="plain">    title: </code><code class="string">&apos;Sydney Opera House&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    subtitle: </code><code class="string">&apos;Sydney, New South Wales, Australia&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// For eventing, use the Map View&apos;s click event</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// For events, use the Map View&apos;s click event</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// and monitor the clicksource property for &apos;rightButton&apos;.    </code></div>
-<div class="line"><code class="plain">    rightButton: Ti.UI.iPhone.SystemButton.CONTACT_ADD</code></div>
+<div class="line"><code class="plain">    rightButton: Ti.UI.iOS.SystemButton.CONTACT_ADD</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="keyword">var</code><code class="plain"> bridge = MapModule.createAnnotation({</code></div>
@@ -187,20 +185,20 @@
 <div class="line"><code class="plain">    subtitle: </code><code class="string">&apos;Port Jackson&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// For eventing, use the Map View&apos;s click event</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// and monitor the clicksource property for &apos;leftButton&apos;.</code></div>
-<div class="line"><code class="plain">    leftButton: Ti.UI.iPhone.SystemButton.INFO_DARK</code></div>
+<div class="line"><code class="plain">    leftButton: Ti.UI.iOS.SystemButton.INFO_DARK</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="keyword">var</code><code class="plain"> mapview = MapModule.createView({</code></div>
 <div class="line"><code class="plain">    mapType: MapModule.NORMAL_TYPE,</code></div>
-<div class="line"><code class="plain">    region: {latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
-<div class="line"><code class="plain">    annotations: [bridge,opera]</code></div>
+<div class="line"><code class="plain">    region: { latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 },</code></div>
+<div class="line"><code class="plain">    annotations: [bridge, opera]</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">win.add(mapview);</code></div>
 <div class="line"><code class="plain">win.open();</code></div>
 </div>
     </div>
-    <p>    <img src="images/download/attachments/37540542/Annotations.png" alt="images/download/attachments/37540542/Annotations.png" class="confluence-embedded-image">
+    <p>    <img src="images/download/attachments/37540542/Annotation.jpg" alt="images/download/attachments/37540542/Annotation.jpg" class="confluence-embedded-image" width="320">
         </img></p>
     <p>The previous example creates two annotations and adds them to the  view.  Note that the View&apos;s annotations property accepts an array.  Even if there is only one annotation,  we still need to pass it to the  <tt class=" ">View</tt>  as an entry in an array.  The map view displays three custom annotations:    </p>
 <ul class=" "><li class=" ">    <p>The Sydney Harbour Bridge annotation uses the default pin image, and the callout window contains the iOS info system button, set with the <tt class=" ">leftButton</tt> property.    </p>
@@ -227,7 +225,7 @@
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> MapModule = require(</code><code class="string">&apos;ti.map&apos;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({ backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain"> });</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="keyword">var</code><code class="plain"> appc = MapModule.createAnnotation({</code></div>
 <div class="line"><code class="plain">    latitude: 37.389569,</code></div>
@@ -257,16 +255,16 @@
 <div class="line"><code class="plain">    width: 4,</code></div>
 <div class="line"><code class="plain">    color: </code><code class="string">&apos;#f00&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    points: [</code></div>
-<div class="line"><code class="plain">        {latitude:google.latitude, longitude:google.longitude},</code></div>
-<div class="line"><code class="plain">        {latitude:appc.latitude, longitude:appc.longitude},</code></div>
-<div class="line"><code class="plain">        {latitude:apple.latitude, longitude:apple.longitude}</code></div>
+<div class="line"><code class="plain">        { latitude: google.latitude, longitude: google.longitude },</code></div>
+<div class="line"><code class="plain">        { latitude: appc.latitude, longitude: appc.longitude },</code></div>
+<div class="line"><code class="plain">        { latitude: apple.latitude, longitude: apple.longitude }</code></div>
 <div class="line"><code class="plain">    ]</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="keyword">var</code><code class="plain"> mapview = MapModule.createView({</code></div>
 <div class="line"><code class="plain">    mapType: MapModule.NORMAL_TYPE,</code></div>
-<div class="line"><code class="plain">    region: {latitude: 37.389569, longitude: -122.050212, latitudeDelta: 0.2, longitudeDelta: 0.2},</code></div>
-<div class="line"><code class="plain">    annotations: [google,appc,apple]</code></div>
+<div class="line"><code class="plain">    region: { latitude: 37.389569, longitude: -122.050212, latitudeDelta: 0.2, longitudeDelta: 0.2 },</code></div>
+<div class="line"><code class="plain">    annotations: [google, appc, apple]</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">mapview.addRoute(route);</code></div>
@@ -278,12 +276,12 @@
 <ul class=" "><li class=" ">    <p><tt class=" ">points</tt> - Array of latitude and longitude coordinates that represent each point in the route. As geometry dictates, you must have a least two points to draw a line, or route in this case.    </p>
 </li><li class=" ">    <p><tt class=" ">color</tt> - Specifies the color of the line.    </p>
 </li><li class=" ">    <p><tt class=" ">width </tt> - Specifies the width of the line in pixels.    </p>
-</li><li class=" ">    <p><tt class=" ">level</tt> - <strong class=" ">Available on iOS 7 and later.</strong> Specifies which overlay level to place the route.  Set to either <tt class=" "> &lt;MapObject&gt;.OVERLAY_LEVEL_ABOVE_LABELS</tt> (above map labels) or <tt class=" ">&lt;MapObject&gt;.OVERLAY_LEVEL_ABOVE_ROADS</tt> (below labels but above roads).    </p>
+</li><li class=" ">    <p><tt class=" ">level</tt> - Specifies which overlay level to place the route.  Set to either <tt class=" "> &lt;MapObject&gt;.OVERLAY_LEVEL_ABOVE_LABELS</tt> (above map labels) or <tt class=" ">&lt;MapObject&gt;.OVERLAY_LEVEL_ABOVE_ROADS</tt> (below labels but above roads).    </p>
 </li></ul>    <p>Once the route object is created, the application can add it to the view using the <tt class=" ">addRoute</tt> method.    </p>
     </div>
     <div class="section section-2 " id="src-37540542_iOSMapKit-Camera">
         <h2 class="heading "><span>Camera</span></h2>
-    <p>On iOS 7, you can view the map using a 3D perspective by specifying a Camera object that describes the coordinate of the location you want to look at and the pitch, altitude and heading of the camera.  To create a Camera object, use the <tt class=" ">createCamera</tt> method and pass in a dictionary with the following properties:    </p>
+    <p>You can view the map using a 3D perspective by specifying a Camera object that describes the coordinate of the location you want to look at and the pitch, altitude and heading of the camera.  To create a Camera object, use the <tt class=" ">createCamera</tt> method and pass in a dictionary with the following properties:    </p>
 <ul class=" "><li class=" ">    <p><tt class=" ">centerCoordinate</tt>: point that you want to look at.    </p>
 </li><li class=" ">    <p><tt class=" ">altitude</tt>: how high above the ground to position the camera in meters.    </p>
 </li><li class=" ">    <p><tt class=" ">heading</tt>: angle relative to the center coordinate to position the camera in degrees. <tt class=" ">0</tt> means due North, <tt class=" ">90</tt> mean due East, <tt class=" ">180</tt> mean due South, and so forth.    </p>
@@ -314,7 +312,7 @@
 <div class="line"><code class="keyword">var</code><code class="plain"> mapview = MapModule.createView({</code></div>
 <div class="line"><code class="plain">    mapType: MapModule.NORMAL_TYPE,</code></div>
 <div class="line"><code class="plain">    animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    region: {latitude: 48.8582, longitude: 2.2945, latitudeDelta: 0.02, longitudeDelta: 0.02 }</code></div>
+<div class="line"><code class="plain">    region: { latitude: 48.8582, longitude: 2.2945, latitudeDelta: 0.02, longitudeDelta: 0.02 }</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// Change the view perspective after the map view appears on the display</code></div>
@@ -335,7 +333,7 @@
 <div class="line"><code class="plain">win.open();</code></div>
 </div>
     </div>
-    <p>    <img src="images/download/attachments/37540542/ParisCamera.png" alt="images/download/attachments/37540542/ParisCamera.png" class="confluence-embedded-image">
+    <p>    <img src="images/download/attachments/37540542/ParisCamera.png" alt="images/download/attachments/37540542/ParisCamera.png" class="confluence-embedded-image" width="320">
         </img></p>
     </div>
     <div class="section section-2 " id="src-37540542_iOSMapKit-Eventhandling">
@@ -351,7 +349,7 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> MapModule = require(</code><code class="string">&apos;ti.map&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({backgroundColor: </code><code class="string">&apos;white&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow();</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> appc = MapModule.createAnnotation({</code></div>
 <div class="line"><code class="plain">    latitude: 37.389569,</code></div>
 <div class="line"><code class="plain">    longitude: -122.050212,</code></div>
@@ -362,25 +360,25 @@
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> mapview = MapModule.createView({</code></div>
 <div class="line"><code class="plain">    mapType: MapModule.HYBRID_TYPE,</code></div>
-<div class="line"><code class="plain">    region: {latitude: 37.389569, longitude: -122.050212, latitudeDelta: 0.2, longitudeDelta: 0.2},</code></div>
+<div class="line"><code class="plain">    region: { latitude: 37.389569, longitude: -122.050212, latitudeDelta: 0.2, longitudeDelta: 0.2 },</code></div>
 <div class="line"><code class="plain">    annotations: [appc]</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;pinchangedragstate&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e){</code></div>
+<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;pinchangedragstate&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain"> (e) {</code></div>
 <div class="line"><code class="plain">    Ti.API.info(e.type);</code></div>
 <div class="line"><code class="plain">    Ti.API.info(JSON.stringify(e.newState));</code></div>
 <div class="line"><code class="plain">}); </code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e){</code></div>
+<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain"> (e) {</code></div>
 <div class="line"><code class="plain">    Ti.API.info(e.type);</code></div>
 <div class="line"><code class="plain">    Ti.API.info(JSON.stringify(e.clicksource));</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;regionchanged&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e){</code></div>
+<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;regionchanged&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain"> (e) {</code></div>
 <div class="line"><code class="plain">    Ti.API.info(e.type);</code></div>
-<div class="line"><code class="plain">    Ti.API.info(e.latitude + </code><code class="string">&quot;,&quot;</code><code class="plain"> + e.longitude);</code></div>
+<div class="line"><code class="plain">    Ti.API.info(e.latitude + </code><code class="string">&apos;,&apos;</code><code class="plain"> + e.longitude);</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;complete&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e){</code></div>
+<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;complete&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain"> (e) {</code></div>
 <div class="line"><code class="plain">    Ti.API.info(e.type);</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>

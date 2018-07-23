@@ -44,21 +44,21 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">Titanium.Media.openPhotoGallery({</code></div>
-<div class="line"><code class="plain">	success:function(event) {</code></div>
+<div class="line"><code class="plain">	success: function(event) {</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">/* success callback fired after media retrieved from gallery */</code></div>
 <div class="line"><code class="plain">		var xhr = Titanium.Network.createHTTPClient();</code></div>
 <div class="line"><code class="plain">		xhr.onload = function(e) {</code></div>
 <div class="line"><code class="plain">			Ti.UI.createAlertDialog({</code></div>
-<div class="line"><code class="plain">			      title:</code><code class="string">&apos;Success&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">			      message:</code><code class="string">&apos;status code &apos;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.status</code></div>
+<div class="line"><code class="plain">			      title: </code><code class="string">&apos;Success&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">			      message: </code><code class="string">&apos;Status Code: &apos;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.status</code></div>
 <div class="line"><code class="plain">		    }).show();</code></div>
 <div class="line"><code class="plain">		};</code></div>
-<div class="line"><code class="plain">		xhr.open(</code><code class="string">&apos;POST&apos;</code><code class="plain">,</code><code class="string">&apos;https://myserver.com/api/uploadAndPost.do&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">		xhr.open(</code><code class="string">&apos;POST&apos;</code><code class="plain">, </code><code class="string">&apos;https://myserver.com/api/uploadAndPost.do&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">		xhr.send({</code></div>
-<div class="line"><code class="plain">		    theImage:event.media,  </code><code class="comments">/* event.media holds blob from gallery */</code></div>
+<div class="line"><code class="plain">		    theImage: event.media,  </code><code class="comments">/* event.media holds blob from gallery */</code></div>
 <div class="line"><code class="plain">		    username: </code><code class="string">&apos;foo&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		    password: </code><code class="string">&apos;bar&apos;</code></div>
-<div class="line"><code class="plain">		  });</code></div>
+<div class="line"><code class="plain">		});</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">});</code></div>
 </div>
@@ -81,28 +81,28 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">/* Create a progress bar */</code></div>
-<div class="line"><code class="plain">var ind=Titanium.UI.createProgressBar({</code></div>
+<div class="line"><code class="plain">var progressBar = Ti.UI.createProgressBar({</code></div>
 <div class="line"><code class="plain">	width: </code><code class="value">200</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	height: </code><code class="value">50</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	min: </code><code class="value">0</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	max: </code><code class="value">1</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	value: </code><code class="value">0</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	style: Titanium.UI.iPhone.ProgressBarStyle.PLAIN,</code></div>
+<div class="line"><code class="plain">	style: Titanium.UI.iOS.ProgressBarStyle.PLAIN,</code></div>
 <div class="line"><code class="plain">	top: </code><code class="value">10</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	message: </code><code class="string">&apos;Uploading image&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	font: {fontSize: </code><code class="value">12</code><code class="plain">, fontWeight: </code><code class="string">&apos;bold&apos;</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">	message: </code><code class="string">&apos;Uploading image ...&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	font:  {fontSize: </code><code class="value">12</code><code class="plain">, fontWeight: </code><code class="string">&apos;bold&apos;</code><code class="plain"> },</code></div>
 <div class="line"><code class="plain">	color: </code><code class="string">&apos;#888&apos;</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">win.add(ind);</code></div>
-<div class="line"><code class="plain">ind.show();</code></div>
+<div class="line"><code class="plain">win.add(progressBar);</code></div>
+<div class="line"><code class="plain">progressBar.show();</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">var xhr = Titanium.Network.createHTTPClient();</code></div>
+<div class="line"><code class="plain">var xhr = Ti.Network.createHTTPClient();</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// onsendstream called repeatedly, use the progress property to</code></div>
 <div class="line"><code class="comments">// update the progress bar</code></div>
 <div class="line"><code class="plain">xhr.onsendstream = function(e) {</code></div>
-<div class="line"><code class="plain">	ind.value = e.progress ;</code></div>
+<div class="line"><code class="plain">	progressBar.value = e.progress ;</code></div>
 <div class="line"><code class="plain">	Ti.API.info(</code><code class="string">&apos;ONSENDSTREAM - PROGRESS: &apos;</code><code class="plain"> + e.progress);</code></div>
 <div class="line"><code class="plain">};</code></div>
 </div>
@@ -131,12 +131,12 @@
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="plain">win.add(image);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">var xhr = Titanium.Network.createHTTPClient({</code></div>
+<div class="line"><code class="plain">var xhr = Ti.Network.createHTTPClient({</code></div>
 <div class="line"><code class="plain">	onload: function() {</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// first, grab a &quot;handle&quot; to the file where you&apos;ll store the downloaded data</code></div>
-<div class="line"><code class="plain">		var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,</code><code class="string">&apos;mygraphic.png&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">		f.write(</code><code class="keyword">this</code><code class="plain">.responseData); </code><code class="comments">// write to the file</code></div>
-<div class="line"><code class="plain">		Ti.App.fireEvent(</code><code class="string">&apos;graphic_downloaded&apos;</code><code class="plain">, {filepath: f.nativePath});</code></div>
+<div class="line"><code class="plain">		var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, </code><code class="string">&apos;mygraphic.png&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">		file.write(</code><code class="keyword">this</code><code class="plain">.responseData); </code><code class="comments">// write to the file</code></div>
+<div class="line"><code class="plain">		Ti.App.fireEvent(</code><code class="string">&apos;graphic_downloaded&apos;</code><code class="plain">, { filepath: file.nativePath });</code></div>
 <div class="line"><code class="plain">	},</code></div>
 <div class="line"><code class="plain">	timeout: </code><code class="value">10000</code></div>
 <div class="line"><code class="plain">});</code></div>
@@ -156,16 +156,16 @@
     <p>On iOS, a simple property of the HTTPClient object lets you save a file to the local file system. Below is an iOS-only example of how to fetch a file from a server and store it in the <tt class=" ">applicationDataDirectory</tt>, the primary location for any read/write Filesystem IO in a Titanium application:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var xhr = Titanium.Network.createHTTPClient({</code></div>
+<div class="line"><code class="plain">var xhr = Ti.Network.createHTTPClient({</code></div>
 <div class="line"><code class="plain">	onload: function() {</code></div>
 <div class="line"><code class="plain">		Ti.API.info(</code><code class="string">&apos;PDF downloaded to applicationDataDirectory/test.pdf&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">	},</code></div>
 <div class="line"><code class="plain">	timeout: </code><code class="value">10000</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain">xhr.open(</code><code class="string">&apos;GET&apos;</code><code class="plain">,</code><code class="string">&apos;http://www.appcelerator.com/assets/The_iPad_App_Wave.pdf&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">xhr.open(</code><code class="string">&apos;GET&apos;</code><code class="plain">, </code><code class="string">&apos;http://www.appcelerator.com/assets/The_iPad_App_Wave.pdf&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="comments">// on iOS, you can use the file property to save a downloaded file</code></div>
 <div class="line"><code class="comments">// though you must set it after calling open()</code></div>
-<div class="line"><code class="plain">xhr.file = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,</code><code class="string">&apos;test.pdf&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">xhr.file = Titanium.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, </code><code class="string">&apos;test.pdf&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">xhr.send();</code></div>
 </div>
     </div>
@@ -218,7 +218,7 @@
     </div>
     <div class="section section-3 " id="src-29004908_FileUploadsandDownloads-Referencesandfurtherreading">
         <h3 class="heading "><span>References and further reading</span></h3>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://assets.appcelerator.com.s3.amazonaws.com/app_u/ebook/6.5_filedownload.zip">Finished code</a>    </p>
+<ul class=" "><li class=" ">    <p><a class="attachment-link " href="attachments_56557676_1_6.5_file-download.zip">Finished code</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Filesystem_Access_and_Storage.html">Filesystem Access and Storage chapter</a>    </p>
 </li><li class=" ">    <p>This <a class="external-link external-link" href="http://developer.appcelerator.com/blog/2011/09/qr-codes-in-your-mobile-apps-cross-platform.html">blog post</a> contains another technique for caching downloaded images    </p>
 </li></ul>    </div>

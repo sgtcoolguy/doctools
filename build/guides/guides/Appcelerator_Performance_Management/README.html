@@ -52,14 +52,13 @@
     <div class="section section-2 " id="src-43298691_AppceleratorPerformanceManagement-UsingAppceleratorPerformance">
         <h2 class="heading "><span>Using Appcelerator Performance</span></h2>
     <p>To use the Appcelerator Performance service, enable Appcelerator Services for your project, then use the Appcelerator Performance module API to add breadcrumbs, user metadata and error handling code to log events leading up to a crash.  Login to the Appcelerator Dashboard and use the Appcelerator Performance dashboard to monitor application performance and analyze crash reports.    </p>
-    <p>    <img src="images/download/attachments/43298691/PerformanceDashboard.png" alt="images/download/attachments/43298691/PerformanceDashboard.png" class="confluence-embedded-image">
+    <p>    <img src="images/download/attachments/43298691/PerformanceDashboard_new.png" alt="images/download/attachments/43298691/PerformanceDashboard_new.png" class="confluence-embedded-image" width="800">
         </img></p>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-SetupYourProject">
         <h3 class="heading "><span>Setup Your Project</span></h3>
     <p>When creating a new application in Appcelerator Studio, make sure the <strong class=" ">Enable Appcelerator Services</strong> checkbox is enabled.    </p>
     <p>For a previously created project, if Appcelerator Services were not previously enabled, open your <tt class=" ">tiapp.xml</tt> file, then click the <strong class=" ">Enable Services</strong> button under the <i class=" ">Appcelerator Service</i> section.    </p>
-    <p>Appcelerator Studio injects code in to the <tt class=" ">tiapp.xml</tt> file to setup the Appcelerator Performance Management module ( <tt class=" ">com.appcelerator.apm</tt> ).   See <a class="document-link " href="#!/guide/Platform_Services">Platform Services</a> for the code modifications.  Do not modify these changes made by Appcelerator Studio or else you will disable the Appcelerator Performance service .    </p>
-    <p>    </p>
+    <p>Appcelerator Studio injects code in to the <tt class=" ">tiapp.xml</tt> file to setup the Appcelerator Performance Management module ( <tt class=" ">com.appcelerator.apm</tt> ). See <a class="document-link " href="#!/guide/Platform_Services">Platform Services</a> for the code modifications. Do not modify these changes made by Appcelerator Studio or else you will disable the Appcelerator Performance service .    </p>
     </div>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-InitializetheModule">
         <h3 class="heading "><span>Initialize the Module</span></h3>
@@ -82,7 +81,7 @@
 <div class="line"><code class="plain">Alloy.Globals.apm.init();</code></div>
 </div>
     </div>
-    <p>Make Performance Management module API calls using the  <tt class=" ">apm</tt>  object.  For complete API information, see <a class="external-link external-link" href="#!/api/Modules.Performance">Performance Module API</a>.    </p>
+    <p>Make Performance Management module API calls using the  apm  object.  For complete API information, see <a class="external-link external-link" href="#!/api/Modules.Performance">Performance Module API</a>.    </p>
     <p>By default, the <tt class=" ">init()</tt> method uses the value of the <tt class=" ">com-appcelerator-apm-id</tt> key in the <tt class=" ">tiapp.xml</tt> file to initialize the Performance service.  You can optionally pass a different ID by passing it as an argument to the  <tt class=" ">init</tt>  method .  The app ID passed to the  <tt class=" ">init</tt>  method takes precedence over the <tt class=" ">com-appcelerator-apm-id</tt>   key.     </p>
     <p class="diff-block-target diff-block-context">To get your APM App ID either:    </p>
 <ul class="diff-block-target diff-block-context "><li class=" ">    <p>Open your <tt class=" ">tiapp.xml</tt> file (in the Overview view) and click the <strong class=" ">Show ID</strong> link next to the <strong class=" ">Performance</strong> service or look for the <tt class=" ">com-appcelerator-apm-id</tt> key in the raw view.    </p>
@@ -223,7 +222,7 @@
     <div class="section section-4 " id="src-43298691_AppceleratorPerformanceManagement-CaptureLogcatData">
         <h4 class="heading "><span>Capture Logcat Data</span></h4>
     <p>To include Android system log data with your crash reports, you must do the following:    </p>
-    <p><u class=" ">For Google API Level 15 and earlier</u> , add the following line to the Android manifest section of your <tt class=" ">tiapp.xml</tt> file:    </p>
+    <p>For Google API Level 15 and earlier , add the following line to the Android manifest section of your tiapp.xml file:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;uses-permission android:name=</code><code class="string">&quot;android.permission.READ_LOGS&quot;</code><code class="plain">/&gt;</code></div>
