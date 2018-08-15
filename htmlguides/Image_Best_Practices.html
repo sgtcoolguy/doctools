@@ -5,12 +5,12 @@
 <head>
     <title>Image Best Practices</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -18,103 +18,103 @@
 
         <div id="src-30082525" class="content">
                         <h1>Image Best Practices</h1>
-    <p>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Objective">Objective</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Contents">Contents</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Fileformats">File formats</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Loadingandunloadingimagestomanagememoryuse">Loading and unloading images to manage memory use</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Optimizingimages">Optimizing images</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Cachingremoteimages">Caching remote images</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Summary">Summary</a>    </p>
+    <p  >    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Objective">Objective</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Contents">Contents</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Fileformats">File formats</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Loadingandunloadingimagestomanagememoryuse">Loading and unloading images to manage memory use</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Optimizingimages">Optimizing images</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Cachingremoteimages">Caching remote images</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Image_Best_Practices.html#src-30082525_ImageBestPractices-Summary">Summary</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-30082525_ImageBestPractices-Objective">
         <h2 class="heading "><span>Objective</span></h2>
-    <p>In this section, you will learn best practices for handling images within your Titanium apps.    </p>
+    <p  >In this section, you will learn best practices for handling images within your Titanium apps.    </p>
     </div>
     <div class="section section-2 " id="src-30082525_ImageBestPractices-Contents">
         <h2 class="heading "><span>Contents</span></h2>
     <div class="section section-3 " id="src-30082525_ImageBestPractices-Fileformats">
         <h3 class="heading "><span>File formats</span></h3>
-    <p>You can use PNG, JPG, and GIF images in your Titanium apps. But which should you use?    </p>
-<ul class=" "><li class=" ">    <p><strong class=" ">GIF</strong> &#x2013; GIF images are limited to 256 colors and are suitable to low-resolution line-art drawings and icons. GIF is a proprietary format and may not be compatible with some app&apos;s licenses. The animated GIF format is not supported on all platforms. In general, there are very few cases in which GIF is the appropriate format to use.    </p>
-</li><li class=" ">    <p><strong class=" ">PNG</strong> &#x2013; PNG images are in a lossless-compressed format that can support high-color images. This format is best suited to line-art, text, and icons. It is a better choice than GIF in almost all cases.    </p>
-</li><li class=" ">    <p><strong class=" ">JPG</strong> &#x2013; JPG (or JPEG) is lossy-compressed file format best suited for photographs. It is not well-suited for text, line drawings, or icons because of visual artifacts created during the compression process that will reduce quality and readability.    </p>
-</li></ul>    <p>Keep in mind that JPG images are decompressed in memory when the photo is displayed. A JPG file itself might take a few dozen KB in storage. But, when rendered (whether visible on screen or not) it will be uncompressed in memory to hundreds of KB or higher. It is crucial that you don&apos;t display create too many JPG ImageViews at one time in your mobile apps or you could exhaust the device&apos;s memory. Removing an image from a view might not clear the memory used by that ImageView; <tt class=" ">null</tt> it out as soon as you no longer need the image in memory.    </p>
-    <p>In summary:    </p>
-<ul class=" "><li class=" ">    <p>Photos? Use JPG    </p>
-</li><li class=" ">    <p>Text, line drawings, icons, button graphics? Use PNG    </p>
-</li><li class=" ">    <p>Flip-book style animations (for which animated GIFs would be the traditional choice)? Use the ImageView&apos;s <tt class=" ">images</tt> property and pass to it an array of PNG or optimized JPG files.    </p>
+    <p  >You can use PNG, JPG, and GIF images in your Titanium apps. But which should you use?    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">GIF</strong> &ndash; GIF images are limited to 256 colors and are suitable to low-resolution line-art drawings and icons. GIF is a proprietary format and may not be compatible with some app's licenses. The animated GIF format is not supported on all platforms. In general, there are very few cases in which GIF is the appropriate format to use.    </p>
+</li><li class=" ">    <p  ><strong class=" ">PNG</strong> &ndash; PNG images are in a lossless-compressed format that can support high-color images. This format is best suited to line-art, text, and icons. It is a better choice than GIF in almost all cases.    </p>
+</li><li class=" ">    <p  ><strong class=" ">JPG</strong> &ndash; JPG (or JPEG) is lossy-compressed file format best suited for photographs. It is not well-suited for text, line drawings, or icons because of visual artifacts created during the compression process that will reduce quality and readability.    </p>
+</li></ul>    <p  >Keep in mind that JPG images are decompressed in memory when the photo is displayed. A JPG file itself might take a few dozen KB in storage. But, when rendered (whether visible on screen or not) it will be uncompressed in memory to hundreds of KB or higher. It is crucial that you don't display create too many JPG ImageViews at one time in your mobile apps or you could exhaust the device's memory. Removing an image from a view might not clear the memory used by that ImageView; <tt class=" ">null</tt> it out as soon as you no longer need the image in memory.    </p>
+    <p  >In summary:    </p>
+<ul class=" "><li class=" ">    <p  >Photos? Use JPG    </p>
+</li><li class=" ">    <p  >Text, line drawings, icons, button graphics? Use PNG    </p>
+</li><li class=" ">    <p  >Flip-book style animations (for which animated GIFs would be the traditional choice)? Use the ImageView's <tt class=" ">images</tt> property and pass to it an array of PNG or optimized JPG files.    </p>
 </li></ul>    </div>
     <div class="section section-3 " id="src-30082525_ImageBestPractices-Loadingandunloadingimagestomanagememoryuse">
         <h3 class="heading "><span>Loading and unloading images to manage memory use</span></h3>
-    <p>Consider a 640 x 480 pixel JPG image, which would fill the screen of a typical handset. On disk, such an image might consume a few dozen KB of storage. But in memory, its footprint will be significantly larger at upwards of 900 KB. When loaded into memory (so that it can be displayed or manipulated), the compressed JPG data is converted to a bitmap. Each pixel is represented by 24 bits (8 bits for each of red, green, and blue channels) or 3 bytes. <tt class=" ">(640 x 480 x 3) / 1024 = 900 KB</tt>    </p>
-    <p>Keep in mind that the RAM available to your mobile app is limited by the platform. It can be as low as 12 MB. And that space is filled by your app&apos;s code, the Titanium framework components, and so forth. For that reason, it is imperative that you don&apos;t load lots of images into memory at once or you&apos;ll exhaust your app&apos;s memory. Consider these optimization techniques:    </p>
-<ul class=" "><li class=" ">    <p><tt class=" ">remove()</tt> images from the view hierarchy when they&apos;re not &quot;on the screen&quot; to permit the operating system to free memory    </p>
-<ul class=" "><li class=" ">    <p>Example: <tt class=" ">myView.remove(myImageView);</tt>    </p>
-</li></ul></li><li class=" ">    <p>Set image views to <tt class=" ">null</tt> once you no longer need those objects to free memory and release proxies    </p>
-<ul class=" "><li class=" ">    <p>Example: <tt class=" ">myImageView = null;</tt>    </p>
-</li></ul></li><li class=" ">    <p>Resize and crop images to the final dimensions at which they&apos;ll be shown on screen so that you don&apos;t require the system to manipulate any more bytes than necessary    </p>
-<ul class=" "><li class=" ">    <p>Example: Using <tt class=" ">imageAsResized</tt> and <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.Blob-method-imageAsCropped"><tt class=" ">imageAsCropped</tt></a> on a <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.Blob">Ti.Blob</a> object.    </p>
+    <p  >Consider a 640 x 480 pixel JPG image, which would fill the screen of a typical handset. On disk, such an image might consume a few dozen KB of storage. But in memory, its footprint will be significantly larger at upwards of 900 KB. When loaded into memory (so that it can be displayed or manipulated), the compressed JPG data is converted to a bitmap. Each pixel is represented by 24 bits (8 bits for each of red, green, and blue channels) or 3 bytes. <tt class=" ">(640 x 480 x 3) / 1024 = 900 KB</tt>    </p>
+    <p  >Keep in mind that the RAM available to your mobile app is limited by the platform. It can be as low as 12 MB. And that space is filled by your app's code, the Titanium framework components, and so forth. For that reason, it is imperative that you don't load lots of images into memory at once or you'll exhaust your app's memory. Consider these optimization techniques:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">remove()</tt> images from the view hierarchy when they're not &quot;on the screen&quot; to permit the operating system to free memory    </p>
+<ul class=" "><li class=" ">    <p  >Example: <tt class=" ">myView.remove(myImageView);</tt>    </p>
+</li></ul></li><li class=" ">    <p  >Set image views to <tt class=" ">null</tt> once you no longer need those objects to free memory and release proxies    </p>
+<ul class=" "><li class=" ">    <p  >Example: <tt class=" ">myImageView = null;</tt>    </p>
+</li></ul></li><li class=" ">    <p  >Resize and crop images to the final dimensions at which they'll be shown on screen so that you don't require the system to manipulate any more bytes than necessary    </p>
+<ul class=" "><li class=" ">    <p  >Example: Using <tt class=" ">imageAsResized</tt> and <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.Blob-method-imageAsCropped"><tt class=" ">imageAsCropped</tt></a> on a <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.Blob">Ti.Blob</a> object.    </p>
 </li></ul></li></ul>    </div>
     <div class="section section-3 " id="src-30082525_ImageBestPractices-Optimizingimages">
         <h3 class="heading "><span>Optimizing images</span></h3>
-    <p>To minimize storage, distribution IPA/APK/XAP size, and reduce network (data) usage, you should optimize the images you use in your app. You should both resize and crop images, and optimize the resulting files to achieve a balance between best data compression and image quality.    </p>
-    <p>Resize images prior to including them in your app. Keep in mind the screen dimensions and pixel densities of the devices on which your images will be shown. It is not efficient to use a 1024 x 768 image on a device that has a 640 x 480 screen. Crop or resize images prior to including them with your app&apos;s source code or publishing them to a URL from which your app will download them.    </p>
-    <p>Both PNG and JPG files are compressed formats. However, the tools typically used to create those images might not provide optimally-compressed images. For example, a digital camera will create a much larger (though admittedly higher-quality) JPG image than the &quot;optimize for web&quot; routines offered by a program like Photoshop.    </p>
-    <div class="tablewrap">
+    <p  >To minimize storage, distribution IPA/APK/XAP size, and reduce network (data) usage, you should optimize the images you use in your app. You should both resize and crop images, and optimize the resulting files to achieve a balance between best data compression and image quality.    </p>
+    <p  >Resize images prior to including them in your app. Keep in mind the screen dimensions and pixel densities of the devices on which your images will be shown. It is not efficient to use a 1024 x 768 image on a device that has a 640 x 480 screen. Crop or resize images prior to including them with your app's source code or publishing them to a URL from which your app will download them.    </p>
+    <p  >Both PNG and JPG files are compressed formats. However, the tools typically used to create those images might not provide optimally-compressed images. For example, a digital camera will create a much larger (though admittedly higher-quality) JPG image than the &quot;optimize for web&quot; routines offered by a program like Photoshop.    </p>
+    <div  class="tablewrap">
         <table class="confluenceTable">
-        <thead class=" ">    <tr>
-            <td class="confluenceTh" rowspan="1" colspan="1">
-        <p>Platform    </p>
+        <thead class=" ">    <tr >
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Platform    </p>
             </td>
-                <td class="confluenceTh" rowspan="1" colspan="1">
-        <p>File type    </p>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >File type    </p>
             </td>
-                <td class="confluenceTh" rowspan="1" colspan="1">
-        <p>Tool    </p>
-            </td>
-        </tr>
-</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Mac    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>PNG, JPG, &amp; GIF    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>ImageOptim - <a class="external-link external-link" href="https://imageoptim.com/mac">https://imageoptim.com/mac</a>    </p>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Tool    </p>
             </td>
         </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Mac, Windows, Linux    </p>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Mac    </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>PNG, JPG &amp; GIF    </p>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PNG, JPG, &amp; GIF    </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>ImageMagick - <a class="external-link external-link" href="http://www.imagemagick.org/">http://www.imagemagick.org</a>    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Windows/DOS    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>PNG    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>PNGCrush - <a class="external-link external-link" href="https://pmt.sourceforge.io/pngcrush">https://pmt.sourceforge.io/pngcrush</a>    </p>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ImageOptim - <a class="external-link external-link" href="https://imageoptim.com/mac">https://imageoptim.com/mac</a>    </p>
             </td>
         </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Windows    </p>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Mac, Windows, Linux    </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>JPG    </p>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PNG, JPG &amp; GIF    </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Nikkho - <a class="external-link external-link" href="https://sourceforge.net/projects/nikkhokkho/">https://sourceforge.net/projects/nikkhokkho</a>    </p>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ImageMagick - <a class="external-link external-link" href="http://www.imagemagick.org/">http://www.imagemagick.org</a>    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Windows/DOS    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PNG    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PNGCrush - <a class="external-link external-link" href="https://pmt.sourceforge.io/pngcrush">https://pmt.sourceforge.io/pngcrush</a>    </p>
+            </td>
+        </tr>
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Windows    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >JPG    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Nikkho - <a class="external-link external-link" href="https://sourceforge.net/projects/nikkhokkho/">https://sourceforge.net/projects/nikkhokkho</a>    </p>
             </td>
         </tr>
 </tbody>        </table>
@@ -122,15 +122,15 @@
     </div>
     <div class="section section-3 " id="src-30082525_ImageBestPractices-Cachingremoteimages">
         <h3 class="heading "><span>Caching remote images</span></h3>
-    <p>You can display both local and remote images in an ImageView. When loading remote images, you should set the <tt class=" ">defaultImage</tt> property to a local image, which will be displayed while the remote image is being downloaded. Remote images are cached automatically on the iOS-, Android- and Windows platform.    </p>
-    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+    <p  >You can display both local and remote images in an ImageView. When loading remote images, you should set the <tt class=" ">defaultImage</tt> property to a local image, which will be displayed while the remote image is being downloaded. Remote images are cached automatically on the iOS-, Android- and Windows platform.    </p>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <div class="title">Android Note</div>
-            <p>Android 6 and later uses runtime permissions to secure the user&apos;s privacy. Therefore, you should call <tt class=" ">Ti.Filesystem.requestStoragePermissions()</tt> before attempting to load remote images.    </p>
+            <p  >Android 6 and later uses runtime permissions to secure the user's privacy. Therefore, you should call <tt class=" ">Ti.Filesystem.requestStoragePermissions()</tt> before attempting to load remote images.    </p>
     </div>
-        <p>Caching remote images helps improves your application&apos;s performance by loading images more quickly, and won&apos;t re-download the images, which consumes users&apos; data quotas unnecessarily.    </p>
-    <p>On the Android platform, the cache can even be limited to 25 MB and data remains for the lifetime of the application (as long as it&apos;s installed on device).  On the iOS platform, the cache size is not predetermined (size cannot be guaranteed) and data remains there until iOS cleans the directory (needs more local storage).  To manually clean the cache directory, delete the files in the <tt class=" ">applicationCacheDirectory</tt>.    </p>
-    <p>To manually cache remote images, below is a sample utility function that you can use to cache a remote images to the app&apos;s <tt class=" ">applicationDataDirectory</tt>. (In addition to below, you&apos;ll find this code at <a class="external-link external-link" href="https://gist.github.com/1901680">https://gist.github.com/1901680</a>).    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+        <p  >Caching remote images helps improves your application's performance by loading images more quickly, and won't re-download the images, which consumes users' data quotas unnecessarily.    </p>
+    <p  >On the Android platform, the cache can even be limited to 25 MB and data remains for the lifetime of the application (as long as it's installed on device).  On the iOS platform, the cache size is not predetermined (size cannot be guaranteed) and data remains there until iOS cleans the directory (needs more local storage).  To manually clean the cache directory, delete the files in the <tt class=" ">applicationCacheDirectory</tt>.    </p>
+    <p  >To manually cache remote images, below is a sample utility function that you can use to cache a remote images to the app's <tt class=" ">applicationDataDirectory</tt>. (In addition to below, you'll find this code at <a class="external-link external-link" href="https://gist.github.com/1901680">https://gist.github.com/1901680</a>).    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> Utils = {</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/* modified version of https://gist.github.com/1243697 */</code></div>
@@ -138,7 +138,7 @@
 <div class="line"><code class="plain">		</code><code class="comments">// CREDITS: http://stackoverflow.com/a/680982/292947</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">var</code><code class="plain"> re = /(?:\.([^.]+))?$/;</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">var</code><code class="plain"> tmpext = re.exec(fn)[1];</code></div>
-<div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> (tmpext) ? tmpext : </code><code class="string">&apos;&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> (tmpext) ? tmpext : </code><code class="string">''</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">	},</code></div>
 <div class="line"><code class="plain">	RemoteImage: </code><code class="keyword">function</code><code class="plain">(a) {</code></div>
 <div class="line"><code class="plain">		a = a || {};</code></div>
@@ -157,21 +157,21 @@
 <div class="line"><code class="plain">		</code><code class="keyword">var</code><code class="plain"> image = Ti.UI.createImageView(a);</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> (needsToSave === </code><code class="keyword">true</code><code class="plain">) {</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">function</code><code class="plain"> saveImage(e) {</code></div>
-<div class="line"><code class="plain">				image.removeEventListener(</code><code class="string">&apos;load&apos;</code><code class="plain">, saveImage);</code></div>
+<div class="line"><code class="plain">				image.removeEventListener(</code><code class="string">'load'</code><code class="plain">, saveImage);</code></div>
 <div class="line"><code class="plain">				savedFile.write(</code></div>
 <div class="line"><code class="plain">					Ti.UI.createImageView({ image: image.image, width: Ti.UI.FILL, height: Ti.UI.FILL }).toImage()</code></div>
 <div class="line"><code class="plain">				);</code></div>
 <div class="line"><code class="plain">			}</code></div>
-<div class="line"><code class="plain">			image.addEventListener(</code><code class="string">&apos;load&apos;</code><code class="plain">, saveImage);</code></div>
+<div class="line"><code class="plain">			image.addEventListener(</code><code class="string">'load'</code><code class="plain">, saveImage);</code></div>
 <div class="line"><code class="plain">		}</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> image;</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">};</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="comments">// Example usage</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> image = Utils.RemoteImage({</code></div>
-<div class="line"><code class="plain">	image: </code><code class="string">&apos;https://raw.githubusercontent.com/appcelerator/kitchensink-v2/master/app/assets/images/titanium-logo.png&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	defaultImage:</code><code class="string">&apos; myDefaultImage.png&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	image: </code><code class="string">'https://raw.githubusercontent.com/appcelerator/kitchensink-v2/master/app/assets/images/titanium-logo.png'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	defaultImage:</code><code class="string">' myDefaultImage.png'</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	width: 300,</code></div>
 <div class="line"><code class="plain">	height: 200,</code></div>
 <div class="line"><code class="plain">	top: 20</code></div>
@@ -185,11 +185,13 @@
     </div>
     <div class="section section-2 " id="src-30082525_ImageBestPractices-Summary">
         <h2 class="heading "><span>Summary</span></h2>
-    <p>Optimizing images will help you create smaller installation files. The same is true of using <tt class=" ">defaultImage</tt> placeholders and downloading/caching final images from a remote source. You&apos;ll also minimize your user&apos;s consumption of data bandwidth by cropping and optimizing images.    </p>
+    <p  >Optimizing images will help you create smaller installation files. The same is true of using <tt class=" ">defaultImage</tt> placeholders and downloading/caching final images from a remote source. You'll also minimize your user's consumption of data bandwidth by cropping and optimizing images.    </p>
     </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>

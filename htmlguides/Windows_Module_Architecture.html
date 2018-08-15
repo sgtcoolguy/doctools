@@ -5,12 +5,12 @@
 <head>
     <title>Windows Module Architecture</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -18,32 +18,32 @@
 
         <div id="src-46248454" class="content">
                         <h1>Windows Module Architecture</h1>
-    <p>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-Introduction">Introduction</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-Module">Module</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-ModuleLifecycleEvents">Module Lifecycle Events</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-Methods">Methods</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-Properties">Properties</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-HandlingEvents">Handling Events</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-MoreExamples">More Examples</a>    </p>
+    <p  >    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-Module">Module</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-ModuleLifecycleEvents">Module Lifecycle Events</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-Methods">Methods</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-Properties">Properties</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-HandlingEvents">Handling Events</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Windows_Module_Architecture.html#src-46248454_WindowsModuleArchitecture-MoreExamples">More Examples</a>    </p>
 </li></ul></li></ul>    <div class="section section-2 " id="src-46248454_WindowsModuleArchitecture-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p>The Titanium SDK is based on a modular architecture, which can be utilized to extend the SDK by building modules.  The module architecture contains the following key interface components:    </p>
-<ul class=" "><li class=" ">    <p><strong class=" "><i class=" ">Module</i></strong>: A base class that represents the native binding between your JavaScript code and native code    </p>
-</li><li class=" ">    <p><strong class=" "><i class=" ">View</i></strong>: The visual representation of a UI component which Titanium can render    </p>
-</li></ul>    <p>To return <u class=" ">visual</u> data between JavaScript and native code, create a View. The View represents is responsible for exposing the APIs and events that the View supports.    </p>
-    <p>To return <u class=" ">non-visual</u> data between JavaScript and native code, create a Module. The Module knows how to handle any method and property, and dispatching and firing events.    </p>
-    <p>These components require special class names and method signatures.  Each components is described in further detail below.    </p>
+    <p  >The Titanium SDK is based on a modular architecture, which can be utilized to extend the SDK by building modules.  The module architecture contains the following key interface components:    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" "><i class=" ">Module</i></strong>: A base class that represents the native binding between your JavaScript code and native code    </p>
+</li><li class=" ">    <p  ><strong class=" "><i class=" ">View</i></strong>: The visual representation of a UI component which Titanium can render    </p>
+</li></ul>    <p  >To return <u class=" ">visual</u> data between JavaScript and native code, create a View. The View represents is responsible for exposing the APIs and events that the View supports.    </p>
+    <p  >To return <u class=" ">non-visual</u> data between JavaScript and native code, create a Module. The Module knows how to handle any method and property, and dispatching and firing events.    </p>
+    <p  >These components require special class names and method signatures.  Each components is described in further detail below.    </p>
     </div>
     <div class="section section-2 " id="src-46248454_WindowsModuleArchitecture-Module">
         <h2 class="heading "><span>Module</span></h2>
-    <p>A Module is a class that provides an API point with a particular ID. That ID can then be used to <tt class=" ">require</tt> the module from JavaScript.    </p>
-    <p>All modules must extend the <tt class=" ">Titanium::Module</tt> and <tt class=" ">JSExport</tt> class .    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >A Module is a class that provides an API point with a particular ID. That ID can then be used to <tt class=" ">require</tt> the module from JavaScript.    </p>
+    <p  >All modules must extend the <tt class=" ">Titanium::Module</tt> and <tt class=" ">JSExport</tt> class .    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.hpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.hpp">
-<div class="line"><code class="preprocessor">#include &quot;Titanium/Module.hpp&quot;</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"><code class="preprocessor">#include "Titanium/Module.hpp"</code></div>
+<div class="line"> </div>
 <div class="line"><code class="keyword">class</code><code class="plain"> COMEXAMPLETEST_EXPORT Test : </code><code class="keyword">public</code><code class="plain"> Titanium::Module, </code><code class="keyword">public</code><code class="plain"> JSExport&lt;Test&gt;</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain">:</code></div>
@@ -51,36 +51,36 @@
 <div class="line"><code class="plain">};</code></div>
 </div>
     </div>
-    <p>Module constructor should call <tt class=" ">Titanium::Module</tt> constructor with module id that specifies the identifier used with <tt class=" ">require</tt> to import the module.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >Module constructor should call <tt class=" ">Titanium::Module</tt> constructor with module id that specifies the identifier used with <tt class=" ">require</tt> to import the module.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.cpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.cpp">
-<div class="line"><code class="preprocessor">#include &quot;ComExampleTest.hpp&quot;</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"><code class="preprocessor">#include "ComExampleTest.hpp"</code></div>
+<div class="line"> </div>
 <div class="line"><code class="plain">Test::Test(</code><code class="keyword">const</code><code class="plain"> JSContext&amp; js_context) TITANIUM_NOEXCEPT</code></div>
-<div class="line"><code class="plain">    : Titanium::Module(js_context, </code><code class="string">&quot;com.example.test&quot;</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">    : Titanium::Module(js_context, </code><code class="string">"com.example.test"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    ...</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>In this case, the JavaScript to require the module would look like this:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >In this case, the JavaScript to require the module would look like this:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var test = require(</code><code class="string">&quot;com.example.test&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var test = require(</code><code class="string">"com.example.test"</code><code class="plain">);</code></div>
 </div>
     </div>
-    <p>A module can also have a parent module: for instance <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/modules/ui/src/java/ti/modules/titanium/ui/UIModule.java">Titanium.UI</a> and <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/modules/app/src/java/ti/modules/titanium/app/AppModule.java">Titanium.App</a> are children of the <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/titanium/src/java/ti/modules/titanium/TitaniumModule.java">Titanium</a> module.    </p>
+    <p  >A module can also have a parent module: for instance <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/modules/ui/src/java/ti/modules/titanium/ui/UIModule.java">Titanium.UI</a> and <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/modules/app/src/java/ti/modules/titanium/app/AppModule.java">Titanium.App</a> are children of the <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile/blob/master/android/titanium/src/java/ti/modules/titanium/TitaniumModule.java">Titanium</a> module.    </p>
     <div class="section section-3 " id="src-46248454_WindowsModuleArchitecture-ModuleLifecycleEvents">
         <h3 class="heading "><span>Module Lifecycle Events</span></h3>
-    <p>The module provides several places for you to hook into the application&apos;s lifecycle.    </p>
-    <p class="line">Use <tt class=" ">postInitialize</tt> method to declare a method to be called when the module object is created. This is optional and is only required if you have any module specific initialization, such as initializing variables that is required by the module. This method is called after module object initialization. This method could be called multiple times, <i class=" ">after</i> your module object is actually created, and <i class=" ">before</i> module is called as a constructor.    </p>
-    <p>Declare <tt class=" ">postInitialize</tt> with <tt class=" ">override</tt> specifier in the header:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >The module provides several places for you to hook into the application's lifecycle.    </p>
+    <p  class="line">Use <tt class=" ">postInitialize</tt> method to declare a method to be called when the module object is created. This is optional and is only required if you have any module specific initialization, such as initializing variables that is required by the module. This method is called after module object initialization. This method could be called multiple times, <i class=" ">after</i> your module object is actually created, and <i class=" ">before</i> module is called as a constructor.    </p>
+    <p  >Declare <tt class=" ">postInitialize</tt> with <tt class=" ">override</tt> specifier in the header:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.hpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.hpp">
-<div class="line"><code class="preprocessor">#include &quot;Titanium/Module.hpp&quot;</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"><code class="preprocessor">#include "Titanium/Module.hpp"</code></div>
+<div class="line"> </div>
 <div class="line"><code class="keyword">class</code><code class="plain"> COMEXAMPLETEST_EXPORT Test : </code><code class="keyword">public</code><code class="plain"> Titanium::Module, </code><code class="keyword">public</code><code class="plain"> JSExport&lt;Test&gt;</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain">:</code></div>
@@ -89,8 +89,8 @@
 <div class="line"><code class="plain">};</code></div>
 </div>
     </div>
-    <p>Override <tt class=" ">postInitialize</tt> in the implementation:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >Override <tt class=" ">postInitialize</tt> in the implementation:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.cpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.cpp">
 <div class="line"><code class="keyword">void</code><code class="plain"> Test::postInitialize(JSObject&amp; js_object)</code></div>
@@ -99,18 +99,18 @@
 <div class="line"><code class="plain">    </code><code class="comments">// Could be called multiple times, after module object is actually created, and before module is called as a constructor.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// </code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// For example:</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// var Test = require(&apos;com.example.test&apos;); // &lt;- postInitialize</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// var Test = require('com.example.test'); // &lt;- postInitialize</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// var test = new Test(); // &lt;- postInitialize</code></div>
 <div class="line"><code class="plain"> }</code></div>
 </div>
     </div>
-    <p class="c1">If you only need to hook JavaScript constructor, use <tt class=" ">postCallAsConstructor</tt> method to declare a method to be called when the module constructor is called. This is optional and is only required if you have any module instance specific initialization, such as initializing variables that is required by the instance. This method is called during module constructor. This method is called only once <i class=" ">after</i> module is called as a constructor.    </p>
-    <p>Declare <tt class=" ">postCallAsConstructor</tt> with <tt class=" ">override</tt> specifier in the header:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  class="c1">If you only need to hook JavaScript constructor, use <tt class=" ">postCallAsConstructor</tt> method to declare a method to be called when the module constructor is called. This is optional and is only required if you have any module instance specific initialization, such as initializing variables that is required by the instance. This method is called during module constructor. This method is called only once <i class=" ">after</i> module is called as a constructor.    </p>
+    <p  >Declare <tt class=" ">postCallAsConstructor</tt> with <tt class=" ">override</tt> specifier in the header:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.hpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.hpp">
-<div class="line"><code class="preprocessor">#include &quot;Titanium/Module.hpp&quot;</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"><code class="preprocessor">#include "Titanium/Module.hpp"</code></div>
+<div class="line"> </div>
 <div class="line"><code class="keyword">class</code><code class="plain"> COMEXAMPLETEST_EXPORT Test : </code><code class="keyword">public</code><code class="plain"> Titanium::Module, </code><code class="keyword">public</code><code class="plain"> JSExport&lt;Test&gt;</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain">:</code></div>
@@ -119,8 +119,8 @@
 <div class="line"><code class="plain">};</code></div>
 </div>
     </div>
-    <p>Override <tt class=" ">postCallAsConstructor</tt> in the implementation. Note that the arguments that is given to the constructor are passed as <tt class=" ">arguments</tt> parameter.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >Override <tt class=" ">postCallAsConstructor</tt> in the implementation. Note that the arguments that is given to the constructor are passed as <tt class=" ">arguments</tt> parameter.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.cpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.cpp">
 <div class="line"><code class="keyword">void</code><code class="plain"> Test::postCallAsConstructor(</code><code class="keyword">const</code><code class="plain"> JSContext&amp; js_context, </code><code class="keyword">const</code><code class="plain"> std::vector&lt;JSValue&gt;&amp; arguments)</code></div>
@@ -129,7 +129,7 @@
 <div class="line"><code class="plain">    </code><code class="comments">// This method is called only once after module is called as a constructor.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// </code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// For example:</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// var TEST = require(&apos;com.example.test&apos;); // &lt;- postInitialize</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// var TEST = require('com.example.test'); // &lt;- postInitialize</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// var test = new Test(); // &lt;- postInitialize, callAsConstructor</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
@@ -137,42 +137,42 @@
     </div>
     <div class="section section-3 " id="src-46248454_WindowsModuleArchitecture-Methods">
         <h3 class="heading "><span>Methods</span></h3>
-    <p>Methods are exposed via <tt class=" ">TITANIUM_ADD_FUNCTION</tt> and <tt class=" ">TITANIUM_FUNCTION_DEF</tt> C++ macro.    </p>
-    <p>First, declare method using <tt class=" ">TITANIUM_FUNCTION_DEF</tt> in header:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >Methods are exposed via <tt class=" ">TITANIUM_ADD_FUNCTION</tt> and <tt class=" ">TITANIUM_FUNCTION_DEF</tt> C++ macro.    </p>
+    <p  >First, declare method using <tt class=" ">TITANIUM_FUNCTION_DEF</tt> in header:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.hpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.hpp">
-<div class="line"><code class="preprocessor">#include &quot;Titanium/Module.hpp&quot;</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"><code class="preprocessor">#include "Titanium/Module.hpp"</code></div>
+<div class="line"> </div>
 <div class="line"><code class="keyword">class</code><code class="plain"> COMEXAMPLETEST_EXPORT Test : </code><code class="keyword">public</code><code class="plain"> Titanium::Module, </code><code class="keyword">public</code><code class="plain"> JSExport&lt;Test&gt;</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain">:</code></div>
 <div class="line"><code class="plain">    TITANIUM_FUNCTION_DEF(example);</code></div>
 <div class="line"><code class="plain">    ....</code></div>
-<div class="line"><code class="plain">&#xA0;};</code></div>
+<div class="line"><code class="plain"> };</code></div>
 </div>
     </div>
-    <p>Second, implement <tt class=" ">example</tt> method with <tt class=" ">TITANIUM_FUNCTION</tt> and then register in <tt class=" ">JSExportInitialize</tt> with <tt class=" ">TITANIUM_ADD_FUNCTION</tt>:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >Second, implement <tt class=" ">example</tt> method with <tt class=" ">TITANIUM_FUNCTION</tt> and then register in <tt class=" ">JSExportInitialize</tt> with <tt class=" ">TITANIUM_ADD_FUNCTION</tt>:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.cpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.cpp">
 <div class="line"><code class="keyword">void</code><code class="plain"> Test::JSExportInitialize()</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    JSExport&lt;Test&gt;::SetClassVersion(1);</code></div>
 <div class="line"><code class="plain">    JSExport&lt;Test&gt;::SetParent(JSExport&lt;Titanium::Module&gt;::Class());</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="plain">    </code><code class="comments">// register example method so we can use it from JavaScript</code></div>
 <div class="line"><code class="plain">    TITANIUM_ADD_FUNCTION(Test, example);</code></div>
 <div class="line"><code class="plain">    ...</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="plain">TITANIUM_FUNCTION(Test, example)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// example method</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// </code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// There are variables expanded from TITANIUM_FUNCTION macro here:</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">//     std::vector&lt;JSValue&gt; arguments ... list of arguments that is passed to this function</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">//     JSObject this_object           ... &quot;this&quot; JavaScript object</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">//     JSObject this_object           ... "this" JavaScript object</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// </code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Example: </code></div>
 <div class="line"><code class="plain">    </code><code class="comments">//    # Get first argument and convert to std::string</code></div>
@@ -188,36 +188,36 @@
 <div class="line"><code class="plain">    </code><code class="comments">//   For more information on how to use JSContext / JSValue / JSObject, check out HAL:</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">//      https://github.com/appcelerator/HAL</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// </code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> get_context().CreateString(</code><code class="string">&quot;hello world&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> get_context().CreateString(</code><code class="string">"hello world"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>There are variables expanded from <tt class=" ">TITANIUM_FUNCTION</tt> macro here: <tt class=" ">arguments</tt> as <tt class=" ">std::vector&lt;JSValue&gt;</tt>, and <tt class=" ">this_object</tt> as <tt class=" ">JSObject</tt>.Titanium provides several ways for typecasting incoming values to a specific type and extracting them from the array that can be used with <tt class=" ">TITANIUM_FUNCTION</tt>. For instance you can find <tt class=" ">ENSURE_XXX_AT_INDEX</tt> for typecasting, that is defined in <tt class=" ">Titanium/detail/TiImpl.hpp.</tt>    </p>
-<ul class=" "><li class=" ">    <p>ENSURE_INT_AT_INDEX(OUT, INDEX)    </p>
-</li><li class=" ">    <p>ENSURE_UINT_AT_INDEX(OUT, INDEX)    </p>
-</li><li class=" ">    <p>ENSURE_DOUBLE_AT_INDEX(OUT, INDEX)    </p>
-</li><li class=" ">    <p>ENSURE_BOOL_AT_INDEX(OUT, INDEX)    </p>
-</li><li class=" ">    <p>ENSURE_STRING_AT_INDEX(OUT, INDEX)    </p>
-</li></ul>    <p>Note that in this macro example <tt class=" ">OUT</tt> is a variable name, and <tt class=" ">INDEX</tt> is a index in the arguments. For example:    </p>
-    <p>    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >There are variables expanded from <tt class=" ">TITANIUM_FUNCTION</tt> macro here: <tt class=" ">arguments</tt> as <tt class=" ">std::vector&lt;JSValue&gt;</tt>, and <tt class=" ">this_object</tt> as <tt class=" ">JSObject</tt>.Titanium provides several ways for typecasting incoming values to a specific type and extracting them from the array that can be used with <tt class=" ">TITANIUM_FUNCTION</tt>. For instance you can find <tt class=" ">ENSURE_XXX_AT_INDEX</tt> for typecasting, that is defined in <tt class=" ">Titanium/detail/TiImpl.hpp.</tt>    </p>
+<ul class=" "><li class=" ">    <p  >ENSURE_INT_AT_INDEX(OUT, INDEX)    </p>
+</li><li class=" ">    <p  >ENSURE_UINT_AT_INDEX(OUT, INDEX)    </p>
+</li><li class=" ">    <p  >ENSURE_DOUBLE_AT_INDEX(OUT, INDEX)    </p>
+</li><li class=" ">    <p  >ENSURE_BOOL_AT_INDEX(OUT, INDEX)    </p>
+</li><li class=" ">    <p  >ENSURE_STRING_AT_INDEX(OUT, INDEX)    </p>
+</li></ul>    <p  >Note that in this macro example <tt class=" ">OUT</tt> is a variable name, and <tt class=" ">INDEX</tt> is a index in the arguments. For example:    </p>
+    <p  >    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.cpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.cpp">
-<div class="line"><code class="plain">&#xA0;TITANIUM_FUNCTION(Test, example)</code></div>
+<div class="line"><code class="plain"> TITANIUM_FUNCTION(Test, example)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// get 1st argument and convert it to std::int32_t</code></div>
 <div class="line"><code class="plain">    ENSURE_INT_AT_INDEX(my_int, 0);</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="plain">    </code><code class="comments">// get 2nd argument and convert it to double</code></div>
-<div class="line"><code class="plain">   &#xA0;ENSURE_DOUBLE_AT_INDEX(my_double, 1);</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    ENSURE_DOUBLE_AT_INDEX(my_double, 1);</code></div>
+<div class="line"> </div>
 <div class="line"><code class="plain">    </code><code class="comments">// get 3rd argument and convert it to boolean</code></div>
 <div class="line"><code class="plain">    ENSURE_BOOL_AT_INDEX(my_bool, 2);</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="plain">    </code><code class="comments">// get 4th argument and convert it to std::string</code></div>
 <div class="line"><code class="plain">    ENSURE_STRING_AT_INDEX(my_string, 3);</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">    </code><code class="comments">// let&apos;s return 4th argument for example</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    </code><code class="comments">// let's return 4th argument for example</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> get_context().CreateString(my_string);</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
@@ -225,35 +225,35 @@
     </div>
     <div class="section section-3 " id="src-46248454_WindowsModuleArchitecture-Properties">
         <h3 class="heading "><span>Properties</span></h3>
-    <p>Properties are exposed via <tt class=" ">TITANIUM_ADD_PROPERTY</tt> and <tt class=" ">TITANIUM_PROPERTY_DEF</tt> C++ macro.    </p>
-    <p>First, declare method using <tt class=" ">TITANIUM_FUNCTION_DEF</tt> in header:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >Properties are exposed via <tt class=" ">TITANIUM_ADD_PROPERTY</tt> and <tt class=" ">TITANIUM_PROPERTY_DEF</tt> C++ macro.    </p>
+    <p  >First, declare method using <tt class=" ">TITANIUM_FUNCTION_DEF</tt> in header:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.hpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.hpp">
-<div class="line"><code class="preprocessor">#include &quot;Titanium/Module.hpp&quot;</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"><code class="preprocessor">#include "Titanium/Module.hpp"</code></div>
+<div class="line"> </div>
 <div class="line"><code class="keyword">class</code><code class="plain"> COMEXAMPLETEST_EXPORT Test : </code><code class="keyword">public</code><code class="plain"> Titanium::Module, </code><code class="keyword">public</code><code class="plain"> JSExport&lt;Test&gt;</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain">:</code></div>
 <div class="line"><code class="plain">    TITANIUM_PROPERTY_DEF(exampleProp);</code></div>
 <div class="line"><code class="plain">    ....</code></div>
-<div class="line"><code class="plain">&#xA0;};</code></div>
+<div class="line"><code class="plain"> };</code></div>
 </div>
     </div>
-    <p>Second, implement <tt class=" ">exampleProp</tt> property getter/setter with <tt class=" ">TITANIUM_PROPERTY_GETTER/</tt><tt class=" ">TITANIUM_PROPERTY_SETTER</tt> and then register in <tt class=" ">JSExportInitialize</tt> with <tt class=" ">TITANIUM_ADD_PROPERTY:</tt>    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >Second, implement <tt class=" ">exampleProp</tt> property getter/setter with <tt class=" ">TITANIUM_PROPERTY_GETTER/</tt><tt class=" ">TITANIUM_PROPERTY_SETTER</tt> and then register in <tt class=" ">JSExportInitialize</tt> with <tt class=" ">TITANIUM_ADD_PROPERTY:</tt>    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.cpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.cpp">
 <div class="line"><code class="keyword">void</code><code class="plain"> Test::JSExportInitialize()</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    JSExport&lt;Test&gt;::SetClassVersion(1);</code></div>
 <div class="line"><code class="plain">    JSExport&lt;Test&gt;::SetParent(JSExport&lt;Titanium::Module&gt;::Class());</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="plain">    </code><code class="comments">// register exampleProp property so we can use it from JavaScript</code></div>
 <div class="line"><code class="plain">    TITANIUM_ADD_PROPERTY(Test, exampleProp);</code></div>
 <div class="line"><code class="plain">    ...</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="plain">TITANIUM_PROPERTY_GETTER(Test, exampleProp)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// example property getter</code></div>
@@ -263,9 +263,9 @@
 <div class="line"><code class="plain">    </code><code class="comments">// For more information on how to use JSContext / JSValue / JSObject, check out HAL:</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">//      https://github.com/appcelerator/HAL</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// </code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> get_context().CreateString(</code><code class="string">&quot;hello world&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> get_context().CreateString(</code><code class="string">"hello world"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="plain">TITANIUM_PROPERTY_SETTER(Test, exampleProp)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// example property setter</code></div>
@@ -274,7 +274,7 @@
 <div class="line"><code class="plain">    </code><code class="comments">//     JSValue argument ... JavaScript value that is passed to this setter</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// </code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Example:</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">//   # Check if it&apos;s a string</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">//   # Check if it's a string</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">//      auto _0 = argument.IsString();</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// </code></div>
 <div class="line"><code class="plain">    </code><code class="comments">//   # Convert argument to std::string</code></div>
@@ -289,8 +289,8 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>Inside setter, there&apos;s a variable that you can use: <tt class=" ">argument</tt> as <tt class=" ">JSValue</tt>. For typicasting property values, you can just use C++11 s<tt class=" ">tatic_cast&lt;TYPE&gt;</tt>.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >Inside setter, there's a variable that you can use: <tt class=" ">argument</tt> as <tt class=" ">JSValue</tt>. For typicasting property values, you can just use C++11 s<tt class=" ">tatic_cast&lt;TYPE&gt;</tt>.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.cpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.cpp">
 <div class="line"><code class="plain">TITANIUM_PROPERTY_SETTER(Test, exampleProp)</code></div>
@@ -300,12 +300,12 @@
 <div class="line"><code class="plain">    </code><code class="comments">// There are a variable expanded from TITANIUM_PROPERTY_SETTER macro here:</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">//     JSValue argument ... JavaScript value that is passed to this setter</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// </code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="plain">    </code><code class="keyword">const</code><code class="plain"> auto my_int = </code><code class="keyword">static_cast</code><code class="plain">&lt;std::int32_t&gt;(argument);</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">const</code><code class="plain"> auto my_double = </code><code class="keyword">static_cast</code><code class="plain">&lt;</code><code class="color1">double</code><code class="plain">&gt;(argument);</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">const</code><code class="plain"> auto my_string = </code><code class="keyword">static_cast</code><code class="plain">&lt;std::string&gt;(argument);</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">const</code><code class="plain"> auto my_bool = </code><code class="keyword">static_cast</code><code class="plain">&lt;</code><code class="color1">bool</code><code class="plain">&gt;(argument);</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
@@ -313,60 +313,62 @@
     </div>
     <div class="section section-3 " id="src-46248454_WindowsModuleArchitecture-HandlingEvents">
         <h3 class="heading "><span>Handling Events</span></h3>
-    <p>Modules automatically handle firing events and managing event listeners. Internally, when you call <tt class=" ">addEventListener()</tt> or <tt class=" ">removeEventListener()</tt> from JavaScript against a module instance, the module will automatically handle the code for managing the event listeners. If you want to be notified upon an add or remove, you should override the methods:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >Modules automatically handle firing events and managing event listeners. Internally, when you call <tt class=" ">addEventListener()</tt> or <tt class=" ">removeEventListener()</tt> from JavaScript against a module instance, the module will automatically handle the code for managing the event listeners. If you want to be notified upon an add or remove, you should override the methods:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ComExampleTest.hpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ComExampleTest.hpp">
 <div class="line"><code class="keyword">virtual</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> enableEvent(</code><code class="keyword">const</code><code class="plain"> std::string&amp; event_name) TITANIUM_NOEXCEPT override;</code></div>
 <div class="line"><code class="keyword">virtual</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> disableEvent(</code><code class="keyword">const</code><code class="plain"> std::string&amp; event_name) TITANIUM_NOEXCEPT override;</code></div>
 </div>
     </div>
-    <p>The<tt class=" "> enableEvent</tt> method will be invoked when event is enabled with given name. This is convenient, for example, when you would like to enable some action only once at least one listener is listening for the event. This can be useful for conserving system resources.    </p>
-    <p>The <tt class=" ">disableEvent</tt> method will be invoked when event is enabled with given name. This is useful when you want to cleanup system resources once no listeners are actively listening for events.    </p>
-    <p>To send an event to any event listener, you use the convenience method:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >The<tt class=" "> enableEvent</tt> method will be invoked when event is enabled with given name. This is convenient, for example, when you would like to enable some action only once at least one listener is listening for the event. This can be useful for conserving system resources.    </p>
+    <p  >The <tt class=" ">disableEvent</tt> method will be invoked when event is enabled with given name. This is useful when you want to cleanup system resources once no listeners are actively listening for events.    </p>
+    <p  >To send an event to any event listener, you use the convenience method:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Titanium/Module.hpp</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Titanium/Module.hpp">
 <div class="line"><code class="keyword">virtual</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> fireEvent(</code><code class="keyword">const</code><code class="plain"> std::string&amp; name) TITANIUM_NOEXCEPT final;</code></div>
 <div class="line"><code class="keyword">virtual</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> fireEvent(</code><code class="keyword">const</code><code class="plain"> std::string&amp; name, </code><code class="keyword">const</code><code class="plain"> JSObject&amp; event) TITANIUM_NOEXCEPT final;</code></div>
 </div>
     </div>
-    <p>The first one is the default and most common way to fire an event. The first argument (name) is the event name. The second argument (event) is an <tt class=" ">JSObject</tt> of event properties. The second argument can also be omitted if no additional event properties are needed. The event properties will be part of the event argument which is the first argument in all event functions.    </p>
-    <p>For example:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >The first one is the default and most common way to fire an event. The first argument (name) is the event name. The second argument (event) is an <tt class=" ">JSObject</tt> of event properties. The second argument can also be omitted if no additional event properties are needed. The event properties will be part of the event argument which is the first argument in all event functions.    </p>
+    <p  >For example:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">TITANIUM_FUNCTION(Test, example)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">   ...</code></div>
 <div class="line"><code class="plain">   </code><code class="keyword">const</code><code class="plain"> auto ctx = get_context();</code></div>
 <div class="line"><code class="plain">   auto obj = ctx.CreateObject();</code></div>
-<div class="line"><code class="plain">   obj.SetProperty(</code><code class="string">&quot;name&quot;</code><code class="plain">, ctx.CreateString(</code><code class="string">&quot;my name&quot;</code><code class="plain">));</code></div>
-<div class="line"><code class="plain">   fireEvent(</code><code class="string">&quot;foo&quot;</code><code class="plain">, obj);</code></div>
+<div class="line"><code class="plain">   obj.SetProperty(</code><code class="string">"name"</code><code class="plain">, ctx.CreateString(</code><code class="string">"my name"</code><code class="plain">));</code></div>
+<div class="line"><code class="plain">   fireEvent(</code><code class="string">"foo"</code><code class="plain">, obj);</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>In this example, we&apos;d adding one additional event property named &apos;name&apos; with the value of &apos;my name&apos;. In JavaScript, this would be retrieved like:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >In this example, we'd adding one additional event property named 'name' with the value of 'my name'. In JavaScript, this would be retrieved like:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">test.addEventListener(</code><code class="string">&apos;foo&apos;</code><code class="plain">,function(e){</code></div>
-<div class="line"><code class="plain">  alert(</code><code class="string">&quot;name is &quot;</code><code class="plain">+e.name);</code></div>
+<div class="line"><code class="plain">test.addEventListener(</code><code class="string">'foo'</code><code class="plain">,function(e){</code></div>
+<div class="line"><code class="plain">  alert(</code><code class="string">"name is "</code><code class="plain">+e.name);</code></div>
 <div class="line"><code class="plain">});</code></div>
 </div>
     </div>
-    <p>In addition to any additional event arguments passed, Titanium automatically provides the following built-in properties on all events fired:    </p>
-<ul class=" "><li class=" ">    <p>source &#x2014; The source object (proxy) that fired the event    </p>
-</li><li class=" ">    <p>type &#x2014; The type of event    </p>
+    <p  >In addition to any additional event arguments passed, Titanium automatically provides the following built-in properties on all events fired:    </p>
+<ul class=" "><li class=" ">    <p  >source &mdash; The source object (proxy) that fired the event    </p>
+</li><li class=" ">    <p  >type &mdash; The type of event    </p>
 </li></ul>    </div>
     <div class="section section-3 line" id="src-46248454_WindowsModuleArchitecture-MoreExamples">
         <h3 class="heading line"><span>More Examples</span></h3>
-<ul class=" "><li class=" ">    <p>For information about HAL API, see <a class="external-link external-link" href="https://github.com/appcelerator/HAL">github/appcelerator/HAL</a>    </p>
-</li><li class=" ">    <p>For information about TitaniumKit, see <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile_windows">github/appcelerator/titanium_mobile_windows</a>    </p>
-</li><li class=" ">    <p>For more examples of using the module API, see working Titanium modules under <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile_windows/tree/master/Source">github/appcelerator/titanium_mobile_windows/Source</a>    </p>
+<ul class=" "><li class=" ">    <p  >For information about HAL API, see <a class="external-link external-link" href="https://github.com/appcelerator/HAL">github/appcelerator/HAL</a>    </p>
+</li><li class=" ">    <p  >For information about TitaniumKit, see <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile_windows">github/appcelerator/titanium_mobile_windows</a>    </p>
+</li><li class=" ">    <p  >For more examples of using the module API, see working Titanium modules under <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile_windows/tree/master/Source">github/appcelerator/titanium_mobile_windows/Source</a>    </p>
 </li></ul>    </div>
     </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>

@@ -5,12 +5,12 @@
 <head>
     <title>Modeling a User Account and Authentication</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -18,61 +18,61 @@
 
         <div id="src-41845719" class="content">
                         <h1>Modeling a User Account and Authentication</h1>
-    <p>Demonstrates creating a user login and authentication flow using a data model.    </p>
-    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
+    <p  >Demonstrates creating a user login and authentication flow using a data model.    </p>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
             <div class="title">App Folder Location</div>
-            <p>alloy/test/apps/<strong class=" ">models/login</strong>    </p>
+            <p  >alloy/test/apps/<strong class=" ">models/login</strong>    </p>
     </div>
-        <p>The application initially presents a login form (username is <strong class=" ">user</strong> and password is <strong class=" ">password</strong>). Upon successful login, the application presents three tabs: Profile, About Us, and Settings. The first two tabs display information about the user persisted to a SQL database. The Settings tab lets the user change their email address, and set the application&apos;s background color and image.    </p>
-    <p>The main <tt class=" ">index.js</tt> view-controller uses the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy-method-createController">Alloy.createController()</a> method to conditionally display the <tt class=" ">app/views/login.xml</tt> or <tt class=" ">app/views/home.xml</tt> view depending on whether the model&apos;s <tt class=" ">validateAuth()</tt> method returns &quot;true&quot; or &quot;false&quot;.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+        <p  >The application initially presents a login form (username is <strong class=" ">user</strong> and password is <strong class=" ">password</strong>). Upon successful login, the application presents three tabs: Profile, About Us, and Settings. The first two tabs display information about the user persisted to a SQL database. The Settings tab lets the user change their email address, and set the application's background color and image.    </p>
+    <p  >The main <tt class=" ">index.js</tt> view-controller uses the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy-method-createController">Alloy.createController()</a> method to conditionally display the <tt class=" ">app/views/login.xml</tt> or <tt class=" ">app/views/home.xml</tt> view depending on whether the model's <tt class=" ">validateAuth()</tt> method returns &quot;true&quot; or &quot;false&quot;.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/controllers/index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
 <div class="line"><code class="keyword">if</code><code class="plain"> (OS_IOS) {</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// If the user is already logged in, show the home view. If</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// the user is not yet login, show the login view.</code></div>
-<div class="line"><code class="plain">    Alloy.createController(Alloy.Models.user.validateAuth() ? </code><code class="string">&apos;home&apos;</code><code class="plain"> : </code><code class="string">&apos;login&apos;</code><code class="plain">).getView().open();</code></div>
+<div class="line"><code class="plain">    Alloy.createController(Alloy.Models.user.validateAuth() ? </code><code class="string">'home'</code><code class="plain"> : </code><code class="string">'login'</code><code class="plain">).getView().open();</code></div>
 <div class="line"><code class="plain">} </code><code class="keyword">else</code><code class="plain"> {</code></div>
 <div class="line"><code class="plain">    $.index.open();</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
-            <p>The sample&apos;s UI was designed for iOS devices only, but can easily be adapted to Android or other platforms.    </p>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p  >The sample's UI was designed for iOS devices only, but can easily be adapted to Android or other platforms.    </p>
     </div>
-        <p>The home.xml view defines a TabGroup with the three tabs, &quot;Profile&quot;, &quot;About Us&quot; and &quot;Settings&quot;. Each tab contains UI elements that are bound to the user model data &#x2013; for example, <tt class=" ">&lt;Label text=&quot;{user.realname}&quot; top=&quot;10&quot;/&gt;</tt> or <tt class=" ">&lt;Window title=&quot;Settings&quot; barColor=&quot;{user.themeBGColor}&quot;&gt;</tt>.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+        <p  >The home.xml view defines a TabGroup with the three tabs, &quot;Profile&quot;, &quot;About Us&quot; and &quot;Settings&quot;. Each tab contains UI elements that are bound to the user model data &ndash; for example, <tt class=" ">&lt;Label text=&quot;{user.realname}&quot; top=&quot;10&quot;/&gt;</tt> or <tt class=" ">&lt;Window title=&quot;Settings&quot; barColor=&quot;{user.themeBGColor}&quot;&gt;</tt>.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/home.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/home.xml">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;</code><code class="keyword">TabGroup</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Profile&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Profile&quot;</code><code class="plain"> </code><code class="color1">barColor</code><code class="plain">=</code><code class="string">&quot;{user.themeBGColor}&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="keyword">RightNavButton</code><code class="plain">&gt;&lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;logout&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;logout&quot;</code><code class="plain">/&gt;&lt;/</code><code class="keyword">RightNavButton</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{user.realname}&quot;</code><code class="plain"> </code><code class="color1">top</code><code class="plain">=</code><code class="string">&quot;10&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{user.email}&quot;</code><code class="plain"> </code><code class="color1">top</code><code class="plain">=</code><code class="string">&quot;40&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">width</code><code class="plain">=</code><code class="string">&quot;100%&quot;</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">&quot;{user.themeImage}&quot;</code><code class="plain"> </code><code class="color1">bottom</code><code class="plain">=</code><code class="string">&quot;0&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Profile"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Profile"</code><code class="plain"> </code><code class="color1">barColor</code><code class="plain">=</code><code class="string">"{user.themeBGColor}"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">RightNavButton</code><code class="plain">&gt;&lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"logout"</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">"logout"</code><code class="plain">/&gt;&lt;/</code><code class="keyword">RightNavButton</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">"{user.realname}"</code><code class="plain"> </code><code class="color1">top</code><code class="plain">=</code><code class="string">"10"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">"{user.email}"</code><code class="plain"> </code><code class="color1">top</code><code class="plain">=</code><code class="string">"40"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">width</code><code class="plain">=</code><code class="string">"100%"</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">"{user.themeImage}"</code><code class="plain"> </code><code class="color1">bottom</code><code class="plain">=</code><code class="string">"0"</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">            &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;About Us&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;About Us&quot;</code><code class="plain"> </code><code class="color1">barColor</code><code class="plain">=</code><code class="string">&quot;{user.themeBGColor}&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;!-- &lt;</code><code class="keyword">RightNavButton</code><code class="plain">&gt;&lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;logout&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;logout&quot;</code><code class="plain">/&gt;&lt;/</code><code class="keyword">RightNavButton</code><code class="plain">&gt; --&gt;</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="keyword">WebView</code><code class="plain"> </code><code class="color1">url</code><code class="plain">=</code><code class="string">&quot;https://en.wikipedia.org/wiki/Banana&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"About Us"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"About Us"</code><code class="plain"> </code><code class="color1">barColor</code><code class="plain">=</code><code class="string">"{user.themeBGColor}"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;!-- &lt;</code><code class="keyword">RightNavButton</code><code class="plain">&gt;&lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"logout"</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">"logout"</code><code class="plain">/&gt;&lt;/</code><code class="keyword">RightNavButton</code><code class="plain">&gt; --&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">WebView</code><code class="plain"> </code><code class="color1">url</code><code class="plain">=</code><code class="string">"https://en.wikipedia.org/wiki/Banana"</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">            &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Settings&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Settings&quot;</code><code class="plain"> </code><code class="color1">barColor</code><code class="plain">=</code><code class="string">&quot;{user.themeBGColor}&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;!-- &lt;</code><code class="keyword">RightNavButton</code><code class="plain">&gt;&lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;logout&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;logout&quot;</code><code class="plain">/&gt;&lt;/</code><code class="keyword">RightNavButton</code><code class="plain">&gt; --&gt;</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="keyword">TableView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;themes&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;setTheme&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewSection</code><code class="plain"> </code><code class="color1">headerTitle</code><code class="plain">=</code><code class="string">&quot;Email&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Settings"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Settings"</code><code class="plain"> </code><code class="color1">barColor</code><code class="plain">=</code><code class="string">"{user.themeBGColor}"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;!-- &lt;</code><code class="keyword">RightNavButton</code><code class="plain">&gt;&lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"logout"</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">"logout"</code><code class="plain">/&gt;&lt;/</code><code class="keyword">RightNavButton</code><code class="plain">&gt; --&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">TableView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"themes"</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">"setTheme"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewSection</code><code class="plain"> </code><code class="color1">headerTitle</code><code class="plain">=</code><code class="string">"Email"</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                            &lt;</code><code class="keyword">TextField</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;email&quot;</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">&quot;{user.email}&quot;</code><code class="plain"> </code><code class="color1">onBlur</code><code class="plain">=</code><code class="string">&quot;setEmail&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">                            &lt;</code><code class="keyword">TextField</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"email"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"{user.email}"</code><code class="plain"> </code><code class="color1">onBlur</code><code class="plain">=</code><code class="string">"setEmail"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">                        &lt;/</code><code class="keyword">TableViewRow</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">                    &lt;/</code><code class="keyword">TableViewSection</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewSection</code><code class="plain"> </code><code class="color1">headerTitle</code><code class="plain">=</code><code class="string">&quot;Themes&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Default&quot;</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;theme0&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Banana&quot;</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;theme1&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Jeans&quot;</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;theme2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewSection</code><code class="plain"> </code><code class="color1">headerTitle</code><code class="plain">=</code><code class="string">"Themes"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Default"</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"theme0"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Banana"</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"theme1"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Jeans"</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"theme2"</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">                    &lt;/</code><code class="keyword">TableViewSection</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">                &lt;/</code><code class="keyword">TableView</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">            &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
@@ -81,61 +81,61 @@
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/login.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/login.xml">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">        &lt;</code><code class="keyword">ScrollView</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;container&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;logo&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="keyword">TextField</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;username&quot;</code><code class="plain"> </code><code class="color1">onReturn</code><code class="plain">=</code><code class="string">&quot;focusPassword&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="keyword">TextField</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;password&quot;</code><code class="plain"> </code><code class="color1">onReturn</code><code class="plain">=</code><code class="string">&quot;login&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;loginButton&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;login&quot;</code><code class="plain">&gt;Login&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;motto&quot;</code><code class="plain">&gt;&quot;There&apos;s always a banana.&quot;&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"container"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"logo"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">TextField</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"username"</code><code class="plain"> </code><code class="color1">onReturn</code><code class="plain">=</code><code class="string">"focusPassword"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">TextField</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"password"</code><code class="plain"> </code><code class="color1">onReturn</code><code class="plain">=</code><code class="string">"login"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"loginButton"</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">"login"</code><code class="plain">&gt;Login&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"motto"</code><code class="plain">&gt;"There's always a banana."&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">            &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/</code><code class="keyword">ScrollView</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>The <tt class=" ">user.js</tt> model file defines the data schema used to represent the <tt class=" ">user</tt> model, and defines model fields for the username, email and theme. These fields are bound to UI elements in the home.xml view.  The <tt class=" ">user</tt> model is also extended with custom functions that are used to log the user in and out, and to validate the user&apos;s session (the function used to determine what view to display initially).    </p>
-    <p>The model&apos;s <tt class=" ">transform()</tt> function appends the <tt class=" ">themeBGColor</tt> and <tt class=" ">themeColor</tt> properties to the model data before it&apos;s sent to the view for rendering, based on the value of the <tt class=" ">theme</tt> model property.    </p>
-    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
-            <p>For purposes of demonstration, the authentication key, username and password are hard-coded into the application.    </p>
+    <p  >The <tt class=" ">user.js</tt> model file defines the data schema used to represent the <tt class=" ">user</tt> model, and defines model fields for the username, email and theme. These fields are bound to UI elements in the home.xml view.  The <tt class=" ">user</tt> model is also extended with custom functions that are used to log the user in and out, and to validate the user's session (the function used to determine what view to display initially).    </p>
+    <p  >The model's <tt class=" ">transform()</tt> function appends the <tt class=" ">themeBGColor</tt> and <tt class=" ">themeColor</tt> properties to the model data before it's sent to the view for rendering, based on the value of the <tt class=" ">theme</tt> model property.    </p>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p  >For purposes of demonstration, the authentication key, username and password are hard-coded into the application.    </p>
     </div>
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+        <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/models/user.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/models/user.js">
-<div class="line"><code class="keyword">var</code><code class="plain"> moment = require(</code><code class="string">&apos;alloy/moment&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> USERNAME = </code><code class="string">&apos;user&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    PASSWORD = </code><code class="string">&apos;password&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    AUTHKEY = </code><code class="string">&apos;somelongauthkeyforvalidation&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> moment = require(</code><code class="string">'alloy/moment'</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> USERNAME = </code><code class="string">'user'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    PASSWORD = </code><code class="string">'password'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    AUTHKEY = </code><code class="string">'somelongauthkeyforvalidation'</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">exports.definition = {</code></div>
 <div class="line"><code class="plain">	config: {</code></div>
-<div class="line"><code class="plain">		</code><code class="string">&quot;columns&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">			</code><code class="string">&quot;username&quot;</code><code class="plain">:</code><code class="string">&quot;text primary key&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">&quot;realname&quot;</code><code class="plain">:</code><code class="string">&quot;text&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">&quot;email&quot;</code><code class="plain">:</code><code class="string">&quot;text&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">			</code><code class="string">&quot;loggedIn&quot;</code><code class="plain">:</code><code class="string">&quot;integer&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">&quot;loggedInSince&quot;</code><code class="plain">:</code><code class="string">&quot;text&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">&quot;authKey&quot;</code><code class="plain">:</code><code class="string">&quot;text&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">&quot;theme&quot;</code><code class="plain">:</code><code class="string">&quot;integer&quot;</code></div>
+<div class="line"><code class="plain">		</code><code class="string">"columns"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">			</code><code class="string">"username"</code><code class="plain">:</code><code class="string">"text primary key"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">"realname"</code><code class="plain">:</code><code class="string">"text"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">"email"</code><code class="plain">:</code><code class="string">"text"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">			</code><code class="string">"loggedIn"</code><code class="plain">:</code><code class="string">"integer"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">"loggedInSince"</code><code class="plain">:</code><code class="string">"text"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">"authKey"</code><code class="plain">:</code><code class="string">"text"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">"theme"</code><code class="plain">:</code><code class="string">"integer"</code></div>
 <div class="line"><code class="plain">		},</code></div>
-<div class="line"><code class="plain">		</code><code class="string">&quot;adapter&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">			</code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;sql&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">			</code><code class="string">&quot;collection_name&quot;</code><code class="plain">: </code><code class="string">&quot;user&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            </code><code class="string">&quot;idAttribute&quot;</code><code class="plain">: </code><code class="string">&quot;username&quot;</code></div>
+<div class="line"><code class="plain">		</code><code class="string">"adapter"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">			</code><code class="string">"type"</code><code class="plain">: </code><code class="string">"sql"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">			</code><code class="string">"collection_name"</code><code class="plain">: </code><code class="string">"user"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">"idAttribute"</code><code class="plain">: </code><code class="string">"username"</code></div>
 <div class="line"><code class="plain">		}</code></div>
 <div class="line"><code class="plain">	},</code></div>
 <div class="line"><code class="plain">	extendModel : </code><code class="keyword">function</code><code class="plain">(Model) {</code></div>
 <div class="line"><code class="plain">        _.extend(Model.prototype, {</code></div>
 <div class="line"><code class="plain">            login: </code><code class="keyword">function</code><code class="plain">(username, password) {</code></div>
-<div class="line"><code class="plain">				</code><code class="comments">// Fake login used for demonstration. Don&apos;t do this.</code></div>
+<div class="line"><code class="plain">				</code><code class="comments">// Fake login used for demonstration. Don't do this.</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">if</code><code class="plain"> (username === USERNAME &amp;&amp; password === PASSWORD) {</code></div>
 <div class="line"><code class="plain">                    </code><code class="keyword">this</code><code class="plain">.set({</code></div>
 <div class="line"><code class="plain">                        loggedIn: 1,</code></div>
-<div class="line"><code class="plain">                        loggedInSince: moment().format(</code><code class="string">&apos;YYYY-MM-DD HH:mm:ss.SSS&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="plain">                        loggedInSince: moment().format(</code><code class="string">'YYYY-MM-DD HH:mm:ss.SSS'</code><code class="plain">),</code></div>
 <div class="line"><code class="plain">                        authKey: AUTHKEY</code></div>
 <div class="line"><code class="plain">                    });</code></div>
 <div class="line"><code class="plain">                    </code><code class="keyword">this</code><code class="plain">.save();</code></div>
@@ -147,13 +147,13 @@
 <div class="line"><code class="plain">            logout: </code><code class="keyword">function</code><code class="plain">() {</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">this</code><code class="plain">.set({</code></div>
 <div class="line"><code class="plain">                    loggedIn: 0,</code></div>
-<div class="line"><code class="plain">                    loggedInSince: </code><code class="string">&apos;&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">                    authKey: </code><code class="string">&apos;&apos;</code></div>
+<div class="line"><code class="plain">                    loggedInSince: </code><code class="string">''</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                    authKey: </code><code class="string">''</code></div>
 <div class="line"><code class="plain">                });</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">this</code><code class="plain">.save();</code></div>
 <div class="line"><code class="plain">            },</code></div>
 <div class="line"><code class="plain">            validateAuth: </code><code class="keyword">function</code><code class="plain">() {</code></div>
-<div class="line"><code class="plain">                </code><code class="keyword">if</code><code class="plain"> (</code><code class="keyword">this</code><code class="plain">.get(</code><code class="string">&apos;loggedIn&apos;</code><code class="plain">) === 1 &amp;&amp; </code><code class="keyword">this</code><code class="plain">.get(</code><code class="string">&apos;authKey&apos;</code><code class="plain">) === AUTHKEY) {</code></div>
+<div class="line"><code class="plain">                </code><code class="keyword">if</code><code class="plain"> (</code><code class="keyword">this</code><code class="plain">.get(</code><code class="string">'loggedIn'</code><code class="plain">) === 1 &amp;&amp; </code><code class="keyword">this</code><code class="plain">.get(</code><code class="string">'authKey'</code><code class="plain">) === AUTHKEY) {</code></div>
 <div class="line"><code class="plain">                    </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">                } </code><code class="keyword">else</code><code class="plain"> {</code></div>
 <div class="line"><code class="plain">                    </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">false</code><code class="plain">;</code></div>
@@ -161,8 +161,8 @@
 <div class="line"><code class="plain">            },</code></div>
 <div class="line"><code class="plain">            transform: </code><code class="keyword">function</code><code class="plain">() {</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">var</code><code class="plain"> t = </code><code class="keyword">this</code><code class="plain">.toJSON();</code></div>
-<div class="line"><code class="plain">                t.themeBGColor = t.theme === 2 ? </code><code class="string">&apos;#00f&apos;</code><code class="plain"> : t.theme === 1 ? </code><code class="string">&apos;#ff0&apos;</code><code class="plain"> : </code><code class="string">&apos;#963&apos;</code><code class="plain">;</code></div>
-<div class="line"><code class="plain">                t.themeImage = t.theme === 2 ? </code><code class="string">&apos;/jeans.png&apos;</code><code class="plain"> : t.theme === 1 ? </code><code class="string">&apos;/banana.jpg&apos;</code><code class="plain"> : </code><code class="string">&apos;/family.jpg&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">                t.themeBGColor = t.theme === 2 ? </code><code class="string">'#00f'</code><code class="plain"> : t.theme === 1 ? </code><code class="string">'#ff0'</code><code class="plain"> : </code><code class="string">'#963'</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">                t.themeImage = t.theme === 2 ? </code><code class="string">'/jeans.png'</code><code class="plain"> : t.theme === 1 ? </code><code class="string">'/banana.jpg'</code><code class="plain"> : </code><code class="string">'/family.jpg'</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> t;</code></div>
 <div class="line"><code class="plain">            }</code></div>
 <div class="line"><code class="plain">        });</code></div>
@@ -173,7 +173,9 @@
     </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>

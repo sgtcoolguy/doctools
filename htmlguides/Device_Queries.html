@@ -5,12 +5,12 @@
 <head>
     <title>Device Queries</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -18,89 +18,91 @@
 
         <div id="src-41845654" class="content">
                         <h1>Device Queries</h1>
-    <p>Demonstrates how to combine  <tt class=" ">platform</tt>  and  <tt class=" ">formFactor</tt>  attribute selectors to apply different styles and properties on different platforms and device types.    </p>
-    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
+    <p  >Demonstrates how to combine  <tt class=" ">platform</tt>  and  <tt class=" ">formFactor</tt>  attribute selectors to apply different styles and properties on different platforms and device types.    </p>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
             <div class="title">App folder location</div>
-            <p><i class=" ">alloy</i>/test/apps/<strong class=" ">advanced/device_query</strong>    </p>
+            <p  ><i class=" ">alloy</i>/test/apps/<strong class=" ">advanced/device_query</strong>    </p>
     </div>
-        <img src="images/download/attachments/41845654/queries.png" alt="images/download/attachments/41845654/queries.png" class="confluence-embedded-image" width="500">
-        <p>The main index.xml view simply defines a Window and a Label, assigned IDs of &quot;win&quot; and &quot;osLabel&quot;, respectively.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+        <img  src="images/download/attachments/41845654/queries.png" alt="images/download/attachments/41845654/queries.png" class="confluence-embedded-image" width="500"  />
+        <p  >The main index.xml view simply defines a Window and a Label, assigned IDs of &quot;win&quot; and &quot;osLabel&quot;, respectively.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;win&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;osLabel&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"win"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"osLabel"</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>The Window is assigned a different color depending on the platform (red for iOS, green for Android, and so forth):    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >The Window is assigned a different color depending on the platform (red for iOS, green for Android, and so forth):    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="string">&quot;#win&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    backgroundColor: </code><code class="string">&quot;#000&quot;</code></div>
+<div class="line"><code class="string">"#win"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    backgroundColor: </code><code class="string">"#000"</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="string">&quot;#win[platform=ios]&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    backgroundColor: </code><code class="string">&quot;#f00&quot;</code></div>
+<div class="line"><code class="string">"#win[platform=ios]"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    backgroundColor: </code><code class="string">"#f00"</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="string">&quot;#win[platform=android]&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    backgroundColor: </code><code class="string">&quot;#0f0&quot;</code></div>
+<div class="line"><code class="string">"#win[platform=android]"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    backgroundColor: </code><code class="string">"#0f0"</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="string">&quot;#win[platform=mobileweb]&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    backgroundColor: </code><code class="string">&quot;#00f&quot;</code></div>
+<div class="line"><code class="string">"#win[platform=mobileweb]"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    backgroundColor: </code><code class="string">"#00f"</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>A general style applied to all Label element&apos;s applies a different font size to tablets and non-tablet devices but, by default, share the same color.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >A general style applied to all Label element's applies a different font size to tablets and non-tablet devices but, by default, share the same color.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="string">&quot;Label&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">color</code><code class="plain">: </code><code class="string">&quot;#fff&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="string">"Label"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">color</code><code class="plain">: </code><code class="string">"#fff"</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">font</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">        fontSize: </code><code class="value">48</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        fontWeight: </code><code class="string">&quot;bold&quot;</code></div>
+<div class="line"><code class="plain">        fontWeight: </code><code class="string">"bold"</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="string">&quot;Label[formFactor=tablet]&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="string">"Label[formFactor=tablet]"</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">font</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">        fontSize: </code><code class="value">96</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        fontWeight: </code><code class="string">&quot;bold&quot;</code></div>
+<div class="line"><code class="plain">        fontWeight: </code><code class="string">"bold"</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>The Label element&apos;s <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.Label-property-text">text</a> property is assigned a different value, based on the target platform and device form factor.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >The Label element's <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.Label-property-text">text</a> property is assigned a different value, based on the target platform and device form factor.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="string">&quot;#osLabel[platform=ios]&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    text: </code><code class="string">&quot;iOS device\n(size unknown)&quot;</code></div>
+<div class="line"><code class="string">"#osLabel[platform=ios]"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    text: </code><code class="string">"iOS device\n(size unknown)"</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="string">&quot;#osLabel[platform=ios formFactor=tablet]&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    text: </code><code class="string">&quot;iPad&quot;</code></div>
+<div class="line"><code class="string">"#osLabel[platform=ios formFactor=tablet]"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    text: </code><code class="string">"iPad"</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="string">&quot;#osLabel[platform=ios formFactor=handheld]&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    text: </code><code class="string">&quot;iPhone&quot;</code></div>
+<div class="line"><code class="string">"#osLabel[platform=ios formFactor=handheld]"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    text: </code><code class="string">"iPhone"</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="string">&quot;#osLabel[platform=android]&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    text: </code><code class="string">&quot;Android&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">color</code><code class="plain">: </code><code class="string">&quot;#000&quot;</code></div>
+<div class="line"><code class="string">"#osLabel[platform=android]"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    text: </code><code class="string">"Android"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">color</code><code class="plain">: </code><code class="string">"#000"</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="string">&quot;#osLabel[platform=android formFactor=tablet]&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    text: </code><code class="string">&quot;Android\nTablet&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">color</code><code class="plain">: </code><code class="string">&quot;#000&quot;</code></div>
+<div class="line"><code class="string">"#osLabel[platform=android formFactor=tablet]"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    text: </code><code class="string">"Android\nTablet"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">color</code><code class="plain">: </code><code class="string">"#000"</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="string">&quot;#osLabel[platform=mobileweb]&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">    text: </code><code class="string">&quot;Mobileweb&quot;</code></div>
+<div class="line"><code class="string">"#osLabel[platform=mobileweb]"</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    text: </code><code class="string">"Mobileweb"</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
     <div class="section section-2 " id="src-41845654_DeviceQueries-SeeAlso">
         <h2 class="heading "><span>See Also</span></h2>
-<ul class=" "><li class=" ">    <p><a class="document-link " href="Alloy_Styles_and_Themes.html">Alloy Styles and Themes</a>    </p>
+<ul class=" "><li class=" ">    <p  ><a  class="document-link " href="Alloy_Styles_and_Themes.html">Alloy Styles and Themes</a>    </p>
 </li></ul>    </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>

@@ -5,12 +5,12 @@
 <head>
     <title>API Builder Release Notes</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -20,65 +20,67 @@
                         <h1>API Builder Release Notes</h1>
     <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-APIBuilderTools3.1.0-22February2018">
         <h2 class="heading "><span>API Builder Tools 3.1.0 - 22 February 2018</span></h2>
-    <p>API Builder Tools 3.1.0 is a minor release that includes new features, improvements, and bug fixes.    </p>
+    <p  >API Builder Tools 3.1.0 is a minor release that includes new features, improvements, and bug fixes.    </p>
     <div class="section section-3 " id="src-43299747_APIBuilderReleaseNotes-Newfeatures">
         <h3 class="heading "><span>New features</span></h3>
-<ul class=" "><li class=" ">    <p>Added the ability to validate generated flows using the Axway Flow SDK    </p>
-</li><li class=" ">    <p>Implemented selector auto-complete when creating and editing flows in the API Builder UI    </p>
+<ul class=" "><li class=" ">    <p  >Added the ability to validate generated flows using the Axway Flow SDK    </p>
+</li><li class=" ">    <p  >Implemented selector auto-complete when creating and editing flows in the API Builder UI    </p>
 </li></ul>    </div>
     <div class="section section-3 " id="src-43299747_APIBuilderReleaseNotes-Improvements">
         <h3 class="heading "><span>Improvements</span></h3>
-<ul class=" "><li class=" ">    <p>    <span style="color: #000000;">
+<ul class=" "><li class=" ">    <p  >    <span style="color: #000000;" >
 Previously, the initial project created by the <tt class=" ">appc new</tt> command contained unnecessary dependencies. Now, the initial project created by <tt class=" ">appc new</tt> command has been updated to remove unnecessary dependencies and to provide extra examples on how to test endpoints and models. Additionally, the <tt class=" ">grunt</tt> command is no longer used for the build. The <tt class=" ">npm test</tt> command is used instead. Also, the <tt class=" ">example.md</tt> web route has been removed.    </span>
-    <span style="color: #000000;">
+    <span style="color: #000000;" >
      </span>
     </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
+</li><li class=" ">    <p  >    <span style="color: #000000;" >
 Previously, when editing flows, it was not possible to see previously used and available selectors. Now, when editing a selector any previously used selector, or any available selector is displayed in a context-assisted drop-down menu that shows the selector or selectors that match the input text.    </span>
-    <span style="color: #000000;">
+    <span style="color: #000000;" >
      </span>
     </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
+</li><li class=" ">    <p  >    <span style="color: #000000;" >
 Previously, the <tt class=" ">axway-flow-sdk</tt> would generate projects that required transpiling with babel before they could be used. Now, the generated projects do not require transpiling; so the babel dependency has been removed, but the generated projects require a Node.js version equal to or greater than 8.9.x instead.    </span>
-    <span style="color: #000000;">
+    <span style="color: #000000;" >
      </span>
     </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
+</li><li class=" ">    <p  >    <span style="color: #000000;" >
 Previously, the API SDK generator was used to generate software development kits based on integrated SDK templates. Now, the API Builder SDK generator has been deprecated and the API Builder application exposes its APIs definitions using a standard Swagger format. These API definition can be consumed by third party SDK generators to create clients.    </span>
-    <span style="color: #000000;">
+    <span style="color: #000000;" >
      </span>
     </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
+</li><li class=" ">    <p  >    <span style="color: #000000;" >
 Previously, the API SDK generator was used to generate software development kits based on integrated SDK templates. Now, the API Builder SDK generator has been deprecated and the API Builder application exposes its APIs definitions using a standard Swagger format. These API definitions can be consumed by third-party SDK generators to create clients.    </span>
     </p>
 </li></ul>    </div>
     <div class="section section-3 " id="src-43299747_APIBuilderReleaseNotes-Fixedissues">
         <h3 class="heading "><span>Fixed issues</span></h3>
-<ul class=" "><li class=" ">    <p>    <span style="color: #000000;">
-Previously, attempting to develop flow-nodes locally in the <tt class=" ">./nodes</tt> directory would cause API Builder to also attempt to read the <tt class=" ">node_modules</tt> folder and cause the application to crash. Now, locally developed flow-node dependencies in the <tt class=" ">./nodes/node_modules</tt> folder will be ignored and any flow-node dependency that is required, must be added and resolved via the the API Builder application&apos;s <tt class=" ">package.json</tt> instead.    </span>
-    <span style="color: #000000;">
+<ul class=" "><li class=" ">    <p  >    <span style="color: #000000;" >
+Previously, attempting to develop flow-nodes locally in the <tt class=" ">./nodes</tt> directory would cause API Builder to also attempt to read the <tt class=" ">node_modules</tt> folder and cause the application to crash. Now, locally developed flow-node dependencies in the <tt class=" ">./nodes/node_modules</tt> folder will be ignored and any flow-node dependency that is required, must be added and resolved via the the API Builder application's <tt class=" ">package.json</tt> instead.    </span>
+    <span style="color: #000000;" >
      </span>
     </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
+</li><li class=" ">    <p  >    <span style="color: #000000;" >
 Previously, API Builder would not handle JSON schema references on startup and could generate invalid Swagger definitions that were missing the global schema references. Now, API Builder will load and handle the JSON schema references as expected.    </span>
-    <span style="color: #000000;">
+    <span style="color: #000000;" >
      </span>
     </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
+</li><li class=" ">    <p  >    <span style="color: #000000;" >
 Previously, the <tt class=" ">appc generate</tt> command would generate excessive logging. Now, the command has been reduced to avoid excessive logging. If required, the logging level can be increased with the <tt class=" ">appc generate -l</tt> debug option.    </span>
     </p>
 </li></ul>    </div>
     </div>
     <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-RecentReleases">
         <h2 class="heading "><span>Recent Releases</span></h2>
-<ul class="childpages-macro "><li class=" ">    <p><a class="document-link " href="API_Builder_Tools_3.1.0_Release_Note.html">API Builder Tools 3.1.0 Release Note</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="API_Builder_Tools_3.0.0_Release_Note.html">API Builder Tools 3.0.0 Release Note</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="API_Builder_Tools_2.x_Release_Notes.html">API Builder Tools 2.x Release Notes</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Arrow_Builder_0.x_-_5.x_Release_Notes.html">Arrow Builder 0.x - 5.x Release Notes</a>    </p>
+<ul class="childpages-macro "><li class=" ">    <p  ><a  class="document-link " href="API_Builder_Tools_3.1.0_Release_Note.html">API Builder Tools 3.1.0 Release Note</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="API_Builder_Tools_3.0.0_Release_Note.html">API Builder Tools 3.0.0 Release Note</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="API_Builder_Tools_2.x_Release_Notes.html">API Builder Tools 2.x Release Notes</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Arrow_Builder_0.x_-_5.x_Release_Notes.html">Arrow Builder 0.x - 5.x Release Notes</a>    </p>
 </li></ul>    </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>

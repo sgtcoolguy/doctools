@@ -5,12 +5,12 @@
 <head>
     <title>ScrollableView Binding</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -18,48 +18,48 @@
 
         <div id="src-41845710" class="content">
                         <h1>ScrollableView Binding</h1>
-    <p>Demonstrates binding a data collection to a ScrollableView component.    </p>
-    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
+    <p  >Demonstrates binding a data collection to a ScrollableView component.    </p>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro has-no-icon">
             <div class="title">App Folder Location</div>
-            <p>alloy/test/apps/<strong class=" ">models/binding_scrollableview</strong>    </p>
+            <p  >alloy/test/apps/<strong class=" ">models/binding_scrollableview</strong>    </p>
     </div>
-        <img src="images/download/attachments/41845710/scrollableview.png" alt="images/download/attachments/41845710/scrollableview.png" class="confluence-embedded-image" width="200">
-        <p>The main <tt class=" ">index.xml</tt> view defines the ScrollableView element and sets its dataCollection attribute to the &quot;articles&quot; collection. The content of each ScrollableView screen is defined by the <tt class=" ">article.xml</tt> view, which is included via a <tt class=" ">&lt;Require/&gt;</tt> element.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+        <img  src="images/download/attachments/41845710/scrollableview.png" alt="images/download/attachments/41845710/scrollableview.png" class="confluence-embedded-image" width="200"  />
+        <p  >The main <tt class=" ">index.xml</tt> view defines the ScrollableView element and sets its dataCollection attribute to the &quot;articles&quot; collection. The content of each ScrollableView screen is defined by the <tt class=" ">article.xml</tt> view, which is included via a <tt class=" ">&lt;Require/&gt;</tt> element.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">ScrollableView</code><code class="plain"> </code><code class="color1">dataCollection</code><code class="plain">=</code><code class="string">&quot;articles&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;article&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">ScrollableView</code><code class="plain"> </code><code class="color1">dataCollection</code><code class="plain">=</code><code class="string">"articles"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">"article"</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/</code><code class="keyword">ScrollableView</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>The <tt class=" ">article.xml</tt> view defines a <tt class=" ">&lt;ScrollView/&gt;</tt> element containing an Image element and two Label elements. The content of each UI element is bound to the fields in the collection: <strong class=" ">image</strong>, <strong class=" ">title,</strong> and <strong class=" ">content.</strong>    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >The <tt class=" ">article.xml</tt> view defines a <tt class=" ">&lt;ScrollView/&gt;</tt> element containing an Image element and two Label elements. The content of each UI element is bound to the fields in the collection: <strong class=" ">image</strong>, <strong class=" ">title,</strong> and <strong class=" ">content.</strong>    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/article.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/article.xml">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;</code><code class="keyword">ScrollView</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;image&quot;</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">&quot;{image}&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;title&quot;</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{title}&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;content&quot;</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{content}&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"image"</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">"{image}"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"title"</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">"{title}"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"content"</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">"{content}"</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">ScrollView</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>The model configuration file, <tt class=" ">article.js</tt>, uses an external SQLite data file to provide the columns and initial data set provided by the <tt class=" ">app/assets/articles.sqlite</tt> file.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >The model configuration file, <tt class=" ">article.js</tt>, uses an external SQLite data file to provide the columns and initial data set provided by the <tt class=" ">app/assets/articles.sqlite</tt> file.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/models/article.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/models/article.js">
 <div class="line"><code class="plain">exports.definition = {</code></div>
 <div class="line"><code class="plain">    config: {</code></div>
 <div class="line"><code class="plain">        adapter: {</code></div>
-<div class="line"><code class="plain">            type: </code><code class="string">&apos;sql&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            collection_name: </code><code class="string">&apos;articles&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            db_file: </code><code class="string">&apos;/articles.sqlite&apos;</code></div>
+<div class="line"><code class="plain">            type: </code><code class="string">'sql'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            collection_name: </code><code class="string">'articles'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            db_file: </code><code class="string">'/articles.sqlite'</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">};</code></div>
@@ -67,12 +67,14 @@
     </div>
     <div class="section section-2 " id="src-41845710_ScrollableViewBinding-SeeAlso">
         <h2 class="heading "><span>See Also</span></h2>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.ScrollableView">Titanium.UI.ScrollableView</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="SQL_Preload.html">SQL Preload sample app</a>    </p>
+<ul class=" "><li class=" ">    <p  ><a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.ScrollableView">Titanium.UI.ScrollableView</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="SQL_Preload.html">SQL Preload sample app</a>    </p>
 </li></ul>    </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>

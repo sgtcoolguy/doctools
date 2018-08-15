@@ -5,12 +5,12 @@
 <head>
     <title>Built-ins</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -18,55 +18,55 @@
 
         <div id="src-41845681" class="content">
                         <h1>Built-ins</h1>
-    <p>Demonstrates use of several built-in libraries included with Alloy that simplify certain functions, such as animations, string manipulation and display unit conversion.    </p>
-    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+    <p  >Demonstrates use of several built-in libraries included with Alloy that simplify certain functions, such as animations, string manipulation and display unit conversion.    </p>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <div class="title">App Folder Location</div>
-            <p><a class="external-link external-link" href="https://github.com/appcelerator/alloy/tree/master/samples/apps/basics/builtins">alloy/samples/apps/<strong class=" ">basics/builtins</strong></a>    </p>
+            <p  ><a class="external-link external-link" href="https://github.com/appcelerator/alloy/tree/master/samples/apps/basics/builtins">alloy/samples/apps/<strong class=" ">basics/builtins</strong></a>    </p>
     </div>
-        <p>Alloy includes several <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy.builtins">built-in libraries</a>. To use these libraries in your project, you simply use the global <tt class=" ">require()</tt> function to include them. The sample demonstrates the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy.builtins.animation">animation</a> built-in&apos;s shake, flash, and flip features, and the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy.builtins.string">string</a> built-in&apos;s <tt class=" ">trim()</tt> function.    </p>
-    <p>    <img src="images/download/attachments/41845681/ios.png" alt="images/download/attachments/41845681/ios.png" class="confluence-embedded-image" width="300">
+        <p  >Alloy includes several <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy.builtins">built-in libraries</a>. To use these libraries in your project, you simply use the global <tt class=" ">require()</tt> function to include them. The sample demonstrates the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy.builtins.animation">animation</a> built-in's shake, flash, and flip features, and the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy.builtins.string">string</a> built-in's <tt class=" ">trim()</tt> function.    </p>
+    <p  >    <img  src="images/download/attachments/41845681/ios.png" alt="images/download/attachments/41845681/ios.png" class="confluence-embedded-image" width="300"  />
         </p>
-    <p>The index.xml file defines the views to animate and assigns event handlers to their <tt class=" ">onClick</tt> handlers, which are defined in index.js.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >The index.xml file defines the views to animate and assigns event handlers to their <tt class=" ">onClick</tt> handlers, which are defined in index.js.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;mover&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;label&quot;</code><code class="plain">&gt;\t\t Trimmable String \t\t&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"mover"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"label"</code><code class="plain">&gt;\t\t Trimmable String \t\t&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;shake&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;shake&quot;</code><code class="plain">&gt;Shake&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;flash&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;flash&quot;</code><code class="plain">&gt;Flash&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;trim&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;trim&quot;</code><code class="plain">&gt;Trim&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;flipper&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;ios&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;back&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;flip&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;front&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;flip&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"shake"</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">"shake"</code><code class="plain">&gt;Shake&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"flash"</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">"flash"</code><code class="plain">&gt;Flash&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"trim"</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">"trim"</code><code class="plain">&gt;Trim&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"flipper"</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">"ios"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"back"</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">"flip"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"front"</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">"flip"</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>The view-controller assigns the animation library to a local variable named <tt class=" ">animation</tt> and then calls its various function in response to user input.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >The view-controller assigns the animation library to a local variable named <tt class=" ">animation</tt> and then calls its various function in response to user input.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/controllers/index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
-<div class="line"><code class="keyword">var</code><code class="plain"> animation = require(</code><code class="string">&apos;/alloy/animation&apos;</code><code class="plain">),</code></div>
-<div class="line"><code class="plain">    string = require(</code><code class="string">&apos;/alloy/string&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> animation = require(</code><code class="string">'/alloy/animation'</code><code class="plain">),</code></div>
+<div class="line"><code class="plain">    string = require(</code><code class="string">'/alloy/string'</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    </code></div>
 <div class="line"><code class="keyword">function</code><code class="plain"> shake(e) {</code></div>
 <div class="line"><code class="plain">    animation.shake($.mover, 0, </code><code class="keyword">function</code><code class="plain"> (){</code></div>
-<div class="line"><code class="plain">      alert(</code><code class="string">&quot;Shake ended.&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">      alert(</code><code class="string">"Shake ended."</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    });</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="keyword">function</code><code class="plain"> flash(e) {</code></div>
 <div class="line"><code class="plain">    animation.flash($.mover);</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="keyword">function</code><code class="plain"> trim(e) {</code></div>
 <div class="line"><code class="plain">  $.label.text = string.trim($.label.text);</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="keyword">if</code><code class="plain"> (OS_IOS) {</code></div>
 <div class="line"><code class="plain">  </code><code class="keyword">function</code><code class="plain"> flip(e) {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> front, back;</code></div>
@@ -79,75 +79,77 @@
 <div class="line"><code class="plain">      back = $.back;</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">    animation.flipHorizontal(front, back, 500, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
-<div class="line"><code class="plain">      Ti.API.info(</code><code class="string">&apos;flipped&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">      Ti.API.info(</code><code class="string">'flipped'</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    });</code></div>
 <div class="line"><code class="plain">  }</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line"><code class="plain">$.index.open();</code></div>
 </div>
     </div>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/styles/index.tss</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/styles/index.tss">
-<div class="line"><code class="string">&apos;#index&apos;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">	backgroundColor: </code><code class="string">&apos;#fff&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="string">'#index'</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">	backgroundColor: </code><code class="string">'#fff'</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	modal: false,</code></div>
 <div class="line"><code class="plain">	exitOnClose: true,</code></div>
-<div class="line"><code class="plain">	layout: </code><code class="string">&apos;vertical&apos;</code></div>
+<div class="line"><code class="plain">	layout: </code><code class="string">'vertical'</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="string">&apos;#mover&apos;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">	backgroundColor: </code><code class="string">&apos;#a00&apos;</code><code class="plain">,</code></div>
+<div class="line"> </div>
+<div class="line"><code class="string">'#mover'</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">	backgroundColor: </code><code class="string">'#a00'</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">height</code><code class="plain">: Ti.UI.SIZE,</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">width</code><code class="plain">: Ti.UI.SIZE,</code></div>
-<div class="line"><code class="plain">	</code><code class="keyword">top</code><code class="plain">: </code><code class="string">&apos;20dp&apos;</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">top</code><code class="plain">: </code><code class="string">'20dp'</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="string">&apos;#label&apos;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">	</code><code class="keyword">color</code><code class="plain">: </code><code class="string">&apos;#eee&apos;</code><code class="plain">,</code></div>
+<div class="line"> </div>
+<div class="line"><code class="string">'#label'</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">color</code><code class="plain">: </code><code class="string">'#eee'</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">font</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">		fontSize: </code><code class="string">&apos;28dp&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">		fontWeight: </code><code class="string">&apos;bold&apos;</code></div>
+<div class="line"><code class="plain">		fontSize: </code><code class="string">'28dp'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">		fontWeight: </code><code class="string">'bold'</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="string">&apos;.flipper&apos;</code><code class="plain">: {</code></div>
+<div class="line"> </div>
+<div class="line"><code class="string">'.flipper'</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">height</code><code class="plain">: </code><code class="value">150</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">width</code><code class="plain">: </code><code class="value">150</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">top</code><code class="plain">: </code><code class="value">40</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	borderWidth: </code><code class="value">1</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	borderColor: </code><code class="string">&apos;#00f&apos;</code></div>
+<div class="line"><code class="plain">	borderColor: </code><code class="string">'#00f'</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="string">&apos;#front&apos;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">	text: </code><code class="string">&apos;front&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	</code><code class="keyword">color</code><code class="plain">: </code><code class="string">&apos;#000&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	backgroundColor: </code><code class="string">&apos;#ccc&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	textAlign: </code><code class="string">&apos;center&apos;</code><code class="plain">,</code></div>
+<div class="line"> </div>
+<div class="line"><code class="string">'#front'</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">	text: </code><code class="string">'front'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">color</code><code class="plain">: </code><code class="string">'#000'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	backgroundColor: </code><code class="string">'#ccc'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	textAlign: </code><code class="string">'center'</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">height</code><code class="plain">: Ti.UI.FILL,</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">width</code><code class="plain">: Ti.UI.FILL</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="string">&apos;#back&apos;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">	text: </code><code class="string">&apos;back&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	</code><code class="keyword">color</code><code class="plain">: </code><code class="string">&apos;#ccc&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	backgroundColor: </code><code class="string">&apos;#000&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	textAlign: </code><code class="string">&apos;center&apos;</code><code class="plain">,</code></div>
+<div class="line"> </div>
+<div class="line"><code class="string">'#back'</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">	text: </code><code class="string">'back'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">color</code><code class="plain">: </code><code class="string">'#ccc'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	backgroundColor: </code><code class="string">'#000'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	textAlign: </code><code class="string">'center'</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">height</code><code class="plain">: Ti.UI.FILL,</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">width</code><code class="plain">: Ti.UI.FILL</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="string">&apos;Button&apos;</code><code class="plain">: {</code></div>
+<div class="line"> </div>
+<div class="line"><code class="string">'Button'</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">width</code><code class="plain">: Ti.UI.SIZE,</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">height</code><code class="plain">: Ti.UI.SIZE,</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">color</code><code class="plain">: </code><code class="string">&apos;#000&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">top</code><code class="plain">: </code><code class="string">&apos;20dp&apos;</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">color</code><code class="plain">: </code><code class="string">'#000'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">top</code><code class="plain">: </code><code class="string">'20dp'</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>

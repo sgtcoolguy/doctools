@@ -5,12 +5,12 @@
 <head>
     <title>Android Intents</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="Scroll EclipseHelp Exporter" name="generator">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
-    <link type="text/css" rel="stylesheet" href="css/common.css">
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
 </head>
 <body>
     <div class="container">
@@ -18,71 +18,71 @@
 
         <div id="src-43287298" class="content">
                         <h1>Android Intents</h1>
-    <p>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Introduction">Introduction</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Intenttypes">Intent types</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Createanintent">Create an intent</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Createanexplicitintent">Create an explicit intent</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Addextradata">Add extra data</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Addacategory">Add a category</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Startanactivitywithanintent">Start an activity with an intent</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Forceanintentchooser">Force an intent chooser</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Example">Example</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Completecode">Complete code</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Furtherreading">Further reading</a>    </p>
+    <p  >    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Intenttypes">Intent types</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Createanintent">Create an intent</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Createanexplicitintent">Create an explicit intent</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Addextradata">Add extra data</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Addacategory">Add a category</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Startanactivitywithanintent">Start an activity with an intent</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Forceanintentchooser">Force an intent chooser</a>    </p>
+</li><li class=" ">    <p  ><a  class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Example">Example</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p  ><a  class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Completecode">Complete code</a>    </p>
+</li></ul></li><li class=" ">    <p  ><a  class="document-link " href="Android_Intents.html#src-43287298_AndroidIntents-Furtherreading">Further reading</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-43287298_AndroidIntents-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p>In Android, applications and application components cannot directly communicate with each other.  In order to communicate with another application, create an intent and start a new activity with the intent.  An <i class=" ">intent</i> is a message sent to the Android OS.  Android directs the message to an application or application component based on the intent&apos;s settings.    </p>
-    <p>Intents can be used to start an activity, start a service or start a broadcast.  This document discusses how to use an intent to start an activity.    </p>
-<ul class=" "><li class=" ">    <p>To use an intent to start a service, see <a class="document-link " href="Android_Services.html">Android Services</a>.    </p>
-</li><li class=" ">    <p>To use an intent to start a broadcast or to create a broadcast receiver, see <a class="document-link " href="Android_Broadcast_Intents_and_Receivers.html">Android Broadcast Intents and Receivers</a>.    </p>
-</li><li class=" ">    <p>To receive intents from other applications, see <a class="document-link " href="Android_Intent_Filters.html">Android Intent Filters</a>.    </p>
+    <p  >In Android, applications and application components cannot directly communicate with each other.  In order to communicate with another application, create an intent and start a new activity with the intent.  An <i class=" ">intent</i> is a message sent to the Android OS.  Android directs the message to an application or application component based on the intent's settings.    </p>
+    <p  >Intents can be used to start an activity, start a service or start a broadcast.  This document discusses how to use an intent to start an activity.    </p>
+<ul class=" "><li class=" ">    <p  >To use an intent to start a service, see <a  class="document-link " href="Android_Services.html">Android Services</a>.    </p>
+</li><li class=" ">    <p  >To use an intent to start a broadcast or to create a broadcast receiver, see <a  class="document-link " href="Android_Broadcast_Intents_and_Receivers.html">Android Broadcast Intents and Receivers</a>.    </p>
+</li><li class=" ">    <p  >To receive intents from other applications, see <a  class="document-link " href="Android_Intent_Filters.html">Android Intent Filters</a>.    </p>
 </li></ul>    </div>
     <div class="section section-2 " id="src-43287298_AndroidIntents-Intenttypes">
         <h2 class="heading "><span>Intent types</span></h2>
-    <p>There are two kinds of intents:    </p>
-<ul class=" "><li class=" ">    <p><i class=" ">Explicit intents</i> specify the application to start.  When creating the intent, specify the application&apos;s package name and class when creating the intent.  Explicit intents are normally used to start components within your own application.    </p>
-</li><li class=" ">    <p><i class=" ">Implicit intents</i> do <strong class=" ">NOT</strong> specify the application to start.  Instead, they declare a general action.  The user can decide which application to start if multiple applications can handle the action or a default application has not been selected by the user.  For example, if a user opens their browser and highlights some text, the user can share that text with other Android apps, such as an e-mail application, SMS application or a social networking application.    </p>
-</li></ul>    <div class="tablewrap">
+    <p  >There are two kinds of intents:    </p>
+<ul class=" "><li class=" ">    <p  ><i class=" ">Explicit intents</i> specify the application to start.  When creating the intent, specify the application's package name and class when creating the intent.  Explicit intents are normally used to start components within your own application.    </p>
+</li><li class=" ">    <p  ><i class=" ">Implicit intents</i> do <strong class=" ">NOT</strong> specify the application to start.  Instead, they declare a general action.  The user can decide which application to start if multiple applications can handle the action or a default application has not been selected by the user.  For example, if a user opens their browser and highlights some text, the user can share that text with other Android apps, such as an e-mail application, SMS application or a social networking application.    </p>
+</li></ul>    <div  class="tablewrap">
         <table class="confluenceTable">
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The user highlights the text and<br>clicks the <strong class=" ">Share</strong> button.    </p>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The user highlights the text and<br/>clicks the <strong class=" ">Share</strong> button.    </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The <strong class=" ">Share</strong> dialog appears and<br>the user can select the application<br>to send the text to, such as...    </p>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <strong class=" ">Share</strong> dialog appears and<br/>the user can select the application<br/>to send the text to, such as...    </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>...an e-mail application,    </p>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >...an e-mail application,    </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>...an SMS application    </p>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >...an SMS application    </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>...or a social networking<br>application like Google+.    </p>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >...or a social networking<br/>application like Google+.    </p>
             </td>
         </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>    <img src="images/download/attachments/43287298/HighlightText.png" alt="images/download/attachments/43287298/HighlightText.png" class="confluence-embedded-image">
+    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >    <img  src="images/download/attachments/43287298/HighlightText.png" alt="images/download/attachments/43287298/HighlightText.png" class="confluence-embedded-image"   />
         </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>    <img src="images/download/attachments/43287298/ShareDialog.png" alt="images/download/attachments/43287298/ShareDialog.png" class="confluence-embedded-image">
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >    <img  src="images/download/attachments/43287298/ShareDialog.png" alt="images/download/attachments/43287298/ShareDialog.png" class="confluence-embedded-image"   />
         </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>    <img src="images/download/attachments/43287298/EmailClient.png" alt="images/download/attachments/43287298/EmailClient.png" class="confluence-embedded-image">
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >    <img  src="images/download/attachments/43287298/EmailClient.png" alt="images/download/attachments/43287298/EmailClient.png" class="confluence-embedded-image"   />
         </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>    <img src="images/download/attachments/43287298/SmsClient.png" alt="images/download/attachments/43287298/SmsClient.png" class="confluence-embedded-image">
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >    <img  src="images/download/attachments/43287298/SmsClient.png" alt="images/download/attachments/43287298/SmsClient.png" class="confluence-embedded-image"   />
         </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>    <img src="images/download/attachments/43287298/GooglePlusShare.png" alt="images/download/attachments/43287298/GooglePlusShare.png" class="confluence-embedded-image">
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >    <img  src="images/download/attachments/43287298/GooglePlusShare.png" alt="images/download/attachments/43287298/GooglePlusShare.png" class="confluence-embedded-image"   />
         </p>
-    <p>    </p>
+    <p  >    </p>
             </td>
         </tr>
 </tbody>        </table>
@@ -90,52 +90,52 @@
     </div>
     <div class="section section-2 " id="src-43287298_AndroidIntents-Createanintent">
         <h2 class="heading "><span>Create an intent</span></h2>
-    <p>To create an intent, use the <tt class=" ">Titanium.Android.createIntent()</tt> method to create an Intent object.  Pass the method a dictionary with the following properties:    </p>
-<ul class=" "><li class=" ">    <p><tt class=" ">action</tt>: Action to associate with the intent.  Specify one of the <tt class=" ">Titanium.Android.ACTION_*</tt> constants.  The most commonly used actions are:    </p>
-<ul class=" "><li class=" ">    <p><tt class=" ">Titanium.Android.ACTION_SEND</tt>: Send data to an application.    </p>
-</li><li class=" ">    <p><tt class=" ">Titanium.Android.ACTION_VIEW</tt>: View data in an application.    </p>
-</li></ul></li><li class=" ">    <p><tt class=" ">flags</tt>: Optional flags to set to modify the behavior of the intent.  Bitwise-OR the <tt class=" ">Titanium.Android.FLAG_*</tt> constants with the <tt class=" ">Intent</tt> object&apos;s <tt class=" ">flag</tt> property rather than specifying them during creation.    </p>
-</li><li class=" ">    <p><tt class=" ">data</tt>: Optional data URI to pass to an application&apos;s activity.    </p>
-</li><li class=" ">    <p><tt class=" ">type</tt>: Optional MIME type for the intent.    </p>
-</li></ul>    <p>    </p>
-    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
-            <p>For the action, you can also define your own custom action name. Use a reverse domain scheme to name the action to avoid potential conflicts, for example, <tt class=" ">com.appcelerator.action.LINT</tt> . Custom actions are only useful to communicate between your applications and application activities using intents.    </p>
+    <p  >To create an intent, use the <tt class=" ">Titanium.Android.createIntent()</tt> method to create an Intent object.  Pass the method a dictionary with the following properties:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">action</tt>: Action to associate with the intent.  Specify one of the <tt class=" ">Titanium.Android.ACTION_*</tt> constants.  The most commonly used actions are:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">Titanium.Android.ACTION_SEND</tt>: Send data to an application.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.Android.ACTION_VIEW</tt>: View data in an application.    </p>
+</li></ul></li><li class=" ">    <p  ><tt class=" ">flags</tt>: Optional flags to set to modify the behavior of the intent.  Bitwise-OR the <tt class=" ">Titanium.Android.FLAG_*</tt> constants with the <tt class=" ">Intent</tt> object's <tt class=" ">flag</tt> property rather than specifying them during creation.    </p>
+</li><li class=" ">    <p  ><tt class=" ">data</tt>: Optional data URI to pass to an application's activity.    </p>
+</li><li class=" ">    <p  ><tt class=" ">type</tt>: Optional MIME type for the intent.    </p>
+</li></ul>    <p  >    </p>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p  >For the action, you can also define your own custom action name. Use a reverse domain scheme to name the action to avoid potential conflicts, for example, <tt class=" ">com.appcelerator.action.LINT</tt> . Custom actions are only useful to communicate between your applications and application activities using intents.    </p>
     </div>
-        <p>The following example creates an intent to view the data URI:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+        <p  >The following example creates an intent to view the data URI:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> intent = Ti.Android.createIntent({</code></div>
 <div class="line"><code class="plain">    action: Ti.Android.ACTION_VIEW,</code></div>
-<div class="line"><code class="plain">    data: </code><code class="string">&apos;http://maps.google.com/maps?q=loc:37.3906238,-122.0499305,19&apos;</code></div>
+<div class="line"><code class="plain">    data: </code><code class="string">'http://maps.google.com/maps?q=loc:37.3906238,-122.0499305,19'</code></div>
 <div class="line"><code class="plain">});</code></div>
 </div>
     </div>
     <div class="section section-3 " id="src-43287298_AndroidIntents-Createanexplicitintent">
         <h3 class="heading "><span>Create an explicit intent</span></h3>
-    <p>To create an explicit intent, in addition to the previously mentioned intent properties, you need to also set the <tt class=" ">packageName</tt> and <tt class=" ">className</tt> properties, or the <tt class=" ">url</tt> property, but not both.    </p>
-<ul class=" "><li class=" ">    <p><tt class=" ">className</tt>:  Name of the class.  For the main activity of a Titanium project, this is the name of the activity prefixed with project&apos;s application ID (or <tt class=" ">packageName</tt>).  The name of the main activity is the name of the application/project with only the first letter capitalized and <tt class=" ">Activity</tt> appended to the end of it.  For example, if the name of the project is <tt class=" ">MyApp</tt> and the application ID is <tt class=" ">com.appcelerator.testapp</tt>, the class name will be <tt class=" ">com.appcelerator.testapp.MyappActivity</tt>.  You can also find the name of the main activity in the <tt class=" ">build/android/AndroidManifest.xml</tt> file after you build your application.    </p>
-</li><li class=" ">    <p><tt class=" ">packageName</tt>: Package name of the application.  For Titanium project&apos;s, this is the project&apos;s application ID located in the <tt class=" ">tiapp.xml</tt> file.    </p>
-</li><li class=" ">    <p><tt class=" ">url</tt>: URL of the JavaScript activity file to launch.    </p>
-</li></ul>    <p>The following example creates an intent to launch the main activity of the MyApp application:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >To create an explicit intent, in addition to the previously mentioned intent properties, you need to also set the <tt class=" ">packageName</tt> and <tt class=" ">className</tt> properties, or the <tt class=" ">url</tt> property, but not both.    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">className</tt>:  Name of the class.  For the main activity of a Titanium project, this is the name of the activity prefixed with project's application ID (or <tt class=" ">packageName</tt>).  The name of the main activity is the name of the application/project with only the first letter capitalized and <tt class=" ">Activity</tt> appended to the end of it.  For example, if the name of the project is <tt class=" ">MyApp</tt> and the application ID is <tt class=" ">com.appcelerator.testapp</tt>, the class name will be <tt class=" ">com.appcelerator.testapp.MyappActivity</tt>.  You can also find the name of the main activity in the <tt class=" ">build/android/AndroidManifest.xml</tt> file after you build your application.    </p>
+</li><li class=" ">    <p  ><tt class=" ">packageName</tt>: Package name of the application.  For Titanium project's, this is the project's application ID located in the <tt class=" ">tiapp.xml</tt> file.    </p>
+</li><li class=" ">    <p  ><tt class=" ">url</tt>: URL of the JavaScript activity file to launch.    </p>
+</li></ul>    <p  >The following example creates an intent to launch the main activity of the MyApp application:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> intent = Ti.Android.createIntent({</code></div>
 <div class="line"><code class="plain">    action: Ti.Android.ACTION_MAIN,</code></div>
-<div class="line"><code class="plain">    className: </code><code class="string">&apos;com.appcelerator.testapp.MyappActivity&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    packageName: </code><code class="string">&apos;com.appcelerator.testapp&apos;</code></div>
+<div class="line"><code class="plain">    className: </code><code class="string">'com.appcelerator.testapp.MyappActivity'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    packageName: </code><code class="string">'com.appcelerator.testapp'</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="comments">// Tells the OS to reset the activity if needed or launch the application if it has not already been launched</code></div>
 <div class="line"><code class="plain">intent.flags |= Ti.Android.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Ti.Android.FLAG_ACTIVITY_SINGLE_TOP;</code></div>
 </div>
     </div>
-    <p>If the application uses a JavaScript activity, add the activity to the <tt class=" ">tiapp.xml</tt> file in order to define the activity as part of the application.  Create an <tt class=" ">&lt;activities&gt;</tt> element as a child of the <tt class=" ">&lt;android&gt;</tt> element, then create an <tt class=" ">&lt;activity&gt;</tt> element, as a child of the <tt class=" ">&lt;activities&gt;</tt> element, and assign the <tt class=" ">url</tt> attribute to the URL of the JavaScript file to define it as an Android activity.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >If the application uses a JavaScript activity, add the activity to the <tt class=" ">tiapp.xml</tt> file in order to define the activity as part of the application.  Create an <tt class=" ">&lt;activities&gt;</tt> element as a child of the <tt class=" ">&lt;android&gt;</tt> element, then create an <tt class=" ">&lt;activity&gt;</tt> element, as a child of the <tt class=" ">&lt;activities&gt;</tt> element, and assign the <tt class=" ">url</tt> attribute to the URL of the JavaScript file to define it as an Android activity.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">tiapp.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="tiapp.xml">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
-<div class="line"><code class="plain">  &lt;</code><code class="keyword">android</code><code class="plain"> </code><code class="color1">xmlns:android</code><code class="plain">=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">android</code><code class="plain"> </code><code class="color1">xmlns:android</code><code class="plain">=</code><code class="string">"http://schemas.android.com/apk/res/android"</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;</code><code class="keyword">activities</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">      &lt;</code><code class="keyword">activity</code><code class="plain"> </code><code class="color1">url</code><code class="plain">=</code><code class="string">&quot;activity.js&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">      &lt;</code><code class="keyword">activity</code><code class="plain"> </code><code class="color1">url</code><code class="plain">=</code><code class="string">"activity.js"</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">activities</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">  &lt;/</code><code class="keyword">android</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
@@ -144,62 +144,62 @@
     </div>
     <div class="section section-3 " id="src-43287298_AndroidIntents-Addextradata">
         <h3 class="heading "><span>Add extra data</span></h3>
-    <p>To send extra data with the intent, which can be used by the activity, use the Intent&apos;s <tt class=" ">putExtra()</tt> method.  Pass the method the name of the data as the first parameter and the data to add as the second parameter.  The application can also specify one of the <tt class=" ">Titanium.Android.EXTRA_*</tt> constants to use one of the Android-defined extra data fields.    </p>
-    <p>The following example adds a custom field called &quot;timestamp&quot; to the intent and the Android-defined <tt class=" ">EXTRA_TEXT</tt> data:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >To send extra data with the intent, which can be used by the activity, use the Intent's <tt class=" ">putExtra()</tt> method.  Pass the method the name of the data as the first parameter and the data to add as the second parameter.  The application can also specify one of the <tt class=" ">Titanium.Android.EXTRA_*</tt> constants to use one of the Android-defined extra data fields.    </p>
+    <p  >The following example adds a custom field called &quot;timestamp&quot; to the intent and the Android-defined <tt class=" ">EXTRA_TEXT</tt> data:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">intent.putExtra(</code><code class="string">&apos;timestamp&apos;</code><code class="plain">, </code><code class="keyword">new</code><code class="plain"> Date());</code></div>
-<div class="line"><code class="plain">intent.putExtra(Ti.Android.EXTRA_TEXT, </code><code class="string">&apos;Some text that we want to share&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">intent.putExtra(</code><code class="string">'timestamp'</code><code class="plain">, </code><code class="keyword">new</code><code class="plain"> Date());</code></div>
+<div class="line"><code class="plain">intent.putExtra(Ti.Android.EXTRA_TEXT, </code><code class="string">'Some text that we want to share'</code><code class="plain">);</code></div>
 </div>
     </div>
     </div>
     <div class="section section-3 " id="src-43287298_AndroidIntents-Addacategory">
         <h3 class="heading "><span>Add a category</span></h3>
-    <p>To add a category to an intent, use the Intent&apos;s <tt class=" ">addCategory()</tt> method.  A category provides additional details about the purpose of the intent.  Note that most categories are only useful for intent filters.  Pass the method one of the following <tt class=" ">Titanium.Android.CATEGORY_*</tt> constants:    </p>
-<ul class=" "><li class=" ">    <p><tt class=" ">Titanium.Android.CATEGORY_DEFAULT</tt>: Do not use category filtering.    </p>
-</li><li class=" ">    <p><tt class=" ">Titanium.Android.CATEGORY_BROWSABLE</tt>: Activity can be opened by a browser when clicking a link.    </p>
-</li><li class=" ">    <p><tt class=" ">Titanium.Android.CATEGORY_TAB</tt>: Activity should be opened in a tab.    </p>
-</li><li class=" ">    <p><tt class=" ">Titanium.Android.CATEGORY_ALTERNATIVE</tt>: Activity should be considered as an alternative option, usually displayed in the options menu.    </p>
-</li><li class=" ">    <p><tt class=" ">Titanium.Android.CATEGORY_SELECTED_ALTERNATIVE</tt>: Activity should be considered as an alternative option, usually displayed in a dialog.    </p>
-</li><li class=" ">    <p><tt class=" ">Titanium.Android.CATEGORY_LAUNCHER</tt>: Activity is the application&apos;s initial activity and is listed in the OS&apos;s application launcher.    </p>
-</li><li class=" ">    <p><tt class=" ">Titanium.Android.CATEGORY_INFO</tt>: Provides information about the application package.    </p>
-</li><li class=" ">    <p><tt class=" ">Titanium.Android.CATEGORY_HOME</tt>: Home activity.    </p>
-</li><li class=" ">    <p><tt class=" ">Titanium.Android.CATEGORY_PREFERENCE</tt>: Activity is a preference panel.    </p>
-</li><li class=" ">    <p><tt class=" ">Titanium.Android.CATEGORY_TEST</tt>: Activity is for testing purposes.    </p>
-</li></ul>    <p>    </p>
-    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
-            <p>For categories, you can also define your own custom category name. Use a reverse domain scheme to name the category to avoid potential conflicts, for example, <tt class=" ">org.foo.category.SUPER</tt> . Custom categories are only useful to communicate between your applications and application activities using intents.    </p>
+    <p  >To add a category to an intent, use the Intent's <tt class=" ">addCategory()</tt> method.  A category provides additional details about the purpose of the intent.  Note that most categories are only useful for intent filters.  Pass the method one of the following <tt class=" ">Titanium.Android.CATEGORY_*</tt> constants:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">Titanium.Android.CATEGORY_DEFAULT</tt>: Do not use category filtering.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.Android.CATEGORY_BROWSABLE</tt>: Activity can be opened by a browser when clicking a link.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.Android.CATEGORY_TAB</tt>: Activity should be opened in a tab.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.Android.CATEGORY_ALTERNATIVE</tt>: Activity should be considered as an alternative option, usually displayed in the options menu.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.Android.CATEGORY_SELECTED_ALTERNATIVE</tt>: Activity should be considered as an alternative option, usually displayed in a dialog.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.Android.CATEGORY_LAUNCHER</tt>: Activity is the application's initial activity and is listed in the OS's application launcher.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.Android.CATEGORY_INFO</tt>: Provides information about the application package.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.Android.CATEGORY_HOME</tt>: Home activity.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.Android.CATEGORY_PREFERENCE</tt>: Activity is a preference panel.    </p>
+</li><li class=" ">    <p  ><tt class=" ">Titanium.Android.CATEGORY_TEST</tt>: Activity is for testing purposes.    </p>
+</li></ul>    <p  >    </p>
+    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p  >For categories, you can also define your own custom category name. Use a reverse domain scheme to name the category to avoid potential conflicts, for example, <tt class=" ">org.foo.category.SUPER</tt> . Custom categories are only useful to communicate between your applications and application activities using intents.    </p>
     </div>
         </div>
     </div>
     <div class="section section-2 " id="src-43287298_AndroidIntents-Startanactivitywithanintent">
         <h2 class="heading "><span>Start an activity with an intent</span></h2>
-    <p>To start an activity (application or application component), call the application&apos;s current Activity&apos;s <tt class=" ">startActivity()</tt> or <tt class=" ">startActivityForResult()</tt> method.  To get the current activity, use the <tt class=" ">activity</tt> property of either the currently opened Window or TabGroup, or if the activity does not have an open Window or TabGroup, use the <tt class=" ">Titanium.Android.currentActivity</tt> property.    </p>
-<ul class=" "><li class=" ">    <p>The <tt class=" ">startActivity()</tt> method starts an Activity by passing it only an intent object.    </p>
-</li><li class=" ">    <p>The <tt class=" ">startActivityForResult()</tt> method starts an Activity by passing it an intent object and a callback function to handle the response returned by the activity when it finishes.  Use this method if the application wants to communicate between two activities.    </p>
-</li></ul>    <p>    </p>
-    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>Wait for the TabGroup or Window to open before invoking any methods on its activity.    </p>
+    <p  >To start an activity (application or application component), call the application's current Activity's <tt class=" ">startActivity()</tt> or <tt class=" ">startActivityForResult()</tt> method.  To get the current activity, use the <tt class=" ">activity</tt> property of either the currently opened Window or TabGroup, or if the activity does not have an open Window or TabGroup, use the <tt class=" ">Titanium.Android.currentActivity</tt> property.    </p>
+<ul class=" "><li class=" ">    <p  >The <tt class=" ">startActivity()</tt> method starts an Activity by passing it only an intent object.    </p>
+</li><li class=" ">    <p  >The <tt class=" ">startActivityForResult()</tt> method starts an Activity by passing it an intent object and a callback function to handle the response returned by the activity when it finishes.  Use this method if the application wants to communicate between two activities.    </p>
+</li></ul>    <p  >    </p>
+    <div  class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p  >Wait for the TabGroup or Window to open before invoking any methods on its activity.    </p>
     </div>
-        <p>The following example starts an activity (another application) to view the data URI:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+        <p  >The following example starts an activity (another application) to view the data URI:    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> intent = Ti.Android.createIntent({</code></div>
 <div class="line"><code class="plain">    action: Ti.Android.ACTION_VIEW,</code></div>
-<div class="line"><code class="plain">    data: </code><code class="string">&apos;http://maps.google.com/maps?q=loc:37.3906238,-122.0499305,19&apos;</code></div>
+<div class="line"><code class="plain">    data: </code><code class="string">'http://maps.google.com/maps?q=loc:37.3906238,-122.0499305,19'</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="plain">win.activity.startActivity(intent);</code></div>
 </div>
     </div>
-    <p>The following example starts an activity to let the user choose a contact.  After the user successfully selects a contact and the activity completes, a new intent is created to view the contact using the result of the first activity.  Note that the URI returned by first intent is a content provider URI (<tt class=" ">content://</tt>) and the contact information cannot be directly accessed by a Titanium application using the URI.  If the application needs to retrieve and manipulate the data, you need to create a native Android module to handle content provider URIs, or in this case, the application can use the <tt class=" ">Titanium.Contacts</tt> API to directly retrieve the contact data.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >The following example starts an activity to let the user choose a contact.  After the user successfully selects a contact and the activity completes, a new intent is created to view the contact using the result of the first activity.  Note that the URI returned by first intent is a content provider URI (<tt class=" ">content://</tt>) and the contact information cannot be directly accessed by a Titanium application using the URI.  If the application needs to retrieve and manipulate the data, you need to create a native Android module to handle content provider URIs, or in this case, the application can use the <tt class=" ">Titanium.Contacts</tt> API to directly retrieve the contact data.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// Create an intent to choose a contact</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> intent = Ti.Android.createIntent({</code></div>
 <div class="line"><code class="plain">    action: Ti.Android.ACTION_GET_CONTENT,</code></div>
-<div class="line"><code class="plain">    type: </code><code class="string">&apos;vnd.android.cursor.item/contact&apos;</code></div>
+<div class="line"><code class="plain">    type: </code><code class="string">'vnd.android.cursor.item/contact'</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="comments">// Start an activity and execute the callback when the result returns</code></div>
 <div class="line"><code class="plain">win.activity.startActivityForResult(intent, </code><code class="keyword">function</code><code class="plain"> (e) {</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// If successful, open the selected contact</code></div>
@@ -216,62 +216,62 @@
     </div>
     <div class="section section-2 " id="src-43287298_AndroidIntents-Forceanintentchooser">
         <h2 class="heading "><span>Force an intent chooser</span></h2>
-    <p>If the user selects a default application to handle a specific action, the <strong class=" ">Share</strong> dialog will not appear.  If the application needs to explicitly show a dialog to the user to allow them to choose from a list of applications, create an intent chooser using the <tt class=" ">Titanium.Android.createIntentChooser()</tt> method.  Pass the method the <tt class=" ">Intent</tt> object the application would use to start an activity as the first parameter.  Pass a string to display as the title of the dialog as the second parameter.  Both parameters are required.  This method returns an <tt class=" ">Intent</tt> object, which is used to start an activity.    </p>
-    <p>The following example creates an intent chooser that displays &quot;Send Message&quot; as the title of the dialog.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >If the user selects a default application to handle a specific action, the <strong class=" ">Share</strong> dialog will not appear.  If the application needs to explicitly show a dialog to the user to allow them to choose from a list of applications, create an intent chooser using the <tt class=" ">Titanium.Android.createIntentChooser()</tt> method.  Pass the method the <tt class=" ">Intent</tt> object the application would use to start an activity as the first parameter.  Pass a string to display as the title of the dialog as the second parameter.  Both parameters are required.  This method returns an <tt class=" ">Intent</tt> object, which is used to start an activity.    </p>
+    <p  >The following example creates an intent chooser that displays &quot;Send Message&quot; as the title of the dialog.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="keyword">var</code><code class="plain"> chooser = Ti.Android.createIntentChooser(intent, </code><code class="string">&quot;Send Message&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> chooser = Ti.Android.createIntentChooser(intent, </code><code class="string">"Send Message"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">win.activity.startActivity(chooser);</code></div>
 </div>
     </div>
     </div>
     <div class="section section-2 " id="src-43287298_AndroidIntents-Example">
         <h2 class="heading "><span>Example</span></h2>
-    <p>This example shows a very common and effective use of Intents. This examples uses an Android Intent to share text with any apps on the Android device that accept text intents.    </p>
-    <p>First, create an implicit intent that sends text data.  When creating the intent, set the <tt class=" ">action</tt> property to the  <tt class=" ">Ti.Android.ACTION_SEND</tt> constant and the <tt class=" ">type</tt> property to the <tt class=" ">text/plain</tt> MIME type.  The following intent tells Android the application wants to send plain text data.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >This example shows a very common and effective use of Intents. This examples uses an Android Intent to share text with any apps on the Android device that accept text intents.    </p>
+    <p  >First, create an implicit intent that sends text data.  When creating the intent, set the <tt class=" ">action</tt> property to the  <tt class=" ">Ti.Android.ACTION_SEND</tt> constant and the <tt class=" ">type</tt> property to the <tt class=" ">text/plain</tt> MIME type.  The following intent tells Android the application wants to send plain text data.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> intent = Ti.Android.createIntent({</code></div>
 <div class="line"><code class="plain">    action: Ti.Android.ACTION_SEND,</code></div>
-<div class="line"><code class="plain">    type: </code><code class="string">&quot;text/plain&quot;</code></div>
+<div class="line"><code class="plain">    type: </code><code class="string">"text/plain"</code></div>
 <div class="line"><code class="plain">});</code></div>
 </div>
     </div>
-    <p>    </p>
-    <p>Next, the application needs to send the text data with the intent.  Use the intent&apos;s <tt class=" ">putExtra</tt> method to send extra data with the intent.  Pass the method the <tt class=" ">Ti.Android.EXTRA_TEXT</tt> constant as the first parameter and the string to share as the second parameter.  The <tt class=" ">EXTRA_TEXT</tt> constant signifies the intent is passing a standardized Android format with the intent.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >    </p>
+    <p  >Next, the application needs to send the text data with the intent.  Use the intent's <tt class=" ">putExtra</tt> method to send extra data with the intent.  Pass the method the <tt class=" ">Ti.Android.EXTRA_TEXT</tt> constant as the first parameter and the string to share as the second parameter.  The <tt class=" ">EXTRA_TEXT</tt> constant signifies the intent is passing a standardized Android format with the intent.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">intent.putExtra(Ti.Android.EXTRA_TEXT, </code><code class="string">&apos;Some text that we want to share&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">intent.putExtra(Ti.Android.EXTRA_TEXT, </code><code class="string">'Some text that we want to share'</code><code class="plain">);</code></div>
 </div>
     </div>
-    <p>    </p>
-    <p>Use the intent&apos;s <tt class=" ">addCategory</tt> method to specify the <tt class=" ">Ti.Android.CATEGORY_DEFAULT</tt> category, which indicates not to use any category filtering.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >    </p>
+    <p  >Use the intent's <tt class=" ">addCategory</tt> method to specify the <tt class=" ">Ti.Android.CATEGORY_DEFAULT</tt> category, which indicates not to use any category filtering.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">intent.addCategory(Ti.Android.CATEGORY_DEFAULT);</code></div>
 </div>
     </div>
-    <p>Finally, pass the intent to the application&apos;s current Activity&apos;s <tt class=" ">startActivity()</tt> method.  The application can use the <tt class=" ">activity</tt> property of either a Window or TabGroup object.  Note that to invoke any methods on an activity, the application needs to wait until the Window or TabGroup is open.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p  >Finally, pass the intent to the application's current Activity's <tt class=" ">startActivity()</tt> method.  The application can use the <tt class=" ">activity</tt> property of either a Window or TabGroup object.  Note that to invoke any methods on an activity, the application needs to wait until the Window or TabGroup is open.    </p>
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// Wait for the Window or TabGroup to open before invoking any methods on the activity</code></div>
 <div class="line"><code class="plain">win.activity.startActivity(intent);</code></div>
 </div>
     </div>
-    <p>When the intent is sent, the OS should display a list of applications to launch if it has multiple applications that can receive text intents.  If there are not many applications installed on the device or if the user selected a default application to handle text, the default application will be launched.    </p>
-    <div class="tablewrap">
+    <p  >When the intent is sent, the OS should display a list of applications to launch if it has multiple applications that can receive text intents.  If there are not many applications installed on the device or if the user selected a default application to handle text, the default application will be launched.    </p>
+    <div  class="tablewrap">
         <table class="confluenceTable">
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>    <img src="images/download/attachments/43287298/AppUI.png" alt="images/download/attachments/43287298/AppUI.png" class="confluence-embedded-image">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr >
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >    <img  src="images/download/attachments/43287298/AppUI.png" alt="images/download/attachments/43287298/AppUI.png" class="confluence-embedded-image"   />
         </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>    <img src="images/download/attachments/43287298/ShareDialog2.png" alt="images/download/attachments/43287298/ShareDialog2.png" class="confluence-embedded-image">
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >    <img  src="images/download/attachments/43287298/ShareDialog2.png" alt="images/download/attachments/43287298/ShareDialog2.png" class="confluence-embedded-image"   />
         </p>
             </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>    <img src="images/download/attachments/43287298/EmailClient2.png" alt="images/download/attachments/43287298/EmailClient2.png" class="confluence-embedded-image">
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >    <img  src="images/download/attachments/43287298/EmailClient2.png" alt="images/download/attachments/43287298/EmailClient2.png" class="confluence-embedded-image"   />
         </p>
             </td>
         </tr>
@@ -279,49 +279,49 @@
             </div>
     <div class="section section-3 " id="src-43287298_AndroidIntents-Completecode">
         <h3 class="heading "><span>Complete code</span></h3>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow();</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> label = Ti.UI.createLabel({</code></div>
-<div class="line"><code class="plain">	text: </code><code class="string">&apos;Say Something!&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	color:</code><code class="string">&apos;white&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	text: </code><code class="string">'Say Something!'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	color:</code><code class="string">'white'</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	font: {</code></div>
-<div class="line"><code class="plain">		fontSize:</code><code class="string">&apos;20dp&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">		fontWeight:</code><code class="string">&apos;bold&apos;</code></div>
+<div class="line"><code class="plain">		fontSize:</code><code class="string">'20dp'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">		fontWeight:</code><code class="string">'bold'</code></div>
 <div class="line"><code class="plain">	},</code></div>
-<div class="line"><code class="plain">	height:</code><code class="string">&apos;Ti.UI.SIZE&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	top:</code><code class="string">&apos;5dp&apos;</code></div>
+<div class="line"><code class="plain">	height:</code><code class="string">'Ti.UI.SIZE'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	top:</code><code class="string">'5dp'</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> textarea = Ti.UI.createTextArea({</code></div>
-<div class="line"><code class="plain">	width:</code><code class="string">&apos;90%&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	top:</code><code class="string">&apos;44dp&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	bottom: </code><code class="string">&apos;70dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	width:</code><code class="string">'90%'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	top:</code><code class="string">'44dp'</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	bottom: </code><code class="string">'70dp'</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	left:10,</code></div>
 <div class="line"><code class="plain">	right:10</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> button = Ti.UI.createButton({</code></div>
-<div class="line"><code class="plain">	title:</code><code class="string">&apos;Share&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	title:</code><code class="string">'Share'</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	font: {</code></div>
-<div class="line"><code class="plain">		fontSize:</code><code class="string">&apos;24dp&apos;</code></div>
+<div class="line"><code class="plain">		fontSize:</code><code class="string">'24dp'</code></div>
 <div class="line"><code class="plain">	},</code></div>
-<div class="line"><code class="plain">	bottom:</code><code class="string">&apos;10dp&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	bottom:</code><code class="string">'10dp'</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	right:10</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain">button.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
+<div class="line"><code class="plain">button.addEventListener(</code><code class="string">'click'</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> intent = Ti.Android.createIntent({</code></div>
 <div class="line"><code class="plain">		action: Ti.Android.ACTION_SEND,</code></div>
-<div class="line"><code class="plain">		type: </code><code class="string">&quot;text/plain&quot;</code></div>
+<div class="line"><code class="plain">		type: </code><code class="string">"text/plain"</code></div>
 <div class="line"><code class="plain">	});</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="plain">	intent.putExtra(Ti.Android.EXTRA_TEXT, textarea.value);</code></div>
 <div class="line"><code class="plain">	intent.addCategory(Ti.Android.CATEGORY_DEFAULT);</code></div>
 <div class="line"><code class="plain">	win.activity.startActivity(intent);</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="plain">win.add(label);</code></div>
 <div class="line"><code class="plain">win.add(textarea);</code></div>
 <div class="line"><code class="plain">win.add(button);</code></div>
-<div class="line">&#xA0;</div>
+<div class="line"> </div>
 <div class="line"><code class="plain">win.open();</code></div>
 </div>
     </div>
@@ -329,12 +329,14 @@
     </div>
     <div class="section section-2 " id="src-43287298_AndroidIntents-Furtherreading">
         <h2 class="heading "><span>Further reading</span></h2>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.Android-module">Titanium.Android API Reference</a>    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="http://developer.android.com/guide/components/intents-filters.html">Android Developers: Intent and Intent Filters</a>    </p>
+<ul class=" "><li class=" ">    <p  ><a class="external-link external-link" href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.Android-module">Titanium.Android API Reference</a>    </p>
+</li><li class=" ">    <p  ><a class="external-link external-link" href="http://developer.android.com/guide/components/intents-filters.html">Android Developers: Intent and Intent Filters</a>    </p>
 </li></ul>    </div>
         </div>
     
-        
+        <div class="footer">
+            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
+        </div>
     </div>
 </body>
 </html>
