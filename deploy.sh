@@ -195,7 +195,8 @@ if [ $include_modules ]; then
 
     module_dirs+=" $APPC_MODULES/ti.geofence/apidoc
       		         $APPC_MODULES/appcelerator.https/apidoc
-                   $APPC_MODULES/com.appcelerator.apm/apidoc"
+                   $APPC_MODULES/com.appcelerator.apm/apidoc
+                   $APPC_MODULES/appcelerator.encrypteddatabase"
 fi
 
 if [ -d "$TI_ROOT/titanium_mobile_windows" ]; then
