@@ -5,12 +5,12 @@
 <head>
     <title>Localization</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,78 +18,76 @@
 
         <div id="src-41845663" class="content">
                         <h1>Localization</h1>
-    <p  >Demonstrates how to use localized strings in your Alloy project.    </p>
-    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+    <p>Demonstrates how to use localized strings in your Alloy project.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <div class="title">App folder location</div>
-            <p  ><i class=" ">alloy</i>/test/apps/<strong class=" ">advanced/localization</strong>    </p>
+            <p><i class=" ">alloy</i>/test/apps/<strong class=" ">advanced/localization</strong>    </p>
     </div>
-        <img  src="images/download/attachments/41845663/local.png" alt="images/download/attachments/41845663/local.png" class="confluence-embedded-image" width="500"  />
-        <p  >The global <tt class=" ">L()</tt>  function, which maps  <tt class=" ">Titanium.Locale.getString()</tt>, can be invoked from a Alloy controller, XML view, or TSS file. Below is the sample application's main index.xml view.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+        <img src="images/download/attachments/41845663/local.png" alt="images/download/attachments/41845663/local.png" class="confluence-embedded-image" width="500">
+        <p>The global <tt class=" ">L()</tt>  function, which maps  <tt class=" ">Titanium.Locale.getString()</tt>, can be invoked from a Alloy controller, XML view, or TSS file. Below is the sample application&apos;s main index.xml view.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">        &lt;!-- Localization via XML attribute --&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"header"</code><code class="plain">&gt;via XML attribute:&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">"L('hello_world')"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;header&quot;</code><code class="plain">&gt;via XML attribute:&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;L(&apos;hello_world&apos;)&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">        &lt;!-- Localization via TSS --&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"header"</code><code class="plain">&gt;via TSS:&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"viaTss"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;header&quot;</code><code class="plain">&gt;via TSS:&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;viaTss&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">        &lt;!-- Localization via JS code in controller --&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"header"</code><code class="plain">&gt;via controller:&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"viaController"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;header&quot;</code><code class="plain">&gt;via controller:&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;viaController&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p  >Notice that in the XML view the second Label element's <tt class=" ">text</tt> property is assigned the value <tt class=" ">L('hello_world')</tt>. Similarly, the JavaScript controller and TSS file contain the same function call:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>Notice that in the XML view the second Label element&apos;s <tt class=" ">text</tt> property is assigned the value <tt class=" ">L(&apos;hello_world&apos;)</tt>. Similarly, the JavaScript controller and TSS file contain the same function call:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/controllers/index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
-<div class="line"><code class="plain">$.viaController.text = L(</code><code class="string">'hello_world'</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">$.viaController.text = L(</code><code class="string">&apos;hello_world&apos;</code><code class="plain">);</code></div>
 </div>
     </div>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/styles/index.css</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/styles/index.css">
-<div class="line"><code class="string">'#viaTss'</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">  text: L(</code><code class="string">'hello_world'</code><code class="plain">)</code></div>
+<div class="line"><code class="string">&apos;#viaTss&apos;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">  text: L(</code><code class="string">&apos;hello_world&apos;</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p  >To test the application with localized strings, you need to create the localized strings in the Titanium project, as described in the <a  class="document-link " href="Internationalization.html">Internationalization</a> guide. You will also need to change the language on your device or simulator to see the results (see <a  class="document-link " href="Internationalization.html#src-29004892_Internationalization-TestingLanguages">Internationalization - Testing Languages</a>).    </p>
-    <p  ><strong class=" ">To create localized strings for testing</strong>:    </p>
-<ol class=" "><li class=" ">    <p  >Create a folder named <strong class=" ">i18n </strong>in the root of the Titanium project folder, not the Alloy project's <strong class=" ">app/</strong> folder).    </p>
-</li><li class=" ">    <p  >In the <strong class=" ">i18n</strong> folder create two folders named <strong class=" ">en</strong> and <strong class=" ">es</strong>. These will contain localized strings for English and Spanish, respectively.    </p>
-</li><li class=" ">    <p  >In the i18n/en folder, create a file named <strong class=" ">strings.xml</strong> with the following content and save it:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>To test the application with localized strings, you need to create the localized strings in the Titanium project, as described in the <a class="document-link " href="Internationalization.html">Internationalization</a> guide. You will also need to change the language on your device or simulator to see the results (see <a class="document-link " href="Internationalization.html#src-29004892_Internationalization-TestingLanguages">Internationalization - Testing Languages</a>).    </p>
+    <p><strong class=" ">To create localized strings for testing</strong>:    </p>
+<ol class=" "><li class=" ">    <p>Create a folder named <strong class=" ">i18n </strong>in the root of the Titanium project folder, not the Alloy project&apos;s <strong class=" ">app/</strong> folder).    </p>
+</li><li class=" ">    <p>In the <strong class=" ">i18n</strong> folder create two folders named <strong class=" ">en</strong> and <strong class=" ">es</strong>. These will contain localized strings for English and Spanish, respectively.    </p>
+</li><li class=" ">    <p>In the i18n/en folder, create a file named <strong class=" ">strings.xml</strong> with the following content and save it:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">resources</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">    &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">"hello_world"</code><code class="plain">&gt;Hello, world!&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;hello_world&quot;</code><code class="plain">&gt;Hello, world!&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">resources</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p  >Note that the value of the <tt class=" ">&lt;string&gt;</tt> element's <strong class=" ">name</strong> attribute, hello_world, corresponds to the name passed as parameter to the <tt class=" ">L()</tt> function in the XML, TSS, and JavaScript files.    </p>
-</li><li class=" ">    <p  >In the i18n/es folder, create another strings.xml file with the following content and save it:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>Note that the value of the <tt class=" ">&lt;string&gt;</tt> element&apos;s <strong class=" ">name</strong> attribute, hello_world, corresponds to the name passed as parameter to the <tt class=" ">L()</tt> function in the XML, TSS, and JavaScript files.    </p>
+</li><li class=" ">    <p>In the i18n/es folder, create another strings.xml file with the following content and save it:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">resources</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">    &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">"hello_world"</code><code class="plain">&gt;Hola, mundo!&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;hello_world&quot;</code><code class="plain">&gt;Hola, mundo!&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">resources</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-</li><li class=" ">    <p  >Build and run the application on a device or simulator/emulator whose language setting is set to either English or Spanish. You should see proper localized language strings. Quit the application, switch the language setting on the device and run the application again. You should see the localized strings for the alternate language, as shown below.    </p>
-    <img  src="images/download/attachments/41845663/local.png" alt="images/download/attachments/41845663/local.png" class="confluence-embedded-image" width="500"  />
+</li><li class=" ">    <p>Build and run the application on a device or simulator/emulator whose language setting is set to either English or Spanish. You should see proper localized language strings. Quit the application, switch the language setting on the device and run the application again. You should see the localized strings for the alternate language, as shown below.    </p>
+    <img src="images/download/attachments/41845663/local.png" alt="images/download/attachments/41845663/local.png" class="confluence-embedded-image" width="500">
     </li></ol>    <div class="section section-2 " id="src-41845663_Localization-Seealso">
         <h2 class="heading "><span>See also</span></h2>
-<ul class=" "><li class=" ">    <p  ><a  class="document-link " href="Internationalization.html">Internationalization</a>    </p>
+<ul class=" "><li class=" ">    <p><a class="document-link " href="Internationalization.html">Internationalization</a>    </p>
 </li></ul>    </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

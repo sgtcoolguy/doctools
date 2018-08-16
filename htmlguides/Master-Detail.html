@@ -5,12 +5,12 @@
 <head>
     <title>Master-Detail</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,59 +18,59 @@
 
         <div id="src-41845665" class="content">
                         <h1>Master-Detail</h1>
-    <p  >Demonstrates how to create a master-detail application that presents a list of items from which the user can select to view details about that item.    </p>
-    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+    <p>Demonstrates how to create a master-detail application that presents a list of items from which the user can select to view details about that item.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <div class="title">App folder location</div>
-            <p  ><i class=" ">alloy</i>/test/apps/<strong class=" ">advanced/master_detail</strong>    </p>
+            <p><i class=" ">alloy</i>/test/apps/<strong class=" ">advanced/master_detail</strong>    </p>
     </div>
-        <p  >The sample is designed to support handheld and tablet (iPad) form factors. On iPhone, a <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.NavigationWindow">NavigationWindow</a> control is used to display the master and detail windows; on iPad, a <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iPad.SplitWindow">SplitWindow</a> is used; and on Android, a standard <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.Window">Window</a> control is used for both the master and detail views, as shown below.    </p>
-    <p  >    <img  src="images/download/attachments/41845665/master-detail.png" alt="images/download/attachments/41845665/master-detail.png" class="confluence-embedded-image" width="900"  />
+        <p>The sample is designed to support handheld and tablet (iPad) form factors. On iPhone, a <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.NavigationWindow">NavigationWindow</a> control is used to display the master and detail windows; on iPad, a <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iPad.SplitWindow">SplitWindow</a> is used; and on Android, a standard <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.Window">Window</a> control is used for both the master and detail views, as shown below.    </p>
+    <p>    <img src="images/download/attachments/41845665/master-detail.png" alt="images/download/attachments/41845665/master-detail.png" class="confluence-embedded-image" width="900">
         </p>
-    <p  >The main <tt class=" ">index.xml</tt> view defines this view structure using <tt class=" ">platform</tt> and <tt class=" ">formFactor</tt> condition attributes on each top-level window control, as shown below.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The main <tt class=" ">index.xml</tt> view defines this view structure using <tt class=" ">platform</tt> and <tt class=" ">formFactor</tt> condition attributes on each top-level window control, as shown below.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;!-- iPad --&gt;</code></div>
-<div class="line"><code class="plain">    &lt;</code><code class="keyword">SplitWindow</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"index"</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">"ios"</code><code class="plain"> </code><code class="color1">formFactor</code><code class="plain">=</code><code class="string">"tablet"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">"master"</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"master"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">"detail"</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"detail"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">SplitWindow</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;index&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;ios&quot;</code><code class="plain"> </code><code class="color1">formFactor</code><code class="plain">=</code><code class="string">&quot;tablet&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;master&quot;</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;master&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;detail&quot;</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;detail&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">SplitWindow</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;!-- iPhone --&gt;</code></div>
-<div class="line"><code class="plain">  &lt;</code><code class="keyword">NavigationWindow</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"index"</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">"ios"</code><code class="plain"> </code><code class="color1">formFactor</code><code class="plain">=</code><code class="string">"handheld"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">"master"</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"master"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">NavigationWindow</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;index&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;ios&quot;</code><code class="plain"> </code><code class="color1">formFactor</code><code class="plain">=</code><code class="string">&quot;handheld&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;master&quot;</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;master&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">  &lt;/</code><code class="keyword">NavigationWindow</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;!-- Android --&gt;</code></div>
-<div class="line"><code class="plain">  &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"master"</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">"master"</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">"android"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;master&quot;</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;master&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;android&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p  >The <tt class=" ">master.xml</tt> view is used for all for all platforms and includes a <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.TableView">TableView</a> element to display the master list of items. An <tt class=" ">onClick</tt> handler named <strong class=" ">openDetail</strong> is assigned to the TableView, which is invoked when an item in the table is selected. For Android builds, a <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.TableViewSection-property-headerView">headerView</a> is conditionally added to the TableView to display the table name.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The <tt class=" ">master.xml</tt> view is used for all for all platforms and includes a <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.TableView">TableView</a> element to display the master list of items. An <tt class=" ">onClick</tt> handler named <strong class=" ">openDetail</strong> is assigned to the TableView, which is invoked when an item in the table is selected. For Android builds, a <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.TableViewSection-property-headerView">headerView</a> is conditionally added to the TableView to display the table name.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/master.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/master.xml">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Boxers"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">TableView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"table"</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">"openDetail"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">HeaderView</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">"android"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"header"</code><code class="plain">&gt;Boxers&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Boxers&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">TableView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;table&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;openDetail&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">HeaderView</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;android&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;header&quot;</code><code class="plain">&gt;Boxers&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">            &lt;/</code><code class="keyword">HeaderView</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/</code><code class="keyword">TableView</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p  >The <tt class=" ">index.js</tt> controller is responsible for opening the right top-level window depending on which platform the application is running. It also defines a Backbone-based event handler for the &quot;detail&quot; event that is triggered when the user selects an item from the TableView. This event is triggered in the master.js view-controller, shown next.    </p>
-    <p  >The controller uses the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy-property-isHandheld">Alloy.isHandheld</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy-property-isHandheld">Alloy.isTablet</a> and <a  class="document-link " href="Alloy_Controllers.html#src-34636384_AlloyControllers-ConditionalCode">OS_IOS</a> conditionals in the &quot;detail&quot; event handler to determine whether it needs to create a controller to display the details for the selected item (on iPhone) or simply use the existing view in the SplitWindow.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The <tt class=" ">index.js</tt> controller is responsible for opening the right top-level window depending on which platform the application is running. It also defines a Backbone-based event handler for the &quot;detail&quot; event that is triggered when the user selects an item from the TableView. This event is triggered in the master.js view-controller, shown next.    </p>
+    <p>The controller uses the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy-property-isHandheld">Alloy.isHandheld</a>, <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy-property-isHandheld">Alloy.isTablet</a> and <a class="document-link " href="Alloy_Controllers.html#src-34636384_AlloyControllers-ConditionalCode">OS_IOS</a> conditionals in the &quot;detail&quot; event handler to determine whether it needs to create a controller to display the details for the selected item (on iPhone) or simply use the existing view in the SplitWindow.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/controllers/index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
 <div class="line"><code class="keyword">if</code><code class="plain"> (OS_IOS &amp;&amp; Alloy.isHandheld) {</code></div>
 <div class="line"><code class="plain">    Alloy.Globals.navgroup = $.index;</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="plain">$.master.on(</code><code class="string">'detail'</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
+<div class="line"><code class="plain">$.master.on(</code><code class="string">&apos;detail&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// get the detail controller and window references</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> controller = OS_IOS &amp;&amp; Alloy.isTablet ? $.detail : Alloy.createController(</code><code class="string">'detail'</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> controller = OS_IOS &amp;&amp; Alloy.isTablet ? $.detail : Alloy.createController(</code><code class="string">&apos;detail&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> win = controller.getView();</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// get boxer stats by name</code></div>
 <div class="line"><code class="plain">    controller.setBoxerStats(e.row.fighterName);</code></div>
@@ -88,16 +88,16 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p  >The <tt class=" ">master.js</tt> view-controller, shown below, populates the TableView with <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.TableViewRow">TableViewRow</a> objects. It uses the included Underscore library's <a class="external-link external-link" href="http://underscorejs.org/#each">each()</a> function to iterate over each member of <tt class=" ">Alloy.Globals.data</tt> collection (defined in <tt class=" ">app/alloy.js</tt>) and creates a new TableViewRow from the <tt class=" ">app/views/row.xml</tt> view. The first argument passed to the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy-method-createController">Alloy.createController()</a> is the view-controller's base name (&quot;row&quot;) followed by the specific data for that row to display. Each new view-controller is pushed onto a local array named <tt class=" ">data</tt>, which is finally passed to the TableView object's <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.TableView-method-setData">setData()</a> method.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The <tt class=" ">master.js</tt> view-controller, shown below, populates the TableView with <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.TableViewRow">TableViewRow</a> objects. It uses the included Underscore library&apos;s <a class="external-link external-link" href="http://underscorejs.org/#each">each()</a> function to iterate over each member of <tt class=" ">Alloy.Globals.data</tt> collection (defined in <tt class=" ">app/alloy.js</tt>) and creates a new TableViewRow from the <tt class=" ">app/views/row.xml</tt> view. The first argument passed to the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Alloy-method-createController">Alloy.createController()</a> is the view-controller&apos;s base name (&quot;row&quot;) followed by the specific data for that row to display. Each new view-controller is pushed onto a local array named <tt class=" ">data</tt>, which is finally passed to the TableView object&apos;s <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.TableView-method-setData">setData()</a> method.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/controllers/master.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/master.js">
 <div class="line"><code class="keyword">function</code><code class="plain"> openDetail(e) {</code></div>
-<div class="line"><code class="plain">    $.trigger(</code><code class="string">'detail'</code><code class="plain">, e);</code></div>
+<div class="line"><code class="plain">    $.trigger(</code><code class="string">&apos;detail&apos;</code><code class="plain">, e);</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> data = [];</code></div>
 <div class="line"><code class="plain">_.each(Alloy.Globals.data, </code><code class="keyword">function</code><code class="plain">(stats, name) {</code></div>
-<div class="line"><code class="plain">    data.push(Alloy.createController(</code><code class="string">'row'</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">    data.push(Alloy.createController(</code><code class="string">&apos;row&apos;</code><code class="plain">, {</code></div>
 <div class="line"><code class="plain">        name: name,</code></div>
 <div class="line"><code class="plain">        nickname: stats.nickname</code></div>
 <div class="line"><code class="plain">    }).getView());</code></div>
@@ -105,20 +105,20 @@
 <div class="line"><code class="plain">$.table.setData(data);</code></div>
 </div>
     </div>
-    <p  >The <tt class=" ">row.xml</tt> view defines the layout and content of each <tt class=" ">TableViewRow</tt>.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The <tt class=" ">row.xml</tt> view defines the layout and content of each <tt class=" ">TableViewRow</tt>.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/row.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/row.xml">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;</code><code class="keyword">TableViewRow</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"name"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"nickname"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;name&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;nickname&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">TableViewRow</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p  >The <tt class=" ">row.js</tt> view-controller reads the values of the arguments passed to it by the <tt class=" ">createController()</tt> method, and assigns the proper values to the <tt class=" ">name</tt> and <tt class=" ">nickname</tt> Label elements.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The <tt class=" ">row.js</tt> view-controller reads the values of the arguments passed to it by the <tt class=" ">createController()</tt> method, and assigns the proper values to the <tt class=" ">name</tt> and <tt class=" ">nickname</tt> Label elements.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> args = arguments[0] || {};</code></div>
 <div class="line"><code class="plain">$.row.fighterName = $.name.text = args.name;</code></div>
@@ -127,14 +127,12 @@
     </div>
     <div class="section section-2 " id="src-41845665_Master-Detail-Seealso">
         <h2 class="heading "><span>See also</span></h2>
-<ul class=" "><li class=" ">    <p  ><a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.NavigationWindow">NavigationWindow</a>    </p>
-</li><li class=" ">    <p  ><a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iPad.SplitWindo">SplitWindow</a>    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.NavigationWindow">NavigationWindow</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iPad.SplitWindo">SplitWindow</a>    </p>
 </li></ul>    </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

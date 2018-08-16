@@ -5,12 +5,12 @@
 <head>
     <title>NavigationWindow</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,83 +18,81 @@
 
         <div id="src-41845759" class="content">
                         <h1>NavigationWindow</h1>
-    <p  >Demonstrates how to navigate a hierarchy of content on iOS devices using the NavigationWindow object.    </p>
-    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+    <p>Demonstrates how to navigate a hierarchy of content on iOS devices using the NavigationWindow object.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <div class="title">Example App Source Location</div>
-            <p  >You can find this example app in the Alloy repository under <a class="external-link external-link" href="https://github.com/appcelerator/alloy/tree/master/samples/apps/ui/navwindow">samples/apps/ui/navwindow</a>. Check the <a  class="document-link " href="Alloy_Test_Apps.html">instructions</a> how to run these sample projects.    </p>
+            <p>You can find this example app in the Alloy repository under <a class="external-link external-link" href="https://github.com/appcelerator/alloy/tree/master/samples/apps/ui/navwindow">samples/apps/ui/navwindow</a>. Check the <a class="document-link " href="Alloy_Test_Apps.html">instructions</a> how to run these sample projects.    </p>
     </div>
-        <p  >A <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.NavigationWindow">NavigationWindow</a> implements a specialized view that manages the navigation of hierarchical content. You call the NavigationWindow object's <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.NavigationWindow-method-openWindow">openWindow()</a> method to open     <span style="color: #222222;" >
+        <p>A <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.NavigationWindow">NavigationWindow</a> implements a specialized view that manages the navigation of hierarchical content. You call the NavigationWindow object&apos;s <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.NavigationWindow-method-openWindow">openWindow()</a> method to open     <span style="color: #222222;">
 a new window in the navigation group, <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.NavigationWindow-method-closeWindow">closeWindow()</a> to remove it.    </span>
     </p>
-    <p  >    <img  src="images/download/attachments/41845759/image.gif" alt="images/download/attachments/41845759/image.gif" class="confluence-embedded-image confluence-content-image-border" width="250" height="392" />
+    <p>    <img src="images/download/attachments/41845759/image.gif" alt="images/download/attachments/41845759/image.gif" class="confluence-embedded-image confluence-content-image-border" width="250" height="392">
         </p>
-    <p  >The sample's main index.xml view declares a NavigationWindow element named <tt class=" ">navWindow</tt>.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The sample&apos;s main index.xml view declares a NavigationWindow element named <tt class=" ">navWindow</tt>.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/ios/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/ios/index.xml">
 <div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">    &lt;NavigationWindow platform=</code><code class="string">"ios"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Window id=</code><code class="string">"main"</code><code class="plain"> title=</code><code class="string">"Main Window"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">"space"</code><code class="plain">&gt;Click the button below to </code><code class="string">"push"</code><code class="plain"> a </code><code class="keyword">new</code><code class="plain"> window onto the navigation stack&lt;/Label&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Button </code><code class="keyword">class</code><code class="plain">=</code><code class="string">"space"</code><code class="plain"> onClick=</code><code class="string">"Alloy.Globals.openWindow"</code><code class="plain">&gt;push&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">    &lt;NavigationWindow platform=</code><code class="string">&quot;ios&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Window id=</code><code class="string">&quot;main&quot;</code><code class="plain"> title=</code><code class="string">&quot;Main Window&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;space&quot;</code><code class="plain">&gt;Click the button below to </code><code class="string">&quot;push&quot;</code><code class="plain"> a </code><code class="keyword">new</code><code class="plain"> window onto the navigation stack&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Button </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;space&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;Alloy.Globals.openWindow&quot;</code><code class="plain">&gt;push&lt;/Button&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/Window&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/NavigationWindow&gt;</code></div>
 <div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
 </div>
     </div>
-    <p  >When the &quot;Push&quot; button is clicked, it invokes the <tt class=" ">Alloy.Globals.openWindow()</tt> function. This function is defined in the application's alloy.js file, and calls the <tt class=" ">navWindow's</tt> <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.iOS.NavigationWindow-method-openWindow">openWindow()</a> method, passing it a new window created from the app/views/win.xml view. It also initializes a global counter variable named <tt class=" ">ctr</tt> that's displayed by each window added to the navigation stack.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>When the &quot;Push&quot; button is clicked, it invokes the <tt class=" ">Alloy.Globals.openWindow()</tt> function. This function is defined in the application&apos;s alloy.js file, and calls the <tt class=" ">navWindow&apos;s</tt> <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.iOS.NavigationWindow-method-openWindow">openWindow()</a> method, passing it a new window created from the app/views/win.xml view. It also initializes a global counter variable named <tt class=" ">ctr</tt> that&apos;s displayed by each window added to the navigation stack.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/alloy.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/alloy.js">
 <div class="line"><code class="plain">Alloy.Globals = {</code></div>
 <div class="line"><code class="plain">	ctr: </code><code class="value">0</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	openWindow: function(e) {</code></div>
 <div class="line"><code class="plain">		Alloy.Globals.ctr++;</code></div>
-<div class="line"><code class="plain">		Alloy.Globals.navwindow.openWindow(Alloy.createController(</code><code class="string">'win'</code><code class="plain">).getView());</code></div>
+<div class="line"><code class="plain">		Alloy.Globals.navwindow.openWindow(Alloy.createController(</code><code class="string">&apos;win&apos;</code><code class="plain">).getView());</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">};</code></div>
 </div>
     </div>
-    <p  >Each newly created window displays left and right navigation buttons that let you push a new window on the navigation stack, or pop the current window off the stack. The &quot;Push&quot; button calls the same global <tt class=" ">openWindow()</tt> function, and the &quot;Pop&quot; button calls the view-controller's <tt class=" ">closeWindow()</tt> function, which calls calls <tt class=" ">closeWindow()</tt> on the <tt class=" ">navWindow</tt> object.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>Each newly created window displays left and right navigation buttons that let you push a new window on the navigation stack, or pop the current window off the stack. The &quot;Push&quot; button calls the same global <tt class=" ">openWindow()</tt> function, and the &quot;Pop&quot; button calls the view-controller&apos;s <tt class=" ">closeWindow()</tt> function, which calls calls <tt class=" ">closeWindow()</tt> on the <tt class=" ">navWindow</tt> object.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/ios/win.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/ios/win.xml">
 <div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">    &lt;Window layout=</code><code class="string">"vertical"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;Window layout=</code><code class="string">&quot;vertical&quot;</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">        &lt;LeftNavButton&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Button onClick=</code><code class="string">"closeWindow"</code><code class="plain">&gt;pop&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Button onClick=</code><code class="string">&quot;closeWindow&quot;</code><code class="plain">&gt;pop&lt;/Button&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/LeftNavButton&gt;</code></div>
 <div class="line"><code class="plain">        &lt;RightNavButton&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Button onClick=</code><code class="string">"Alloy.Globals.openWindow"</code><code class="plain">&gt;push&lt;/Button&gt;</code></div>
+<div class="line"><code class="plain">            &lt;Button onClick=</code><code class="string">&quot;Alloy.Globals.openWindow&quot;</code><code class="plain">&gt;push&lt;/Button&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/RightNavButton&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">"space"</code><code class="plain">&gt;Click the left nav button above to pop </code><code class="keyword">this</code><code class="plain"> window off the navigation stack. Click the right one to push another window onto the stack.&lt;/Label&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Label id=</code><code class="string">"windowNumber"</code><code class="plain"> </code><code class="keyword">class</code><code class="plain">=</code><code class="string">"space"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;space&quot;</code><code class="plain">&gt;Click the left nav button above to pop </code><code class="keyword">this</code><code class="plain"> window off the navigation stack. Click the right one to push another window onto the stack.&lt;/Label&gt;</code></div>
+<div class="line"><code class="plain">        &lt;Label id=</code><code class="string">&quot;windowNumber&quot;</code><code class="plain"> </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;space&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/Window&gt;</code></div>
 <div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
 </div>
     </div>
-    <p  >The view-controller for each window pushed onto the navigation stack displays the value of the global <tt class=" ">ctr</tt> in a Label, as well as property in the window's title.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The view-controller for each window pushed onto the navigation stack displays the value of the global <tt class=" ">ctr</tt> in a Label, as well as property in the window&apos;s title.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/controllers/ios/win.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/ios/win.js">
 <div class="line"><code class="plain">function closeWindow(e) {</code></div>
 <div class="line"><code class="plain">    Alloy.Globals.ctr--;</code></div>
 <div class="line"><code class="plain">    Alloy.Globals.navwindow.closeWindow($.win);</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="plain">$.win.title = </code><code class="string">"Window #"</code><code class="plain"> + Alloy.Globals.ctr;</code></div>
-<div class="line"><code class="plain">$.windowNumber.text = </code><code class="string">"I'm window #"</code><code class="plain"> + Alloy.Globals.ctr + </code><code class="string">" on the stack"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">$.win.title = </code><code class="string">&quot;Window #&quot;</code><code class="plain"> + Alloy.Globals.ctr;</code></div>
+<div class="line"><code class="plain">$.windowNumber.text = </code><code class="string">&quot;I&apos;m window #&quot;</code><code class="plain"> + Alloy.Globals.ctr + </code><code class="string">&quot; on the stack&quot;</code><code class="plain">;</code></div>
 </div>
     </div>
     <div class="section section-2 " id="src-41845759_NavigationWindow-SeeAlso">
         <h2 class="heading "><span>See Also</span></h2>
-<ul class=" "><li class=" ">    <p  ><a class="external-link external-link" href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.UI.iOS.NavigationWindow">Titanium.UI.iOS.NavigationWindow</a>    </p>
-</li></ul>    <p  >    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.UI.iOS.NavigationWindow">Titanium.UI.iOS.NavigationWindow</a>    </p>
+</li></ul>    <p>    </p>
     </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

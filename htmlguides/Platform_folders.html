@@ -5,12 +5,12 @@
 <head>
     <title>Platform folders</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,59 +18,57 @@
 
         <div id="src-41845671" class="content">
                         <h1>Platform folders</h1>
-    <p  >Demonstrates how to structure an Alloy project with folders that contains platform-specific views.    </p>
-    <div  class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+    <p>Demonstrates how to structure an Alloy project with folders that contains platform-specific views.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <div class="title">App folder location</div>
-            <p  ><i class=" ">alloy</i>/test/apps/<strong class=" ">advanced/platform_folders</strong>    </p>
+            <p><i class=" ">alloy</i>/test/apps/<strong class=" ">advanced/platform_folders</strong>    </p>
     </div>
-        <p  >You can define platform-specific resources in an Alloy project, including controllers, views and styles. Simply create a folder named <strong class=" ">android</strong> or <strong class=" ">ios</strong> inside the <tt class=" ">app/controllers</tt>, <tt class=" ">app/views</tt>, or <tt class=" ">app/styles</tt> folders, and add your platform specific files. The sample application uses this feature to display a scrollable list of images using <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.CoverFlowView">CoverFlowView</a> component for iOS builds, and a <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.ScrollView">ScrollView</a> for other platform builds.    </p>
-    <p  >The project structure looks as follows:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+        <p>You can define platform-specific resources in an Alloy project, including controllers, views and styles. Simply create a folder named <strong class=" ">android</strong> or <strong class=" ">ios</strong> inside the <tt class=" ">app/controllers</tt>, <tt class=" ">app/views</tt>, or <tt class=" ">app/styles</tt> folders, and add your platform specific files. The sample application uses this feature to display a scrollable list of images using <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.CoverFlowView">CoverFlowView</a> component for iOS builds, and a <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.ScrollView">ScrollView</a> for other platform builds.    </p>
+    <p>The project structure looks as follows:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">App views folder</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="App views folder">
 <div class="line"><code class="plain">app/views/</code></div>
-<div class="line"><code class="plain">├──index.xml</code></div>
-<div class="line"><code class="plain">└──ios</code></div>
-<div class="line"><code class="plain">   └──index.xml</code></div>
+<div class="line"><code class="plain">&#x251C;&#x2500;&#x2500;index.xml</code></div>
+<div class="line"><code class="plain">&#x2514;&#x2500;&#x2500;ios</code></div>
+<div class="line"><code class="plain">   &#x2514;&#x2500;&#x2500;index.xml</code></div>
 </div>
     </div>
-    <p  >The <tt class=" ">views/index.xml</tt> file includes a ScrollView element:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>The <tt class=" ">views/index.xml</tt> file includes a ScrollView element:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">ScrollView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"scroll"</code><code class="plain"> </code><code class="color1">layout</code><code class="plain">=</code><code class="string">"vertical"</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">"/appc1.png"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">"/appc2.png"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">"/appc3.png"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">            &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">"/appc4.png"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">ScrollView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;scroll&quot;</code><code class="plain"> </code><code class="color1">layout</code><code class="plain">=</code><code class="string">&quot;vertical&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">&quot;/appc1.png&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">&quot;/appc2.png&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">&quot;/appc3.png&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">&quot;/appc4.png&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">        &lt;/</code><code class="keyword">ScrollView</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p  >And the <tt class=" ">views/ios/index.xml</tt> file includes the CoverFlowView component.    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>And the <tt class=" ">views/ios/index.xml</tt> file includes the CoverFlowView component.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/ios/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/ios/index.xml">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">CoverFlowView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"coverflow"</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">"apilabel"</code><code class="plain">&gt;Ti.UI.iOS.CoverFlowView&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">CoverFlowView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;coverflow&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;apilabel&quot;</code><code class="plain">&gt;Ti.UI.iOS.CoverFlowView&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     <div class="section section-2 " id="src-41845671_Platformfolders-Seealso">
         <h2 class="heading "><span>See also</span></h2>
-<ul class=" "><li class=" ">    <p  ><a  class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-Platform-SpecificResources">Alloy Concepts: Platform-Specific Resources</a>    </p>
+<ul class=" "><li class=" ">    <p><a class="document-link " href="Alloy_Concepts.html#src-34636240_AlloyConcepts-Platform-SpecificResources">Alloy Concepts: Platform-Specific Resources</a>    </p>
 </li></ul>    </div>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>

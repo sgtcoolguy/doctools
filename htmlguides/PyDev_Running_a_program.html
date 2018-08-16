@@ -5,12 +5,12 @@
 <head>
     <title>PyDev Running a program</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta content="Scroll EclipseHelp Exporter" name="generator"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
 
-    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css" />
-    <link type="text/css" rel="stylesheet" href="css/common.css" />
-    <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="css/eclipse-defaults.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
     <div class="container">
@@ -18,44 +18,42 @@
 
         <div id="src-30083051" class="content">
                         <h1>PyDev Running a program</h1>
-    <p  >Ok, now that you're already up and running, let's <strong class=" ">run a program from within Eclipse</strong> with PyDev.    </p>
-    <p  >For that, we will extend the module we created in the previous chapter with the following program:    </p>
-    <div  class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <p>Ok, now that you&apos;re already up and running, let&apos;s <strong class=" ">run a program from within Eclipse</strong> with PyDev.    </p>
+    <p>For that, we will extend the module we created in the previous chapter with the following program:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="keyword">if</code><code class="plain"> __name__ </code><code class="keyword">=</code><code class="keyword">=</code><code class="plain"> </code><code class="string">'__main__'</code><code class="plain">:</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">print</code><code class="plain"> </code><code class="string">'Hello World'</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> __name__ </code><code class="keyword">=</code><code class="keyword">=</code><code class="plain"> </code><code class="string">&apos;__main__&apos;</code><code class="plain">:</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">print</code><code class="plain"> </code><code class="string">&apos;Hello World&apos;</code></div>
 <div class="line"><code class="plain"> </code></div>
 </div>
     </div>
-    <p  >Then, to run the file you can:    </p>
-<ul class="alternate "><li class=" ">    <p  >Use a shortcut: <strong class=" ">F9</strong> to run based on the project configuration where the module is contained.    </p>
-</li><li class=" ">    <p  >Go to the menu: Alt + R + S + The number of the Run you wish (It can be Python, Jython, unit-test, etc).    </p>
-</li><li class=" ">    <p  >Note: if you were using <strong class=" ">unit-tests</strong>, you could use: <strong class=" ">Ctrl+F9</strong> to run the unit-tests from the module (and even selecting which tests should be run).    </p>
-</li></ul>    <p  ><strong class=" ">NOTE</strong>:    </p>
-    <blockquote >
-    <p  >External files may be launched, but an associated project must be available. So, a file may be dragged from the filesystem into Eclipse and later, with the editor open F9 may be pressed to run the file...    </p>
-    <p  >It'll still ask for a project to resolve the PYTHONPATH and interpreter to be used (you can probably just use any project you have that has the interpreter you want to use for the run or create a PyDev project as 'external_projects' and bind those runs to it).    </p>
-    <p  >&ndash; The configuration created may be changed later on in the menu: Run &gt; Run configurations.    </p>
+    <p>Then, to run the file you can:    </p>
+<ul class="alternate "><li class=" ">    <p>Use a shortcut: <strong class=" ">F9</strong> to run based on the project configuration where the module is contained.    </p>
+</li><li class=" ">    <p>Go to the menu: Alt + R + S + The number of the Run you wish (It can be Python, Jython, unit-test, etc).    </p>
+</li><li class=" ">    <p>Note: if you were using <strong class=" ">unit-tests</strong>, you could use: <strong class=" ">Ctrl+F9</strong> to run the unit-tests from the module (and even selecting which tests should be run).    </p>
+</li></ul>    <p><strong class=" ">NOTE</strong>:    </p>
+    <blockquote>
+    <p>External files may be launched, but an associated project must be available. So, a file may be dragged from the filesystem into Eclipse and later, with the editor open F9 may be pressed to run the file...    </p>
+    <p>It&apos;ll still ask for a project to resolve the PYTHONPATH and interpreter to be used (you can probably just use any project you have that has the interpreter you want to use for the run or create a PyDev project as &apos;external_projects&apos; and bind those runs to it).    </p>
+    <p>&#x2013; The configuration created may be changed later on in the menu: Run &gt; Run configurations.    </p>
         </blockquote>
-    <p  >    <img  src="images/pydev.org/images/menu_run.png" alt="images/pydev.org/images/menu_run.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border"   />
-    <br/>Doing so, the console should be brough forward with the output of the code (if you had some exception raised, clicking on it would bring you to the code in the stack-trace).    </p>
-    <p  >After the first run, if you type <strong class=" ">Ctrl+F11</strong>, the last file ran is re-run. Or, if you type just <strong class=" ">F11</strong>, a debug session is started with your last run. Let's test this...    </p>
-    <p  ><strong class=" ">Note</strong>: This behavior changed in Eclipse 3.3 &ndash; but it's generally recommended to restore it in the preferences at: <strong class=" ">window &gt; preferences &gt; Run/Debug &gt; Launching</strong> and set the Launch Operation to <strong class=" ">Always launch the previously launched application</strong>. This tutorial will always consider this as the default option.    </p>
-    <p  >First, you'll need to add a breakpoint in the &quot;print 'Hello World'&quot; line. To do so, go to the line and type <strong class=" ">Ctrl+F10</strong> and select 'Add breakpoint', then type <strong class=" ">F11</strong>. Doing so, will trigger you to go to the 'debug perspective'. You should say <strong class=" ">'yes'</strong> to this dialog.    </p>
-    <p  >    <img  src="images/pydev.org/images/perspective_to_debug.png" alt="images/pydev.org/images/perspective_to_debug.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border"   />
-    <br/>After saying yes, you should be brought to the perspective below.    </p>
-    <p  >    <img  src="images/pydev.org/images/debug_perspective.png" alt="images/pydev.org/images/debug_perspective.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border"   />
-    <br/>In this perspective, the debug actions are activated and presented to<br/>you, so, you can use:    </p>
-    <p  ><strong class=" ">F5</strong>: Step into    </p>
-    <p  ><strong class=" ">F6</strong>: Step over    </p>
-    <p  ><strong class=" ">F7</strong>: Step return    </p>
-    <p  ><strong class=" ">F8</strong>: Resume execution    </p>
-    <p  >After the debug session, you can return to the previous perspective by typing <strong class=" ">'Ctrl+F8'</strong> (this keybinding iterates through the open perspectives)... And while we are at it, <strong class=" ">'Ctrl+F7'</strong> iterates through the views and <strong class=" ">'Ctrl+F6'</strong> iterates through the editors.    </p>
+    <p>    <img src="images/pydev.org/images/menu_run.png" alt="images/pydev.org/images/menu_run.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border">
+    <br>Doing so, the console should be brough forward with the output of the code (if you had some exception raised, clicking on it would bring you to the code in the stack-trace).    </p>
+    <p>After the first run, if you type <strong class=" ">Ctrl+F11</strong>, the last file ran is re-run. Or, if you type just <strong class=" ">F11</strong>, a debug session is started with your last run. Let&apos;s test this...    </p>
+    <p><strong class=" ">Note</strong>: This behavior changed in Eclipse 3.3 &#x2013; but it&apos;s generally recommended to restore it in the preferences at: <strong class=" ">window &gt; preferences &gt; Run/Debug &gt; Launching</strong> and set the Launch Operation to <strong class=" ">Always launch the previously launched application</strong>. This tutorial will always consider this as the default option.    </p>
+    <p>First, you&apos;ll need to add a breakpoint in the &quot;print &apos;Hello World&apos;&quot; line. To do so, go to the line and type <strong class=" ">Ctrl+F10</strong> and select &apos;Add breakpoint&apos;, then type <strong class=" ">F11</strong>. Doing so, will trigger you to go to the &apos;debug perspective&apos;. You should say <strong class=" ">&apos;yes&apos;</strong> to this dialog.    </p>
+    <p>    <img src="images/pydev.org/images/perspective_to_debug.png" alt="images/pydev.org/images/perspective_to_debug.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border">
+    <br>After saying yes, you should be brought to the perspective below.    </p>
+    <p>    <img src="images/pydev.org/images/debug_perspective.png" alt="images/pydev.org/images/debug_perspective.png" class="confluence-embedded-image confluence-external-resource confluence-content-image-border">
+    <br>In this perspective, the debug actions are activated and presented to<br>you, so, you can use:    </p>
+    <p><strong class=" ">F5</strong>: Step into    </p>
+    <p><strong class=" ">F6</strong>: Step over    </p>
+    <p><strong class=" ">F7</strong>: Step return    </p>
+    <p><strong class=" ">F8</strong>: Resume execution    </p>
+    <p>After the debug session, you can return to the previous perspective by typing <strong class=" ">&apos;Ctrl+F8&apos;</strong> (this keybinding iterates through the open perspectives)... And while we are at it, <strong class=" ">&apos;Ctrl+F7&apos;</strong> iterates through the views and <strong class=" ">&apos;Ctrl+F6&apos;</strong> iterates through the editors.    </p>
         </div>
     
-        <div class="footer">
-            Created with <a href="http://k15t.com/display/web/Scroll-Wiki-EclipseHelp-Exporter-for-Confluence">Scroll EclipseHelp Exporter for Confluence</a>.
-        </div>
+        
     </div>
 </body>
 </html>
