@@ -66,17 +66,17 @@ cd $DOCTOOLS
 sh deploy.sh prod 2> messages.txt
 sh clouddeploy.sh 2>> messages.txt
 sh deploy.sh -o arrow -o alloy -o modules -s prod 2>> messages.txt
-node stripFooter.js 2>> message.txt
-node redirects.js 2>> message.txt
+node stripFooter.js 2>> messages.txt
+node redirects.js 2>> messages.txt
 node appendTitles.js 2>> messages.txt
-#node banner.js >> message.txt ## add banners to each HTML doc; see TIDOC-3015
+#node banner.js >> messages.txt ## add banners to each HTML doc; see TIDOC-3015
 sh clouddeploy.sh -s prod 2>> messages.txt
 bash clouddeploy.sh prod 2>> messages.txt
 bash build_platform.sh 2>> messages.txt
-sh copyFavicon.sh >> message.txt ## copy Griffin favicon.ico from ../doctools to various directories
+sh copyFavicon.sh >> messages.txt ## copy Griffin favicon.ico from ../doctools to various directories
 cd $APPCWEBDOCS
 
-## open the message.txt file and you need to manually search for error messages
+## open the messages.txt file and you need to manually search for error messages
 # open -a Atom messages.txt
 bash ../doctools/copy_platform.sh 2>> messages.txt
 bash ../doctools/copy_cloud.sh 2>> messages.txt
@@ -99,6 +99,10 @@ open http://devops-jenkins.appcelerator.org/job/server_package_deployment/
 
 #open -a Atom ~/.bash_profile
 #echo "Grab your Jenkins password"
+
+## open the messages.txt file and you need to manually search for error messages
+# open -a Atom messages.txt
+rm messages.txt
 
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."

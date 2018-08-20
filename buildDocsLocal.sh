@@ -58,9 +58,9 @@ echo "Executing sh clouddeploy.sh\n"
 sh clouddeploy.sh >> messages.txt
 echo "Executing sh deploy.sh -o arrow -o alloy -o modules -s prod\n"
 sh deploy.sh -o arrow -o alloy -o modules -s prod >> messages.txt
-node stripFooter.js >> message.txt ## not 100% necessary if building for test reasons
-node redirects.js >> message.txt ## not 100% necessary if building for test reasons
-# node banner.js >> message.txt ## add banners to each HTML doc
+node stripFooter.js >> messages.txt ## not 100% necessary if building for test reasons
+node redirects.js >> messages.txt ## not 100% necessary if building for test reasons
+# node banner.js >> messages.txt ## add banners to each HTML doc
 echo "Executing sh clouddeploy.sh -s prod\n"
 sh clouddeploy.sh -s prod >> messages.txt
 echo "Executing bash clouddeploy.sh prod\n"
@@ -78,12 +78,13 @@ echo "Executing bash ../doctools/copy_cloud.sh\n"
 bash ../doctools/copy_cloud.sh >> messages.txt
 cd $doctools
 node appendTitles.js >> messages.txt ## not 100% necessary if building for test reasons
-sh copyFavicon.sh >> message.txt ## copy Griffin favicon.ico from ../doctools to various directories
+sh copyFavicon.sh >> messages.txt ## copy Griffin favicon.ico from ../doctools to various directories
 sh css_fix.sh ## See TIDOC-2739
 sh js_fix.sh ## TIDOC-3141
 
-## open the message.txt file and you need to manually search for error messages
+## open the messages.txt file and you need to manually search for error messages
 # open -a Atom messages.txt
+rm messages.txt
 
 ## open localhost and manually review the pages
 open http://localhost
