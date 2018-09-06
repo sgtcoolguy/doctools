@@ -234,7 +234,7 @@
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Initializerfile">
         <h2 class="heading "><span>Initializer file</span></h2>
-    <p>The <tt class=" ">app.js</tt> file contains code that initializes the server instance.  You can hook into the lifecycle events of the server as well as make additional setup or middleware calls to the server or Express app instance.    </p>
+    <p>The <tt class=" ">app.js</tt> file contains code that initializes the server instance. You can hook into the lifecycle events of the server as well as make additional setup or middleware calls to the server or Express app instance.    </p>
     <p>For example, the following <tt class=" ">server.app.use</tt> call forces the client to use a secure connection by redirecting any unsecured connections to the HTTPS URL.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app.js</div>
@@ -261,7 +261,7 @@
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Deploytheapplication">
         <h2 class="heading "><span>Deploy the application</span></h2>
-    <p>To deploy an application to API Runtime Services, run the <tt class=" ">appc publish</tt> command from the API Runtime Services project directory.  Your project source code will be uploaded to the API Runtime Services where <tt class=" ">npm install</tt> will be executed against the project, which downloads and installs any NPM module dependencies. When installation completes, the application is executed using <tt class=" ">node</tt>.    </p>
+    <p>To deploy an application to API Runtime Services, run the <tt class=" ">appc publish</tt> command from the API Runtime Services project directory. Your project source code will be uploaded to the API Runtime Services where <tt class=" ">npm install</tt> will be executed against the project, which downloads and installs any NPM module dependencies. When installation completes, the application is executed using <tt class=" ">node</tt>.    </p>
     <p>If the application is already deployed, you need to either increment the <tt class=" ">version</tt> field in the <tt class=" ">package.json</tt> file to publish a new version of the application or pass the <tt class=" ">--force</tt> flag to the publish command to republish the application. Before republishing the application, API Runtime Services sends the <tt class=" ">SIGTERM</tt> signal to the currently deployed application to let it shutdown gracefully. If the app does not shutdown in time, API Runtime Services will kill the application.    </p>
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Logoutput">
@@ -270,7 +270,7 @@
 <ul class=" "><li class=" ">    <p>access logs &#x2013; HTTP requests to the application    </p>
 </li><li class=" ">    <p>application logs &#x2013; explicit log calls made in the application    </p>
 </li></ul>    <p>To capture access logs, use the <tt class=" ">appc-logger</tt> module, and to capture application logs, you can either use the standard JavaScript <tt class=" ">console.log()</tt> and <tt class=" ">console.error()</tt> methods, or you can use the <tt class=" ">appc-logger</tt> module.    </p>
-    <p>By default, when an application is initialized, it loads and creates an <tt class=" ">appc-logger</tt> instance.  The <tt class=" ">appc-logger</tt> instance is bound to the server instance, which will automatically capture access logs for the application.    </p>
+    <p>By default, when an application is initialized, it loads and creates an <tt class=" ">appc-logger</tt> instance. The <tt class=" ">appc-logger</tt> instance is bound to the server instance, which will automatically capture access logs for the application.    </p>
     <p>To make log calls, use the <tt class=" ">logger</tt> property from either the API Builder instance, request object or response object to invoke <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Arrow.Logger"> <tt class=" ">appc-logger</tt> APIs</a>.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -346,7 +346,7 @@
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Portbinding">
         <h2 class="heading "><span>Port binding</span></h2>
-    <p>Starting with API Runtime Services 1.2.0, you may explicitly set the port the application listens on.  Set the <tt class=" ">cloud.environment.PORT</tt> key in <tt class=" ">appc.json</tt> file. or use the <tt class=" ">appc cloud config --set &quot;PORT=&lt;PORT_NUMBER&gt;&quot;</tt> command to set the special environment variable PORT. If you do not set PORT explicitly before publishing your application, API Runtime Services sets it to 80 by default.    </p>
+    <p>Starting with API Runtime Services 1.2.0, you may explicitly set the port the application listens on. Set the <tt class=" ">cloud.environment.PORT</tt> key in <tt class=" ">appc.json</tt> file. or use the <tt class=" ">appc cloud config --set &quot;PORT=&lt;PORT_NUMBER&gt;&quot;</tt> command to set the special environment variable PORT. If you do not set PORT explicitly before publishing your application, API Runtime Services sets it to 80 by default.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">appc.json</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="appc.json">
@@ -488,7 +488,7 @@ command to configure autoscaling:    </span>
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Accessaspecificcontainer">
         <h2 class="heading "><span>Access a specific container</span></h2>
-    <p>Starting with API Runtime Services 1.3.1, if you have scaled your application to use more than one server container, you can make a request to a specific container that your application is running on. To make a request to a specific server container, pass the <tt class=" ">_serverid</tt> parameter with the request and set it to the ID of the server container.  To retrieve the server container ID, run the <tt class=" ">appc cloud </tt> <tt class=" ">accesslog --show_serverid</tt> command.    </p>
+    <p>Starting with API Runtime Services 1.3.1, if you have scaled your application to use more than one server container, you can make a request to a specific container that your application is running on. To make a request to a specific server container, pass the <tt class=" ">_serverid</tt> parameter with the request and set it to the ID of the server container. To retrieve the server container ID, run the <tt class=" ">appc cloud </tt> <tt class=" ">accesslog --show_serverid</tt> command.    </p>
     <p>Example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -500,9 +500,9 @@ command to configure autoscaling:    </span>
         <h2 class="heading "><span>Custom domains</span></h2>
     <div class="section section-3 " id="src-49153285_APIBuilderProject-Setacustomdomainandpath">
         <h3 class="heading "><span>Set a custom domain and path</span></h3>
-    <p>You can bind a custom domain to your application that points to either a CNAME record or A record as well as assign it a path.  When setting the domain, do no specify the protocol, that is, do not prefix the URL with <tt class=" ">http://</tt> or <tt class=" ">https://</tt>.    </p>
+    <p>You can bind a custom domain to your application that points to either a CNAME record or A record as well as assign it a path. When setting the domain, do no specify the protocol, that is, do not prefix the URL with <tt class=" ">http://</tt> or <tt class=" ">https://</tt>.    </p>
     <p>The alias to set should be a valid domain name that has been already configured with either a CNAME or A record pointing to the published application&apos;s URL. Appcelerator Cloud validates the domain record before binding it to the application.    </p>
-    <p>To set a custom domain, set the <tt class=" ">cloud.domain</tt> field in the <tt class=" ">appc.json</tt>.  You can optionally set the <tt class=" ">cloud.domainPath</tt> field to assign a path to the application.  The following example sets a domain and path on the application that can be accessed from <tt class=" ">www.foo.com/v2</tt>:    </p>
+    <p>To set a custom domain, set the <tt class=" ">cloud.domain</tt> field in the <tt class=" ">appc.json</tt>. You can optionally set the <tt class=" ">cloud.domainPath</tt> field to assign a path to the application. The following example sets a domain and path on the application that can be accessed from <tt class=" ">www.foo.com/v2</tt>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">appc.json</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="appc.json">

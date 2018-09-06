@@ -31,7 +31,7 @@
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Web.html#src-43299023_APIBuilderWeb-Interactingwithmodels">Interacting with models</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-43299023_APIBuilderWeb-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p>This guide covers the basics for creating API Builder Web interfaces.  An API Builder Web interface is a custom endpoint that renders HTML content to a client application.  An API Builder Web interface is made up of:    </p>
+    <p>This guide covers the basics for creating API Builder Web interfaces. An API Builder Web interface is a custom endpoint that renders HTML content to a client application. An API Builder Web interface is made up of:    </p>
 <ul class=" "><li class=" ">    <p>assets (images, CSS, HTML and JavaScript files) located in the <tt class=" ">web/public</tt> folder    </p>
 </li><li class=" ">    <p>templates (EJS, Handelbars, Markdown or ReactJS) located in the <tt class=" ">web/views</tt> folder    </p>
 </li><li class=" ">    <p>API Builder Routes (endpoint definitions) located in the <tt class=" ">web/routes</tt> folder    </p>
@@ -39,7 +39,7 @@
     </div>
     <div class="section section-2 " id="src-43299023_APIBuilderWeb-Routedefinition">
         <h2 class="heading "><span>Route definition</span></h2>
-    <p>Place all API Builder route definition files in the service&apos;s <tt class=" ">web/routes</tt> folder.  You can only declare one endpoint definition per file.  An API Builder route definition file is a JavaScript file, which:    </p>
+    <p>Place all API Builder route definition files in the service&apos;s <tt class=" ">web/routes</tt> folder. You can only declare one endpoint definition per file. An API Builder route definition file is a JavaScript file, which:    </p>
 <ol class=" "><li class=" ">    <p>Loads the <tt class=" ">arrow</tt> module    </p>
 </li><li class=" ">    <p>Calls the module&apos;s <tt class=" ">Router.extend()</tt> method, passing in an object defining the API endpoint and logic    </p>
 </li><li class=" ">    <p>Exports the defined endpoint using the <tt class=" ">module.exports</tt> variable    </p>
@@ -139,10 +139,10 @@
     </div>
     <div class="section section-2 " id="src-43299023_APIBuilderWeb-Rendererengines">
         <h2 class="heading "><span>Renderer engines</span></h2>
-    <p>A renderer engine renders data (or locals in the Express framework) to the view (template file).  API Builder provides a few renderer engines and allows you to add your own custom renderer engines.    </p>
+    <p>A renderer engine renders data (or locals in the Express framework) to the view (template file). API Builder provides a few renderer engines and allows you to add your own custom renderer engines.    </p>
     <div class="section section-3 " id="src-43299023_APIBuilderWeb-Pre-builtrendererengines">
         <h3 class="heading "><span>Pre-built renderer engines</span></h3>
-    <p>API Builder Web supports the EJS, Handlebars, Markdown and ReactJS renderer engines.  Place all template files with the appropriate extension in the <tt class=" ">web/templates</tt> folder.    </p>
+    <p>API Builder Web supports the EJS, Handlebars, Markdown and ReactJS renderer engines. Place all template files with the appropriate extension in the <tt class=" ">web/templates</tt> folder.    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -187,13 +187,13 @@
         </tr>
 </tbody>        </table>
             </div>
-    <p>To use a template in the API Builder Route&apos;s logic, reference its filename without the extension.  Because the template is referenced using the filename, you cannot have the same filename with multiple extensions.    </p>
+    <p>To use a template in the API Builder Route&apos;s logic, reference its filename without the extension. Because the template is referenced using the filename, you cannot have the same filename with multiple extensions.    </p>
     </div>
     <div class="section section-3 " id="src-43299023_APIBuilderWeb-Customrendererengines">
         <h3 class="heading "><span>Custom renderer engines</span></h3>
     <p>To create a custom renderer engine you need to create a renderer engine and register it with the API Builder instance&apos;s middleware instance.    </p>
 <ol class=" "><li class=" ">    <p>Create an object that implements the <tt class=" ">createRenderer()</tt> method and specifies the <tt class=" ">extension</tt> property.    </p>
-</li><li class=" ">    <p>Pass the object to the Middleware instance&apos;s <tt class=" ">registerRendererEngine()</tt> method.  You can retrieve a Middleware instance by using the <tt class=" ">middleware</tt> property of the API Builder instance.    </p>
+</li><li class=" ">    <p>Pass the object to the Middleware instance&apos;s <tt class=" ">registerRendererEngine()</tt> method. You can retrieve a Middleware instance by using the <tt class=" ">middleware</tt> property of the API Builder instance.    </p>
 </li></ol>    <p>For example, to implement a renderer engine for Jade templates:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -224,9 +224,9 @@ Any view with a     </span>
     <p>API Builder exposes some APIs to allow you to register Handlebar partials or helpers.    </p>
     <div class="section section-4 " id="src-43299023_APIBuilderWeb-Helpers">
         <h4 class="heading "><span>Helpers</span></h4>
-    <p>Helpers are functions that you can evaluate in your Handlebar templates.  To use a helper, register the helper with the Handlebar renderer engine, then in the template, call the helper using the name you gave the helper when registering it.    </p>
+    <p>Helpers are functions that you can evaluate in your Handlebar templates. To use a helper, register the helper with the Handlebar renderer engine, then in the template, call the helper using the name you gave the helper when registering it.    </p>
 <ol class=" "><li class=" ">    <p>Get a reference to the Handlebar renderer engine using the <tt class=" ">Arrow.Middleware.getRendererEngine(&apos;hbs&apos;)</tt> method.    </p>
-</li><li class=" ">    <p>Call either the Handlebar renderer engine&apos;s <tt class=" ">registerHelper()</tt> to register a helper function.  Pass the method the name of the helper and the function to invoke.    </p>
+</li><li class=" ">    <p>Call either the Handlebar renderer engine&apos;s <tt class=" ">registerHelper()</tt> to register a helper function. Pass the method the name of the helper and the function to invoke.    </p>
 </li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
@@ -253,9 +253,9 @@ Any view with a     </span>
     </div>
     <div class="section section-4 " id="src-43299023_APIBuilderWeb-Partials">
         <h4 class="heading "><span>Partials</span></h4>
-    <p>Partials are subviews that you can embed in a template.  To use a partial, you need to register it with the Handlebar renderer engine, then reference the partial in the template using the <tt class=" ">{{&gt; partialName}}</tt> syntax, where <tt class=" ">partialName</tt> is the name you gave the partial when you registered it.    </p>
+    <p>Partials are subviews that you can embed in a template. To use a partial, you need to register it with the Handlebar renderer engine, then reference the partial in the template using the <tt class=" ">{{&gt; partialName}}</tt> syntax, where <tt class=" ">partialName</tt> is the name you gave the partial when you registered it.    </p>
 <ol class=" "><li class=" ">    <p>Get a reference to the Handlebar renderer engine using the <tt class=" ">Arrow.Middleware.getRendererEngine(&apos;hbs&apos;)</tt> method.    </p>
-</li><li class=" ">    <p>Call either the Handlebar renderer engine&apos;s <tt class=" ">registerPartial()</tt> to register a partial file.  Pass the method the name of the partial and the template file to use as a partial.    </p>
+</li><li class=" ">    <p>Call either the Handlebar renderer engine&apos;s <tt class=" ">registerPartial()</tt> to register a partial file. Pass the method the name of the partial and the template file to use as a partial.    </p>
 </li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>

@@ -37,7 +37,7 @@
 </li></ul>    <p>The composite connector can also perform either a one-to-one join or one-to-many join:    </p>
 <ul class=" "><li class=" ">    <p>one-to-one: only one record from the secondary model matches a record in the main model    </p>
 </li><li class=" ">    <p>one-to-many: multiple records from the secondary model can match a record in the main model    </p>
-</li></ul>    <p>To define the join operation, set the <tt class=" ">metadata</tt> property to either the <tt class=" ">left_join</tt> key or <tt class=" ">inner_join</tt> key, either of which takes an array of objects defining the join.  Each object in the <tt class=" ">left_join</tt> or <tt class=" ">inner_join</tt> property defines the model to join (<tt class=" ">model</tt> property), a key to join (<tt class=" ">join_properties</tt> property), and optionally if the join is one-to-one or one-to-many (<tt class=" ">multiple</tt> property).    </p>
+</li></ul>    <p>To define the join operation, set the <tt class=" ">metadata</tt> property to either the <tt class=" ">left_join</tt> key or <tt class=" ">inner_join</tt> key, either of which takes an array of objects defining the join. Each object in the <tt class=" ">left_join</tt> or <tt class=" ">inner_join</tt> property defines the model to join (<tt class=" ">model</tt> property), a key to join (<tt class=" ">join_properties</tt> property), and optionally if the join is one-to-one or one-to-many (<tt class=" ">multiple</tt> property).    </p>
     <div class="section section-3 " id="src-49153279_Models-Composite-Joinobjectdefinition">
         <h3 class="heading "><span>Join object definition</span></h3>
     <div class="tablewrap">
@@ -91,7 +91,7 @@
     </div>
     <div class="section section-3 " id="src-49153279_Models-Composite-Leftjoinexample">
         <h3 class="heading "><span>Left join example</span></h3>
-    <p>The example below combines the <tt class=" ">employee</tt> and <tt class=" ">managers</tt> models to create the employee_manager model.  The models are joined based on a match between the managers model&apos;s <tt class=" ">employee_id</tt> and the employee model&apos;s auto-generated <tt class=" ">id</tt>.    </p>
+    <p>The example below combines the <tt class=" ">employee</tt> and <tt class=" ">managers</tt> models to create the employee_manager model. The models are joined based on a match between the managers model&apos;s <tt class=" ">employee_id</tt> and the employee model&apos;s auto-generated <tt class=" ">id</tt>.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">models/employee_manager.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/employee_manager.js">
@@ -150,7 +150,7 @@
     </div>
     <div class="section section-3 " id="src-49153279_Models-Composite-Innerjoinexample">
         <h3 class="heading "><span>Inner join example</span></h3>
-    <p>The example below performs an inner join on the <tt class=" ">employee</tt>, <tt class=" ">employee_manager</tt> and <tt class=" ">employee_habit</tt> models.  Both the <tt class=" ">employee_manager</tt> and <tt class=" ">employee_habit employee_id </tt>properties will try to match the employee<tt class=" "> id</tt> property<tt class=" ">.</tt>    </p>
+    <p>The example below performs an inner join on the <tt class=" ">employee</tt>, <tt class=" ">employee_manager</tt> and <tt class=" ">employee_habit</tt> models. Both the <tt class=" ">employee_manager</tt> and <tt class=" ">employee_habit employee_id </tt>properties will try to match the employee<tt class=" "> id</tt> property<tt class=" ">.</tt>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
