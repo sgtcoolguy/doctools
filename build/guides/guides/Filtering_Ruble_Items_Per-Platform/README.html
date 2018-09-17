@@ -18,14 +18,11 @@
 
         <div id="src-30083231" class="content">
                         <h1>Filtering Ruble Items Per-Platform</h1>
-    <div class="section section-2 " id="src-30083231_FilteringRubleItemsPer-Platform-Contents">
-        <h2 class="heading "><span>Contents</span></h2>
     <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Filtering_Ruble_Items_Per-Platform-section-src-30083231_FilteringRubleItemsPer-Platform-Overview">Overview</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Filtering_Ruble_Items_Per-Platform-section-src-30083231_FilteringRubleItemsPer-Platform-Wrappinganiteminaper-platformconditional">Wrapping an item in a per-platform conditional</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Filtering_Ruble_Items_Per-Platform-section-src-30083231_FilteringRubleItemsPer-Platform-Specifyingper-platformoptions">Specifying per-platform options</a>    </p>
-</li></ul>    </div>
-    <div class="section section-2 " id="src-30083231_FilteringRubleItemsPer-Platform-Overview">
+</li></ul>    <div class="section section-2 " id="src-30083231_FilteringRubleItemsPer-Platform-Overview">
         <h2 class="heading "><span>Overview</span></h2>
     <p>Sometimes you want a snippet, command, sample, or other item to only appear on certain platforms. To do so, you can use some platform specifiers.    </p>
     </div>
@@ -44,8 +41,8 @@
 <div class="line"><code class="plain">    s.description = </code><code class="string">&quot;A sample Titanium Mobile project that demonstrates a variety of APIs available in Titanium Mobile&quot;</code></div>
 <div class="line"><code class="plain">    s.natures = [</code><code class="string">&quot;com.appcelerator.titanium.mobile.nature&quot;</code><code class="plain">, </code><code class="string">&quot;com.aptana.projects.webnature&quot;</code><code class="plain">]</code></div>
 <div class="line"><code class="plain">    s.icon = </code><code class="string">&quot;http://preview.appcelerator.com/dashboard/img/icons/icon_kitchen_sink.png&quot;</code></div>
-<div class="line"><code class="plain">  end</code></div>
-<div class="line"><code class="plain">end</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">end</code></div>
+<div class="line"><code class="keyword">end</code></div>
 </div>
     </div>
     <div class="tablewrap">
@@ -111,22 +108,22 @@
     </div>
     <div class="section section-2 " id="src-30083231_FilteringRubleItemsPer-Platform-Specifyingper-platformoptions">
         <h2 class="heading "><span>Specifying per-platform options</span></h2>
-    <p>Sometimes, you just want an item to be bound to a different key per-platform. That can be done by using the <a class="document-link " href="#!/guide/Ruble_Specification-section-src-30083218_RubleSpecification-PLATFORMSPECIFIER">PLATFORM_SPECIFIER</a>. However, you could accomplish the same thing by conditionally setting the property using the same syntax as above with <tt class=" ">Ruble.is_mac</tt>, for example.    </p>
+    <p>Sometimes, you just want an item to be bound to a different key per-platform. That can be done by using the <a class="document-link " href="#!/guide/Ruble_Specification-section-src-30083218_RubleSpecification-PLATFORM_SPECIFIER">PLATFORM_SPECIFIER</a>. However, you could accomplish the same thing by conditionally setting the property using the same syntax as above with <tt class=" ">Ruble.is_mac</tt>, for example.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">command </code><code class="string">&apos;Add to multifile Gist&apos;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
-<div class="line"><code class="plain">  cmd.key_binding.mac = </code><code class="string">&apos;CONTROL+OPTION+COMMAND+G&apos;</code><code class="plain"> # aka M1+M3+M4+G</code></div>
+<div class="line"><code class="plain">  cmd.key_binding.mac = </code><code class="string">&apos;CONTROL+OPTION+COMMAND+G&apos;</code><code class="plain"> </code><code class="comments"># aka M1+M3+M4+G</code></div>
 <div class="line"><code class="plain">  cmd.key_binding = </code><code class="string">&apos;M1+M3+G&apos;</code></div>
-<div class="line"><code class="plain">  cmd.output = :show_as_tooltip</code></div>
-<div class="line"><code class="plain">  cmd.input = :selection, :document</code></div>
+<div class="line"><code class="plain">  cmd.output = </code><code class="color2">:show_as_tooltip</code></div>
+<div class="line"><code class="plain">  cmd.input = </code><code class="color2">:selection</code><code class="plain">, </code><code class="color2">:document</code></div>
 <div class="line"><code class="plain">  cmd.invoke </code><code class="keyword">do</code></div>
 <div class="line"><code class="plain">    require </code><code class="string">&quot;gist&quot;</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">    Gist.process_selection</code></div>
-<div class="line"><code class="plain">  end</code></div>
-<div class="line"><code class="plain">end</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">end</code></div>
+<div class="line"><code class="keyword">end</code></div>
 </div>
     </div>
     <p>Currently, only the following properties support platform specifiers:    </p>

@@ -37,8 +37,8 @@
     <div class="section section-3 " id="src-43287851_AndroidBroadcastIntentsandReceivers-Createabroadcastintent">
         <h3 class="heading "><span>Create a broadcast intent</span></h3>
     <p>To create a broadcast intent, pass the <tt class=" ">Titanium.Android.createBroadcastIntent()</tt> method an object with its <tt class=" ">action</tt> property set to a string describing the action that took place. Use a reverse domain name scheme in order to avoid potential conflicts with other applications.    </p>
-    <p>To send extra data with the intent, use the intent&apos;s <tt class=" ">putExtra()</tt> method to add data. For details, see <a class="document-link " href="#!/guide/Android_Intents-section-src-43287298_AndroidIntents-AddExtraData">Android Intents: Add Extra Data</a>.    </p>
-    <p>The application can also create an explicit intent to send the broadcast to a specific application or application activity. Specify the intent object&apos;s <tt class=" ">className</tt> and <tt class=" ">packageName</tt> properties, or the <tt class=" ">url</tt> property, but not both. For details, see <a class="document-link " href="#!/guide/Android_Intents-section-src-43287298_AndroidIntents-CreateanExplicitIntent">Android Intents: Create an Explicit Intent</a>.    </p>
+    <p>To send extra data with the intent, use the intent&apos;s <tt class=" ">putExtra()</tt> method to add data. For details, see <a class="document-link " href="#!/guide/Android_Intents-section-src-43287298_AndroidIntents-Addextradata">Android Intents: Add Extra Data</a>.    </p>
+    <p>The application can also create an explicit intent to send the broadcast to a specific application or application activity. Specify the intent object&apos;s <tt class=" ">className</tt> and <tt class=" ">packageName</tt> properties, or the <tt class=" ">url</tt> property, but not both. For details, see <a class="document-link " href="#!/guide/Android_Intents-section-src-43287298_AndroidIntents-Createanexplicitintent">Android Intents: Create an Explicit Intent</a>.    </p>
     <p>The following example creates a broadcast intent and adds extra data to be passed on to the application or activity.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -104,7 +104,6 @@
 </li></ul>    <p><strong class=" ">To register a broadcast receiver</strong>, pass the <tt class=" ">Titanium.Android.registerBroadcastReceiver()</tt> method a <tt class=" ">BroadcastReceiver</tt> object as the first parameter and an array of actions to monitor as the second parameter. Android system broadcasts are declared as <tt class=" ">Titanium.Android.ACTION_*</tt> constants. Note that not all actions are system broadcasts.    </p>
     <p><strong class=" ">To unregister a broadcast receiver</strong>, pass the <tt class=" ">Titanium.Android.unregisterBroadcastReceiver()</tt> method a <tt class=" ">BroadcastReceiver</tt> object to unregister it to stop monitoring a broadcast.    </p>
     <p><strong class=" ">To monitor a broadcast that requires a special permission</strong>, declare the <tt class=" ">&lt;uses-permission&gt;</tt> element in the Android manifest section of the <tt class=" ">tiapp.xml</tt> file for each broadcast that uses a special permission.    </p>
-    <p>    </p>
     <p>The example below registers a broadcast receiver to monitor if the device&apos;s screen is turned on or off.  The broadcast is a system event sent by the Android OS.  If the screen is turned off then back on, the application displays an alert dialog.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -127,7 +126,6 @@
 <div class="line"><code class="plain">Ti.Android.registerBroadcastReceiver(broadcastReceiver, [Ti.Android.ACTION_SCREEN_OFF, Ti.Android.ACTION_SCREEN_ON]);</code></div>
 </div>
     </div>
-    <p>    </p>
     <p>The example below registers a broadcast receiver to monitor the broadcast sent with permission from the example in <i class=" ">Send a Broadcast with a Permission.</i>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">tiapp.xml</div>

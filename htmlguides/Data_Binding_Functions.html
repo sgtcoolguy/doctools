@@ -30,24 +30,24 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
-<div class="line"><code class="plain">&lt;TableView id=</code><code class="string">&quot;table&quot;</code><code class="plain"> dataCollection=</code><code class="string">&quot;locations&quot;</code><code class="plain"> dataFunction=</code><code class="string">&quot;updateUi&quot;</code><code class="plain"> dataTransform=</code><code class="string">&quot;transformData&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">	&lt;Require src=</code><code class="string">&quot;row&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">&lt;/TableView&gt;</code></div>
-<div class="line"><code class="plain">&lt;View id=</code><code class="string">&quot;footer&quot;</code><code class="plain"> </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;toolbar&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">    &lt;Label id=</code><code class="string">&quot;leftButton&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;doChanges&quot;</code><code class="plain">&gt;change&lt;/Label&gt;</code></div>
-<div class="line"><code class="plain">    &lt;View </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;divider&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">    &lt;Label id=</code><code class="string">&quot;rightButton&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;updateUi&quot;</code><code class="plain">&gt;update&lt;/Label&gt;</code></div>
-<div class="line"><code class="plain">&lt;/View&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">TableView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;table&quot;</code><code class="plain"> </code><code class="color1">dataCollection</code><code class="plain">=</code><code class="string">&quot;locations&quot;</code><code class="plain"> </code><code class="color1">dataFunction</code><code class="plain">=</code><code class="string">&quot;updateUi&quot;</code><code class="plain"> </code><code class="color1">dataTransform</code><code class="plain">=</code><code class="string">&quot;transformData&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;row&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">TableView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;footer&quot;</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;toolbar&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;leftButton&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;doChanges&quot;</code><code class="plain">&gt;change&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;divider&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;rightButton&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;updateUi&quot;</code><code class="plain">&gt;update&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     <p>Clicking <strong class=" ">Change</strong> in the sample app calls the <tt class=" ">doChanges()</tt> function, which modifies the data model used by the <tt class=" ">TableView</tt>. The <tt class=" ">model.set()</tt> method&apos;s second parameter is passed <tt class=" ">silent: true</tt>, which prevents the data binding from firing automatically. Clicking the <strong class=" ">Update</strong> button invokes the <tt class=" ">updateUI()</tt> function, which then causes the UI to update.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/controllers/index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
-<div class="line"><code class="plain">function doChanges(e) {</code></div>
+<div class="line"><code class="keyword">function</code><code class="plain"> doChanges(e) {</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// grab a random model by index</code></div>
-<div class="line"><code class="plain">	var index = Math.round((locations.length-</code><code class="value">1</code><code class="plain">)*Math.random());</code></div>
-<div class="line"><code class="plain">	var model = locations.at(index);</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> index = Math.round((locations.length-1)*Math.random());</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> model = locations.at(index);</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Modify the model by adding a &quot;+&quot; to the end of the model&apos;s name</code></div>
 <div class="line"><code class="plain">	model.set(</code></div>
 <div class="line"><code class="plain">		{ name: model.get(</code><code class="string">&apos;name&apos;</code><code class="plain">) + </code><code class="string">&apos;+&apos;</code><code class="plain"> },</code></div>
@@ -64,8 +64,8 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/alloy.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/alloy.js">
-<div class="line"><code class="plain">var Location = Backbone.Model.extend();</code></div>
-<div class="line"><code class="plain">var Locations = Backbone.Collection.extend({</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Location = Backbone.Model.extend();</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Locations = Backbone.Collection.extend({</code></div>
 <div class="line"><code class="plain">	model: Location</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="plain">Alloy.Collections.locations = </code><code class="keyword">new</code><code class="plain"> Locations();</code></div>
@@ -84,9 +84,9 @@
 <div class="line"><code class="plain">]);</code></div>
 </div>
     </div>
-    <div class="section section-2 " id="src-41846626_DataBindingFunctions-SeeAlso">
-        <h2 class="heading "><span>See Also</span></h2>
-<ul class=" "><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-AlloyBinding">Alloy Binding</a>    </p>
+    <div class="section section-2 " id="src-41846626_DataBindingFunctions-Seealso">
+        <h2 class="heading "><span>See also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="document-link " href="Alloy_Data_Binding.html#src-36739592_AlloyDataBinding-Alloybinding">Alloy Binding</a>    </p>
 </li></ul>    <p>    </p>
     </div>
         </div>

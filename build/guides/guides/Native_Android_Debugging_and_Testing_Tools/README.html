@@ -18,6 +18,9 @@
 
         <div id="src-29004938" class="content">
                         <h1>Native Android Debugging and Testing Tools</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Android_Debugging_and_Testing_Tools-section-src-29004938_NativeAndroidDebuggingandTestingTools-Objective">Objective</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Android_Debugging_and_Testing_Tools-section-src-29004938_NativeAndroidDebuggingandTestingTools-Contents">Contents</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Android_Debugging_and_Testing_Tools-section-src-29004938_NativeAndroidDebuggingandTestingTools-AccessingtheemulatorwithDDMS">Accessing the emulator with DDMS</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Android_Debugging_and_Testing_Tools-section-src-29004938_NativeAndroidDebuggingandTestingTools-ExamininglogoutputwithDDMS">Examining log output with DDMS</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Android_Debugging_and_Testing_Tools-section-src-29004938_NativeAndroidDebuggingandTestingTools-Simulatingnetworkconditions">Simulating network conditions</a>    </p>
@@ -36,8 +39,9 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Android_Debugging_and_Testing_Tools-section-src-29004938_safe-id-TmF0aXZlQW5kcm9pZERlYnVnZ2luZ2FuZFRlc3RpbmdUb29scy1JbmNyZWFzZXRoZWVtdWxhdG9yJ3NkaXNrc3BhY2U">Increase the emulator&apos;s disk space</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Android_Debugging_and_Testing_Tools-section-src-29004938_NativeAndroidDebuggingandTestingTools-Resizetheemulator">Resize the emulator</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Android_Debugging_and_Testing_Tools-section-src-29004938_NativeAndroidDebuggingandTestingTools-Resizetheemulatoronthefly">Resize the emulator on the fly</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Android_Debugging_and_Testing_Tools-section-src-29004938_NativeAndroidDebuggingandTestingTools-NoteonNativeJavaDebugging">Note on Native Java Debugging</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Android_Debugging_and_Testing_Tools-section-src-29004938_NativeAndroidDebuggingandTestingTools-NoteonNativeJavadebugging">Note on Native Java debugging</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Android_Debugging_and_Testing_Tools-section-src-29004938_NativeAndroidDebuggingandTestingTools-References">References</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Android_Debugging_and_Testing_Tools-section-src-29004938_NativeAndroidDebuggingandTestingTools-Summary">Summary</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-29004938_NativeAndroidDebuggingandTestingTools-Objective">
         <h2 class="heading "><span>Objective</span></h2>
     <p>In this section, you will learn the basics of using the native tools included in the Android software development kit for troubleshooting Titanium projects.    </p>
@@ -97,10 +101,10 @@
     <p>(The following are terminal commands, and those &quot;comments&quot; would cause errors. We&apos;re just using a code-like means of annotating what&apos;s happening in each step. So don&apos;t enter the // or what follows.)    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">adb logcat 		</code><code class="comments">// if you have just one device connected or emulator running</code></div>
-<div class="line"><code class="plain">adb -d logcat	</code><code class="comments">// for a USB-connected device</code></div>
-<div class="line"><code class="plain">adb -e logcat	</code><code class="comments">// for the emulator</code></div>
-<div class="line"><code class="plain">adb -s emulator-</code><code class="value">5556</code><code class="plain"> logcat	</code><code class="comments">// to target the emulator running on port 5556</code></div>
+<div class="line"><code class="plain">adb logcat 		</code><code class="plain">//</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> you have just one device connected or emulator running</code></div>
+<div class="line"><code class="plain">adb -d logcat	</code><code class="plain">//</code><code class="plain"> </code><code class="keyword">for</code><code class="plain"> a USB-connected device</code></div>
+<div class="line"><code class="plain">adb -e logcat	</code><code class="plain">//</code><code class="plain"> </code><code class="keyword">for</code><code class="plain"> the emulator</code></div>
+<div class="line"><code class="plain">adb -s emulator-5556 logcat	</code><code class="plain">//</code><code class="plain"> to target the emulator running on port 5556</code></div>
 </div>
     </div>
     <p>Use the <tt class=" ">adb devices</tt> command to get a list of connected devices or emulators that you could target. Use the resulting device labels with the <tt class=" ">adb -s</tt> command. In the examples below, we&apos;re omitting the device-targeting switches for simplicity&apos;s sake. You might need them in practice.    </p>
@@ -108,7 +112,7 @@
     <p>You can filter log output by using the <tt class=" ">grep</tt> command (OS X) or <tt class=" ">findstr</tt> command (Windows). Better yet, just use the built-in <tt class=" ">-s</tt> argument of the <tt class=" ">logcat</tt> command. This technique works identically on both platforms. Titanium log statements are tagged with the &quot;TiAPI&quot; tag.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">adb logcat | grep TiAPI</code></div>
+<div class="line"><code class="plain">adb logcat | </code><code class="functions">grep</code><code class="plain"> TiAPI</code></div>
 <div class="line"><code class="plain">adb logcat -s TiAPI</code></div>
 </div>
     </div>
@@ -116,7 +120,7 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Displaying only Titanium logging messages</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Displaying only Titanium logging messages">
-<div class="line"><code class="plain">adb logcat TiAPI:I *:S  </code><code class="comments">// if you leave off the *:S you&apos;ll output the whole log</code></div>
+<div class="line"><code class="plain">adb logcat TiAPI:I *:S  </code><code class="plain">//</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> you leave off the *:S you&apos;ll output the whole log</code></div>
 </div>
     </div>
     </div>
@@ -137,13 +141,13 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Pushing a file to the device/emulator</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Pushing a file to the device/emulator">
-<div class="line"><code class="plain">adb push foo.txt /path_on_device/foo.txt</code></div>
+<div class="line"><code class="plain">adb push foo.txt </code><code class="plain">/path_on_device/foo</code><code class="plain">.txt</code></div>
 </div>
     </div>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Pulling a file from the device/emulator</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Pulling a file from the device/emulator">
-<div class="line"><code class="plain">adb pull /path_on_device/foo.txt /local_path/foo.txt</code></div>
+<div class="line"><code class="plain">adb pull </code><code class="plain">/path_on_device/foo</code><code class="plain">.txt </code><code class="plain">/local_path/foo</code><code class="plain">.txt</code></div>
 </div>
     </div>
     </div>
@@ -154,10 +158,10 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">adb shell</code></div>
-<div class="line"><code class="plain"># ls /data/data/com.example.yourapp/databases		</code><code class="comments">// to list the db files</code></div>
-<div class="line"><code class="plain"># sqlite3 /data/data/com.example.yourapp/databases/yourdb.sqlite</code></div>
+<div class="line"><code class="comments"># ls /data/data/com.example.yourapp/databases		// to list the db files</code></div>
+<div class="line"><code class="comments"># sqlite3 /data/data/com.example.yourapp/databases/yourdb.sqlite</code></div>
 <div class="line"><code class="plain">sqlite&gt; SELECT * FROM yourtable;</code></div>
-<div class="line"><code class="plain">sqlite&gt; .exit</code></div>
+<div class="line"><code class="plain">sqlite&gt; .</code><code class="functions">exit</code></div>
 </div>
     </div>
     <p>Keep in mind these points:    </p>
@@ -176,12 +180,12 @@
     <p>After you run the command, you will be asked if you want to create a custom hardware profile.  If you reply &apos;yes&apos;, you will be prompted to set additional advanced emulator options.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">## Syntax</code></div>
-<div class="line"><code class="plain">path_to_android_sdk/tools/android create avd -n &lt;EMULATOR_NAME&gt; -t &lt;TARGET_ID&gt; -s &lt;SKIN&gt; --abi x86 [-f -c &lt;SD_CARD_IMAGE&gt; -c &lt;SDCARD_SIZE_IN_MB&gt;M]</code></div>
+<div class="line"><code class="comments">## Syntax</code></div>
+<div class="line"><code class="plain">path_to_android_sdk</code><code class="plain">/tools/android</code><code class="plain"> create avd -n &lt;EMULATOR_NAME&gt; -t &lt;TARGET_ID&gt; -s &lt;SKIN&gt; --abi x86 [-f -c &lt;SD_CARD_IMAGE&gt; -c &lt;SDCARD_SIZE_IN_MB&gt;M]</code></div>
 <div class="line"><code class="plain">&#xA0;</code></div>
-<div class="line"><code class="plain">## Example</code></div>
-<div class="line"><code class="plain">android create avd -n my_avd_api_17 -t </code><code class="value">1</code><code class="plain"> -s WVGA800 --abi x86 -f -c ~/.titanium/my_avd_api_17.sdcard -c 1024M</code></div>
-<div class="line"><code class="plain">## Launch the emulator</code></div>
+<div class="line"><code class="comments">## Example</code></div>
+<div class="line"><code class="plain">android create avd -n my_avd_api_17 -t 1 -s WVGA800 --abi x86 -f -c ~/.titanium</code><code class="plain">/my_avd_api_17</code><code class="plain">.sdcard -c 1024M</code></div>
+<div class="line"><code class="comments">## Launch the emulator</code></div>
 <div class="line"><code class="plain">emulator -avd my_avd_api_17</code></div>
 </div>
     </div>
@@ -191,21 +195,21 @@
 <div class="line"><code class="plain">$ android list targets</code></div>
 <div class="line"><code class="plain">Available Android targets:</code></div>
 <div class="line"><code class="plain">----------</code></div>
-<div class="line"><code class="plain">id: </code><code class="value">1</code><code class="plain"> or </code><code class="string">&quot;android-17&quot;</code></div>
-<div class="line"><code class="plain">     Name: Android </code><code class="value">4.2</code><code class="plain">.</code><code class="value">2</code></div>
+<div class="line"><code class="functions">id</code><code class="plain">: 1 or </code><code class="string">&quot;android-17&quot;</code></div>
+<div class="line"><code class="plain">     Name: Android 4.2.2</code></div>
 <div class="line"><code class="plain">     Type: Platform</code></div>
-<div class="line"><code class="plain">     API level: </code><code class="value">17</code></div>
-<div class="line"><code class="plain">     Revision: </code><code class="value">2</code></div>
-<div class="line"><code class="plain">     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (</code><code class="keyword">default</code><code class="plain">), WVGA854, WXGA720, WXGA800, WXGA800-7in</code></div>
+<div class="line"><code class="plain">     API level: 17</code></div>
+<div class="line"><code class="plain">     Revision: 2</code></div>
+<div class="line"><code class="plain">     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in</code></div>
 <div class="line"><code class="plain">     ABIs : armeabi-v7a</code></div>
 <div class="line"><code class="plain">----------</code></div>
-<div class="line"><code class="plain">id: </code><code class="value">2</code><code class="plain"> or </code><code class="string">&quot;Google Inc.:Google APIs:17&quot;</code></div>
+<div class="line"><code class="functions">id</code><code class="plain">: 2 or </code><code class="string">&quot;Google Inc.:Google APIs:17&quot;</code></div>
 <div class="line"><code class="plain">     Name: Google APIs</code></div>
 <div class="line"><code class="plain">     Type: Add-On</code></div>
 <div class="line"><code class="plain">     Vendor: Google Inc.</code></div>
-<div class="line"><code class="plain">     Revision: </code><code class="value">3</code></div>
+<div class="line"><code class="plain">     Revision: 3</code></div>
 <div class="line"><code class="plain">     Description: Android + Google APIs</code></div>
-<div class="line"><code class="plain">     Based on Android </code><code class="value">4.2</code><code class="plain">.</code><code class="value">2</code><code class="plain"> (API level </code><code class="value">17</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">     Based on Android 4.2.2 (API level 17)</code></div>
 <div class="line"><code class="plain">     Libraries:</code></div>
 <div class="line"><code class="plain">      * com.google.android.media.effects (effects.jar)</code></div>
 <div class="line"><code class="plain">          Collection of video effects</code></div>
@@ -213,23 +217,23 @@
 <div class="line"><code class="plain">          API </code><code class="keyword">for</code><code class="plain"> USB Accessories</code></div>
 <div class="line"><code class="plain">      * com.google.android.maps (maps.jar)</code></div>
 <div class="line"><code class="plain">          API </code><code class="keyword">for</code><code class="plain"> Google Maps</code></div>
-<div class="line"><code class="plain">     Skins: WVGA854, WQVGA400, WSVGA, WXGA800-7in, WXGA720, HVGA, WQVGA432, WVGA800 (</code><code class="keyword">default</code><code class="plain">), QVGA, WXGA800</code></div>
+<div class="line"><code class="plain">     Skins: WVGA854, WQVGA400, WSVGA, WXGA800-7in, WXGA720, HVGA, WQVGA432, WVGA800 (default), QVGA, WXGA800</code></div>
 <div class="line"><code class="plain">     ABIs : armeabi-v7a</code></div>
 <div class="line"><code class="plain">----------</code></div>
-<div class="line"><code class="plain">id: </code><code class="value">3</code><code class="plain"> or </code><code class="string">&quot;android-18&quot;</code></div>
-<div class="line"><code class="plain">     Name: Android </code><code class="value">4.3</code></div>
+<div class="line"><code class="functions">id</code><code class="plain">: 3 or </code><code class="string">&quot;android-18&quot;</code></div>
+<div class="line"><code class="plain">     Name: Android 4.3</code></div>
 <div class="line"><code class="plain">     Type: Platform</code></div>
-<div class="line"><code class="plain">     API level: </code><code class="value">18</code></div>
-<div class="line"><code class="plain">     Revision: </code><code class="value">2</code></div>
-<div class="line"><code class="plain">     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (</code><code class="keyword">default</code><code class="plain">), WVGA854, WXGA720, WXGA800, WXGA800-7in</code></div>
+<div class="line"><code class="plain">     API level: 18</code></div>
+<div class="line"><code class="plain">     Revision: 2</code></div>
+<div class="line"><code class="plain">     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in</code></div>
 <div class="line"><code class="plain">     ABIs : no ABIs.</code></div>
 <div class="line"><code class="plain">----------</code></div>
-<div class="line"><code class="plain">id: </code><code class="value">4</code><code class="plain"> or </code><code class="string">&quot;android-19&quot;</code></div>
-<div class="line"><code class="plain">     Name: Android </code><code class="value">4.4</code><code class="plain">.</code><code class="value">2</code></div>
+<div class="line"><code class="functions">id</code><code class="plain">: 4 or </code><code class="string">&quot;android-19&quot;</code></div>
+<div class="line"><code class="plain">     Name: Android 4.4.2</code></div>
 <div class="line"><code class="plain">     Type: Platform</code></div>
-<div class="line"><code class="plain">     API level: </code><code class="value">19</code></div>
-<div class="line"><code class="plain">     Revision: </code><code class="value">2</code></div>
-<div class="line"><code class="plain">     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (</code><code class="keyword">default</code><code class="plain">), WVGA854, WXGA720, WXGA800, WXGA800-7in</code></div>
+<div class="line"><code class="plain">     API level: 19</code></div>
+<div class="line"><code class="plain">     Revision: 2</code></div>
+<div class="line"><code class="plain">     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in</code></div>
 <div class="line"><code class="plain">     ABIs : armeabi-v7a, x86</code></div>
 </div>
     </div>
@@ -240,7 +244,7 @@
 <ol class=" "><li class=" ">    <p>Launch the AVD manager from the console by running:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">path_to_android_sdk/tools/android avd</code></div>
+<div class="line"><code class="plain">path_to_android_sdk</code><code class="plain">/tools/android</code><code class="plain"> avd</code></div>
 </div>
     </div>
 </li><li class=" ">    <p>Once the AVD manager appears, click the <strong class=" ">New</strong> button on the right side.  A dialog opens.    </p>
@@ -291,11 +295,10 @@
 <div class="line"><code class="plain">OK</code></div>
 </div>
     </div>
-    <p>    </p>
     </div>
     </div>
-    <div class="section section-3 " id="src-29004938_NativeAndroidDebuggingandTestingTools-NoteonNativeJavaDebugging">
-        <h3 class="heading "><span>Note on Native Java Debugging</span></h3>
+    <div class="section section-3 " id="src-29004938_NativeAndroidDebuggingandTestingTools-NoteonNativeJavadebugging">
+        <h3 class="heading "><span>Note on Native Java debugging</span></h3>
     <p>Debugging Java or C++ code is beyond the scope of this document. See <a class="external-link external-link" href="http://developer.android.com/guide/developing/debugging/index.html" target="_blank">Debugging</a> in the Android Developer Guide for more information.    </p>
     <p>Note that debugging Java requires setting the Android <tt class=" ">debuggable</tt> flag as described in <a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-Enablingthedebuggerbydefault">Enabling the debugger by default</a>.    </p>
     </div>
