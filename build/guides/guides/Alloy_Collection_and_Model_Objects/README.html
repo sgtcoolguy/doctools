@@ -34,19 +34,16 @@
                     <div class="title">Example of the anatomy of a model file</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example of the anatomy of a model file">
 <div class="line"><code class="plain">exports.definition = {</code></div>
-<div class="line"><code class="plain">    config : {</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// table schema and adapter information</code></div>
+<div class="line"><code class="plain">    config : { </code><code class="comments">// table schema and adapter information</code></div>
 <div class="line"><code class="plain">    },</code></div>
 <div class="line"><code class="plain">    extendModel: </code><code class="keyword">function</code><code class="plain">(Model) {</code></div>
-<div class="line"><code class="plain">        _.extend(Model.prototype, {</code></div>
-<div class="line"><code class="plain">            </code><code class="comments">// Extend, override or implement Backbone.Model</code></div>
+<div class="line"><code class="plain">        _.extend(Model.prototype, { </code><code class="comments">// Extend, override or implement Backbone.Model</code></div>
 <div class="line"><code class="plain">        });</code></div>
 <div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> Model;</code></div>
 <div class="line"><code class="plain">    },</code></div>
 <div class="line"><code class="plain">    extendCollection: </code><code class="keyword">function</code><code class="plain">(Collection) {</code></div>
-<div class="line"><code class="plain">    _.extend(Collection.prototype, {</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// Extend, override or implement Backbone.Collection</code></div>
+<div class="line"><code class="plain">        _.extend(Collection.prototype, { </code><code class="comments">// Extend, override or implement Backbone.Collection</code></div>
 <div class="line"><code class="plain">    });</code></div>
 <div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> Collection;</code></div>
@@ -61,6 +58,7 @@
 <div class="line"><code class="keyword">var</code><code class="plain"> book = Alloy.createModel(</code><code class="string">&apos;book&apos;</code><code class="plain">, {title:</code><code class="string">&apos;Green Eggs and Ham&apos;</code><code class="plain">, author:</code><code class="string">&apos;Dr. Seuss&apos;</code><code class="plain">});</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> title = book.get(</code><code class="string">&apos;title&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> author = book.get(</code><code class="string">&apos;author&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// Label object in the view with id = &apos;label&apos;</code></div>
 <div class="line"><code class="plain">$.label.text = title + </code><code class="string">&apos; by &apos;</code><code class="plain"> + author;</code></div>
 </div>
@@ -116,9 +114,7 @@
                     <div class="title">Extending a model</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Extending a model">
 <div class="line"><code class="plain">exports.definition = {</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">    config : {</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// table schema and adapter information</code></div>
+<div class="line"><code class="plain">    config : { </code><code class="comments">// table schema and adapter information</code></div>
 <div class="line"><code class="plain">    },</code></div>
 <div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="plain">    extendModel: </code><code class="keyword">function</code><code class="plain">(Model) {     </code></div>
@@ -154,10 +150,9 @@
     <p>In the controller, to access the model, do:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&#xA0;</code><code class="keyword">var</code><code class="plain"> book = Alloy.createModel(</code><code class="string">&apos;book&apos;</code><code class="plain">, {title:</code><code class="string">&apos;Green Eggs and Ham&apos;</code><code class="plain">, author:</code><code class="string">&apos;Dr. Seuss&apos;</code><code class="plain">});</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> book = Alloy.createModel(</code><code class="string">&apos;book&apos;</code><code class="plain">, {title:</code><code class="string">&apos;Green Eggs and Ham&apos;</code><code class="plain">, author:</code><code class="string">&apos;Dr. Seuss&apos;</code><code class="plain">});</code></div>
 <div class="line"><code class="comments">// Since set or save(attribute) is not being called, we can call isValid to validate the model object</code></div>
-<div class="line"><code class="keyword">if</code><code class="plain"> (book.isValid() &amp;&amp; book.customProperty == </code><code class="string">&quot;book&quot;</code><code class="plain">) {</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">// Save data to persistent storage</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (book.isValid() &amp;&amp; book.customProperty == </code><code class="string">&quot;book&quot;</code><code class="plain">) { </code><code class="comments">// Save data to persistent storage</code></div>
 <div class="line"><code class="plain">    book.save();</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line"><code class="keyword">else</code><code class="plain"> {</code></div>
@@ -196,26 +191,18 @@
                     <div class="title">Extending a collection</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Extending a collection">
 <div class="line"><code class="plain">exports.definition = {</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">    config : {</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// table schema and adapter information</code></div>
+<div class="line"><code class="plain">    config : { </code><code class="comments">// table schema and adapter information</code></div>
 <div class="line"><code class="plain">    },</code></div>
-<div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="plain">    extendModel: </code><code class="keyword">function</code><code class="plain">(Model) {     </code></div>
-<div class="line"><code class="plain">        _.extend(Model.prototype, {</code></div>
-<div class="line"><code class="plain">            </code><code class="comments">// Extend, override or implement the Backbone.Model methods                    </code></div>
+<div class="line"><code class="plain">        _.extend(Model.prototype, { </code><code class="comments">// Extend, override or implement the Backbone.Model methods                    </code></div>
 <div class="line"><code class="plain">        });</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> Model;</code></div>
 <div class="line"><code class="plain">    },</code></div>
-<div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="plain">    extendCollection: </code><code class="keyword">function</code><code class="plain">(Collection) {       </code></div>
-<div class="line"><code class="plain">        _.extend(Collection.prototype, {</code></div>
-<div class="line"><code class="plain">             </code></div>
-<div class="line"><code class="plain">            </code><code class="comments">// Implement the comparator method.</code></div>
+<div class="line"><code class="plain">        _.extend(Collection.prototype, { </code><code class="comments">// Implement the comparator method.</code></div>
 <div class="line"><code class="plain">            comparator : </code><code class="keyword">function</code><code class="plain">(book) {</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> book.get(</code><code class="string">&apos;title&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">            }</code></div>
-<div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="plain">        }); </code><code class="comments">// end extend</code></div>
 <div class="line"><code class="plain">         </code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> Collection;</code></div>

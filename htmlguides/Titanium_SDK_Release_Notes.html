@@ -31,6 +31,7 @@
 </li></ul></li></ul>    <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-Aboutthisrelease">
         <h3 class="heading "><span>About this release</span></h3>
     <p>Titanium SDK 7.4.0.GA is a minor release of the SDK that focuses on supporting iOS 12 and Xcode 10 updates.    </p>
+    <p>As of this release, Titanium SDK 7.3.x will not be supported six months from 7.4.0.GA&apos;s release date. See <a class="document-link " href="Axway_Appcelerator_Deprecation_Policy.html">Axway Appcelerator Deprecation Policy</a> and <a class="document-link " href="Axway_Appcelerator_Product_Lifecycle.html#src-50725170_AxwayAppceleratorProductLifecycle-NominalLifetimes">Nominal Lifetimes</a> documents for details.    </p>
     </div>
     <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-Newfeatures">
         <h3 class="heading "><span>New features</span></h3>
@@ -190,178 +191,178 @@
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS.UserActivity.eligibleForPrediction    </p>
+        <p>Titanium.App.iOS.USER_NOTIFICATION_AUTHORIZATION_STATUS_PROVISIONAL    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>property    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>A Boolean value that determines whether Siri can suggest the user activity as a shortcut to the user.    </p>
+        <p>The application is provisionally authorized to post non-interruptive user notifications. (New API, supported on iPhone and iPad.)    </p>
             </td>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS.UserActivity.deleteSavedUserActivitiesForPersistentIdentifiers    </p>
+        <p>Titanium.App.iOS.USER_NOTIFICATION_TYPE_CRITICAL_ALERT    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>property    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The ability to play sounds for critical alerts.Use with the types property. (New API, supported on iPhone and iPad.)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Titanium.App.iOS.USER_NOTIFICATION_TYPE_PROVIDES_APP_NOTIFICATION_SETTINGS    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>property    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>An option indicating the system should display a button for in-app notification settings.Use with the types property. (New API, supported on iPhone and iPad.)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Titanium.App.iOS.USER_NOTIFICATION_TYPE_PROVISIONAL    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>property    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The ability to post non-interrupting notifications provisionally to the Notification Center.Use with the types property. (New API, supported on iPhone and iPad.)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Titanium.App.iOS.UserActivity.deleteAllSavedUserActivities    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>method    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Deletes user activities created by your app that have the specified persistent identifiers (supported on iPhone and iPad).    </p>
+        <p>Deletes all user activities created by your app. (New API, supported on iPhone and iPad.)    </p>
             </td>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS.UserActivity.useractivitydeleted    </p>
+        <p>Titanium.App.iOS.UserActivity.deleteSavedUserActivitiesForPersistentIdentifiers    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>method    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Deletes user activities created by your app that have the specified persistent identifiers. (New API, supported on iPhone and iPad.)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Titanium.App.iOS.UserActivity.eligibleForPrediction    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>property    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A Boolean value that determines whether Siri can suggest the user activity as a shortcut to the user. (New API, supported on iPhone and iPad.)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Titanium.App.iOS.UserActivity.getEligibleForPrediction    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>method    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Gets the value of the Titanium.App.iOS.UserActivity.eligibleForPrediction property. (New API, supported on iPhone and iPad.)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Titanium.App.iOS.UserActivity.getPersistentIdentifier    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>method    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Gets the value of the Titanium.App.iOS.UserActivity.persistentIdentifier property. (New API, supported on iPhone and iPad.)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Titanium.App.iOS.UserActivity.persistentIdentifier    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>property    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A value used to identify the user activity. (New API, supported on iPhone and iPad.)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Titanium.App.iOS.UserActivity.setEligibleForPrediction    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>method    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Sets the value of the Titanium.App.iOS.UserActivity.eligibleForPrediction property. (New API, supported on iPhone and iPad.)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Titanium.App.iOS.UserActivity.setPersistentIdentifier    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>method    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Sets the value of the Titanium.App.iOS.UserActivity.persistentIdentifier property. (New API, supported on iPhone and iPad.)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Titanium.App.iOS.UserActivity.useractivitydeleted    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>event    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Fired when the user activity get deleted using the App.iOS.UserActivity.deleteAllSavedUserActivities or App.iOS.UserActivity.deleteSavedUserActivitiesForPersistentIdentifiers methods (supported on iPhone and iPad).    </p>
+        <p>Fired when the user activity get deleted using the Titanium.App.iOS.UserActivity.deleteAllSavedUserActivities or Titanium.App.iOS.UserActivity.deleteSavedUserActivitiesForPersistentIdentifiers methods. (New API, supported on iPhone and iPad.)    </p>
             </td>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS.UserNotificationCategory.categorySummaryFormat    </p>
+        <p>Titanium.App.iOS.UserNotificationCategory.categorySummaryFormat    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>property    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>A format string for the summary description used when the system groups the category&apos;s notifications.    </p>
+        <p>A format string for the summary description used when the system groups the category&apos;s notifications. (New API, supported on iPhone and iPad.)    </p>
             </td>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS.UserNotificationCenter.criticalAlertSetting    </p>
+        <p>Titanium.UI.AUTOFILL_TYPE_NEW_PASSWORD    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>property    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The authorization status to play sounds for critical alerts.    </p>
+        <p>Specifies the expectation of a new password. (New API, supported on iPhone and iPad.)    </p>
             </td>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS. UserNotificationCenter.providesAppNotificationSettings    </p>
+        <p>Titanium.UI.AUTOFILL_TYPE_ONE_TIME_CODE    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>property    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>A Boolean value indicating the system displays a button for in-app notification settings.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS.iOS.USER_NOTIFICATION_TYPE_CRITICAL_ALERT    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The ability to play sounds for critical alerts. Use with the UserNotificationSettings.types property.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS.iOS.USER_NOTIFICATION_TYPE_PROVISIONAL    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The ability to post non-interrupting notifications provisionally to the Notification Center. Use with the UserNotificationSettings.types property.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS.iOS.USER_NOTIFICATION_TYPE_PROVIDES_APP_NOTIFICATION_SETTINGS    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>An option indicating the system should display a button for in-app notification settings. Use with the UserNotificationSettings.types property.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS.iOS.USER_NOTIFICATION_AUTHORIZATION_STATUS_PROVISIONAL    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The application is provisionally authorized to post non-interruptive user notifications.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS.iOS.threadIdentifier    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>event    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The unique identifier for the thread or conversation related to this notification request. It will be used to visually group notifications together.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS.iOS.summaryArgument    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The string the notification adds to the category&apos;s summary format string.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>App.iOS.iOS.summaryArgumentCount    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The number of items the notification adds to the category&apos;s summary format string.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>UI.TextField.passwordRules    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Set password rules that should be used for this text field.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>UI.UI.AUTOFILL_TYPE_NEW_PASSWORD    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Specifies the expectation of a new password.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>UI.UI.AUTOFILL_TYPE_ONE_TIME_CODE    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Specifies the expectation of a single-factor SMS login code.    </p>
+        <p>Specifies the expectation of a single-factor SMS login code. (New API, supported on iPhone and iPad.)    </p>
             </td>
         </tr>
 </tbody>        </table>
@@ -380,11 +381,11 @@
 </li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_7.2.1.RC_Release_Note.html">Titanium SDK 7.2.1.RC Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes_6.x.html">Titanium SDK Release Notes 6.x</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes_5.x.html">Titanium SDK Release Notes 5.x</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes_3.x_-_4.x.html">Titanium SDK Release Notes 3.x - 4.x</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_7.2.0.GA_Release_Note.html">Titanium SDK 7.2.0.GA Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_7.2.0.RC_Release_Note.html">Titanium SDK 7.2.0.RC Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_7.1.1.GA_Release_Note.html">Titanium SDK 7.1.1.GA Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_7.1.1.RC_Release_Note.html">Titanium SDK 7.1.1.RC Release Note</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_7.1.0.GA_Release_Note.html">Titanium SDK 7.1.0.GA Release Note</a>    </p>
 </li></ul>    <p>    </p>
     </div>
     </div>

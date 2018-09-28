@@ -39,7 +39,11 @@
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Requirements">
         <h2 class="heading "><span>Requirements</span></h2>
     <p>See <a class="document-link " href="Hyperloop_Requirements.html#src-53871456_HyperloopRequirements-Requirements">Hyperloop Requirements</a> for software requirements for using Hyperloop.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">Important notes about your Xcode location</div>
+            <p>It is important that your Xcode installation is under the default location in <tt class=" ">/Applications/Xcode.app</tt>. Hyperloop uses a bundled library from Xcode to inspect the available native APIs. This can lead to errors in the generated metadata if you have selected Xcode from a different location (either via <tt class=" ">xcode-select</tt> or in the Location settings in the Xcode preferences) but also have another installation in the default folder. Keep this in mind if you have more than one Xcode installation on your system.    </p>
     </div>
+        </div>
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Classes">
         <h2 class="heading "><span>Classes</span></h2>
     <p>Classes in Hyperloop map to the underlying classes defined in Objective-C. For example, if you have a class such as <tt class=" ">UIView</tt> defined in the UIKit framework, you would reference it using a standard require such as:    </p>
@@ -59,9 +63,7 @@
     </div>
     <div class="section section-2 " id="src-46253491_iOSHyperloopProgrammingGuide-Instantiation">
         <h2 class="heading "><span>Instantiation</span></h2>
-    <p>To instantiate a native Class and create an instance, you can use the normal  <tt class=" ">alloc init </tt>    <span style="color: #333333;">
-style pattern from Objective-C:     </span>
-    </p>
+    <p>To instantiate a native Class and create an instance, you can use the normal  <tt class=" ">alloc init </tt>style pattern from Objective-C:    </p>
     <p>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">

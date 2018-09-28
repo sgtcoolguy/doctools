@@ -1,5 +1,369 @@
 [
     {
+        "name": "Arrow.Collection",
+        "id": "Arrow.Collection-platform",
+        "url": "Arrow.Collection",
+        "type": "platform",
+        "content": "Arrow.Collection An API Builder Collection is an array of API Builder Model instances with some logic to manipulate the models. To create a Collection, load the arrow module, then use the Collection constructor to create an instance of a Collection. You can optionally pass in an array of Model instances to initialize the collection. var Arrow = require('arrow'), Collection = Arrow.Collection, myModels = new Collection(ModelClass, [Model instances...]); ... var lastModel = myModels.slice(-1); "
+    },
+    {
+        "id": "Arrow.Collection-property-model-platform",
+        "url": "Arrow.Collection-property-model",
+        "type": "platform",
+        "name": "Arrow.Collection.model",
+        "content": "Arrow.Collection.model model Model class associated with the collection. Arrow.Model"
+    },
+    {
+        "id": "Arrow.Collection-method-constructor-platform",
+        "url": "Arrow.Collection-method-constructor",
+        "type": "platform",
+        "name": "Arrow.Collection.constructor",
+        "content": "Arrow.Collection.constructor constructor Creates a model collection. You may pass no parameters, the model class and array of model instances or just an array of model instances. model Arrow.Model Model class to associate with the collection. instances Array Array of model instances. return Arrow.Collection "
+    },
+    {
+        "id": "Arrow.Collection-method-add-platform",
+        "url": "Arrow.Collection-method-add",
+        "type": "platform",
+        "name": "Arrow.Collection.add",
+        "content": "Arrow.Collection.add add Adds an instance to the collection. instances Array/Arrow.Instance The model instance(s) to add. return Arrow.Collection "
+    },
+    {
+        "id": "Arrow.Collection-method-concat-platform",
+        "url": "Arrow.Collection-method-concat",
+        "type": "platform",
+        "name": "Arrow.Collection.concat",
+        "content": "Arrow.Collection.concat concat Returns a collection that is joined with all the passed collections. Collections ...Arrow.Collection Collection(s) to join. return Arrow.Collection "
+    },
+    {
+        "id": "Arrow.Collection-method-filter-platform",
+        "url": "Arrow.Collection-method-filter",
+        "type": "platform",
+        "name": "Arrow.Collection.filter",
+        "content": "Arrow.Collection.filter filter Creates a new collection with elements that pass the test from the provided function. callback Function Function to test each element of the collection. The function is passed a collection element, element index and collection. Return true to keep the element else false. thisArg Object Value to use as this when executing the callback. return Arrow.Collection "
+    },
+    {
+        "id": "Arrow.Collection-method-get-platform",
+        "url": "Arrow.Collection-method-get",
+        "type": "platform",
+        "name": "Arrow.Collection.get",
+        "content": "Arrow.Collection.get get Returns the instance at the specified index. If the index is out-of-bounds, it returns undefined. idx Number The index in the collection to retrieve. return Arrow.Instance "
+    },
+    {
+        "id": "Arrow.Collection-method-map-platform",
+        "url": "Arrow.Collection-method-map",
+        "type": "platform",
+        "name": "Arrow.Collection.map",
+        "content": "Arrow.Collection.map map Creates a new collection with the results of the provided callback. callback Function Function to manipulate each element of the collection. The function is passed a collection element, element index and collection. Return the new value or element. thisArg Object Value to use as this when executing the callback. return Arrow.Collection "
+    },
+    {
+        "id": "Arrow.Collection-method-push-platform",
+        "url": "Arrow.Collection-method-push",
+        "type": "platform",
+        "name": "Arrow.Collection.push",
+        "content": "Arrow.Collection.push push Adds an instance to the collection. instances Array/Arrow.Instance The model instance(s) to add. return Arrow.Collection "
+    },
+    {
+        "id": "Arrow.Collection-method-reverse-platform",
+        "url": "Arrow.Collection-method-reverse",
+        "type": "platform",
+        "name": "Arrow.Collection.reverse",
+        "content": "Arrow.Collection.reverse reverse Reverses the items in the collection. return Arrow.Collection "
+    },
+    {
+        "id": "Arrow.Collection-method-slice-platform",
+        "url": "Arrow.Collection-method-slice",
+        "type": "platform",
+        "name": "Arrow.Collection.slice",
+        "content": "Arrow.Collection.slice slice Returns a shallow copy of a portion of a collection into a new collection object. start Number Start index. If omitted, set to 0. If set to a negative value, offsets from the end of the collection. end Number End index. If omitted, extracts to the end of the collection. If set to a negative value, offsets from the end of the collection. return Arrow.Collection "
+    },
+    {
+        "id": "Arrow.Collection-method-sort-platform",
+        "url": "Arrow.Collection-method-sort",
+        "type": "platform",
+        "name": "Arrow.Collection.sort",
+        "content": "Arrow.Collection.sort sort Returns a sorted collection. callback Function Comparator function to define the sort order where the function is passed two elements a and b, then returns: a negative value if a should be before b a zero value to leave the elements unchanged a positive value if b should be before a If undefined, the values are sorted based on the string value of the elements. return Arrow.Collection "
+    },
+    {
+        "id": "Arrow.Collection-method-splice-platform",
+        "url": "Arrow.Collection-method-splice",
+        "type": "platform",
+        "name": "Arrow.Collection.splice",
+        "content": "Arrow.Collection.splice splice Modifies the collection by removing elements and optionally inserting new ones. start Number Start index. count Number Number of elements to remove. items ...Arrow.Instance Model instances to insert. return Arrow.Collection "
+    },
+    {
+        "id": "Arrow.Collection-method-toArray-platform",
+        "url": "Arrow.Collection-method-toArray",
+        "type": "platform",
+        "name": "Arrow.Collection.toArray",
+        "content": "Arrow.Collection.toArray toArray Returns a copy of the collection as a vanilla array. return Array A copy of the collection. "
+    },
+    {
+        "id": "Arrow.Collection-method-toJSON-platform",
+        "url": "Arrow.Collection-method-toJSON",
+        "type": "platform",
+        "name": "Arrow.Collection.toJSON",
+        "content": "Arrow.Collection.toJSON toJSON Returns a JSON version of the collection. return Array The collection. "
+    },
+    {
+        "name": "Arrow.Connector",
+        "id": "Arrow.Connector-platform",
+        "url": "Arrow.Connector",
+        "type": "platform",
+        "content": "Arrow.Connector A Connector allows your application to access data from an external source, such as a MySQL database or cloud storage. Note: Some methods in this class are left unimplemented, which you can implement when creating a Connector instance. To create an API Builder Connector programmatically, load the arrow module, then call the Connector.extend method. Pass the method an object which implements methods to access the data source (described below). Alternatively, you can generate a new Connector project to create a modular connector that can be packaged and reused. For information, see the API Builder Connector guides. To add an existing connector to the project, see API Builder Connector guides. Create a New Connector To create a connector, either in the application or in a connector project, you must pass an implementation object to the Connector.extend method. The object implements the methods in this class as well as the Model methods below. At minimum, you should implement the connect method and the starred Model methods. var Arrow = require('arrow'); var Connector = Arrow.Connector.extend({ connect: function (callback) { // Connect to the external data source callback(); }, create: function (Model, value, callback) { // Create a model var result; try { result = Model.instance(values); } catch(e) { callback(e); } callback(null, result); }, // more Model methods }); Model Methods The following model methods may be defined in the implementation object. Important methods to implement basic functionality are starred: count create * delete * deleteAll * find findByID * findAll * query * save * upsert When implementing the Model methods, the first parameter will be the Model class, followed by the Model's method parameters. For example, the Model's create(values, callback) method will have the create: function (Model, values, callback) method signature in the implementation object. Unimplemented Methods The following methods are left unimplemented by the Connector class but may be implemented when creating a new connector: createModelsFromSchema coerceCustomType endRequest fetchConfig fetchMetadata fetchSchema getCustomType login loginRequired postCreate startRequest You may also define a constructor function to execute some custom logic when the connector is created. The new connector instance is the value passed to this in the function. The constructor is not passed any arguments and does not return any values. Connect Lifecycle The connector instance will call the following methods to connect to the data source before the server starts (if provided by the implementation): fetchMetadata fetchConfig connect fetchSchema Request Lifecycle If a request requires a login or if you want to intercept the request before or after it completes, you can implement the following methods: startRequest loginRequired login Connector makes the request. endRequest "
+    },
+    {
+        "id": "Arrow.Connector-property--platform",
+        "url": "Arrow.Connector-property-",
+        "type": "platform",
+        "name": "Arrow.Connector.",
+        "content": "Arrow.Connector. The arrow-orm needs another look to properly handle both findById and findOne apis. Currently when a connector version with the old findOne interface is used, the \"Find by id\" won't show up in the list of APIs for a model. So we need to manually add it. Object"
+    },
+    {
+        "id": "Arrow.Connector-property-config-platform",
+        "url": "Arrow.Connector-property-config",
+        "type": "platform",
+        "name": "Arrow.Connector.config",
+        "content": "Arrow.Connector.config config Key-value pairs describing the configuration settings of the connector. Object"
+    },
+    {
+        "id": "Arrow.Connector-property-connected-platform",
+        "url": "Arrow.Connector-property-connected",
+        "type": "platform",
+        "name": "Arrow.Connector.connected",
+        "content": "Arrow.Connector.connected connected Returns true if the connector is connected to its data source. Boolean"
+    },
+    {
+        "id": "Arrow.Connector-property-enabled-platform",
+        "url": "Arrow.Connector-property-enabled",
+        "type": "platform",
+        "name": "Arrow.Connector.enabled",
+        "content": "Arrow.Connector.enabled enabled Returns true if the connector is enabled. Boolean"
+    },
+    {
+        "id": "Arrow.Connector-property-metadata-platform",
+        "url": "Arrow.Connector-property-metadata",
+        "type": "platform",
+        "name": "Arrow.Connector.metadata",
+        "content": "Arrow.Connector.metadata metadata Object with only the fields key assigned to an array of Arrow.Metadata objects to validate the configuration object. Object"
+    },
+    {
+        "id": "Arrow.Connector-property-models-platform",
+        "url": "Arrow.Connector-property-models",
+        "type": "platform",
+        "name": "Arrow.Connector.models",
+        "content": "Arrow.Connector.models models Models that use the connector. Array"
+    },
+    {
+        "id": "Arrow.Connector-property-name-platform",
+        "url": "Arrow.Connector-property-name",
+        "type": "platform",
+        "name": "Arrow.Connector.name",
+        "content": "Arrow.Connector.name name Name of the connector. String"
+    },
+    {
+        "id": "Arrow.Connector-property-version-platform",
+        "url": "Arrow.Connector-property-version",
+        "type": "platform",
+        "name": "Arrow.Connector.version",
+        "content": "Arrow.Connector.version version Version of the connector. String"
+    },
+    {
+        "id": "Arrow.Connector-method-coerceCustomType-platform",
+        "url": "Arrow.Connector-method-coerceCustomType",
+        "type": "platform",
+        "name": "Arrow.Connector.coerceCustomType",
+        "content": "Arrow.Connector.coerceCustomType coerceCustomType Determines if the model field can be implictly converted to the value. If it can, you should set the model field to the converted value. Unimplemented. Implement this method to support custom data types for model fields. instance Arrow.Instance An instance of one of the connector's models. field Any Field value to validate. name String Field name to coerce. value Any Value to coerce. return Boolean Returns true if the type can be implicitly converted else false. "
+    },
+    {
+        "id": "Arrow.Connector-method-connect-platform",
+        "url": "Arrow.Connector-method-connect",
+        "type": "platform",
+        "name": "Arrow.Connector.connect",
+        "content": "Arrow.Connector.connect connect Connects to the external data source. The connect lifecycle will call the following methods before the server starts (if provided by the implementation): fetchMetadata fetchConfig connect fetchSchema callback Function Callback function passed an Error object (or null if successful). The callback is invoked after each operation. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-count-platform",
+        "url": "Arrow.Connector-method-count",
+        "type": "platform",
+        "name": "Arrow.Connector.count",
+        "content": "Arrow.Connector.count count Performs a query and returns a count of the records. In the options parameter, set the distinct property to true to perform a distinct count. Model Arrow.Model Models to check. options ArrowQueryOptions Query options. callback Function Callback passed an Error object (or null if successful) and the number of models found. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-createMany-platform",
+        "url": "Arrow.Connector-method-createMany",
+        "type": "platform",
+        "name": "Arrow.Connector.createMany",
+        "content": "Arrow.Connector.createMany createMany Creates a list of instances by a set of values. Model Arrow.Model Model class to check. values Array Set of instances to create callback Function Callback passed an Error object (or null if successful). return void"
+    },
+    {
+        "id": "Arrow.Connector-method-createModelsFromSchema-platform",
+        "url": "Arrow.Connector-method-createModelsFromSchema",
+        "type": "platform",
+        "name": "Arrow.Connector.createModelsFromSchema",
+        "content": "Arrow.Connector.createModelsFromSchema createModelsFromSchema Creates models from the schema object returned from the fetchSchema method. Unimplemented. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-deleteMany-platform",
+        "url": "Arrow.Connector-method-deleteMany",
+        "type": "platform",
+        "name": "Arrow.Connector.deleteMany",
+        "content": "Arrow.Connector.deleteMany deleteMany Removes a list of instances by a set of ids. Model Arrow.Model Model class to check. ids Array Set of primary keys to delete callback Function Callback passed an Error object (or null if successful). return void"
+    },
+    {
+        "id": "Arrow.Connector-method-disconnect-platform",
+        "url": "Arrow.Connector-method-disconnect",
+        "type": "platform",
+        "name": "Arrow.Connector.disconnect",
+        "content": "Arrow.Connector.disconnect disconnect Disconnects from the external data source. callback Function Callback function to be called at the end of the operation. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-distinct-platform",
+        "url": "Arrow.Connector-method-distinct",
+        "type": "platform",
+        "name": "Arrow.Connector.distinct",
+        "content": "Arrow.Connector.distinct distinct Performs a query and returns a distinct result set based on the field(s). Model Arrow.Model Model class to check. field String Comma-separated list of fields. options ArrowQueryOptions Query options. callback Function Callback passed an Error object (or null if successful) and the distinct models. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-endRequest-platform",
+        "url": "Arrow.Connector-method-endRequest",
+        "type": "platform",
+        "name": "Arrow.Connector.endRequest",
+        "content": "Arrow.Connector.endRequest endRequest Request interceptor invoked after the request completes. Unimplemented. Invoke the next function when the operation completes. name String Name of the function that invoked the request. args Array Arguments passed to the called function that invoked the request. request Object Request object. next Function Function to call after the operation completes. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-extend-platform",
+        "url": "Arrow.Connector-method-extend",
+        "type": "platform",
+        "name": "Arrow.Connector.extend",
+        "content": "Arrow.Connector.extend extend Creates a new connector from this instance. impl Object Implementation object. See the overview at the top of the page. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-fetchConfig-platform",
+        "url": "Arrow.Connector-method-fetchConfig",
+        "type": "platform",
+        "name": "Arrow.Connector.fetchConfig",
+        "content": "Arrow.Connector.fetchConfig fetchConfig Retrieves the data source's configuration. Called when the connect method is invoked. Unimplemented. Invoke the callback after the operation is completed. Pass an object of key-value pairs as the second argument to the callback function. callback Function Callback function passed a Error object (or null if successful) and the configuration object. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-fetchMetadata-platform",
+        "url": "Arrow.Connector-method-fetchMetadata",
+        "type": "platform",
+        "name": "Arrow.Connector.fetchMetadata",
+        "content": "Arrow.Connector.fetchMetadata fetchMetadata Retrieves the data source's metadata used to validate the configuration. Called when the connect method is invoked. Unimplemented. Invoke the callback after the operation is completed. Pass the metadata object as the second argument to the callback function. In the metadata object, set the fields property to an array of Arrow.Metadata object used to validate the configuration object. callback Function Callback function passed a Error object (or null if successful) and the metadata object. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-fetchSchema-platform",
+        "url": "Arrow.Connector-method-fetchSchema",
+        "type": "platform",
+        "name": "Arrow.Connector.fetchSchema",
+        "content": "Arrow.Connector.fetchSchema fetchSchema Retrieves the data source's schema. Called when the connect method is invoked Unimplemented. Invoke the callback after the operation is completed. callback Function Callback function passed a Error object (or null if successful) and the schema object. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-findAndModify-platform",
+        "url": "Arrow.Connector-method-findAndModify",
+        "type": "platform",
+        "name": "Arrow.Connector.findAndModify",
+        "content": "Arrow.Connector.findAndModify findAndModify Performs a find and update in the same query. Model Arrow.Model Model class to check. options ArrowQueryOptions Query options. doc Object Model fields to modify. args Object Optional parameters. callback Function Callback passed an Error object (or null if successful) and the models. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-findManyByID-platform",
+        "url": "Arrow.Connector-method-findManyByID",
+        "type": "platform",
+        "name": "Arrow.Connector.findManyByID",
+        "content": "Arrow.Connector.findManyByID findManyByID Finds a list of instances by a set of ids. Model Arrow.Model Model class to check. ids Array Set of primary keys to find callback Function Callback passed an Error object (or null if successful). return void"
+    },
+    {
+        "id": "Arrow.Connector-method-getCustomType-platform",
+        "url": "Arrow.Connector-method-getCustomType",
+        "type": "platform",
+        "name": "Arrow.Connector.getCustomType",
+        "content": "Arrow.Connector.getCustomType getCustomType Gets the field value based upon a custom type. Unimplemented. instance Arrow.Instance An instance of one of the connector's models. field Object Field value to validate. name String Field name to coerce. value Any Value to coerce. return Object Returns an instance of your custom type. "
+    },
+    {
+        "id": "Arrow.Connector-method-getPrimaryKey-platform",
+        "url": "Arrow.Connector-method-getPrimaryKey",
+        "type": "platform",
+        "name": "Arrow.Connector.getPrimaryKey",
+        "content": "Arrow.Connector.getPrimaryKey getPrimaryKey Returns the primary key of a Model. Override this method to provide a different value. Model Arrow.Model Model class. record Object Record to check. return String "
+    },
+    {
+        "id": "Arrow.Connector-method-getPrimaryKeyColumnName-platform",
+        "url": "Arrow.Connector-method-getPrimaryKeyColumnName",
+        "type": "platform",
+        "name": "Arrow.Connector.getPrimaryKeyColumnName",
+        "content": "Arrow.Connector.getPrimaryKeyColumnName getPrimaryKeyColumnName Returns the column that is used as the primary key internally (not in the model, but in the native data source). This is used by the model when translating the query for selecting/unselecting columns. Model Arrow.Model Model class to check. return String Key name in the data source used as the primary key. "
+    },
+    {
+        "id": "Arrow.Connector-method-inspect-platform",
+        "url": "Arrow.Connector-method-inspect",
+        "type": "platform",
+        "name": "Arrow.Connector.inspect",
+        "content": "Arrow.Connector.inspect inspect suitable for util.inspect return void"
+    },
+    {
+        "id": "Arrow.Connector-method-isConnected-platform",
+        "url": "Arrow.Connector-method-isConnected",
+        "type": "platform",
+        "name": "Arrow.Connector.isConnected",
+        "content": "Arrow.Connector.isConnected isConnected Returns true if connected. return Boolean "
+    },
+    {
+        "id": "Arrow.Connector-method-logDefaultConfig-platform",
+        "url": "Arrow.Connector-method-logDefaultConfig",
+        "type": "platform",
+        "name": "Arrow.Connector.logDefaultConfig",
+        "content": "Arrow.Connector.logDefaultConfig logDefaultConfig Outputs the default connector configuration to the console. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-login-platform",
+        "url": "Arrow.Connector-method-login",
+        "type": "platform",
+        "name": "Arrow.Connector.login",
+        "content": "Arrow.Connector.login login Logins to the data source to make a request if a login is required. Unimplemented. Define in the implementation object when creating a connector. Invoke the next function when the operation completes. The loginRequired function must be implemented to determine if login should be called or not. request Object Request object. response Object Response object. next Function Function to call after the operation completes. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-loginRequired-platform",
+        "url": "Arrow.Connector-method-loginRequired",
+        "type": "platform",
+        "name": "Arrow.Connector.loginRequired",
+        "content": "Arrow.Connector.loginRequired loginRequired Determines if a login is required to make a request to the data source. Unimplemented. Define in the implementation object when creating a connector. If a login is required, the login function must be implemented too. request Object Request object. callback Function Callback passed an error message (or null if successful) and a boolean indicating if a login is required (true) or not (false). return void"
+    },
+    {
+        "id": "Arrow.Connector-method-postCreate-platform",
+        "url": "Arrow.Connector-method-postCreate",
+        "type": "platform",
+        "name": "Arrow.Connector.postCreate",
+        "content": "Arrow.Connector.postCreate postCreate Executes logic after the connector is created but before it is returned. Unimplemented. The new connector instance is the value passed to this in the function. The function is not passed any arguments and does not need to return any values. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-startRequest-platform",
+        "url": "Arrow.Connector-method-startRequest",
+        "type": "platform",
+        "name": "Arrow.Connector.startRequest",
+        "content": "Arrow.Connector.startRequest startRequest Request interceptor invoked before the request is initiated and the login method is invoked. Unimplemented. Invoke the next function when the operation completes. name String Name of the function that invoked the request. args Array Arguments passed to the called function that invoked the request. request Object Request object. next Function Function to call after the operation completes. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-toJSON-platform",
+        "url": "Arrow.Connector-method-toJSON",
+        "type": "platform",
+        "name": "Arrow.Connector.toJSON",
+        "content": "Arrow.Connector.toJSON toJSON suitable for JSON.stringify return void"
+    },
+    {
+        "id": "Arrow.Connector-method-upsert-platform",
+        "url": "Arrow.Connector-method-upsert",
+        "type": "platform",
+        "name": "Arrow.Connector.upsert",
+        "content": "Arrow.Connector.upsert upsert Creates or updates a model. Model Arrow.Model Model to search. id String ID of the model to update (or create). document Object Fields to set in the model. callback Function Callback passed an Error object (or null if successful) and the new model. return void"
+    },
+    {
+        "id": "Arrow.Connector-method-validateConfig-platform",
+        "url": "Arrow.Connector-method-validateConfig",
+        "type": "platform",
+        "name": "Arrow.Connector.validateConfig",
+        "content": "Arrow.Connector.validateConfig validateConfig Validates whether or not the config for this connector is valid, based on its metadata. return Boolean/Error Returns true if the config is valid, otherwise returns an Error. "
+    },
+    {
         "name": "Arrow.Instance",
         "id": "Arrow.Instance-platform",
         "url": "Arrow.Instance",
@@ -826,370 +1190,6 @@
         "content": "ArrowJoinObject.multiple multiple Determines if the match is one-to-one (false) or one-to-many (true). Boolean false"
     },
     {
-        "name": "Arrow.Collection",
-        "id": "Arrow.Collection-platform",
-        "url": "Arrow.Collection",
-        "type": "platform",
-        "content": "Arrow.Collection An API Builder Collection is an array of API Builder Model instances with some logic to manipulate the models. To create a Collection, load the arrow module, then use the Collection constructor to create an instance of a Collection. You can optionally pass in an array of Model instances to initialize the collection. var Arrow = require('arrow'), Collection = Arrow.Collection, myModels = new Collection(ModelClass, [Model instances...]); ... var lastModel = myModels.slice(-1); "
-    },
-    {
-        "id": "Arrow.Collection-property-model-platform",
-        "url": "Arrow.Collection-property-model",
-        "type": "platform",
-        "name": "Arrow.Collection.model",
-        "content": "Arrow.Collection.model model Model class associated with the collection. Arrow.Model"
-    },
-    {
-        "id": "Arrow.Collection-method-constructor-platform",
-        "url": "Arrow.Collection-method-constructor",
-        "type": "platform",
-        "name": "Arrow.Collection.constructor",
-        "content": "Arrow.Collection.constructor constructor Creates a model collection. You may pass no parameters, the model class and array of model instances or just an array of model instances. model Arrow.Model Model class to associate with the collection. instances Array Array of model instances. return Arrow.Collection "
-    },
-    {
-        "id": "Arrow.Collection-method-add-platform",
-        "url": "Arrow.Collection-method-add",
-        "type": "platform",
-        "name": "Arrow.Collection.add",
-        "content": "Arrow.Collection.add add Adds an instance to the collection. instances Array/Arrow.Instance The model instance(s) to add. return Arrow.Collection "
-    },
-    {
-        "id": "Arrow.Collection-method-concat-platform",
-        "url": "Arrow.Collection-method-concat",
-        "type": "platform",
-        "name": "Arrow.Collection.concat",
-        "content": "Arrow.Collection.concat concat Returns a collection that is joined with all the passed collections. Collections ...Arrow.Collection Collection(s) to join. return Arrow.Collection "
-    },
-    {
-        "id": "Arrow.Collection-method-filter-platform",
-        "url": "Arrow.Collection-method-filter",
-        "type": "platform",
-        "name": "Arrow.Collection.filter",
-        "content": "Arrow.Collection.filter filter Creates a new collection with elements that pass the test from the provided function. callback Function Function to test each element of the collection. The function is passed a collection element, element index and collection. Return true to keep the element else false. thisArg Object Value to use as this when executing the callback. return Arrow.Collection "
-    },
-    {
-        "id": "Arrow.Collection-method-get-platform",
-        "url": "Arrow.Collection-method-get",
-        "type": "platform",
-        "name": "Arrow.Collection.get",
-        "content": "Arrow.Collection.get get Returns the instance at the specified index. If the index is out-of-bounds, it returns undefined. idx Number The index in the collection to retrieve. return Arrow.Instance "
-    },
-    {
-        "id": "Arrow.Collection-method-map-platform",
-        "url": "Arrow.Collection-method-map",
-        "type": "platform",
-        "name": "Arrow.Collection.map",
-        "content": "Arrow.Collection.map map Creates a new collection with the results of the provided callback. callback Function Function to manipulate each element of the collection. The function is passed a collection element, element index and collection. Return the new value or element. thisArg Object Value to use as this when executing the callback. return Arrow.Collection "
-    },
-    {
-        "id": "Arrow.Collection-method-push-platform",
-        "url": "Arrow.Collection-method-push",
-        "type": "platform",
-        "name": "Arrow.Collection.push",
-        "content": "Arrow.Collection.push push Adds an instance to the collection. instances Array/Arrow.Instance The model instance(s) to add. return Arrow.Collection "
-    },
-    {
-        "id": "Arrow.Collection-method-reverse-platform",
-        "url": "Arrow.Collection-method-reverse",
-        "type": "platform",
-        "name": "Arrow.Collection.reverse",
-        "content": "Arrow.Collection.reverse reverse Reverses the items in the collection. return Arrow.Collection "
-    },
-    {
-        "id": "Arrow.Collection-method-slice-platform",
-        "url": "Arrow.Collection-method-slice",
-        "type": "platform",
-        "name": "Arrow.Collection.slice",
-        "content": "Arrow.Collection.slice slice Returns a shallow copy of a portion of a collection into a new collection object. start Number Start index. If omitted, set to 0. If set to a negative value, offsets from the end of the collection. end Number End index. If omitted, extracts to the end of the collection. If set to a negative value, offsets from the end of the collection. return Arrow.Collection "
-    },
-    {
-        "id": "Arrow.Collection-method-sort-platform",
-        "url": "Arrow.Collection-method-sort",
-        "type": "platform",
-        "name": "Arrow.Collection.sort",
-        "content": "Arrow.Collection.sort sort Returns a sorted collection. callback Function Comparator function to define the sort order where the function is passed two elements a and b, then returns: a negative value if a should be before b a zero value to leave the elements unchanged a positive value if b should be before a If undefined, the values are sorted based on the string value of the elements. return Arrow.Collection "
-    },
-    {
-        "id": "Arrow.Collection-method-splice-platform",
-        "url": "Arrow.Collection-method-splice",
-        "type": "platform",
-        "name": "Arrow.Collection.splice",
-        "content": "Arrow.Collection.splice splice Modifies the collection by removing elements and optionally inserting new ones. start Number Start index. count Number Number of elements to remove. items ...Arrow.Instance Model instances to insert. return Arrow.Collection "
-    },
-    {
-        "id": "Arrow.Collection-method-toArray-platform",
-        "url": "Arrow.Collection-method-toArray",
-        "type": "platform",
-        "name": "Arrow.Collection.toArray",
-        "content": "Arrow.Collection.toArray toArray Returns a copy of the collection as a vanilla array. return Array A copy of the collection. "
-    },
-    {
-        "id": "Arrow.Collection-method-toJSON-platform",
-        "url": "Arrow.Collection-method-toJSON",
-        "type": "platform",
-        "name": "Arrow.Collection.toJSON",
-        "content": "Arrow.Collection.toJSON toJSON Returns a JSON version of the collection. return Array The collection. "
-    },
-    {
-        "name": "Arrow.Connector",
-        "id": "Arrow.Connector-platform",
-        "url": "Arrow.Connector",
-        "type": "platform",
-        "content": "Arrow.Connector A Connector allows your application to access data from an external source, such as a MySQL database or cloud storage. Note: Some methods in this class are left unimplemented, which you can implement when creating a Connector instance. To create an API Builder Connector programmatically, load the arrow module, then call the Connector.extend method. Pass the method an object which implements methods to access the data source (described below). Alternatively, you can generate a new Connector project to create a modular connector that can be packaged and reused. For information, see the API Builder Connector guides. To add an existing connector to the project, see API Builder Connector guides. Create a New Connector To create a connector, either in the application or in a connector project, you must pass an implementation object to the Connector.extend method. The object implements the methods in this class as well as the Model methods below. At minimum, you should implement the connect method and the starred Model methods. var Arrow = require('arrow'); var Connector = Arrow.Connector.extend({ connect: function (callback) { // Connect to the external data source callback(); }, create: function (Model, value, callback) { // Create a model var result; try { result = Model.instance(values); } catch(e) { callback(e); } callback(null, result); }, // more Model methods }); Model Methods The following model methods may be defined in the implementation object. Important methods to implement basic functionality are starred: count create * delete * deleteAll * find findByID * findAll * query * save * upsert When implementing the Model methods, the first parameter will be the Model class, followed by the Model's method parameters. For example, the Model's create(values, callback) method will have the create: function (Model, values, callback) method signature in the implementation object. Unimplemented Methods The following methods are left unimplemented by the Connector class but may be implemented when creating a new connector: createModelsFromSchema coerceCustomType endRequest fetchConfig fetchMetadata fetchSchema getCustomType login loginRequired postCreate startRequest You may also define a constructor function to execute some custom logic when the connector is created. The new connector instance is the value passed to this in the function. The constructor is not passed any arguments and does not return any values. Connect Lifecycle The connector instance will call the following methods to connect to the data source before the server starts (if provided by the implementation): fetchMetadata fetchConfig connect fetchSchema Request Lifecycle If a request requires a login or if you want to intercept the request before or after it completes, you can implement the following methods: startRequest loginRequired login Connector makes the request. endRequest "
-    },
-    {
-        "id": "Arrow.Connector-property--platform",
-        "url": "Arrow.Connector-property-",
-        "type": "platform",
-        "name": "Arrow.Connector.",
-        "content": "Arrow.Connector. The arrow-orm needs another look to properly handle both findById and findOne apis. Currently when a connector version with the old findOne interface is used, the \"Find by id\" won't show up in the list of APIs for a model. So we need to manually add it. Object"
-    },
-    {
-        "id": "Arrow.Connector-property-config-platform",
-        "url": "Arrow.Connector-property-config",
-        "type": "platform",
-        "name": "Arrow.Connector.config",
-        "content": "Arrow.Connector.config config Key-value pairs describing the configuration settings of the connector. Object"
-    },
-    {
-        "id": "Arrow.Connector-property-connected-platform",
-        "url": "Arrow.Connector-property-connected",
-        "type": "platform",
-        "name": "Arrow.Connector.connected",
-        "content": "Arrow.Connector.connected connected Returns true if the connector is connected to its data source. Boolean"
-    },
-    {
-        "id": "Arrow.Connector-property-enabled-platform",
-        "url": "Arrow.Connector-property-enabled",
-        "type": "platform",
-        "name": "Arrow.Connector.enabled",
-        "content": "Arrow.Connector.enabled enabled Returns true if the connector is enabled. Boolean"
-    },
-    {
-        "id": "Arrow.Connector-property-metadata-platform",
-        "url": "Arrow.Connector-property-metadata",
-        "type": "platform",
-        "name": "Arrow.Connector.metadata",
-        "content": "Arrow.Connector.metadata metadata Object with only the fields key assigned to an array of Arrow.Metadata objects to validate the configuration object. Object"
-    },
-    {
-        "id": "Arrow.Connector-property-models-platform",
-        "url": "Arrow.Connector-property-models",
-        "type": "platform",
-        "name": "Arrow.Connector.models",
-        "content": "Arrow.Connector.models models Models that use the connector. Array"
-    },
-    {
-        "id": "Arrow.Connector-property-name-platform",
-        "url": "Arrow.Connector-property-name",
-        "type": "platform",
-        "name": "Arrow.Connector.name",
-        "content": "Arrow.Connector.name name Name of the connector. String"
-    },
-    {
-        "id": "Arrow.Connector-property-version-platform",
-        "url": "Arrow.Connector-property-version",
-        "type": "platform",
-        "name": "Arrow.Connector.version",
-        "content": "Arrow.Connector.version version Version of the connector. String"
-    },
-    {
-        "id": "Arrow.Connector-method-coerceCustomType-platform",
-        "url": "Arrow.Connector-method-coerceCustomType",
-        "type": "platform",
-        "name": "Arrow.Connector.coerceCustomType",
-        "content": "Arrow.Connector.coerceCustomType coerceCustomType Determines if the model field can be implictly converted to the value. If it can, you should set the model field to the converted value. Unimplemented. Implement this method to support custom data types for model fields. instance Arrow.Instance An instance of one of the connector's models. field Any Field value to validate. name String Field name to coerce. value Any Value to coerce. return Boolean Returns true if the type can be implicitly converted else false. "
-    },
-    {
-        "id": "Arrow.Connector-method-connect-platform",
-        "url": "Arrow.Connector-method-connect",
-        "type": "platform",
-        "name": "Arrow.Connector.connect",
-        "content": "Arrow.Connector.connect connect Connects to the external data source. The connect lifecycle will call the following methods before the server starts (if provided by the implementation): fetchMetadata fetchConfig connect fetchSchema callback Function Callback function passed an Error object (or null if successful). The callback is invoked after each operation. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-count-platform",
-        "url": "Arrow.Connector-method-count",
-        "type": "platform",
-        "name": "Arrow.Connector.count",
-        "content": "Arrow.Connector.count count Performs a query and returns a count of the records. In the options parameter, set the distinct property to true to perform a distinct count. Model Arrow.Model Models to check. options ArrowQueryOptions Query options. callback Function Callback passed an Error object (or null if successful) and the number of models found. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-createMany-platform",
-        "url": "Arrow.Connector-method-createMany",
-        "type": "platform",
-        "name": "Arrow.Connector.createMany",
-        "content": "Arrow.Connector.createMany createMany Creates a list of instances by a set of values. Model Arrow.Model Model class to check. values Array Set of instances to create callback Function Callback passed an Error object (or null if successful). return void"
-    },
-    {
-        "id": "Arrow.Connector-method-createModelsFromSchema-platform",
-        "url": "Arrow.Connector-method-createModelsFromSchema",
-        "type": "platform",
-        "name": "Arrow.Connector.createModelsFromSchema",
-        "content": "Arrow.Connector.createModelsFromSchema createModelsFromSchema Creates models from the schema object returned from the fetchSchema method. Unimplemented. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-deleteMany-platform",
-        "url": "Arrow.Connector-method-deleteMany",
-        "type": "platform",
-        "name": "Arrow.Connector.deleteMany",
-        "content": "Arrow.Connector.deleteMany deleteMany Removes a list of instances by a set of ids. Model Arrow.Model Model class to check. ids Array Set of primary keys to delete callback Function Callback passed an Error object (or null if successful). return void"
-    },
-    {
-        "id": "Arrow.Connector-method-disconnect-platform",
-        "url": "Arrow.Connector-method-disconnect",
-        "type": "platform",
-        "name": "Arrow.Connector.disconnect",
-        "content": "Arrow.Connector.disconnect disconnect Disconnects from the external data source. callback Function Callback function to be called at the end of the operation. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-distinct-platform",
-        "url": "Arrow.Connector-method-distinct",
-        "type": "platform",
-        "name": "Arrow.Connector.distinct",
-        "content": "Arrow.Connector.distinct distinct Performs a query and returns a distinct result set based on the field(s). Model Arrow.Model Model class to check. field String Comma-separated list of fields. options ArrowQueryOptions Query options. callback Function Callback passed an Error object (or null if successful) and the distinct models. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-endRequest-platform",
-        "url": "Arrow.Connector-method-endRequest",
-        "type": "platform",
-        "name": "Arrow.Connector.endRequest",
-        "content": "Arrow.Connector.endRequest endRequest Request interceptor invoked after the request completes. Unimplemented. Invoke the next function when the operation completes. name String Name of the function that invoked the request. args Array Arguments passed to the called function that invoked the request. request Object Request object. next Function Function to call after the operation completes. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-extend-platform",
-        "url": "Arrow.Connector-method-extend",
-        "type": "platform",
-        "name": "Arrow.Connector.extend",
-        "content": "Arrow.Connector.extend extend Creates a new connector from this instance. impl Object Implementation object. See the overview at the top of the page. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-fetchConfig-platform",
-        "url": "Arrow.Connector-method-fetchConfig",
-        "type": "platform",
-        "name": "Arrow.Connector.fetchConfig",
-        "content": "Arrow.Connector.fetchConfig fetchConfig Retrieves the data source's configuration. Called when the connect method is invoked. Unimplemented. Invoke the callback after the operation is completed. Pass an object of key-value pairs as the second argument to the callback function. callback Function Callback function passed a Error object (or null if successful) and the configuration object. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-fetchMetadata-platform",
-        "url": "Arrow.Connector-method-fetchMetadata",
-        "type": "platform",
-        "name": "Arrow.Connector.fetchMetadata",
-        "content": "Arrow.Connector.fetchMetadata fetchMetadata Retrieves the data source's metadata used to validate the configuration. Called when the connect method is invoked. Unimplemented. Invoke the callback after the operation is completed. Pass the metadata object as the second argument to the callback function. In the metadata object, set the fields property to an array of Arrow.Metadata object used to validate the configuration object. callback Function Callback function passed a Error object (or null if successful) and the metadata object. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-fetchSchema-platform",
-        "url": "Arrow.Connector-method-fetchSchema",
-        "type": "platform",
-        "name": "Arrow.Connector.fetchSchema",
-        "content": "Arrow.Connector.fetchSchema fetchSchema Retrieves the data source's schema. Called when the connect method is invoked Unimplemented. Invoke the callback after the operation is completed. callback Function Callback function passed a Error object (or null if successful) and the schema object. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-findAndModify-platform",
-        "url": "Arrow.Connector-method-findAndModify",
-        "type": "platform",
-        "name": "Arrow.Connector.findAndModify",
-        "content": "Arrow.Connector.findAndModify findAndModify Performs a find and update in the same query. Model Arrow.Model Model class to check. options ArrowQueryOptions Query options. doc Object Model fields to modify. args Object Optional parameters. callback Function Callback passed an Error object (or null if successful) and the models. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-findManyByID-platform",
-        "url": "Arrow.Connector-method-findManyByID",
-        "type": "platform",
-        "name": "Arrow.Connector.findManyByID",
-        "content": "Arrow.Connector.findManyByID findManyByID Finds a list of instances by a set of ids. Model Arrow.Model Model class to check. ids Array Set of primary keys to find callback Function Callback passed an Error object (or null if successful). return void"
-    },
-    {
-        "id": "Arrow.Connector-method-getCustomType-platform",
-        "url": "Arrow.Connector-method-getCustomType",
-        "type": "platform",
-        "name": "Arrow.Connector.getCustomType",
-        "content": "Arrow.Connector.getCustomType getCustomType Gets the field value based upon a custom type. Unimplemented. instance Arrow.Instance An instance of one of the connector's models. field Object Field value to validate. name String Field name to coerce. value Any Value to coerce. return Object Returns an instance of your custom type. "
-    },
-    {
-        "id": "Arrow.Connector-method-getPrimaryKey-platform",
-        "url": "Arrow.Connector-method-getPrimaryKey",
-        "type": "platform",
-        "name": "Arrow.Connector.getPrimaryKey",
-        "content": "Arrow.Connector.getPrimaryKey getPrimaryKey Returns the primary key of a Model. Override this method to provide a different value. Model Arrow.Model Model class. record Object Record to check. return String "
-    },
-    {
-        "id": "Arrow.Connector-method-getPrimaryKeyColumnName-platform",
-        "url": "Arrow.Connector-method-getPrimaryKeyColumnName",
-        "type": "platform",
-        "name": "Arrow.Connector.getPrimaryKeyColumnName",
-        "content": "Arrow.Connector.getPrimaryKeyColumnName getPrimaryKeyColumnName Returns the column that is used as the primary key internally (not in the model, but in the native data source). This is used by the model when translating the query for selecting/unselecting columns. Model Arrow.Model Model class to check. return String Key name in the data source used as the primary key. "
-    },
-    {
-        "id": "Arrow.Connector-method-inspect-platform",
-        "url": "Arrow.Connector-method-inspect",
-        "type": "platform",
-        "name": "Arrow.Connector.inspect",
-        "content": "Arrow.Connector.inspect inspect suitable for util.inspect return void"
-    },
-    {
-        "id": "Arrow.Connector-method-isConnected-platform",
-        "url": "Arrow.Connector-method-isConnected",
-        "type": "platform",
-        "name": "Arrow.Connector.isConnected",
-        "content": "Arrow.Connector.isConnected isConnected Returns true if connected. return Boolean "
-    },
-    {
-        "id": "Arrow.Connector-method-logDefaultConfig-platform",
-        "url": "Arrow.Connector-method-logDefaultConfig",
-        "type": "platform",
-        "name": "Arrow.Connector.logDefaultConfig",
-        "content": "Arrow.Connector.logDefaultConfig logDefaultConfig Outputs the default connector configuration to the console. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-login-platform",
-        "url": "Arrow.Connector-method-login",
-        "type": "platform",
-        "name": "Arrow.Connector.login",
-        "content": "Arrow.Connector.login login Logins to the data source to make a request if a login is required. Unimplemented. Define in the implementation object when creating a connector. Invoke the next function when the operation completes. The loginRequired function must be implemented to determine if login should be called or not. request Object Request object. response Object Response object. next Function Function to call after the operation completes. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-loginRequired-platform",
-        "url": "Arrow.Connector-method-loginRequired",
-        "type": "platform",
-        "name": "Arrow.Connector.loginRequired",
-        "content": "Arrow.Connector.loginRequired loginRequired Determines if a login is required to make a request to the data source. Unimplemented. Define in the implementation object when creating a connector. If a login is required, the login function must be implemented too. request Object Request object. callback Function Callback passed an error message (or null if successful) and a boolean indicating if a login is required (true) or not (false). return void"
-    },
-    {
-        "id": "Arrow.Connector-method-postCreate-platform",
-        "url": "Arrow.Connector-method-postCreate",
-        "type": "platform",
-        "name": "Arrow.Connector.postCreate",
-        "content": "Arrow.Connector.postCreate postCreate Executes logic after the connector is created but before it is returned. Unimplemented. The new connector instance is the value passed to this in the function. The function is not passed any arguments and does not need to return any values. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-startRequest-platform",
-        "url": "Arrow.Connector-method-startRequest",
-        "type": "platform",
-        "name": "Arrow.Connector.startRequest",
-        "content": "Arrow.Connector.startRequest startRequest Request interceptor invoked before the request is initiated and the login method is invoked. Unimplemented. Invoke the next function when the operation completes. name String Name of the function that invoked the request. args Array Arguments passed to the called function that invoked the request. request Object Request object. next Function Function to call after the operation completes. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-toJSON-platform",
-        "url": "Arrow.Connector-method-toJSON",
-        "type": "platform",
-        "name": "Arrow.Connector.toJSON",
-        "content": "Arrow.Connector.toJSON toJSON suitable for JSON.stringify return void"
-    },
-    {
-        "id": "Arrow.Connector-method-upsert-platform",
-        "url": "Arrow.Connector-method-upsert",
-        "type": "platform",
-        "name": "Arrow.Connector.upsert",
-        "content": "Arrow.Connector.upsert upsert Creates or updates a model. Model Arrow.Model Model to search. id String ID of the model to update (or create). document Object Fields to set in the model. callback Function Callback passed an Error object (or null if successful) and the new model. return void"
-    },
-    {
-        "id": "Arrow.Connector-method-validateConfig-platform",
-        "url": "Arrow.Connector-method-validateConfig",
-        "type": "platform",
-        "name": "Arrow.Connector.validateConfig",
-        "content": "Arrow.Connector.validateConfig validateConfig Validates whether or not the config for this connector is valid, based on its metadata. return Boolean/Error Returns true if the config is valid, otherwise returns an Error. "
-    },
-    {
         "name": "Arrow.ORMError",
         "id": "Arrow.ORMError-platform",
         "url": "Arrow.ORMError",
@@ -1330,74 +1330,228 @@
         "content": "Arrow.Capabilities.ValidatesConfiguration ValidatesConfiguration Define validation on your validation files to ensure you get the data you need to run. For example, a MongoDB connector could require a valid URL. String 'ValidatesConfiguration'"
     },
     {
-        "name": "Arrow.Logger",
-        "id": "Arrow.Logger-platform",
-        "url": "Arrow.Logger",
+        "name": "Arrow.API",
+        "id": "Arrow.API-platform",
+        "url": "Arrow.API",
         "type": "platform",
-        "content": "Arrow.Logger The API Builder Logger class provides a wrapper for bunyan, a JSON logging utility. You can access a local instance of the log utility using the logger property of the API Builder instance. "
+        "content": "Arrow.API An API provides a way for a client to access your application, execute custom logic and internally access the application's models and APIs, then return data back to the client application. Use an API to perform a custom operation on model data that is not exposed as one of the standardized methods. Create an API Endpoint To create an API, define a new API instance with the API constructor, then add the instance to the server instance and bind the API instance to the API Builder server's app instance. Pass an implementation object, API Builder configuration object and API Builder instance to the constructor. Set any API properties on the implementation object (except the ones marked non-creation), but the following properties are required to be set: action, description, group and path. After creating the API instance, add the API instance to the API Builder instance by calling the API Builder instance's addAPI() method, then call the API instance's bind() method and pass it an app instance. var Arrow = require('arrow'); var server = new Arrow(); // since the API relies on a model, // need to wait for the model to be loaded before creating the API server.on('starting', function() { var fooAPI = new Arrow.API({ group: 'foo', path: '/api/foo/', method: 'GET', description: 'Get all the Foo objects', model: 'foo', action: function(request, response, next) { request.model.findAll(function(err, results) { if (err) { next(err); } else { next(null, results); } }); } }, server.config, server); server.add(fooAPI); fooAPI.bind(server.app); } server.start(); Alternatively, you can create an API definition file that is automatically loaded by the API Builder project. For details, see the API Builder APIs guide. Invoke an API Endpoint To invoke an API endpoint within the application, use the API Builder instance's getAPI() method. An API is identified by its path and method (HTTP verb), or its nickname if you defined one when creating the API. After retrieving the API instance, call its execute() method. server.getAPI('foo', 'GET').execute({}, function (err, results) { if (err) { server.logger.error(err); } else { // do something with results } }); "
     },
     {
-        "id": "Arrow.Logger-method-debug-platform",
-        "url": "Arrow.Logger-method-debug",
+        "id": "Arrow.API-property-action-platform",
+        "url": "Arrow.API-property-action",
         "type": "platform",
-        "name": "Arrow.Logger.debug",
-        "content": "Arrow.Logger.debug debug Logs a message with a debug-level severity. params ...Object String, formatted-string with variables, object or Error object. return Boolean/void If no arguments are passed, returns a boolean indicating if the debug level is enabled. "
+        "name": "Arrow.API.action",
+        "content": "Arrow.API.action action Logic to execute when the endpoint is invoked by the client application. The function is passed a request object, response object and next() function. You should always make sure that the action function calls the next() function regardless if the result is a success or an error. Function"
     },
     {
-        "id": "Arrow.Logger-method-error-platform",
-        "url": "Arrow.Logger-method-error",
+        "id": "Arrow.API-property-after-platform",
+        "url": "Arrow.API-property-after",
         "type": "platform",
-        "name": "Arrow.Logger.error",
-        "content": "Arrow.Logger.error error Logs a message with an error-level severity. params ...Object String, formatted-string with variables, object or Error object. return Boolean/void If no arguments are passed, returns a boolean indicating if the error level is enabled. "
+        "name": "Arrow.API.after",
+        "content": "Arrow.API.after after One or more Blocks to be executed after the request. Blocks are referenced by their name property. If you want to execute multiple blocks, you should specify them as an array of block names. If multiple blocks are specified, they are executed in the order specified. Specify either after or post but not both. String/Array"
     },
     {
-        "id": "Arrow.Logger-method-fatal-platform",
-        "url": "Arrow.Logger-method-fatal",
+        "id": "Arrow.API-property-app-platform",
+        "url": "Arrow.API-property-app",
         "type": "platform",
-        "name": "Arrow.Logger.fatal",
-        "content": "Arrow.Logger.fatal fatal Logs a message with a fatal-level severity. params ...Object String, formatted-string with variables, object or Error object. return Boolean/void If no arguments are passed, returns a boolean indicating if the fatal level is enabled. "
+        "name": "Arrow.API.app",
+        "content": "Arrow.API.app app Express app instance. Object"
     },
     {
-        "id": "Arrow.Logger-method-info-platform",
-        "url": "Arrow.Logger-method-info",
+        "id": "Arrow.API-property-before-platform",
+        "url": "Arrow.API-property-before",
         "type": "platform",
-        "name": "Arrow.Logger.info",
-        "content": "Arrow.Logger.info info Logs a message with an info-level severity. params ...Object String, formatted-string with variables, object or Error object. return Boolean/void If no arguments are passed, returns a boolean indicating if the info level is enabled. "
+        "name": "Arrow.API.before",
+        "content": "Arrow.API.before before One or more Blocks to be executed before the request. Blocks are referenced by their name property. If you want to execute multiple blocks, you should specify them as an array of block names. If multiple blocks are specified, they are executed in the order specified. Specify either before or pre but not both. String/Array"
     },
     {
-        "id": "Arrow.Logger-method-level-platform",
-        "url": "Arrow.Logger-method-level",
+        "id": "Arrow.API-property-config-platform",
+        "url": "Arrow.API-property-config",
         "type": "platform",
-        "name": "Arrow.Logger.level",
-        "content": "Arrow.Logger.level level Sets or retrieves the log level. level Number/String Level to set. return void"
+        "name": "Arrow.API.config",
+        "content": "Arrow.API.config config Configuration object used to initialize the API instance. Object"
     },
     {
-        "id": "Arrow.Logger-method-levels-platform",
-        "url": "Arrow.Logger-method-levels",
+        "id": "Arrow.API-property-constructor-platform",
+        "url": "Arrow.API-property-constructor",
         "type": "platform",
-        "name": "Arrow.Logger.levels",
-        "content": "Arrow.Logger.levels levels Sets or retrieves the log level for a specific stream. stream Number/String Stream to set or retrieve the log level for. level Number/String Level to set. return Array/Number/void If no arguments are passed, retrieves an array of available log levels. If the stream is passed, retrieves the current log level of the stream. "
+        "name": "Arrow.API.constructor",
+        "content": "Arrow.API.constructor constructor Custom constructor to execute custom initialization logic. The new API instance is passed to this in the function. Function"
     },
     {
-        "id": "Arrow.Logger-method-stripColors-platform",
-        "url": "Arrow.Logger-method-stripColors",
+        "id": "Arrow.API-property-description-platform",
+        "url": "Arrow.API-property-description",
         "type": "platform",
-        "name": "Arrow.Logger.stripColors",
-        "content": "Arrow.Logger.stripColors stripColors Removes ANSI color codes from the string string String return String "
+        "name": "Arrow.API.description",
+        "content": "Arrow.API.description description Human-readable description of the API, which is used by the generated API documentation. String"
     },
     {
-        "id": "Arrow.Logger-method-trace-platform",
-        "url": "Arrow.Logger-method-trace",
+        "id": "Arrow.API-property-filename-platform",
+        "url": "Arrow.API-property-filename",
         "type": "platform",
-        "name": "Arrow.Logger.trace",
-        "content": "Arrow.Logger.trace trace Logs a message with a trace-level severity. params ...Object String, formatted-string with variables, object or Error object. return Boolean/void If no arguments are passed, returns a boolean indicating if the trace level is enabled. "
+        "name": "Arrow.API.filename",
+        "content": "Arrow.API.filename filename File used to load the API instance. String"
     },
     {
-        "id": "Arrow.Logger-method-warn-platform",
-        "url": "Arrow.Logger-method-warn",
+        "id": "Arrow.API-property-group-platform",
+        "url": "Arrow.API-property-group",
         "type": "platform",
-        "name": "Arrow.Logger.warn",
-        "content": "Arrow.Logger.warn warn Logs a message with a warn-level severity. params ...Object String, formatted-string with variables, object or Error object. return Boolean/void If no arguments are passed, returns a boolean indicating if the warn level is enabled. "
+        "name": "Arrow.API.group",
+        "content": "Arrow.API.group group Logical name for the API grouping. String"
+    },
+    {
+        "id": "Arrow.API-property-method-platform",
+        "url": "Arrow.API-property-method",
+        "type": "platform",
+        "name": "Arrow.API.method",
+        "content": "Arrow.API.method method HTTP verb: GET, PUT, POST or DELETE. String"
+    },
+    {
+        "id": "Arrow.API-property-model-platform",
+        "url": "Arrow.API-property-model",
+        "type": "platform",
+        "name": "Arrow.API.model",
+        "content": "Arrow.API.model model The model to use for the request. Passed as the model property in the request and response objects of the action function. Arrow.Model"
+    },
+    {
+        "id": "Arrow.API-property-nickname-platform",
+        "url": "Arrow.API-property-nickname",
+        "type": "platform",
+        "name": "Arrow.API.nickname",
+        "content": "Arrow.API.nickname nickname Alternative identifier for the API. By default, the API is identified by its path and HTTP verb. If you do not specify a nickname, this property will be set to the path. String"
+    },
+    {
+        "id": "Arrow.API-property-parameters-platform",
+        "url": "Arrow.API-property-parameters",
+        "type": "platform",
+        "name": "Arrow.API.parameters",
+        "content": "Arrow.API.parameters parameters Input parameters required to execute the API endpoint. This is an object of key-value pairs, where the key is the name of the parameter and the value is an object with the following properties: optional (Boolean): Determines if the parameter is optional (true) or required (false). type (String): the type of input parameter: path or query. description (String): used for generating API documentation. Object"
+    },
+    {
+        "id": "Arrow.API-property-path-platform",
+        "url": "Arrow.API-property-path",
+        "type": "platform",
+        "name": "Arrow.API.path",
+        "content": "Arrow.API.path path API endpoint. String"
+    },
+    {
+        "id": "Arrow.API-property-plural-platform",
+        "url": "Arrow.API-property-plural",
+        "type": "platform",
+        "name": "Arrow.API.plural",
+        "content": "Arrow.API.plural plural A string used as the property name when your API endpoint returns an array. By default, the plural value is the plural of the model name. For example, if your model is named car, the default plural would be cars. String"
+    },
+    {
+        "id": "Arrow.API-property-post-platform",
+        "url": "Arrow.API-property-post",
+        "type": "platform",
+        "name": "Arrow.API.post",
+        "content": "Arrow.API.post post One or more Blocks to be executed after the request. Blocks are referenced by their name property. If you want to execute multiple blocks, you should specify them as an array of block names. If multiple blocks are specified, they are executed in the order specified. Specify either after or post but not both. String/Array"
+    },
+    {
+        "id": "Arrow.API-property-pre-platform",
+        "url": "Arrow.API-property-pre",
+        "type": "platform",
+        "name": "Arrow.API.pre",
+        "content": "Arrow.API.pre pre One or more Blocks to be executed before the request. Blocks are referenced by their name property. If you want to execute multiple blocks, you should specify them as an array of block names. If multiple blocks are specified, they are executed in the order specified. Specify either before or pre but not both. String/Array"
+    },
+    {
+        "id": "Arrow.API-property-response-platform",
+        "url": "Arrow.API-property-response",
+        "type": "platform",
+        "name": "Arrow.API.response",
+        "content": "Arrow.API.response response The model to use for the response. Only use the property if your request and response models are different. Passed as the modelResponse property in the request and response objects of the action function. Arrow.Model"
+    },
+    {
+        "id": "Arrow.API-property-route-platform",
+        "url": "Arrow.API-property-route",
+        "type": "platform",
+        "name": "Arrow.API.route",
+        "content": "Arrow.API.route route Express route instance that binds the endpoint to the logic. Object"
+    },
+    {
+        "id": "Arrow.API-property-singular-platform",
+        "url": "Arrow.API-property-singular",
+        "type": "platform",
+        "name": "Arrow.API.singular",
+        "content": "Arrow.API.singular singular A string used as the property name when your API endpoint returns a single record. By default, the singular value is the name of the model. String"
+    },
+    {
+        "id": "Arrow.API-property-timestamp-platform",
+        "url": "Arrow.API-property-timestamp",
+        "type": "platform",
+        "name": "Arrow.API.timestamp",
+        "content": "Arrow.API.timestamp timestamp Datetime when the route was last synced. String"
+    },
+    {
+        "id": "Arrow.API-method-constructor-platform",
+        "url": "Arrow.API-method-constructor",
+        "type": "platform",
+        "name": "Arrow.API.constructor",
+        "content": "Arrow.API.constructor constructor Creates a new API instance. impl Dictionary Implementation object. Set any API properties on the object except the ones marked non-creation. The following properties must be set: action, description, group and path. config Object API Builder configuration object. arrow Arrow API Builder instance. return Arrow.API "
+    },
+    {
+        "id": "Arrow.API-method-bind-platform",
+        "url": "Arrow.API-method-bind",
+        "type": "platform",
+        "name": "Arrow.API.bind",
+        "content": "Arrow.API.bind bind Binds this API to the app instance app Object App instance. return void"
+    },
+    {
+        "id": "Arrow.API-method-execute-platform",
+        "url": "Arrow.API-method-execute",
+        "type": "platform",
+        "name": "Arrow.API.execute",
+        "content": "Arrow.API.execute execute Executes this API with the specified parameters. Results are sent to to the callback. params Object API parameters. callback Function Callback passed an Error object (or null if successful) and the results. return void"
+    },
+    {
+        "id": "Arrow.API-method-executeAfterEvent-platform",
+        "url": "Arrow.API-method-executeAfterEvent",
+        "type": "platform",
+        "name": "Arrow.API.executeAfterEvent",
+        "content": "Arrow.API.executeAfterEvent executeAfterEvent Handles sending pubsub event if afterEvent property is set on the API req Object resp Object callback Object return void"
+    },
+    {
+        "id": "Arrow.API-method-executeBeforeEvent-platform",
+        "url": "Arrow.API-method-executeBeforeEvent",
+        "type": "platform",
+        "name": "Arrow.API.executeBeforeEvent",
+        "content": "Arrow.API.executeBeforeEvent executeBeforeEvent Handles sending pubsub event if beforeEvent property is set on the API req Object resp Object callback Object return void"
+    },
+    {
+        "id": "Arrow.API-method-executeEventTransform-platform",
+        "url": "Arrow.API-method-executeEventTransform",
+        "type": "platform",
+        "name": "Arrow.API.executeEventTransform",
+        "content": "Arrow.API.executeEventTransform executeEventTransform Handles event transformation if a eventTransformer property is set on the API when Object name Object data Object req Object resp Object callback Object return void"
+    },
+    {
+        "id": "Arrow.API-method-extend-platform",
+        "url": "Arrow.API-method-extend",
+        "type": "platform",
+        "name": "Arrow.API.extend",
+        "content": "Arrow.API.extend extend Returns a constructor function to generate a new API by extending this instance. Pass the constructor an Arrow configuration object, Arrow instance, and optionally a filename. impl Dictionary Implementation object. return Function "
+    },
+    {
+        "id": "Arrow.API-method-getRequestURL-platform",
+        "url": "Arrow.API-method-getRequestURL",
+        "type": "platform",
+        "name": "Arrow.API.getRequestURL",
+        "content": "Arrow.API.getRequestURL getRequestURL for a request, return a url req Object return void"
+    },
+    {
+        "id": "Arrow.API-method-reload-platform",
+        "url": "Arrow.API-method-reload",
+        "type": "platform",
+        "name": "Arrow.API.reload",
+        "content": "Arrow.API.reload reload Reloads the API for the Arrow instance. arrow Object Arrow instance. callback Function Callback passed an Error object (or null if successful) and the reloaded API. return void"
+    },
+    {
+        "id": "Arrow.API-method-remove-platform",
+        "url": "Arrow.API-method-remove",
+        "type": "platform",
+        "name": "Arrow.API.remove",
+        "content": "Arrow.API.remove remove Removes the API from the Arrow instance. arrow Object Arrow instance. callback Function Callback passed an Error object (or null if successful) and the removed API. return void"
     },
     {
         "name": "Arrow",
@@ -1979,6 +2133,153 @@
         "type": "platform",
         "name": "Arrow.stopping",
         "content": "Arrow.stopping stopping Fired when the stop() method is invoked. "
+    },
+    {
+        "name": "Arrow.Block",
+        "id": "Arrow.Block-platform",
+        "url": "Arrow.Block",
+        "type": "platform",
+        "content": "Arrow.Block A Block is a function that is executed before or after calling an API endpoint. To create a block, pass the constructor an implementation object, API Builder configuration object and API Builder instance to create a block instance, then pass the Block instance to the API Builder instance's addBlock() method. var block = new Arrow.Block({ name: 'blocky', execute: function (request, response, next) { next(); } }); server.addBlock(block); To use a block, assign it to the before or after property of the implementation object passed to the API or Model constructor. A Block is identified by its name property. You may specify more than one block by using an array. The blocks will be executed in order. var fooAPI = new Arrow.API({ group: 'foo', path: '/api/foo/', method: 'GET', description: 'Get all the Foo objects', before: ['block1', 'block2'], model: 'testuser', action: function(request, response, next) { request.model.findAll(function(err, results) { if (err) { next(err); } else { next(null, results); } }); } }, server.config, server); fooAPI.bind(server.app); Alternatively, you can define your Blocks using JavaScript files. For details, see the API Builder Blocks guide. "
+    },
+    {
+        "id": "Arrow.Block-property-arrow-platform",
+        "url": "Arrow.Block-property-arrow",
+        "type": "platform",
+        "name": "Arrow.Block.arrow",
+        "content": "Arrow.Block.arrow arrow API Builder instance associated with the Block instance. Arrow"
+    },
+    {
+        "id": "Arrow.Block-property-config-platform",
+        "url": "Arrow.Block-property-config",
+        "type": "platform",
+        "name": "Arrow.Block.config",
+        "content": "Arrow.Block.config config Configuration object used to initialize the Block instance. Object"
+    },
+    {
+        "id": "Arrow.Block-property-constructor-platform",
+        "url": "Arrow.Block-property-constructor",
+        "type": "platform",
+        "name": "Arrow.Block.constructor",
+        "content": "Arrow.Block.constructor constructor Custom constructor to execute custom initialization logic. The new block instance is passed to this in the function. Function"
+    },
+    {
+        "id": "Arrow.Block-property-description-platform",
+        "url": "Arrow.Block-property-description",
+        "type": "platform",
+        "name": "Arrow.Block.description",
+        "content": "Arrow.Block.description description Human-readable description of the block, which is used by the generated API documentation. String"
+    },
+    {
+        "id": "Arrow.Block-property-execute-platform",
+        "url": "Arrow.Block-property-execute",
+        "type": "platform",
+        "name": "Arrow.Block.execute",
+        "content": "Arrow.Block.execute execute Logic to execute. The function is passed a request object, response object and next() callback. After the operation completes, call the next() function. Function"
+    },
+    {
+        "id": "Arrow.Block-property-filename-platform",
+        "url": "Arrow.Block-property-filename",
+        "type": "platform",
+        "name": "Arrow.Block.filename",
+        "content": "Arrow.Block.filename filename File used to load the Block instance. String"
+    },
+    {
+        "id": "Arrow.Block-property-name-platform",
+        "url": "Arrow.Block-property-name",
+        "type": "platform",
+        "name": "Arrow.Block.name",
+        "content": "Arrow.Block.name name Name used to identify the block. String"
+    },
+    {
+        "id": "Arrow.Block-method-constructor-platform",
+        "url": "Arrow.Block-method-constructor",
+        "type": "platform",
+        "name": "Arrow.Block.constructor",
+        "content": "Arrow.Block.constructor constructor Creates an new instance of a Block. impl Dictionary Implementation object. Set any Block properties on the object except the ones marked non-creation. The name property must be set. config Object API Builder configuration object. arrow Arrow API Builder instance. return Arrow.Block "
+    },
+    {
+        "id": "Arrow.Block-method-extend-platform",
+        "url": "Arrow.Block-method-extend",
+        "type": "platform",
+        "name": "Arrow.Block.extend",
+        "content": "Arrow.Block.extend extend Returns a constructor function to generate a new Block. Pass the constructor an Arrow configuration object and Arrow instance. impl Dictionary Implementation object. return Function "
+    },
+    {
+        "id": "Arrow.Block-method-getMiddleware-platform",
+        "url": "Arrow.Block-method-getMiddleware",
+        "type": "platform",
+        "name": "Arrow.Block.getMiddleware",
+        "content": "Arrow.Block.getMiddleware getMiddleware Gets the middleware block that provides access to the block's execute implementation. Pass the function returned by this method a request object, response object, and the function to call next. return Function "
+    },
+    {
+        "name": "Arrow.Logger",
+        "id": "Arrow.Logger-platform",
+        "url": "Arrow.Logger",
+        "type": "platform",
+        "content": "Arrow.Logger The API Builder Logger class provides a wrapper for bunyan, a JSON logging utility. You can access a local instance of the log utility using the logger property of the API Builder instance. "
+    },
+    {
+        "id": "Arrow.Logger-method-debug-platform",
+        "url": "Arrow.Logger-method-debug",
+        "type": "platform",
+        "name": "Arrow.Logger.debug",
+        "content": "Arrow.Logger.debug debug Logs a message with a debug-level severity. params ...Object String, formatted-string with variables, object or Error object. return Boolean/void If no arguments are passed, returns a boolean indicating if the debug level is enabled. "
+    },
+    {
+        "id": "Arrow.Logger-method-error-platform",
+        "url": "Arrow.Logger-method-error",
+        "type": "platform",
+        "name": "Arrow.Logger.error",
+        "content": "Arrow.Logger.error error Logs a message with an error-level severity. params ...Object String, formatted-string with variables, object or Error object. return Boolean/void If no arguments are passed, returns a boolean indicating if the error level is enabled. "
+    },
+    {
+        "id": "Arrow.Logger-method-fatal-platform",
+        "url": "Arrow.Logger-method-fatal",
+        "type": "platform",
+        "name": "Arrow.Logger.fatal",
+        "content": "Arrow.Logger.fatal fatal Logs a message with a fatal-level severity. params ...Object String, formatted-string with variables, object or Error object. return Boolean/void If no arguments are passed, returns a boolean indicating if the fatal level is enabled. "
+    },
+    {
+        "id": "Arrow.Logger-method-info-platform",
+        "url": "Arrow.Logger-method-info",
+        "type": "platform",
+        "name": "Arrow.Logger.info",
+        "content": "Arrow.Logger.info info Logs a message with an info-level severity. params ...Object String, formatted-string with variables, object or Error object. return Boolean/void If no arguments are passed, returns a boolean indicating if the info level is enabled. "
+    },
+    {
+        "id": "Arrow.Logger-method-level-platform",
+        "url": "Arrow.Logger-method-level",
+        "type": "platform",
+        "name": "Arrow.Logger.level",
+        "content": "Arrow.Logger.level level Sets or retrieves the log level. level Number/String Level to set. return void"
+    },
+    {
+        "id": "Arrow.Logger-method-levels-platform",
+        "url": "Arrow.Logger-method-levels",
+        "type": "platform",
+        "name": "Arrow.Logger.levels",
+        "content": "Arrow.Logger.levels levels Sets or retrieves the log level for a specific stream. stream Number/String Stream to set or retrieve the log level for. level Number/String Level to set. return Array/Number/void If no arguments are passed, retrieves an array of available log levels. If the stream is passed, retrieves the current log level of the stream. "
+    },
+    {
+        "id": "Arrow.Logger-method-stripColors-platform",
+        "url": "Arrow.Logger-method-stripColors",
+        "type": "platform",
+        "name": "Arrow.Logger.stripColors",
+        "content": "Arrow.Logger.stripColors stripColors Removes ANSI color codes from the string string String return String "
+    },
+    {
+        "id": "Arrow.Logger-method-trace-platform",
+        "url": "Arrow.Logger-method-trace",
+        "type": "platform",
+        "name": "Arrow.Logger.trace",
+        "content": "Arrow.Logger.trace trace Logs a message with a trace-level severity. params ...Object String, formatted-string with variables, object or Error object. return Boolean/void If no arguments are passed, returns a boolean indicating if the trace level is enabled. "
+    },
+    {
+        "id": "Arrow.Logger-method-warn-platform",
+        "url": "Arrow.Logger-method-warn",
+        "type": "platform",
+        "name": "Arrow.Logger.warn",
+        "content": "Arrow.Logger.warn warn Logs a message with a warn-level severity. params ...Object String, formatted-string with variables, object or Error object. return Boolean/void If no arguments are passed, returns a boolean indicating if the warn level is enabled. "
     },
     {
         "name": "Arrow.Metadata",
@@ -2940,81 +3241,53 @@
         "content": "Arrow.Metadata.URL.constructor constructor Creates a new metadata object. params Object Set any Metadata properties on the object. return Arrow.Metadata.URL "
     },
     {
-        "name": "Arrow.Block",
-        "id": "Arrow.Block-platform",
-        "url": "Arrow.Block",
+        "name": "Arrow.Middleware",
+        "id": "Arrow.Middleware-platform",
+        "url": "Arrow.Middleware",
         "type": "platform",
-        "content": "Arrow.Block A Block is a function that is executed before or after calling an API endpoint. To create a block, pass the constructor an implementation object, API Builder configuration object and API Builder instance to create a block instance, then pass the Block instance to the API Builder instance's addBlock() method. var block = new Arrow.Block({ name: 'blocky', execute: function (request, response, next) { next(); } }); server.addBlock(block); To use a block, assign it to the before or after property of the implementation object passed to the API or Model constructor. A Block is identified by its name property. You may specify more than one block by using an array. The blocks will be executed in order. var fooAPI = new Arrow.API({ group: 'foo', path: '/api/foo/', method: 'GET', description: 'Get all the Foo objects', before: ['block1', 'block2'], model: 'testuser', action: function(request, response, next) { request.model.findAll(function(err, results) { if (err) { next(err); } else { next(null, results); } }); } }, server.config, server); fooAPI.bind(server.app); Alternatively, you can define your Blocks using JavaScript files. For details, see the API Builder Blocks guide. "
+        "content": "Arrow.Middleware The Middleware class sets up additional features for the Express app instance, such as the adding busboy, body-parser, cookie-parser and compression modules and initializing the renderer engines used by the API Builder Web components. To access the middleware instance, use the API Builder instance's middleware property. Renderer Engines API Builder Tools provides renderer engines for EJS, Handlebars, HTML, Markdown and React templates. The renderer engines are used by the API Builder Web component to render HTML to a web client. To access the renderers, use the getRendererEngine() method and pass it the extension of the renderer engine to retrieve. The renderer engine provides access to the module's APIs. To create a custom renderer engine, create an object that implements the createRenderer() method and specifies the extension. Pass the object to the Middleware instance's registerRendererEngine()) method. For example, to implement a renderer engine for Jade templates: var jade = require('jade'), engine = {}; engine.jade = jade; engine.createRenderer = function (content, filename, app) { return function(filename, opts, callback) { if (!content) { content = require('fs').readFileSync(filename, 'utf8').toString(); } callback(null, jade.render(content, opts)); } }; engine.extension = 'jade'; server.middleware.registerRendererEngine(engine); Any view with a jade extension will be routed to the Jade renderer engine. "
     },
     {
-        "id": "Arrow.Block-property-arrow-platform",
-        "url": "Arrow.Block-property-arrow",
+        "id": "Arrow.Middleware-method-getRendererEngine-platform",
+        "url": "Arrow.Middleware-method-getRendererEngine",
         "type": "platform",
-        "name": "Arrow.Block.arrow",
-        "content": "Arrow.Block.arrow arrow API Builder instance associated with the Block instance. Arrow"
+        "name": "Arrow.Middleware.getRendererEngine",
+        "content": "Arrow.Middleware.getRendererEngine getRendererEngine Returns a renderer engine for a given file extension. extension String File extension to get a renderer engine for. Built-in values are ejs, hbs, html, jsx and md. return ArrowRendererEngine "
     },
     {
-        "id": "Arrow.Block-property-config-platform",
-        "url": "Arrow.Block-property-config",
+        "id": "Arrow.Middleware-method-registerRendererEngine-platform",
+        "url": "Arrow.Middleware-method-registerRendererEngine",
         "type": "platform",
-        "name": "Arrow.Block.config",
-        "content": "Arrow.Block.config config Configuration object used to initialize the Block instance. Object"
+        "name": "Arrow.Middleware.registerRendererEngine",
+        "content": "Arrow.Middleware.registerRendererEngine registerRendererEngine Registers a renderer engine for this instance. engine ArrowRendererEngine Renderer engine. return void"
     },
     {
-        "id": "Arrow.Block-property-constructor-platform",
-        "url": "Arrow.Block-property-constructor",
+        "name": "ArrowRendererEngine",
+        "id": "ArrowRendererEngine-platform",
+        "url": "ArrowRendererEngine",
         "type": "platform",
-        "name": "Arrow.Block.constructor",
-        "content": "Arrow.Block.constructor constructor Custom constructor to execute custom initialization logic. The new block instance is passed to this in the function. Function"
+        "content": "ArrowRendererEngine A renderer engine provides access to the underlying module's APIs in addition to the ones defined here. If you are implementing your own custom renderer engine, you need to implement the createRenderer method and specify the extension. API Builder Tools provides the renderer engines for the following template formats: EJS Handlebars HTML Markdown React "
     },
     {
-        "id": "Arrow.Block-property-description-platform",
-        "url": "Arrow.Block-property-description",
+        "id": "ArrowRendererEngine-property-extension-platform",
+        "url": "ArrowRendererEngine-property-extension",
         "type": "platform",
-        "name": "Arrow.Block.description",
-        "content": "Arrow.Block.description description Human-readable description of the block, which is used by the generated API documentation. String"
+        "name": "ArrowRendererEngine.extension",
+        "content": "ArrowRendererEngine.extension extension File extension the renderer engine will handle. String"
     },
     {
-        "id": "Arrow.Block-property-execute-platform",
-        "url": "Arrow.Block-property-execute",
+        "id": "ArrowRendererEngine-property-skipread-platform",
+        "url": "ArrowRendererEngine-property-skipread",
         "type": "platform",
-        "name": "Arrow.Block.execute",
-        "content": "Arrow.Block.execute execute Logic to execute. The function is passed a request object, response object and next() callback. After the operation completes, call the next() function. Function"
+        "name": "ArrowRendererEngine.skipread",
+        "content": "ArrowRendererEngine.skipread skipread Set to true to skip reading the file and converting it to a string for the content parameter of the createRenderer() function. Boolean"
     },
     {
-        "id": "Arrow.Block-property-filename-platform",
-        "url": "Arrow.Block-property-filename",
+        "id": "ArrowRendererEngine-method-createRenderer-platform",
+        "url": "ArrowRendererEngine-method-createRenderer",
         "type": "platform",
-        "name": "Arrow.Block.filename",
-        "content": "Arrow.Block.filename filename File used to load the Block instance. String"
-    },
-    {
-        "id": "Arrow.Block-property-name-platform",
-        "url": "Arrow.Block-property-name",
-        "type": "platform",
-        "name": "Arrow.Block.name",
-        "content": "Arrow.Block.name name Name used to identify the block. String"
-    },
-    {
-        "id": "Arrow.Block-method-constructor-platform",
-        "url": "Arrow.Block-method-constructor",
-        "type": "platform",
-        "name": "Arrow.Block.constructor",
-        "content": "Arrow.Block.constructor constructor Creates an new instance of a Block. impl Dictionary Implementation object. Set any Block properties on the object except the ones marked non-creation. The name property must be set. config Object API Builder configuration object. arrow Arrow API Builder instance. return Arrow.Block "
-    },
-    {
-        "id": "Arrow.Block-method-extend-platform",
-        "url": "Arrow.Block-method-extend",
-        "type": "platform",
-        "name": "Arrow.Block.extend",
-        "content": "Arrow.Block.extend extend Returns a constructor function to generate a new Block. Pass the constructor an Arrow configuration object and Arrow instance. impl Dictionary Implementation object. return Function "
-    },
-    {
-        "id": "Arrow.Block-method-getMiddleware-platform",
-        "url": "Arrow.Block-method-getMiddleware",
-        "type": "platform",
-        "name": "Arrow.Block.getMiddleware",
-        "content": "Arrow.Block.getMiddleware getMiddleware Gets the middleware block that provides access to the block's execute implementation. Pass the function returned by this method a request object, response object, and the function to call next. return Function "
+        "name": "ArrowRendererEngine.createRenderer",
+        "content": "ArrowRendererEngine.createRenderer createRenderer Returns a function to generate the HTML. Pass the returned function the path of the template file, a context object (data to pass to the template), and a callback passed an Error object (or null if successful) and the HTML to render. content String Template string to compile and render. Set to null if skipread is true. filename String Path of the template file. app Object Express app instance. return Function "
     },
     {
         "name": "Arrow.Router",
@@ -3157,300 +3430,6 @@
         "content": "Arrow.Router.render render do implicit or explicit handling of next in render name Object args Object cb Object return void"
     },
     {
-        "name": "Arrow.Middleware",
-        "id": "Arrow.Middleware-platform",
-        "url": "Arrow.Middleware",
-        "type": "platform",
-        "content": "Arrow.Middleware The Middleware class sets up additional features for the Express app instance, such as the adding busboy, body-parser, cookie-parser and compression modules and initializing the renderer engines used by the API Builder Web components. To access the middleware instance, use the API Builder instance's middleware property. Renderer Engines API Builder Tools provides renderer engines for EJS, Handlebars, HTML, Markdown and React templates. The renderer engines are used by the API Builder Web component to render HTML to a web client. To access the renderers, use the getRendererEngine() method and pass it the extension of the renderer engine to retrieve. The renderer engine provides access to the module's APIs. To create a custom renderer engine, create an object that implements the createRenderer() method and specifies the extension. Pass the object to the Middleware instance's registerRendererEngine()) method. For example, to implement a renderer engine for Jade templates: var jade = require('jade'), engine = {}; engine.jade = jade; engine.createRenderer = function (content, filename, app) { return function(filename, opts, callback) { if (!content) { content = require('fs').readFileSync(filename, 'utf8').toString(); } callback(null, jade.render(content, opts)); } }; engine.extension = 'jade'; server.middleware.registerRendererEngine(engine); Any view with a jade extension will be routed to the Jade renderer engine. "
-    },
-    {
-        "id": "Arrow.Middleware-method-getRendererEngine-platform",
-        "url": "Arrow.Middleware-method-getRendererEngine",
-        "type": "platform",
-        "name": "Arrow.Middleware.getRendererEngine",
-        "content": "Arrow.Middleware.getRendererEngine getRendererEngine Returns a renderer engine for a given file extension. extension String File extension to get a renderer engine for. Built-in values are ejs, hbs, html, jsx and md. return ArrowRendererEngine "
-    },
-    {
-        "id": "Arrow.Middleware-method-registerRendererEngine-platform",
-        "url": "Arrow.Middleware-method-registerRendererEngine",
-        "type": "platform",
-        "name": "Arrow.Middleware.registerRendererEngine",
-        "content": "Arrow.Middleware.registerRendererEngine registerRendererEngine Registers a renderer engine for this instance. engine ArrowRendererEngine Renderer engine. return void"
-    },
-    {
-        "name": "ArrowRendererEngine",
-        "id": "ArrowRendererEngine-platform",
-        "url": "ArrowRendererEngine",
-        "type": "platform",
-        "content": "ArrowRendererEngine A renderer engine provides access to the underlying module's APIs in addition to the ones defined here. If you are implementing your own custom renderer engine, you need to implement the createRenderer method and specify the extension. API Builder Tools provides the renderer engines for the following template formats: EJS Handlebars HTML Markdown React "
-    },
-    {
-        "id": "ArrowRendererEngine-property-extension-platform",
-        "url": "ArrowRendererEngine-property-extension",
-        "type": "platform",
-        "name": "ArrowRendererEngine.extension",
-        "content": "ArrowRendererEngine.extension extension File extension the renderer engine will handle. String"
-    },
-    {
-        "id": "ArrowRendererEngine-property-skipread-platform",
-        "url": "ArrowRendererEngine-property-skipread",
-        "type": "platform",
-        "name": "ArrowRendererEngine.skipread",
-        "content": "ArrowRendererEngine.skipread skipread Set to true to skip reading the file and converting it to a string for the content parameter of the createRenderer() function. Boolean"
-    },
-    {
-        "id": "ArrowRendererEngine-method-createRenderer-platform",
-        "url": "ArrowRendererEngine-method-createRenderer",
-        "type": "platform",
-        "name": "ArrowRendererEngine.createRenderer",
-        "content": "ArrowRendererEngine.createRenderer createRenderer Returns a function to generate the HTML. Pass the returned function the path of the template file, a context object (data to pass to the template), and a callback passed an Error object (or null if successful) and the HTML to render. content String Template string to compile and render. Set to null if skipread is true. filename String Path of the template file. app Object Express app instance. return Function "
-    },
-    {
-        "name": "Arrow.API",
-        "id": "Arrow.API-platform",
-        "url": "Arrow.API",
-        "type": "platform",
-        "content": "Arrow.API An API provides a way for a client to access your application, execute custom logic and internally access the application's models and APIs, then return data back to the client application. Use an API to perform a custom operation on model data that is not exposed as one of the standardized methods. Create an API Endpoint To create an API, define a new API instance with the API constructor, then add the instance to the server instance and bind the API instance to the API Builder server's app instance. Pass an implementation object, API Builder configuration object and API Builder instance to the constructor. Set any API properties on the implementation object (except the ones marked non-creation), but the following properties are required to be set: action, description, group and path. After creating the API instance, add the API instance to the API Builder instance by calling the API Builder instance's addAPI() method, then call the API instance's bind() method and pass it an app instance. var Arrow = require('arrow'); var server = new Arrow(); // since the API relies on a model, // need to wait for the model to be loaded before creating the API server.on('starting', function() { var fooAPI = new Arrow.API({ group: 'foo', path: '/api/foo/', method: 'GET', description: 'Get all the Foo objects', model: 'foo', action: function(request, response, next) { request.model.findAll(function(err, results) { if (err) { next(err); } else { next(null, results); } }); } }, server.config, server); server.add(fooAPI); fooAPI.bind(server.app); } server.start(); Alternatively, you can create an API definition file that is automatically loaded by the API Builder project. For details, see the API Builder APIs guide. Invoke an API Endpoint To invoke an API endpoint within the application, use the API Builder instance's getAPI() method. An API is identified by its path and method (HTTP verb), or its nickname if you defined one when creating the API. After retrieving the API instance, call its execute() method. server.getAPI('foo', 'GET').execute({}, function (err, results) { if (err) { server.logger.error(err); } else { // do something with results } }); "
-    },
-    {
-        "id": "Arrow.API-property-action-platform",
-        "url": "Arrow.API-property-action",
-        "type": "platform",
-        "name": "Arrow.API.action",
-        "content": "Arrow.API.action action Logic to execute when the endpoint is invoked by the client application. The function is passed a request object, response object and next() function. You should always make sure that the action function calls the next() function regardless if the result is a success or an error. Function"
-    },
-    {
-        "id": "Arrow.API-property-after-platform",
-        "url": "Arrow.API-property-after",
-        "type": "platform",
-        "name": "Arrow.API.after",
-        "content": "Arrow.API.after after One or more Blocks to be executed after the request. Blocks are referenced by their name property. If you want to execute multiple blocks, you should specify them as an array of block names. If multiple blocks are specified, they are executed in the order specified. Specify either after or post but not both. String/Array"
-    },
-    {
-        "id": "Arrow.API-property-app-platform",
-        "url": "Arrow.API-property-app",
-        "type": "platform",
-        "name": "Arrow.API.app",
-        "content": "Arrow.API.app app Express app instance. Object"
-    },
-    {
-        "id": "Arrow.API-property-before-platform",
-        "url": "Arrow.API-property-before",
-        "type": "platform",
-        "name": "Arrow.API.before",
-        "content": "Arrow.API.before before One or more Blocks to be executed before the request. Blocks are referenced by their name property. If you want to execute multiple blocks, you should specify them as an array of block names. If multiple blocks are specified, they are executed in the order specified. Specify either before or pre but not both. String/Array"
-    },
-    {
-        "id": "Arrow.API-property-config-platform",
-        "url": "Arrow.API-property-config",
-        "type": "platform",
-        "name": "Arrow.API.config",
-        "content": "Arrow.API.config config Configuration object used to initialize the API instance. Object"
-    },
-    {
-        "id": "Arrow.API-property-constructor-platform",
-        "url": "Arrow.API-property-constructor",
-        "type": "platform",
-        "name": "Arrow.API.constructor",
-        "content": "Arrow.API.constructor constructor Custom constructor to execute custom initialization logic. The new API instance is passed to this in the function. Function"
-    },
-    {
-        "id": "Arrow.API-property-description-platform",
-        "url": "Arrow.API-property-description",
-        "type": "platform",
-        "name": "Arrow.API.description",
-        "content": "Arrow.API.description description Human-readable description of the API, which is used by the generated API documentation. String"
-    },
-    {
-        "id": "Arrow.API-property-filename-platform",
-        "url": "Arrow.API-property-filename",
-        "type": "platform",
-        "name": "Arrow.API.filename",
-        "content": "Arrow.API.filename filename File used to load the API instance. String"
-    },
-    {
-        "id": "Arrow.API-property-group-platform",
-        "url": "Arrow.API-property-group",
-        "type": "platform",
-        "name": "Arrow.API.group",
-        "content": "Arrow.API.group group Logical name for the API grouping. String"
-    },
-    {
-        "id": "Arrow.API-property-method-platform",
-        "url": "Arrow.API-property-method",
-        "type": "platform",
-        "name": "Arrow.API.method",
-        "content": "Arrow.API.method method HTTP verb: GET, PUT, POST or DELETE. String"
-    },
-    {
-        "id": "Arrow.API-property-model-platform",
-        "url": "Arrow.API-property-model",
-        "type": "platform",
-        "name": "Arrow.API.model",
-        "content": "Arrow.API.model model The model to use for the request. Passed as the model property in the request and response objects of the action function. Arrow.Model"
-    },
-    {
-        "id": "Arrow.API-property-nickname-platform",
-        "url": "Arrow.API-property-nickname",
-        "type": "platform",
-        "name": "Arrow.API.nickname",
-        "content": "Arrow.API.nickname nickname Alternative identifier for the API. By default, the API is identified by its path and HTTP verb. If you do not specify a nickname, this property will be set to the path. String"
-    },
-    {
-        "id": "Arrow.API-property-parameters-platform",
-        "url": "Arrow.API-property-parameters",
-        "type": "platform",
-        "name": "Arrow.API.parameters",
-        "content": "Arrow.API.parameters parameters Input parameters required to execute the API endpoint. This is an object of key-value pairs, where the key is the name of the parameter and the value is an object with the following properties: optional (Boolean): Determines if the parameter is optional (true) or required (false). type (String): the type of input parameter: path or query. description (String): used for generating API documentation. Object"
-    },
-    {
-        "id": "Arrow.API-property-path-platform",
-        "url": "Arrow.API-property-path",
-        "type": "platform",
-        "name": "Arrow.API.path",
-        "content": "Arrow.API.path path API endpoint. String"
-    },
-    {
-        "id": "Arrow.API-property-plural-platform",
-        "url": "Arrow.API-property-plural",
-        "type": "platform",
-        "name": "Arrow.API.plural",
-        "content": "Arrow.API.plural plural A string used as the property name when your API endpoint returns an array. By default, the plural value is the plural of the model name. For example, if your model is named car, the default plural would be cars. String"
-    },
-    {
-        "id": "Arrow.API-property-post-platform",
-        "url": "Arrow.API-property-post",
-        "type": "platform",
-        "name": "Arrow.API.post",
-        "content": "Arrow.API.post post One or more Blocks to be executed after the request. Blocks are referenced by their name property. If you want to execute multiple blocks, you should specify them as an array of block names. If multiple blocks are specified, they are executed in the order specified. Specify either after or post but not both. String/Array"
-    },
-    {
-        "id": "Arrow.API-property-pre-platform",
-        "url": "Arrow.API-property-pre",
-        "type": "platform",
-        "name": "Arrow.API.pre",
-        "content": "Arrow.API.pre pre One or more Blocks to be executed before the request. Blocks are referenced by their name property. If you want to execute multiple blocks, you should specify them as an array of block names. If multiple blocks are specified, they are executed in the order specified. Specify either before or pre but not both. String/Array"
-    },
-    {
-        "id": "Arrow.API-property-response-platform",
-        "url": "Arrow.API-property-response",
-        "type": "platform",
-        "name": "Arrow.API.response",
-        "content": "Arrow.API.response response The model to use for the response. Only use the property if your request and response models are different. Passed as the modelResponse property in the request and response objects of the action function. Arrow.Model"
-    },
-    {
-        "id": "Arrow.API-property-route-platform",
-        "url": "Arrow.API-property-route",
-        "type": "platform",
-        "name": "Arrow.API.route",
-        "content": "Arrow.API.route route Express route instance that binds the endpoint to the logic. Object"
-    },
-    {
-        "id": "Arrow.API-property-singular-platform",
-        "url": "Arrow.API-property-singular",
-        "type": "platform",
-        "name": "Arrow.API.singular",
-        "content": "Arrow.API.singular singular A string used as the property name when your API endpoint returns a single record. By default, the singular value is the name of the model. String"
-    },
-    {
-        "id": "Arrow.API-property-timestamp-platform",
-        "url": "Arrow.API-property-timestamp",
-        "type": "platform",
-        "name": "Arrow.API.timestamp",
-        "content": "Arrow.API.timestamp timestamp Datetime when the route was last synced. String"
-    },
-    {
-        "id": "Arrow.API-method-constructor-platform",
-        "url": "Arrow.API-method-constructor",
-        "type": "platform",
-        "name": "Arrow.API.constructor",
-        "content": "Arrow.API.constructor constructor Creates a new API instance. impl Dictionary Implementation object. Set any API properties on the object except the ones marked non-creation. The following properties must be set: action, description, group and path. config Object API Builder configuration object. arrow Arrow API Builder instance. return Arrow.API "
-    },
-    {
-        "id": "Arrow.API-method-bind-platform",
-        "url": "Arrow.API-method-bind",
-        "type": "platform",
-        "name": "Arrow.API.bind",
-        "content": "Arrow.API.bind bind Binds this API to the app instance app Object App instance. return void"
-    },
-    {
-        "id": "Arrow.API-method-execute-platform",
-        "url": "Arrow.API-method-execute",
-        "type": "platform",
-        "name": "Arrow.API.execute",
-        "content": "Arrow.API.execute execute Executes this API with the specified parameters. Results are sent to to the callback. params Object API parameters. callback Function Callback passed an Error object (or null if successful) and the results. return void"
-    },
-    {
-        "id": "Arrow.API-method-executeAfterEvent-platform",
-        "url": "Arrow.API-method-executeAfterEvent",
-        "type": "platform",
-        "name": "Arrow.API.executeAfterEvent",
-        "content": "Arrow.API.executeAfterEvent executeAfterEvent Handles sending pubsub event if afterEvent property is set on the API req Object resp Object callback Object return void"
-    },
-    {
-        "id": "Arrow.API-method-executeBeforeEvent-platform",
-        "url": "Arrow.API-method-executeBeforeEvent",
-        "type": "platform",
-        "name": "Arrow.API.executeBeforeEvent",
-        "content": "Arrow.API.executeBeforeEvent executeBeforeEvent Handles sending pubsub event if beforeEvent property is set on the API req Object resp Object callback Object return void"
-    },
-    {
-        "id": "Arrow.API-method-executeEventTransform-platform",
-        "url": "Arrow.API-method-executeEventTransform",
-        "type": "platform",
-        "name": "Arrow.API.executeEventTransform",
-        "content": "Arrow.API.executeEventTransform executeEventTransform Handles event transformation if a eventTransformer property is set on the API when Object name Object data Object req Object resp Object callback Object return void"
-    },
-    {
-        "id": "Arrow.API-method-extend-platform",
-        "url": "Arrow.API-method-extend",
-        "type": "platform",
-        "name": "Arrow.API.extend",
-        "content": "Arrow.API.extend extend Returns a constructor function to generate a new API by extending this instance. Pass the constructor an Arrow configuration object, Arrow instance, and optionally a filename. impl Dictionary Implementation object. return Function "
-    },
-    {
-        "id": "Arrow.API-method-getRequestURL-platform",
-        "url": "Arrow.API-method-getRequestURL",
-        "type": "platform",
-        "name": "Arrow.API.getRequestURL",
-        "content": "Arrow.API.getRequestURL getRequestURL for a request, return a url req Object return void"
-    },
-    {
-        "id": "Arrow.API-method-reload-platform",
-        "url": "Arrow.API-method-reload",
-        "type": "platform",
-        "name": "Arrow.API.reload",
-        "content": "Arrow.API.reload reload Reloads the API for the Arrow instance. arrow Object Arrow instance. callback Function Callback passed an Error object (or null if successful) and the reloaded API. return void"
-    },
-    {
-        "id": "Arrow.API-method-remove-platform",
-        "url": "Arrow.API-method-remove",
-        "type": "platform",
-        "name": "Arrow.API.remove",
-        "content": "Arrow.API.remove remove Removes the API from the Arrow instance. arrow Object Arrow instance. callback Function Callback passed an Error object (or null if successful) and the removed API. return void"
-    },
-    {
-        "name": "HtmlRendererEngine",
-        "id": "HtmlRendererEngine-platform",
-        "url": "HtmlRendererEngine",
-        "type": "platform",
-        "content": "HtmlRendererEngine Renderer engine for HTML templates. "
-    },
-    {
-        "id": "ArrowRendererEngine-property-extension-platform",
-        "url": "ArrowRendererEngine-property-extension",
-        "type": "platform",
-        "name": "ArrowRendererEngine.extension",
-        "content": "ArrowRendererEngine.extension extension File extension the renderer engine will handle. String"
-    },
-    {
-        "id": "ArrowRendererEngine-method-createRenderer-platform",
-        "url": "ArrowRendererEngine-method-createRenderer",
-        "type": "platform",
-        "name": "ArrowRendererEngine.createRenderer",
-        "content": "ArrowRendererEngine.createRenderer createRenderer Returns a function to generate the HTML. Pass the returned function the path of the template file, a context object (data to pass to the template), and a callback passed an Error object (or null if successful) and the HTML to render. content String Template string to compile and render. Set to null if skipread is true. filename String Path of the template file. app Object Express app instance. return Function "
-    },
-    {
         "name": "EjsRendererEngine",
         "id": "EjsRendererEngine-platform",
         "url": "EjsRendererEngine",
@@ -3526,6 +3505,27 @@
         "type": "platform",
         "name": "HandlebarsRendererEngine.registerPartials",
         "content": "HandlebarsRendererEngine.registerPartials registerPartials Loops through a directory and sets up all of the associated files as Handlebar Partials. dir String Path of the directory to use as partials directory watch Boolean Set to true to monitor and update file changes. return void"
+    },
+    {
+        "name": "HtmlRendererEngine",
+        "id": "HtmlRendererEngine-platform",
+        "url": "HtmlRendererEngine",
+        "type": "platform",
+        "content": "HtmlRendererEngine Renderer engine for HTML templates. "
+    },
+    {
+        "id": "ArrowRendererEngine-property-extension-platform",
+        "url": "ArrowRendererEngine-property-extension",
+        "type": "platform",
+        "name": "ArrowRendererEngine.extension",
+        "content": "ArrowRendererEngine.extension extension File extension the renderer engine will handle. String"
+    },
+    {
+        "id": "ArrowRendererEngine-method-createRenderer-platform",
+        "url": "ArrowRendererEngine-method-createRenderer",
+        "type": "platform",
+        "name": "ArrowRendererEngine.createRenderer",
+        "content": "ArrowRendererEngine.createRenderer createRenderer Returns a function to generate the HTML. Pass the returned function the path of the template file, a context object (data to pass to the template), and a callback passed an Error object (or null if successful) and the HTML to render. content String Template string to compile and render. Set to null if skipread is true. filename String Path of the template file. app Object Express app instance. return Function "
     },
     {
         "name": "MarkdownRendererEngine",
