@@ -92,7 +92,7 @@
         <p><tt class=" ">appname</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The name of the app to retrieve and show access logs for. If omitted, you must run the command in the application&apos;s root directory, or specify the application&apos;s directory with &apos;-d&apos; option.    </p>
+        <p>The name of the application to retrieve and show access logs for. If omitted, you must run the command in the application&apos;s root directory, or specify the application&apos;s directory with the <tt class=" ">-d</tt> option.    </p>
             </td>
         </tr>
     <tr>
@@ -100,7 +100,7 @@
         <p><tt class=" ">--server_id &lt;serverid&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Id of the server which the logs from. An app may be deployed to multiple servers in the cloud.    </p>
+        <p>The ID of the server which the logs are from. An application may be deployed to multiple servers in the cloud.    </p>
             </td>
         </tr>
     <tr>
@@ -162,7 +162,7 @@
 </tbody>        </table>
             </div>
     <p>    <span style="color: #222222;">
-Dates are specified as YYYY-MM-DD or &quot;YYYY-MM-DD HH:MM&quot;. Note that if the time is included, the date string must be quoted. If the specified date range contains more than specified maximum number of logs, the most recent messages will be returned.    </span>
+Dates are specified as YYYY-MM-DD or &quot;YYYY-MM-DD HH:MM&quot;. Note that if the time is included, the date string must be quoted. If the specified date range contains more than the specified maximum number of logs, the most recent messages will be returned.    </span>
     </p>
     </div>
     <div class="section section-3 " id="src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-add">
@@ -326,13 +326,12 @@ The     </span>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Sets an environment variable.    </p>
-    <p>To set more than one variable, comma separate the key-value pairs. For example:    </p>
+    <p>To set more than one variable, use comma separated key-value pairs. For example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">acs config --set </code><code class="string">&quot;extra_hosts=54.219.6.230 www.163.com;54.219.6.230 www.123.com&quot;</code></div>
 </div>
     </div>
-    <p>    </p>
     <p>To access the variable in the application, prefix the variable with the <tt class=" ">process.env</tt> namespace.    </p>
             </td>
         </tr>
@@ -725,7 +724,7 @@ Lists the application&apos;s log within a specific period. By default, a maximum
         <p><tt class=" ">appname</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The name of the app to retrieve and show runtime logs for. If omitted, you must run the command in the application&apos;s root directory, or specify the application&apos;s directory with <tt class=" ">-d</tt> option.    </p>
+        <p>The name of the app to retrieve and show runtime logs for. If omitted, you must run the command in the application&apos;s root directory, or specify the application&apos;s directory with the <tt class=" ">-d</tt> option.    </p>
             </td>
         </tr>
     <tr>
@@ -733,7 +732,7 @@ Lists the application&apos;s log within a specific period. By default, a maximum
         <p><tt class=" ">--server_id &lt;serverid&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>ID of the server to retrieve logs from. An application may be deployed to multiple servers in the cloud.    </p>
+        <p>The ID of the server to retrieve logs from. An application may be deployed to multiple servers in the cloud.    </p>
             </td>
         </tr>
     <tr>
@@ -1316,7 +1315,7 @@ Check server system resource usage within a specific period. The server in cloud
         <p><tt class=" ">--page_number &lt; page_number&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Page of usage log output to display, where 1 is the most recent.    </p>
+        <p>The page number of usage log output to display, where 1 is the most recent.    </p>
             </td>
         </tr>
     <tr>
@@ -1324,7 +1323,7 @@ Check server system resource usage within a specific period. The server in cloud
         <p><tt class=" ">--per_page &lt; per_page&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Number of usage logs per page. Default: 100    </p>
+        <p>The number of usage logs per page. Default: 100    </p>
             </td>
         </tr>
     <tr>

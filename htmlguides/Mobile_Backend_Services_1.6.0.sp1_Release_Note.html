@@ -22,11 +22,11 @@
     <p>As of this release, the previous MBS patch release is no longer supported. Note: Major and minor releases continue to be supported according to their nominal lifetime. See <a class="document-link " href="Axway_Appcelerator_Deprecation_Policy.html">Axway Appcelerator Deprecation Policy</a> and <a class="document-link " href="Axway_Appcelerator_Product_Lifecycle.html#src-50725170_AxwayAppceleratorProductLifecycle-NominalLifetimes">Nominal Lifetimes</a> documents for details.    </p>
     <p>MBS 1.6.0.sp1 introduces mandatory dedication of three (3) swarm manager VMs in production cluster. If you have a production deployment using 1.6.0 on-premise cluster, you will need to add these additional swarm manager hosts by following these steps:    </p>
 <ol class=" "><li class=" ">    <p>Prepare three additional hosts according to the requirements when setting up the cluster initially. There should be three swarm managers running and services running on the manager nodes will be moved to the three new hosts.    </p>
-</li><li class=" ">    <p>Use <tt class=" ">arrowcluster add-host</tt> command to provision the three new hosts.    </p>
+</li><li class=" ">    <p>Use the <tt class=" ">arrowcluster add-host</tt> command to provision the three new hosts.    </p>
 </li><li class=" ">    <p>Use <tt class=" ">ssh</tt> to connect to one of the manager nodes. Then use <tt class=" ">docker node ls -f role=manager</tt> to find all the swarm managers.    </p>
 </li><li class=" ">    <p>Execute <tt class=" ">docker node update &lt;node-id&gt; --availability=drain</tt> for each manager node.    </p>
 </li><li class=" ">    <p>Wait about two minutes and execute <tt class=" ">arrowcluster verify postinstall</tt> command to verify all services are working well.    </p>
-</li></ol>    <p>Note: Users should use arrowcluster 1.6.1.    </p>
+</li></ol>    <p>Note: Users should use ArrowCluster 1.6.1.    </p>
     <div class="section section-2 " id="src-50725282_MobileBackendServices1.6.0.sp1ReleaseNote-Requirements">
         <h2 class="heading "><span>Requirements</span></h2>
     <p>For this release, existing clusters are required to upgrade Docker to version 17.06 and install NTP.    </p>
