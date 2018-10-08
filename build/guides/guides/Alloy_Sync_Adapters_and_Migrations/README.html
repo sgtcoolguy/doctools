@@ -23,6 +23,7 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Alloy_Sync_Adapters_and_Migrations-section-src-36739597_AlloySyncAdaptersandMigrations-BackboneSync">Backbone Sync</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Alloy_Sync_Adapters_and_Migrations-section-src-36739597_AlloySyncAdaptersandMigrations-Ready-MadeSyncAdapters">Ready-Made Sync Adapters</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Alloy_Sync_Adapters_and_Migrations-section-src-36739597_AlloySyncAdaptersandMigrations-SQLiteSyncAdapter">SQLite Sync Adapter</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Alloy_Sync_Adapters_and_Migrations-section-src-36739597_AlloySyncAdaptersandMigrations-ColumnsacceptSQLitekeywords">Columns accept SQLite keywords</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Alloy_Sync_Adapters_and_Migrations-section-src-36739597_AlloySyncAdaptersandMigrations-CustomSyncAdapters">Custom Sync Adapters</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Alloy_Sync_Adapters_and_Migrations-section-src-36739597_AlloySyncAdaptersandMigrations-Example">Example</a>    </p>
 </li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Alloy_Sync_Adapters_and_Migrations-section-src-36739597_AlloySyncAdaptersandMigrations-Migrations">Migrations</a>    </p>
@@ -182,9 +183,10 @@
 <div class="line"><code class="plain">myModel.fetch({query: </code><code class="string">&apos;select * from ... where id = &apos;</code><code class="plain"> + </code><code class="value">123</code><code class="plain"> });</code></div>
 </div>
     </div>
-    <p>    <span style="color: #000000;">
-Columns accept SQLite keywords    </span>
-    </p>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-36739597_AlloySyncAdaptersandMigrations-ColumnsacceptSQLitekeywords">
+        <h4 class="heading "><span>Columns accept SQLite keywords</span></h4>
     <p>The columns values accept SQLite keywords, such as AUTOINCREMENT and PRIMARY KEY.  For example, the Alloy model file below defines the <tt class=" ">book_id</tt> to be an auto-incremented, primary key in the <tt class=" ">books</tt> table.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/models/book.js</div>
@@ -204,7 +206,6 @@ Columns accept SQLite keywords    </span>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
-    </div>
     </div>
     <div class="section section-5 " id="src-36739597_AlloySyncAdaptersandMigrations-SpecifycolumnspropertyasprimaryID">
         <h5 class="heading "><span>Specify columns property as primary ID</span></h5>
