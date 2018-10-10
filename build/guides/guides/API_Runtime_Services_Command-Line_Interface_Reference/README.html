@@ -24,7 +24,6 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-acscommands">acs commands</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-accesslog">accesslog</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-add">add</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-autoshutdown">autoshutdown</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-config">config</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-crt">crt</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Runtime_Services_Command-Line_Interface_Reference-section-src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-domain">domain</a>    </p>
@@ -129,14 +128,6 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--org &lt;orgID&gt;</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The ID of the organization the application belongs to. This parameter only is required if the target application has the same name as an application in another organization you belong to.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
         <p><tt class=" ">--per_page &lt;per_page&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
@@ -149,6 +140,22 @@
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Display the next page of log messages.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">--full_content</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Show full access logs.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">--org &lt;orgID&gt;</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The ID of the organization the application belongs to. This parameter only is required if the target application has the same name as an application in another organization you belong to.    </p>
             </td>
         </tr>
     <tr>
@@ -218,43 +225,6 @@ parameter specifies the new the route&apos;s name, as well as the name of the ha
 </tbody>        </table>
             </div>
     </div>
-    <div class="section section-3 " id="src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-autoshutdown">
-        <h3 class="heading "><span>autoshutdown</span></h3>
-    <p>Automatically deactivate non-development containers after the specified number of seconds.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">acs autoshutdown &lt;n&gt;</code></div>
-</div>
-    </div>
-    <div class="tablewrap">
-        <table class="confluenceTable">
-        <thead class=" ">    <tr>
-            <td class="confluenceTh" rowspan="1" colspan="1">
-        <p>Name    </p>
-            </td>
-                <td class="confluenceTh" rowspan="1" colspan="1">
-        <p>Description    </p>
-            </td>
-        </tr>
-</thead><tfoot class=" "/><tbody class=" ">    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">&lt;n&gt;</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The number of seconds. This value needs to be set to greater than 3600 or set to 0. If the value is not set or is set to 0, the application will not deactivate if its type is not development. <strong class=" ">Note:</strong> Development containers will still be deactivated after 7 days of inactivity.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">-h</tt>, <tt class=" ">--help</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Show help information for this command.    </p>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
-    </div>
     <div class="section section-3 " id="src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-config">
         <h3 class="heading "><span>config</span></h3>
     <p>    <span style="color: #222222;">
@@ -290,6 +260,14 @@ The     </span>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">--org &lt;orgid&gt;</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The ID of the organization the application belongs to. This parameter only is required if the target application has the same name as an application in another organization you belong to.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
         <p><tt class=" ">--autoscaleup</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
@@ -306,33 +284,10 @@ The     </span>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--env</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Lists set environment variables.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--maxqueuedrequests &lt;n&gt;</tt>    </p>
+        <p><tt class=" ">--maxqueuedrequests &lt;var&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Specifies the maximum number of queued requests for autoscaling to occur. The number should be based on the response time of your application; the longer the response time is, the smaller this value should be. API Runtime Services will increase the number of containers if the queue is too high for at least one minute. The default value is 50.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--set &lt;key&gt;=&lt;value&gt;</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Sets an environment variable.    </p>
-    <p>To set more than one variable, use comma separated key-value pairs. For example:    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">acs config --set </code><code class="string">&quot;extra_hosts=54.219.6.230 www.163.com;54.219.6.230 www.123.com&quot;</code></div>
-</div>
-    </div>
-    <p>To access the variable in the application, prefix the variable with the <tt class=" ">process.env</tt> namespace.    </p>
             </td>
         </tr>
     <tr>
@@ -353,7 +308,46 @@ The     </span>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--unset &lt;key&gt;</tt>    </p>
+        <p><tt class=" ">--maxconn &lt;n&gt;</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Set the maximum per-server number of concurrent connections for app.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">--maxconnws &lt;n&gt;</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Set the maximum per-server number of concurrent websocket connections for app.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">--autoshutdown &lt;n&gt;</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Automatically deactivate non-development container after n seconds (value needs to be greater than 3600 or set to 0). If the value is not set or set to 0, the app will not deactivate if its type isn&apos;t development. Regardless, development containers will still be deactivated after 7 days of inactivity.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">--set &lt;var&gt;</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Sets an environment variable.    </p>
+    <p>To set more than one variable, use comma separated key-value pairs. For example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">acs config --set </code><code class="string">&quot;extra_hosts=54.219.6.230 www.163.com;54.219.6.230 www.123.com&quot;</code></div>
+</div>
+    </div>
+    <p>To access the variable in the application, prefix the variable with the <tt class=" ">process.env</tt> namespace.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">--unset &lt;var&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Unsets the specified environment variable.    </p>
@@ -361,18 +355,10 @@ The     </span>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--usagenotice</tt>    </p>
+        <p><tt class=" ">--env</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Boolean (default is true). Enables or disables app resource usage email notification.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--org orgID</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The ID of the organization the application belongs to. This parameter only is required if the target application has the same name as an application in another organization you belong to.    </p>
+        <p>Lists set environment variables.    </p>
             </td>
         </tr>
     <tr>
@@ -416,10 +402,10 @@ Manages custom SSL certificates for accessing your application via HTTPS.    </s
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--add &lt;PEM-file&gt;</tt>    </p>
+        <p><tt class=" ">--add &lt;cert&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Adds the SSL certificate contained by the specified PEM file.    </p>
+        <p>Add a certificate for the app. The certificate should be a PEM file containing a signed certificate, all intermediate certificates, and a private key (pass phrase eliminated).    </p>
             </td>
         </tr>
     <tr>
@@ -432,10 +418,18 @@ Manages custom SSL certificates for accessing your application via HTTPS.    </s
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--orgorgID</tt>    </p>
+        <p><tt class=" ">--org &lt;orgid&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>The ID of the organization the application belongs to. This parameter only is required if the target application has the same name as an application in another organization you belong to.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">-h</tt>, <tt class=" ">--help</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Displays help information about the command.    </p>
             </td>
         </tr>
 </tbody>        </table>
@@ -473,6 +467,38 @@ URL.    </span>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">--set &lt;domain&gt;</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Set domain binding for the application to the specified domain name. A domain record must exist for the specified domain name, pointing to the application&apos;s <tt class=" ">cloud.appcelerator.com</tt> URL. Do not specify the protocol, that is, do not add `http://` or `https://`, when setting this parameter. You may bind up to five domain names to the application.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">--remove [domain]</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Remove domain binding from the application. If the application has more than one domain, you will be prompted to select the domain to remove or you can optionally specify the domain to remove.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">--org &lt;orgid&gt;</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The ID of the organization the application belongs to. This parameter only is required if the target application has the same name as an application in another organization you belong to.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">--path &lt;path&gt;</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Specifies a URL path for routing. Use this parameter when setting more than one application to the same domain name. Set the domain first.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
         <p><tt class=" ">--check</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
@@ -481,34 +507,10 @@ URL.    </span>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--path &lt;path_name&gt;</tt>    </p>
+        <p><tt class=" ">-h</tt>, <tt class=" ">--help</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Specifies a URL path for routing. Use this parameter when setting more than one application to the same domain name. Set the domain first.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--set &lt;domain_name&gt;</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Set domain binding for the application to the specified domain name. A domain record must exist for the specified domain name, pointing to the application&apos;s <tt class=" ">cloud.appcelerator.com</tt> URL. Do not specify the protocol, that is, do not add `http://` or `https://`, when setting this parameter. You may bind up to five domain names to the application.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--remove [domain_name]</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Remove domain binding from the application. If the application has more than one domain, you will be prompted to select the domain to remove or you can optionally specify the domain to remove.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--org &lt;orgID&gt;</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The ID of the organization the application belongs to. This parameter only is required if the target application has the same name as an application in another organization you belong to.    </p>
+        <p>Displays help information about the command.    </p>
             </td>
         </tr>
 </tbody>        </table>
@@ -519,7 +521,7 @@ URL.    </span>
     <p>Shows a list of applications owned by the current user. By default, data is listed for all applications. You can specify an application name to only show details for that application. The information returned by this command also includes error messages, if any, related to the application&apos;s deployment and execution.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">acs list [ appname | -h ]</code></div>
+<div class="line"><code class="plain">acs list [options] [appname]</code></div>
 </div>
     </div>
     <div class="tablewrap">
@@ -533,6 +535,14 @@ URL.    </span>
             </td>
         </tr>
 </thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">appname</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Name of the app to list information for.    </p>
+            </td>
+        </tr>
+    <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
         <p><tt class=" ">--mine</tt>    </p>
             </td>
@@ -554,14 +564,6 @@ URL.    </span>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Show all servers in the result if there are more than ten servers; otherwise, only servers whose status are not deployed will be shown.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">appname</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Name of the app to list information for.    </p>
             </td>
         </tr>
     <tr>
