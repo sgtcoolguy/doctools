@@ -18,356 +18,54 @@
 
         <div id="src-43316487" class="content">
                         <h1>Titanium SDK Release Notes</h1>
-    <div class="section section-2 " id="src-43316487_TitaniumSDKReleaseNotes-TitaniumSDK7.4.0.GA-17September2018">
-        <h2 class="heading "><span>Titanium SDK 7.4.0.GA - 17 September 2018</span></h2>
+    <div class="section section-2 " id="src-43316487_TitaniumSDKReleaseNotes-TitaniumSDK7.4.1.RC-12October2018">
+        <h2 class="heading "><span>Titanium SDK 7.4.1.RC - 12 October 2018</span></h2>
+    <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes.html#src-43316487_TitaniumSDKReleaseNotes-Aboutthisrelease">About this release</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes.html#src-43316487_TitaniumSDKReleaseNotes-Newfeatures">New features</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes.html#src-43316487_TitaniumSDKReleaseNotes-iOSplatform">iOS platform</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes.html#src-43316487_TitaniumSDKReleaseNotes-Fixedissues">Fixed issues</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes.html#src-43316487_TitaniumSDKReleaseNotes-Communitycredits">Community credits</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes.html#src-43316487_TitaniumSDKReleaseNotes-Fixedissues">Fixed issues</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes.html#src-43316487_TitaniumSDKReleaseNotes-Improvements">Improvements</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes.html#src-43316487_TitaniumSDKReleaseNotes-Knownissues">Known issues</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes.html#src-43316487_TitaniumSDKReleaseNotes-APIchanges">API changes</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Titanium_SDK_Release_Notes.html#src-43316487_TitaniumSDKReleaseNotes-NewAPIs">New APIs</a>    </p>
-</li></ul></li></ul>    <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-Aboutthisrelease">
+</li></ul>    <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-Aboutthisrelease">
         <h3 class="heading "><span>About this release</span></h3>
-    <p>Titanium SDK 7.4.0.GA is a minor release of the SDK that focuses on supporting iOS 12 and Xcode 10 updates.    </p>
-    <p>As of this release, Titanium SDK 7.3.x will not be supported six months from 7.4.0.GA&apos;s release date. See <a class="document-link " href="Axway_Appcelerator_Deprecation_Policy.html">Axway Appcelerator Deprecation Policy</a> and <a class="document-link " href="Axway_Appcelerator_Product_Lifecycle.html#src-50725170_AxwayAppceleratorProductLifecycle-NominalLifetimes">Nominal Lifetimes</a> documents for details.    </p>
+    <p>Titanium SDK 7.4.1.RC is a patch release of the SDK, addressing high-priority issues from previous releases.    </p>
+    <p>As of this GA release, the previous Titanium SDK patch release is no longer supported. Note: major and minor releases continue to be supported according to their nominal lifetime. See <a class="document-link " href="Axway_Appcelerator_Deprecation_Policy.html">Axway Appcelerator Deprecation Policy</a> and <a class="document-link " href="Axway_Appcelerator_Product_Lifecycle.html#src-50725170_AxwayAppceleratorProductLifecycle-NominalLifetimes">Nominal Lifetimes</a> documents for details.    </p>
     </div>
-    <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-Newfeatures">
-        <h3 class="heading "><span>New features</span></h3>
-    <div class="section section-4 " id="src-43316487_TitaniumSDKReleaseNotes-iOSplatform">
-        <h4 class="heading "><span>iOS platform</span></h4>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25708">TIMOB-25708</a> - iOS: Support iOS 12 and Xcode 10    </p>
-<ul class=" "><li class=" ">    <p>Implemented support Xcode 10 and iOS 12    </p>
-</li></ul></li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26312">TIMOB-26312</a> - iOS 12 : Expose new NSUserActivity APIs for Siri Intents    </p>
-<ul class=" "><li class=" ">    <p>Added support NSUserActivity API    </p>
-</li><li class=" ">    <p>Sample app    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({</code></div>
-<div class="line"><code class="plain">  backgroundColor: </code><code class="string">&apos;#fff&apos;</code></div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> identifierBtn = Ti.UI.createButton({</code></div>
-<div class="line"><code class="plain">  top: 100,</code></div>
-<div class="line"><code class="plain">  title: </code><code class="string">&apos;Persistent Identifier&apos;</code></div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> btn = Ti.UI.createButton({</code></div>
-<div class="line"><code class="plain">  top: 200,</code></div>
-<div class="line"><code class="plain">  title: </code><code class="string">&apos;Delete UserActivity for identifier&apos;</code></div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> deleteBtn = Ti.UI.createButton({</code></div>
-<div class="line"><code class="plain">  top: 300,</code></div>
-<div class="line"><code class="plain">  title: </code><code class="string">&apos;Delete All UserActivity&apos;</code></div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> itemAttr = Ti.App.iOS.createSearchableItemAttributeSet({</code></div>
-<div class="line"><code class="plain">  itemContentType: Ti.App.iOS.UTTYPE_IMAGE,</code></div>
-<div class="line"><code class="plain">  title: </code><code class="string">&apos;Titanium Siri Shortcut Tutorial&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">  contentDescription: </code><code class="string">&apos;Tech Example \nOn: &apos;</code><code class="plain"> + (</code><code class="keyword">new</code><code class="plain"> Date().toLocaleString()),</code></div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> activity = Ti.App.iOS.createUserActivity({</code></div>
-<div class="line"><code class="plain">  activityType: </code><code class="string">&apos;com.appcelerator.titanium&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">  title: </code><code class="string">&apos;Siri shortcut activity&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">  userInfo: {</code></div>
-<div class="line"><code class="plain">    msg: </code><code class="string">&apos;hello world&apos;</code></div>
-<div class="line"><code class="plain">  },</code></div>
-<div class="line"><code class="plain">  eligibleForSearch: </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">  eligibleForPrediction: </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">  persistentIdentifier: </code><code class="string">&apos;titanium_siri_identifier&apos;</code></div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">activity.addContentAttributeSet(itemAttr);</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="keyword">if</code><code class="plain"> (!activity.isSupported()) {</code></div>
-<div class="line"><code class="plain">  alert(</code><code class="string">&apos;User Activities are not supported on this device!&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">} </code><code class="keyword">else</code><code class="plain"> {</code></div>
-<div class="line"><code class="plain">  activity.becomeCurrent();</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">  Ti.App.iOS.addEventListener(</code><code class="string">&apos;continueactivity&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
-<div class="line"><code class="plain">    Ti.API.info(</code><code class="string">&apos;continueactivity called&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (e.activityType === </code><code class="string">&apos;com.appcelerator.titanium&apos;</code><code class="plain"> &amp;&amp; e.userInfo.msg) {</code></div>
-<div class="line"><code class="plain">      alert(e.userInfo.msg);</code></div>
-<div class="line"><code class="plain">    }</code></div>
-<div class="line"><code class="plain">  });</code></div>
-<div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">activity.addEventListener(</code><code class="string">&apos;useractivitydeleted&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
-<div class="line"><code class="plain">  Ti.API.info(</code><code class="string">&apos;useractivitydeleted called&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">  alert(</code><code class="string">&apos;user activity deleted&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">btn.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">() {</code></div>
-<div class="line"><code class="plain">  activity.deleteSavedUserActivitiesForPersistentIdentifiers(</code><code class="string">&apos;titanium_siri_identifier&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">identifierBtn.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">() {</code></div>
-<div class="line"><code class="plain">  Ti.API.info(</code><code class="string">&apos;persistent identfier is: &apos;</code><code class="plain"> +activity.persistentIdentifier);</code></div>
-<div class="line"><code class="plain">  Ti.API.info(</code><code class="string">&apos;\neligibleForPrediction is: &apos;</code><code class="plain"> +activity.eligibleForPrediction);</code></div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">deleteBtn.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">() {</code></div>
-<div class="line"><code class="plain">  activity.deleteAllSavedUserActivities();</code></div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">win.add(identifierBtn);</code></div>
-<div class="line"><code class="plain">win.add(btn);</code></div>
-<div class="line"><code class="plain">win.add(deleteBtn);</code></div>
-<div class="line"><code class="plain">win.open();</code></div>
-</div>
-    </div>
-</li></ul></li></ul>    </div>
-    </div>
+    <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-Communitycredits">
+        <h3 class="heading "><span>Community credits</span></h3>
+<ul class=" "><li class=" ">    <p>Carlos Henrique Zinato - <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26391">TIMOB-26391</a>    </p>
+</li><li class=" ">    <p>Joe Falcone - <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26404">TIMOB-26404</a>    </p>
+</li><li class=" ">    <p>Tom Giessel - <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26413">TIMOB-26413</a>    </p>
+</li><li class=" ">    <p>Greg Balmer - <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26399">TIMOB-26399</a>    </p>
+</li><li class=" ">    <p>Richard Lustemberg - <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26444">TIMOB-26444</a>    </p>
+</li><li class=" ">    <p>Alejandro Capel - <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26433">TIMOB-26433</a>    </p>
+</li><li class=" ">    <p>Christy Thomas - <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26425">TIMOB-26425</a>    </p>
+</li></ul>    </div>
     <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-Fixedissues">
         <h3 class="heading "><span>Fixed issues</span></h3>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-25226">TIMOB-25226</a> - Xcode 9/10: Support using new build-system    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26096">TIMOB-26096</a> - iOS 12: Simulator does not boot with Xcode 10    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26097">TIMOB-26097</a> - Hyperloop: iOS 12 - Using CocoaPods in Hyperloop does not work with Xcode 10    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26103">TIMOB-26103</a> - iOS 12: Support grouped notifications    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26109">TIMOB-26109</a> - Xcode 10: Cannot build modules with the new (default) build system    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26110">TIMOB-26110</a> - Xcode 10: Cannot build application with new (default) build system    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26351">TIMOB-26351</a> - iOS CLI (Babel): Cannot read property &apos;isIfStatement&apos; of null    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26388">TIMOB-26388</a> - iOS 12: Support iPhone Xs Max &amp; iPhone XR launch-screen images    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26391">TIMOB-26391</a> - iOS: App randomly freezes on iOS 12 beta when using built-in JSCore    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26404">TIMOB-26404</a> - iOS: Cannot build hyperloop-examples app with Xcode 10 and 7.4.0 SDK    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26413">TIMOB-26413</a> - iPhone XS Max showing launch-screen images for both iPhone XS Max and iPhone XR    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26425">TIMOB-26425</a> - iOS: Crash in unregisterTimer with &apos;pointer being freed was not allocated&apos;    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26433">TIMOB-26433</a> - same error with sdk 7.4.0 GA --&gt; TIMOB-26109 Xcode 10: Cannot build modules with the new (default) build system    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26444">TIMOB-26444</a> - Calling Titanium.App.iOS.UserNotificationCenter.getDeliveredNotifications causes &apos;NSInvalidArgumentException    </p>
 </li></ul>    </div>
     <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-Improvements">
         <h3 class="heading "><span>Improvements</span></h3>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26089">TIMOB-26089</a> - iOS 12: Update simulator mappings for Xcode 10    </p>
-<ul class=" "><li class=" ">    <p>Dropped support for versions of Xcode below 9 and added support for Xcode 10    </p>
-</li></ul></li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26090">TIMOB-26090</a> - iOS 12: Make iOS development-project compatible with Xcode 10    </p>
-<ul class=" "><li class=" ">    <p>Made minor updates to Xcode template    </p>
-</li></ul></li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26094">TIMOB-26094</a> - iOS 12: Add Password Autofill improvements    </p>
-<ul class=" "><li class=" ">    <p>Added new <tt class=" ">Ti.UI.TextField</tt> API    </p>
-</li><li class=" ">    <p>Related docs:    </p>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://developer.apple.com/documentation/uikit/uitextinputpasswordrules">UITextInputPasswordRules</a>    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="https://developer.apple.com/documentation/uikit/uitextinputtraits/2980934-passwordrules">passwordRules</a>    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="https://developer.apple.com/documentation/uikit/uitextcontenttypenewpassword">UITextContentTypeNewPassword</a>    </p>
-</li><li class=" ">    <p><a class="external-link external-link" href="https://developer.apple.com/documentation/uikit/uitextcontenttypeonetimecode">UITextContentTypeOneTimeCode</a>    </p>
-</li></ul></li><li class=" ">    <p>Sample code    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({</code></div>
-<div class="line"><code class="plain">    backgroundColor: </code><code class="string">&apos;#ddd&apos;</code></div>
-<div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="keyword">var</code><code class="plain"> field = Ti.UI.createTextField({</code></div>
-<div class="line"><code class="plain">    autofillType: Ti.UI.AUTOFILL_TYPE_PASSWORD,</code></div>
-<div class="line"><code class="plain">    passwordRules: </code><code class="string">&apos;required: upper; required: lower; required: digit; max-consecutive: 2; minlength: 8;&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    passwordMask: </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    width: 300,</code></div>
-<div class="line"><code class="plain">    height: 40,</code></div>
-<div class="line"><code class="plain">    backgroundColor: </code><code class="string">&apos;#fff&apos;</code><code class="plain"> });</code></div>
-<div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">win.add(field);</code></div>
-<div class="line"><code class="plain">win.open()</code></div>
-</div>
-    </div>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26399">TIMOB-26399</a> - iOS: Several issues with push-notifications since 7.3.x    </p>
+<ul class=" "><li class=" ">    <p>Fixed notification categories on iOS 11+    </p>
 </li></ul></li></ul>    </div>
     <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-Knownissues">
         <h3 class="heading "><span>Known issues</span></h3>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-26320">TIMOB-26320</a> - Xcode 10: Cannot build native modules in Xcode IDE when using new build-system (default)    </p>
-<ul class=" "><li class=" ">    <p>Xcode cannot find the header-source-paths used before (e.g. #import &quot;TiApp.h&quot;) from ~/Library/Application Support/Titanium/mobilesdk/osx/7.3.0.GA/iphone/include/ anymore. While building the module works fine, but building the library from Xcode to debug the development process, does not work anymore. The radar is <a class="external-link external-link" href="http://www.openradar.me/40906817">rdar://40906817</a>.    </p>
-</li><li class=" ">    <p>Workaround: go to <strong class=" ">File</strong> &gt; <strong class=" ">Project Settings</strong> and select the <strong class=" ">Legacy Build System</strong>.    </p>
-</li></ul></li></ul>    </div>
+    <p><a class="external-link jira-issue-key" href="https://jira.appcelerator.org/browse/TIMOB-26391?src=confmacro">    <img src="images/jira.appcelerator.org/secure/viewavatar" alt="images/jira.appcelerator.org/secure/viewavatar" class="icon">
+TIMOB-26391</a>-iOS: App randomly freezes on iOS 12 beta when using built-in JSCoreIn Review    </p>
+<ul class="_mce_tagged_br "><li class=" ">    <p>This release addresses compatibility issues with iOS 12 that could lead to an app crash or freeze under heavy load.    </p>
+</li><li class=" ">    <p>We created a special debug build which is linked in this JIRA ticket. If you experience this issue, build and run your app using the debug build and post your logs in this JIRA ticket.    </p>
+</li></ul>    </div>
     <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-APIchanges">
         <h3 class="heading "><span>API changes</span></h3>
-    <div class="section section-4 " id="src-43316487_TitaniumSDKReleaseNotes-NewAPIs">
-        <h4 class="heading "><span>New APIs</span></h4>
-    <p>The following APIs are new or have expanded platform support in Release 7.4.0 as of September 17th, 2018.    </p>
-    <div class="tablewrap">
-        <table class="confluenceTable">
-        <thead class=" ">    <tr>
-            <td class="confluenceTh" rowspan="1" colspan="1">
-        <p>API    </p>
-            </td>
-                <td class="confluenceTh" rowspan="1" colspan="1">
-        <p>Type    </p>
-            </td>
-                <td class="confluenceTh" rowspan="1" colspan="1">
-        <p>Notes    </p>
-            </td>
-        </tr>
-</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.USER_NOTIFICATION_AUTHORIZATION_STATUS_PROVISIONAL    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The application is provisionally authorized to post non-interruptive user notifications. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.USER_NOTIFICATION_TYPE_CRITICAL_ALERT    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The ability to play sounds for critical alerts.Use with the types property. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.USER_NOTIFICATION_TYPE_PROVIDES_APP_NOTIFICATION_SETTINGS    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>An option indicating the system should display a button for in-app notification settings.Use with the types property. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.USER_NOTIFICATION_TYPE_PROVISIONAL    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>The ability to post non-interrupting notifications provisionally to the Notification Center.Use with the types property. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.UserActivity.deleteAllSavedUserActivities    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>method    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Deletes all user activities created by your app. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.UserActivity.deleteSavedUserActivitiesForPersistentIdentifiers    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>method    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Deletes user activities created by your app that have the specified persistent identifiers. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.UserActivity.eligibleForPrediction    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>A Boolean value that determines whether Siri can suggest the user activity as a shortcut to the user. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.UserActivity.getEligibleForPrediction    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>method    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Gets the value of the Titanium.App.iOS.UserActivity.eligibleForPrediction property. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.UserActivity.getPersistentIdentifier    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>method    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Gets the value of the Titanium.App.iOS.UserActivity.persistentIdentifier property. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.UserActivity.persistentIdentifier    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>A value used to identify the user activity. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.UserActivity.setEligibleForPrediction    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>method    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Sets the value of the Titanium.App.iOS.UserActivity.eligibleForPrediction property. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.UserActivity.setPersistentIdentifier    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>method    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Sets the value of the Titanium.App.iOS.UserActivity.persistentIdentifier property. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.UserActivity.useractivitydeleted    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>event    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Fired when the user activity get deleted using the Titanium.App.iOS.UserActivity.deleteAllSavedUserActivities or Titanium.App.iOS.UserActivity.deleteSavedUserActivitiesForPersistentIdentifiers methods. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.App.iOS.UserNotificationCategory.categorySummaryFormat    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>A format string for the summary description used when the system groups the category&apos;s notifications. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.UI.AUTOFILL_TYPE_NEW_PASSWORD    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Specifies the expectation of a new password. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Titanium.UI.AUTOFILL_TYPE_ONE_TIME_CODE    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>property    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Specifies the expectation of a single-factor SMS login code. (New API, supported on iPhone and iPad.)    </p>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
-    </div>
+    <p>There were no API changes in this release.    </p>
     </div>
     <div class="section section-3 " id="src-43316487_TitaniumSDKReleaseNotes-RecentReleases">
         <h3 class="heading "><span>Recent Releases</span></h3>
