@@ -1,0 +1,1147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Search and Query APIs</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-49153849" class="content">
+                        <h1>Search and Query APIs</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-QueryAPIoverview">Query API overview</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-QueryAPIavailability">Query API availability</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-Queryparameters">Query parameters</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-Querypagination">Query pagination</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-Range-basedquerypaginationexamples">Range-based query pagination examples</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5b25jdXN0b21maWVsZCxyZXN1bHRzaW5hc2NlbmRpbmdvcmRlcg">Query on custom field, results in ascending order</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5b25jdXN0b21maWVsZCxyZXN1bHRzaW5kZXNjZW5kaW5nb3JkZXI">Query on custom field, results in descending order</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5Zm9ybmV4dHBhZ2VvZnJlc3VsdHMscmVzdWx0c2luYXNjZW5kaW5nb3JkZXI">Query for next page of results, results in ascending order</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-Queryforthepreviouspageofresults">Query for the previous page of results</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-SearchAPIoverview">Search API overview</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-SearchAPIparameters">Search API parameters</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-page.1">page</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-per_page.1">per_page</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-q">q</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-SearchAPIavailability">Search API availability</a>    </p>
+</li></ul></li></ul>    <p>Mobile Backend Services (MBS) provides APIs for querying and searching MBS objects. The query APIs allow you to perform custom database-style searches, while search APIs perform a full-text search using the MBS search engine.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>The search API is deprecated since Release 1.3.0. Applications created before Arrow Cloud Release 1.3.0 can continue to use the deprecated search API, but new applications will need to use the query API with the <tt class=" ">$text</tt> query operator.    </p>
+    </div>
+        <div class="section section-2 " id="src-49153849_SearchandQueryAPIs-QueryAPIoverview">
+        <h2 class="heading "><span>Query API overview</span></h2>
+    <p>The query API provides an interface for applying database-style query constraints on predefined objects and <a class="document-link " href="#!/guide/Custom_Objects_and_Fields">custom fields</a>.    </p>
+    <p>When no query parameters are provided, all objects of the specified type are returned with default pagination. You can control the pagination of queries with the <tt class=" ">skip</tt> and <tt class=" ">limit</tt> parameters, or by using a custom <tt class=" ">where</tt> clause. See <a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-Querypagination">Query Pagination</a> for more information.    </p>
+    <p>You can also control the sort order of query results using the <tt class=" ">order</tt> parameter, and specify the fields you want to include (or exclude) from results using the <tt class=" ">sel</tt> and <tt class=" ">unsel</tt> query parameters.    </p>
+    <div class="section section-3 " id="src-49153849_SearchandQueryAPIs-QueryAPIavailability">
+        <h3 class="heading "><span>Query API availability</span></h3>
+    <p>The following MBS object provide query methods:  <a class="external-link external-link" href="/arrowdb/latest/#!/api/ACLs-method-query">ACLs</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/Chats-method-query">Chats</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/Checkins-method-query">Checkins</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/CustomObjects-method-query">CustomObjects</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/Events-method-query">Events</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/Files-method-query">Files</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/GeoFences-method-query">GeoFences</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/KeyValues-method-query">KeyValues</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/Likes-method-query">Likes</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/Logs">Logs</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/Messages-method-query">Messages</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/Photos-method-query">Photos</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/Places-method-query">Places</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/Posts-method-query">Posts</a>,<br><a class="external-link external-link" href="/arrowdb/latest/#!/api/PushNotifications-method-query">PushNotifications</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/PushSchedules-method-query">PushSchedules</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/Reviews-method-query">Reviews</a>, <a class="external-link external-link" href="/arrowdb/latest/#!/api/Statuses-method-query">Statuses</a>, and <a class="external-link external-link" href="/arrowdb/latest/#!/api/Users-method-query">Users</a>.    </br></p>
+    <p>For security reasons, when querying for <a class="external-link external-link" href="/arrowdb/latest/#!/api/Users">Users</a> the <a class="external-link external-link" href="/arrowdb/latest/#!/api/Emails">email</a> field is not returned in the User object unless you have <a class="document-link " href="#!/guide/Admin_Access">admin access</a><a class="external-link external-link" href="/arrowdb/latest/#!/guide/admin_access">.</a>    </p>
+    </div>
+    <div class="section section-3 " id="src-49153849_SearchandQueryAPIs-Queryparameters">
+        <h3 class="heading "><span>Query parameters</span></h3>
+    <p>The following parameters are available for query operations:    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-count">count</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-page">page</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-per_page">per_page</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-limit">limit</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-idand_id">id and _id</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-new_pagination">new_pagination</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-skip">skip</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-where">where</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-Geographiccoordinates">Geographic coordinates</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-order">order</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-sel">sel</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-unsel">unsel</a>    </p>
+</li></ul>    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-count">
+        <h4 class="heading "><span>count</span></h4>
+    <p>If the query includes <tt class=" ">count=true</tt> , the response&apos;s meta-object contains a  <tt class=" ">count</tt>  field whose value is the total number of objects that matched the query criteria. If the query matches more than 5000 objects, the count field contains the value &quot;5000+&quot;. For more information, see <a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-Querypagination">Query Pagination</a>.    </p>
+    </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-page">
+        <h4 class="heading "><span>page</span></h4>
+    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Starting in Mobile Backend Services (ArrowDB) 1.1.5, page and per_page are no longer supported in query operations. Applications should instead use <strong class=" ">skip</strong> and <strong class=" ">limit</strong> query parameters.    </p>
+    </div>
+        </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-per_page">
+        <h4 class="heading "><span>per_page</span></h4>
+    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Starting in Mobile Backend Services (ArrowDB) 1.1.5, page and per_page are no longer supported in query operations. Applications should instead use <strong class=" ">skip</strong> and <strong class=" ">limit</strong> query parameters.    </p>
+    </div>
+        </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-limit">
+        <h4 class="heading "><span>limit</span></h4>
+    <p>The number of records to fetch. The value must be greater than 0, and no greater than 1000, or an HTTP 400 (Bad Request) error will be returned. The default value of <tt class=" ">limit</tt> is 10.    </p>
+    </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-idand_id">
+        <h4 class="heading "><span>id and _id</span></h4>
+    <p>query by id or _id:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">~ curl -d </code><code class="string">&apos;where={&quot;id&quot;:&quot;54517c49dda09594270002da&quot;}&apos;</code><code class="plain"> -X GET &quot;localhost:8082/v1/users/query.json?key=l1J36VuGo2eFMJ</code></div>
+<div class="line"><code class="plain">~ curl -d </code><code class="string">&apos;where={&quot;id&quot;:&quot;54517c49dda09594270002da&quot;}&apos;</code><code class="plain"> -X GET </code></div>
+<div class="line"><code class="string">&quot;localhost:8082/v1/users/query.json?key=l1J36VuGo2eFMJKELNXdxAq8Z4MQIbYr&amp;pretty_json=true&quot;</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;meta&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;code&quot;</code><code class="plain">: 200,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;status&quot;</code><code class="plain">: </code><code class="string">&quot;ok&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;method_name&quot;</code><code class="plain">: </code><code class="string">&quot;queryUsers&quot;</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;users&quot;</code><code class="plain">: [{</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;54517c49dda09594270002da&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;created_at&quot;</code><code class="plain">: </code><code class="string">&quot;2014-10-29T23:46:17+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;updated_at&quot;</code><code class="plain">: </code><code class="string">&quot;2014-10-29T23:46:17+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;external_accounts&quot;</code><code class="plain">: [],</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;confirmed_at&quot;</code><code class="plain">: </code><code class="string">&quot;2014-10-29T23:46:17+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;username&quot;</code><code class="plain">: </code><code class="string">&quot;hmm&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;email&quot;</code><code class="plain">: </code><code class="string">&quot;&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;admin&quot;</code><code class="plain">: </code><code class="string">&quot;false&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;stats&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;photos&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                    </code><code class="string">&quot;total_count&quot;</code><code class="plain">: 0</code></div>
+<div class="line"><code class="plain">                },</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;storage&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                    </code><code class="string">&quot;used&quot;</code><code class="plain">: 0</code></div>
+<div class="line"><code class="plain">                }</code></div>
+<div class="line"><code class="plain">            },</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {}</code></div>
+<div class="line"><code class="plain">        }]</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">~ curl -d </code><code class="string">&apos;where={&quot;_id&quot;:&quot;54517c49dda09594270002da&quot;}&apos;</code><code class="plain"> -X GET </code></div>
+<div class="line"><code class="string">&quot;localhost:8082/v1/users/query.json?key=l1J36VuGo2eFMJKELNXdxAq8Z4MQIbYr&amp;pretty_json=true&quot;</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;meta&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;code&quot;</code><code class="plain">: 200,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;status&quot;</code><code class="plain">: </code><code class="string">&quot;ok&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;method_name&quot;</code><code class="plain">: </code><code class="string">&quot;queryUsers&quot;</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;users&quot;</code><code class="plain">: [{</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;54517c49dda09594270002da&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;created_at&quot;</code><code class="plain">: </code><code class="string">&quot;2014-10-29T23:46:17+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;updated_at&quot;</code><code class="plain">: </code><code class="string">&quot;2014-10-29T23:46:17+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;external_accounts&quot;</code><code class="plain">: [],</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;confirmed_at&quot;</code><code class="plain">: </code><code class="string">&quot;2014-10-29T23:46:17+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;username&quot;</code><code class="plain">: </code><code class="string">&quot;hmm&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;email&quot;</code><code class="plain">: </code><code class="string">&quot;&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;admin&quot;</code><code class="plain">: </code><code class="string">&quot;false&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;stats&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;photos&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                    </code><code class="string">&quot;total_count&quot;</code><code class="plain">: 0</code></div>
+<div class="line"><code class="plain">                },</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;storage&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                    </code><code class="string">&quot;used&quot;</code><code class="plain">: 0</code></div>
+<div class="line"><code class="plain">                }</code></div>
+<div class="line"><code class="plain">            },</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {}</code></div>
+<div class="line"><code class="plain">        }]</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Query multiple objects by using $in:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">~ curl -d </code><code class="string">&apos;where={&quot;_id&quot;:{&quot;$in&quot;:[&quot;54517c49dda09594270002da&quot;,&quot;54517c33dda09594270002d5&quot;]}}&apos;</code><code class="plain"> -X GET </code></div>
+<div class="line"><code class="string">&quot;localhost:8082/v1/users/query.json?key=l1J36VuGo2eFMJKELNXdxAq8Z4MQIbYr&amp;pretty_json=true&quot;</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;meta&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;code&quot;</code><code class="plain">: 200,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;status&quot;</code><code class="plain">: </code><code class="string">&quot;ok&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;method_name&quot;</code><code class="plain">: </code><code class="string">&quot;queryUsers&quot;</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;users&quot;</code><code class="plain">: [{</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;54517c49dda09594270002da&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;created_at&quot;</code><code class="plain">: </code><code class="string">&quot;2014-10-29T23:46:17+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;updated_at&quot;</code><code class="plain">: </code><code class="string">&quot;2014-10-29T23:46:17+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;external_accounts&quot;</code><code class="plain">: [],</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;confirmed_at&quot;</code><code class="plain">: </code><code class="string">&quot;2014-10-29T23:46:17+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;username&quot;</code><code class="plain">: </code><code class="string">&quot;hmm&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;email&quot;</code><code class="plain">: </code><code class="string">&quot;&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;admin&quot;</code><code class="plain">: </code><code class="string">&quot;false&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;stats&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;photos&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                    </code><code class="string">&quot;total_count&quot;</code><code class="plain">: 0</code></div>
+<div class="line"><code class="plain">                },</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;storage&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                    </code><code class="string">&quot;used&quot;</code><code class="plain">: 0</code></div>
+<div class="line"><code class="plain">                }</code></div>
+<div class="line"><code class="plain">            },</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {}</code></div>
+<div class="line"><code class="plain">        }, {</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;54517c33dda09594270002d5&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;created_at&quot;</code><code class="plain">: </code><code class="string">&quot;2014-10-29T23:45:55+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;updated_at&quot;</code><code class="plain">: </code><code class="string">&quot;2014-10-29T23:45:55+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;external_accounts&quot;</code><code class="plain">: [],</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;confirmed_at&quot;</code><code class="plain">: </code><code class="string">&quot;2014-10-29T23:45:55+0000&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;username&quot;</code><code class="plain">: </code><code class="string">&quot;test&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;email&quot;</code><code class="plain">: </code><code class="string">&quot;&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;admin&quot;</code><code class="plain">: </code><code class="string">&quot;false&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;stats&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;photos&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                    </code><code class="string">&quot;total_count&quot;</code><code class="plain">: 0</code></div>
+<div class="line"><code class="plain">                },</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;storage&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                    </code><code class="string">&quot;used&quot;</code><code class="plain">: 0</code></div>
+<div class="line"><code class="plain">                }</code></div>
+<div class="line"><code class="plain">            },</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {}</code></div>
+<div class="line"><code class="plain">        }]</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-new_pagination">
+        <h4 class="heading "><span>new_pagination</span></h4>
+    <p>When <tt class=" ">new_pagination=true</tt> is included in a query, the number of records evaluated in the database is limited to 5000.    </p>
+    <p>By default, MBS puts no limit on the number of records that are evaluated in the database. This means, for example, that if you execute an open-ended query for all MBS objects of some type, and apply a sort and filter on the results, all records in the database are evaluated, sorted, and filtered in memory.    </p>
+    <p>For applications that have relatively small numbers of total records (&lt; 5000), this operation can be completed efficiently with no noticeable impact on your application&apos;s performance. However, if a table has a very large number (&gt;= 1 million) records these kinds of operations are very inefficient, and your users will notice a performance hit.    </p>
+    </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-skip">
+        <h4 class="heading "><span>skip</span></h4>
+    <p>The number of records to skip. The value must be greater than or equal to 0, and no greater than 4999, or an HTTP 400 error will be returned. To skip 5000 records or more you need to perform a range-based query. See <a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-Querypagination">Query Pagination</a> for more information.    </p>
+    </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-where">
+        <h4 class="heading "><span>where</span></h4>
+    <p>Constrains values for fields. The value should be encoded JSON. Each value in the search query needs to be less than 1024 bytes. If the value is larger than 1024 bytes, the query does not return any results.    </p>
+    <p>Each type of MBS object has a set of predefined fields that can be queried with the <tt class=" ">where</tt> operator. See each object&apos;s individual <tt class=" ">query</tt> method for details.    </p>
+    <p>In addition, you can query the <a class="document-link " href="#!/guide/Custom_Objects_and_Fields">custom fields</a> on any object. Note, however, that you can only query simple values, such as Strings, Dates, Numbers, or Booleans. If a custom field takes an array or object as a value, you can&apos;t query any of the values stored in the array or object.    </p>
+    <p>For more information, see <a class="document-link " href="#!/guide/Custom_Objects_and_Fields">Supported Data Types</a>.    </p>
+    <p>Currently, MBS does not support case insensitive query. To perform a case-insensitive query on a field, save an additional normalized copy of the original field and perform the query on the normalized field instead.    </p>
+    <p>To perform an exact match on a field, for example, to search for users with <tt class=" ">first_name</tt> matching &quot;joe&quot;, use:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where={</code><code class="string">&quot;first_name&quot;</code><code class="plain">: </code><code class="string">&quot;joe&quot;</code><code class="plain">}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>You can add more search criteria by adding them together. For example, to search for users with <tt class=" ">first_name</tt> matching &quot;joe&quot;, <tt class=" ">favorite_color</tt> matching &quot;blue&quot; and <tt class=" ">age</tt> of 28, use the following query:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where={</code><code class="string">&quot;age&quot;</code><code class="plain">: 28, </code><code class="string">&quot;favorite_color&quot;</code><code class="plain">: </code><code class="string">&quot;blue&quot;</code><code class="plain">, </code><code class="string">&quot;first_name&quot;</code><code class="plain"> : </code><code class="string">&quot;joe&quot;</code><code class="plain">}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>For non-exact matches, <tt class=" ">where</tt> supports these options:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Operator    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Summary    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$lt</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Less than    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$lte</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Less than or equal to    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$gt</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Greater than    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$gte</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Greater than or equal to    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$ne</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Not equal to    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$in</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Contained in, allows you to specify an array of possible matches    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$nin</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Not contained in, it selects objects for which the specified field does not have any value in the specified array    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$or</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Use boolean or in a query, an array of expressions, any of which can match    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$nor</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A boolean or expression to do queries, you give $nor a list of expressions, none of which can match the query    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$and</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Give $and an array of expressions, all of which must match the query    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$all</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The $all operator is similar to $in, but instead of matching any value in the specified array all values in the array must be matched    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$elemMatch</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Give $elemMatch an expression to match against elements in an array    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$exists</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Check for existence of a field    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$regex</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Regex match on a string. Currently, only prefix matches are supported: the regular expression must begin with an anchor (^) followed by a letter or digit. For example, &apos;^a&apos;, &apos;^a.*&apos;, and &apos;^a.*$&apos; are allowed, but not &apos;^.*a*&apos;.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$text</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Perform a text search on the contents of the field. A <strong class=" ">$text</strong> expression has the following syntax:<br><tt class=" ">{ &quot;$text&quot;: { &quot;$search&quot;: &lt;string&gt; }} </tt><br>Most punctuation marks and spaces are treated as delimiters allowing you to search for multiple keywords, excluding escaped double quotes (\&quot;) and hyphens (-). Escaped double quotes are used for phrase searches and hyphens are used to negate searches. Sorting does not work with the $text operator, that is, using the <tt class=" ">order</tt> field will have no effect when using the $text operator.    </br></br></p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div class="section section-5 " id="src-49153849_SearchandQueryAPIs-Geographiccoordinates">
+        <h5 class="heading "><span>Geographic coordinates</span></h5>
+    <p>For querying geographic coordinates, the following operators are supported:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Operator    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Summary    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$nearSphere  </tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Search near geographic coordinates, the format is <tt class=" ">[longitude, latitude]</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">$maxDistance</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>and used with $nearSphere to limit maximum search distance. All distances use radians. This allows you to easily multiply by the radius of the earth (about 6371 km or 3959 miles) to get the distance in your choice of units. Conversely, divide by the radius of the earth when doing queries    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>You can combine any of the above to build a more complex query.    </p>
+    <p>For more information on constructing geographic coordinate queries, see <a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-Geographiccoordinates">Geographic Coordinates in Custom Fields</a> and <a class="document-link " href="#!/guide/Custom_Objects_and_Fields">Custom Objects and Fields</a> for a general creation of custom objects and field queries.    </p>
+    <p>If you want to find users with age older than 28:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where={</code><code class="string">&quot;age&quot;</code><code class="plain">: {</code><code class="string">&quot;$gt&quot;</code><code class="plain">:28}}</code></div>
+</div>
+    </div>
+    <p>If you want to find users at age 28 or 38:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where = {</code><code class="string">&quot;age&quot;</code><code class="plain">: {</code><code class="string">&quot;$in&quot;</code><code class="plain">:[28,38]}}</code></div>
+</div>
+    </div>
+    <p>If you want to find users at age neither 28 nor 38:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where = {</code><code class="string">&quot;age&quot;</code><code class="plain">: {</code><code class="string">&quot;$nin&quot;</code><code class="plain">:[28,38]}}</code></div>
+</div>
+    </div>
+    <p>If you want to find a user whose email is &quot;john@example.com&quot; and type is User:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where={</code><code class="string">&quot;$and&quot;</code><code class="plain">: [ {</code><code class="string">&quot;email&quot;</code><code class="plain"> : </code><code class="string">&quot;john@example.com&quot;</code><code class="plain">}, { </code><code class="string">&quot;_type&quot;</code><code class="plain"> : </code><code class="string">&quot;User&quot;</code><code class="plain"> } ] }</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>If you want to find users who have options are 2,3    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where={</code><code class="string">&quot;options&quot;</code><code class="plain">: {</code><code class="string">&quot;$all&quot;</code><code class="plain"> : [2,3] } }</code></div>
+</div>
+    </div>
+    <p>If you want to find users who have location information.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where={</code><code class="string">&quot;location&quot;</code><code class="plain">: {</code><code class="string">&quot;$exists&quot;</code><code class="plain"> : </code><code class="keyword">true</code><code class="plain">} }</code></div>
+</div>
+    </div>
+    <p>If you want to find users who haven&apos;t location information.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where={</code><code class="string">&quot;location&quot;</code><code class="plain">: {</code><code class="string">&quot;$exists&quot;</code><code class="plain"> : </code><code class="keyword">false</code><code class="plain">} }</code></div>
+</div>
+    </div>
+    <p>If you have a custom array with your user object, such as a list of scores (scores: <tt class=" ">[65, 86, 92&apos;</tt>), you can search the elements in the array. For example, if you want to search for scores within a certain range:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where={</code><code class="string">&quot;scores&quot;</code><code class="plain">:{ </code><code class="string">&quot;$elemMatch&quot;</code><code class="plain">: { </code><code class="string">&quot;$gte&quot;</code><code class="plain">: 70, </code><code class="string">&quot;$lt&quot;</code><code class="plain">: 90 } }}</code></div>
+</div>
+    </div>
+    <p>If you have a custom array of tags, such as <tt class=" ">tags: [ &apos;employee&apos;, &apos;manager&apos; ]</tt>, you can use the $all operator to return objects that contain all the specified elements.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where={</code><code class="string">&quot;tags&quot;</code><code class="plain">:{ </code><code class="string">&quot;$all&quot;</code><code class="plain">: [ </code><code class="string">&apos;employee&apos;</code><code class="plain">, </code><code class="string">&apos;manager&apos;</code><code class="plain"> ] } </code></div>
+</div>
+    </div>
+    <p>If you have assigned custom coordinates to your user objects, you can search by users&apos; coordinates. For example, if you want to find users named &quot;joe&quot; near longitude -122.1 and latitude 37.1.    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where={</code><code class="string">&quot;first_name&quot;</code><code class="plain">:</code><code class="string">&quot;joe&quot;</code><code class="plain">, </code><code class="string">&quot;coordinates&quot;</code><code class="plain">:{</code><code class="string">&quot;$nearSphere&quot;</code><code class="plain">:[-122.1, 37.1]}}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>To find users named &quot;joe&quot; near longitude -122.1 and latitude 37.1 with a maximum distance of 5 miles (convert 5 miles to radians, 5/3959 = 0.00126)    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where={</code><code class="string">&quot;first_name&quot;</code><code class="plain">:</code><code class="string">&quot;joe&quot;</code><code class="plain">, </code><code class="string">&quot;coordinates&quot;</code><code class="plain">:{</code><code class="string">&quot;$nearSphere&quot;</code><code class="plain">:[-122.1,37.1], </code><code class="string">&quot;$maxDistance&quot;</code><code class="plain"> : 0.00126}}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>To search for the keywords <tt class=" ">javascript</tt>, <tt class=" ">ruby</tt>, or <tt class=" ">python</tt>, but not <tt class=" ">php</tt>:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">where={</code><code class="string">&quot;$text&quot;</code><code class="plain">: { </code><code class="string">&quot;$search&quot;</code><code class="plain">: </code><code class="string">&quot;javascript,ruby,python,-php&quot;</code><code class="plain"> }}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-order">
+        <h4 class="heading "><span>order</span></h4>
+    <p>Sort results by one or more fields. In general, you can sort based on any predefined field that you can query using the <tt class=" ">where</tt> operator, as well as on custom fields. Any exceptions to this rule are noted in API reference for the individual <tt class=" ">query</tt> methods.    </p>
+    <p>To reverse the sorting order, simply add <tt class=" ">order</tt> in front of a field. For example, to sort results by first_name in ascending order then created_at in descending order:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">order=first_name,-created_at</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-sel">
+        <h4 class="heading "><span>sel</span></h4>
+    <p>Selects which fields to return from the query. Do not use this parameter if you are using the <tt class=" ">unsel</tt> parameter.    </p>
+    <p>Assign an array of field names to filter to the <tt class=" ">all</tt> field to search all JSON fields including fields in nested objects. Currently, this is the only supported option.    </p>
+    <p>If you want to display a field from the <tt class=" ">custom_field</tt> object, simply pass the field name of the <tt class=" ">custom_field</tt> object.    </p>
+    <p>If you want to display a field from a nested object, then both the name of the nested object and field need to be specified.    </p>
+    <p>For example, if you want to only return the <tt class=" ">first_name</tt> field:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">sel={</code><code class="string">&quot;all&quot;</code><code class="plain">:[</code><code class="string">&quot;first_name&quot;</code><code class="plain">]}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-unsel">
+        <h4 class="heading "><span>unsel</span></h4>
+    <p>Selects which fields not return from the query. Do not use this parameter if you are using the <tt class=" ">sel</tt> parameter.    </p>
+    <p>Assign an array of field names to filter to the <tt class=" ">all</tt> field to search all JSON fields including fields in nested objects. Currently, this is the only supported option.    </p>
+    <p>If you want to hide displaying a field from the <tt class=" ">custom_field</tt> object, simply pass the field name of the <tt class=" ">custom_field</tt> object.    </p>
+    <p>If you want to hide displaying a field from a nested object, then both the name of the nested object and field need to be specified.    </p>
+    <p>For example, if you want to return all fields except <tt class=" ">first_name</tt>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">unsel={</code><code class="string">&quot;all&quot;</code><code class="plain">:[</code><code class="string">&quot;first_name&quot;</code><code class="plain">]}</code></div>
+</div>
+    </div>
+    <p>    </p>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-49153849_SearchandQueryAPIs-Querypagination">
+        <h2 class="heading "><span>Query pagination</span></h2>
+    <p>Starting with Mobile Backend Services (ArrowDB) 1.1.5, we have made the following changes:    </p>
+<ul class=" "><li class=" ">    <p>Skip is limited to 0-4999; as a result, you can not skip beyond 5000 records.    </p>
+</li><li class=" ">    <p>If the query includes <tt class=" ">count=true</tt>, the query response&apos;s <tt class=" ">meta</tt> object contains a <tt class=" ">count</tt> field whose value is the total number of objects that match the query criteria. If the query matches more than 5000 objects, the <tt class=" ">count</tt> field contains the value &quot;5000+&quot;. If your query result set includes more than 5000 records, you should perform range-based queries for pagination. This is done by including a where parameter on an object field using the <tt class=" ">$gt</tt> or <tt class=" ">$lt</tt> operators, as discussed below.    </p>
+</li></ul>    <p>For example, the following cURL uses a range-based query for Statuses whose custom field named <tt class=" ">score</tt> is less than 100 and sorts the results in ascending order on the <tt class=" ">score</tt> field:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ curl -d </code><code class="string">&apos;where={&quot;score&quot;:{&quot;$lt&quot;:100}}&amp;order=score&apos;</code><code class="plain"> -X GET </code></div>
+<div class="line"><code class="string">&quot;http://&lt;HOST&gt;/v1/statuses/query.json?key=&lt;KEY&gt;&amp;count=true&amp;pretty_json=true&quot;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Mobile Backend Services object IDs, represented by the <tt class=" ">_id</tt> field, are based on object timestamps and machine IDs, which allows for range-based pagination. For example, suppose an application performs a query that whose last object returned has an ID of <tt class=" ">&quot;5418a8815a6919fde8cf1e4d&quot;</tt>. To get the set of objects created before that particular object, the application would query for those objects whose <tt class=" ">_id</tt> field is less than that value:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ curl -X GET -d </code><code class="string">&apos;where={&quot;_id&quot;:{&quot;$lt&quot;:&quot;5418a8815a6919fde8cf1e4d&quot;}}&apos;</code><code class="plain"> </code></div>
+<div class="line"><code class="string">&quot;http://&lt;HOST&gt;/v1/statuses/query.json?key=&lt;KEY&gt;&amp;count=true&amp;pretty_json=t&amp;_session_id=&lt;SESSION_ID&gt;&quot;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Similarly, if the ID of the first object returned in a query was <tt class=" ">&quot;5418a87f5a6919fde8cee391&quot;</tt> the application would query on objects whose <tt class=" ">_id</tt> field is greater than that value to retrieve the previous set of data:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ curl -X GET -d </code><code class="string">&apos;where={&quot;_id&quot;:{&quot;$gt&quot;:&quot;5418a87f5a6919fde8cee391&quot;}}&apos;</code><code class="plain"> </code></div>
+<div class="line"><code class="string">&quot;http://&lt;HOST&gt;/v1/statuses/query.json?key=&lt;KEY&gt;&amp;count=true&amp;pretty_json=t&amp;_session_id=&lt;SESSION_ID&gt;&quot;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>To query objects between a range of object IDs, use together <tt class=" ">$gt</tt> and <tt class=" ">$lt</tt> together:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">curl -X GET -d </code><code class="string">&apos;where={&quot;_id&quot;:{&quot;$gt&quot;:&quot;5418a87f5a6919fde8cee38f&quot;, &quot;$lt&quot;:&quot;5418a8815a6919fde8cf1e4d&quot;}}&apos;</code><code class="plain">  </code></div>
+<div class="line"><code class="string">&quot;http://&lt;HOST&gt;/v1/statuses/query.json?key=&lt;KEY&gt;&amp;count=true&amp;pretty_json=t&amp;_session_id=&lt;SESSION_ID&gt;&quot;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>For additional examples, see <a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-Range-basedQueryPaginationExamples">Range-based Query Pagination Examples</a>.    </p>
+    <div class="section section-3 " id="src-49153849_SearchandQueryAPIs-Range-basedquerypaginationexamples">
+        <h3 class="heading "><span>Range-based query pagination examples</span></h3>
+<ul class=" "><li class=" ">    <p>Query on Custom Field, Results in Ascending Order    </p>
+</li><li class=" ">    <p>Query on Custom Field, Results in Descending Order    </p>
+</li><li class=" ">    <p>Query for Next Page of Results, Results in Ascending Order    </p>
+</li><li class=" ">    <p>Query for Previous Page of Results    </p>
+</li></ul>    <div class="section section-4 " id="src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5b25jdXN0b21maWVsZCxyZXN1bHRzaW5hc2NlbmRpbmdvcmRlcg">
+        <h4 class="heading "><span>Query on custom field, results in ascending order</span></h4>
+    <p>In this example, the query returns Statuses objects whose custom <tt class=" ">score</tt> field is less than 100, and sorts results on the <tt class=" ">score</tt> in ascending order (<tt class=" ">&amp;order=score</tt>). The query matches 100 total records.    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">~ curl -d </code><code class="string">&apos;where={&quot;score&quot;:{&quot;$lt&quot;:100}}&amp;order=score&apos;</code><code class="plain"> -X GET </code></div>
+<div class="line"><code class="string">&quot;http://&lt;HOST&gt;:8082/v1/statuses/query.json?key=&lt;KEY&gt;&amp;count=true&amp;pretty_json=true&quot;</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;meta&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;code&quot;</code><code class="plain">: 200,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;status&quot;</code><code class="plain">: </code><code class="string">&quot;ok&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;method_name&quot;</code><code class="plain">: </code><code class="string">&quot;queryStatuses&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;count&quot;</code><code class="plain">: 100</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;statuses&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675413a&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 0.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675413b&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;message&quot;</code><code class="plain">: </code><code class="string">&quot;status&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 1.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675413c&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 2.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675413d&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 3.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675413e&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 4.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675413f&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 5.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754140&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 6.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754141&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 7.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754142&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 8.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754143&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 9.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      }</code></div>
+<div class="line"><code class="plain">    ]</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-4 " id="src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5b25jdXN0b21maWVsZCxyZXN1bHRzaW5kZXNjZW5kaW5nb3JkZXI">
+        <h4 class="heading "><span>Query on custom field, results in descending order</span></h4>
+    <p>In this example, Statuses objects are queried whose custom <tt class=" ">score</tt> field is less than 100, and sorts results on <tt class=" ">score</tt> in descending order (<tt class=" ">&amp;order=-score</tt>).    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ curl -d </code><code class="string">&apos;where={&quot;score&quot;:{&quot;$lt&quot;:100}}&amp;order=-score&apos;</code><code class="plain"> -X GET </code></div>
+<div class="line"><code class="string">&quot;http://&lt;HOST&gt;/v1/statuses/query.json?key=&lt;KEY&gt;&amp;count=true&amp;pretty_json=true&quot;</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;meta&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;code&quot;</code><code class="plain">: 200,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;status&quot;</code><code class="plain">: </code><code class="string">&quot;ok&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;method_name&quot;</code><code class="plain">: </code><code class="string">&quot;queryStatuses&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;count&quot;</code><code class="plain">: 100</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;statuses&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675419d&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain"> 99.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675419c&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain"> 98.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675419b&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain"> 97.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675419a&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain"> 96.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754199&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain"> 95.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754198&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain"> 94.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754197&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain"> 93.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754196&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain"> 92.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754195&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain"> 91.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754194&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain"> 90.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      }</code></div>
+<div class="line"><code class="plain">    ]</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-4 " id="src-49153849_safe-id-U2VhcmNoYW5kUXVlcnlBUElzLVF1ZXJ5Zm9ybmV4dHBhZ2VvZnJlc3VsdHMscmVzdWx0c2luYXNjZW5kaW5nb3JkZXI">
+        <h4 class="heading "><span>Query for next page of results, results in ascending order</span></h4>
+    <p>In this example, the next page of Statuses objects is queried whose <tt class=" ">_id</tt> field is less than <tt class=" ">&quot;53fe1c25759220e9f6754194&quot;</tt> and sorted in descending order on the custom <tt class=" ">score</tt> field.    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ curl -d </code><code class="string">&apos;where={&quot;score&quot;:{&quot;$lt&quot;:100},&quot;_id&quot;:{&quot;$lt&quot;:&quot;53fe1c25759220e9f6754194&quot;}}&amp;order=-score&apos;</code><code class="plain"> -X GET </code></div>
+<div class="line"><code class="string">&quot;http://&lt;HOST&gt;/v1/statuses/query.json?key=&lt;KEY&gt;&amp;count=true&amp;pretty_json=true&quot;</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;meta&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;code&quot;</code><code class="plain">: 200,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;status&quot;</code><code class="plain">: </code><code class="string">&quot;ok&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;method_name&quot;</code><code class="plain">: </code><code class="string">&quot;queryStatuses&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;count&quot;</code><code class="plain">: 90</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;statuses&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754193&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 89.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754192&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 88.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754191&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 87.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f6754190&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 86.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675418f&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 85.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675418e&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 84.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675418d&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 83.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675418c&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 82.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675418b&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 81.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;53fe1c25759220e9f675418a&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;custom_fields&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">          </code><code class="string">&quot;score&quot;</code><code class="plain">: 80.0</code></div>
+<div class="line"><code class="plain">        }, ...</code></div>
+<div class="line"><code class="plain">      }</code></div>
+<div class="line"><code class="plain">    ]</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">} </code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-Queryforthepreviouspageofresults">
+        <h4 class="heading "><span>Query for the previous page of results</span></h4>
+    <p>As explained previously, to get the second (or next) page of results in a query, you query for objects whose <tt class=" ">_id</tt> field is less (older) than the <tt class=" ">_id</tt> of the last object returned by the prior query. To get the previous (first) page of results again, you simply query for those objects whose <tt class=" ">_id</tt> is greater (newer) than the first object returned in by the prior query.    </p>
+    <p>However, if you query for the third results page, and want to get the previous (second) results page, you need to restrict the query to those objects whose <tt class=" ">_id</tt> is greater than the first object returned by the most recent query (third results page), and less than that of the last object returned in the query before that (second results page); or, equivalently, less than or equal to the first object returned in the initial query (first results page). The following demonstrates this.    </p>
+    <p><strong class=" ">First page (page 1)</strong>    </p>
+    <p>The first query request doesn&apos;t specify a range.    </p>
+    <p>Request:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">curl -X GET </code><code class="string">&quot;&lt;HOST&gt;/v1/users/query.json?key=&lt;KEY&gt;&amp;new_pagination=true&amp;pretty_json=true&quot;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Response (abbreviated):    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;users&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;5447f04580e61e081e0002c6&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      ...</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;5447eff680e61e08260002ed&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        ...</code></div>
+<div class="line"><code class="plain">      }</code></div>
+<div class="line"><code class="plain">    ]</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Note that the ID of the last object returned in the response (&quot;5447eff680e61e08260002ed&quot;).    </p>
+    <p><strong class=" ">Next page (page 2)</strong>    </p>
+    <p>To get Page 2 results, a <tt class=" ">where</tt> clause is added that limits the results to those objects whose <tt class=" ">_id</tt> field is less than the last object on Page 1 results (&quot;5447eff680e61e08260002ed&quot;).    </p>
+    <p>Request:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">curl -X GET -d </code><code class="string">&apos;where={&quot;_id&quot;:{&quot;$lt&quot;:&quot;5447eff680e61e08260002ed&quot;}}&apos;</code><code class="plain"> </code></div>
+<div class="line"><code class="string">&quot;&lt;HOST&gt;/v1/users/query.json?key=&lt;KEY&gt;&amp;new_pagination=true&amp;pretty_json=true&quot;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Response (abbreviated):    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;users&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;5447efed80e61e08260002ec&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">        ...</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;5447ef9f80e61e081e0002c1&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        ...</code></div>
+<div class="line"><code class="plain">      }</code></div>
+<div class="line"><code class="plain">    ]</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Note that the first and last IDs of objects returned on Page 2 are &quot;5447efed80e61e08260002ec&quot; and &quot;5447ef9f80e61e081e0002c1&quot;, respectively. To get the previous page of results (Page 1) at this point, you could simply query for objects with IDs greater than the first object in the Page 2 results (&quot;5447efed80e61e08260002ec&quot;). In this case, however, the user requests the next page (Page 3) results, as shown below.    </p>
+    <p><strong class=" ">Next page (page 3)</strong>    </p>
+    <p>To get Page 3 results, the <tt class=" ">where</tt> limits results to those objects whose <tt class=" ">_id</tt> field is less the last object returned in Page 2 results (&quot;5447ef9f80e61e081e0002c1&quot;).    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ curl -X GET -d </code><code class="string">&apos;where={&quot;_id&quot;:{&quot;$lt&quot;:&quot;5447ef9f80e61e081e0002c1&quot;}}&apos;</code><code class="plain"> </code></div>
+<div class="line"><code class="string">&quot;&lt;HOST&gt;/v1/users/query.json?key=&lt;KEY&gt;&amp;new_pagination=true&amp;pretty_json=true&quot;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Response (abbreviated):    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;users&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;5446d5d980e61e0826000093&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      ...</code></div>
+<div class="line"><code class="plain">    ]</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>Note that the first object returned has the ID &quot;5446d5d980e61e0826000093&quot;.    </p>
+    <p><strong class=" ">Previous page (page 2)</strong>    </p>
+    <p>At this point, if you query for objects with IDs greater than the first object returned in Page 3, you would, logically, get Page 1 results, not Page 2. Instead, you need to further limit the range to those objects with IDs less than or equal to that of the first object from the Page 2 results; or, equivalently, less than that of the last object id from Page 1 results.    </p>
+    <p>Continuing the example, the request and response (abbreviated) for these approaches are shown below:    </p>
+    <div class="tablewrap">
+        <table>
+        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
+            <td rowspan="1" colspan="1">
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ curl -X GET -d </code><code class="string">&apos;where={&quot;_id&quot;:{&quot;$gt&quot;:&quot;5446d5d980e61e0826000093&quot;, &quot;$lte&quot;:&quot;5447efed80e61e08260002ec&quot;}}&apos;</code><code class="plain"> </code></div>
+<div class="line"><code class="string">&quot;&lt;HOST&gt;/v1/users/query.json?key=&lt;KEY&gt;&amp;new_pagination=true&amp;pretty_json=true&quot;</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;users&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;5447efed80e61e08260002ec&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      ...</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;5447ef9f80e61e081e0002c1&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        ...</code></div>
+<div class="line"><code class="plain">    ]</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">$ curl -X GET -d </code><code class="string">&apos;where={&quot;_id&quot;:{&quot;$gt&quot;:&quot;5446d5d980e61e0826000093&quot;, &quot;$lt&quot;:&quot;5447eff680e61e08260002ed&quot;}}&apos;</code><code class="plain"> </code></div>
+<div class="line"><code class="string">&quot;&lt;HOST&gt;/v1/users/query.json?key=&lt;KEY&gt;&amp;new_pagination=true&amp;pretty_json=true&quot;</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;users&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;5447efed80e61e08260002ec&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        ...</code></div>
+<div class="line"><code class="plain">      },</code></div>
+<div class="line"><code class="plain">      ...</code></div>
+<div class="line"><code class="plain">      {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;id&quot;</code><code class="plain">: </code><code class="string">&quot;5447ef9f80e61e081e0002c1&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        ...</code></div>
+<div class="line"><code class="plain">      }</code></div>
+<div class="line"><code class="plain">    ]</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-49153849_SearchandQueryAPIs-SearchAPIoverview">
+        <h2 class="heading "><span>Search API overview</span></h2>
+    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>The search API is deprecated since Release 1.3.0. Applications created before Arrow Cloud Release 1.3.0 can continue to use the deprecated search API, but new applications will need to use the query API with the <tt class=" ">$text</tt> query operator.    </p>
+    </div>
+        <p>Several MBS objects provide a search API that performs a case-insensitive, full-text search of the given keywords on a list of predefined fields. Please refer to individual object&apos;s API documentation for a list of searchable fields. For instance, the <a class="external-link external-link" href="/arrowdb/latest/#!/api/Places-method-search">Places.search</a> method will search within <a class="external-link external-link" href="/arrowdb/latest/#!/api/Places-property-name">Places.name</a> and <a class="external-link external-link" href="/arrowdb/latest/#!/api/Places-property-tags">Places.tags</a>.    </p>
+    <p>The Search API is fixed in terms of the searchable fields; use the <a class="document-link " href="#!/guide/Search_and_Query_APIs-section-src-49153849_SearchandQueryAPIs-QueryAPIAvailability">query</a> API to perform more flexible searches.    </p>
+    <div class="section section-3 " id="src-49153849_SearchandQueryAPIs-SearchAPIparameters">
+        <h3 class="heading "><span>Search API parameters</span></h3>
+    <p>The following parameters are available for search operations:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">page</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">per_page</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">q</tt>    </p>
+</li></ul>    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-page.1">
+        <h4 class="heading "><span>page</span></h4>
+    <p>Request page number starting at 1. The default is 1.    </p>
+    </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-per_page.1">
+        <h4 class="heading "><span>per_page</span></h4>
+    <p>The number of results per page. The default is 10.    </p>
+    </div>
+    <div class="section section-4 " id="src-49153849_SearchandQueryAPIs-q">
+        <h4 class="heading "><span>q</span></h4>
+    <p>The keyword or phrase to search for.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-49153849_SearchandQueryAPIs-SearchAPIavailability">
+        <h3 class="heading "><span>Search API availability</span></h3>
+    <p>Search methods are available for the following pre-built MBS objects, as well as for custom fields.    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="/arrowdb/latest/#!/api/Events-method-search">Events</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="/arrowdb/latest/#!/api/Friends-method-search">Friends</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="/arrowdb/latest/#!/api/Places">Places</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="/arrowdb/latest/#!/api/Users">Users</a>    </p>
+</li></ul>    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=49153849"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

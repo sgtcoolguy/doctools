@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Adding a New Portal Page</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-30083151" class="content">
+                        <h1>Adding a New Portal Page</h1>
+    <div class="section section-2 " id="src-30083151_AddingaNewPortalPage-Chapters">
+        <h2 class="heading "><span>Chapters</span></h2>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Adding_a_New_Portal_Page-section-src-30083151_AddingaNewPortalPage-StudioChanges">Studio Changes</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Adding_a_New_Portal_Page-section-src-30083151_AddingaNewPortalPage-SettinguptheWebPage">Setting up the Web Page</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Adding_a_New_Portal_Page-section-src-30083151_AddingaNewPortalPage-AddingRequiredResources">Adding Required Resources</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Adding_a_New_Portal_Page-section-src-30083151_AddingaNewPortalPage-AddingHandlersforSpecialFunctionality.">Adding Handlers for Special Functionality.</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Adding_a_New_Portal_Page-section-src-30083151_AddingaNewPortalPage-Notes">Notes</a>    </p>
+</li></ul>    <p>Studio has a newly-developed portal infrastructure which interacts with Studio through Eclipse browser-functions. This page will provide an overview on how to create add a new portal-like page, such as a &apos;Welcome Screen&apos; using the same infrastructure that was built for the Developer Toolbox.    </p>
+    </div>
+    <div class="section section-2 " id="src-30083151_AddingaNewPortalPage-StudioChanges">
+        <h2 class="heading "><span>Studio Changes</span></h2>
+    <p>In the Studio side, we need to create a new BrowserEditor that will carry a unique ID. &lt;br&gt;Here are the basic steps:    </p>
+<ol class=" "><li class=" ">    <p>Create a new class which extends from &apos;&apos;com.aptana.portal.ui.browser.PortalBrowserEditor&apos;&apos;    </p>
+</li><li class=" ">    <p>Override the &apos;&apos;getEditorId()&apos;&apos;    </p>
+</li><li class=" ">    <p>In the plugin.xml, add this editor to the &apos;&apos;org.eclipse.ui.editors&apos;&apos; extension point. Make sure that you use the same unique ID to identify this editor.    </p>
+</li></ol>    <p>To open the portal, you can create an eclispe startup class, and/or create a command handler that will trigger it when the user asks for.    </p>
+    <p>In any case, to open the new portal page you will need to call the &apos;&apos;Portal &apos;&apos;class this way:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">Portal.getInstance().openPortal(</code><code class="keyword">new</code><code class="plain"> URL(MyBrowserEditor.MY_URL), MyBrowserEditor.EDITOR_ID);</code></div>
+</div>
+    </div>
+    <p>Note that you can restrict the opening of the portal by looking at the preferences. The Portal system can support preferences &apos;set&apos; and &apos;get&apos; from the web-page itself (see example below on how to achieve that).    </p>
+    </div>
+    <div class="section section-2 " id="src-30083151_AddingaNewPortalPage-SettinguptheWebPage">
+        <h2 class="heading "><span>Setting up the Web Page</span></h2>
+    <p>The portal system was designed interact with remote content that is opended inside the Studio.  First we need to add some JavaScript resources. You can find them at the GitHub repo here:    </p>
+    <p><a class="external-link external-link" href="https://github.com/aptana/studio3-sdk/tree/master/portal/sample" target="_blank">https://github.com/aptana/studio3-sdk/tree/master/portal/sample</a>    </p>
+    <div class="section section-3 " id="src-30083151_AddingaNewPortalPage-AddingRequiredResources">
+        <h3 class="heading "><span>Adding Required Resources</span></h3>
+    <p>Add the following to the head of the web page in question:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;script src=</code><code class="string">&quot;resources/prototype.js&quot;</code><code class="plain"> type=</code><code class="string">&quot;text/javascript&quot;</code><code class="plain">&gt;&lt;/script&gt;</code></div>
+<div class="line"><code class="plain">&lt;script src=</code><code class="string">&quot;resources/elements.js&quot;</code><code class="plain"> type=</code><code class="string">&quot;text/javascript&quot;</code><code class="plain">&gt;&lt;/script&gt;</code></div>
+<div class="line"><code class="plain">&lt;script src=</code><code class="string">&quot;resources/preferences.js&quot;</code><code class="plain"> type=</code><code class="string">&quot;text/javascript&quot;</code><code class="plain">&gt;&lt;/script&gt;</code></div>
+<div class="line"><code class="plain">&lt;script src=</code><code class="string">&quot;resources/portal.js&quot;</code><code class="plain"> type=</code><code class="string">&quot;text/javascript&quot;</code><code class="plain">&gt;&lt;/script&gt;</code></div>
+</div>
+    </div>
+    <p>then, modify the body tag to start the portal functionality:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;body onload=</code><code class="string">&quot;loadPortal(false)&quot;</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083151_AddingaNewPortalPage-AddingHandlersforSpecialFunctionality.">
+        <h2 class="heading "><span>Adding Handlers for Special Functionality.</span></h2>
+    <p>Studio includes several special functions you can call via JavaScript. In, general items will be of the form:    </p>
+    <p>You can either call them directly via a link, or by using a checkbox to switch preferences on and off:    </p>
+<ol class=" "><li class=" ">    <p>Open a specific view (specify view ID)    </p>
+</li><li class=" ">    <p>Create a New Project (specify project type)    </p>
+</li><li class=" ">    <p>Run a specific wizard (i.e. Run the &quot;Import a Project From Git&quot; wizard)    </p>
+</li><li class=" ">    <p>Show list of recently-opened files    </p>
+</li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;div id=</code><code class="string">&quot;toolboxPref&quot;</code><code class="plain"> </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;preference checkbox&quot;</code><code class="plain"> text=</code><code class="string">&quot;Load the Welcome Screen on startup&quot;</code><code class="plain"> key=</code><code class="string">&quot;open_welcome&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/div&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083151_AddingaNewPortalPage-Notes">
+        <h2 class="heading "><span>Notes</span></h2>
+<ol class=" "><li class=" ">    <p>The portal code above uses Prototype JS library.    </p>
+</li><li class=" ">    <p>In case you are using both prototype and jquery libraries, make sure they are not conflicting by placing the following JS block in your code. Also, scope your jquery code that uses the &apos;$&apos; sign (see code below).    </p>
+</li></ol>    <p>Making JQuery play nice with Prototype:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;script language=</code><code class="string">&quot;javascript&quot;</code><code class="plain"> type=</code><code class="string">&quot;text/javascript&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    jQuery.noConflict();</code></div>
+<div class="line"><code class="plain">&lt;/script&gt;</code></div>
+</div>
+    </div>
+    <p>Scoping the &apos;$&apos; sign for JQuery    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">(function($) {</code></div>
+<div class="line"><code class="plain">    $.jqotetag( </code><code class="string">&apos;$&apos;</code><code class="plain"> );</code></div>
+<div class="line"><code class="plain">}(jQuery));</code></div>
+</div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=30083151"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

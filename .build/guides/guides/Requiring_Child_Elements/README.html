@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Requiring Child Elements</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-41845675" class="content">
+                        <h1>Requiring Child Elements</h1>
+    <p>Demonstrates how to use the <tt class=" ">&lt;Require/&gt;</tt> and <tt class=" ">&lt;Widget/&gt;</tt> elements to include external views and widgets. Also shows how to programmatically add child views declared inside a <tt class=" ">&lt;Require/&gt;</tt> or <tt class=" ">&lt;Widget/&gt;</tt> element to the parent.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">App Folder Location</div>
+            <p>alloy/test/apps/<strong class=" ">advanced_require_children</strong>    </p>
+    </div>
+        <img src="images/download/attachments/41845675/require-proxy-1.png" alt="images/download/attachments/41845675/require-proxy-1.png" class="confluence-embedded-image" width="500">
+        <p>The sample application&apos;s <tt class=" ">views/index.xml</tt> file includes a &lt;<a class="external-link external-link" href="#!/api/Titanium.UI.TabGroup">TabGroup</a>/&gt; element that contains two &lt;<a class="external-link external-link" href="#!/api/Titanium.UI.TabGroup">Tab</a>/&gt; elements titled &quot;requires&quot; and &quot;widgets&quot;, respectively. The first Tab includes a <tt class=" ">&lt;Require/&gt;</tt> element whose source is the <strong class=" ">views/requires/index.xml</strong> view, as shown below.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/views/index.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">TabGroup</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;requires&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;requires&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;requires/index&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;widgets&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;widgets&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;widgets/index&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">TabGroup</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <p>The <tt class=" ">views/requires/index.xml</tt> view, in turn, includes three more Require elements that contain child elements.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">views/requires/index.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="views/requires/index.xml">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;requires/simple&quot;</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;leftside&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain">&gt;hi there&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain">&gt;I&apos;m on the left side&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;alertTitle&quot;</code><code class="plain">&gt;left button&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Require</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;requires/simple&quot;</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;rightside&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain">&gt;hi there&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain">&gt;I&apos;m on the right side&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;alertTitle&quot;</code><code class="plain">&gt;right button&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Require</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;requires/deep&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">color</code><code class="plain">=</code><code class="string">&quot;#42282F&quot;</code><code class="plain">&gt;I&apos;m 3 views deep&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Require</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <p>The first two <tt class=" ">&lt;Require/&gt;</tt> elements include the same file, <strong class=" ">views/requires/simple.xml</strong>, that simply defines a single empty <tt class=" ">&lt;View/&gt;</tt> element:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/views/requires/simple.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/requires/simple.xml">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">View</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <p>The child elements declared inside the the <tt class=" ">&lt;Require/&gt;</tt> element are added programmatically to the parent view by the view-controller. The child elements are passed in the <tt class=" ">children</tt> array passed to the view-controller on the <tt class=" ">arguments</tt> object. The simple.js view-controller adds the child views of the <tt class=" ">&lt;Require/&gt;</tt> element to the parent view, referenced by <tt class=" ">$.simple</tt>.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">controllers/requires/simple.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="controllers/requires/simple.js">
+<div class="line"><code class="comments">// add children to simple container, if there are any</code></div>
+<div class="line"><code class="plain">_.each($.args.children || [], </code><code class="keyword">function</code><code class="plain">(child) {</code></div>
+<div class="line"><code class="plain">    Ti.API.info(</code><code class="string">&apos;adding child &apos;</code><code class="plain"> + child.toString());</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// I can inject properties if I want</code></div>
+<div class="line"><code class="plain">    child.top = </code><code class="string">&apos;10dp&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// then add each child where ever I want</code></div>
+<div class="line"><code class="plain">    $.simple.add(child);</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    <p>The other <tt class=" ">&lt;Tab/&gt;</tt> element requires <strong class=" ">views/widgets/index.xml</strong>, which contains a <tt class=" ">&lt;Widget/&gt;</tt> element. The <tt class=" ">&lt;Widget/&gt;</tt> element&apos;s <tt class=" ">src</tt> attribute specifies the name of the widget folder, relative to the app/widgets, folder to include. The <tt class=" ">&lt;Widget/&gt;</tt> element contains the following child views: a Label, an ImageView and a Button.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">views/widgets/index.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="views/widgets/index.xml">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Widget</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;alloy.container&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;title&quot;</code><code class="plain">&gt;my title&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;image&quot;</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">&quot;/logo.png&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;action&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;alertAction&quot;</code><code class="plain">&gt;action button&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Widget</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <p>The child views are are added programmatically to the main (empty) View. In this case, additional logic checks to see if a child view was passed as an argument before adding it to the parent view.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">var</code><code class="plain"> children = $.args.children || [];</code></div>
+<div class="line"><code class="keyword">function</code><code class="plain"> addViewIfExists(id, parent) {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> view;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// find the UI component by id</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (view = _.find(children, </code><code class="keyword">function</code><code class="plain">(c) { </code><code class="keyword">return</code><code class="plain"> c.id === id; })) {</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// add a class to style it</code></div>
+<div class="line"><code class="plain">        $.addClass(view, id);</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// add the component to the given parent container</code></div>
+<div class="line"><code class="plain">        parent.add(view);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="comments">// add children to widget, using specific rules and order for each</code></div>
+<div class="line"><code class="plain">addViewIfExists(</code><code class="string">&apos;image&apos;</code><code class="plain">, $.titlebar);</code></div>
+<div class="line"><code class="plain">addViewIfExists(</code><code class="string">&apos;title&apos;</code><code class="plain">, $.titlebar);</code></div>
+<div class="line"><code class="plain">addViewIfExists(</code><code class="string">&apos;action&apos;</code><code class="plain">, $.content);</code></div>
+</div>
+    </div>
+    <div class="section section-2 " id="src-41845675_RequiringChildElements-Seealso">
+        <h2 class="heading "><span>See also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="document-link " href="#!/guide/Alloy_Widgets">Alloy Widgets</a>    </p>
+</li></ul>    </div>
+        </img></div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845675"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

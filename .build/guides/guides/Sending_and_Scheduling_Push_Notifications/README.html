@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sending and Scheduling Push Notifications</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-43298780" class="content">
+                        <h1>Sending and Scheduling Push Notifications</h1>
+    <p>This guide explains how to send and schedule push notifications in Appcelerator Dashboard.    </p>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-OverviewofSendingPushNotifications">Overview of Sending Push Notifications</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-Sendingpushnotifications">Sending push notifications</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-AboutNotificationPayloads">About Notification Payloads</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-CustomJSONpayloads">Custom JSON payloads</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-AboutJSONPayloadsDeliveredtoDevices">About JSON Payloads Delivered to Devices</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-NotificationFeatures">Notification Features</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_safe-id-U2VuZGluZ2FuZFNjaGVkdWxpbmdQdXNoTm90aWZpY2F0aW9ucy1SaWNoTm90aWZpY2F0aW9ucyhpT1MxMGFuZGxhdGVyKQ">Rich Notifications (iOS 10 and later)</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_safe-id-U2VuZGluZ2FuZFNjaGVkdWxpbmdQdXNoTm90aWZpY2F0aW9ucy1JbnRlcmFjdGl2ZU5vdGlmaWNhdGlvbnMoaU9TOGFuZGxhdGVyKQ">Interactive Notifications (iOS 8 and later)</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-SilentPushNotifications">Silent Push Notifications</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-badgesNotificationBadges">Notification Badges</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-soundsNotificationSounds">Notification Sounds</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-androidAndroid-specificpayloadfields">Android-specific payload fields</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-Troubleshootingcommonerrors">Troubleshooting common errors</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_safe-id-U2VuZGluZ2FuZFNjaGVkdWxpbmdQdXNoTm90aWZpY2F0aW9ucy0nU3Vic2NyaXB0aW9ubm90Zm91bmQnZXJyb3I">&apos;Subscription not found&apos; error</a>    </p>
+</li></ul></li></ul>    <div class="section section-2 " id="src-43298780_SendingandSchedulingPushNotifications-OverviewofSendingPushNotifications">
+        <h2 class="heading "><span>Overview of Sending Push Notifications</span></h2>
+    <p>    <span id="src-43298780_SendingandSchedulingPushNotifications-overview"><a class="confluence-anchor-link" name="src-43298780_SendingandSchedulingPushNotifications-overview"/></span>
+    </p>
+    <p>The Dashboard lets you send push notifications to your Android and iOS application users. Mobile Backend Services act as the <i class=" ">push provider</i> on behalf of your application; that is, it communicates with the Google Cloud Messaging (GCM) or the Firebase Cloud Messaging (FCM) services for Android or the Apple Push Notification Service (APNS). <a class="external-link external-link" href="http://firebase.google.com/docs/cloud-messaging/" target="_blank">Firebase Cloud Messaging</a> (FCM) is the new version of GCM.    </p>
+    <p>Before you can send a push notification from Dashboard, the following must be done first:    </p>
+<ul class=" "><li class=" ">    <p>In Dashboard, <a class="document-link " href="#!/guide/Configuring_push_services">configure Mobile Backend Services</a> to communicate with either FCM or GCM for Android service or APNS.    </p>
+</li><li class=" ">    <p>Your application needs to do the following:    </p>
+<ul class=" "><li class=" ">    <p><a class="document-link " href="#!/guide/Subscribing_to_push_notifications">Obtain a device token</a> from APNS or from FCM or GCM, respectively.    </p>
+</li><li class=" ">    <p>Subscribe the user to at least one push notification channel. Channels provide a publish-subscribe model for push notifications. There are two ways an application can subscribe a user to receive push notifications: <a class="document-link " href="#!/guide/Subscribing_to_push_notifications">session-based subscriptions</a> and <a class="document-link " href="#!/guide/Subscribing_to_push_notifications">token-based subscriptions</a>.    </p>
+</li></ul></li></ul>    <p>How your application subscribes its users (session- or token-base subscriptions) determines to a degree your options for delivering notifications. For example, if you need to send notifications to specific API Builder users, use session-based subscriptions. But for an application like a mobile banking app, you would want to notify individual account holders. If you don&apos;t need to target specific users, token-based subscriptions are a good approach.    </p>
+    </div>
+    <div class="section section-2 " id="src-43298780_SendingandSchedulingPushNotifications-Sendingpushnotifications">
+        <h2 class="heading "><span>Sending push notifications</span></h2>
+    <p>To send a push notification, you must provide Dashboard the following information:    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">Notification recipients and channel &#x2013; </strong>If your application users were subscribed using <i class=" ">session-based subscriptions</i>, you can send a notification to specific API Builder users subscribed to a particular channel. For token-based subscriptions, you can send notifications to all users subscribed to a particular channel, or all users regardless of their channel subscriptions.    </p>
+</li><li class=" ">    <p><strong class=" ">Notification schedule &#x2013; </strong>You can send a notification immediately, or schedule it to be sent at a future date and time. Scheduled notifications can be one-time or recurring.    </p>
+</li><li class=" ">    <p><strong class=" ">Notification payload &#x2013; </strong>The content of the notification, which consists minimally of an alert string to display, and optionally a sound to play or badge display. See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-AboutNotificationPayloads">About Notification Payloads</a>.    </p>
+</li></ul>    <p>To send a notification to users located in a geographic area, the application must have first provided their current location to API Builder. For details, see <a class="document-link " href="#!/guide/Subscribing_to_push_notifications">Updating Subscriptions with Device Location</a>.    </p>
+    <p>Appcelerator Dashboard provides two views for sending notifications, <strong class=" ">Standard</strong> and <strong class=" ">Advanced.</strong> The Standard view provides an easy way to send notifications without having to understand the payload structure. In the Advanced view, you manually create the JSON payload. The advanced form provides additional flexibility, such as including custom payload fields.    </p>
+    <p>If you prefer can use the <a class="external-link external-link" href="/arrowdb/latest/#!/api/PushNotifications-method-notify">PushNotification.notify</a> or <a class="external-link external-link" href="/arrowdb/latest/#!/api/PushNotifications-method-notify_token">PushNotification.notify_tokens</a> REST APIs to send push notifications.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>A warning will be displayed if you attempt to perform a push with an expired or disabled iOS certificate.    </p>
+    </div>
+        <p><strong class=" ">To send a push notification from Dashboard:</strong>    </p>
+<ol class=" "><li class=" ">    <p>In Dashboard, select your application from the Apps menu.    </p>
+</li><li class=" ">    <p>From the left-side navigation, select <strong class=" ">Push Notifications</strong>.    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Send</strong> to open the Send Push Notification form<strong class=" ">. </strong>    </p>
+</li><li class=" ">    <p>Select either the <strong class=" ">Standard</strong> or <strong class=" ">Advanced</strong>.    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Recipients</strong> and (optionally) the notification <strong class=" ">Channel Name</strong>:    </p>
+<ol class=" "><li class=" ">    <p>To send a notification to all users regardless of their channel subscriptions, select <strong class=" ">All Users</strong><strong class=" "> </strong>and leave the <strong class=" ">Channel Name</strong> field blank.    </p>
+</li><li class=" ">    <p>To send a notification to all users subscribed to a particular channel, select <strong class=" ">All Users</strong> and enter the channel name in the <strong class=" ">Channel Name</strong> field.    </p>
+</li><li class=" ">    <p>To send a notification to specific users who are subscribed to a particular channel<i class=" ">,</i> select <strong class=" ">Specific Users</strong>, then:    </p>
+<ol class=" "><li class=" ">    <p>Click the add<strong class=" "> (+)</strong> button in the <strong class=" ">To Users</strong> field.    </p>
+</li><li class=" ">    <p>Select the desired recipients from the list of users. To locate a particular user, enter their username in the search field.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Channel Name</strong> field enter the name of the target channel subscription. Note: You must specify a channel when sending a notification to specific users.    </p>
+</li></ol></li><li class=" ">    <p>To send a notification to all users located within a geographic selection, select <strong class=" ">Geographic Selection,</strong> then:    </p>
+<ol class=" "><li class=" ">    <p>Click the add (<strong class=" ">+</strong>) button in the <strong class=" ">Place</strong> field and select an existing place. This defines the center points of the geographic selection. The selected Place must have a defined latitude and longitude.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Radius</strong> field, enter the distance (in Miles or Meters) from the selected Place to define the size of the geographic selection.    </p>
+</li></ol></li></ol></li><li class=" ">    <p>To specify when to deliver the notification, in the <strong class=" ">Send When</strong> field, select one of the following options:    </p>
+<ol class=" "><li class=" ">    <p>To send the notification immediately, select <strong class=" ">Send Now.</strong>    </p>
+</li><li class=" ">    <p>To schedule a one-time notification, select <strong class=" ">One-Time</strong> and then select the delivery date and time (All times are in UTC.)    </p>
+</li><li class=" ">    <p>To schedule a recurring notification, select <strong class=" ">Recurring,</strong> select the start date and time, the end date, and the recurrence interval: <strong class=" ">Daily, Weekly,</strong> or <strong class=" ">Monthly.</strong> (All times are in UTC.)    </p>
+</li></ol></li><li class=" ">    <p>To define the notification payload using the <strong class=" ">Standard</strong> view:    </p>
+<ol class=" "><li class=" ">    <p>In the <strong class=" ">Alert</strong> field, enter the notification message to display on the device.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Channel Name</strong> field, enter the channel name to use for notifications. A Channel is required when not sending a push to all users.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Badge</strong> field, enter a badge value. See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-badges">Notification Badges</a> for details.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Sound</strong> field, select <strong class=" ">None, Default,</strong> or <strong class=" ">Custom. </strong>See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-sounds">Notification Sounds</a> for details.    </p>
+</li><li class=" ">    <p>For iOS devices:    </p>
+<ol class=" "><li class=" ">    <p>In the <strong class=" ">Content-Available</strong> field, check the box to indicate that new content is available. This is used to support Newsstand apps and background content downloads.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Category</strong> field, enter the name of the category to use for interactive notifications. See <a class="document-link " href="#!/guide/iOS_Interactive_Notifications">iOS Interactive Notifications</a>.    </p>
+</li></ol></li><li class=" ">    <p>For Android devices:    </p>
+<ol class=" "><li class=" ">    <p>In the <strong class=" ">Vibrate</strong> field, select No or Yes to have the device vibrate or not upon receipt of the notification.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Title</strong> field (Android, only), select the title to display in the Alert message. See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-title">Notification Titles</a> for details.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Icon</strong> field (Android, only), specify the name of the image file to display as the notification icon. See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-icon">Notification Icons</a> for details.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">    <span style="color: #343a40;">
+Collapse Key    </span>
+</strong> field (Android, only),     <span style="color: #343a40;">
+identify a group of messages (for example, with <tt class=" ">{{collapse_key: &#x201C;Updates Available&#x201D;}}</tt>) that can be collapsed, so that only the last message gets sent when delivery can be resumed.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #343a40;">
+In the <strong class=" ">Time to Live</strong> field (Android, only),     <span style="color: #343a40;">
+specify how long (in seconds) the message should be kept in Firebase Cloud Messaging storage if the device is offline.    </span>
+    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #343a40;">
+    <span style="color: #343a40;">
+In the <strong class=" ">Priority</strong> field     <span style="color: #343a40;">
+ (Android, only)    </span>
+, select     <span style="color: #343a40;">
+either <strong class=" ">Normal</strong> or <strong class=" ">High</strong>. Set to high priority if the message is time-critical and requires the user&apos;s immediate interaction.    </span>
+<br>    </br></span>
+    </span>
+    </p>
+</li></ol></li></ol></li><li class=" ">    <p>To define the notification payload using the <strong class=" ">Advanced</strong> view:    </p>
+<ol class=" "><li class=" ">    <p>In the <strong class=" ">Custom JSON</strong> field, enter a valid JSON string (see     <span style="color: #000000;">
+<a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-CustomJSONpayloads">Custom JSON Payloads</a> for details).<br>    </br></span>
+    <span style="color: #000000;">
+    <img src="images/download/attachments/43298780/advanced_form2_latest.png" alt="images/download/attachments/43298780/advanced_form2_latest.png" class="confluence-embedded-image" width="700">
+<br>    </br></img></span>
+    </p>
+</li></ol></li><li class=" ">    <p>    <span style="color: #000000;">
+Click <strong class=" ">Send Now</strong>.     </span>
+    </p>
+</li></ol>    </div>
+    <div class="section section-2 " id="src-43298780_SendingandSchedulingPushNotifications-AboutNotificationPayloads">
+        <h2 class="heading "><span>About Notification Payloads</span></h2>
+    <p>The content, or payload, of a push notification, is a JSON-encoded object whose fields contain the payload values. The JSON object typically contains one of the &quot;standard&quot; notification fields. Standard fields are supported by both iOS and Android devices. Some fields are platform-specific, such as <tt class=" ">icon</tt> or <tt class=" ">title</tt>, that are only used by Android, or <tt class=" ">category</tt> and <tt class=" ">content-available</tt>, that are only used by iOS 8 devices and later.    </p>
+    <p>Standard fields include the following:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">alert</tt> &#x2013; The notification message displayed to the user.    </p>
+</li><li class=" ">    <p><tt class=" ">badge</tt> &#x2013; The number to display in the notification. See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-badges">Notification badges</a>.    </p>
+</li><li class=" ">    <p><tt class=" ">sound</tt> &#x2013; The name of an audio file to play when the notification arrives, minus its extension. See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-sounds">Notification sounds</a>.    </p>
+</li></ul>    <p>Android devices support the following additional fields:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">icon</tt> &#x2013; The name of the image file to display as the icon, minus its extension.    </p>
+</li><li class=" ">    <p><tt class=" ">title</tt> &#x2013; Title displayed above the alert text. Defaults to the application name.    </p>
+</li><li class=" ">    <p><tt class=" ">vibrate</tt> &#x2013; A Boolean that the device to vibrate momentarily upon receipt.    </p>
+</li></ul>    <p>See Android-specific notification fields for more information about specifying these fields.    </p>
+    <p>iOS 8 devices and later support the following additional fields:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">category</tt> &#x2013;     <span style="color: #000000;">
+The name of the category to use for interactive notifications. See     </span>
+<a class="document-link " href="#!/guide/iOS_Interactive_Notifications">iOS Interactive Notifications</a>    <span style="color: #000000;">
+ for more information.    </span>
+    </p>
+</li><li class=" ">    <p><tt class=" ">content-available</tt> &#x2013; If set to <strong class=" ">1</strong>, indicates that new content is available.     <span style="color: #000000;">
+This is used to support Newsstand apps and background content downloads.    </span>
+    </p>
+</li></ul>    <p>The payload can also include custom fields that your application can read and use as desired. See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-CustomJSONpayloads">Custom JSON Payloads</a> for an example of using custom fields.    </p>
+    <div class="section section-3 " id="src-43298780_SendingandSchedulingPushNotifications-CustomJSONpayloads">
+        <h3 class="heading "><span>Custom JSON payloads</span></h3>
+    <p>Appcelerator Dashboard provides two forms, Standard and Advanced, for you to compose the payload. In the Standard form, you use common form controls to compose the payload, without having to write JSON code. In the Advanced form, you manually enter the JSON-encoded string that&apos;s sent in the notification. The JSON object can contain any of the standard fields discussed in <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-AboutNotificationPayloads">About Notification Payloads</a>, or custom fields specific to your application. For example, the following payload contains <tt class=" ">alert</tt> and <tt class=" ">sound</tt> fields, as well as a custom field named <tt class=" ">high_score</tt>.    </p>
+    <p>    <img src="images/download/attachments/43298780/custom_json.png" alt="images/download/attachments/43298780/custom_json.png" class="confluence-embedded-image" width="599" height="123">
+        </img></p>
+    <p>Below is a more advanced custom JSON payload:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;alert&quot;</code><code class="plain">: </code><code class="string">&quot;Sample alert&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;badge&quot;</code><code class="plain">: </code><code class="string">&quot;+2&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;category&quot;</code><code class="plain">: </code><code class="string">&quot;sampleCategory&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;icon&quot;</code><code class="plain">: </code><code class="string">&quot;little_star&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;sound&quot;</code><code class="plain">: </code><code class="string">&quot;door_bell&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;title&quot;</code><code class="plain">: </code><code class="string">&quot;Example&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;vibrate&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;custom_field_1&quot;</code><code class="plain">: </code><code class="string">&quot;Arrow Push Rocks!&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;custom_field_2&quot;</code><code class="plain">: </code><code class="string">&quot;Hi Push&quot;</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>When the device receives this payload, it will do the following:    </p>
+<ul class=" "><li class=" ">    <p>Display the &quot;Sample alert&quot; message.    </p>
+</li><li class=" ">    <p>Increment the current badge value by two.    </p>
+</li><li class=" ">    <p>Play the &quot;door_bell&quot; audio file.    </p>
+</li><li class=" ">    <p>On Android devices:    </p>
+<ul class=" "><li class=" ">    <p>The notification title will be set to &quot;Example&quot;    </p>
+</li><li class=" ">    <p>The device will vibrate    </p>
+</li><li class=" ">    <p>The &quot;little_star&quot; icon will be displayed in the notification area.    </p>
+</li></ul></li><li class=" ">    <p>On iOS devices:    </p>
+<ul class=" "><li class=" ">    <p>The user notification actions associated with the &quot;sampleCategory&quot; user notification category.    </p>
+</li></ul></li></ul>    </div>
+    <div class="section section-3 " id="src-43298780_SendingandSchedulingPushNotifications-AboutJSONPayloadsDeliveredtoDevices">
+        <h3 class="heading "><span>About JSON Payloads Delivered to Devices</span></h3>
+    <p>The notification payload that Mobile Backend Services delivers to either FCM or GCM or APNS is slightly modified from the original JSON payload you provide to Dashboard. Also, the payloads are slightly different for Android and iOS devices.    </p>
+    <p>For Android, all Android-specific fields are contained in an <strong class=" "><tt class=" ">android</tt></strong> dictionary, while all other iOS-only and custom fields are top-level keys of the payload. For example, the payload shown in <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-CustomJSONpayloads">Custom JSON payloads</a> will be delivered to an Android application as follows:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;android&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;title&quot;</code><code class="plain">: </code><code class="string">&quot;Example&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;alert&quot;</code><code class="plain">: </code><code class="string">&quot;Sample alert&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;icon&quot;</code><code class="plain">: </code><code class="string">&quot;little_star&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;badge&quot;</code><code class="plain">: </code><code class="string">&quot;+2&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;sound&quot;</code><code class="plain">: </code><code class="string">&quot;door_bell&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;vibrate&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;category&quot;</code><code class="plain">: </code><code class="string">&quot;sampleCategory&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;custom_field_1&quot;</code><code class="plain">: </code><code class="string">&quot;Arrow Push Services Rocks!&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;custom_field_2&quot;</code><code class="plain">: </code><code class="string">&quot;Hi Push&quot;</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>For iOS devices, all iOS-specific fields are contained in an <tt class=" ">aps</tt> dictionary, while all Android-specific and custom fields are top-level keys of the payload. For example, the payload shown in <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-CustomJSONpayloads">Custom JSON payloads</a> will be delivered to an iOS application as follows:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;aps&quot;</code><code class="plain">: { </code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;alert&quot;</code><code class="plain">: </code><code class="string">&quot;Sample alert&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;badge&quot;</code><code class="plain">: </code><code class="string">&quot;+2&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;category&quot;</code><code class="plain">: </code><code class="string">&quot;sampleCategory&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;sound&quot;</code><code class="plain">: </code><code class="string">&quot;door_bell&quot;</code></div>
+<div class="line"><code class="plain">    }, </code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;title&quot;</code><code class="plain">: </code><code class="string">&quot;Example&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;icon&quot;</code><code class="plain">: </code><code class="string">&quot;little_star&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;vibrate&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;custom_field_1&quot;</code><code class="plain">: </code><code class="string">&quot;Arrow Push Rocks!&quot;</code><code class="plain">, </code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;custom_field_2&quot;</code><code class="plain">: </code><code class="string">&quot;Hi Push&quot;</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>    </p>
+    </div>
+    <div class="section section-3 " id="src-43298780_SendingandSchedulingPushNotifications-NotificationFeatures">
+        <h3 class="heading "><span>Notification Features</span></h3>
+    <div class="section section-4 " id="src-43298780_safe-id-U2VuZGluZ2FuZFNjaGVkdWxpbmdQdXNoTm90aWZpY2F0aW9ucy1SaWNoTm90aWZpY2F0aW9ucyhpT1MxMGFuZGxhdGVyKQ">
+        <h4 class="heading "><span>Rich Notifications (iOS 10 and later)</span></h4>
+    <p>Since Titanium SDK 7.3.0,     <span style="color: #484848;">
+you can create rich notifications for users running iOS 10 or later. Rich notifications can include additional meta-data like a subtitle, location-based triggers, and attachments. While most of the new properties can be configured in existing <a class="external-link external-link" href="#!/api/Titanium.App.iOS.UserNotificationAction">UserNotificationAction</a> instances, there is one special case to remember when working with rich notifications: If you want to display an attachment, you have to distinguish between local and remote images:    </span>
+    </p>
+<ul class=" "><li class=" ">    <p>    <span style="color: #484848;">
+<strong class=" ">Local</strong> images: Can be specified when scheduling a <strong class=" ">local</strong> notification from your application, e.g. using the <tt class=" ">attachments</tt> property inside the creation dictionary of the notification.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #484848;">
+<strong class=" ">Remote</strong> image: Can be specified when scheduling a <strong class=" ">remote</strong> notification using an <tt class=" ">UNNotificationServiceExtension</tt>. App extensions in Titanium can be written in both Objective-C and Swift. Learn more about them <a class="document-link " href="#!/guide/Creating_iOS_Extensions_-_Siri_Intents">here</a>.    </span>
+    </p>
+</li></ul>    <p>    <span style="color: #484848;">
+     </span>
+Remote attachments example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;aps&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;alert&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;title&quot;</code><code class="plain">: </code><code class="string">&quot;Weather Update&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;body&quot;</code><code class="plain">: </code><code class="string">&quot;The weather out here is getting serious, remember to bring an umbrella!&quot;</code></div>
+<div class="line"><code class="plain">        },</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;mutable-content&quot;</code><code class="plain">: 1</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;attachment-url&quot;</code><code class="plain">: </code><code class="string">&quot;https://api.buienradar.nl/Image/1.0/RadarMapNL&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;attachment-name&quot;</code><code class="plain">: </code><code class="string">&quot;example.gif&quot;</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>    <span style="color: #484848;">
+Important: Make sure to include the <tt class=" ">&quot;mutable-content&quot;</tt> flag in your JSON payload, which is used to trigger the notification extension. Also, the <tt class=" ">attachement-url</tt> is downloaded and persisted in your local filesystem using the <tt class=" ">attachment-name</tt> key. The developer is responsible to structure the extension and the way it deals with remote content. See our <a class="external-link external-link" href="https://github.com/appcelerator-developer-relations/appc-sample-ios-push-notifications/blob/master/extensions/NotificationServiceExtension/notificationservice/NotificationService.swift" target="_blank">example Swift extension</a> that can be used as part of <a class="document-link " href="#!/guide/Creating_iOS_Extensions_-_Siri_Intents">App Extensions</a> guide.     </span>
+    </p>
+    <p>    <span style="color: #484848;">
+In addition to that, iOS 10 also introduces a NotificationCenter API that is made available in Titanium via the <a class="external-link external-link" href="#!/api/Titanium.App.iOS.UserNotificationCenter"><tt class=" ">Ti.App.iOS.UserNotificationCenter</tt></a> API. It represents a powerful binding to manage notifications by being able to change or cancel notifications that are currently pending. While most of its API&apos;s are made for iOS 10 and later, the changes have been made in a way to be backward compatible with iOS 8, so you don&apos;t need to call multiple methods to manage your push notifications.    </span>
+    </p>
+    <p>    <span style="color: #484848;">
+Some useful links to get started:    </span>
+    </p>
+<ul class=" "><li class=" ">    <p>    <span style="color: #484848;">
+Apple: <a class="external-link external-link" href="https://developer.apple.com/videos/play/wwdc2017/817/" target="_blank">WWDC 2017: Rich Notifications</a>    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #484848;">
+Apple: <a class="external-link external-link" href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/" target="_blank">Local and Remote Notifications</a>    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #484848;">
+Titanium: <a class="external-link external-link" href="https://github.com/appcelerator-developer-relations/appc-sample-ios-push-notifications" target="_blank">iOS Push Notifications Sample App</a>    </span>
+    </p>
+</li><li class=" ">    <p>Titanium: <a class="document-link " href="#!/guide/Creating_iOS_Extensions_-_Siri_Intents">App Extensions Guide</a>    </p>
+</li></ul>    </div>
+    <div class="section section-4 " id="src-43298780_safe-id-U2VuZGluZ2FuZFNjaGVkdWxpbmdQdXNoTm90aWZpY2F0aW9ucy1JbnRlcmFjdGl2ZU5vdGlmaWNhdGlvbnMoaU9TOGFuZGxhdGVyKQ">
+        <h4 class="heading "><span>Interactive Notifications (iOS 8 and later)</span></h4>
+    <p>    <span style="color: #484848;">
+You can create interactive notifications for users running iOS 8 or later can respond to without launching the application to the foreground.     </span>
+    </p>
+    <p>    <span style="color: #484848;">
+    <img src="images/download/attachments/43298780/InteractiveBannerMessage.png" alt="images/download/attachments/43298780/InteractiveBannerMessage.png" class="confluence-embedded-image">
+    </img></span>
+    </p>
+    <p>Your Titanium application defines one or more <i class=" ">notification categories</i>, each of which consists of one or more <i class=" ">notification actions</i>. When you <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-Sendingpushnotifications">create a push notification</a> in Dashboard, the <strong class=" ">Category</strong> form field lets you specify the category of interactive notification to display when the push notification arrives.    </p>
+    <p><strong class=" ">To create an interactive notification:</strong>    </p>
+<ol class=" "><li class=" ">    <p>In your Titanium application:    </p>
+<ol class=" "><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Interactive_Notifications">Create and configure notification actions</a>.    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/iOS_Interactive_Notifications">Create notification categories</a> and assign notification actions to them.    </p>
+</li><li class=" ">    <p class="_mce_tagged_br"><a class="document-link " href="#!/guide/iOS_Interactive_Notifications">Register the application</a> for the desired notification categories, and to receive push notifications.    </p>
+</li><li class=" ">    <p>Register an event listener for the <tt class=" ">remotenotificationaction</tt> event, to respond to user actions when they interact with the notification.    </p>
+</li></ol></li><li class=" ">    <p>In Dashboard, send a new push notification and set the <strong class=" ">Category</strong> field to the desired notification category to use.    </p>
+    <img src="images/download/attachments/43298780/push_notification.png" alt="images/download/attachments/43298780/push_notification.png" class="confluence-embedded-image">
+    </img></li></ol>    <p>When the notification arrives, the device displays the set of actions defined by the category. The <a class="external-link external-link" href="#!/api/Titanium.App.iOS-event-remotenotificationaction">remotenotificationaction</a> event fires when the user interacts with the notification.    </p>
+    <p>In addition, you can set the <tt class=" ">behavior</tt> property of the <a class="external-link external-link" href="#!/api/Titanium.App.iOS.UserNotificationAction"><tt class=" ">Ti.App.iOS.NotificationAction</tt></a> to <a class="external-link external-link" href="#!/api/Titanium.App.iOS-property-USER_NOTIFICATION_BEHAVIOR_TEXTINPUT"><tt class=" ">Ti.App.iOS.USER_NOTIFICATION_BEHAVIOR_TEXTINPUT</tt></a> which will show a text-field that can be used to respond to actions without opening the app.    </p>
+    </div>
+    <div class="section section-4 " id="src-43298780_SendingandSchedulingPushNotifications-SilentPushNotifications">
+        <h4 class="heading "><span>Silent Push Notifications</span></h4>
+    <p>The <strong class=" ">Content-Available</strong> form field lets you silently notify a Titanium or native iOS/Android application, without alerting the user at all. A silent push is often used to alert the application that new content is available to download. Once the download (or another task) initiated by the silent push is complete, the application can display a notification to the user that new content is available.    </p>
+    <p>    <img src="images/download/attachments/43298780/content-available.png" alt="images/download/attachments/43298780/content-available.png" class="confluence-embedded-image">
+        </img></p>
+    <p>For detailed steps on enabling silent push notifications in your Titanium application, see <a class="document-link " href="#!/guide/iOS_Background_Services">Silent Push</a> in the Titanium SDK guides.    </p>
+    </div>
+    <div class="section section-4 " id="src-43298780_SendingandSchedulingPushNotifications-badgesNotificationBadges">
+        <h4 class="heading "><span id="src-43298780_SendingandSchedulingPushNotifications-badges" class="confluence-anchor-link"/><span>Notification Badges</span></h4>
+    <p>A <strong class=" ">badge</strong> is a number displayed on the application icon (on iOS), or in the notification area (on Android). You can specify a specific badge value to display (2 or 10, for example), or a number prefixed by plus (+) or minus (-) symbol (+3 or -6, for example). When prefixed, the currently displayed badge number is incremented or decremented by the specified amount, respectively. To remove an application badge on iOS, specify a badge value of <strong class=" ">0</strong> (zero).    </p>
+    <p>    <img src="images/download/attachments/43298780/ios_notifiy.png" alt="images/download/attachments/43298780/ios_notifiy.png" class="confluence-embedded-image" width="300" height="122">
+        </img></p>
+    <p>    <img src="images/download/attachments/43298780/android_badge.png" alt="images/download/attachments/43298780/android_badge.png" class="confluence-embedded-image" width="338" height="88">
+        </img></p>
+    </div>
+    <div class="section section-4 " id="src-43298780_SendingandSchedulingPushNotifications-soundsNotificationSounds">
+        <h4 class="heading "><span id="src-43298780_SendingandSchedulingPushNotifications-sounds" class="confluence-anchor-link"/><span>Notification Sounds</span></h4>
+    <p>The <tt class=" ">sound</tt> field in a notification payload specifies the name (minus the extension) of a local sound file resource to play the notification arrives. When a push notification arrives, you can specify a custom sound to play, the default system sound, or no sound.    </p>
+<ul class=" "><li class=" ">    <p>For Android applications built with Titanium, place the file in the <tt class=" ">/Resources/sound</tt> directory.    </p>
+</li><li class=" ">    <p>For iOS applications built with Titanium, place the file in the <tt class=" ">/Resources</tt> directory.    </p>
+</li><li class=" ">    <p>For native Android applications, place the file in the <tt class=" ">/assets/sound</tt> directory.    </p>
+</li><li class=" ">    <p>For native iOS applications, place the file in the main bundle.    </p>
+</li></ul>    </div>
+    <div class="section section-4 " id="src-43298780_SendingandSchedulingPushNotifications-androidAndroid-specificpayloadfields">
+        <h4 class="heading "><span id="src-43298780_SendingandSchedulingPushNotifications-android" class="confluence-anchor-link"/><span>Android-specific payload fields</span></h4>
+    <p>In addition to the standard notification fields <tt class=" ">(alert, badge,</tt> and <tt class=" ">sound)</tt> Android devices support the following fields:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">title</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">icon</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">vibrate</tt>    </p>
+</li></ul>    <p>Titanium application may also specify any of the properties in Titanium.Android.Notification, except for <tt class=" ">contentIntent</tt> or <tt class=" ">deleteIntent</tt>. For instance, you can add a <tt class=" ">tickerText</tt> field to the notification payload     <span style="color: #484848;">
+that scrolls the specified text across the notification area.    </span>
+    </p>
+    <div class="section section-5 " id="src-43298780_SendingandSchedulingPushNotifications-titleTitlefield">
+        <h5 class="heading "><span id="src-43298780_SendingandSchedulingPushNotifications-title" class="confluence-anchor-link"/><span>Title field</span></h5>
+    <p><strong class=" ">Title</strong> &#x2013; A string to display above the alert message in the notification area. If not specified in the payload, the application&apos;s name is displayed, as specified by the <strong class=" ">&lt;name&gt;</strong> element in your <a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference">project&apos;s tiapp.xml</a> file.    </p>
+    <p>    <img src="images/download/attachments/43298780/title_alert.png" alt="images/download/attachments/43298780/title_alert.png" class="confluence-embedded-image" width="341" height="168">
+        </img></p>
+    </div>
+    <div class="section section-5 " id="src-43298780_SendingandSchedulingPushNotifications-Iconfield">
+        <h5 class="heading "><span>Icon field</span></h5>
+    <p>    <span id="src-43298780_SendingandSchedulingPushNotifications-icon"><a class="confluence-anchor-link" name="src-43298780_SendingandSchedulingPushNotifications-icon"/></span>
+The <tt class=" ">icon</tt> payload field specifies an image to display with the notification on Android devices. (For image specifications, see <a class="document-link " href="#!/guide/Icons_and_Splash_Screens">Icons and Splash Screens: Notification Icons</a>.) Its value is the name of a local image file, minus the extension of the icon to display. The file must be placed your project&apos;s <tt class=" ">/res/drawable</tt> folder for native Android applications or the <tt class=" ">/Resources</tt> folder Titanium applications. By default, the application&apos;s icon is displayed with the notification.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="string">&quot;alert&quot;</code><code class="plain">: </code><code class="string">&quot;You&apos;re a star!&quot;</code></div>
+<div class="line"><code class="plain">	</code><code class="string">&quot;icon&quot;</code><code class="plain">: </code><code class="string">&quot;little_star&quot;</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>    <img src="images/download/attachments/43298780/icon_location.png" alt="images/download/attachments/43298780/icon_location.png" class="confluence-embedded-image" width="355" height="189">
+        </img></p>
+    </div>
+    <div class="section section-5 " id="src-43298780_SendingandSchedulingPushNotifications-Vibratefield">
+        <h5 class="heading "><span>Vibrate field</span></h5>
+    <p>    <span id="src-43298780_SendingandSchedulingPushNotifications-vibrate"><a class="confluence-anchor-link" name="src-43298780_SendingandSchedulingPushNotifications-vibrate"/></span>
+    </p>
+    <p>A Boolean that specifies whether the device should vibrate when the notification arrives.    </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43298780_SendingandSchedulingPushNotifications-Troubleshootingcommonerrors">
+        <h2 class="heading "><span>Troubleshooting common errors</span></h2>
+    <p>This section lists errors that may occur when sending push notifications.    </p>
+    <div class="section section-3 " id="src-43298780_safe-id-U2VuZGluZ2FuZFNjaGVkdWxpbmdQdXNoTm90aWZpY2F0aW9ucy0nU3Vic2NyaXB0aW9ubm90Zm91bmQnZXJyb3I">
+        <h3 class="heading "><span>&apos;Subscription not found&apos; error</span></h3>
+    <p>In general, this error indicates that the recipients you selected are not subscribed to the specified channel. If you&apos;re sending a notification to specific API Builder users, make sure that those users are subscribed to the specified channel. Or, if you&apos;re sending a token-based notification (not addressed to specific users) make sure that channel name you specified has at least one subscriber. See <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-Viewingsubscribeddevices">Viewing subscribed devices</a> for more information.    </p>
+    <p>When <a class="document-link " href="#!/guide/Sending_and_Scheduling_Push_Notifications-section-src-43298780_SendingandSchedulingPushNotifications-SendingandSchedulingPushNotifications-sendSendingpushnotifications">sending</a> a geo-based push notification, this error can also indicate that no devices were found in the selected geographic area. Try the following:    </p>
+<ul class=" "><li class=" ">    <p>Make sure your application is sending its current location to API Builder. See <a class="document-link " href="#!/guide/Subscribing_to_push_notifications">Updating Subscriptions with Device Location</a>. Devices must report their location to API Builder to enable geo-based push.    </p>
+</li><li class=" ">    <p>Try using a larger <strong class=" ">Radius</strong> value to encompass a larger geographic area.    </p>
+</li></ul>    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=43298780"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Axway Flow SDK</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-52298051" class="content">
+                        <h1>Axway Flow SDK</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-Features">Features</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-Install">Install</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-UsetheAxwayFlowSDK">Use the Axway Flow SDK</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-Unittestyourflow-node">Unit test your flow-node</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-LocalAPIBuildertest">Local API Builder test</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-Typereferences">Type references</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-axwayAPIReference">API Reference</a>    </p>
+</li></ul>    <p>The Axway Flow SDK (<tt class=" ">axway-flow-sdk</tt>) is a standalone utility that enables the creation of custom flow-nodes for API Builder flows. By offering the Axway Flow SDK as a standalone utility, new flow-nodes can be developed and consumed in API Builder without upgrading the version.    </p>
+    <div class="section section-2 " id="src-52298051_AxwayFlowSDK-Features">
+        <h2 class="heading "><span>Features</span></h2>
+    <p>The Axway Flow SDK has the following content:    </p>
+<ul class=" "><li class=" ">    <p>CLI tool for starting a new flow-node project    </p>
+</li><li class=" ">    <p>SDK for building custom modules for API Builder flows    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-52298051_AxwayFlowSDK-Install">
+        <h2 class="heading "><span>Install</span></h2>
+    <p>The following command installs the Axway Flow SDK.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">npm install -g axway-flow-sdk</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-52298051_AxwayFlowSDK-UsetheAxwayFlowSDK">
+        <h2 class="heading "><span>Use the Axway Flow SDK</span></h2>
+    <p>The following generates a new flow-node starter project in the current directory. You can customize the starter project to meet your requirements.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">axway-flow -n &lt;node name&gt;</code></div>
+<div class="line"><code class="plain">cd &lt;node name&gt;</code></div>
+<div class="line"><code class="plain">npm install</code></div>
+<div class="line"><code class="plain">npm run build</code></div>
+</div>
+    </div>
+    <p>The generated starter project name is prefixed with the required <tt class=" ">nodehandler-</tt> prefix.    </p>
+    <p>The starter project is heavily commented to simplify the process of customizing it. It also comes with the <tt class=" ">eslint</tt> configuration and the <tt class=" ">mocha</tt> unit tests incorporated to help you ensure the quality of your custom flow-node.    </p>
+    <div class="section section-3 " id="src-52298051_AxwayFlowSDK-SampleencodeURIflow-node">
+        <h3 class="heading "><span>Sample encodeURI flow-node</span></h3>
+    <p>As an example of how to write a flow-node, we will examine creating a flow-node that URI encodes a string.    </p>
+    <div class="section section-4 " id="src-52298051_AxwayFlowSDK-Createtheproject">
+        <h4 class="heading "><span>Create the project</span></h4>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">axway-flow -n encodeuri -d &#x201C;URI encoder.&#x201D;</code></div>
+<div class="line"><code class="plain">cd nodehandler-encodeuri</code></div>
+<div class="line"><code class="plain">npm install</code></div>
+<div class="line"><code class="plain">npm run build</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-52298051_AxwayFlowSDK-Customizetheflow-nodedefinitionintheindex.jsfile">
+        <h4 class="heading "><span>Customize the flow-node definition in the index.js file</span></h4>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">const</code><code class="plain"> sdk = require(</code><code class="string">&apos;axway-flow-sdk&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">const</code><code class="plain"> action = require(</code><code class="string">&apos;./action&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="keyword">const</code><code class="plain"> flownodes = sdk.init(module);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">flownodes</code></div>
+<div class="line"><code class="plain">    .add(</code><code class="string">&apos;encodeuri&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">        name: </code><code class="string">&apos;Encode URI&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        icon: </code><code class="string">&apos;icon.svg&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        description: </code><code class="string">&apos;URI encoder.&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        category: </code><code class="string">&apos;utils&apos;</code></div>
+<div class="line"><code class="plain">    })</code></div>
+<div class="line"><code class="plain">    .method(</code><code class="string">&apos;encode&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">        name: </code><code class="string">&apos;Encode URI&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        description: </code><code class="string">&apos;Encodes a URI by replacing each instance of certain characters with UTF-8 encodings.&apos;</code></div>
+<div class="line"><code class="plain">    })</code></div>
+<div class="line"><code class="plain">    .parameter(</code><code class="string">&apos;uri&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">        description: </code><code class="string">&apos;The URI to encode.&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        type: </code><code class="string">&apos;string&apos;</code></div>
+<div class="line"><code class="plain">    })</code></div>
+<div class="line"><code class="plain">    .output(</code><code class="string">&apos;next&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">        name: </code><code class="string">&apos;Next&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        description: </code><code class="string">&apos;The URI was encoded successfully.&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        context: </code><code class="string">&apos;$.encodedURI&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        schema: {</code></div>
+<div class="line"><code class="plain">            type: </code><code class="string">&apos;string&apos;</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    })</code></div>
+<div class="line"><code class="plain">    .action(action);</code></div>
+<div class="line"><code class="plain">exports = module.exports = flownodes;</code></div>
+</div>
+    </div>
+    <p>To explain what occurs in the <tt class=" ">index.js</tt> file, we will break the file down piece by piece.    </p>
+<ol class=" "><li class=" ">    <p>Describe the flow-node, name, description, category, and icon:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">.add(</code><code class="string">&apos;encodeuri&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">        name: </code><code class="string">&apos;Encode URI&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        icon: </code><code class="string">&apos;icon.svg&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        description: </code><code class="string">&apos;URI encoder.&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        category: </code><code class="string">&apos;utils&apos;</code></div>
+<div class="line"><code class="plain">})</code></div>
+</div>
+    </div>
+    <p>The <tt class=" ">name</tt> is the text that is displayed in the Flow Editor. The default <tt class=" ">icon</tt> is a placeholder (a star) that should be replaced with a graphic that represents the action of the flow-node. The icon is displayed at 28 pixels x 28 pixels. The <tt class=" ">category</tt> is the section in the Flow Editor tool panel where the flow-node is contained.    </p>
+    <p>    <img src="images/download/thumbnails/52298051/one.png" alt="images/download/thumbnails/52298051/one.png" class="confluence-embedded-image confluence-thumbnail" width="100">
+        </img></p>
+</li><li class=" ">    <p>Add a method to the flow-node and describe its parameters:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">.method(</code><code class="string">&apos;encode&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">        name: </code><code class="string">&apos;Encode URI&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        description: </code><code class="string">&apos;Encodes a URI by replacing each instance of certain characters with UTF-8 encodings.&apos;</code></div>
+<div class="line"><code class="plain">    })</code></div>
+<div class="line"><code class="plain">    .parameter(</code><code class="string">&apos;uri&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">        description: </code><code class="string">&apos;The URI to encode.&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        type: </code><code class="string">&apos;string&apos;</code></div>
+<div class="line"><code class="plain">})</code></div>
+</div>
+    </div>
+    <p>A method called <tt class=" ">encode</tt>, that is displayed in the Flow Editor as <strong class=" ">Encode URI</strong>, was added. The <tt class=" ">encode</tt> method has a single parameter. If there was more than one parameter, we would repeat the <tt class=" ">.parameter(name, schema) </tt>block. The second value in the parameter method is a JSON Schema that describes the parameter type.    </p>
+    <p>    <img src="images/download/attachments/52298051/two.png" alt="images/download/attachments/52298051/two.png" class="confluence-embedded-image">
+        </img></p>
+</li><li class=" ">    <p>Describe the possible outputs from the method:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">.output(</code><code class="string">&apos;next&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">    name: </code><code class="string">&apos;Next&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    description: </code><code class="string">&apos;The URI was encoded successfully.&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    context: </code><code class="string">&apos;$.encodedURI&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    schema: {</code></div>
+<div class="line"><code class="plain">        type: </code><code class="string">&apos;string&apos;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">})</code></div>
+</div>
+    </div>
+    <p>The outputs section defines the possible outcomes of the flow-node. In this simple case there is just one output; however, flow-nodes can have multiple outputs with different return types. For example, this flow-node could have added an <strong class=" ">error</strong> output to indicate that encoding failed.    </p>
+</li><li class=" ">    <p>Define the implementation:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">.action(action);</code></div>
+</div>
+    </div>
+    <p>The <tt class=" ">action()</tt> expects a function that will be passed the request details parameter and a callback object parameter.    </p>
+</li></ol>    </div>
+    <div class="section section-4 " id="src-52298051_AxwayFlowSDK-Customizetheflow-nodemethodimplementation">
+        <h4 class="heading "><span>Customize the flow-node method implementation</span></h4>
+    <p>To simplify management of the code, the starter project puts the implementation of the methods in the <tt class=" ">action.js</tt> file. There is not a requirement to follow this pattern, you can structure your project how best suits your needs.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">exports = module.exports = function (req, cb) {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">const</code><code class="plain"> uri = req.params.uri;</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (!uri) {</code></div>
+<div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> cb(</code><code class="string">&apos;invalid argument&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">        cb.next(</code><code class="keyword">null</code><code class="plain">, encodeURI(uri));</code></div>
+<div class="line"><code class="plain">};</code></div>
+</div>
+    </div>
+    <p>This is a simple scenario, but it highlights the main features. The parameters for the flow-node method are accessed under the <tt class=" ">req.params</tt> parameter. In this example, the parameter for the <tt class=" ">encode</tt> method is defined as <tt class=" ">uri</tt>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">    .parameter(</code><code class="string">&apos;uri&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">        description: </code><code class="string">&apos;The URI to encode.&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        type: </code><code class="string">&apos;string&apos;</code></div>
+<div class="line"><code class="plain">    })</code></div>
+</div>
+    </div>
+    <p>The logic checks that the parameter is set. If <tt class=" ">uri</tt> is not set, it fires a generic error callback.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">return</code><code class="plain"> cb(</code><code class="string">&apos;invalid argument&apos;</code><code class="plain">);</code></div>
+</div>
+    </div>
+    <p>These errors are not handled and will abort the flow execution. In general, avoid doing this for any expected error scenarios. If there are known error situations, it is better to define an output for those scenarios and allow the flow designer the flexibility to specify what to do when an error occurs.<i class=" "><br/></i>    </p>
+    <p>If <tt class=" ">uri</tt> is set, the fallback for the next output is fired. The name of this callback will match the name of the output defined in the method. For example, if you defined an output <tt class=" ">encoderError</tt>, then there would be a callback <tt class=" ">cb.encoderError()</tt>. The encoded string is passed to the callback as the methods output value.    </p>
+    <p>    <img src="images/download/attachments/52298051/three.png" alt="images/download/attachments/52298051/three.png" class="confluence-embedded-image" width="150">
+        </img></p>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-52298051_AxwayFlowSDK-Unittestyourflow-node">
+        <h2 class="heading "><span>Unit test your flow-node</span></h2>
+    <p>The starter project includes automatically generated unit tests in the <tt class=" ">./test</tt> directory of your project. The tests are for example purposes and will need to be customized to your specific use case. The SDK provides a <tt class=" ">mocknode</tt> that allows for mock invocations of your flow-node methods.    </p>
+    <div class="section section-3 " id="src-52298051_AxwayFlowSDK-Usemocknodetotesterrorcallbackexistence-validargument">
+        <h3 class="heading "><span>Use mocknode to test error callback existence - valid argument</span></h3>
+    <p>This example uses mocha to check that the specification is defined well enough to pass the <tt class=" ">uri</tt> argument to the method. It also mocks the callback using the defined output of the specification and ensures that the method invokes the correct callback.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">    it(</code><code class="string">&apos;[TEST-2] should succeed&apos;</code><code class="plain">, () =&gt; {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> mocknode(specs).node(</code><code class="string">&apos;encodeuri&apos;</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">            .invoke(</code><code class="string">&apos;encode&apos;</code><code class="plain">, { uri: </code><code class="string">&apos;some string&apos;</code><code class="plain"> })</code></div>
+<div class="line"><code class="plain">            .then((data) =&gt; {</code></div>
+<div class="line"><code class="plain">                expect(data).to.deep.equal({</code></div>
+<div class="line"><code class="plain">                        next: [ </code><code class="keyword">null</code><code class="plain">, </code><code class="string">&apos;some%20string&apos;</code><code class="plain"> ]</code></div>
+<div class="line"><code class="plain">                });</code></div>
+<div class="line"><code class="plain">            });</code></div>
+<div class="line"><code class="plain">    });</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-52298051_AxwayFlowSDK-Usingmocknodetotesterrorcallbackexistence-invalidargument">
+        <h3 class="heading "><span>Using mocknode to test error callback existence - invalid argument</span></h3>
+    <p>This example is similar to the previous example, except that the method will invoke a <tt class=" ">cb(&apos;invalid argument&apos;)</tt> when given an undefined parameter.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">    it(</code><code class="string">&apos;[TEST-3] should fail to with invalid argument&apos;</code><code class="plain">, () =&gt; {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> mocknode(specs).node(</code><code class="string">&apos;encodeuri&apos;</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">            .invoke(</code><code class="string">&apos;encode&apos;</code><code class="plain">, { uri: </code><code class="keyword">null</code><code class="plain"> })</code></div>
+<div class="line"><code class="plain">            .then((data) =&gt; {</code></div>
+<div class="line"><code class="plain">                expect(data).to.deep.equal(</code></div>
+<div class="line"><code class="plain">                [ </code><code class="string">&apos;invalid argument&apos;</code><code class="plain"> ]</code></div>
+<div class="line"><code class="plain">            );</code></div>
+<div class="line"><code class="plain">            });</code></div>
+<div class="line"><code class="plain">    });</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-52298051_AxwayFlowSDK-Testingthatvalidityoftheflow-nodespecification">
+        <h3 class="heading "><span>Testing that validity of the flow-node specification</span></h3>
+    <p>The Axway Flow SDK tries to prevent the creation of invalid flow-node specifications, but there are some edge cases where it may be possible to generate a flow-node specification that is invalid at runtime. To detect this, the generated specification should be validated as part of your unit tests.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">    it(</code><code class="string">&apos;[TEST-4] should define valid node specs&apos;</code><code class="plain">, () =&gt; {</code></div>
+<div class="line"><code class="plain">        expect(validate(specs)).to.not.</code><code class="keyword">throw</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    });</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-52298051_AxwayFlowSDK-LocalAPIBuildertest">
+        <h2 class="heading "><span>Local API Builder test</span></h2>
+    <p>While unit testing is important, it is also necessary to be able to install the custom flow-node into your local API Builder application for testing. This can be achieved by packing the module locally:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cd nodehandler-encodeuri</code></div>
+<div class="line"><code class="plain">npm install</code></div>
+<div class="line"><code class="plain">npm run build</code></div>
+<div class="line"><code class="plain">npm pack</code></div>
+</div>
+    </div>
+    <p>This will create a <tt class=" ">tgz</tt> archive (<tt class=" ">nodehandler-encodeuri-1.0.0.tgz</tt>) that can then be installed into your Arrow application.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cd &lt;app-folder&gt;</code></div>
+<div class="line"><code class="plain">npm install &lt;path to flow node project&gt;/nodehandler-encodeuri-</code><code class="value">1.0</code><code class="plain">.</code><code class="value">0</code><code class="plain">.tgz</code></div>
+<div class="line"><code class="plain">appc run</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-52298051_AxwayFlowSDK-Typereferences">
+        <h2 class="heading "><span>Type references</span></h2>
+    <p>In <a class="document-link " href="#!/guide/API_Builder">Axway API Builder</a>, it is possible to reference other types. For example, types can be loaded from <tt class=" ">./schemas</tt>, registered from <a class="document-link " href="#!/guide/Models">models</a>, or registered from service connectors. Any registered schema can be referenced whenever a <tt class=" ">schema</tt> is required.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">.parameter(</code><code class="string">&apos;greeting&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;$ref&quot;</code><code class="plain">: </code><code class="string">&quot;schema://model/appc.arrowdb/user&quot;</code></div>
+<div class="line"><code class="plain">})</code></div>
+<div class="line"><code class="plain">.output(</code><code class="string">&apos;next&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">    schema: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;$ref&quot;</code><code class="plain">: </code><code class="string">&quot;schema://model/appc.arrowdb/user&quot;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">})</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-52298051_AxwayFlowSDK-axwayAPIReference">
+        <h2 class="heading "><span id="src-52298051_AxwayFlowSDK-axway" class="confluence-anchor-link"/><span>API Reference</span></h2>
+    <div class="section section-3 " id="src-52298051_safe-id-QXh3YXlGbG93U0RLLU5vZGVCdWlsZGVyYXh3YXktZmxvdy1zZGt-Tm9kZUJ1aWxkZXI">
+        <h3 class="heading "><span id="src-52298051_AxwayFlowSDK-NodeBuilder" class="confluence-anchor-link"/><span>axway-flow-sdk~NodeBuilder</span></h3>
+    <p><strong class=" ">Kind</strong>: Inner class of <tt class=" ">axway-flow-sdk</tt>    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">NodeBuilder</tt>    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">.add(key, [options])</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">.method(key, [options])</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">.parameter(name, schema, [required])</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">.output(key)</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">.action(handler)</tt>    </p>
+</li></ul></li></ul>    </div>
+    <div class="section section-3 " id="src-52298051_safe-id-QXh3YXlGbG93U0RLLWFkZG5vZGVCdWlsZGVyLmFkZChrZXksW29wdGlvbnNdKQ">
+        <h3 class="heading "><span id="src-52298051_AxwayFlowSDK-add" class="confluence-anchor-link"/><span>nodeBuilder.add(key, [options])</span></h3>
+    <p>Adds a new flow-node specification and prepares the <tt class=" ">NodeBuilder</tt> to accept the following specification operations:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">.method(key, [options])</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">.output(key, [options])</tt>    </p>
+</li></ul>    <p>The <tt class=" ">key</tt> parameter is used to uniquely identify the specification and represents a distinct instance of a flow-node for the flow editor. The <tt class=" ">key</tt> will be used as the name unless the <tt class=" ">name</tt> option is provided. The new flow-node will appear in the general category by default, or under the provided <tt class=" ">category</tt> option.    </p>
+    <p>The <tt class=" ">icon</tt> option can be a bmp, jpeg, png, gif, tiff, or svg file. The <tt class=" ">.method</tt> option is used to add method(s), and the <tt class=" ">.output</tt> option is used to define an output. The <tt class=" ">.action</tt> option is used to define an action function and finish the specification.    </p>
+    <p><strong class=" ">Kind</strong>: Instance method of <tt class=" ">NodeBuilder</tt>    </p>
+    <p><strong class=" ">Returns</strong>: Current <tt class=" ">NodeBuilder</tt> object    </p>
+    <p><strong class=" ">Access</strong>: Public    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Parameter    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Default    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>key    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">string</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A unique key identifier for the flow-node.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[options]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">object</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Options for the flow-node.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[options.name]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">string</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A friendly name for the flow-node as it will appear in the UI.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[options.icon]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">string</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>An icon file.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[options.description]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">string</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A description for the flow-node.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[options.category]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">string</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">general</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A category under which the flow-node will appear in the UI.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>Example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">sdk.init(module).add(</code><code class="string">&apos;encodeURI&apos;</code><code class="plain">, { icon: </code><code class="string">&apos;encode.svg&apos;</code><code class="plain"> });</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-52298051_safe-id-QXh3YXlGbG93U0RLLW1ldGhvZG5vZGVCdWlsZGVyLm1ldGhvZChrZXksW29wdGlvbnNdKQ">
+        <h3 class="heading "><span id="src-52298051_AxwayFlowSDK-method" class="confluence-anchor-link"/><span>nodeBuilder.method(key, [options])</span></h3>
+    <p>Adds a new method to the current flow-node specification and prepares the <a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-NodeBuilder"><tt class=" ">NodeBuilder</tt></a> to accept the following method operations:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">.parameter(name, schema, [required])</tt>    </p>
+</li><li class=" ">    <p><tt class=" ">.action(handler)</tt>    </p>
+</li></ul>    <p>The <tt class=" ">.add(key, [options])</tt> must be called prior to adding a method.    </p>
+    <p>The <tt class=" ">key</tt> uniquely identifies the method for the flow-node and will be used as the name unless the <tt class=" ">name</tt> option is provided.    </p>
+    <p><strong class=" ">Kind</strong>: Instance method of <tt class=" ">NodeBuilder</tt>    </p>
+    <p><strong class=" ">Returns</strong>: Current <a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-NodeBuilder"><tt class=" ">NodeBuilder</tt></a> object    </p>
+    <p><strong class=" ">Access</strong>: Public    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Parameter    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>key    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">string</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A unique key identifier for the method.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[options]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">object</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Options for the method.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[options.name]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">string</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A friendly name for the method as it will appear in the UI.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p><strong class=" ">Example</strong>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">sdk.init(module).add(</code><code class="string">&apos;encodeURI&apos;</code><code class="plain">, { icon: </code><code class="string">&apos;encode.svg&apos;</code><code class="plain"> })</code></div>
+<div class="line"><code class="plain">    .method(</code><code class="string">&apos;encode&apos;</code><code class="plain">, { name: </code><code class="string">&apos;Encode URI&apos;</code><code class="plain"> });</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-52298051_safe-id-QXh3YXlGbG93U0RLLXBhcmFub2RlQnVpbGRlci5wYXJhbWV0ZXIobmFtZSxzY2hlbWEsW3JlcXVpcmVkXSk">
+        <h3 class="heading "><span id="src-52298051_AxwayFlowSDK-para" class="confluence-anchor-link"/><span>nodeBuilder.parameter(name, schema, [required])</span></h3>
+    <p>Adds a new parameter to the current method. Any number of parameters can be added to a method.    </p>
+    <p>The <a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-method">.<tt class=" ">method(key, [options])</tt></a> must be called prior to adding a parameter.    </p>
+    <p>The <tt class=" ">name</tt> uniquely identifies the parameter, and the <tt class=" ">schema</tt> is a valid JSON Schema definition (both draft-04 and draft-06 are supported).    </p>
+    <p><strong class=" ">Kind</strong>: Instance method of <tt class=" ">NodeBuilder</tt>    </p>
+    <p><strong class=" ">Returns</strong>: Current <tt class=" ">NodeBuilder</tt> object    </p>
+    <p><strong class=" ">Access</strong>: Public    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Parameter    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Default    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>name    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">string</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A unique name for the parameter as it will appear in the UI.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>schema    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">object</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>&#xA0;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A schema used to validate the parameter.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[required]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">boolean</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">true</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A flag to indicate the parameter is required or optional.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p><strong class=" ">Example</strong>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">sdk.init(module).add(</code><code class="string">&apos;encodeURI&apos;</code><code class="plain">, { icon: </code><code class="string">&apos;encode.svg&apos;</code><code class="plain"> })</code></div>
+<div class="line"><code class="plain">    .method(</code><code class="string">&apos;encode&apos;</code><code class="plain">, { name: </code><code class="string">&apos;Encode URI&apos;</code><code class="plain"> })</code></div>
+<div class="line"><code class="plain">    .parameter(</code><code class="string">&apos;uri&apos;</code><code class="plain">, { type: </code><code class="string">&apos;string&apos;</code><code class="plain"> });</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-52298051_safe-id-QXh3YXlGbG93U0RLLW91dHB1dG5vZGVCdWlsZGVyLm91dHB1dChrZXkp">
+        <h3 class="heading "><span id="src-52298051_AxwayFlowSDK-output" class="confluence-anchor-link"/><span>nodeBuilder.output(key)</span></h3>
+    <p>Adds a new output to the current method. Any number of outputs can be added to a method, but for usability-sake, you should limit this. The <tt class=" ">output</tt> represents one of the possible callback routes for your method. For example, if your method tested prime numbers, then one output might be <tt class=" ">prime</tt>, and the other <tt class=" ">not-prime</tt>.    </p>
+    <p>The <a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-method"><tt class=" ">.method(key, [options])</tt></a> must be called prior to adding an output.    </p>
+    <p>The <tt class=" ">key</tt> uniquely identifies the output route. The <tt class=" ">schema</tt> is a valid JSON Schema definition (both draft-04 and draft-06 are supported). If a <tt class=" ">schema</tt> is not provided, then the output type is effectively any type.    </p>
+    <p>The <tt class=" ">context</tt> is a valid JSON Path and is used as the default by the flow editor. When the output is invoked, the configured context is where the output value will be written.    </p>
+    <p><strong class=" ">Kind</strong>: Instance method of <tt class=" ">NodeBuilder</tt>    </p>
+    <p><strong class=" ">Returns</strong>: Current <tt class=" ">NodeBuilder</tt> object    </p>
+    <p><strong class=" ">Access</strong>: Public    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Parameter    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>key    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">string</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A unique key for the output.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[options.name]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">string</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A friendly name for the output as it will appear in the UI.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[options.description]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">string</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The output description.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[options.context]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">string</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The default context string.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[options.schema]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">object</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The expected JSON schema for the output value.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p><strong class=" ">Example</strong>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">sdk.init(module).add(</code><code class="string">&apos;encodeURI&apos;</code><code class="plain">, { icon: </code><code class="string">&apos;encode.svg&apos;</code><code class="plain"> })</code></div>
+<div class="line"><code class="plain">    .method(</code><code class="string">&apos;encode&apos;</code><code class="plain">, { name: </code><code class="string">&apos;Encode URI&apos;</code><code class="plain"> })</code></div>
+<div class="line"><code class="plain">    .parameter(</code><code class="string">&apos;uri&apos;</code><code class="plain">, { type: </code><code class="string">&apos;string&apos;</code><code class="plain"> })</code></div>
+<div class="line"><code class="plain">    .output(</code><code class="string">&apos;encoded&apos;</code><code class="plain">, { context: </code><code class="string">&apos;$.encodedURI&apos;</code><code class="plain">, schema: { type: </code><code class="string">&apos;string&apos;</code><code class="plain"> } });</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-52298051_safe-id-QXh3YXlGbG93U0RLLWFjdGlvbm5vZGVCdWlsZGVyLmFjdGlvbihoYW5kbGVyKQ">
+        <h3 class="heading "><span id="src-52298051_AxwayFlowSDK-action" class="confluence-anchor-link"/><span>nodeBuilder.action(handler)</span></h3>
+    <p>Assigns an <tt class=" ">action</tt> handler to the current method. The method can only have one action handler. Assigning an action will terminate the current method definition.    </p>
+    <p><strong class=" ">Kind</strong>: Instance method of <tt class=" ">NodeBuilder</tt>    </p>
+    <p><strong class=" ">Returns</strong>: Current <tt class=" ">NodeBuilder</tt> object    </p>
+    <p><strong class=" ">Access</strong>: Public    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Parameter    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>handler    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">handler</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The action <tt class=" ">handler</tt> function.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p><strong class=" ">Example</strong>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">sdk.init(module).add(</code><code class="string">&apos;encodeURI&apos;</code><code class="plain">, { icon: </code><code class="string">&apos;encode.svg&apos;</code><code class="plain"> })</code></div>
+<div class="line"><code class="plain">    .method(</code><code class="string">&apos;encode&apos;</code><code class="plain">, { name: </code><code class="string">&apos;Encode URI&apos;</code><code class="plain"> })</code></div>
+<div class="line"><code class="plain">    .parameter(</code><code class="string">&apos;uri&apos;</code><code class="plain">, { type: </code><code class="string">&apos;string&apos;</code><code class="plain"> })</code></div>
+<div class="line"><code class="plain">    .output(</code><code class="string">&apos;encoded&apos;</code><code class="plain">, { context: </code><code class="string">&apos;$.encodedURI&apos;</code><code class="plain">, schema: { type: </code><code class="string">&apos;string&apos;</code><code class="plain"> } })</code></div>
+<div class="line"><code class="plain">    .action((req, cb) =&gt; cb.encoded(</code><code class="keyword">null</code><code class="plain">, encodeURI(req.params.uri));</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-52298051_safe-id-QXh3YXlGbG93U0RLLWluaXRheHdheS1mbG93LXNka35pbml0KG1vZHVsZSktTm9kZUJ1aWxkZXI">
+        <h3 class="heading "><span id="src-52298051_AxwayFlowSDK-init" class="confluence-anchor-link"/><span>axway-flow-sdk~init(module) - NodeBuilder</span></h3>
+    <p>Axway API Builder SDK for creating custom flow-nodes to work with flows.    </p>
+    <p><strong class=" ">Kind</strong>: Inner method of <tt class=" ">axway-flow-sdk</tt>    </p>
+    <p><strong class=" ">Returns</strong>: <a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-NodeBuilder"><tt class=" ">NodeBuilder</tt></a> - A newly constructed <tt class=" ">NodeBuilder</tt> object    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Parameter    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>module    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">object</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The flow-node module.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p><strong class=" ">Example</strong>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">const</code><code class="plain"> sdk = require(</code><code class="string">&apos;axway-node-sdk&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">exports = module.exports = sdk.init(module);</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-52298051_safe-id-QXh3YXlGbG93U0RLLWhhbmRsZXJheHdheS1mbG93LXNka35oYW5kbGVyOmZ1bmN0aW9u">
+        <h3 class="heading "><span id="src-52298051_AxwayFlowSDK-handler" class="confluence-anchor-link"/><span>axway-flow-sdk~handler: function</span></h3>
+    <p>A handler function to perform the flow-node method&apos;s action. The function will receive all of the provided parameters in <tt class=" ">req.params</tt>. If any parameters are not provided or are at the wrong time, or some have defaults, your function will need to handle those situations. On success, your function should invoke the named <tt class=" ">output</tt>. On error, your function should invoke a callback with a non-null <tt class=" ">err</tt> value.    </p>
+    <p><strong class=" ">Kind</strong>: Inner type definition of <a class="document-link " href="#!/guide/Axway_Flow_SDK-section-src-52298051_AxwayFlowSDK-axway"><tt class=" ">axway-flow-sdk</tt></a>    </p>
+    <p><strong class=" ">Access</strong>: Public    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Parameter    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>req    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">request</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The <tt class=" ">Request</tt> object.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>cb    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">callback</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The output <tt class=" ">callback</tt>.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p><strong class=" ">Example</strong>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cb.encoded(</code><code class="keyword">null</code><code class="plain">, uncodeURI(req.params.uri));</code></div>
+</div>
+    </div>
+    <p><strong class=" ">Example</strong>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cb(</code><code class="string">&apos;error!&apos;</code><code class="plain">);</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-52298051_safe-id-QXh3YXlGbG93U0RLLWZsb3dheHdheS1mbG93LXNka35mbG93Q2FsbGJhY2s6ZnVuY3Rpb24">
+        <h3 class="heading "><span id="src-52298051_AxwayFlowSDK-flow" class="confluence-anchor-link"/><span>axway-flow-sdk~flowCallback: function</span></h3>
+    <p>A callback function that your method <tt class=" ">handler</tt> must invoke.    </p>
+    <p><strong class=" ">Kind</strong>: Inner type definition of <tt class=" ">axway-flow-sdk</tt>    </p>
+    <p><strong class=" ">Access</strong>: Public    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Parameter    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[err]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">*</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A non <tt class=" ">null</tt> value indicates a terminal error (flow processing will stop).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>[value]    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">*</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The output value to be written back to the flow processing context.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-52298051_safe-id-QXh3YXlGbG93U0RLLXJlcXVlc3RheHdheS1mbG93LXNka35SZXF1ZXN0Om9iamVjdA">
+        <h3 class="heading "><span id="src-52298051_AxwayFlowSDK-request" class="confluence-anchor-link"/><span>axway-flow-sdk~Request: object</span></h3>
+    <p>The request object.    </p>
+    <p><strong class=" ">Kind</strong>: Inner type definition of <tt class=" ">axway-flow-sdk</tt>    </p>
+    <p><strong class=" ">Properties</strong>:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Name    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>env    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">object</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The application configuration.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>params    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">object</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The <tt class=" ">params</tt> method, as supplied during runtime (see <tt class=" ">.parameter</tt>).    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=52298051"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Android UI Differences</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-37545024" class="content">
+                        <h1>Android UI Differences</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_UI_Differences-section-src-37545024_AndroidUIDifferences-Introduction">Introduction</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_UI_Differences-section-src-37545024_AndroidUIDifferences-SpecifyinganSDKversion">Specifying an SDK version</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_UI_Differences-section-src-37545024_AndroidUIDifferences-Themes">Themes</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_UI_Differences-section-src-37545024_AndroidUIDifferences-Tabs">Tabs</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_UI_Differences-section-src-37545024_AndroidUIDifferences-ActionBar">Action Bar</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-37545024_AndroidUIDifferences-Introduction">
+        <h2 class="heading "><span>Introduction</span></h2>
+    <p>Starting with Release 3.2.0, the Titanium SDK no longer uses the minimum supported Android SDK (2.3.x/API level 10/Gingerbread) as the default SDK to build Android applications (if one is not specified in the <tt class=" ">tiapp.xml</tt> file). Since Release 3.2.0, Titanium will use the newest version installed if one is not specified in the <tt class=" ">tiapp.xml</tt> file. Because of this new behavior, your Android applications may look and behave differently.    </p>
+    <p>This guide covers the general differences between major UI concepts on the Android platform between 2.3.x and newer versions of the Android SDK.    </p>
+    </div>
+    <div class="section section-2 " id="src-37545024_AndroidUIDifferences-SpecifyinganSDKversion">
+        <h2 class="heading "><span>Specifying an SDK version</span></h2>
+    <p>If you want to keep the appearance or behavior of a specific Android SDK, add the <tt class=" ">uses-sdk</tt> element to the Android manifest section of the <tt class=" ">tiapp.xml</tt> file with the <tt class=" ">android:targetSdkVersion</tt> attribute specifying the API level to use. For example, to use Android SDK 2.3.x (or API level 10), add the following to your <tt class=" ">tiapp.xml</tt> file:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">tiapp.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="tiapp.xml">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">ti</code><code class="plain">:app </code><code class="color1">xmlns:ti</code><code class="plain">=</code><code class="string">&quot;http://ti.appcelerator.org&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">android</code><code class="plain"> </code><code class="color1">xmlns:android</code><code class="plain">=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">manifest</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">uses</code><code class="plain">-sdk </code><code class="color1">android:targetSdkVersion</code><code class="plain">=</code><code class="string">&quot;10&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">manifest</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">android</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-37545024_AndroidUIDifferences-Themes">
+        <h2 class="heading "><span>Themes</span></h2>
+    <p>The default theme of the Android UI changed between version 2.3.x and 3.0.x.This affects the overall appearance of the UI, changing the appearance of controls and other UI elements.For example, buttons are larger and have a flatter appearance in newer versions of the Android SDK.Android 3.0.x also introduced the built-in Holographic theme (pictured below).    </p>
+    <p>With themes, you can change the overall appearance of the UI or specific elements of it, and you can define version-specific themes, allowing you to customize the appearance based on the version of Android the device is running.    </p>
+    <p>For more information, see<a class="document-link " href="#!/guide/Android_Themes">Android Themes</a> .    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Android 2.3.x/Gingerbread/API level 10    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Android 3.0.x/Honeycomb/API level 11 and later    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>For Android 2.3.x and prior, you can select to use the built-in Light (pictured below) or Black theme.    </p>
+    <p>    <img src="images/download/attachments/37545024/GingerbreadTheme.png" alt="images/download/attachments/37545024/GingerbreadTheme.png" class="confluence-embedded-image">
+        </img></p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>For Android 3.0.x and later, you can select to use the built-in Holo.Light (pictured below) or Holo theme.    </p>
+    <p>    <img src="images/download/attachments/37545024/IcsTheme.png" alt="images/download/attachments/37545024/IcsTheme.png" class="confluence-embedded-image">
+        </img></p>
+    <p>    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>    </p>
+    </div>
+    <div class="section section-2 " id="src-37545024_AndroidUIDifferences-Tabs">
+        <h2 class="heading "><span>Tabs</span></h2>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Android 2.3.x/Gingerbread/API level 10    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Android 3.0.x/Honeycomb/API level 11 and later    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>In Android 2.3.x, all tabs are presented with a fixed width and crammed together below the title bar.    </p>
+    <p>Since the tab group is its own view, the tab group can be animated.    <img src="images/download/attachments/37545024/GingerBreadTabs.png" alt="images/download/attachments/37545024/GingerBreadTabs.png" class="confluence-embedded-image">
+    </img></p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>In versions after Gingerbread, tabs are presented two different ways in the action bar depending on the orientation of the device. Because the tabs are part of the action bar, they are not as customizable as they were with Android 2.3.x. For example, the tab group cannot be animated since the action bar cannot animated because it is not a view; it is a window feature which is always at the top of the activity.    </p>
+    <p>In portrait mode, tabs are presented as a scrollable view in the top bar area of the action bar (right below the main action bar) with the width of the tabs based on the longest title. Slide the tab bar left or right to view more tabs.    </p>
+    <p>    </p>
+    <p>    <img src="images/download/attachments/37545024/IcsTabsPortrait.png" alt="images/download/attachments/37545024/IcsTabsPortrait.png" class="confluence-embedded-image">
+        </img></p>
+    <p>In landscape mode, tabs are presented in the view control of the action bar as a drop-down list.    <img src="images/download/attachments/37545024/IcsTabLandscape.png" alt="images/download/attachments/37545024/IcsTabLandscape.png" class="confluence-embedded-image">
+    </img></p>
+    <p>    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-37545024_AndroidUIDifferences-ActionBar">
+        <h2 class="heading "><span>Action Bar</span></h2>
+    <p>Android 3.0.x introduces the Action Bar, adding a location for navigational and action controls.Prior to Android 3.0.x, you had to add the navigation controls to the window or use the options menu.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Android 2.3.x/Gingerbread/API level 10    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Android 3.0.x/Honeycomb/API level 11 and later    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Prior to the introduction of the Action Bar, Android 2.3.x devices used the options menu to display &quot;action items&quot;. Users reveal the options menu by using a dedicated hardware menu button.    </p>
+    <p>For more information, see <a class="external-link external-link" href="#!/api/Titanium.Android.Menu">Titanium.Android.Menu</a>.    </p>
+    <p>    <img src="images/download/attachments/37545024/GingerBreadMenu.png" alt="images/download/attachments/37545024/GingerBreadMenu.png" class="confluence-embedded-image">
+        </img></p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Starting with Android 3.0, Google introduced the Action bar, which displays the first listed action items (or menu items) in the Action Bar. Overflow items, that is, items that cannot fit in the action bar, are displayed in the overflow menu, similar to the options menu. This menu is accessed with either the overflow icon in the action bar or the dedicated hardware menu button if the device has one.    </p>
+    <p>For more information, see <a class="document-link " href="#!/guide/Android_Action_Bar">Android Action Bar</a>.    </p>
+    <p>    <img src="images/download/attachments/37545024/JellyBeanActionBar.png" alt="images/download/attachments/37545024/JellyBeanActionBar.png" class="confluence-embedded-image">
+        </img></p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=37545024"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

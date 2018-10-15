@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Titanium Angular Basics</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-54592040" class="content">
+                        <h1>Titanium Angular Basics</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_Basics-section-src-54592040_TitaniumAngularBasics-Projectstructure">Project structure</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_Basics-section-src-54592040_TitaniumAngularBasics-TitaniumAngularstartup">Titanium Angular startup</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_Basics-section-src-54592040_TitaniumAngularBasics-TitaniumUIelementsinAngular">Titanium UI elements in Angular</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_Basics-section-src-54592040_TitaniumAngularBasics-Layouts">Layouts</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-54592040_TitaniumAngularBasics-Projectstructure">
+        <h2 class="heading "><span>Project structure</span></h2>
+    <p>Let&apos;s take a closer look at the directory structure of an Titanium Angular project;    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Titanium Angular project structure</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Titanium Angular project structure">
+<div class="line"><code class="plain">.</code></div>
+<div class="line"><code class="plain">&#x2514;&#x2500;&#x2500; project-name</code></div>
+<div class="line"><code class="plain">    &#x251C;&#x2500;&#x2500; app</code></div>
+<div class="line"><code class="plain">    &#x251C;&#x2500;&#x2500; hooks</code></div>
+<div class="line"><code class="plain">    &#x251C;&#x2500;&#x2500; platform</code></div>
+<div class="line"><code class="plain">    &#x251C;&#x2500;&#x2500; Resources</code></div>
+<div class="line"><code class="plain">    &#x2514;&#x2500;&#x2500; tiapp.xml</code></div>
+</div>
+    </div>
+    <p>These various files and folders all have a specific purpose:    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">app</strong>: This folder contains all development resources. It is pretty similar to a standard Angular project but contains some additional folders that are specific to Titanium.    </p>
+</li><li class=" ">    <p><strong class=" ">hooks</strong>: Project level hook that triggers the Webpack build which will compile the TypeScript source files and bundle everything up into separate chunks. Only edit this if you need to change specific Webpack settings.    </p>
+</li><li class=" ">    <p><strong class=" ">platform</strong>: Contains platform specific files. Generated from the <tt class=" ">app/platform</tt> directory. <strong class=" ">DO NOT EDIT ANY OF THESE FILES!</strong>    </p>
+</li><li class=" ">    <p><strong class=" ">Resources</strong>: Another generated directory which contains resources for the final app build including Webpack bundles and resources such as images. <strong class=" ">DO NOT EDIT ANY <strong class=" "> OF THESE </strong>FILES</strong>    </p>
+</li><li class=" ">    <p><strong class=" ">tiapp.xml</strong>: This is the main configuration file for your project. You can make platform specific configurations and adjust general build or runtime settings. For more info see the <a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference">tiapp.xml and timodule.xml Reference</a>.    </p>
+</li></ul>    <p>Inside the <tt class=" ">app</tt> folder you&apos;ll find all important files that will bootstrap the Angular core inside a Titanium app. This is also the folder you&apos;ll be working with most of the time as it contains your Angular source files as well as all other app resources.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">project-name</code></div>
+<div class="line"><code class="plain">&#x2514;&#x2500;&#x2500; app</code></div>
+<div class="line"><code class="plain">    &#x251C;&#x2500;&#x2500; assets</code></div>
+<div class="line"><code class="plain">    &#x251C;&#x2500;&#x2500; platform</code></div>
+<div class="line"><code class="plain">    &#x2502;   &#x251C;&#x2500;&#x2500; android</code></div>
+<div class="line"><code class="plain">    &#x2502;   &#x2514;&#x2500;&#x2500; ios</code></div>
+<div class="line"><code class="plain">    &#x251C;&#x2500;&#x2500; src</code></div>
+<div class="line"><code class="plain">    &#x2502;   &#x251C;&#x2500;&#x2500; app.component.ts</code></div>
+<div class="line"><code class="plain">    &#x2502;   &#x251C;&#x2500;&#x2500; app.module.ts</code></div>
+<div class="line"><code class="plain">    &#x2502;   &#x251C;&#x2500;&#x2500; main.ts</code></div>
+<div class="line"><code class="plain">    &#x2502;   &#x2514;&#x2500;&#x2500; ...</code></div>
+<div class="line"><code class="plain">    &#x251C;&#x2500;&#x2500; vendor</code></div>
+<div class="line"><code class="plain">    &#x251C;&#x2500;&#x2500; tsconfig.json</code></div>
+<div class="line"><code class="plain">    &#x251C;&#x2500;&#x2500; webpack.config.json</code></div>
+<div class="line"><code class="plain">    &#x2514;&#x2500;&#x2500; ...</code></div>
+</div>
+    </div>
+    <p>Here is what those various files and folder do:    </p>
+<ul class=" "><li class=" ">    <p><strong class=" ">assets:</strong> Contains assets such as images. Similar to Alloy, all resources you would place under the <tt class=" ">Resources</tt> folder in classic apps go here instead.    </p>
+</li><li class=" ">    <p><strong class=" ">platform: </strong>Place any platform specific files here. They will be copied to the project root <tt class=" ">platform</tt> folder during build.    </p>
+</li><li class=" ">    <p><strong class=" "><strong class=" ">src/</strong>app.component.ts</strong>: The root component that will be loaded when your applications starts.    </p>
+</li><li class=" ">    <p><strong class=" "><strong class=" ">src/</strong>app.module.ts</strong>: This contains the main module that configures a great part of your application.    </p>
+</li><li class=" ">    <p><strong class=" "><strong class=" ">src/</strong>main.ts</strong>: The entry point to your application that bootstraps Angular and loads the <tt class=" ">AppModule</tt>.    </p>
+</li><li class=" ">    <p><strong class=" ">vendor:</strong> Contains the <tt class=" ">vendor.js</tt> file which defines what modules Webpack should bundle into the vendor chunk.    </p>
+</li><li class=" ">    <p><strong class=" ">tsconfig.json</strong>: Configuration file for TypeScript    </p>
+</li><li class=" ">    <p><strong class=" ">webpack.config.json</strong>: Configuration file for Webpack    </p>
+</li></ul>    <p>    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">Ahead-of-time compilation issue</div>
+            <p>Among those files, you will notice additional files with an <tt class=" ">.aot</tt> file extension. Those are for Angular&apos;s Ahead-of-time compilation that is used for faster load times in production builds. This is currently not yet supported in the current Tech Preview.    </p>
+    </div>
+        </div>
+    <div class="section section-2 " id="src-54592040_TitaniumAngularBasics-TitaniumAngularstartup">
+        <h2 class="heading "><span>Titanium Angular startup</span></h2>
+    <p>The files in the <tt class=" ">app/src</tt> folder are almost identical to the files in an <a class="external-link external-link" href="https://angular.io/guide/quickstart#the-src-folder" target="_blank">Angular web application</a>. Let&apos;s take a closer look at those files to point out the differences, starting with the <tt class=" ">main.ts.</tt>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">main.ts</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="main.ts">
+<div class="line"><code class="plain">import { platformTitaniumDynamic } from </code><code class="string">&apos;titanium-angular&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">import { AppModule } from </code><code class="string">&apos;./app.module&apos;</code><code class="plain">;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">platformTitaniumDynamic().bootstrapModule(AppModule);</code></div>
+</div>
+    </div>
+    <p>Through an import statement, we pull in the <tt class=" ">platformTitaniumDynamic</tt> function and a TypeScript class calles <tt class=" ">AppModule</tt>. The <tt class=" ">platformTitaniumDynamic</tt> function comes from the <tt class=" ">titanium-angular</tt> module, which provides the platform which is required to run Angular inside Titanium. Just like Angular&apos;s own <tt class=" ">platformBrowserDynamic</tt> function is used to setup Angular in an browser enviornment, <tt class=" ">platformTitaniumDynamic</tt> sets up Angular in Titanium App.    </p>
+    <p>The following <tt class=" ">bootstrapModule</tt> function is the same as in an Angular web application. It expects an Angular module that is responsible for providing the main configuration of your app.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app.module.ts</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app.module.ts">
+<div class="line"><code class="plain">import { NgModule, NO_ERRORS_SCHEMA } from </code><code class="string">&apos;@angular/core&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">import { TitaniumModule } from </code><code class="string">&apos;titanium-angular&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">import { AppComponent } from </code><code class="string">&apos;./app.component&apos;</code><code class="plain">;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">@NgModule({</code></div>
+<div class="line"><code class="plain">    declarations: [AppComponent],</code></div>
+<div class="line"><code class="plain">    bootstrap: [AppComponent],</code></div>
+<div class="line"><code class="plain">    imports: [TitaniumModule],</code></div>
+<div class="line"><code class="plain">    schemas: [NO_ERRORS_SCHEMA]</code></div>
+<div class="line"><code class="plain">})</code></div>
+<div class="line"><code class="plain">export class AppModule { }</code></div>
+</div>
+    </div>
+    <p>The two important things here to note are the <tt class=" ">bootstrap</tt> and <tt class=" ">imports</tt> properties. Through the <tt class=" ">import</tt> property, we pull in the <tt class=" ">TitaniumModule</tt>, which, for example, allows you to use Titanium elements as tags in templates but also does a lot more under the hood to properly setup Angular for the use in Titanium.    </p>
+    <p>The <tt class=" ">bootstrap</tt> property defines that, after Angular is done with its internal bootstrap process, it loads the <tt class=" ">AppComponent</tt>. You can see an excerpt of the file bellow.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app.component.ts</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app.component.ts">
+<div class="line"><code class="plain">import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from </code><code class="string">&apos;@angular/core&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">import { AlertDialog, DeviceEnvironment } from </code><code class="string">&apos;titanium-angular&apos;</code><code class="plain">;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">@Component({</code></div>
+<div class="line"><code class="plain">    selector: </code><code class="string">&quot;ti-app&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    templateUrl: </code><code class="string">&quot;./app.component.html&quot;</code></div>
+<div class="line"><code class="plain">})</code></div>
+<div class="line"><code class="plain">export class AppComponent implements AfterViewInit, OnInit {</code></div>
+<div class="line"><code class="plain">    ...</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">Component interaction with the template and Titanium views</div>
+            <p>If you open the file in your editor, you&apos;ll notice that the file contains different examples that demonstrate how you can interact with Titanium views within the component. This follows the same pattern as in a default Angular web application. Visit Angular&apos;s <a class="external-link external-link" href="https://angular.io/guide/displaying-data" target="_blank">Components &amp; Templates</a> guide for an in depth tutorial on this topic.    </p>
+    </div>
+        <p>In the above excerpt, the <tt class=" ">app.compoinent.ts</tt> defines it&apos;s template through the templateUrl property. In such a template you can make use of Titanium UI elements to create your app&apos;s user interface.    </p>
+    </div>
+    <div class="section section-2 " id="src-54592040_TitaniumAngularBasics-TitaniumUIelementsinAngular">
+        <h2 class="heading "><span>Titanium UI elements in Angular</span></h2>
+    <p>The usage of Titanium UI elements is the main difference compared to building Angular apps on the web. Instead of the usual <tt class=" ">div</tt> or <tt class=" ">span</tt> elements you are used to when developing for browser environments, you compose your app&apos;s UI using various Titanium elements. There are a wide range of Titanium UI elements (link to UI API docs) that you can use for this matter.    </p>
+    <p>To create a simple button, for example, you can use the <tt class=" ">Button</tt> element. This uses a <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.Button" target="_blank">Titanium.UI.Button</a> which will be rendered as a <tt class=" ">UIButton</tt> on iOS, or as an <tt class=" ">android.widget.Button</tt> on Android. You don&apos;t need to know any implementation details from either of these native controls as Titanium does all of the actual rendering for you.    </p>
+    <p>Let&apos;s take a look at some examples that will explain in detail how to use Titanium UI elements in Angular.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Button</code><code class="plain"> #demoButton </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Tap me!&quot;</code><code class="plain"> (click)=&quot;increaseTapCount()&quot;&gt;&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p>Note that all elements in an Angular template need to be closed by a matching tag. Self-closing elements, as you may know them from HTML, or maybe Alloy, are not allowed.    </p>
+    </div>
+        <p>In this example, we create a button, setting a property and also setting up an event listener. We also set a <a class="external-link external-link" href="https://angular.io/guide/template-syntax#template-reference-variables--var-" target="_blank">template reference variable</a> that allows you to access a specific element in the corrosponding component.    </p>
+    <p>Here is what all of the above does in detail:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">#demoButton</tt>: This sets a template reference variable, which allows you to access this element elsewhere in the template or inside the component via the <a class="external-link external-link" href="https://angular.io/api/core/ViewChild" target="_blank">ViewChild</a> decorator.    </p>
+</li><li class=" ">    <p><tt class=" ">title</tt>: Sets the title property of the button.    </p>
+</li><li class=" ">    <p><tt class=" ">(click)</tt>: This sets up an event listener to the button&apos;s click event. It binds to the <tt class=" ">increaseTapCount</tt> method in the component class. You can also pass <tt class=" ">$event</tt> into the function to gain access to the Titanium event: <tt class=" ">(click)=&quot;increaseTapCount($event)&quot;</tt>.    </p>
+</li></ul>    <p>    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">color</code><code class="plain">=</code><code class="string">&quot;white&quot;</code><code class="plain"> [font]=&quot;{ fontSize: 32 }&quot; </code><code class="color1">top</code><code class="plain">=</code><code class="string">&quot;100&quot;</code><code class="plain"> </code><code class="color1">left</code><code class="plain">=</code><code class="string">&quot;10&quot;</code><code class="plain">&gt;Now on Titanium&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <p>This creates a new <tt class=" ">Label</tt> and sets some properties on it, just like you would on HTML elements. For elements that have a <tt class=" ">text</tt> or <tt class=" ">title</tt> property, you can write the text you want directly between the element tags. Titanium Angular will automatically populate those properties for you. The other attributes of the above code do the following:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">color</tt>: Sets the text color of the label. You can use common color names or hex values.     <span style="color: #222222;">
+For information about color values, see the &quot;Colors&quot; section of     </span>
+<a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI" target="_blank">Titanium.UI</a>    <span style="color: #222222;">
+.    </span>
+    </p>
+</li><li class=" ">    <p><tt class=" ">[font]</tt>: This sets the label&apos;s <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Font" target="_blank">font</a> property. Note the square brakets around the property name. This instructs Angular to interpret the value as an JS expression which results in setting the `fontSize` property. It can also be used to bind the value from a component property by simply specifiying its name.    </p>
+</li><li class=" ">    <p><tt class=" ">top</tt>: Allows you to specify the top position of the label. The behavior and effect of this property depends in the used Layout and other positioning properties.    </p>
+</li><li class=" ">    <p><tt class=" ">left</tt>: Specify the left position of the label. The behavior and effect of this property depends on the used layout and other positioning properties.    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-54592040_TitaniumAngularBasics-Layouts">
+        <h2 class="heading "><span>Layouts</span></h2>
+    <p>To control how Titanium positions your UI elements, you have three different layouting behaviors to choose from. Refer to <a class="document-link " href="#!/guide/Layouts_Positioning_and_the_View_Hierarchy">Layouts Positioning and the View Hierarchy</a> and <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.View-property-layout" target="_blank">layout property docs</a> to see how exactly each layout method works and how the different positioning properties behave in each layout.    </p>
+    <p>To define a layout in an Angular template you can either specifiy the <tt class=" ">layout</tt> property or use the <tt class=" ">HorizontalLayout</tt> and <tt class=" ">VerticalLayout</tt> directives.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">layout</code><code class="plain">=</code><code class="string">&quot;vertical&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">TextField</code><code class="plain"> </code><code class="color1">hintText</code><code class="plain">=</code><code class="string">&quot;Username&quot;</code><code class="plain">&gt;&lt;/</code><code class="keyword">TextField</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">TextField</code><code class="plain"> </code><code class="color1">hintText</code><code class="plain">=</code><code class="string">&quot;Password&quot;</code><code class="plain">&gt;&lt;/</code><code class="keyword">TextField</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">VerticalLayout</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">TextField</code><code class="plain"> </code><code class="color1">hintText</code><code class="plain">=</code><code class="string">&quot;Username&quot;</code><code class="plain">&gt;&lt;/</code><code class="keyword">TextField</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">TextField</code><code class="plain"> </code><code class="color1">hintText</code><code class="plain">=</code><code class="string">&quot;Password&quot;</code><code class="plain">&gt;&lt;/</code><code class="keyword">TextField</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">VerticalLayout</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <p>The layout directives internally also use a View that wraps the content and sets the layout property to either <tt class=" ">horizontal</tt> or <tt class=" ">vertical</tt>.    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=54592040"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

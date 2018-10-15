@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Titanium Angular - Helpers and Services</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-55478045" class="content">
+                        <h1>Titanium Angular - Helpers and Services</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_-_Helpers_and_Services-section-src-55478045_TitaniumAngular-HelpersandServices-UserInterface">User Interface</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_-_Helpers_and_Services-section-src-55478045_TitaniumAngular-HelpersandServices-Dialogs">Dialogs</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_-_Helpers_and_Services-section-src-55478045_TitaniumAngular-HelpersandServices-AlertDialog">AlertDialog</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_-_Helpers_and_Services-section-src-55478045_TitaniumAngular-HelpersandServices-ConfirmDialog">ConfirmDialog</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_-_Helpers_and_Services-section-src-55478045_TitaniumAngular-HelpersandServices-PromptDialog">Prompt Dialog</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_-_Helpers_and_Services-section-src-55478045_TitaniumAngular-HelpersandServices-CustomDialogs">Custom Dialogs</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_-_Helpers_and_Services-section-src-55478045_safe-id-VGl0YW5pdW1Bbmd1bGFyLUhlbHBlcnNhbmRTZXJ2aWNlcy1QaWNrZXIoQW5kcm9pZG9ubHkp">Picker (Android only)</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_-_Helpers_and_Services-section-src-55478045_TitaniumAngular-HelpersandServices-TimePicker">Time Picker</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_-_Helpers_and_Services-section-src-55478045_TitaniumAngular-HelpersandServices-DatePicker">Date Picker</a>    </p>
+</li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_-_Helpers_and_Services-section-src-55478045_TitaniumAngular-HelpersandServices-Device">Device</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Angular_-_Helpers_and_Services-section-src-55478045_TitaniumAngular-HelpersandServices-Deviceenvironment">Device environment</a>    </p>
+</li></ul></li></ul>    <p>Titanium Angular comes with a set of helpers that provide a modernized access to commonly used features of our Titanium SDK. All of these employ a Promise-based API and try to abstract away repetitive steps from the original Titanium APIs. However, they are purely a convenience feature and won&apos;t replace any existing Titanium APIs.    </p>
+    <div class="section section-2 " id="src-55478045_TitaniumAngular-HelpersandServices-UserInterface">
+        <h2 class="heading "><span>User Interface</span></h2>
+    <div class="section section-3 " id="src-55478045_TitaniumAngular-HelpersandServices-Dialogs">
+        <h3 class="heading "><span>Dialogs</span></h3>
+    <p>To ease the creation of dialogs, Titanium Angular comes with several predefined dialogs.    </p>
+    <div class="section section-4 " id="src-55478045_TitaniumAngular-HelpersandServices-AlertDialog">
+        <h4 class="heading "><span>AlertDialog</span></h4>
+    <p>The <tt class=" ">AlertDialog</tt> helper allows you to display a simple alert with a single button. Besides the dialog&apos;s <tt class=" ">title</tt> and <tt class=" ">message</tt> you can also specify an optional <tt class=" ">okButtonText</tt>.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">AlertDialog</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="AlertDialog">
+<div class="line"><code class="plain">import { AlertDialog } from </code><code class="string">&apos;titanium-angular&apos;</code><code class="plain">;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">const alertDialog = </code><code class="keyword">new</code><code class="plain"> AlertDialog({</code></div>
+<div class="line"><code class="plain">	title: </code><code class="string">&apos;Alert&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	message: </code><code class="string">&apos;This is awesome!&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">alertDialog.show().then(() =&gt; console.log(`Alert closed`));</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-55478045_TitaniumAngular-HelpersandServices-ConfirmDialog">
+        <h4 class="heading "><span>ConfirmDialog</span></h4>
+    <p>A confirm dialog will display a dialog using the <tt class=" ">title</tt> and <tt class=" ">message</tt> properties. You can also change the button text through the <tt class=" ">okButtonText</tt> and <tt class=" ">cancelButtonText</tt> options.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">ConfirmDialog</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ConfirmDialog">
+<div class="line"><code class="plain">import { ConfirmDialog, ConfirmResult } from </code><code class="string">&apos;titanium-angular&apos;</code><code class="plain">;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">const confirmDialog = </code><code class="keyword">new</code><code class="plain"> ConfirmDialog({</code></div>
+<div class="line"><code class="plain">	title: </code><code class="string">&apos;Confirm&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	message: </code><code class="string">&apos;Do you want to continue?&apos;</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line"><code class="plain">confirmDialog.show().then((result: ConfirmResult) =&gt; {</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">if</code><code class="plain"> (result === ConfirmResult.Ok) {</code></div>
+<div class="line"><code class="plain">		console.log(</code><code class="string">&apos;Confirmed!&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">	} </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (result === ConfirmResult.Cancel) {</code></div>
+<div class="line"><code class="plain">		console.log(</code><code class="string">&apos;Canceled!&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">	}</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-55478045_TitaniumAngular-HelpersandServices-PromptDialog">
+        <h4 class="heading "><span>Prompt Dialog</span></h4>
+    <p>To prompt a user for some text input you can use the prompt dialog.    </p>
+    <div class="confbox admonition admonition-warning aui-message problem shadowed information-macro">
+            <p><strong class=" ">This has not yet been impletement with the current tech preview.</strong>    </p>
+    </div>
+        </div>
+    <div class="section section-4 " id="src-55478045_TitaniumAngular-HelpersandServices-CustomDialogs">
+        <h4 class="heading "><span>Custom Dialogs</span></h4>
+    <p>Besides those predefined dialogs you can also completely customize your dialogs using the <tt class=" ">BaseDialog</tt> class. A base dialog accepts the <tt class=" ">title</tt> and <tt class=" ">message</tt> options. You can then add multiple <tt class=" ">DialogAction</tt> to your dialog which represent a button of the dialog with a <tt class=" ">title</tt> and an optional <tt class=" ">handler</tt> function to call if that button is pressed.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">BaseDialog</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="BaseDialog">
+<div class="line"><code class="plain">import { BaseDialog, DialogAction } from </code><code class="string">&apos;titanium-angular&apos;</code><code class="plain">;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">const dialog = </code><code class="keyword">new</code><code class="plain"> BaseDialog(</code><code class="string">&apos;Dialog title&apos;</code><code class="plain">, </code><code class="string">&apos;Some message&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Add a simple button</code></div>
+<div class="line"><code class="plain">dialog.addAction(</code><code class="keyword">new</code><code class="plain"> DialogAction(</code><code class="string">&apos;Ok&apos;</code><code class="plain">, () =&gt; console.log(</code><code class="string">&apos;Ok button pressed!&apos;</code><code class="plain">)));</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Add a button representing the cancel action.</code></div>
+<div class="line"><code class="plain">const cancelAction = </code><code class="keyword">new</code><code class="plain"> DialogAction(</code><code class="string">&apos;Cancel&apos;</code><code class="plain">, () =&gt; console.log(</code><code class="string">&apos;Are you really gonna quit now?&apos;</code><code class="plain">));</code></div>
+<div class="line"><code class="plain">cancelAction.cancel = </code><code class="keyword">true</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">dialog.addAction(cancelAction);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Add a button with the destructive option</code></div>
+<div class="line"><code class="plain">const destructiveAction = </code><code class="keyword">new</code><code class="plain"> DialogAction(</code><code class="string">&apos;Abort&apos;</code><code class="plain">, () =&gt; console.log(</code><code class="string">&apos;Ok ok, we are done here.&apos;</code><code class="plain">));</code></div>
+<div class="line"><code class="plain">destructiveAction.destructive = </code><code class="keyword">true</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">dialog.addAction(destructiveAction);</code></div>
+</div>
+    </div>
+    <p>By default both the <tt class=" ">cancel</tt> and <tt class=" ">destructive</tt> properties are set to <tt class=" ">false</tt>.    </p>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-55478045_safe-id-VGl0YW5pdW1Bbmd1bGFyLUhlbHBlcnNhbmRTZXJ2aWNlcy1QaWNrZXIoQW5kcm9pZG9ubHkp">
+        <h3 class="heading "><span>Picker (Android only)</span></h3>
+    <p>Handle the common use case of date and time pickers presented as modals with the following helper classes.    </p>
+    <div class="section section-4 " id="src-55478045_TitaniumAngular-HelpersandServices-TimePicker">
+        <h4 class="heading "><span>Time Picker</span></h4>
+    <p>A simple time picker can be created with a <tt class=" ">minDate</tt>, <tt class=" ">maxValue</tt>, and <tt class=" ">value</tt> options. All of those options are optional and will accept a <tt class=" ">Date</tt> object. Passing an empty options object results in no restrictions on the selectable time frame and the current time will be pre-selected.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">TimePicker</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="TimePicker">
+<div class="line"><code class="plain">&#xA0;const timePicker = </code><code class="keyword">new</code><code class="plain"> TimePicker({});</code></div>
+<div class="line"><code class="plain"> timePicker.show().then(selectedTime =&gt; {</code></div>
+<div class="line"><code class="plain">     console.log(`Selected time: ${selectedTime}`);</code></div>
+<div class="line"><code class="plain"> }).</code><code class="keyword">catch</code><code class="plain">(() =&gt; {</code></div>
+<div class="line"><code class="plain">     console.log(</code><code class="string">&apos;Time selection canceled&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain"> });</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4 " id="src-55478045_TitaniumAngular-HelpersandServices-DatePicker">
+        <h4 class="heading "><span>Date Picker</span></h4>
+    <p>Selecting both the date and a time can be achieved with the date picker. It accepts the <tt class=" ">minDate</tt>, <tt class=" ">maxValue</tt> and <tt class=" ">value</tt> options. All of those options are optional and will accept a <tt class=" ">Date</tt> object. Passing an empty options object results in no restrictions on the selectable dates and the current date and time will be pre-selected.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">DatePicker</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="DatePicker">
+<div class="line"><code class="plain">const datePicker = </code><code class="keyword">new</code><code class="plain"> DatePicker({});</code></div>
+<div class="line"><code class="plain">datePicker.show().then(selectedDate =&gt; {</code></div>
+<div class="line"><code class="plain">    console.log(`Selected date: ${selectedDate}`);</code></div>
+<div class="line"><code class="plain">}).</code><code class="keyword">catch</code><code class="plain">(() =&gt; {</code></div>
+<div class="line"><code class="plain">    console.log(</code><code class="string">&apos;Date selection canceled&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">});</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-55478045_TitaniumAngular-HelpersandServices-Device">
+        <h2 class="heading "><span>Device</span></h2>
+    <div class="section section-3 " id="src-55478045_TitaniumAngular-HelpersandServices-Deviceenvironment">
+        <h3 class="heading "><span>Device environment</span></h3>
+    <p>Allows to check on which platform the app is currently running.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">@Component({templateUrl: </code><code class="string">&quot;./some.component.html&quot;</code><code class="plain">})</code></div>
+<div class="line"><code class="plain">class SomeComponent implements OnInit {</code></div>
+<div class="line"><code class="plain">    constructor(private device: DeviceEnvironment) {</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
+<div class="line"><code class="plain">    onInit() {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (</code><code class="keyword">this</code><code class="plain">.device.runs(</code><code class="string">&apos;android&apos;</code><code class="plain">)) {</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// ...</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>Valid platform names are <tt class=" ">android</tt>, <tt class=" ">ios</tt>, and <tt class=" ">windows</tt>.    </p>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=55478045"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

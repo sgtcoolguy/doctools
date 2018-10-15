@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Android Module Upgrade Guide</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-52298697" class="content">
+                        <h1>Android Module Upgrade Guide</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Upgrade_Guide-section-src-52298697_AndroidModuleUpgradeGuide-Summary">Summary</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Upgrade_Guide-section-src-52298697_AndroidModuleUpgradeGuide-MigrationtoSDK7.0.0">Migration to SDK 7.0.0</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Upgrade_Guide-section-src-52298697_AndroidModuleUpgradeGuide-Manifestfile">Manifest file</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Upgrade_Guide-section-src-52298697_AndroidModuleUpgradeGuide-apiversion">apiversion</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Upgrade_Guide-section-src-52298697_AndroidModuleUpgradeGuide-minsdk">minsdk</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Upgrade_Guide-section-src-52298697_AndroidModuleUpgradeGuide-architecture">architecture</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Upgrade_Guide-section-src-52298697_AndroidModuleUpgradeGuide-Version">Version</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Android_Module_Upgrade_Guide-section-src-52298697_AndroidModuleUpgradeGuide-APIupdates">API updates</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-52298697_AndroidModuleUpgradeGuide-Summary">
+        <h2 class="heading "><span>Summary</span></h2>
+    <p>With major releases of the Titanium SDK, you may need to update older modules. This document will provide you with the information to upgrade your Android modules as necessary.Titanium SDK 7.0.0 and later will require modules to be updated for the latest V8 version 6.x. This is done by changing the &quot;manifest&quot; file in the module project and recompiling them afterwards.    </p>
+    </div>
+    <div class="section section-2 " id="src-52298697_AndroidModuleUpgradeGuide-MigrationtoSDK7.0.0">
+        <h2 class="heading "><span>Migration to SDK 7.0.0</span></h2>
+    <p>When using Titanium SDK 7.0.0 and later, you can simply switch to your Android module project (e.g. <tt class=" ">cd ti.map/android</tt>) and use <tt class=" ">appc run -p android --build-only</tt>. The command will prompt you to confirm the migration and update your manifest file for you. The details of the migration are described below.    </p>
+    <p>The following components of the Android manifest file need to be updated:    </p>
+<ul class=" "><li class=" ">    <p><strong class=" "><tt class=" ">architecture</tt></strong>: Add the &quot;arm64-v8a&quot; architecture to support 64 Bit on Android    </p>
+</li><li class=" ">    <p><strong class=" "><tt class=" ">apiversion</tt></strong>: Update the value to &quot;4&quot;    </p>
+</li><li class=" ">    <p><strong class=" "><tt class=" ">minsdk</tt></strong>: Update the value to &quot;7.0.0&quot; to indicate that developers should use Titanium SDK 7.0.0 and later    </p>
+</li><li class=" ">    <p><tt class=" ">version</tt>: Update the value to the next major version (read more about semantic versioning <a class="external-link external-link" href="https://semver.org/" target="_blank">here</a>). If your module version is &quot;1.2.0&quot; right now, it should be revised to &quot;2.0.0&quot;    </p>
+</li></ul>    <p>    <img src="images/download/attachments/52298697/Bildschirmfoto_2017-11-29_um_16.51.08.png" alt="images/download/attachments/52298697/Bildschirmfoto_2017-11-29_um_16.51.08.png" class="confluence-embedded-image" width="600">
+        </img></p>
+    <p>That&apos;s it! After the migration, you can include your module inside a Titanium 7.0.0 project and benefit from the new V8 changes like <a class="external-link external-link" href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/" target="_blank">Chrome-debugging</a> and 64-bit compatibility.<br>See an example of the exact changes being made:    </br></p>
+    <p>    <img src="images/download/attachments/52298697/Bildschirmfoto_2017-11-29_um_16.51.32.png" alt="images/download/attachments/52298697/Bildschirmfoto_2017-11-29_um_16.51.32.png" class="confluence-embedded-image" width="500">
+        </img></p>
+    </div>
+    <div class="section section-2 " id="src-52298697_AndroidModuleUpgradeGuide-Manifestfile">
+        <h2 class="heading "><span>Manifest file</span></h2>
+    <p>The following tables provide an overview of the relations between different properties inside a native Android module project.    </p>
+    <div class="section section-3 " id="src-52298697_AndroidModuleUpgradeGuide-apiversion">
+        <h3 class="heading "><span>apiversion</span></h3>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>SDK    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>required apiversion    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>7.x    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>4    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>6.x    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>3    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>5.x    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>2    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-52298697_AndroidModuleUpgradeGuide-minsdk">
+        <h3 class="heading "><span>minsdk</span></h3>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>SDK    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>required apiversion    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>7.x    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>7.0.0.GA    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>6.x    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>6.0.0.GA    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>5.x    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>5.0.0.GA    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-52298697_AndroidModuleUpgradeGuide-architecture">
+        <h3 class="heading "><span>architecture</span></h3>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>SDK    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Architecture    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>7.x    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>arm64-v8a armeabi-v7a x86    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>6.x    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>armeabi-v7a x86    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>5.x    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>armeabi armeabi-v7a x86    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3 " id="src-52298697_AndroidModuleUpgradeGuide-Version">
+        <h3 class="heading "><span>Version</span></h3>
+    <p>Update the module version to the major version number.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-52298697_AndroidModuleUpgradeGuide-APIupdates">
+        <h2 class="heading "><span>API updates</span></h2>
+    <p>Please note any API changes. Refer to <a class="document-link unresolved" href="#!/guide/Android_Module_Upgrade_Guide-section-src-52298697">Titanium SDK Release Notes</a> for the latest info on changes to the API and/or the <a class="external-link external-link" href="#!/api">API documentation</a>.    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=52298697"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

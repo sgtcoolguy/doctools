@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Titanium API Doc Style Guide</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-27595540" class="content">
+                        <h1>Titanium API Doc Style Guide</h1>
+    <div class="section section-2 " id="src-27595540_TitaniumAPIDocStyleGuide-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_API_Doc_Style_Guide-section-src-27595540_TitaniumAPIDocStyleGuide-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_API_Doc_Style_Guide-section-src-27595540_TitaniumAPIDocStyleGuide-Guidelines">Guidelines</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_API_Doc_Style_Guide-section-src-27595540_TitaniumAPIDocStyleGuide-Formatting">Formatting</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_API_Doc_Style_Guide-section-src-27595540_TitaniumAPIDocStyleGuide-Links">Links</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_API_Doc_Style_Guide-section-src-27595540_TitaniumAPIDocStyleGuide-InlineHTML">Inline HTML</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_API_Doc_Style_Guide-section-src-27595540_TitaniumAPIDocStyleGuide-DeprecatingandRemovingAPIs">Deprecating and Removing APIs</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_API_Doc_Style_Guide-section-src-27595540_TitaniumAPIDocStyleGuide-TipsandTricks">Tips and Tricks</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-27595540_TitaniumAPIDocStyleGuide-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>The following style proposals are inspired by a number of sources, most notably the JavaDoc style guide in <a class="external-link external-link" href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html" target="_blank">How to Write Doc Comments for the Javadoc Tool</a>. The <i class=" ">Microsoft Guide to Technical Publications</i> is also a useful reference for general documentation style questions.    </p>
+    </div>
+    <div class="section section-2 " id="src-27595540_TitaniumAPIDocStyleGuide-Guidelines">
+        <h2 class="heading "><span>Guidelines</span></h2>
+    <p>Always use initial capital and end punctuation, even if the doc string is a fragment:    </p>
+<ul class="alternate "><li class=" ">    <p><tt class=" ">An object describing the font properties for the label.</tt> (preferred)    </p>
+</li><li class=" ">    <p><tt class=" ">an object describing the font properties for the label</tt> (avoid)    </p>
+</li></ul>    <p>Object and module summaries should describe the object or module. The creator method should be listed in the description, not the summary.    </p>
+<ul class="alternate "><li class=" ">    <p><tt class=" ">A switch control with on and off states.</tt> (preferred)    </p>
+</li><li class=" ">    <p><tt class=" ">A Switch is created by the method `Ti.UI.createSwitch.`</tt> (avoid)    </p>
+</li></ul>    <p>Start method summaries with an active verb:    </p>
+<ul class="alternate "><li class=" ">    <p><tt class=" ">Pours the whisky.</tt> (preferred)    </p>
+</li><li class=" ">    <p><tt class=" ">This method pours the whisky.</tt> (avoid)    </p>
+</li></ul>    <p>Use 3rd person declarative instead of 2nd person imperative:    </p>
+<ul class="alternate "><li class=" ">    <p><tt class=" ">Adds a child to this view.</tt> (preferred)    </p>
+</li><li class=" ">    <p><tt class=" ">Add a child to this view.</tt> (avoid)    </p>
+</li></ul>    <p>When referring to the present object, use &quot;this&quot; not &quot;the.&quot;    </p>
+<ul class="alternate "><li class=" ">    <p><tt class=" ">Multiplies this matrix by the supplied matrix, `m1`.</tt> (preferred)    </p>
+</li><li class=" ">    <p><tt class=" ">Multiplies the matrix by the supplied matrix, `m1`.</tt> (avoid)    </p>
+</li></ul>    <p>When methods or properties can take a constant value, identify the set of constant values and where they are defined. If the set of possible values is small, the values can be enumerated.    </p>
+<ul class="alternate "><li class=" ">    <p><tt class=" ">Specify one of the `TEXT_ALIGNMENT` constants from &lt;Titanium.UI&gt;.</tt> (preferred)    </p>
+</li><li class=" ">    <p><tt class=" ">Specify one of `SERVED_ROCKS` or `SERVED_NEAT` from &lt;Titanium.Beverage&gt;.</tt> (preferred)    </p>
+</li><li class=" ">    <p><tt class=" ">Specify one of [pe:SERVED_ROCKS](Titanium.Beverage.SERVED_ROCKS) or [pe:SERVED_NEAT] (Titanium.Beverage.SERVED_NEAT).</tt> (preferred)    </p>
+</li><li class=" ">    <p><tt class=" ">Specify using a constant from &lt;Titanium.UI&gt;.</tt>(avoid)    </p>
+</li><li class=" ">    <p><tt class=" ">Specify one of `SERVED_ROCKS` or `SERVED_NEAT`.</tt> (avoid, unless the constants are defined in the same object/module)    </p>
+</li></ul>    <p>Use code font for keywords and names. This includes:    </p>
+<ul class="alternate "><li class=" ">    <p>JavaScript keywords    </p>
+</li><li class=" ">    <p>method names    </p>
+</li><li class=" ">    <p>property names    </p>
+</li><li class=" ">    <p>parameter names    </p>
+</li><li class=" ">    <p>module and object names    </p>
+</li><li class=" ">    <p>variable names    </p>
+</li><li class=" ">    <p>constants    </p>
+</li><li class=" ">    <p>code samples<br><br>When used inline, use `backticks` for objects that should be in code font. (When you add inline links to Titanium types, they are automatically set in code font.) For code samples, indent the entire code sample 4 spaces to format as a Markdown code block.    </br></br></p>
+</li></ul>    <p>Defining a constant: Need a consistent style here. We should describe both what the constant does, and (if possible) where it&apos;s used. We don&apos;t include a special annotation for constants, but we do use a consistent style for them (ALL_CAPS). It is not necessary to include the term &quot;constant&quot; in the summary unless it makes the description more clear.    </p>
+<ul class="alternate "><li class=" ">    <p>summary: <tt class=" ">Ease-in to the animation. See &lt;Titanium.UI.Animation&gt; for a discussion of animation curves.</tt> (preferred)    </p>
+</li><li class=" ">    <p>summary: <tt class=" ">Constant value representing an &quot;ease-in&quot; animation curve.</tt> (ok)    </p>
+</li><li class=" ">    <p>summary: <tt class=" ">animation curve constant</tt> (avoid)    </p>
+</li></ul>    <p>Using inline links: Inline links are very useful, but excessive use detracts from readability. Use them where they add information not already supplied by the YAML markup. For example, if the return type of a method is Titanium.Blob, the description text can just use code style &#x2013; `Blob` &#x2013; instead of an inline link.    </p>
+    <div class="confbox programlisting preformatted panel">
+                <div class="content">
+        <pre><code>summary: Returns the image as a `Blob`.
+returns: 
+    type: Titanium.Blob</code></pre>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    </div>
+    <p>When referring to a given type multiple times in the same description, only one reference (usually the first) should be an inline link.    </p>
+    <p>Using external links: Make sure that the linked content is useful. When linking to content outside of the API docs, introduce<br>the link so users know why they should follow the link. Avoid anonymous inline links.    </br></p>
+    <p>Preferred:    </p>
+    <div class="confbox programlisting preformatted panel">
+                <div class="content">
+        <pre><code>Titanium binding for an Android activity. For more information on Android activities, see the 
+[Activity Reference Page](http://developer.android.com/reference/android/app/Activity.html) on the Android Developer site.</code></pre>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    </div>
+    <p>Preferred:    </p>
+    <div class="confbox programlisting preformatted panel">
+                <div class="content">
+        <pre><code>For more information on Android Activity, see: 
+
+-  [developer.android.com/reference/android/app/Activity.html](http://developer.android.com/reference/android/app/Activity.html)}} (preferred)</code></pre>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    </div>
+    <p>Avoid:    </p>
+    <div class="confbox programlisting preformatted panel">
+                <div class="content">
+        <pre><code>Titanium binding for an an [Android Activity](http://developer.android.com/reference/android/app/Activity.html).</code></pre>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-27595540_TitaniumAPIDocStyleGuide-Formatting">
+        <h2 class="heading "><span>Formatting</span></h2>
+    <p>For ease of reviewing pull requests on GitHub, TDoc files should be line-wrapped at 100 characters.    </p>
+    <p>For legibility, vertical whitespace may be added before a YAML key that introduces a YAML array, and before each array element:    </p>
+    <div class="confbox programlisting preformatted panel">
+                <div class="content">
+        <pre><code> 
+
+properties:
+  
+  - name: backgroundColor
+    summary: Background color for this view.
+    type: String
+
+  - name: enabled
+    summary: Indicates whether the view is enabled.
+    type: Boolean</code></pre>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    </div>
+    <p>Vertical whitespace should not be used <i class=" ">inside</i> a YAML array element:    </p>
+    <div class="confbox programlisting preformatted panel">
+                <div class="content">
+        <pre><code> 
+  # Avoid this format
+  - name: enabled                     
+
+    summary: Indicates whether the view is enabled.
+    type: Boolean</code></pre>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    </div>
+    <p>JSON-style arrays. Where JSON-style arrays are used (for example, in &quot;platforms:&quot; or when listing multiple types a property can hold), whitespace between items is desirable for ease of reading:    </p>
+    <div class="confbox programlisting preformatted panel">
+                <div class="content">
+        <pre><code> 
+platforms: [android, iphone, ipad]</code></pre>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-27595540_TitaniumAPIDocStyleGuide-Links">
+        <h2 class="heading "><span>Links</span></h2>
+    <p>When linking to guides or videos on docs.appcelerator.com from the API docs, use the full URL for the doc site, with the version replaced with `latest` and `index.html` removed from the path. When generating the JSDuck version of the docs for the doc site, these links are translated to local links. For other formats, the link will work as written. Entering the URL in a browser should redirect you to the latest version of the guide.    </p>
+    <div class="confbox programlisting preformatted panel">
+                <div class="content">
+        <pre><code> 
+[Quick Start](http://docs.appcelerator.com/titanium/latest/#!/guide/Quick_Start)</code></pre>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    </div>
+    <p>Do not use the versioned link, which will get outdated, or include `index.html`, which breaks the redirection mechanism.    </p>
+    <p>Avoid:    </p>
+    <div class="confbox programlisting preformatted panel">
+                <div class="content">
+        <pre><code> 
+[Quick Start](http://docs.appcelerator.com/titanium/2.1/index.html#!/guide/Quick_Start)
+[Quick Start](http://docs.appcelerator.com/titanium/latest/index.html#!/guide/Quick_Start)</code></pre>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-27595540_TitaniumAPIDocStyleGuide-InlineHTML">
+        <h2 class="heading "><span>Inline HTML</span></h2>
+    <p>Markdown format allows you to use inline HTML. This is especially useful for adding tables, which Markdown doesn&apos;t support itself. When adding inline HTML:    </p>
+<ul class=" "><li class=" ">    <p>Always use <strong class=" ">lowercase</strong> tag names. So use <tt class=" ">&lt;table&gt;</tt>, <tt class=" ">&lt;code&gt;</tt>, not <tt class=" ">&lt;TABLE&gt;</tt>, <tt class=" ">&lt;CODE&gt;</tt>.    </p>
+</li><li class=" ">    <p>All tags must be closed, XHTML style. So use <tt class=" ">&lt;br /&gt;</tt>, <tt class=" ">&lt;td&gt;A Table Cell&lt;/a&gt;</tt>.    </p>
+</li><li class=" ">    <p>When adding an inline table, much formatting is overridden by JSDuck. Use the <tt class=" ">doc-table</tt> CSS class to get some reasonable default formatting (<tt class=" ">&lt;table class=&quot;doc-table&quot;&gt;</tt>).    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-27595540_TitaniumAPIDocStyleGuide-DeprecatingandRemovingAPIs">
+        <h2 class="heading "><span>Deprecating and Removing APIs</span></h2>
+    <p>When deprecating an API, add the <tt class=" ">deprecated</tt> tag. You must specify a <tt class=" ">since</tt> version. You should specify a <tt class=" ">notes</tt> field directing the user to the replacement API or APIs.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">deprecated:</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;7.0.0&quot;</code></div>
+<div class="line"><code class="plain">    notes: Use [SOMETHING_ELSE](Titanium.UI.SOMETHING_ELSE) instead.</code></div>
+</div>
+    </div>
+    <p>The <tt class=" ">removed</tt> version should <strong class=" ">NOT</strong> be specified until the API is actually removed.    </p>
+    <p>When the API is removed, add the <tt class=" ">removed</tt> version to the <tt class=" ">deprecated</tt> tag. <strong class=" ">DO NOT</strong> remove the API from the docs.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">deprecated:</code></div>
+<div class="line"><code class="plain">    since: </code><code class="string">&quot;7.0.0&quot;</code></div>
+<div class="line"><code class="plain">    notes: Use [SOMETHING_ELSE](Titanium.UI.SOMETHING_ELSE) instead.</code></div>
+<div class="line"><code class="plain">    removed: </code><code class="string">&quot;8.0.0&quot;</code></div>
+</div>
+    </div>
+    <p>Removed APIs should stay in the docs (marked as removed) for a full deprecation cycle. That is, if APIs deprecated in release A are <i class=" ">removed</i> in release B, the APIs <i class=" ">removed</i> in release A can be removed from the doc in release B.    </p>
+    </div>
+    <div class="section section-2 " id="src-27595540_TitaniumAPIDocStyleGuide-TipsandTricks">
+        <h2 class="heading "><span>Tips and Tricks</span></h2>
+    <p>Colon (:) characters won&apos;t pass validation in normal YAML text fields, and YAML text fields can&apos;t start with a backtick (`) character. To include one of these characters in a summary or description field, use the YAML chunking operator (|) to add free-form markdown text:    </p>
+    <div class="confbox programlisting preformatted panel">
+                <div class="content">
+        <pre><code>- description: |
+      Specify one of: &lt;Titanium.Beverage.WHISKY_ISLAY&gt;, &lt;Titanium.Beverage.WHISKY_HIGHLAND&gt;, &lt;Titanium.Beverage.WHISKY_LOWLAND&gt;.
+
+- summary: |
+      `true` if the current view is awesome.</code></pre>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    </div>
+    <p>Optional parameters: specify optional method parameters by specifying &quot;<tt class=" ">optional: true</tt>&quot; and adding a default value.    </p>
+    <div class="confbox programlisting preformatted panel">
+                <div class="content">
+        <pre><code>parameters:
+  - name: cubes
+    summary: Number of ice cubes.
+    type: Number
+    optional: true
+    default: 0</code></pre>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    </div>
+    <p>Platform-specific parameters: TDoc (and JSCA) don&apos;t allow for a parameter to be platform-specific. If one platform adds a parameter,<br>other platforms must accept or ignore that parameter. Describe platform limitations in the summary.    </br></p>
+    <div class="confbox programlisting preformatted panel">
+                <div class="content">
+        <pre><code>  - name: glass
+    summary: Glass type, one of &lt;Titanium.Beverage.GLASS_ROCKS&gt; or &lt;Titanium.Beverage.GLASS_COCKTAIL&gt;. Only used on Android.
+    optional: true
+    default: Titanium.Beverage.GLASS_ROCKS</code></pre>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=27595540"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

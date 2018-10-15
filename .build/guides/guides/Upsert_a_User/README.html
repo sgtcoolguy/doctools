@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Upsert a User</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-52298583" class="content">
+                        <h1>Upsert a User</h1>
+    <p>To configure a upsert (update or insert) a user flow:    </p>
+<ol class=" "><li class=" ">    <p>Click the Create Flow     <img src="images/download/thumbnails/52298583/create_flow_icon.png" alt="images/download/thumbnails/52298583/create_flow_icon.png" class="confluence-embedded-image confluence-thumbnail" width="80">
+ icon associated with updating or inserting a simple user.<br>The API Orchestration user interface is displayed.    </br></img></p>
+</li><li class=" ">    <p>Select and pull the simpleusers flow-node onto the flow editor from the Models list. Note that the Start flow-node is automatically connected to the input of the simpleusers flow-node.    </p>
+</li><li class=" ">    <p>Name the flow-node: Upsert a user    </p>
+</li><li class=" ">    <p>Select the <tt class=" ">upsert</tt> method.    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Parameters</strong>.    </p>
+</li><li class=" ">    <p>Configure the <strong class=" ">value</strong> parameter. If <strong class=" ">selector</strong> is selected from the <i class=" ">selector</i> drop-down menu, as you begin typing in the <strong class=" ">value</strong> parameter field, a drop-down menu of valid or previously used selector options is displayed. You may optionally choose a selector from the list, or continue typing to manually configure the parameter. For additional selector auto complete information, refer to <a class="document-link " href="#!/guide/Manage_Nodes">Manage Nodes</a>. For additional information on the Model flow-node and General flow-node configuration parameters, refer to <a class="document-link " href="#!/guide/Flow_Orchestration">Flow Orchestration</a>.    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Outputs</strong>.    </p>
+</li><li class=" ">    <p>Configure the <strong class=" ">update</strong> output. As you begin typing in the <strong class=" ">update</strong> field, a drop-down menu of valid or previously used output options is displayed. You may optionally choose a output from the list, or continue typing to manually configure the parameter.    </p>
+</li><li class=" ">    <p>Configure the <strong class=" ">upsert</strong> output. As you begin typing in the <strong class=" ">upsert</strong> field, a drop-down menu of valid or previously used output options is displayed. You may optionally choose a output from the list, or continue typing to manually configure the parameter.    </p>
+</li><li class=" ">    <p>Select and pull a Set Context flow-node onto the flow editor from the Core list.    </p>
+</li><li class=" ">    <p>Name the flow-node: Set location    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Parameters</strong>.    </p>
+</li><li class=" ">    <p>For the <strong class=" ">value</strong> parameter, select <strong class=" ">selector</strong> and select <tt class=" ">$.model.id</tt> from the selector options drop-down menu or continue typing to manually complete the selector configuration. For additional selector auto-complete information, refer to <a class="document-link " href="#!/guide/Manage_Nodes">Manage Nodes</a>.    </p>
+</li><li class=" ">    <p>Connect the insert output of the Upsert a user flow-node to the input of the Set location flow-node. For additional information on connecting flow-nodes in a flow, refer to <a class="document-link " href="#!/guide/Manage_Nodes">Manage nodes</a>.    </p>
+</li><li class=" ">    <p>Select and pull an HTTP flow-node onto the flow editor from the Core list.    </p>
+</li><li class=" ">    <p>Name the flow-node: Upsert succeeded    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Parameters</strong>.    </p>
+</li><li class=" ">    <p>For the <strong class=" ">status</strong> parameter, select <strong class=" ">number</strong> and enter <tt class=" ">204</tt> in the field.    </p>
+</li><li class=" ">    <p>Leave the <strong class=" ">body</strong> and <strong class=" ">headers</strong> parameters disabled.    </p>
+</li><li class=" ">    <p>Connect the update output of the Upsert a user flow-node to the input of the Upsert succeeded flow-node. For additional information on connecting flow-nodes in a flow, refer to <a class="document-link " href="#!/guide/Manage_Nodes">Manage nodes</a>.    </p>
+</li><li class=" ">    <p>Select and pull an HTTP flow-node onto the flow editor from the Core list.    </p>
+</li><li class=" ">    <p>Name the flow-node: Insert succeeded    </p>
+</li><li class=" ">    <p>Select <strong class=" ">Parameters</strong>.    </p>
+</li><li class=" ">    <p>For the <strong class=" ">status</strong> parameter, select <strong class=" ">number</strong> and enter <tt class=" ">404</tt> in the field.    </p>
+</li><li class=" ">    <p>Leave the <strong class=" ">body</strong> parameter disabled.    </p>
+</li><li class=" ">    <p>Enable the <strong class=" ">headers</strong> parameter, select <strong class=" ">selector</strong>, and select <tt class=" ">$.headers</tt> from the selector options drop-down menu or continue typing to manually complete the selector configuration. For additional selector auto-complete information, refer to <a class="document-link " href="#!/guide/Manage_Nodes">Manage Nodes</a>.    </p>
+</li><li class=" ">    <p>Connect the insert output of the Upsert a user flow-node to the input of the Insert succeeded flow-node. For additional information on connecting flow-nodes in a flow, refer to <a class="document-link " href="#!/guide/Manage_Nodes">Manage nodes</a>.    </p>
+</li><li class=" ">    <p>Connect the next output of the Set location flow-node to the input of the Insert succeeded flow-node. For additional information on connecting flow-nodes in a flow, refer to <a class="document-link " href="#!/guide/Manage_Nodes">Manage nodes</a>. The completed flow is displayed.    </p>
+    <img src="images/download/attachments/52298583/Upsert.png" alt="images/download/attachments/52298583/Upsert.png" class="confluence-embedded-image">
+    </img></li><li class=" ">    <p>Click Save.    </p>
+</li><li class=" ">    <p>On the next screen, click Proceed. The server will be restarted and the Upsert a user flow will be saved and enabled.    </p>
+</li></ol>        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=52298583"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

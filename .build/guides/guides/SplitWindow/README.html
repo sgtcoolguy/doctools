@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SplitWindow</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-41845771" class="content">
+                        <h1>SplitWindow</h1>
+    <p>Demonstrates how to use a SplitWindow control, an iPad-only control for managing the presentation of two views in a master-detail UI.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">Example App Source Location</div>
+            <p>You can find this example app in the Alloy repository under <a class="external-link external-link" href="https://github.com/appcelerator/alloy/tree/master/samples/apps/ui/splitwindow" target="_blank">samples/apps/ui/splitwindow</a>. Check the <a class="document-link " href="#!/guide/Alloy_Test_Apps">instructions</a> how to run these sample projects.    </p>
+    </div>
+        <p>    <img src="images/download/attachments/41845771/ipad.png" alt="images/download/attachments/41845771/ipad.png" class="confluence-embedded-image" width="550">
+        </img></p>
+    <p>The <tt class=" ">&lt;SplitWindow/&gt;</tt> element expects two <tt class=" ">&lt;Window/&gt;</tt> elements as children. The first declared <tt class=" ">&lt;Window/&gt;</tt> is the &quot;master&quot; view and the second is the &quot;detail&quot; view. If a <tt class=" ">&lt;Require&gt;</tt> element is used to insert a Window, as in the sample, the required XML view must contain only one top-level element under the <tt class=" ">&lt;Alloy&gt;</tt> tag and that element must be a <a class="external-link external-link" href="#!/api/Titanium.UI.Window">Ti.UI.Window</a> object.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">views/index.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="views/index.xml">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">SplitWindow</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;ios&quot;</code><code class="plain"> </code><code class="color1">formFactor</code><code class="plain">=</code><code class="string">&quot;tablet&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;!-- The &apos;masterView&apos; window, added via &lt;</code><code class="keyword">Require</code><code class="plain">&gt; tag --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;master&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    </code></div>
+<div class="line"><code class="plain">    &lt;!-- The &apos;detailView&apos; window, using an explicit &lt;</code><code class="keyword">Window</code><code class="plain">&gt; tag --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;</code><code class="keyword">Label</code><code class="plain">&gt;This is the detail&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/</code><code class="keyword">SplitWindow</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <p>The &quot;master&quot; view consists of <tt class=" ">&lt;TabGroup/&gt;</tt> element with two <tt class=" ">&lt;Tab/&gt;</tt> child elements.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">views/master.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="views/master.xml">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">TabGroup</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;tab 1&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;tab 1&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain">&gt;tab 1&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;tab 2&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;tab 2&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain">&gt;tab 2&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/</code><code class="keyword">TabGroup</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <div class="section section-2 " id="src-41845771_SplitWindow-Seealso">
+        <h2 class="heading "><span>See also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.iPad.SplitWindow">Titanium.UI.iPad.SplitWindow</a> API reference    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.TabGroup">Titanium.UI.TabGroup</a> API reference    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.Tab">Titanium.UI.Tab</a> API reference    </p>
+</li></ul>    <p>    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845771"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Titanium Boilerplates for TypeScript</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-56302261" class="content">
+                        <h1>Titanium Boilerplates for TypeScript</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Boilerplates_for_TypeScript-section-src-56302261_TitaniumBoilerplatesforTypeScript-Gettingstartedwithourtemplates">Getting started with our templates</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Boilerplates_for_TypeScript-section-src-56302261_TitaniumBoilerplatesforTypeScript-TypeScriptSupportforExistingProjects">TypeScript Support for Existing Projects</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Boilerplates_for_TypeScript-section-src-56302261_TitaniumBoilerplatesforTypeScript-InstallTypeScriptcompiler">Install TypeScript compiler</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Boilerplates_for_TypeScript-section-src-56302261_TitaniumBoilerplatesforTypeScript-Createtsconfig.json">Create tsconfig.json</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Boilerplates_for_TypeScript-section-src-56302261_safe-id-VGl0YW5pdW1Cb2lsZXJwbGF0ZXNmb3JUeXBlU2NyaXB0LUFMTE9ZT05MWTpjb3B5QWxsb3l0eXBpbmdz">ALLOY ONLY: copy Alloy typings</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Boilerplates_for_TypeScript-section-src-56302261_TitaniumBoilerplatesforTypeScript-MigratingyourJavaScriptfiles">Migrating your JavaScript files</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Boilerplates_for_TypeScript-section-src-56302261_TitaniumBoilerplatesforTypeScript-Installingthepre-compilehook">Installing the pre-compile hook</a>    </p>
+</li></ul>    <p>This tutorial introduces the first in a series of Titanium boilerplate projects. In this document, we&apos;ll cover <a class="external-link external-link" href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> in both Alloy and classic apps.    </p>
+    <div class="section section-2 " id="src-56302261_TitaniumBoilerplatesforTypeScript-Gettingstartedwithourtemplates">
+        <h2 class="heading "><span>Getting started with our templates</span></h2>
+    <p>All that is required is the TypeScript compiler and a CLI plugin that will compile your <tt class=" ">.ts</tt> files down to JavaScript.    </p>
+    <p>To get you started quickly with TypeScript, we have prepared two example apps:    </p>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://github.com/appcelerator/titanium-boilerplates/tree/master/templates/typescript-alloy-app#readme" target="_blank">typescript-alloy-app</a>    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://github.com/appcelerator/titanium-boilerplates/tree/master/templates/typescript-classic-app#readme" target="_blank">typescript-classic-app</a>    </p>
+</li></ul>    <p>You can also find them in our new <a class="external-link external-link" href="https://github.com/appcelerator/titanium-boilerplates" target="_blank">titanium-boilerplates</a> repository on GitHub.    </p>
+    <p>These are simple greeter app examples written in TypeScript that is already setup with typings for all Titanium APIs, including Alloy, a base configuration for TypeScript, and linting using TSLint.    </p>
+    </div>
+    <div class="section section-2 " id="src-56302261_TitaniumBoilerplatesforTypeScript-TypeScriptSupportforExistingProjects">
+        <h2 class="heading "><span>TypeScript Support for Existing Projects</span></h2>
+    <p>Enabling TypeScript support in your existing project can be done with the following steps:    </p>
+<ol class=" "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Boilerplates_for_TypeScript-section-src-56302261_TitaniumBoilerplatesforTypeScript-InstallTypeScriptcompiler">Install TypeScript compiler</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Boilerplates_for_TypeScript-section-src-56302261_TitaniumBoilerplatesforTypeScript-Createtsconfig.json">Create tsconfig.json</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Boilerplates_for_TypeScript-section-src-56302261_TitaniumBoilerplatesforTypeScript-MigratingyourJavaScriptfiles">Migrating your JavaScript files</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_Boilerplates_for_TypeScript-section-src-56302261_TitaniumBoilerplatesforTypeScript-Installingthepre-compilehook">Installing the pre-compile hook</a>    </p>
+</li></ol>    </div>
+    <div class="section section-2 " id="src-56302261_TitaniumBoilerplatesforTypeScript-InstallTypeScriptcompiler">
+        <h2 class="heading "><span>Install TypeScript compiler</span></h2>
+    <p>First, install the required dependencies via <tt class=" ">npm</tt> in your project root directory. To save your installed dependencies, create a minimal <tt class=" ">package.json</tt> with the following content (if your project does not already have one):    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;my-typescript-app&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;version&quot;</code><code class="plain">: </code><code class="string">&quot;1.0.0&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;main&quot;</code><code class="plain">: </code><code class="string">&quot;index.js&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;private&quot;</code><code class="plain">: </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>Now install the TypeScript compiler and the required typings for Titanium and save them to your dev dependencies:    </p>
+    <p><tt class=" ">npm i typescript @types/titanium -D</tt>    </p>
+    </div>
+    <div class="section section-2 " id="src-56302261_TitaniumBoilerplatesforTypeScript-Createtsconfig.json">
+        <h2 class="heading "><span>Create tsconfig.json</span></h2>
+    <p>Next, create a <tt class=" ">tsconfig.json</tt> for your project. The configuration slightly differs depending whether you use Alloy or a classic project.    </p>
+    <p>For Alloy projects, the <tt class=" ">tsconfig.json</tt> looks like this:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;compilerOptions&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;baseUrl&quot;</code><code class="plain">: </code><code class="string">&quot;.&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;paths&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;*&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;*&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;app/lib/*&quot;</code></div>
+<div class="line"><code class="plain">      ]</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;target&quot;</code><code class="plain">: </code><code class="string">&quot;es5&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;module&quot;</code><code class="plain">: </code><code class="string">&quot;commonjs&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;lib&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;es2015&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">      </code><code class="string">&quot;es2015.iterable&quot;</code></div>
+<div class="line"><code class="plain">    ],</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;downlevelIteration&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;strict&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;esModuleInterop&quot;</code><code class="plain">: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;noImplicitAny&quot;</code><code class="plain">: </code><code class="keyword">false</code></div>
+<div class="line"><code class="plain">  },</code></div>
+<div class="line"><code class="plain">  </code><code class="string">&quot;include&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;app/**/*&quot;</code></div>
+<div class="line"><code class="plain">  ]</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>In classic projects, you can omit the <tt class=" ">paths</tt> compiler options and need to adjust the <tt class=" ">include</tt> setting to <tt class=" ">Resources/**/*</tt>.    </p>
+    <p>The compiler settings are just reasonable defaults and you can adjust them depending on your needs.    </p>
+    <div class="section section-3 " id="src-56302261_safe-id-VGl0YW5pdW1Cb2lsZXJwbGF0ZXNmb3JUeXBlU2NyaXB0LUFMTE9ZT05MWTpjb3B5QWxsb3l0eXBpbmdz">
+        <h3 class="heading "><span>ALLOY ONLY: copy Alloy typings</span></h3>
+    <p>Alloy currently does not provide typings on its own. However, you can copy the typings from the Alloy boilerplate project. Copy the <a class="external-link external-link" href="https://github.com/appcelerator/titanium-boilerplates/blob/master/templates/typescript-alloy-app/app/globals.d.ts" target="_blank">globals.d.ts</a> file over to your project&#x2019;s <tt class=" ">app</tt> folder.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-56302261_TitaniumBoilerplatesforTypeScript-MigratingyourJavaScriptfiles">
+        <h2 class="heading "><span>Migrating your JavaScript files</span></h2>
+    <p>Now you can start migrating your JavaScript files. Don&#x2019;t worry though &#x2013; in the first step, you won&#x2019;t have to touch any of your code. However, it is required that you rename at least one <tt class=" ">.js</tt> file to <tt class=" ">.ts</tt>. Otherwise the TypeScript compiler would complain that there are no input files.    </p>
+    <p>You didn&#x2019;t really migrate anything, yet. We recommend reading through <a class="external-link external-link" href="https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html#moving-to-typescript-files" target="_blank">Migrating from JavaScript</a> for further guidelines how to continue from here.    </p>
+    </div>
+    <div class="section section-2 " id="src-56302261_TitaniumBoilerplatesforTypeScript-Installingthepre-compilehook">
+        <h2 class="heading "><span>Installing the pre-compile hook</span></h2>
+    <p>Finally, the CLI hook triggers the compilation of the TypeScript files. Create a new file <tt class=" ">hooks/pre-compile.js</tt> in your project and paste the following content to it:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="string">&apos;use strict&apos;</code><code class="plain">;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">const path = require(</code><code class="string">&apos;path&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">const spawn = require(</code><code class="string">&apos;child_process&apos;</code><code class="plain">).spawn;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">exports.id = </code><code class="string">&apos;ti.typescript&apos;</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">exports.init = (logger, config, cli) =&gt; {</code></div>
+<div class="line"><code class="plain">  cli.on(</code><code class="string">&apos;build.pre.compile&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="plain">    priority: 900, </code><code class="comments">// explicitly lower priority to make sure this hook runs before the Alloy compiler</code></div>
+<div class="line"><code class="plain">    post: (builder, callback) =&gt; {</code></div>
+<div class="line"><code class="plain">      const tscPath = path.resolve(__dirname, </code><code class="string">&apos;..&apos;</code><code class="plain">, </code><code class="string">&apos;node_modules&apos;</code><code class="plain">, </code><code class="string">&apos;.bin&apos;</code><code class="plain">, </code><code class="string">&apos;tsc&apos;</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">      const args = [ tscPath ];</code></div>
+<div class="line"><code class="plain">      logger.info(</code><code class="string">&apos;Compiling TypeScript files&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">      logger.trace(`Executing: node ${args.join(</code><code class="string">&apos; &apos;</code><code class="plain">)}`);</code></div>
+<div class="line"><code class="plain">      const child = spawn(</code><code class="string">&apos;node&apos;</code><code class="plain">, args, {</code></div>
+<div class="line"><code class="plain">        stdio: </code><code class="string">&apos;inherit&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        cwd: cli.argv[</code><code class="string">&apos;project-dir&apos;</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">      });</code></div>
+<div class="line"><code class="plain">      child.on(</code><code class="string">&apos;close&apos;</code><code class="plain">, code =&gt; {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (code === 0) {</code></div>
+<div class="line"><code class="plain">          callback();</code></div>
+<div class="line"><code class="plain">        } </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">          const error = </code><code class="keyword">new</code><code class="plain"> Error(`TypeScript compiler exited </code><code class="keyword">with</code><code class="plain"> non-zero exit code ${code}`);</code></div>
+<div class="line"><code class="plain">          error.code = code;</code></div>
+<div class="line"><code class="plain">          callback(error);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">      });</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">  });</code></div>
+<div class="line"><code class="plain">};</code></div>
+</div>
+    </div>
+    <p>You can now use TypeScript in your project.    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=56302261"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

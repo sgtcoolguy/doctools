@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Debugging Overview</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-29004937" class="content">
+                        <h1>Debugging Overview</h1>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Debugging_Overview-section-src-29004937_DebuggingOverview-Essentialelementsofdebugging">Essential elements of debugging</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Debugging_Overview-section-src-29004937_DebuggingOverview-Debuggingtechniques">Debugging techniques</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Debugging_Overview-section-src-29004937_DebuggingOverview-Debuggingvs.softwaretesting">Debugging vs. software testing</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Debugging_Overview-section-src-29004937_DebuggingOverview-References">References</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-29004937_DebuggingOverview-Objective">
+        <h2 class="heading "><span>Objective</span></h2>
+    <p>In this section, we will define a common base of concepts that you&apos;ll need in the subsequent sections in this chapter.    </p>
+    </div>
+    <div class="section section-2 " id="src-29004937_DebuggingOverview-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+    <p>Debugging is a broad topic, and full coverage is beyond the scope of these guides. We&apos;ll take a very brief look at the following in this section:    </p>
+<ul class=" "><li class=" ">    <p>Essential elements of debugging    </p>
+</li><li class=" ">    <p>Techniques    </p>
+</li><li class=" ">    <p>Debugging vs. testing    </p>
+</li></ul>    <p>We&apos;ll cover the tools and specific procedures you&apos;ll follow in the subsequent sections.    </p>
+    <div class="section section-3 " id="src-29004937_DebuggingOverview-Essentialelementsofdebugging">
+        <h3 class="heading "><span>Essential elements of debugging</span></h3>
+    <p>You investigate problems in very similar ways whether you&apos;re debugging a computer program, troubleshooting a network connectivity issue, or figuring out why your dishwasher is spilling dirty water all over the floor. The essential elements include:    </p>
+<ul class=" "><li class=" ">    <p>Gather information &#x2013; You&apos;ll need a clear, succinct, and accurate description of the problem to work from. Users sometimes provide good info. But more often, you&apos;ll need to investigate and document the issues yourself.    </p>
+</li><li class=" ">    <p>Reproduce the problem &#x2013; You&apos;ll also need similarly clear, succinct, and accurate steps to reproduce the problem.    </p>
+</li><li class=" ">    <p>Deduce &#x2013; Don&apos;t just guess at a solution. Examine the steps to reproduce the problem, do they point to a particular subcomponent of your app? Can you eliminate some aspect, say database interactions, based on the symptoms? Logical deduction will help you zero in on possible fixes.    </p>
+</li><li class=" ">    <p>Experiment iteratively &#x2013; Try a fix. If it doesn&apos;t solve the problem, undo your changes and try something else. Keep track of every change you attempt so you don&apos;t repeat yourself.    </p>
+</li><li class=" ">    <p>Be tenacious &#x2013; Bugs can be tough to find and fix. Stick with it. But be methodical. Haste makes waste (and further bugs) when it comes to troubleshooting.    </p>
+</li><li class=" ">    <p>Track your work &#x2013; Keep track of the bugs you&apos;ve found and fixed (as well as those you haven&apos;t fixed). Whether you publish this information to your users or not, a database of issues will help you find and fix future bugs. Document the solution as well as key non-fixes (so perhaps you won&apos;t get lost on similar dead-ends in future similar situations).    </p>
+</li></ul>    </div>
+    <div class="section section-3 " id="src-29004937_DebuggingOverview-Debuggingtechniques">
+        <h3 class="heading "><span>Debugging techniques</span></h3>
+    <p>Debugging and testing books would fill a large shelf at a bookstore. We&apos;ll focus on just a few techniques, which include:    </p>
+<ul class=" "><li class=" ">    <p>print tracing (log statements)    </p>
+</li><li class=" ">    <p>crash log evaluation    </p>
+</li><li class=" ">    <p>interactive debugging    </p>
+</li></ul>    <p>Print tracing involves adding <tt class=" ">Ti.API.info()</tt> type statements to your app so that you can watch the app as it executes. You can catch many common bugs using this technique. Such logging doesn&apos;t add significant overhead to an app&apos;s execution. Still, you should remove such statements from your production app. Incidentally, log output on the device is available to knowledgable users. Take special care to remove logging statements if you use them to output sensitive information, such as user credentials, during testing.    </p>
+    <p>Crash log evaluation includes looking at the build and runtime logs associated with the Titanium build scripts, native compilation steps, and runtime crash logging performed by the simulator/emulator or device. Error messages in those logs can help you track down the source of bugs.    </p>
+    <p>Interactive debugging involves using a dedicated debugging tool or feature of your IDE to set breakpoints, then evaluate the state and values of variables during the execution of your program. Studio supports interactive debugging, with which you can set breakpoints at specific locations in your code, or set exception breakpoints to pause your program when a specific exception is raised.    </p>
+    </div>
+    <div class="section section-3 " id="src-29004937_DebuggingOverview-Debuggingvs.softwaretesting">
+        <h3 class="heading "><span>Debugging vs. software testing</span></h3>
+    <p>Debugging is a fundamentally different activity than testing. Testing comes before software is released to users. It involves confirming that features and functions work the way you say they&apos;re supposed to. Debugging comes later, after users have run your program and discovered a flaw. In a perfect world, testing would find bugs before you release the software. In reality, schedules, budgets, and other limitations prevent you from testing every possible permutation and use-case and some bugs will slip through. This guide doesn&apos;t cover testing.    </p>
+    </div>
+    <div class="section section-3 " id="src-29004937_DebuggingOverview-References">
+        <h3 class="heading "><span>References</span></h3>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://www.ibm.com/developerworks/web/library/wa-debug/index.html" target="_blank">Learn the essentials of debugging</a> (IBM)    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="http://en.wikibooks.org/wiki/Computer_Programming_Principles/Maintaining/Debugging" target="_blank">Debugging principles</a> (WikiBooks)    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-2 " id="src-29004937_DebuggingOverview-Summary">
+        <h2 class="heading "><span>Summary</span></h2>
+    <p>In this section, you learned basic debugging concepts that you&apos;ll need in the subsequent sections in this chapter.    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=29004937"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

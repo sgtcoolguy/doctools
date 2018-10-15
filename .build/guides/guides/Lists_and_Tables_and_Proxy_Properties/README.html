@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Lists and Tables and Proxy Properties</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-41845748" class="content">
+                        <h1>Lists and Tables and Proxy Properties</h1>
+    <p>Demonstrates use of Alloy elements to proxy ListView and TableView controls and their properties.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">Example App Source Location</div>
+            <p>You can find this example app in the Alloy repository under <a class="external-link external-link" href="https://github.com/appcelerator/alloy/tree/master/samples/apps/ui/lists_proxy_properties" target="_blank">alloy/test/apps/ui/lists_proxy_properties</a>. Check the <a class="document-link " href="#!/guide/Alloy_Test_Apps">instructions</a> how to run these sample projects.    </p>
+    </div>
+        <p>    <img src="images/download/attachments/41845748/screenshot.png" alt="images/download/attachments/41845748/screenshot.png" class="confluence-embedded-image" width="500">
+        </img></p>
+    <p>For properties that are assigned Titanium proxies, such as Views or Buttons, you can declare these properties as XML markup. For example, the <tt class=" ">&lt;HeaderView/&gt;</tt> element is used to proxy the <tt class=" ">headerView</tt> property for a <a class="external-link external-link" href="#!/api/Titanium.UI.ListSection">ListSection</a> or <a class="external-link external-link" href="#!/api/Titanium.UI.TableViewSection">TableViewSection</a> object. This sample demonstrates use of the following proxies:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">&lt;ListView&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.ListView">Titanium.UI.ListView</a>    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">&lt;FooterView&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.ListView-property-footerView">Titanium.UI.ListView.footerView</a>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;HeaderView&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.ListView-property-headerView">Titanium.UI.ListView.headerView</a>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;PullView&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.ListView-property-pullView">Titanium.UI.ListView.pullView</a>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;SearchBar&gt;</tt> or &lt;SearchView platform=&quot;android&quot;&gt; &#x2013;  <a class="external-link external-link" href="#!/api/Titanium.UI.ListView-property-searchView">Titanium.UI.ListView.searchView</a>    </p>
+</li></ul></li><li class=" ">    <p><tt class=" ">&lt;ListSection&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.ListSection">Titanium.UI.ListSection</a>    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">&lt;FooterView&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.ListSection-property-footerView">Titanium.UI.ListSection.footerView</a>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;HeaderView&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.ListSection-property-headerView">Titanium.UI.ListSection.headerView</a>    </p>
+</li></ul></li><li class=" ">    <p><tt class=" ">&lt;TableView&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.TableView">Titanium.UI.TableView</a>    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">&lt;FooterView&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.TableView-property-footerView">Titanium.UI.TableView.footerView</a>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;HeaderPullView&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.TableView-property-headerPullView">Titanium.UI.TableView.headerPullView</a>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;HeaderView&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.TableView-property-headerView">Titanium.UI.TableView.headerView</a>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;Search&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.TableView-property-search">Titanium.UI.TableView.search</a>    </p>
+</li></ul></li><li class=" ">    <p><tt class=" ">&lt;TableViewSection&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.TableViewSection">Titanium.UI.TableViewSection</a>    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">&lt;FooterView&gt;</tt>: <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.TableViewSection-property-footerView" target="_blank">Titanium.UI.TableViewSection.footerView</a>    </p>
+</li><li class=" ">    <p><tt class=" ">&lt;HeaderView&gt;</tt>: <a class="external-link external-link" href="#!/api/Titanium.UI.TableViewSection-property-headerView">Titanium.UI.TableViewSection.headerView</a>    </p>
+</li></ul></li></ul>    <p>The main application view, lists.xml, is loaded programmatically by the index.js view-controller.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/index.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
+<div class="line"><code class="keyword">var</code><code class="plain"> major = parseInt(Ti.Platform.version.split(</code><code class="string">&quot;.&quot;</code><code class="plain">)[0], 10);</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (OS_IOS || (OS_ANDROID &amp;&amp; major &gt;= 3)) {</code></div>
+<div class="line"><code class="plain">    Alloy.Globals.top = OS_IOS &amp;&amp; major &gt;= 7 ? 20 : 0;</code></div>
+<div class="line"><code class="plain">    Alloy.createController(</code><code class="string">&apos;lists&apos;</code><code class="plain">).getView().open();</code></div>
+<div class="line"><code class="plain">} </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">    Alloy.createController(</code><code class="string">&apos;not_supported&apos;</code><code class="plain">).getView().open();</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/views/lists.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/lists.xml">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">TabGroup</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;tableview&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">TitleControl</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;titleControl&quot;</code><code class="plain">&gt;TableView&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">TitleControl</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">TableView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;!-- header and footer views --&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;wrapper&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;!-- TIMOB-11994 prevents the searchbar from showing on iOS --&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;!-- search, shorthand with Ti.UI.SearchBar --&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">SearchBar</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;search&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;ios&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;!-- search, shorthand with Ti.UI.Android.SearchView --&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">SearchView</code><code class="plain"> </code><code class="color1">ns</code><code class="plain">=</code><code class="string">&quot;Ti.UI.Android&quot;</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;search&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;android&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;!-- headerPullView --&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">HeaderPullView</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;ios&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;pull&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                            &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">color</code><code class="plain">=</code><code class="string">&quot;#F2F4F4&quot;</code><code class="plain"> </code><code class="color1">bottom</code><code class="plain">=</code><code class="string">&quot;25dp&quot;</code><code class="plain">&gt;headerPullView&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">HeaderPullView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 4&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;!-- table section --&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">TableViewSection</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;!-- header and footer views --&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;wrapper&quot;</code><code class="plain"> </code><code class="color1">isSection</code><code class="plain">=</code><code class="string">&quot;true&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1.1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1.2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1.3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1.4&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">TableViewSection</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">TableView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Tab</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;listview&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">TitleControl</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;titleControl&quot;</code><code class="plain">&gt;ListView&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">TitleControl</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">ListView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;!-- header and footer views --&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;wrapper&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;!-- search, shorthand with Ti.UI.SearchBar --&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">SearchBar</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;search&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;ios&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;!-- search, shorthand with Ti.UI.Android.SearchView --&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">SearchView</code><code class="plain"> </code><code class="color1">ns</code><code class="plain">=</code><code class="string">&quot;Ti.UI.Android&quot;</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;search&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;android&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;!-- pullView --&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">PullView</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;ios&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;pull&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                            &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">color</code><code class="plain">=</code><code class="string">&quot;#F2F4F4&quot;</code><code class="plain"> </code><code class="color1">bottom</code><code class="plain">=</code><code class="string">&quot;25dp&quot;</code><code class="plain">&gt;pullView&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">PullView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;!-- plain section --&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">ListSection</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">ListItem</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1&quot;</code><code class="plain"> </code><code class="color1">searchableText</code><code class="plain">=</code><code class="string">&quot;row 1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">ListItem</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 2&quot;</code><code class="plain"> </code><code class="color1">searchableText</code><code class="plain">=</code><code class="string">&quot;row 2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">ListItem</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 3&quot;</code><code class="plain"> </code><code class="color1">searchableText</code><code class="plain">=</code><code class="string">&quot;row 3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">ListItem</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 4&quot;</code><code class="plain"> </code><code class="color1">searchableText</code><code class="plain">=</code><code class="string">&quot;row 4&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">ListSection</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">ListSection</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;!-- header and footer views --&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">Require</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;wrapper&quot;</code><code class="plain"> </code><code class="color1">isSection</code><code class="plain">=</code><code class="string">&quot;true&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">ListItem</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1.1&quot;</code><code class="plain"> </code><code class="color1">searchableText</code><code class="plain">=</code><code class="string">&quot;row 1.1&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">ListItem</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1.2&quot;</code><code class="plain"> </code><code class="color1">searchableText</code><code class="plain">=</code><code class="string">&quot;row 1.2&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">ListItem</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1.3&quot;</code><code class="plain"> </code><code class="color1">searchableText</code><code class="plain">=</code><code class="string">&quot;row 1.3&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">ListItem</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;row 1.4&quot;</code><code class="plain"> </code><code class="color1">searchableText</code><code class="plain">=</code><code class="string">&quot;row 1.4&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">ListSection</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">ListView</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Tab</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">TabGroup</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <div class="section section-2 " id="src-41845748_ListsandTablesandProxyProperties-Seealso">
+        <h2 class="heading "><span>See also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="document-link " href="#!/guide/Proxy_Properties">Proxy Properties</a> in the Alloy developer guide    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Alloy_ListView_Guide">Alloy ListView Guide</a>    </p>
+</li></ul>    <p>    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845748"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

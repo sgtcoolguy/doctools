@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Manage Endpoints</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-51252022" class="content">
+                        <h1>Manage Endpoints</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Manage_Endpoints-section-src-51252022_ManageEndpoints-Importendpoints">Import endpoints</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Manage_Endpoints-section-src-51252022_ManageEndpoints-Generateendpoints">Generate endpoints</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Manage_Endpoints-section-src-51252022_ManageEndpoints-ExportExportendpoints">Export endpoints</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Manage_Endpoints-section-src-51252022_ManageEndpoints-Deleteendpoints">Delete endpoints</a>    </p>
+</li></ul>    <p>An API endpoint provides a way for a client to access your application, such as <tt class=" ">GET &lt;SERVER_ADDRESS&gt;/api/users/query</tt> and access the application&apos;s models and/or custom code blocks to return data back to the client application. To create API endpoints, see the Arrow.API API reference or follow the Generate endpoints instructions in this topic.     <span style="color: #000000;">
+For reference information on flow orchestration, refer to <a class="document-link " href="#!/guide/Flow_Orchestration">Flow Orchestration</a>.    </span>
+    </p>
+    <div class="section section-2 " id="src-51252022_ManageEndpoints-Importendpoints">
+        <h2 class="heading "><span>Import endpoints</span></h2>
+    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>A Swagger API endpoint definition file (<tt class=" ">swagger.json</tt>) can only be imported once. If you attempt to import a Swagger file for the same API endpoint definition, you will receive a server error message.    </p>
+    </div>
+        <p>To import API endpoints using the API Builder GUI:    </p>
+<ol class=" "><li class=" ">    <p>Select the     <img src="images/download/thumbnails/51252022/api.png" alt="images/download/thumbnails/51252022/api.png" class="confluence-embedded-image confluence-thumbnail" width="25">
+ <strong class=" ">API Doc &amp; Test</strong> tab.    </img></p>
+</li><li class=" ">    <p>Click the <strong class=" ">+ API</strong> button on the right side. The Import API Definition page is displayed.    </p>
+    <img src="images/download/attachments/51252022/import_API.png" alt="images/download/attachments/51252022/import_API.png" class="confluence-embedded-image confluence-content-image-border" width="500" height="289">
+    </img></li><li class=" ">    <p>Select a file from your local filesystem or enter a URL. A file can be selected by browsing or dragging and dropping it. The selected file must be a Swagger formatted JSON file. To export an API endpoint as a <tt class=" ">swagger.json</tt> file, refer to the <a class="document-link " href="#!/guide/Manage_Endpoints-section-src-51252022_ManageEndpoints-Export">Export endpoints</a> section. Once a file is selected or a URL entered, the API summary review page is displayed.    </p>
+    <img src="images/download/attachments/51252022/API_sum_review.png" alt="images/download/attachments/51252022/API_sum_review.png" class="confluence-embedded-image confluence-content-image-border" width="500" height="291">
+    </img></li><li class=" ">    <p>Click the <strong class=" ">Save</strong> button on the right to import and save the selected API endpoint. Click the <strong class=" ">Save and mock</strong> button to save and mock the selected API endpoint. You can mock imported APIs to get early feedback from your API consumers and reduce your overall time-to-market. Click the <strong class=" ">Cancel</strong> button to cancel the import of the selected API endpoint. When the <strong class=" ">Save</strong> button or the <strong class=" ">Save and mock</strong> button is clicked, the server will restart. Once the server restart is completed, the imported API endpoints will be displayed on the APIs List page. The imported API endpoints will be disabled and each will have a <strong class=" ">Create Flow</strong>     <img src="images/download/thumbnails/51252022/create_flow_icon.png" alt="images/download/thumbnails/51252022/create_flow_icon.png" class="confluence-embedded-image confluence-thumbnail" width="75">
+ and <strong class=" ">Delete     <img src="images/download/thumbnails/51252022/trash_icon.png" alt="images/download/thumbnails/51252022/trash_icon.png" class="confluence-embedded-image confluence-thumbnail" width="16">
+ </img></strong>icons. To create the API endpoint flows, refer to the Create flows instructions in <a class="document-link " href="#!/guide/Manage_Flows">Manage Flows</a>.    </img></p>
+</li></ol>    </div>
+    <div class="section section-2 " id="src-51252022_ManageEndpoints-Generateendpoints">
+        <h2 class="heading "><span>Generate endpoints</span></h2>
+    <p>API Builder may auto-generate APIs for certain models. These APIs are hard-coded and cannot be used with flows or the orchestration flow editor.    </p>
+    <p>    <span style="color: #333333;">
+To generate endpoints that have flows that can be edited within the flow editor using the API Builder GUI:    </span>
+    </p>
+<ol class=" "><li class=" ">    <p>Select the     <img src="images/download/thumbnails/51252022/models.png" alt="images/download/thumbnails/51252022/models.png" class="confluence-embedded-image confluence-thumbnail" width="25">
+<strong class=" "> Models</strong> tab.    </img></p>
+</li><li class=" ">    <p>Click the <strong class=" ">Cog</strong>     <img src="images/download/thumbnails/51252022/cog_icon.png" alt="images/download/thumbnails/51252022/cog_icon.png" class="confluence-embedded-image confluence-thumbnail" width="25">
+icon.    </img></p>
+</li><li class=" ">    <p>Select <strong class=" ">Generate endpoints</strong>. The Endpoint generate caution window is displayed.    </p>
+    <img src="images/download/attachments/51252022/endpoint_gen_caution.png" alt="images/download/attachments/51252022/endpoint_gen_caution.png" class="confluence-embedded-image confluence-content-image-border" width="300">
+    </img></li><li class=" ">    <p>Select <strong class=" ">Proceed</strong> to generate the model endpoint flows. Select <strong class=" ">Cancel endpoint generation</strong> to return to the Models tab.    </p>
+</li><li class=" ">    <p>If Proceed is selected, the new endpoints will be generated and the server will be restarted. Once the endpoints are generated, the Endpoint generate success window is displayed    </p>
+    <img src="images/download/attachments/51252022/endpoint_gen_success.png" alt="images/download/attachments/51252022/endpoint_gen_success.png" class="confluence-embedded-image confluence-content-image-border" width="300">
+    </img></li><li class=" ">    <p>To view and manage the Endpoints, select <strong class=" ">Go to API details</strong>. The method, path, nickname, description, and status (enabled, disabled, or error) of each generated endpoint is provided on the APIs List page. Additionally, <strong class=" "> Flow</strong>     <img src="images/download/thumbnails/51252022/endpoint_flow.png" alt="images/download/thumbnails/51252022/endpoint_flow.png" class="confluence-embedded-image confluence-thumbnail" width="50">
+ and <strong class=" "> Delete</strong>     <img src="images/download/thumbnails/51252022/trash_icon.png" alt="images/download/thumbnails/51252022/trash_icon.png" class="confluence-embedded-image confluence-thumbnail" width="20">
+ icons are provided for each Endpoint.    </img></img></p>
+</li></ol>    </div>
+    <div class="section section-2 " id="src-51252022_ManageEndpoints-ExportExportendpoints">
+        <h2 class="heading "><span id="src-51252022_ManageEndpoints-Export" class="confluence-anchor-link"/><span>Export endpoints</span></h2>
+    <p>To export an API endpoint as a Swagger formatted JSON file using the API Builder GUI:    </p>
+<ol class=" "><li class=" ">    <p>Select the     <img src="images/download/thumbnails/51252022/api.png" alt="images/download/thumbnails/51252022/api.png" class="confluence-embedded-image confluence-thumbnail" width="25">
+ <strong class=" ">API Doc &amp; </strong>Test tab.    </img></p>
+</li><li class=" ">    <p>Select the API endpoint to export from the API Endpoints list. Selecting the API endpoint to export will open the APIs List page.    </p>
+</li><li class=" ">    <p>Click the <strong class=" ">Download Swagger</strong> button to download the selected API endpoint as a Swagger formatted JSON file.    </p>
+</li><li class=" ">    <p>Select the file download location on your filesystem.    </p>
+</li><li class=" ">    <p>Confirm the file download.    </p>
+</li></ol>    </div>
+    <div class="section section-2 " id="src-51252022_ManageEndpoints-Deleteendpoints">
+        <h2 class="heading "><span>Delete endpoints</span></h2>
+    <p>To delete endpoints using the API Builder GUI:    </p>
+<ol class=" "><li class=" ">    <p>Select the     <img src="images/download/thumbnails/51252022/api.png" alt="images/download/thumbnails/51252022/api.png" class="confluence-embedded-image confluence-thumbnail" width="25">
+ <strong class=" ">API Doc &amp; </strong>Test tab.    </img></p>
+</li><li class=" ">    <p>Select the API endpoint to manage from the API Endpoints list. Selecting the API endpoint to manage will open the APIs List page.    </p>
+</li><li class=" ">    <p>Select the <strong class=" ">Delete</strong>     <img src="images/download/thumbnails/51252022/trash_icon.png" alt="images/download/thumbnails/51252022/trash_icon.png" class="confluence-embedded-image confluence-thumbnail" width="20">
+ icon for the endpoint to delete. The Endpoint delete caution window is displayed.    </img></p>
+    <img src="images/download/attachments/51252022/endpoint_del_caution.png" alt="images/download/attachments/51252022/endpoint_del_caution.png" class="confluence-embedded-image confluence-content-image-border" width="300" height="140">
+    </img></li><li class=" ">    <p>Select <strong class=" ">Proceed</strong> to the delete the selected endpoint. Select <strong class=" ">Cancel</strong> to return to the <i class=" ">API List</i> page. If <strong class=" ">Proceed</strong> is selected, the endpoint and any associated flow are deleted and the server is restarted. Once the server restart is completed, the APIs List page is displayed.    </p>
+</li></ol>    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=51252022"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

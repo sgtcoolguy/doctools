@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Opening a Browser</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-30083224" class="content">
+                        <h1>Opening a Browser</h1>
+    <div class="section section-2 " id="src-30083224_OpeningaBrowser-Contents">
+        <h2 class="heading "><span>Contents</span></h2>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Opening_a_Browser-section-src-30083224_OpeningaBrowser-Overview">Overview</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Opening_a_Browser-section-src-30083224_OpeningaBrowser-Openingabrowserusingthecurrentselection">Opening a browser using the current selection</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Opening_a_Browser-section-src-30083224_OpeningaBrowser-Previewingthecurrentdocumentintheinternalbrowser">Previewing the current document in the internal browser</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Opening_a_Browser-section-src-30083224_OpeningaBrowser-PreviewinganexternalURLintheinternalbrowser">Previewing an external URL in the internal browser</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Opening_a_Browser-section-src-30083224_OpeningaBrowser-Previewingadocumentintheexternalbrowser">Previewing a document in the external browser</a>    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-30083224_OpeningaBrowser-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>In this recipe we show how a Ruble command can open a web browser and perform queries    </p>
+    </div>
+    <div class="section section-2 " id="src-30083224_OpeningaBrowser-Openingabrowserusingthecurrentselection">
+        <h2 class="heading "><span>Opening a browser using the current selection</span></h2>
+    <p>Here we take the currently selected text and perform a search on Google    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">command </code><code class="string">&apos;Search in Google&apos;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
+<div class="line"><code class="plain">  cmd.output = :output_to_console</code></div>
+<div class="line"><code class="plain">  cmd.input = :selection</code></div>
+<div class="line"><code class="plain">  cmd.invoke </code><code class="keyword">do</code><code class="plain"> |context|</code></div>
+<div class="line"><code class="plain">    selection = ENV[</code><code class="string">&apos;TM_SELECTED_TEXT&apos;</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">    context.browser.open(</code><code class="string">&quot;http://www.google.com/#q=&quot;</code><code class="plain">+selection, :browser =&gt; :</code><code class="keyword">default</code><code class="plain">)   </code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083224_OpeningaBrowser-Previewingthecurrentdocumentintheinternalbrowser">
+        <h2 class="heading "><span>Previewing the current document in the internal browser</span></h2>
+    <p>This example takes the text from STDIN, wraps it into a temporary HTML page, and previews that in the internal browser. This could also preview a selection, or some other snippet of text, if cmd.input were changed to another value.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">command </code><code class="string">&apos;Preview in Internal Browser&apos;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
+<div class="line"><code class="plain">  cmd.output = :show_as_html</code></div>
+<div class="line"><code class="plain">  cmd.input = :document</code></div>
+<div class="line"><code class="plain">  cmd.invoke {|context| STDIN.read }</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083224_OpeningaBrowser-PreviewinganexternalURLintheinternalbrowser">
+        <h2 class="heading "><span>Previewing an external URL in the internal browser</span></h2>
+    <p>We take the current selection and use a redirect to point the internal browser to a remote site    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line"><code class="plain">command </code><code class="string">&apos;Search in Google&apos;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
+<div class="line"><code class="plain">  cmd.output = :show_as_html</code></div>
+<div class="line"><code class="plain">  cmd.input = :selection</code></div>
+<div class="line"><code class="plain">  cmd.invoke </code><code class="keyword">do</code><code class="plain"> |context|</code></div>
+<div class="line"><code class="plain">    url = </code><code class="string">&quot;http://www.google.com/#q=&quot;</code><code class="plain">+ENV[</code><code class="string">&apos;TM_SELECTED_TEXT&apos;</code><code class="plain">]  </code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;&lt;meta http-equiv=&apos;Refresh&apos; content=&apos;0;URL=#{url}&apos;&gt;&quot;</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-30083224_OpeningaBrowser-Previewingadocumentintheexternalbrowser">
+        <h2 class="heading "><span>Previewing a document in the external browser</span></h2>
+    <p>We use the TM_FILEPATH environment variable to get the current path to the file.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">require </code><code class="string">&apos;ruble&apos;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">command </code><code class="string">&apos;Open Document in Default Browser&apos;</code><code class="plain"> </code><code class="keyword">do</code><code class="plain"> |cmd|</code></div>
+<div class="line"><code class="plain">  cmd.output = :discard</code></div>
+<div class="line"><code class="plain">  cmd.input = :none</code></div>
+<div class="line"><code class="plain">  cmd.invoke </code><code class="keyword">do</code><code class="plain"> |context|</code></div>
+<div class="line"><code class="plain">    require </code><code class="string">&apos;uri&apos;</code></div>
+<div class="line"><code class="plain">    url = </code><code class="string">&quot;file:#{URI.escape(ENV[&apos;TM_FILEPATH&apos;])}&quot;</code></div>
+<div class="line"><code class="plain">    context.browser.open(url, :browser =&gt; :</code><code class="keyword">default</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">  end</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=30083224"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

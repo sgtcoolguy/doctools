@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Using the TiApp Utility Class in Hyperloop iOS</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-53871037" class="content">
+                        <h1>Using the TiApp Utility Class in Hyperloop iOS</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Using_the_TiApp_Utility_Class_in_Hyperloop_iOS-section-src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-ClassMethods">Class Methods</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Using_the_TiApp_Utility_Class_in_Hyperloop_iOS-section-src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-InstanceMethods">Instance Methods</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Using_the_TiApp_Utility_Class_in_Hyperloop_iOS-section-src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-InstanceProperties">Instance Properties</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Using_the_TiApp_Utility_Class_in_Hyperloop_iOS-section-src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-Examples">Examples</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Using_the_TiApp_Utility_Class_in_Hyperloop_iOS-section-src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-Presentaviewcontroller">Present a view controller</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Using_the_TiApp_Utility_Class_in_Hyperloop_iOS-section-src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-Passthecurrentviewcontroller">Pass the current view controller</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Using_the_TiApp_Utility_Class_in_Hyperloop_iOS-section-src-53871037_safe-id-VXNpbmd0aGVUaUFwcFV0aWxpdHlDbGFzc2luSHlwZXJsb29waU9TLUdldHRoZWRldmljZSdzcHVzaG5vdGlmaWNhdGlvbnNVVUlE">Get the device&apos;s push notifications UUID</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Using_the_TiApp_Utility_Class_in_Hyperloop_iOS-section-src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-SubscribetotheUIApplicationDelegate">Subscribe to the UIApplicationDelegate</a>    </p>
+</li></ul></li></ul>    <p>    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p>This document describes technologies available in Hyperloop 3.1.0+ and Titanium 7.3.0+.    </p>
+    </div>
+        <p>    </p>
+    <p>When developing iOS modules with Hyperloop, there are situations where you want to present a new view controller from your current context or pass your current context to a new view controller. Natively, you would usually reference &quot;self&quot; as its represents your current UIViewController subclass. In Titanium, your &quot;self&quot; is usually a Ti.UI.Window instance, which is fine for Titanium development, but cannot be used in native development.    </p>
+    <p>That&apos;s why Hyperloop includes a number of utility methods that solve these kind of problems. They are exposed in the &quot;TiApp&quot; class that can be required as the following:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">indes.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="indes.js">
+<div class="line"><code class="comments">// ES5</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> TiApp = require(</code><code class="string">&apos;Titanium/TiApp&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// ES6+</code></div>
+<div class="line"><code class="plain">import TiApp from </code><code class="string">&apos;Titanium/TiApp&apos;</code><code class="plain">;</code></div>
+</div>
+    </div>
+    <p>And that&apos;s basically it. As the TiApp class is a singleton in Titanium, the instance methods are done on the <tt class=" ">TiApp.app()</tt> singleton and the class methods on <tt class=" ">TiApp</tt> directly. See the following table for a reference of the available utilities:    </p>
+    <div class="section section-2 " id="src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-ClassMethods">
+        <h2 class="heading "><span>Class Methods</span></h2>
+    <p>Call these methods on the <tt class=" ">TiApp</tt> property directly.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Name    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Parameters    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Return    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>app()    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>TiApp    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The singleton object to call all other API&apos;s on.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>getController()    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>UIViewController    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Returns the application&apos;s root view controller.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>getTiAppProperties()    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSDictionary    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Return a read-only dictionary from tiapp.xml properties.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-InstanceMethods">
+        <h2 class="heading "><span>Instance Methods</span></h2>
+    <p>Call these methods on the <tt class=" ">TiApp.app()</tt> singleton.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Name    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Parameters    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Return    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>showModalController(controller, animated)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>UIViewController, BOOL    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Presents a view controller on the top presented view controller (e.g. &quot;<tt class=" ">presentViewController:animated</tt>:&quot;).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>hideModalController(controller, animated)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>UIViewController, BOOL    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Hides a currently presented view controller (e.g. &quot;<tt class=" ">dismissViewControllerAnimated:completion</tt>:&quot;).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>showModalError(error)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSString    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Shows the &quot;red screen of death&quot; indicating an unhandled error.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>startNetwork()    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1">Tells application to show network activity indicator.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>stopNetwork()    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p class="p1">Tells application to hide network activity indicator.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>registerApplicationDelegate(delegate)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>id&lt;UIApplicationDelegate&gt;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Registers a new <tt class=" ">UIApplicationDelegate</tt> to the host application.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>unregisterApplicationDelegate(delegate)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>id&lt;UIApplicationDelegate&gt;    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Unregisters an existing <tt class=" ">UIApplicationDelegate</tt> from the host application.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>windowIsKeyWindow()    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>BOOL    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Indicates weather the current window is the key-window of the host application.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>getRemoteDeviceUUID()    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSString    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Returns the remote UUID for the current running device.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>getSessionId()    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSString    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Returns the unique identifier for the current application launch.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>getLaunchOptions()    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>void    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSDictionary    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Returns the application&apos;s launch options.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-InstanceProperties">
+        <h2 class="heading "><span>Instance Properties</span></h2>
+    <p>Call these properties on the <tt class=" ">TiApp.app()</tt> singleton.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Name    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>userAgent    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSString    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The user agent string to use for system network requests.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>window    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>UIWindow    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The application&apos;s primary window.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>remoteNotification    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSDictionary    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The details for the last remote notification.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>localNotification    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSDictionary    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The details for the last local notification.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>userAgent    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>NSString    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The user agent string to use for network requests.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-Examples">
+        <h2 class="heading "><span>Examples</span></h2>
+    <div class="section section-3 " id="src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-Presentaviewcontroller">
+        <h3 class="heading "><span>Present a view controller</span></h3>
+    <p>This example shows how to open a new view controller in your current application context.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var myNewViewController = </code><code class="keyword">new</code><code class="plain"> UIViewController(); </code><code class="comments">// Create a new view controller or pass it from existing libraries / SDK&apos;s</code></div>
+<div class="line"><code class="plain">var myNewView = UIView.alloc().initWithFrame(CGRectMake(</code><code class="value">0</code><code class="plain">,</code><code class="value">0</code><code class="plain">, </code><code class="value">200</code><code class="plain">, </code><code class="value">200</code><code class="plain">)); </code><code class="comments">// Create a  new UIView with a 200x200 frame</code></div>
+<div class="line"><code class="plain">myNewView.backgroundColor = UIColor.greenColor; </code><code class="comments">// Set a green background color</code></div>
+<div class="line"><code class="plain">myNewViewController.view = myNewView; </code><code class="comments">// Assign the UIView instance to your UIViewController</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">TiApp.app().showModalController(myNewViewController, </code><code class="keyword">true</code><code class="plain">); </code><code class="comments">// Present the view controller</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-Passthecurrentviewcontroller">
+        <h3 class="heading "><span>Pass the current view controller</span></h3>
+    <p>    <span style="color: #000000;">
+This example shows how to pass your top presented controller to a native method (e.g. in the Facebook SDK).    </span>
+    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var FBSDKShareDialog = require(</code><code class="string">&apos;FBSDKShareKit/FBSDKShareDialog&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var FBSDKShareDialogModeAutomatic = require(</code><code class="string">&apos;FBSDKShareKit&apos;</code><code class="plain">).FBSDKShareDialogModeAutomatic;</code></div>
+<div class="line"><code class="plain">var FBSDKShareLinkContent = require(</code><code class="string">&apos;FBSDKShareKit/FBSDKShareLinkContent&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var NSURL = require(</code><code class="string">&apos;Foundation/NSURL&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var TiApp = require(</code><code class="string">&apos;Titanium/TiApp&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">var dialog = </code><code class="keyword">new</code><code class="plain"> FBSDKShareDialog(); </code><code class="comments">// Create a new share dialog. Equals &quot;FBSDKShareDialog.alloc().init()&quot;.</code></div>
+<div class="line"><code class="plain">var content = </code><code class="keyword">new</code><code class="plain"> FBSDKShareLinkContent(); </code><code class="comments">// Create new share content (link-based). Equals &quot;FBSDKShareLinkContent.alloc().init()&quot;.</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">content.contentURL = NSURL.URLWithString(</code><code class="string">&apos;http://appcelerator.com&apos;</code><code class="plain">); // Construct a </code><code class="keyword">native</code><code class="plain"> URL</code></div>
+<div class="line"><code class="plain">dialog.setMode(FBSDKShareDialogModeAutomatic); </code><code class="comments">// Use enumerations to define how the dialog should be shown</code></div>
+<div class="line"><code class="plain">dialog.setFromViewController(TiApp.controller); </code><code class="comments">// &lt;- This is where you pass your current context</code></div>
+<div class="line"><code class="plain">dialog.setShareContent(content); </code><code class="comments">// Assign the share content</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="plain">dialog.show(); </code><code class="comments">// Present it!</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-53871037_safe-id-VXNpbmd0aGVUaUFwcFV0aWxpdHlDbGFzc2luSHlwZXJsb29waU9TLUdldHRoZWRldmljZSdzcHVzaG5vdGlmaWNhdGlvbnNVVUlE">
+        <h3 class="heading "><span>Get the device&apos;s push notifications UUID</span></h3>
+    <p>    <span style="color: #2b4771;">
+     </span>
+This examples shows how to receive the device&apos;s UUID used for remote notifications.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var remoteUUID = TiApp.app().remoteDeviceUUID;</code></div>
+<div class="line"><code class="plain">Ti.API.info(</code><code class="string">&apos;UUID: &apos;</code><code class="plain"> + remoteUUID);&#xA0;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3 " id="src-53871037_UsingtheTiAppUtilityClassinHyperloopiOS-SubscribetotheUIApplicationDelegate">
+        <h3 class="heading "><span>Subscribe to the UIApplicationDelegate</span></h3>
+    <p>This example shows how to subscribe to the <tt class=" ">UIApplicationDelegate</tt> in order to use the <tt class=" ">application:didFinishLaunchingWithOptions:</tt> delegate method. For more infos, see <a class="document-link " href="#!/guide/iOS_Modules_-_Use_Native_UI_Application_Delegates_in_Hyperloop_and_Native_Modules">iOS Modules - Use Native UI Application Delegates in Hyperloop and Native Modules</a>.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p>Note: Many native SDK&apos;s recommend to initialize them in this delegate. In the Titanium world, you can also do this in the open event of your initial window, which effectively does the same and is more cross-platform fashioned way of implementing this.    </p>
+    </div>
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">var TiApp = require(</code><code class="string">&apos;Titanium/TiApp&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">var UIApplicationDelegate = require(</code><code class="string">&apos;UIKit&apos;</code><code class="plain">).UIApplicationDelegate;</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Create a new class to handle the delegate</code></div>
+<div class="line"><code class="plain">var TiAppApplicationDelegate = Hyperloop.defineClass(</code><code class="string">&apos;TiAppApplicationDelegate&apos;</code><code class="plain">, </code><code class="string">&apos;NSObject&apos;</code><code class="plain">, </code><code class="string">&apos;UIApplicationDelegate&apos;</code><code class="plain">);</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Add the selector to handle the result</code></div>
+<div class="line"><code class="plain">TiAppApplicationDelegate.addMethod({</code></div>
+<div class="line"><code class="plain">  selector: </code><code class="string">&apos;application:didFinishLaunchingWithOptions:&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  instance: </code><code class="keyword">true</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  returnType: </code><code class="string">&apos;BOOL&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">  arguments: [</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&apos;UIApplication&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&apos;NSDictionary&apos;</code></div>
+<div class="line"><code class="plain">  ],</code></div>
+<div class="line"><code class="plain">  callback: function(application, options) {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (</code><code class="keyword">this</code><code class="plain">.didFinishLaunchingWithOptions) {</code></div>
+<div class="line"><code class="plain">      </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">this</code><code class="plain">.didFinishLaunchingWithOptions(application, options);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">  }</code></div>
+<div class="line"><code class="plain">});</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Instantiate the delegate subclass</code></div>
+<div class="line"><code class="plain">var applicationDelegate = </code><code class="keyword">new</code><code class="plain"> TiAppApplicationDelegate();</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="comments">// Called when the application finished launching. Initialize SDK&apos;s here for example</code></div>
+<div class="line"><code class="plain">applicationDelegate.didFinishLaunchingWithOptions = function(application, options) {</code></div>
+<div class="line"><code class="plain">  Ti.API.info(</code><code class="string">&apos;Hey there!&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">};</code></div>
+<div class="line">&#xA0;</div>
+<div class="line"><code class="comments">// Finally, assign your subclass to the &quot;applicationDelegate&quot; property of the TiApp class</code></div>
+<div class="line"><code class="plain">TiApp.app().registerApplicationDelegate(applicationDelegate);</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=53871037"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

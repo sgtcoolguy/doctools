@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Debugging Android Apps with 3rd-party Tools</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-52299232" class="content">
+                        <h1>Debugging Android Apps with 3rd-party Tools</h1>
+    <p>Android developers can debug using Chrome DevTools with Titanium SDK 7.0.x and later. Searching for iOS Debugging? <a class="document-link " href="#!/guide/Debugging_iOS_Apps_with_3rd-party_Tools">Here</a> you go!    </p>
+    <div class="section section-2 " id="src-52299232_DebuggingAndroidAppswith3rd-partyTools-DebuggingwithChromeDevTools">
+        <h2 class="heading "><span>Debugging with Chrome DevTools</span></h2>
+    <p>    <img src="images/download/attachments/52299232/remote_device.png" alt="images/download/attachments/52299232/remote_device.png" class="confluence-embedded-image image-right" width="500">
+        </img></p>
+<ol class=" "><li class=" ">    <p><strong class=" ">Launch the app/build</strong> on the device or a simulator. Note: if using a device, make sure that it is connected by an USB cable before debugging. If you encounter any issues with device discoverability, please ensure that the USB cable is directly connected, not through a USB hub.    </p>
+    <p>Sample via command-line:    </p>
+<pre class=" ">appc run -p android --debug-host /127.0.0.1:51388</pre></li><li class=" ">    <p><strong class=" ">Launch Chrome</strong>. Note you should be signed into Chrome. Also noteworthy, debugging may not work in Incognito or Guest modes    </p>
+</li><li class=" ">    <p>Open <strong class=" ">DevTools</strong> by going to <strong class=" ">More Tools</strong> &gt; <strong class=" ">Developer Tools</strong> from Chrome&apos;s Main Menu.    </p>
+</li><li class=" ">    <p>For devices:    </p>
+<ol class=" "><li class=" ">    <p>From the <strong class=" ">Main Menu</strong> (the three vertical dots in the far right corner), select <strong class=" ">More Tools</strong> &gt; <strong class=" ">Remote devices</strong>.    </p>
+</li><li class=" ">    <p>In DevTools, click the <strong class=" ">Settings</strong> tab if another tab is showing.    </p>
+</li><li class=" ">    <p>Ensure that <strong class=" ">Discover USB devices</strong> is enabled.    </p>
+</li></ol></li><li class=" ">    <p>For simulators:    </p>
+<ol class=" "><li class=" ">    <p>After building, the console will log the required debugger information, e.g.    </p>
+</li></ol></li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">Console</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Console">
+<div class="line"><code class="plain">[WARN]  JSDebugger: (main) [13,555] Debugger listening on ws:</code><code class="plain">//127</code><code class="plain">.0.0.1:51388</code><code class="plain">/6b8d130f-5a6c-7623-a760-ffc319010448</code></div>
+<div class="line"><code class="plain">[WARN]  JSDebugger: (main) [1,556] To connect Chrome DevTools, </code><code class="functions">open</code><code class="plain"> Chrome to chrome-devtools:</code><code class="plain">//devtools/bundled/inspector</code><code class="plain">.html?experiments=</code><code class="functions">true</code><code class="plain">&amp;v8only=</code><code class="functions">true</code><code class="plain">&amp;ws=127.0.0.1:51388</code><code class="plain">/6b8d130f-5a6c-7623-a760-ffc319010448</code></div>
+</div>
+    </div>
+    <p>Refer to <a class="external-link external-link" href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/" target="_blank">Google&apos;s Get Started with Remote Debugging Android Devices</a> tutorial for further details on how to debug with Chrome DevTools.    </p>
+    <div class="section section-3 " id="src-52299232_DebuggingAndroidAppswith3rd-partyTools-Samplebuildanddebug">
+        <h3 class="heading "><span>Sample build and debug</span></h3>
+    <p>The following is a sample build and debug information to test out your debugging routine on Chrome.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">appc new -t titanium -p android -n inspector --</code><code class="functions">id</code><code class="plain"> com.axway.debugger.</code><code class="functions">test</code><code class="plain"> -u http:</code><code class="plain">//www</code><code class="plain">.example.com</code></div>
+<div class="line"><code class="functions">cd</code><code class="plain"> inspector</code></div>
+<div class="line"><code class="plain">appc run -p android --debug-host </code><code class="plain">/127</code><code class="plain">.0.0.1:51388</code></div>
+</div>
+    </div>
+    <p>Once the app launches, it should stay on the &quot;splash screen&quot; and spit out some logs that it&apos;s waiting 60 seconds for the debugger as well as details on how to connect to it. Specifically it should spit out a URL you can open in Google Chrome browser to debug the app. The debugger should &quot;pause&quot; on the very first line of <tt class=" ">app.js</tt>.    </p>
+    <div class="confbox admonition admonition-tip aui-message success shadowed information-macro">
+            <p>For testing I find it useful to edit the <tt class=" ">app.js</tt> to add a click listener to the labels and have them open an alert, then set a breakpoint there.    </p>
+    </div>
+        <p>You should be able to hit any breakpoint in <tt class=" ">app.js</tt> even on the first line.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>You may find the some features offered by Chrome Devtools may not work or may crash the app (like the heap profiling for instance).    </p>
+    </div>
+        </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=52299232"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Using Custom Conditional Statements in Titanium Alloy Views</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-56295932" class="content">
+                        <h1>Using Custom Conditional Statements in Titanium Alloy Views</h1>
+    <p>    </p>
+    <p>One of the many great features of Alloy is how it separates the business logic of an app and the user interface. You use XML views and TSS files to define the elements and styling of your views, and controllers contain the JavaScript to make everything work.    </p>
+    <p>One challenge that comes up from time to time is how to hide and show content in a view based on a condition within the app. For example, showing or hiding content when a view opens based on wether the user has logged in or not.    </p>
+    <p>Here&#x2019;s a simple example that shows a View that has two visual states &#x2014; one where it shows the user is logged in and one when they&#x2019;re not.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p>In this example, there&#x2019;s some additional TSS that&#x2019;s used allowing views and windows to use a vertical layout and the <tt class="code-inline ">View</tt> tag has been set to have a default height and width of <tt class="code-inline ">Ti.UI.SIZE</tt><tt class="code-inline ">.</tt>    </p>
+    </div>
+        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;container indent&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;notLoggedIn&quot;</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;vertical&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                     &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;Not logged in&quot;</code><code class="plain"> /&gt;   </code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;loggedIn&quot;</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;vertical&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;Logged in&quot;</code><code class="plain"> /&gt;                    </code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <p>In this example, one usually handles hiding and showing content using some JavaScript code in the controller based on calling a method in the <tt class="code-inline ">alloy.js</tt> file called <tt class="code-inline ">Alloy.Globals.isLoggedIn</tt>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">if</code><code class="plain"> (Alloy.Globals.isLoggedIn()) {</code></div>
+<div class="line"><code class="plain">    $.loggedIn.show();</code></div>
+<div class="line"><code class="plain">    $.notLoggedIn.hide();</code></div>
+<div class="line"><code class="plain">} </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">    $.loggedIn.show();</code></div>
+<div class="line"><code class="plain">    $.notLoggedIn.hide();</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>This kind of works in terms of the showing and hiding of elements, but the problem is that both views were rendered to the view when it opened, and <i class=" ">then</i> the visibility changed. This means that if the user isn&#x2019;t logged in, there&#x2019;s a big white space above the non-logged-in view.    </p>
+    <p>The &#x201C;classic&#x201D; way of dealing with this was to not use show/hide at all but to change the heights:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">if</code><code class="plain"> (Alloy.Globals.isLoggedIn()) {</code></div>
+<div class="line"><code class="plain">    $.loggedIn.setHeight(Ti.UI.SIZE);</code></div>
+<div class="line"><code class="plain">    $.notLoggedIn.setHeight(0);</code></div>
+<div class="line"><code class="plain">} </code><code class="keyword">else</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">    $.loggedIn.setHeight(0);</code></div>
+<div class="line"><code class="plain">    $.notLoggedIn.setHeight(Ti.UI.SIZE);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>This works, but it&#x2019;s messy. We&#x2019;re also assuming that the default setting of each view should be <tt class="code-inline ">Ti.UI.SIZE</tt> which isn&#x2019;t ideal.    </p>
+    <p>Thankfully, there&#x2019;s a simple to do this with Alloy using IF attributes <i class=" ">within</i> the XML View.    </p>
+    <p>Let&#x2019;s update our View XML:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;container indent&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">if</code><code class="plain">=</code><code class="string">&quot;Alloy.Globals.isLoggedIn()&quot;</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;notLoggedIn&quot;</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;vertical&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                     &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;Not logged in&quot;</code><code class="plain"> /&gt;   </code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">if</code><code class="plain">=</code><code class="string">&quot;!Alloy.Globals.isLoggedIn()&quot;</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;loggedIn&quot;</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;vertical&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;Logged in&quot;</code><code class="plain"> /&gt;                    </code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <p>You&#x2019;ll notice a couple of things &#x2014; we&#x2019;ve added an IF attribute to the <tt class="code-inline ">View</tt> element that calls a method called <tt class="code-inline ">Alloy.Globals.isLoggedIn</tt> in <tt class="code-inline ">alloy.js</tt>. You&#x2019;ll also notice the second <tt class="code-inline ">View</tt> if attribute prefixes the method with ! because we want that to show if the method returns false.    </p>
+    <p>When creating the View, Alloy is checking the method and if it returns true, the first view is rendered, and if false, the second view. What&#x2019;s nice about this is that it only renders one or the other &#x2014; so there&#x2019;s no white space anymore.    </p>
+    <p>Similarly, you can use IF attributes in TSS definitions to change the way elements display based on custom properties or methods, for example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="string">&quot;#info[if=Alloy.Globals.isIos7Plus]&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">font</code><code class="plain">: { </code></div>
+<div class="line"><code class="plain">            textStyle : Ti.UI.TEXT_STYLE_FOOTNOTE </code></div>
+<div class="line"><code class="plain">             }</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;#title[if=Alloy.Globals.isIos7Plus]&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">top</code><code class="plain">: </code><code class="string">&quot;25dp&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">font</code><code class="plain">: { </code></div>
+<div class="line"><code class="plain">            textStyle : Ti.UI.TEXT_STYLE_HEADLINE </code></div>
+<div class="line"><code class="plain">             }</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;#content[if=Alloy.Globals.isIos7Plus]&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">   </code><code class="keyword">font</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">            textStyle : Ti.UI.TEXT_STYLE_CAPTION</code><code class="value">1</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">},</code></div>
+<div class="line"><code class="string">&quot;ScrollView[if=Alloy.Globals.iPhoneTall]&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">height</code><code class="plain">: </code><code class="string">&quot;500dp&quot;</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>You can even use conditional queries by defining custom methods in your models in Alloy, and then render elements based on those methods when data-binding. In this example, a comment row is only displayed if a model has a method called <tt class="code-inline ">shouldShowCommentRow</tt> which returns <tt class="code-inline ">true</tt>:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">TableViewRow</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;commentRow&quot;</code><code class="plain"> </code><code class="color1">hasChild</code><code class="plain">=</code><code class="string">&quot;false&quot;</code><code class="plain"> </code><code class="color1">if</code><code class="plain">=</code><code class="string">&quot;$model.shouldShowCommentRow()&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;onSelectComment&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;commentPlaceholderLabel&quot;</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;commentRowPreviewLabel placeholderLabel&quot;</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;Ti.App.L(&apos;AddComment&apos;)&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;commentRowLabel&quot;</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;commentRowPreviewLabel&quot;</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;{Comment}&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">TableViewRow</code><code class="plain">&gt;;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <p>As you can see, there&#x2019;s lots of ways to use custom queries within Alloy, to reduce the amount of JavaScript you need to write and take advantage of these conditions running before any rendering is carried out, providing a smoother app experience.    </p>
+    <p>You can find out more about buy checking out our guide on <a class="document-link " href="#!/guide/Alloy_Styles_and_Themes-section-src-35621526_AlloyStylesandThemes-Customquerystyles">Custom query styles</a>.    </p>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=56295932"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

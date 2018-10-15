@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Platform Marketplace</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-49157965" class="content">
+                        <h1>Platform Marketplace</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Overview">Overview</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Marketplaceaccessandsearch">Marketplace access and search</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Installaserviceconnector">Install a service connector</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Installamodel-firstconnector">Install a model-first connector</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Searchingforconnectors">Searching for connectors</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Searchsuggestions">Search suggestions</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Platform_Marketplace-section-src-49157965_PlatformMarketplace-Pre-builtconnectors">Pre-built connectors</a>    </p>
+</li></ul>    <p>This document provides an overview of the <a class="external-link external-link" href="https://marketplace.axway.com/" target="_blank">Axway Marketplace</a>    <span style="color: #333333;">
+.    </span>
+    </p>
+    <div class="section section-2 " id="src-49157965_PlatformMarketplace-Overview">
+        <h2 class="heading "><span>Overview</span></h2>
+    <p>The <a class="external-link external-link" href="https://marketplace.axway.com/" target="_blank">Axway Marketplace</a> is a repository of building blocks for both Apps and APIs. Developers can discover and install components from the Marketplace.    </p>
+    <div class="section section-3 " id="src-49157965_PlatformMarketplace-Marketplaceaccessandsearch">
+        <h3 class="heading "><span>Marketplace access and search</span></h3>
+    <p>You can access the <a class="external-link external-link" href="https://marketplace.axway.com/" target="_blank">Axway Marketplace</a> via your web browser. You can sign into the Axway Marketplace using your Platform account information. To sign in, click <strong class=" ">Sign In</strong> in the upper, right corner of the Axway Marketplace. If you do not have a Platform account, click <strong class=" ">Get started for Free!</strong>.    </p>
+    <p>Currently, the Marketplace lists the following component types for API Builder:    </p>
+<ul class=" "><li class=" ">    <p><tt class=" ">Connectors</tt>: Used for building APIs    </p>
+</li></ul>    <p>To search through the connectors available on the Marketplace, select Connector in the Categories list. To search through the API Builder connectors, select API Builder in the API Management list.    </p>
+    <p>The following API Builder model-first connectors are offered on the <a class="external-link external-link" href="https://marketplace.axway.com/home" target="_blank">Axway Marketplace</a>: ArrowDB, Box.com, CompositeJS, Elastic Search, Google Custom Search, HL7 FHIR Swagger Docs, LokiJS, Microsoft Azure, Microsoft SQL Server, MongoDB, MySQL, OData, Oracle Database, Redis, Salesforce, SOAP, Swagger, and Twilio.    </p>
+    <p>Beginning with API Builder V3.0.0 (Included in CLI 7.0.0), the following new API Builder service connectors are offered on the <a class="external-link external-link" href="https://marketplace.axway.com/home" target="_blank">Axway Marketplace</a>: Amazon S3&#x2122; , Concur&#x2122;, Eloqua&#x2122;, Facebook&#x2122;, Google Drive&#x2122;, Hubspot CRM&#x2122;, Hubspot&#x2122;, Mailchimp&#x2122;, Marketo&#x2122;, Microsoft Dynamics&#x2122;, Netsuite&#x2122;, OneDrive&#x2122;, Pardot&#x2122;, Salesforce Service Cloud&#x2122;, Service Now&#x2122;, SharePoint Native&#x2122;, SugarCRM&#x2122;, Twitter&#x2122;, Zendesk&#x2122;, and Zoho&#x2122;.    <span id="src-49157965_heading-cli-options"><a name="src-49157965_heading-cli-options"/></span>
+    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-49157965_PlatformMarketplace-Installaserviceconnector">
+        <h2 class="heading "><span>Install a service connector</span></h2>
+    <p>To install a service connector:    </p>
+<ol class=" "><li class=" ">    <p>Download the service connector from the <a class="external-link external-link" href="https://marketplace.axway.com/" target="_blank">Axway Marketplace</a>.    </p>
+</li><li class=" ">    <p>Unzip the service connector into the <tt class=" ">/serviceconnectors/&lt;connector name&gt;</tt> folder in your project directory.<br><strong class=" ">Note: </strong>The new service connectors are plain flow-node modules but they are not installed as such in API Builder V3.0.0. The zip file will contain the <tt class=" ">package</tt> folder that contains the actual connector. Rename the <tt class=" ">package</tt> folder after unzipping to match your connector name.    </br></p>
+</li><li class=" ">    <p>From the project directory, execute the following command to install the HTTP communication module:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">npm i requester-ce</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>From the project directory, execute the following command:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">appc run</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>Open the API Orchestration flow editor in the API Builder Console and verify that the service connector is listed and is available for use in flow-node flows.    </p>
+</li></ol>    </div>
+    <div class="section section-2 " id="src-49157965_PlatformMarketplace-Installamodel-firstconnector">
+        <h2 class="heading "><span>Install a model-first connector</span></h2>
+    <p>At the time of this publication, selecting an API Builder model-first connector from the <a class="external-link external-link" href="https://marketplace.axway.com/" target="_blank">Axway Marketplace</a> and clicking Download will redirect you to a third party site for the selected connector.    </p>
+    <p>To download and install the selected connector, execute the provided Appcelerator CLI <tt class=" ">install</tt> command from within your API project. For example, the install command for the MongoDB Connector is: <tt class=" ">appc install connector/appc.mongo</tt>    </p>
+    <p>The <tt class=" ">install</tt> command will place the connector in the <tt class=" ">connectors</tt> directory of your project.    </p>
+    </div>
+    <div class="section section-2 " id="src-49157965_PlatformMarketplace-Searchingforconnectors">
+        <h2 class="heading "><span>Searching for connectors</span></h2>
+    <p>Searching for connectors can be accomplished by two different methods: searching using the <a class="external-link external-link" href="https://marketplace.axway.com/" target="_blank">Axway Marketplace</a> lists or searching using the Marketplace search function.    </p>
+    <p>If you are unsure of the exact connector name, you can search the Marketplace search function.    </p>
+    <div class="section section-3 " id="src-49157965_PlatformMarketplace-Searchsuggestions">
+        <h3 class="heading "><span>Search suggestions</span></h3>
+    <p>If you know the component name starts with a certain string or character, try entering the first letters of the component name, for example, sales. This example will return a list of components in order of relevance. To narrow the list of components to those specific to API Builder, select API Builder in the API Management list.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-49157965_PlatformMarketplace-Pre-builtconnectors">
+        <h2 class="heading "><span>Pre-built connectors</span></h2>
+    <p>To see a list of the pre-built connectors, please visit <a class="external-link external-link" href="https://marketplace.axway.com/" target="_blank">https://marketplace.axway.com/</a>.    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=49157965"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

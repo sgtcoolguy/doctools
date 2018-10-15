@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Installing Titanium SDK Continuous Builds</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-29004843" class="content">
+                        <h1>Installing Titanium SDK Continuous Builds</h1>
+    <p>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Installing_Titanium_SDK_Continuous_Builds-section-src-29004843_InstallingTitaniumSDKContinuousBuilds-Summary">Summary</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Installing_Titanium_SDK_Continuous_Builds-section-src-29004843_InstallingTitaniumSDKContinuousBuilds-Obtainingthebuild">Obtaining the build</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Installing_Titanium_SDK_Continuous_Builds-section-src-29004843_InstallingTitaniumSDKContinuousBuilds-Installingthebuild">Installing the build</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Installing_Titanium_SDK_Continuous_Builds-section-src-29004843_InstallingTitaniumSDKContinuousBuilds-AppceleratorCLIinstall">Appcelerator CLI install</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Installing_Titanium_SDK_Continuous_Builds-section-src-29004843_InstallingTitaniumSDKContinuousBuilds-Studioinstall">Studio install</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Installing_Titanium_SDK_Continuous_Builds-section-src-29004843_InstallingTitaniumSDKContinuousBuilds-Manualinstall">Manual install</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Installing_Titanium_SDK_Continuous_Builds-section-src-29004843_InstallingTitaniumSDKContinuousBuilds-SDKarchivefilestructure">SDK archive file structure</a>    </p>
+</li></ul>    <div class="section section-2 " id="src-29004843_InstallingTitaniumSDKContinuousBuilds-Summary">
+        <h2 class="heading "><span>Summary</span></h2>
+    <p>To take advantage of bleeding edge functionality and the most recent bug fixes to the Titanium SDKs, without waiting for an official release, you can manually download and install a <strong class=" ">Continuous Integration Build</strong> (also known as <i class=" ">CI Build</i> or <i class=" ">Continuous Build</i>). Continuous Builds are packages compiled and published automatically when <a class="external-link external-link" href="https://github.com/appcelerator/titanium_mobile" target="_blank">Titanium&apos;s open source repository</a> has received a new code commit.    </p>
+    <div class="confbox admonition admonition-warning aui-message problem shadowed information-macro">
+            <p>Be aware that only <strong class=" ">major</strong> releases of any of our software are officially supported and therefore, by the same token, we cannot accept Jira tickets or investigate problems that result from using a Continuous Build. That said, you may find discussions and workarounds for them in our <a class="external-link external-link" href="http://jira.appcelerator.org" target="_blank">Jira bug-tracking system</a>.    </p>
+    </div>
+        </div>
+    <div class="section section-2 " id="src-29004843_InstallingTitaniumSDKContinuousBuilds-Obtainingthebuild">
+        <h2 class="heading "><span>Obtaining the build</span></h2>
+    <p>You can download the latest continuous builds from <a class="external-link external-link" href="http://builds.appcelerator.com" target="_blank">http://builds.appcelerator.com</a>.    </p>
+    <p>Use the drop-down menu at the top of the page to select between the existing development branches. The <i class=" ">master</i> branch is the branch currently in active development, and will ultimately become a major release. You can determine the version number associated with this branch by hovering over one of the download links and inspecting the name of the file.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <p>It&apos;s important to compare the SHA1 hash of the downloaded SDK archive with the one displayed on the download page, <strong class=" ">before you attempt to install it</strong>. Do not install the package if the SHA1 hashes don&apos;t match &#x2013; this may indicate a corrupted package.    </p>
+    <p>If you discover a corrupt package, simply download each previous day&apos;s release until you find one that is valid. There is no need to report it to us.    </p>
+    </div>
+        </div>
+    <div class="section section-2 " id="src-29004843_InstallingTitaniumSDKContinuousBuilds-Installingthebuild">
+        <h2 class="heading "><span>Installing the build</span></h2>
+    <div class="section section-3 " id="src-29004843_InstallingTitaniumSDKContinuousBuilds-AppceleratorCLIinstall">
+        <h3 class="heading "><span>Appcelerator CLI install</span></h3>
+    <p>To install a Titanium SDK using the <tt class=" ">appc</tt> cli, follow these steps:    </p>
+<ul class=" "><li class=" ">    <p>Be sure to log in to the CLI if you are not already logged in (<tt class=" ">appc login</tt>)    </p>
+</li><li class=" ">    <p>Run <tt class=" ">appc ti sdk install -b master</tt>    </p>
+</li><li class=" ">    <p>The command above will install the latest CI build from <tt class=" ">master</tt> branch. You may substitute branch names seen at <a class="external-link external-link" href="http://builds.appcelerator.com" target="_blank">http://builds.appcelerator.com</a> to grab bugfix/maintenance CI builds. These are typically of the naming scheme <tt class=" ">\d+_\d+_X, </tt>i.e.<tt class=" "> 7_0_X</tt>    </p>
+</li><li class=" ">    <p>You can view additional command line options by executing:<tt class=" "> appc ti sdk install -h</tt>    </p>
+</li></ul>    </div>
+    <div class="section section-3 " id="src-29004843_InstallingTitaniumSDKContinuousBuilds-Studioinstall">
+        <h3 class="heading "><span>Studio install</span></h3>
+    <p>To install a Titanium SDK using Studio, follow these steps:    </p>
+<ul class=" "><li class=" ">    <p>Using a browser, navigate the <a class="external-link external-link" href="http://builds.appcelerator.com" target="_blank">http://builds.appcelerator.com</a> website and choose the desired branch/release. Right click an SDK archive download link and copy its URL. Be sure to choose the correct zip for your host OS.    </p>
+</li><li class=" ">    <p>From Studio, select the menu item, <strong class=" ">Help </strong>&gt;<strong class=" "> Install Appcelerator SDK...</strong>    </p>
+</li><li class=" ">    <p>The<strong class=" "> Install </strong>dialog appears. Select <strong class=" ">Install From URL</strong>    </p>
+</li><li class=" ">    <p>Paste the link into textbox, then click <strong class=" ">Finish</strong>    </p>
+</li></ul>    </div>
+    <div class="section section-3 " id="src-29004843_InstallingTitaniumSDKContinuousBuilds-Manualinstall">
+        <h3 class="heading "><span>Manual install</span></h3>
+    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>We strongly recommend that you use Studio or the CLI to manage SDKs. Please see the previous section.    </p>
+    </div>
+        <p>To manually install a Titanium SDK, follow these steps:    </p>
+<ul class=" "><li class=" ">    <p>Extract the SDK archive file    </p>
+</li><li class=" ">    <p>Move the versioned directory, for example named in the format 6.0.0.v20160702162201, into your Titanium installation folder, which is contingent on your platform, as follows:    </p>
+</li></ul>    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Operating System    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Target Platform Type    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Local Path    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>OS X (Pre-Lion)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Mobile    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">/Library/Application Support/Titanium</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>OS X (Lion+)    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Mobile    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">~/Library/Application Support/Titanium</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Windows 7+    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Mobile    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">%ProgramData%\Titanium\mobilesdk\win32</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Windows XP    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Mobile    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">C:\Documents and Settings\All Users\Application Data\Titanium</tt>    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<ul class=" "><li class=" ">    <p>Restart Studio, open the project&apos;s <tt class=" ">tiapp.xml</tt> file, and select the new SDK from the SDK Version drop-down menu    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-2 " id="src-29004843_InstallingTitaniumSDKContinuousBuilds-SDKarchivefilestructure">
+        <h2 class="heading "><span>SDK archive file structure</span></h2>
+    <p>Especially in corporate environments, it may be necessary to compile Titanium SDKs and make them available on a server. Be aware that Studio requires that the SDK file structure follows this convention:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">.zip root</code></div>
+<div class="line"><code class="plain">|--mobilesdk</code></div>
+<div class="line"><code class="plain">   |-- osx | linux | win32 </code></div>
+<div class="line"><code class="plain">      |-- VERSION.NUMBER</code></div>
+</div>
+    </div>
+    <p>This must be archived as <tt class=" ">mobilesdk-VERSION.NUMBER-OS.zip</tt>.    </p>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=29004843"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

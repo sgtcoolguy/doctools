@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Project Configuration File</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-41845683" class="content">
+                        <h1>Project Configuration File</h1>
+    <p>    <span style="color: #484848;">
+Demonstrates use of the Alloy configuration file.    </span>
+    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">App Folder Location</div>
+            <p>alloy/test/apps/<strong class=" ">basics/config_json</strong>    </p>
+    </div>
+        <p>The Alloy configuration file is named config.json and located in the Alloy project&apos;s app directory. It&apos;s used to specify global variables, conditional environment and platform values, and widget dependencies. For a list of supported configuration values, see <a class="external-link external-link" href="#!/guide/Project_Configuration_File_(config.json)">Project Configuration File</a>.    </p>
+    <p>    <img src="images/download/attachments/41845683/screenshot.png" alt="images/download/attachments/41845683/screenshot.png" class="confluence-embedded-image" width="450">
+        </img></p>
+    <p>    <span style="color: #484848;">
+At runtime, you can access a configuration file property by its key name on the global     </span>
+<tt class=" ">Alloy.CFG</tt>    <span style="color: #484848;">
+ object. For instance, i    </span>
+    <span style="color: #484848;">
+n the sample app configuration file defines a global property named <strong class=" ">someValue</strong> that&apos;s defined     <span style="color: #222222;">
+for all environments and platforms, and for individual platforms.    </span>
+    </span>
+    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">apps/config.json</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="apps/config.json">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">  	</code><code class="string">&quot;global&quot;</code><code class="plain">: { </code><code class="string">&quot;someValue&quot;</code><code class="plain">: </code><code class="string">&quot;unknown&quot;</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;os:android&quot;</code><code class="plain">: { </code><code class="string">&quot;someValue&quot;</code><code class="plain">: </code><code class="string">&quot;Android&quot;</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;os:ios&quot;</code><code class="plain">: { </code><code class="string">&quot;someValue&quot;</code><code class="plain">: </code><code class="string">&quot;iOS&quot;</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;os:mobileweb&quot;</code><code class="plain">: { </code><code class="string">&quot;someValue&quot;</code><code class="plain">: </code><code class="string">&quot;Mobileweb&quot;</code><code class="plain"> },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;sourcemap&quot;</code><code class="plain">: </code><code class="keyword">false</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;adapters&quot;</code><code class="plain">: []</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p>The main XML view contains a &lt;Button/&gt; element whose click handler displays the value of <tt class=" ">Alloy.CFG.someValue</tt>, whose value depends on the runtime platform.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/controllers/index.js</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/index.js">
+<div class="line"><code class="plain">function showAlert(e) {</code></div>
+<div class="line"><code class="plain">  alert(</code><code class="string">&apos;Alloy.CFG.someValue = &apos;</code><code class="plain"> + Alloy.CFG.someValue);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div class="section section-2 " id="src-41845683_ProjectConfigurationFile-SeeAlso">
+        <h2 class="heading "><span>See Also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="document-link " href="#!/guide/Project_Configuration_File_(config.json)">Project Configuration File (config.json)</a>    </p>
+</li></ul>    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845683"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

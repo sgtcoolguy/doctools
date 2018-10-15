@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Nodes - Model Query</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-49158448" class="content">
+                        <h1>Nodes - Model Query</h1>
+    <p>This document describes the model query and provides instance configuration and parameters information.    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Name    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>ModelQuery    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>A Model specific flow-node. Invokes the Query API on a specified model and returns the response.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div class="section section-2 " id="src-49158448_Nodes-ModelQuery-Instanceconfiguration">
+        <h2 class="heading "><span>Instance configuration</span></h2>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Property    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Required    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Type    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>model    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>The name of the model of which to invoke the Query API.    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>yes    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>string    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-49158448_Nodes-ModelQuery-Instanceparameters">
+        <h2 class="heading "><span>Instance parameters</span></h2>
+    <p>These are all specified by the chosen model.    </p>
+    <div class="section section-3 " id="src-49158448_Nodes-ModelQuery-Example">
+        <h3 class="heading "><span>Example</span></h3>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&#xA0;</code><code class="string">&quot;model.query&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain"> </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;ModelQuery&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain"> </code><code class="string">&quot;config&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">   </code><code class="string">&quot;model&quot;</code><code class="plain">: </code><code class="string">&quot;appc.arrowdb/acl&quot;</code></div>
+<div class="line"><code class="plain"> },</code></div>
+<div class="line"><code class="plain"> </code><code class="string">&quot;parameters&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;limit&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;value&quot;</code><code class="plain">: </code><code class="string">&quot;$.params.limit&quot;</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;skip&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;value&quot;</code><code class="plain">: </code><code class="string">&quot;$.params.skip&quot;</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;where&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;value&quot;</code><code class="plain">: </code><code class="string">&quot;$.params.where&quot;</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;order&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;value&quot;</code><code class="plain">: </code><code class="string">&quot;$.params.order&quot;</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;sel&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;value&quot;</code><code class="plain">: </code><code class="string">&quot;$.params.sel&quot;</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;unsel&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;value&quot;</code><code class="plain">: </code><code class="string">&quot;$.params.unsel&quot;</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;page&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;value&quot;</code><code class="plain">: </code><code class="string">&quot;$.params.page&quot;</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;per_page&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;value&quot;</code><code class="plain">: </code><code class="string">&quot;$.params.per_page&quot;</code></div>
+<div class="line"><code class="plain">   }</code></div>
+<div class="line"><code class="plain"> ],</code></div>
+<div class="line"><code class="plain"> </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">   </code><code class="string">&quot;context&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">     </code><code class="string">&quot;$&quot;</code><code class="plain">: </code><code class="string">&quot;models&quot;</code></div>
+<div class="line"><code class="plain">   },</code></div>
+<div class="line"><code class="plain">   </code><code class="string">&quot;routes&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">     {</code></div>
+<div class="line"><code class="plain">       </code><code class="string">&quot;next&quot;</code><code class="plain">: </code><code class="string">&quot;response.success&quot;</code></div>
+<div class="line"><code class="plain">     }</code></div>
+<div class="line"><code class="plain">   ]</code></div>
+<div class="line"><code class="plain"> }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=49158448"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

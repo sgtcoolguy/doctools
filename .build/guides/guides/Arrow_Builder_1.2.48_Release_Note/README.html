@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Arrow Builder 1.2.48 - 09 September 2015</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-46239580" class="content">
+                        <h1>Arrow Builder 1.2.48 - 09 September 2015</h1>
+    <p>Arrow Builder 1.2.48 is a minor release that includes new features, improvements and bug fixes.    </p>
+    <div class="section section-2 " id="src-46239580_ArrowBuilder1.2.48ReleaseNote-NewFeaturesandImprovements">
+        <h2 class="heading "><span>New Features and Improvements</span></h2>
+<ul class=" "><li class=" ">    <p>Add ability to customize the styling of the API Docs page. For details, see the ArrowWeb tab in the Admin console and <a class="document-link " href="#!/guide/API_Builder_Developer_Guide">API Builder Developer Guide</a>.    </p>
+</li><li class=" ">    <p>Hide overridden APIs in the API Docs page.    </p>
+</li><li class=" ">    <p>Map missing methods, such as cookie, vary, etc. to the common Express method in the response object.    </p>
+</li><li class=" ">    <p>Implement new LDAP plugin for Arrow client authentication. For details, see <a class="document-link " href="#!/guide/Authentication_Schemes-section-src-43302486_AuthenticationSchemes-LDAP">Arrow Authentication Schemes: LDAP</a>.    </p>
+</li><li class=" ">    <p>Improve support of loading and overriding configuration from the environment. Prefix environment variables with <tt class=" ">ARROW_</tt> to override the value from the configuration file. For example, if you have <tt class=" ">apikey</tt> defined in the configuration file, you can override the value with the environment variable <tt class=" ">ARROW_APIKEY</tt>.    </p>
+</li><li class=" ">    <p>Add default health-check API endpoint <tt class=" ">arrowPing.json</tt>.    </p>
+</li><li class=" ">    <p>Add ability to hide APIs in the API Docs. To hide documentation, set the <tt class=" ">documented</tt> property to <tt class=" ">false</tt> for Connectors, Models, APIs or Blocks.    </p>
+</li><li class=" ">    <p>Exposed the <tt class=" ">connectionTimeout</tt> property in the MSSQL connector.    </p>
+</li><li class=" ">    <p>Add ability to specify the models to generate from a connector. In the connector&apos;s configuration file, set the <tt class=" ">generateModels</tt> key to an array of model names you want to include.    </p>
+</li><li class=" ">    <p>Exposed the <tt class=" ">schemaRefresh</tt> property in the SalesForce connector and added a If-Modified-Since check to update the schema only when needed.    </p>
+</li><li class=" ">    <p>Print out application version in Arrow console log during startup.    </p>
+</li><li class=" ">    <p>New guided development flow for creating an Arrow Connector.    </p>
+</li><li class=" ">    <p>Improved server start time by skipping appc install when possible.    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-46239580_ArrowBuilder1.2.48ReleaseNote-FixedIssues">
+        <h2 class="heading "><span>Fixed Issues</span></h2>
+<ul class=" "><li class="p1 ">    <p>API-580: Model Data View: Tabular data layout scrolls, but Table header doesn&apos;t follow it    </p>
+</li><li class="p1 ">    <p>API-655: Generated API Docs source has to be manually deleted to be refreshed    </p>
+</li><li class="p1 ">    <p>API-738: Marketplace formatting is not right    </p>
+</li><li class="p1 ">    <p>API-750: actions: [&apos;read&apos;] set on a model still creates a PUT API endpoint    </p>
+</li><li class="p1 ">    <p>API-752: Multiple Instances of one connector overwrite generated models    </p>
+</li><li class="p1 ">    <p>API-809: Setting model actions to read includes write API    </p>
+</li><li class="p1 ">    <p>API-825: Unable to set 201 response with object location in custom API    </p>
+</li><li class="p1 ">    <p>API-837: Blocks after{Action} and after are mutually exclusive    </p>
+</li><li class="p1 ">    <p>API-861: Investigate if there is memory leak with registry server    </p>
+</li><li class="p1 ">    <p>API-896: In the Arrow admin page, modelAutogen is documented incorrectly    </p>
+</li><li class="p1 ">    <p>API-905: Error using two different databases with alias    </p>
+</li><li class="p1 ">    <p>API-910: ArrowDB: Session Collisions in Connector    </p>
+</li><li class="p1 ">    <p>API-927: Process signal events for shutdown aren&apos;t correctly being handled    </p>
+</li><li class="p1 ">    <p>API-928: Publishing with multiple servers with the same name doesn&apos;t properly pass the correct org    </p>
+</li><li class="p1 ">    <p>API-931: Arrow: NO show() API for ACLs    </p>
+</li><li class="p1 ">    <p>API-934: Creating a new model in console does not reload properly so i cannot test the API without restarting the server    </p>
+</li><li class="p1 ">    <p>API-949: Regression: API code examples are not laying out properly    </p>
+</li><li class="p1 ">    <p>API-950: Regression: Performance Log Tab now showing all the data correctly    </p>
+</li><li class="p1 ">    <p>API-954: Data Editor: Updating a field that is type Number results in a return type of String    </p>
+</li><li class="p1 ">    <p>API-956: Memory leak detected related to handling HTTP requests    </p>
+</li><li class="p1 ">    <p>API-960: Regression: performance log view is missing last server step    </p>
+</li><li class="p1 ">    <p>API-963: In preproduction, cannot create an Arrow project    </p>
+</li><li class="p1 ">    <p>API-966: Regression on import arrow app    </p>
+</li><li class="p1 ">    <p>API-968: If you update a model while your Arrow app is running locally, then the local Arrow app will not restart itself    </p>
+</li><li class="p1 ">    <p>API-971: After unpublish, if you try and republish, you get an error    </p>
+</li><li class="p1 ">    <p>API-972: Regression: hitting /api/testapi from API Doc causes exception    </p>
+</li><li class="p1 ">    <p>API-978: In production, cannot publish an Arrow app with 4.1.1 stack    </p>
+</li><li class="p1 ">    <p>API-982: If you make any API requests, then no activity will appear in the Logs tab    </p>
+</li><li class="p1 ">    <p>API-987: If you create a different connector alias in default.js, different errors are returned for 4.1.X stack and 5.0.0 stack    </p>
+</li></ul>    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=46239580"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

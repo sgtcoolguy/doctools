@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>OptionDialog</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-41845761" class="content">
+                        <h1>OptionDialog</h1>
+    <p>Demonstrates how to use an OptionDialog control, a modal view that includes a message and one or more option items.    </p>
+    <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
+            <div class="title">Example App Source Location</div>
+            <p>You can find this example app in the Alloy repository under <a class="external-link external-link" href="https://github.com/appcelerator/alloy/tree/master/samples/apps/ui/optiondialog" target="_blank">samples/apps/ui/optiondialog</a>. Check the <a class="document-link " href="#!/guide/Alloy_Test_Apps">instructions</a> how to run these sample projects.    </p>
+    </div>
+        <p>On Android an <a class="external-link external-link" href="#!/api/Titanium.UI.OptionDialog">OptionDialog</a> is centered on the screen, and at the bottom of the screen on iOS. On Android, you can add buttons below the options, or define a custom view to show in place of the options, as shown below. You can either the options or a custom view, but not both. On iPhone, a Cancel option is always displayed at the bottom of the dialog; on iPad, no cancel option is not displayed and the user can cancel the dialog by tapping outside the dialog.    </p>
+    <p>    <img src="images/download/attachments/41845761/screenshot.png" alt="images/download/attachments/41845761/screenshot.png" class="confluence-embedded-image" width="600">
+        </img></p>
+    <p>The main <tt class=" ">index.xml</tt> view defines the OptionDialog options for Android and iOS. Individual options are defined by an <tt class=" ">&lt;Options&gt;</tt> element that contains one or more <tt class=" ">&lt;Option&gt;</tt> elements. On iOS, you should use the <a class="external-link external-link" href="#!/api/Titanium.UI.OptionDialog-property-destructive">destructive</a> attribute to specify the index of an option that is destructive or irreversible (like deleting a contact or photo, for example). Destructive options are colored red, as shown above.    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                    <div class="title">app/views/index.xml</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;!-- </code></div>
+<div class="line"><code class="plain">            Declare option dialog, which will be opened by an event. </code></div>
+<div class="line"><code class="plain">            The OptionDialog is not part of the view hierarchy.</code></div>
+<div class="line"><code class="plain">            On iOS, descructive and cancel will change the characteristics</code></div>
+<div class="line"><code class="plain">            of the options. </code></div>
+<div class="line"><code class="plain">        --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">OptionDialog</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;options&quot;</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;App Options&quot;</code><code class="plain"> </code><code class="color1">destructive</code><code class="plain">=</code><code class="string">&quot;3&quot;</code><code class="plain"> </code><code class="color1">cancel</code><code class="plain">=</code><code class="string">&quot;2&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Options</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Option</code><code class="plain">&gt;option 1&lt;/</code><code class="keyword">Option</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Option</code><code class="plain">&gt;option 2&lt;/</code><code class="keyword">Option</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Option</code><code class="plain">&gt;cancel&lt;/</code><code class="keyword">Option</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Option</code><code class="plain">&gt;destructive&lt;/</code><code class="keyword">Option</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">Options</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;!-- buttonNames only rendered on Android --&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">ButtonNames</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">ButtonName</code><code class="plain">&gt;button 1&lt;/</code><code class="keyword">ButtonName</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">ButtonName</code><code class="plain">&gt;button 2&lt;/</code><code class="keyword">ButtonName</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">ButtonNames</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;!-- </code></div>
+<div class="line"><code class="plain">                Only on Android, an additional view can be added to be rendered in</code></div>
+<div class="line"><code class="plain">                the OptionDialog, replacing any declared options. It will be </code></div>
+<div class="line"><code class="plain">                assigned to the underlying &quot;androidView&quot; property of the OptionDialog.  </code></div>
+<div class="line"><code class="plain">            --&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">View</code><code class="plain"> </code><code class="color1">layout</code><code class="plain">=</code><code class="string">&quot;horizontal&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;android&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">ImageView</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;avImage&quot;</code><code class="plain"> </code><code class="color1">image</code><code class="plain">=</code><code class="string">&quot;/appc4.png&quot;</code><code class="plain"> </code><code class="color1">height</code><code class="plain">=</code><code class="string">&quot;40dp&quot;</code><code class="plain"> </code><code class="color1">width</code><code class="plain">=</code><code class="string">&quot;40dp&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;avLabel&quot;</code><code class="plain">&gt;This is an androidView&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">View</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">OptionDialog</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;!-- The actual view hierarchy code --&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;showOptions&quot;</code><code class="plain">&gt;options&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    <div class="section section-2 " id="src-41845761_OptionDialog-Seealso">
+        <h2 class="heading "><span>See also</span></h2>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.OptionDialog">Titanium.UI.OptionDialog</a>    </p>
+</li></ul>    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845761"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>

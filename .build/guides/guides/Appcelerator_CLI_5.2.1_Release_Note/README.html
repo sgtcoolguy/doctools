@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Appcelerator CLI 5.2.1 - 24 March 2016</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="Scroll EclipseHelp Exporter" name="generator">
+
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="print">
+</link></link></link></meta></meta></head>
+<body>
+    <div class="container">
+        <div class="header"/>
+
+        <div id="src-46247113" class="content">
+                        <h1>Appcelerator CLI 5.2.1 - 24 March 2016</h1>
+    <p>Appcelerator CLI 5.2.1 is a patch release that includes a few improvements and several bug fixes.    </p>
+    <p>As of this GA release, the previous CLI patch release is no longer supported. Note: major and minor releases continue to be supported according to their nominal lifetime. See <a class="document-link " href="#!/guide/Axway_Appcelerator_Deprecation_Policy">Axway Appcelerator Deprecation Policy</a> and <a class="document-link " href="#!/guide/Axway_Appcelerator_Product_Lifecycle-section-src-50725170_AxwayAppceleratorProductLifecycle-NominalLifetimes">Nominal Lifetimes</a> documents for details.    </p>
+    <div class="section section-2 " id="src-46247113_AppceleratorCLI5.2.1ReleaseNote-ComponentVersions">
+        <h2 class="heading "><span>Component Versions</span></h2>
+    <p>The following components are shipped with CLI 5.2.1:    </p>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Name    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Version    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "/><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Alloy    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>1.8.2    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Arrow Builder    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>1.7.29    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Arrow Cloud CLI    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>1.2.0    </p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Titanium CLI    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>5.0.6    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2 " id="src-46247113_AppceleratorCLI5.2.1ReleaseNote-FixedIssues">
+        <h2 class="heading "><span>Fixed Issues</span></h2>
+<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/CLI-928" target="_blank">CLI-928</a> - 9.2.1 iPhone crashes when jailbreak-detect is enabled    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/CLI-943" target="_blank">CLI-943</a> - Core 5.2.0 displays incorrect/confusing warning if NPM is still &lt; 4.2.3    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/CLI-949" target="_blank">CLI-949</a> - Windows: config files are written to different drive than process.env.HOME    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/CLI-950" target="_blank">CLI-950</a> - Process doesn&apos;t cleanup children in certain scenarios    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/CLI-957" target="_blank">CLI-957</a> - Unable to build modules from Appc CLI    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/CLI-967" target="_blank">CLI-967</a> - iOS: Arguments to path.join must be strings    </p>
+</li><li class=" ">    <p><a class="external-link external-link" href="https://jira.appcelerator.org/browse/CLI-973" target="_blank">CLI-973</a> - Update Alloy version to 1.8.0    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-46247113_AppceleratorCLI5.2.1ReleaseNote-Improvements">
+        <h2 class="heading "><span>Improvements</span></h2>
+    <p>CLI 5.2.1 now supports the creation of test applications without the need to create a classic project (<a class="external-link external-link" href="https://jira.appcelerator.org/browse/CLI-687" target="_blank">CLI-687</a>). You can now use the <tt class=" ">--testapp</tt> flag with <tt class=" ">appc new</tt> to do the same thing in one step. Previously, you had to run the following steps:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">appc </code><code class="keyword">new</code><code class="plain"> -t titanium --classic -i com.appc.picker -n AlloyPicker</code></div>
+<div class="line"><code class="plain">cd AlloyPicker</code></div>
+<div class="line"><code class="plain">appc alloy </code><code class="keyword">new</code><code class="plain"> --testapp ui/picker</code></div>
+</div>
+    </div>
+    <p>With this version, you can use this one command:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">appc </code><code class="keyword">new</code><code class="plain"> -t titanium -i com.appc.picker -n AlloyPicker --testapp ui/picker</code></div>
+</div>
+    </div>
+    </div>
+        </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=46247113"><span>Edit</span></a>
+    
+        
+    </div>
+</body>
+</html>
