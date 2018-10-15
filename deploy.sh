@@ -195,10 +195,10 @@ if [ $include_modules ]; then
 
     module_dirs+=" $APPC_MODULES/ti.geofence/apidoc
       		         $APPC_MODULES/appcelerator.https/apidoc
-                   $APPC_MODULES/com.appcelerator.apm/apidoc
                    $APPC_MODULES/appcelerator.encrypteddatabase
                    $APPC_MODULES/titanium-web-dialog"
 fi
+#$APPC_MODULES/com.appcelerator.apm/apidoc
 
 if [ -d "$TI_ROOT/titanium_mobile_windows" ]; then
     pushd $TI_ROOT/titanium_mobile_windows/apidoc
@@ -256,6 +256,7 @@ if [ $production_build ] ; then
     echo "starting $production_build\n"
     (cd ${JSDUCK}; rake compress)
     TEMPLATE=${JSDUCK}/${PROD_TEMPLATE}
+
 
     ## Generate Solr content
     echo "Generating Solr content for indexing..."
