@@ -32,7 +32,7 @@ function mkdirDashP(path) {
 }
 
 function parse (node) {
-	console.log(node);
+	// console.log(node);
 	var rv = [];
 	for (var x = 0; x < node.length; x++) {
 		var child = node[x];

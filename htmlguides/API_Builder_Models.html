@@ -41,7 +41,7 @@
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Models.html#src-43299044_APIBuilderModels-Predefinedorcustomendpoints">Predefined or custom endpoints</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-43299044_APIBuilderModels-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p>This guides covers the basics for creating Models. Models are data stored in either server memory or a backend service, such as Mobile Backend Services or a MySQL database, using an API Builder Connector. Models are accessed like standard REST objects using predefined endpoints that API Builder automatically generates by default. You can either create a model by defining your own schema, use an existing model defined by a connector, modify an existing model by either extending or reducing it, or create a composite model by joining two or more models together.    </p>
+    <p>This guide covers the basics for creating Models. Models are data stored in either server memory or a backend service, such as Mobile Backend Services or a MySQL database, using an API Builder Connector. Models are accessed like standard REST objects using predefined endpoints that API Builder automatically generates by default. You can either create a model by defining your own schema, use an existing model defined by a connector, modify an existing model by either extending or reducing it, or create a composite model by joining two or more models together.    </p>
     <p>To programmatically create Models, see the <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Arrow.Model">API Builder.Model API reference</a>.    </p>
     </div>
     <div class="section section-2 " id="src-43299044_APIBuilderModels-Modeldefinition">
@@ -72,7 +72,7 @@
         <p>true    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>An object that represents the model&#x2019;s schema define as key-value pairs. The key is the name of the field and the value is the <tt class=" ">fields</tt> object. See the next table for details.    </p>
+        <p>An object that represents the model&#x2019;s schema defined as key-value pairs. The key is the name of the field and the value is the <tt class=" ">fields</tt> object. See the next table for details.    </p>
             </td>
         </tr>
     <tr>
@@ -329,7 +329,7 @@
     </div>
     <div class="section section-3 " id="src-43299044_APIBuilderModels-Modelschemaexample">
         <h3 class="heading "><span>Model schema example</span></h3>
-    <p>The example below creates the <tt class=" ">car</tt> model with the specified schema. The car models will be stored in Mobile Backend Services as CustomObjects. Since the <tt class=" ">autogen</tt> property was not set to <tt class=" ">false</tt>, API Builder automatically generates the pre-define endpoints for the client to access the car models using the <tt class=" ">&lt;SEVER_ADDRESS&gt;/</tt> <tt class=" ">api/car</tt> endpoints.    </p>
+    <p>The example below creates the <tt class=" ">car</tt> model with the specified schema. The car models will be stored in Mobile Backend Services as CustomObjects. Since the <tt class=" ">autogen</tt> property was not set to <tt class=" ">false</tt>, API Builder automatically generates the pre-defined endpoints for the client to access the car models using the <tt class=" ">&lt;SEVER_ADDRESS&gt;/</tt> <tt class=" ">api/car</tt> endpoints.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
@@ -355,7 +355,7 @@
     <p>Besides creating a fully defined model, you can modify an existing model either by reducing or extending it.    </p>
     <div class="section section-3 " id="src-43299044_APIBuilderModels-Reduceamodel">
         <h3 class="heading "><span>Reduce a model</span></h3>
-    <p>A reduced model is an existing model where you only use specific fields from it. To create a reduced model, follow the same procedure when creating a regular model except invoke the module&apos;s <tt class=" ">Model.reduce()</tt> method instead of the <tt class=" ">createModel()</tt> method. Pass the model you want to reduce as the first parameter, the name of the new model as the second parameter, and the new model schema as the last parameter.    </p>
+    <p>A reduced model is an existing model where you only use specific fields from it. To create a reduced model, follow the same procedure when creating a regular model, except invoke the module&apos;s <tt class=" ">Model.reduce()</tt> method instead of the <tt class=" ">createModel()</tt> method. Pass the model you want to reduce as the first parameter, the name of the new model as the second parameter, and the new model schema as the last parameter.    </p>
     <p><strong class=" ">Example</strong>    </p>
     <p>The Model file below extracts three fields from the <tt class=" ">employee</tt> table of the <tt class=" ">appc.mysql</tt> connector, indicated by the <tt class=" ">appc.mysql/employee</tt> parameter, and renames the fields for the <tt class=" ">baseEmp</tt> model, for example, <tt class=" ">email_address</tt> in the MySQL employee table maps to <tt class=" ">email</tt> in the new model.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -377,7 +377,7 @@
     </div>
     <div class="section section-3 " id="src-43299044_APIBuilderModels-Extendamodel">
         <h3 class="heading "><span>Extend a model</span></h3>
-    <p>An extended model is an existing model where you modify the fields or add more fields. To create an extended model, follow the same procedure when creating a regular model except invoke the module&apos;s <tt class=" ">Model.extend()</tt> method instead of the <tt class=" ">createModel()</tt> method. Pass the model you want to extend as the first parameter, the name of the new model as the second parameter, and the new model schema as the last parameter.    </p>
+    <p>An extended model is an existing model where you modify the fields or add more fields. To create an extended model, follow the same procedure when creating a regular model, except invoke the module&apos;s <tt class=" ">Model.extend()</tt> method instead of the <tt class=" ">createModel()</tt> method. Pass the model you want to extend as the first parameter, the name of the new model as the second parameter, and the new model schema as the last parameter.    </p>
     <p><strong class=" ">Example</strong>    </p>
     <p>The Model below extends the employee model by adding the <tt class=" ">headquarters</tt> field to it.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -415,11 +415,11 @@
 <ul class=" "><li class=" ">    <p>one-to-one: only one record from the secondary model matches a record in the main model    </p>
 </li><li class=" ">    <p>one-to-many: multiple records from the secondary model can match a record in the main model    </p>
 </li></ul>    <p>There are different ways that a one-to-one join and a one-to-many join can work when merging (mapping) data from a secondary model into the main model:    </p>
-<ul class=" "><li class=" ">    <p>Merge as object: This is a one-to-one relation where the whole secondary model record will be mapped to a field in the main model.    </p>
-</li><li class=" ">    <p>Merge as array: This is a one-to-many relation where multiple records from the secondary model will be mapped to an array field in the model definition.    </p>
-</li><li class=" ">    <p>Merge as field: This is a field which comes directly from a joined model. The field in the model definition <i class=" "><strong class=" ">must</strong> </i>have a &apos;name&apos; property which refers to the field being joined from the secondary model. By default, this is a one-to-one relation where the field will contain a single match. In the Join Object Definition, &apos;multiple&apos; may be set to true for all of the matches to be mapped to the field. Since this returns multiple values, the field type must be Array if &apos;multiple&apos; is set to true.    </p>
-</li></ul>    <p>The composite connector can be used to perform &quot;reduce&quot; functionality on a single model. This only requires the main model and does not require any joins. The API Builder Console offers its functionality using this method. Without any joins, a one-to-one merge as field is the only functionality available.    </p>
-    <p>To define the join operation, set the <tt class=" ">metadata</tt> property to the <tt class=" ">left_join</tt> key or <tt class=" ">inner_join</tt> key, either of which takes an array of objects defining the join. Each object in the <tt class=" ">left_join</tt> or <tt class=" ">inner_join</tt> property defines the model to join (<tt class=" ">model</tt> property), key to join (<tt class=" ">join_properties</tt> property) and, optionally, if the join is a <tt class=" ">multiple</tt> property.    </p>
+<ul class=" "><li class=" ">    <p>Merge as object: This is a one-to-one relationship where the whole secondary model record will be mapped to a field in the main model.    </p>
+</li><li class=" ">    <p>Merge as an array: This is a one-to-many relation where multiple records from the secondary model will be mapped to an array field in the model definition.    </p>
+</li><li class=" ">    <p>Merge as the field: This is a field which comes directly from a joined model. The field in the model definition <i class=" "><strong class=" ">must</strong> </i>have a &apos;name&apos; property which refers to the field being joined from the secondary model. By default, this is a one-to-one relationship where the field will contain a single match. In the Join-Object Definition, &apos;multiple&apos; may be set to true for all of the matches to be mapped to the field. Since this returns multiple values, the field type must be Array if &apos;multiple&apos; is set to true.    </p>
+</li></ul>    <p>The composite connector can be used to perform &quot;reduce&quot; functionality on a single model. This only requires the main model and does not require any joins. The API Builder Console offers its functionality using this method. Without any joins, a one-to-one merge as a field is the only functionality available.    </p>
+    <p>To define the join operation, set the <tt class=" ">metadata</tt> property to the <tt class=" ">left_join</tt> key or <tt class=" ">inner_join</tt> key, either of which takes an array of objects defining the join. Each object in the <tt class=" ">left_join</tt> or <tt class=" ">inner_join</tt> property defines the model to join (<tt class=" ">model</tt> property), the key to join (<tt class=" ">join_properties</tt> property) and, optionally, if the join is a <tt class=" ">multiple</tt> property.    </p>
     <p><strong class=" ">Join object definition</strong>    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
@@ -464,7 +464,7 @@
         <p>Boolean    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Determines whether the match is one-to-one (false) or one-to-many (true) . The default value is <tt class=" ">false</tt>. If true, the field being joined on must be of type Array<strong class=" "> </strong>and have a <tt class=" ">name</tt> property referring to the field from the secondary model to be used.    </p>
+        <p>Determines whether the match is one-to-one (false) or one-to-many (true). The default value is <tt class=" ">false</tt>. If true, the field being joined on must be of type Array<strong class=" "> </strong>and have a <tt class=" ">name</tt> property referring to the field from the secondary model to be used.    </p>
             </td>
         </tr>
 </tbody>        </table>

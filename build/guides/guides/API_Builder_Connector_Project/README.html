@@ -58,7 +58,7 @@
         <p><tt class=" ">app.js</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Entry point to the connector for testing, which launches a server instance.    </p>
+        <p>The entry point to the connector for testing, which launches a server instance.    </p>
             </td>
         </tr>
     <tr>
@@ -74,7 +74,7 @@
         <p><tt class=" ">conf</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains configuration files in JSON format for the connector. The <tt class=" ">default.js</tt> file is used for testing the connector. You can create an example configuration file, which is copied to the project when it is installed. See <a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-ConnectorConfigurationFile">Connector Configuration File</a> below.    </p>
+        <p>Contains configuration files in JSON format for the connector. The <tt class=" ">default.js</tt> file is used for testing the connector. You can create an example configuration file, which is copied to the project when it is installed. See the  <a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-ConnectorConfigurationFile">Connector Configuration File</a> section.    </p>
             </td>
         </tr>
     <tr>
@@ -82,7 +82,7 @@
         <p><tt class=" ">index.js</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Entry point to the connector.    </p>
+        <p>The entry point to the connector.    </p>
             </td>
         </tr>
     <tr>
@@ -90,7 +90,7 @@
         <p><tt class=" ">lib</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains the logic for your connector. Requires an <tt class=" ">index.js</tt> file. See <a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-ConnectorLogic">Connector Logic</a> below.    </p>
+        <p>Contains the logic for your connector. Requires an <tt class=" ">index.js</tt> file. See the <a class="document-link " href="#!/guide/API_Builder_Connector_Project-section-src-49153271_APIBuilderConnectorProject-ConnectorLogic">Connector Logic</a> section.    </p>
             </td>
         </tr>
     <tr>
@@ -176,7 +176,7 @@
     <div class="section section-2 " id="src-49153271_APIBuilderConnectorProject-ConnectorLogicConnectorlogic">
         <h2 class="heading "><span id="src-49153271_APIBuilderConnectorProject-ConnectorLogic" class="confluence-anchor-link"/><span>Connector logic</span></h2>
     <p>Place all the connector logic in the <tt class=" ">lib</tt> folder. There must be an <tt class=" ">index.js</tt> file in your <tt class=" ">lib</tt> folder, which is the first file loaded by the connector.    </p>
-    <p>The boilerplate <tt class=" ">index.js</tt> file expose a <tt class=" ">create()</tt> method, which is passed the API Builder class. The method must return a Connector instance, which is created using the <tt class=" ">Arrow.Connector.extend()</tt> method. Uncomment each Capability constant in the <tt class=" ">capabilities</tt> field to have API Builder generate boilerplate logic for each capability you want the Connector to support. Each method will have its own JavaScript file. You may also pass the <tt class=" ">extend()</tt> method an object, which implements the methods of the Connector class and a few methods from the Model class.    </p>
+    <p>The boilerplate <tt class=" ">index.js</tt> file exposes a <tt class=" ">create()</tt> method, which is passed the API Builder class. The method must return a Connector instance, which is created using the <tt class=" ">Arrow.Connector.extend()</tt> method. Uncomment each Capability constant in the <tt class=" ">capabilities</tt> field to have API Builder generate boilerplate logic for each capability you want the Connector to support. Each method will have its own JavaScript file. You may also pass the <tt class=" ">extend()</tt> method an object, which implements the methods of the Connector class and a few methods from the Model class.    </p>
     <p>To start developing your connector, run the project in one console window, then edit the files with the connector logic in another console or editor. As you save your files, API Builder will automatically update your connector and restart the server instance, allowing you to work on and test the connector incrementally.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">lib/index.js</div>
@@ -287,7 +287,7 @@
         <p><tt class=" ">./models</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Creates a boiler plate model in the <tt class=" ">models</tt> folder.    </p>
+        <p>Creates a boilerplate model in the <tt class=" ">models</tt> folder.    </p>
             </td>
         </tr>
     <tr>
@@ -567,7 +567,7 @@
         <p>Deletes all the models.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Array of deleted models    </p>
+        <p>An array of deleted models    </p>
             </td>
         </tr>
     <tr>
@@ -584,7 +584,7 @@
         <p>Retrieves all the models.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Array of models    </p>
+        <p>An array of models    </p>
             </td>
         </tr>
     <tr>
@@ -618,7 +618,7 @@
         <p>Retrieves all models based on the query options.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Array of found models    </p>
+        <p>An array of found models    </p>
             </td>
         </tr>
     <tr>
@@ -635,7 +635,7 @@
         <p>Retrieves a distinct set of models based on the field(s) and query options.    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Array of distinct models    </p>
+        <p>An array of distinct models    </p>
             </td>
         </tr>
     <tr>

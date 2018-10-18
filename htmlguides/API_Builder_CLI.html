@@ -27,7 +27,7 @@
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_CLI.html#src-49159313_APIBuilderCLI-CLIcommands">CLI commands</a>    </p>
 </li></ul>    <p>    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>The use of small containers should be avoided when publishing API Builder applications using the Appcelerator CLI commands. For optimum memory performance use medium or larger size containers.    </p>
+            <p>The use of small containers should be avoided when publishing API Builder applications using the Appcelerator CLI commands. For optimum memory performance, use medium or larger size containers.    </p>
     </div>
         <div class="section section-2 " id="src-49159313_APIBuilderCLI-Setup">
         <h2 class="heading "><span>Setup</span></h2>
@@ -54,7 +54,7 @@ The legacy method to publish the API Builder app is as follows:    </p>
 <div class="line"><code class="plain">*** new completed. ***</code></div>
 </div>
     </div>
-</li><li class=" ">    <p>Update <tt class=" ">appc.json</tt> environment to add <tt class=" ">extra_hosts</tt> if you haven&apos;t setup a DNS yet. If your cluster uses <tt class=" ">appctest.com</tt> as domain name, then you need to add <tt class=" ">NODE_ENV</tt> as well:    </p>
+</li><li class=" ">    <p>Update <tt class=" ">appc.json</tt> environment to add <tt class=" ">extra_hosts</tt> if you haven&apos;t set up a DNS yet. If your cluster uses <tt class=" ">appctest.com</tt> as a domain name, then you need to add <tt class=" ">NODE_ENV</tt> as well:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ </code><code class="functions">cd</code><code class="plain"> appctest</code></div>
@@ -95,7 +95,7 @@ The legacy method to publish the API Builder app is as follows:    </p>
 <div class="line"><code class="plain">*** new completed. ***</code></div>
 </div>
     </div>
-</li><li class=" ">    <p>Prepare a Dockerfile by creating a Dockerfile under your project directory and use the <tt class=" ">start_app</tt> script. Use of <tt class=" ">start_app</tt> is required if you want to able to retrieve access and console logs of your app with the user of <tt class=" ">appc cloud logcat</tt> and <tt class=" ">appc cloud accesslog</tt>. The following is a sample Dockerfile for an API Builder app:    </p>
+</li><li class=" ">    <p>Prepare a Dockerfile by creating a Dockerfile under your project directory and use the <tt class=" ">start_app</tt> script. Use of <tt class=" ">start_app</tt> is required if you want to able to retrieve access and console logs of your app using the <tt class=" ">appc cloud logcat</tt> and <tt class=" ">appc cloud accesslog</tt> commands. The following is a sample Dockerfile for an API Builder app:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">FROM mhart</code><code class="plain">/alpine-node</code><code class="plain">:5.12.0</code></div>
@@ -200,7 +200,7 @@ The legacy method to publish the API Builder app is as follows:    </p>
 </li></ol>    </div>
     <div class="section section-2 " id="src-49159313_APIBuilderCLI-PublishbyusingexistingDockerimage">
         <h2 class="heading "><span>Publish by using existing Docker image</span></h2>
-    <p>Alternatively, after preparing your Dockerfile and <tt class=" ">start_app</tt> script describe above, you can build the Docker image yourself and publish the image to API Runtime Services:    </p>
+    <p>Alternatively, after preparing your Dockerfile and <tt class=" ">start_app</tt> script, you can build the Docker image yourself and publish the image to API Runtime Services:    </p>
 <ol class=" "><li class=" ">    <p>Build Docker image:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -227,7 +227,7 @@ The legacy method to publish the API Builder app is as follows:    </p>
 <div class="line"><code class="plain">$ appc cloud config appcteest --minsize &lt;size&gt;</code></div>
 </div>
     </div>
-</li></ol>    <p>Note: If you haven&apos;t setup your DNS yet, your app publish may fail with the following error:    </p>
+</li></ol>    <p>Note: If you haven&apos;t set up your DNS yet, your app publish may fail with the following error:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ appc cloud logcat appctest</code></div>
