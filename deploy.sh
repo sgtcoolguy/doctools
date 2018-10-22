@@ -195,8 +195,9 @@ if [ $include_modules ]; then
 
     module_dirs+=" $APPC_MODULES/ti.geofence/apidoc
       		         $APPC_MODULES/appcelerator.https/apidoc
-                   $APPC_MODULES/appcelerator.encrypteddatabase
-                   $APPC_MODULES/titanium-web-dialog"
+                   $APPC_MODULES/appcelerator.encrypteddatabase/apidoc
+                   $APPC_MODULES/titanium-web-dialog/apidoc
+                   $APPC_MODULES/Ti.ImageView"
 fi
 #$APPC_MODULES/com.appcelerator.apm/apidoc
 
