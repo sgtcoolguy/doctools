@@ -483,9 +483,9 @@
     <p>To change the look of a row when it is selected or clicked on, set the <tt class=" ">selectedBackgroundColor</tt>, <tt class=" ">selectedBackgroundImage</tt> and <tt class=" ">selectedBackgroundGradient</tt> properties in the <tt class=" ">properties</tt> dictionary of either the ListDataItem or ItemTemplate to customize the look.    </p>
     <p>On the iOS platform, in order to select a row, ListView&apos;s <tt class=" ">allowsSelection</tt> property needs to be set to <tt class=" ">true</tt>.    </p>
     <p>You can also set the <tt class=" ">selectionStyle</tt> property in the <tt class=" ">properties</tt> dictionary of either the ListDataItem or ItemTemplate to one of the supported constants:    </p>
-<ul class=" "><li class=" ">    <p>Titanium.UI.iPhone.ListViewCellSelectionStyle.BLUE (default for iOS 6 and prior)    </p>
-</li><li class=" ">    <p>Titanium.UI.iPhone.ListViewCellSelectionStyle.GRAY (default for iOS 7 and later)    </p>
-</li><li class=" ">    <p>Titanium.UI.iPhone.ListViewCellSelectionStyle.NONE    </p>
+<ul class=" "><li class=" ">    <p>Titanium.UI.iOS.ListViewCellSelectionStyle.BLUE    </p>
+</li><li class=" ">    <p>Titanium.UI.iOS.ListViewCellSelectionStyle.GRAY (default)    </p>
+</li><li class=" ">    <p>Titanium.UI.iOS.ListViewCellSelectionStyle.NONE    </p>
 </li></ul>    </div>
     <div class="section section-3 " id="src-37521650_ListViews-Searchtextandview">
         <h3 class="heading "><span>Search text and view</span></h3>
@@ -609,7 +609,7 @@
     <p>You can specify a row animation constant with ListSection&apos;s <tt class=" ">appendItems</tt>, <tt class=" ">deleteItemsAt</tt>, <tt class=" ">insertItemsAt</tt>, <tt class=" ">replaceItemsAt</tt>, and <tt class=" ">updateItemAt </tt>methods and ListView&apos;s <tt class=" ">appendSection</tt> , <tt class=" ">deleteSectionAt</tt> , <tt class=" ">insertSectionAt</tt> and <tt class=" ">replaceSectionAt</tt> methods to add, remove or modify a row(s) with an animation. For example, the code below makes the application remove the first ten rows in the section with an animation that shifts the rows to the left before they are deleted:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">listSection.removeItemsAt(</code><code class="value">0</code><code class="plain">, </code><code class="value">10</code><code class="plain">, {animationStyle: Titanium.UI.iPhone.RowAnimationStyle.LEFT});</code></div>
+<div class="line"><code class="plain">listSection.removeItemsAt(</code><code class="value">0</code><code class="plain">, </code><code class="value">10</code><code class="plain">, {animationStyle: Titanium.UI.iOS.RowAnimationStyle.LEFT});</code></div>
 </div>
     </div>
     </div>
@@ -742,7 +742,7 @@
     </div>
     <div class="section section-3 " id="src-37521650_ListViews-Groupedrows">
         <h3 class="heading "><span>Grouped rows</span></h3>
-    <p>When creating a list view, set the <tt class=" ">style</tt> property to Titanium.UI.iPhone.ListViewStyle.GROUPED to display the list sections as separate components as shown below. This property can only be specified at creation. Once the list view is rendered, you cannot change it.    </p>
+    <p>When creating a list view, set the <tt class=" ">style</tt> property to Titanium.UI.iOS.ListViewStyle.GROUPED to display the list sections as separate components as shown below. This property can only be specified at creation. Once the list view is rendered, you cannot change it.    </p>
     <p>    <img src="images/download/attachments/37521650/GroupedStyle.png" alt="images/download/attachments/37521650/GroupedStyle.png" class="confluence-embedded-image">
         </img></p>
     </div>
