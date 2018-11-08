@@ -40,7 +40,7 @@
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-AddacustomSSLcertificate">Add a custom SSL certificate</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Createchildprocesses">Create child processes</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Applicationlimitations">Application limitations</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Diskspace">Diskspace</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Diskspace">Disk space</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-ServercontainersServercontainers">Server containers</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Serverports">Server ports</a>    </p>
 </li></ul></li></ul>    <div class="section section-2 " id="src-49153285_APIBuilderProject-Overview">
@@ -77,7 +77,7 @@
         <p><tt class=" ">app.js</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Entry point to the application if it is used as a server. You can monitor the startup and shutdown sequence.    </p>
+        <p>The entry point to the application if it is used as a server. You can monitor the startup and shutdown sequence.    </p>
             </td>
         </tr>
     <tr>
@@ -138,7 +138,7 @@
         <p><tt class=" ">index.js</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Entry point to the application if it is used as a module.    </p>
+        <p>The entry point to the application if it is used as a module.    </p>
             </td>
         </tr>
     <tr>
@@ -261,8 +261,8 @@
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Deploytheapplication">
         <h2 class="heading "><span>Deploy the application</span></h2>
-    <p>To deploy an application to API Runtime Services, run the <tt class=" ">appc publish</tt> command from the API Runtime Services project directory. Your project source code will be uploaded to the API Runtime Services where <tt class=" ">npm install</tt> will be executed against the project, which downloads and installs any NPM module dependencies. When installation completes, the application is executed using <tt class=" ">node</tt>.    </p>
-    <p>If the application is already deployed, you need to either increment the <tt class=" ">version</tt> field in the <tt class=" ">package.json</tt> file to publish a new version of the application or pass the <tt class=" ">--force</tt> flag to the publish command to republish the application. Before republishing the application, API Runtime Services sends the <tt class=" ">SIGTERM</tt> signal to the currently deployed application to let it shutdown gracefully. If the app does not shutdown in time, API Runtime Services will kill the application.    </p>
+    <p>To deploy an application to API Runtime Services, run the <tt class=" ">appc publish</tt> command from the API Runtime Services project directory. Your project source code will be uploaded to the API Runtime Services where <tt class=" ">npm install</tt> will be executed against the project, which downloads and installs any NPM module dependencies. When the installation completes, the application is executed using <tt class=" ">node</tt>.    </p>
+    <p>If the application is already deployed, you need to either increment the <tt class=" ">version</tt> field in the <tt class=" ">package.json</tt> file to publish a new version of the application or pass the <tt class=" ">--force</tt> flag to the publish command to republish the application. Before republishing the application, API Runtime Services sends the <tt class=" ">SIGTERM</tt> signal to the currently deployed application to let it shutdown gracefully. If the app does not shut down in time, API Runtime Services will kill the application.    </p>
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Logoutput">
         <h2 class="heading "><span>Log output</span></h2>
@@ -307,7 +307,7 @@
 </li></ul>    </div>
     <div class="section section-3 " id="src-49153285_APIBuilderProject-Aboutloggedexecutiontimes">
         <h3 class="heading "><span>About logged execution times</span></h3>
-    <p>The execution time reported by the <tt class=" ">loglist</tt> and <tt class=" ">accesslog</tt> commands report slightly different values. The <tt class=" ">accesslog</tt> command reports the time required by Appcelerator Cloud to handle the initial user request, pass it to your Node,js application for processing, and deliver the response. In contrast, <tt class=" ">loglist</tt> only reports the execution time for your application itself, not including the time required to process the request and response. Consequently, the <tt class=" ">accesslog</tt> execution times are a slightly longer than those of the corresponding <tt class=" ">loglist</tt> log item. For instance, below is <tt class=" ">accesslog</tt> output:    </p>
+    <p>The execution time reported by the <tt class=" ">loglist</tt> and <tt class=" ">accesslog</tt> commands report slightly different values. The <tt class=" ">accesslog</tt> command reports the time required by Appcelerator Cloud to handle the initial user request, pass it to your Node.js application for processing, and deliver the response. In contrast, <tt class=" ">loglist</tt> only reports the execution time for your application itself, not including the time required to process the request and response. Consequently, the <tt class=" ">accesslog</tt> execution times are a slightly longer than those of the corresponding <tt class=" ">loglist</tt> log item. For instance, below is <tt class=" ">accesslog</tt> output:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">[</code><code class="value">12</code><code class="plain">/</code><code class="value">11</code><code class="plain">/</code><code class="value">2013</code><code class="plain"> </code><code class="value">08</code><code class="plain">:</code><code class="value">43</code><code class="plain">:</code><code class="value">55.790</code><code class="plain">]   </code><code class="value">127.0</code><code class="plain">.</code><code class="value">0.1</code><code class="plain">   /   10074ms</code></div>
@@ -346,7 +346,7 @@
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Portbinding">
         <h2 class="heading "><span>Port binding</span></h2>
-    <p>Starting with API Runtime Services 1.2.0, you may explicitly set the port the application listens on. Set the <tt class=" ">cloud.environment.PORT</tt> key in <tt class=" ">appc.json</tt> file. or use the <tt class=" ">appc cloud config --set &quot;PORT=&lt;PORT_NUMBER&gt;&quot;</tt> command to set the special environment variable PORT. If you do not set PORT explicitly before publishing your application, API Runtime Services sets it to 80 by default.    </p>
+    <p>Starting with API Runtime Services 1.2.0, you may explicitly set the port the application listens on. Set the <tt class=" ">cloud.environment.PORT</tt> key in the <tt class=" ">appc.json</tt> file. or use the <tt class=" ">appc cloud config --set &quot;PORT=&lt;PORT_NUMBER&gt;&quot;</tt> command to set the special environment variable PORT. If you do not set PORT explicitly before publishing your application, API Runtime Services sets it to 80 by default.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">appc.json</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="appc.json">
@@ -369,7 +369,7 @@
             <div class="title">ImageMagick and PhantomJS</div>
             <p>Both ImageMagick and PhantomJS are pre-installed on the containers.    </p>
     </div>
-        <p>Below is a sample script located at <tt class=" ">./install.sh</tt> folder in the application&apos;s directory.    </p>
+        <p>Below is a sample script located in the <tt class=" ">./install.sh</tt> folder in the application&apos;s directory.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">install.sh</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="install.sh">
@@ -428,7 +428,7 @@
 </div>
     </div>
     <p>You can also use the Appcelerator CLI to manage the environment variables.    </p>
-    <p>To set environment variables, use the <tt class=" ">appc cloud config --set &lt;key&gt;=&lt;value&gt;</tt> command. To set more than one variable at a time, comma separate the key-value pairs.    </p>
+    <p>To set environment variables, use the <tt class=" ">appc cloud config --set &lt;key&gt;=&lt;value&gt;</tt> command. To set more than one variable at a time, comma-separate the key-value pairs.    </p>
     <p>You can access the environment variables from the application using the <tt class=" ">process.env</tt> namespace. For example, if you set a variable called <tt class=" ">foo</tt>, use <tt class=" ">process.env.foo</tt> to access it in the application.    </p>
     <p>To unset an environment variable, use the <tt class=" ">appc cloud config --unset &lt;key&gt;</tt> command.    </p>
     <p>To check the current environment variables, use the <tt class=" "> appc cloud config --env</tt> command.    </p>
@@ -488,7 +488,7 @@ command to configure autoscaling:    </span>
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Accessaspecificcontainer">
         <h2 class="heading "><span>Access a specific container</span></h2>
-    <p>Starting with API Runtime Services 1.3.1, if you have scaled your application to use more than one server container, you can make a request to a specific container that your application is running on. To make a request to a specific server container, pass the <tt class=" ">_serverid</tt> parameter with the request and set it to the ID of the server container. To retrieve the server container ID, run the <tt class=" ">appc cloud </tt> <tt class=" ">accesslog --show_serverid</tt> command.    </p>
+    <p>Starting with API Runtime Services 1.3.1, if you have scaled your application to use more than one server container, you can make a request to a specific container that your application is running on. To make a request to a specific server container, pass the <tt class=" ">_serverid</tt> parameter with the request and set it to the ID of the server container. To retrieve the server container ID, run the <tt class=" ">appc cloud </tt><tt class=" ">accesslog --show_serverid</tt> command.    </p>
     <p>Example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -500,9 +500,9 @@ command to configure autoscaling:    </span>
         <h2 class="heading "><span>Custom domains</span></h2>
     <div class="section section-3 " id="src-49153285_APIBuilderProject-Setacustomdomainandpath">
         <h3 class="heading "><span>Set a custom domain and path</span></h3>
-    <p>You can bind a custom domain to your application that points to either a CNAME record or A record as well as assign it a path. When setting the domain, do no specify the protocol, that is, do not prefix the URL with <tt class=" ">http://</tt> or <tt class=" ">https://</tt>.    </p>
+    <p>You can bind a custom domain to your application that points to either a CNAME record or A record as well as assign it a path. When setting the domain, do not specify the protocol, that is, do not prefix the URL with <tt class=" ">http://</tt> or <tt class=" ">https://</tt>.    </p>
     <p>The alias to set should be a valid domain name that has been already configured with either a CNAME or A record pointing to the published application&apos;s URL. Appcelerator Cloud validates the domain record before binding it to the application.    </p>
-    <p>To set a custom domain, set the <tt class=" ">cloud.domain</tt> field in the <tt class=" ">appc.json</tt>. You can optionally set the <tt class=" ">cloud.domainPath</tt> field to assign a path to the application. The following example sets a domain and path on the application that can be accessed from <tt class=" ">www.foo.com/v2</tt>:    </p>
+    <p>To set a custom domain, set the <tt class=" ">cloud.domain</tt> field in the <tt class=" ">appc.json</tt> file. You can optionally set the <tt class=" ">cloud.domainPath</tt> field to assign a path to the application. The following example sets a domain and path on the application that can be accessed from <tt class=" ">www.foo.com/v2</tt>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">appc.json</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="appc.json">
@@ -568,7 +568,7 @@ The following example allows the application to be accessed from     </span>
     <p>To use a custom SSL certificate to access your application using HTTPS, you need to create a PEM file, then add the PEM file to the application.    </p>
     <p>To create a PEM file, you will need the following three files provided by your SSL certificate provider:    </p>
 <ul class=" "><li class=" ">    <p>Certificate file (<tt class=" ">customapp.com.crt</tt>, for example)    </p>
-</li><li class=" ">    <p>Intermediate certificate authority (<tt class=" ">gd_bundle.crt</tt>, for example)    </p>
+</li><li class=" ">    <p>An intermediate certificate authority (<tt class=" ">gd_bundle.crt</tt>, for example)    </p>
 </li><li class=" ">    <p>Key used to generate the certificate (<tt class=" ">customapp.com.key</tt>, for example)    </p>
 </li></ul>    <p>You need to combine the contents of the three files into a single text file, called a PEM file, which you will add to your application. The PEM file must have the following structure:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -611,7 +611,7 @@ The following example allows the application to be accessed from     </span>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Createchildprocesses">
         <h2 class="heading "><span>Create child processes</span></h2>
     <p>A single instance of Node.js runs in a single thread. To take advantage of multi-core systems, you can launch a cluster of Node.js processes to handle the load. Applications can use the core Node <a class="external-link external-link" href="http://nodejs.org/api/cluster.html" target="_blank">Cluster</a> module to easily create child processes that all share server ports.    </p>
-    <p>To use this feature you application uses <a class="external-link external-link" href="http://nodejs.org/api/cluster.html#cluster_cluster_setupmaster_settings" target="_blank">cluster.setupMaster()</a> to set a path to a custom file to use for each child process. A cluster should listen on port 9000 or greater to avoid port conflicts. If the port your application is trying to listen on is in use, a <tt class=" ">EADDRINUSE</tt> error will result. Your application must also have privileges to listen on the specified port, otherwise, an <tt class=" ">EACCES</tt> error will result.    </p>
+    <p>To use this feature you application uses <a class="external-link external-link" href="http://nodejs.org/api/cluster.html#cluster_cluster_setupmaster_settings" target="_blank">cluster.setupMaster()</a> to set a path to a custom file to use for each child process. A cluster should listen on port 9000 or greater to avoid port conflicts. If the port your application is trying to listen on is in use, an <tt class=" ">EADDRINUSE</tt> error will result. Your application must also have privileges to listen on the specified port, otherwise, an <tt class=" ">EACCES</tt> error will result.    </p>
     <p><strong class=" ">Example</strong>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app.js</div>
@@ -648,8 +648,8 @@ The following example allows the application to be accessed from     </span>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Applicationlimitations">
         <h2 class="heading "><span>Application limitations</span></h2>
     <div class="section section-3 " id="src-49153285_APIBuilderProject-Diskspace">
-        <h3 class="heading "><span>Diskspace</span></h3>
-    <p>Each application can use 1.8 GB of diskspace. The application can only write files to the project&apos;s root directory and to the <tt class=" ">/tmp</tt> folder.    </p>
+        <h3 class="heading "><span>Disk space</span></h3>
+    <p>Each application can use 1.8 GB of disk space. The application can only write files to the project&apos;s root directory and to the <tt class=" ">/tmp</tt> folder.    </p>
     </div>
     <div class="section section-3 " id="src-49153285_APIBuilderProject-ServercontainersServercontainers">
         <h3 class="heading "><span id="src-49153285_APIBuilderProject-Servercontainers" class="confluence-anchor-link"/><span>Server containers</span></h3>

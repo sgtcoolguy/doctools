@@ -121,7 +121,7 @@
     <p>It is pretty straightforward to request permission. For iOS you need to configure your plist correctly as described at the iOS Development Considerations section. Before asking permission it is advised to check if the permission is already given. In the sample below you can see how to do all this, we&apos;re going to be requesting for permisson while the app is in use.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="keyword">var</code><code class="plain"> hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> hasLocationPermission = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE);</code></div>
 <div class="line"><code class="keyword">if</code><code class="plain"> (!hasLocationPermission) {</code></div>
 <div class="line"><code class="plain">	Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> (e.success) {</code></div>
