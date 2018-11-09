@@ -232,7 +232,7 @@ node('linux && !master') {
 				sh 'bundle exec compass compile ./template/resources/sass'
 
 				// Grab extjs 4.1.1 to use
-				sh 'curl -o template/extjs.zip http://download.huihoo.com/extjs/ext-4.1.1a-gpl.zip'
+				sh 'curl -L -o template/extjs.zip http://download.huihoo.com/extjs/ext-4.1.1a-gpl.zip'
 				// unzip it
 				sh 'unzip template/extjs.zip -d template/'
 				sh 'rm template/extjs.zip'
