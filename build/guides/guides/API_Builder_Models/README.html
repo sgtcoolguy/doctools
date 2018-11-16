@@ -233,7 +233,7 @@
         <p>false    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Used if the model field name is different than the field name in the connector&#x2019;s model or the underlying data source for the field name. For example, if my model field is <tt class=" ">first_name</tt> and the column in a MySQL database is <tt class=" ">fname</tt>, the value of the <tt class=" ">name</tt> property should be <tt class=" ">&apos;fname&apos;</tt>.    </p>
+        <p>Used if the model field name is different than the field name in the connector&#x2019;s model or the underlying data source for the field name. For example, if my model field is <tt class=" ">first_name</tt> and the column in a MySQL database is <tt class=" ">fname</tt>, the value of the <tt class=" ">name</tt> property should be <tt class=" ">fname</tt>.    </p>
             </td>
         </tr>
     <tr>
@@ -412,13 +412,13 @@
 <ul class=" "><li class=" ">    <p>left join: all records from the main model are returned regardless if it found a match in the secondary models    </p>
 </li><li class=" ">    <p>inner join: only records that match both models are returned    </p>
 </li></ul>    <p>The composite connector can also perform either a one-to-one join or one-to-many join:    </p>
-<ul class=" "><li class=" ">    <p>one-to-one: only one record from the secondary model matches a record in the main model    </p>
+<ul class=" "><li class=" ">    <p>one-to-one: only one record from the secondary model matches a record in the primary model    </p>
 </li><li class=" ">    <p>one-to-many: multiple records from the secondary model can match a record in the main model    </p>
-</li></ul>    <p>There are different ways that a one-to-one join and a one-to-many join can work when merging (mapping) data from a secondary model into the main model:    </p>
+</li></ul>    <p>There are different ways that a one-to-one join and a one-to-many join can work when merging (mapping) data from the main model into the primary model:    </p>
 <ul class=" "><li class=" ">    <p>Merge as object: This is a one-to-one relationship where the whole secondary model record will be mapped to a field in the main model.    </p>
 </li><li class=" ">    <p>Merge as an array: This is a one-to-many relation where multiple records from the secondary model will be mapped to an array field in the model definition.    </p>
-</li><li class=" ">    <p>Merge as the field: This is a field which comes directly from a joined model. The field in the model definition <i class=" "><strong class=" ">must</strong> </i>have a &apos;name&apos; property which refers to the field being joined from the secondary model. By default, this is a one-to-one relationship where the field will contain a single match. In the Join-Object Definition, &apos;multiple&apos; may be set to true for all of the matches to be mapped to the field. Since this returns multiple values, the field type must be Array if &apos;multiple&apos; is set to true.    </p>
-</li></ul>    <p>The composite connector can be used to perform &quot;reduce&quot; functionality on a single model. This only requires the main model and does not require any joins. The API Builder Console offers its functionality using this method. Without any joins, a one-to-one merge as a field is the only functionality available.    </p>
+</li><li class=" ">    <p>Merge as the field: This is a field which comes directly from a joined model. The field in the model definition <i class=" "><strong class=" ">must</strong> </i>have a <tt class=" ">name</tt> property which refers to the field being joined from the secondary model. By default, this is a one-to-one relationship where the field will contain a single match. In the Join-Object Definition, <tt class=" ">multiple</tt> may be set to <tt class=" ">true</tt> for all of the matches to be mapped to the field. Since this returns multiple values, the field type must be Array if <tt class=" ">multiple</tt> is set to <tt class=" ">true</tt>.    </p>
+</li></ul>    <p>The composite connector can be used to perform reduce functionality on a single model. This only requires the main model and does not require any joins. The API Builder Console offers its functionality using this method. Without any joins, a one-to-one merge as a field is the only functionality available.    </p>
     <p>To define the join operation, set the <tt class=" ">metadata</tt> property to the <tt class=" ">left_join</tt> key or <tt class=" ">inner_join</tt> key, either of which takes an array of objects defining the join. Each object in the <tt class=" ">left_join</tt> or <tt class=" ">inner_join</tt> property defines the model to join (<tt class=" ">model</tt> property), the key to join (<tt class=" ">join_properties</tt> property) and, optionally, if the join is a <tt class=" ">multiple</tt> property.    </p>
     <p><strong class=" ">Join object definition</strong>    </p>
     <div class="tablewrap">
@@ -647,7 +647,7 @@
     </div>
     <div class="section section-2 " id="src-43299044_APIBuilderModels-CustomizinggeneratedmodelAPIs">
         <h2 class="heading "><span>Customizing generated model APIs</span></h2>
-    <p>You can customize the generated APIs for your models. For example, by default, the create API only returns a status 201 with a header Location pointing to the newly created instance. No body content is returned. If you want to directly receive the newly created instance in the body of the request, add the <tt class=" ">includeResponseBody: true</tt> metadata to your model.    </p>
+    <p>You can customize the generated APIs for your models. For example, by default, the create API only returns a status 201 with a header Location pointing to the newly created instance. No content is returned in the body. If you want to directly receive the newly created instance in the body of the request, add the <tt class=" ">includeResponseBody: true</tt> metadata to your model.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>

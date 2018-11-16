@@ -118,7 +118,7 @@
     </div>
     <div class="section section-3 " id="src-43290758_AlloyBackboneMigration-EventAPIs">
         <h3 class="heading "><span>Event APIs</span></h3>
-<ul class=" "><li class=" ">    <p>All <tt class=" ">i</tt><tt class=" ">nvalid</tt> events now pass consistent arguments. First the model in question, then the <tt class=" ">error</tt> object, then <tt class=" ">options</tt>.    </p>
+<ul class=" "><li class=" ">    <p>All <tt class=" ">i</tt>  <tt class=" ">nvalid</tt>  events now pass consistent arguments. First the model in question, then the <tt class=" ">error</tt> object, then <tt class=" ">options</tt>.    </p>
 </li><li class=" ">    <p><tt class=" ">Collection.sort()</tt> now triggers a <tt class=" ">sort</tt> event, instead of a <tt class=" ">reset</tt> event.    </p>
 </li><li class=" ">    <p>Both <tt class=" ">sync</tt> and <tt class=" ">error</tt> events within <tt class=" ">Backbone.sync()</tt> are now triggered regardless of the existence of success or error callbacks.    </p>
 </li><li class=" ">    <p>While listening to a <tt class=" ">reset</tt> event, the list of previous models is now available in <tt class=" ">options.previousModels</tt>.    </p>
@@ -144,6 +144,7 @@
 <ul class=" "><li class=" ">    <p>Calling <tt class=" ">destroy()</tt> on a Model will now return <tt class=" ">false</tt> if the model&apos;s <tt class=" ">isNew</tt> is set to <tt class=" ">true</tt> (model has not been saved to persistent storage).    </p>
 </li><li class=" ">    <p><tt class=" ">Model.set()</tt> no longer accepts another model as an argument. Only pass the method the attributes to set, <tt class=" ">Model.set(attributes)</tt>.    </p>
 </li><li class=" ">    <p><tt class=" ">url</tt> and <tt class=" ">urlRoot</tt> properties may now be passed as options when instantiating a new Model.    </p>
+</li><li class=" ">    <p>If you want to maintain current models in a collection when using <tt class=" ">fetch</tt> the property has changed from <tt class=" ">{add:true}</tt> to <tt class=" ">{remove:false}</tt>.    </p>
 </li></ul>    </div>
     </div>
     <div class="section section-3 " id="src-43290758_AlloyBackboneMigration-ParseMethod">
