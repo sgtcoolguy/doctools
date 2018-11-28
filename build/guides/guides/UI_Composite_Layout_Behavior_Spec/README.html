@@ -104,7 +104,8 @@
 <ul class=" "><li class=" ">    <p>ti.ui.defaultunit : String, the default unit to interpret values without a unit as.    </p>
 <ul class=" "><li class=" ">    <p>Generated in default tiapp.xml template (users can explicitly see default value)    </p>
 </li><li class=" ">    <p>Valid values: px, mm, cm, in, dp, dip, system    </p>
-</li></ul></li></ul>    </div>
+</li></ul></li></ul>    <p>As of SDK 8.0.0, <tt class=" ">dp</tt> starts supported for default unit on Windows. Since Windows default unit has been <tt class=" ">px</tt> in previous versions this means this may cause breaking change. You might want to update your <tt class=" ">tiapp.xml</tt> to use <tt class=" ">px</tt> for default unit explicitly like <tt class=" ">&lt;property name=&quot;ti.ui.defaultunit&quot; type=&quot;string&quot;&gt;px&lt;/property&gt;</tt> to keep consistency between previous SDK versions.    </p>
+    </div>
     <div class="section section-3 " id="src-4196675_UICompositeLayoutBehaviorSpec-PrecedenceoflayoutParams">
         <h3 class="heading "><span>Precedence of layoutParams</span></h3>
     <p>Certain parameters influence the calculation of others when they are unset (see <a class="document-link " href="#!/guide/UI_Composite_Layout_Behavior_Spec-section-src-4196675_UICompositeLayoutBehaviorSpec-undefined_behavior">UNDEFINED behavior</a> ). The purpose of establishing an order of precedence is only to determine when certain settings override others when there is an obvious conflict, or determine which properties are used for computing implicit values.    </p>

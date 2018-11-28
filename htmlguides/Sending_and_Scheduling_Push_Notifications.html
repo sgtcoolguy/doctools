@@ -20,8 +20,7 @@
                         <h1>Sending and Scheduling Push Notifications</h1>
     <p>This guide explains how to send and schedule push notifications in the Appcelerator Dashboard.    </p>
     <p>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_SendingandSchedulingPushNotifications-OverviewofSendingPushNotifications">Overview of Sending Push Notifications</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_SendingandSchedulingPushNotifications-Sendingpushnotifications">Sending push notifications</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_SendingandSchedulingPushNotifications-Sendingpushnotifications">Sending push notifications</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_SendingandSchedulingPushNotifications-AboutNotificationPayloads">About Notification Payloads</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_SendingandSchedulingPushNotifications-CustomJSONpayloads">Custom JSON payloads</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_SendingandSchedulingPushNotifications-AboutJSONPayloadsDeliveredtoDevices">About JSON Payloads Delivered to Devices</a>    </p>
@@ -34,19 +33,7 @@
 </li><li class=" ">    <p><a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_SendingandSchedulingPushNotifications-androidAndroid-specificpayloadfields">Android-specific payload fields</a>    </p>
 </li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_SendingandSchedulingPushNotifications-Troubleshootingcommonerrors">Troubleshooting common errors</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_safe-id-U2VuZGluZ2FuZFNjaGVkdWxpbmdQdXNoTm90aWZpY2F0aW9ucy0nU3Vic2NyaXB0aW9ubm90Zm91bmQnZXJyb3I">&apos;Subscription not found&apos; error</a>    </p>
-</li></ul></li></ul>    <div class="section section-2 " id="src-43298780_SendingandSchedulingPushNotifications-OverviewofSendingPushNotifications">
-        <h2 class="heading "><span>Overview of Sending Push Notifications</span></h2>
-    <p>    <span id="src-43298780_SendingandSchedulingPushNotifications-overview"><a class="confluence-anchor-link" name="src-43298780_SendingandSchedulingPushNotifications-overview"></a></span>
-    </p>
-    <p>The Dashboard lets you send push notifications to your Android and iOS application users. Mobile Backend Services act as the <i class=" ">push provider</i> on behalf of your application; that is, it communicates with the Google Cloud Messaging (GCM) or the Firebase Cloud Messaging (FCM) services for Android or the Apple Push Notification Service (APNS). <a class="external-link external-link" href="http://firebase.google.com/docs/cloud-messaging/">Firebase Cloud Messaging</a> (FCM) is the new version of GCM.    </p>
-    <p>Before you can send a push notification from the Dashboard, the following must be done first:    </p>
-<ul class=" "><li class=" ">    <p>In Dashboard, <a class="document-link " href="Configuring_push_services.html">configure Mobile Backend Services</a> to communicate with either FCM or GCM for Android service or APNS.    </p>
-</li><li class=" ">    <p>Your application needs to do the following:    </p>
-<ul class=" "><li class=" ">    <p><a class="document-link " href="Subscribing_to_push_notifications.html">Obtain a device token</a> from APNS or from FCM or GCM, respectively.    </p>
-</li><li class=" ">    <p>Subscribe the user to at least one push notification channel. Channels provide a publish-subscribe model for push notifications. There are two ways an application can subscribe a user to receive push notifications: <a class="document-link " href="Subscribing_to_push_notifications.html">session-based subscriptions</a> and <a class="document-link " href="Subscribing_to_push_notifications.html">token-based subscriptions</a>.    </p>
-</li></ul></li></ul>    <p>How your application subscribes its users (session- or token-base subscriptions) determines to a degree your options for delivering notifications. For example, if you need to send notifications to specific API Builder users, use session-based subscriptions. But for an application like a mobile banking app, you would want to notify individual account holders. If you don&apos;t need to target specific users, token-based subscriptions are a good approach.    </p>
-    </div>
-    <div class="section section-2 " id="src-43298780_SendingandSchedulingPushNotifications-Sendingpushnotifications">
+</li></ul></li></ul>    <div class="section section-2 " id="src-43298780_SendingandSchedulingPushNotifications-Sendingpushnotifications">
         <h2 class="heading "><span>Sending push notifications</span></h2>
     <p>To send a push notification, you must provide the Dashboard the following information:    </p>
 <ul class=" "><li class=" ">    <p><strong class=" ">Notification recipients and channel &#x2013; </strong>If your application users were subscribed using <i class=" ">session-based subscriptions</i>, you can send a notification to specific API Builder users subscribed to a particular channel. For token-based subscriptions, you can send notifications to all users subscribed to a particular channel, or all users regardless of their channel subscriptions.    </p>

@@ -43,7 +43,7 @@
     <p>API Builder uses the configuration files in the project&apos;s <tt class=" ">conf</tt> directory to initialize the application and its connectors. Each JavaScript file in the directory should expose an object of key-value pairs. You may add any arbitrary key-value pair beside the one described below. The values will be passed to any method that is passed the API Builder configuration object.    </p>
     <p>Note: API key values and session object are auto-generated when you create a new project.    </p>
     <p>For environment-specific configuration files, add either <tt class=" ">.development</tt> or <tt class=" ">.production</tt> to the end of the filename. For example, <tt class=" ">foo.development.js</tt> will be used for the development environment, while <tt class=" ">foo.production.js</tt> will be used for the production environment.    </p>
-    <p>If multiple files set the same keys, the value from the last file loaded will be used unless it is an environment-specific file. Files are loaded based on the order returned from the OS&apos;s <tt class=" ">readdir()</tt> method. For example, if <tt class=" ">Foo.js</tt> and <tt class=" ">foo.development.js</tt> set the same key, the value in <tt class=" ">Foo.js</tt> is used since it is not environment specific. However, if <tt class=" ">Foo.development.js</tt> and <tt class=" ">foo.development.js</tt> set the same key, the value from <tt class=" ">foo.development.js</tt> is used since it is loaded last.    </p>
+    <p>If multiple files set the same keys, the value from the last file loaded will be used unless it is an environment-specific file. Files are loaded based on the order returned from the operating system&apos;s <tt class=" ">readdir()</tt> method. For example, if <tt class=" ">Foo.js</tt> and <tt class=" ">foo.development.js</tt> set the same key, the value in <tt class=" ">Foo.js</tt> is used since it is not environment specific. However, if <tt class=" ">Foo.development.js</tt> and <tt class=" ">foo.development.js</tt> set the same key, the value from <tt class=" ">foo.development.js</tt> is used since it is loaded last.    </p>
     <p>You can override the configuration file settings with an environment variable. For the setting, you want to override, prefix the variable with <tt class=" ">ARROW_</tt>. For example, if you want to override the <tt class=" ">apikey</tt> setting, set the <tt class=" ">ARROW_APIKEY</tt> environment variable.    </p>
     <div class="section section-3 " id="src-49153261_ConsoleConfiguration-Example">
         <h3 class="heading "><span>Example</span></h3>
@@ -113,13 +113,13 @@
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>allowedHosts    </p>
+        <p><tt class=" ">allowedHosts</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Array&lt;String&gt;    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>-    </p>
+        <p><tt class=" ">-</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>When the application is in production, restrict access to the Admin Console to the specified hosts    </p>
@@ -127,13 +127,13 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>disableAPIDoc    </p>
+        <p><tt class=" ">disableAPIDoc</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Boolean    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>false    </p>
+        <p><tt class=" ">false</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Set to <tt class=" ">true</tt> to not display the generated API Docs. Changing the setting only works in production. Swagger is always available in dev mode.    </p>
@@ -141,13 +141,13 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>enabled    </p>
+        <p><tt class=" ">enabled</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Boolean    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>true    </p>
+        <p><tt class=" ">true</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Set to <tt class=" ">true</tt> to enable the Admin Console.    </p>
@@ -155,7 +155,7 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p class="p1">validEmails    </p>
+        <p class="p1"><tt class=" ">validEmails</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Array&lt;String&gt;    </p>
@@ -169,7 +169,7 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p class="p1">validOrgs    </p>
+        <p class="p1"><tt class=" ">validOrgs</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Array&lt;Number&gt;    </p>
@@ -227,13 +227,13 @@
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>limit    </p>
+        <p><tt class=" ">limit</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Number/String    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>&apos;1mb&apos;    </p>
+        <p><tt class=" ">1mb</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Sets the maximum request body size in bytes for the body parser middleware.    </p>
@@ -269,7 +269,7 @@
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p class="p1">Access-Control-Allow-Origin    </p>
+        <p class="p1"><tt class=" ">Access-Control-Allow-Origin</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>String    </p>
@@ -280,7 +280,7 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>safeHeaders    </p>
+        <p><tt class=" ">safeHeaders</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Array&lt;String&gt;    </p>
@@ -321,13 +321,13 @@
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>logdir    </p>
+        <p><tt class=" ">logdir</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>String    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>./logs    </p>
+        <p><tt class=" ">./logs</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Location of the transaction logs if enabled    </p>
@@ -335,13 +335,13 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p class="p1">transactionLogEnabled    </p>
+        <p class="p1"><tt class=" ">transactionLogEnabled</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Boolean    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>true    </p>
+        <p><tt class=" ">true</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Set to <tt class=" ">true</tt> to enable transaction logs    </p>
@@ -379,13 +379,13 @@
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p class="p1">port    </p>
+        <p class="p1"><tt class=" ">port</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Number    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>8443    </p>
+        <p><tt class=" ">8443</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>SSL port number    </p>
