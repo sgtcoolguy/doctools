@@ -18,61 +18,167 @@
 
         <div id="src-43299747" class="content">
                         <h1>API Builder Release Notes</h1>
-    <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-APIBuilderTools3.1.0-22February2018">
-        <h2 class="heading "><span>API Builder Tools 3.1.0 - 22 February 2018</span></h2>
-    <p>API Builder Tools 3.1.0 is a minor release that includes new features, improvements, and bug fixes.    </p>
-    <p>As of this release, API Builder Tools 3.0.x will not be supported six months from 3.1.0&apos;s release date. See <a class="document-link " href="Axway_Appcelerator_Deprecation_Policy.html">Axway Appcelerator Deprecation Policy</a> and <a class="document-link " href="Axway_Appcelerator_Product_Lifecycle.html#src-50725170_AxwayAppceleratorProductLifecycle-NominalLifetimes">Nominal Lifetimes</a> documents for details.    </p>
-    <div class="section section-3 " id="src-43299747_APIBuilderReleaseNotes-Newfeatures">
-        <h3 class="heading "><span>New features</span></h3>
+    <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-APIBuilderTools3.2.5-5December2018">
+        <h2 class="heading "><span>API Builder Tools 3.2.5 - 5 December 2018</span></h2>
+    <p>API Builder Tools 3.2.5 is a minor release that includes a security fix, new features, improvements, and bug fixes.    </p>
+    <p>As of this release, API Builder Tools 3.1.x will not be supported six months (2019-05-05) from 3.2.5&apos;s release date. See <a class="document-link " href="Axway_Appcelerator_Deprecation_Policy.html">Axway Appcelerator Deprecation Policy</a> and <a class="document-link " href="Axway_Appcelerator_Product_Lifecycle.html#src-50725170_AxwayAppceleratorProductLifecycle-NominalLifetimes">Nominal Lifetimes</a> documents for details.    </p>
+    </div>
+    <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-Fixedsecurityissue">
+        <h2 class="heading "><span>Fixed security issue</span></h2>
+<ul class=" "><li class=" ">    <p>Previously, an application built with API Builder could allow a remote attacker to bypass authentication to an API endpoint. The issue was discovered by Axway and we have no indications that the vulnerability has been exploited or publicly disclosed. Now, the authentication bypass vulnerability has been resolved in API Builder 3.x.    </p>
+<ul class=" "><li class=" ">    <p>    <span style="color: #333333;">
+<strong class=" ">Summary</strong>: An application built with API Builder could allow a remote attacker to bypass authentication to an API endpoint. The issue was discovered by Axway and we have no indications that the vulnerability has been exploited or publicly disclosed.<br>    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+<strong class=" ">Vulnerability details</strong>: An application built with API Builder could allow a remote attacker to bypass authentication to an API endpoint and obtain sensitive information, affect the integrity and availability when using the following authentication mechanisms:    </span>
+    </p>
+<ul class=" "><li class=" ">    <p>    <span style="color: #333333;">
+HTTP Basic Authentication    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+API Key based Authentication    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+LDAP Authentication    </span>
+    </p>
+</li></ul></li><li class=" ">    <p>    <span style="color: #333333;">
+<strong class=" ">CVSS base score</strong>: 10    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+<strong class=" ">CVSS vector</strong>: (CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N)     </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+<strong class=" ">Applying remediation/fixes</strong>    </span>
+    <span style="color: #333333;">
+: If your published applications are using any of the following authentication mechanisms, it is recommended that you download the patch versions and republish your applications:    </span>
+    </p>
+<ul class=" "><li class=" ">    <p>    <span style="color: #333333;">
+HTTP Basic Authentication<br>    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+API Key based Authentication<br>    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+LDAP Authentication    </span>
+    </p>
+</li></ul>    <p>    <span style="color: #333333;">
+For API Builder Applications developed and published with <strong class=" ">API Builder 3.x</strong>, download CLI Version 7.0.7 or above and republish the application with the following steps:    </span>
+    </p>
+<ol class=" "><li class=" ">    <p>    <span style="color: #333333;">
+<strong class=" "><strong class=" ">appc</strong> <strong class=" ">use</strong> <strong class=" ">latest</strong></strong>    </span>
+    </p>
+</li><li class=" ">    <p><strong class=" ">cd &lt;your project folder&gt;</strong>    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+<strong class=" ">appc</strong> <strong class=" ">publish -f</strong>    </span>
+    </p>
+</li></ol>    <p>    <span style="color: #333333;">
+If you have manually added the Arrow dependency to your API Builder application where the Arrow or API Builder version is a custom build, then ensure that this dependency is updated to the latest version (Arrow/API Builder 3.2.5 or above).    </span>
+    </p>
+</li><li class=" ">    <p><strong class=" ">Further information</strong>: For additional questions, contact <a class="external-link external-link" href="mailto:support@axway.com">support@axway.com</a>.    </p>
+</li></ul></li></ul>    </div>
+    <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-Newfeatures">
+        <h2 class="heading "><span>New features</span></h2>
 <ul class=" "><li class=" ">    <p>Added the ability to validate generated flows using the Axway Flow SDK    </p>
 </li><li class=" ">    <p>Implemented selector auto-complete when creating and editing flows in the API Builder UI    </p>
 </li></ul>    </div>
-    <div class="section section-3 " id="src-43299747_APIBuilderReleaseNotes-Improvements">
-        <h3 class="heading "><span>Improvements</span></h3>
-<ul class=" "><li class=" ">    <p>    <span style="color: #000000;">
-Previously, the initial project created by the <tt class=" ">appc new</tt> command contained unnecessary dependencies. Now, the initial project created by the <tt class=" ">appc new</tt> command has been updated to remove unnecessary dependencies and to provide extra examples on how to test endpoints and models. Additionally, the <tt class=" ">grunt</tt> command is no longer used for the build. The <tt class=" ">npm test</tt> command is used instead. Also, the <tt class=" ">example.md</tt> web route has been removed.    </span>
-    <span style="color: #000000;">
-     </span>
-    </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
-Previously, when editing flows, it was not possible to see previously used and available selectors. Now, when editing a selector any previously used selector, or any available selector is displayed in a context-assisted drop-down menu that shows the selector or selectors that match the input text.    </span>
-    <span style="color: #000000;">
-     </span>
-    </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
-Previously, the <tt class=" ">axway-flow-sdk</tt> would generate projects that required transpiling with babel before they could be used. Now, the generated projects do not require transpiling; so the babel dependency has been removed, but the generated projects require a Node.js version equal to or greater than 8.9.x instead.    </span>
-    <span style="color: #000000;">
-     </span>
-    </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
-Previously, the API SDK generator was used to generate software development kits based on integrated SDK templates. Now, the API Builder SDK generator has been deprecated and the API Builder application exposes its APIs definitions using a standard Swagger format. These API definitions can be consumed by third-party SDK generators to create clients.    </span>
-    <span style="color: #000000;">
-     </span>
-    </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
-Previously, the API SDK generator was used to generate software development kits based on integrated SDK templates. Now, the API Builder SDK generator has been deprecated and the API Builder application exposes its APIs definitions using a standard Swagger format. These API definitions can be consumed by third-party SDK generators to create clients.    </span>
-    </p>
+    <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-Improvements">
+        <h2 class="heading "><span>Improvements</span></h2>
+<ul class=" "><li class=" ">    <p>Previously, the initial project created by the <tt class=" ">appc new</tt> command contained unnecessary dependencies. Now, the initial project created by the <tt class=" ">appc new</tt> command has been updated to remove unnecessary dependencies and to provide extra examples on how to test endpoints and models. Additionally, the <tt class=" ">grunt</tt> command is no longer used for the build. The <tt class=" ">npm test</tt> command is used instead. Also, the <tt class=" ">example.md</tt> web route has been removed.    </p>
+</li><li class=" ">    <p>Previously, when editing flows, it was not possible to see previously used and available selectors. Now, when editing a selector any previously used selector, or any available selector will display a context-assist drop-down menu showing selector or selectors that match the input text.    </p>
+</li><li class=" ">    <p>Previously, the <tt class=" ">axway-flow-sdk</tt> would generate projects that required transpiling with babel before they could be used. Now, the generated projects do not require transpiling; so the babel dependency has been removed, but the generated projects require a Node.js version equal to or greater than 8.9.x instead.    </p>
+</li><li class=" ">    <p>Previously, the API SDK generator was used to generate software development kits based on integrated SDK templates. Now, the API Builder SDK generator has been deprecated and the API Builder application exposes its APIs definitions using a standard Swagger format. These API definitions can be consumed by third-party SDK generators to create clients.    </p>
 </li></ul>    </div>
-    <div class="section section-3 " id="src-43299747_APIBuilderReleaseNotes-Fixedissues">
-        <h3 class="heading "><span>Fixed issues</span></h3>
-<ul class=" "><li class=" ">    <p>    <span style="color: #000000;">
-Previously, attempting to develop flow-nodes locally in the <tt class=" ">./nodes</tt> directory would cause API Builder to also attempt to read the <tt class=" ">node_modules</tt> folder and cause the application to crash. Now, locally developed flow-node dependencies in the <tt class=" ">./nodes/node_modules</tt> folder will be ignored and any flow-node dependency that is required must be added and resolved via the API Builder application&apos;s <tt class=" ">package.json</tt> instead.    </span>
-    <span style="color: #000000;">
-     </span>
-    </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
-Previously, API Builder would not handle JSON schema references on startup and could generate invalid Swagger definitions that were missing the global schema references. Now, API Builder will load and handle the JSON schema references as expected.    </span>
-    <span style="color: #000000;">
-     </span>
-    </p>
-</li><li class=" ">    <p>    <span style="color: #000000;">
-Previously, the <tt class=" ">appc generate</tt> command would generate excessive logging. Now, the command has been reduced to avoid excessive logging. If required, the logging level can be increased with the <tt class=" ">appc generate -l</tt> debug option.    </span>
-    </p>
+    <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-Fixedissues">
+        <h2 class="heading "><span>Fixed issues</span></h2>
+<ul class=" "><li class=" ">    <p>Previously, attempting to develop flow-nodes locally in the ./nodes directory would cause API Builder to also attempt to read the <tt class=" ">node_modules</tt> folder and cause the application to crash. Now, locally developed flow-node dependencies in the <tt class=" ">./nodes/node_modules</tt> folder will be ignored and any flow-node dependency that is required must be added and resolved via the API Builder application&apos;s <tt class=" ">package.json</tt> instead.    </p>
+</li><li class=" ">    <p>Previously, API Builder would not handle JSON schema references on startup and could generate invalid Swagger definitions that were missing the global schema references. Now, API Builder will load and handle the JSON schema references as expected.    </p>
+</li><li class=" ">    <p>Previously, the <strong class=" ">appc generate</strong> command would generate excessive logging. Now, the command has been reduced to avoid excessive logging. If required, the logging level can be increased with the <tt class=" ">appc generate -l debug</tt> option.    </p>
+</li><li class=" ">    <p>Previously, <tt class=" ">jsonselect@0.4.0</tt> was used indirectly by <tt class=" ">@axway/api-builder-runtime</tt> and had three CVEs against it: <a class="external-link external-link" href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2011-4969">    <span style="color: #333333;">
+CVE-2011-4969    </span>
+</a> - XSS with location.hash, <a class="external-link external-link" href="https://nvd.nist.gov/vuln/detail/CVE-2012-6708">    <span style="color: #333333;">
+CVE-2012-6708    </span>
+</a> - Selector interpreted as HTML, and <a class="external-link external-link" href="https://nvd.nist.gov/vuln/detail/CVE-2015-9251">    <span style="color: #333333;">
+CVE-2015-9251    </span>
+</a> - 3rd party CORS request may execute. Now, this module is no longer a runtime dependency.    </p>
+</li><li class=" ">    <p>Previously, the <strong class=" ">appc publish</strong> command did not unpublish the oldest version of an application if more than 10 versions of the application were published. Now, when the <strong class=" ">appc publish</strong> command is executed and more than 10 versions of the application have been published, the oldest version of the application is unpublished.    </p>
 </li></ul>    </div>
+    <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-Knownissues">
+        <h2 class="heading "><span>Known issues</span></h2>
+<ul class=" "><li class=" ">    <p>The legacy Distinct() APIs have inconsistent or non-compliant return types.    </p>
+</li><li class=" ">    <p>Clicking on joined models in the Source column on the <strong class=" ">Models</strong> tab of the API Builder Console does not work. The details of the joined model should be displayed.    </p>
+</li><li class=" ">    <p>If a Swagger definition uses the <tt class=" ">allOf</tt> parameter, the body generated in the method test window is incorrect.    </p>
+</li><li class=" ">    <p>Filtering the API Builder Console administrator access using IPv6 addresses may cause ENOTFOUND errors.    </p>
+</li><li class=" ">    <p>When attempting to create and save a flow for an imported Swagger endpoint that contains a path or paths defined by references such as <tt class=" ">GET /find</tt>, a Page Not Found (404) error will be displayed in the API Builder Console and the flow cannot be saved. For example, a Swagger document with a path reference may look similar to this:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="string">&quot;swagger&quot;</code><code class="plain">: </code><code class="string">&quot;2.0&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	</code><code class="string">&quot;paths&quot;</code><code class="plain"> {</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;x-path&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">			</code><code class="string">&quot;get&quot;</code><code class="plain">: {}</code></div>
+<div class="line"><code class="plain">		},</code></div>
+<div class="line"><code class="plain">		</code><code class="string">&quot;/find&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">			</code><code class="string">&quot;$ref&quot;</code><code class="plain">: </code><code class="string">&quot;#/paths/x-path&quot;</code></div>
+<div class="line"><code class="plain">		}</code></div>
+<div class="line"><code class="plain">	}</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
     </div>
+    <p>    <span style="color: #333333;">
+Currently, Swagger documents with path references can be imported and the imported endpoint will be correctly displayed in API Lists, but a flow cannot be created and saved successfully. When the flow editor <strong class=" ">Save</strong> button is clicked, a Page Not Found error is displayed. The error occurs because the API Builder Console cannot find the method as it is not in an expected location.    </span>
+    </p>
+</li><li class=" ">    <p>When rendering the flow editor, the API Builder Console may fail to render the Scalable Vector Graphics (SVG) icons correctly in the Firefox browser. The render failure may result in blank icons being displayed in the tool panel and in the flow diagram. This is due to a long-standing bug in Firefox that fails to scale SVG graphics correctly. To fix, edit the SVG icon and add height and width. For example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;svg ... height=</code><code class="string">&quot;80&quot;</code><code class="plain"> width=</code><code class="string">&quot;80&quot;</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p>The API Builder Console does not recognize a required consumes value for form parameters if it is appended and the endpoint load will fail. For example:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="string">&quot;consumes&quot;</code><code class="plain">: [ </code><code class="string">&quot;multipart/form-data; charset=utf-8&quot;</code><code class="plain"> ],</code></div>
+</div>
+    </div>
+    <p>    <span style="color: #333333;" class="issue-link">
+The appended character set (<tt class=" ">charset=utf-8</tt>) will cause the endpoint load to fail.    </span>
+    </p>
+</li><li class=" ">    <p>When deleting endpoints which contain references within paths, a Page Not Found (404) error may be displayed in the API Builder Console. For example, a Swagger document with references within paths may look similar to this:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">{ </code><code class="string">&quot;swagger&quot;</code><code class="plain">: </code><code class="string">&quot;2.0&quot;</code><code class="plain">, </code><code class="string">&quot;paths&quot;</code><code class="plain"> { </code><code class="string">&quot;x-path&quot;</code><code class="plain">: { </code><code class="string">&quot;get&quot;</code><code class="plain">: {} }, </code><code class="string">&quot;/find&quot;</code><code class="plain">: { </code><code class="string">&quot;$ref&quot;</code><code class="plain">: </code><code class="string">&quot;#/paths/x-path&quot;</code><code class="plain"> }, </code><code class="string">&quot;/search&quot;</code><code class="plain">: { </code><code class="string">&quot;$ref&quot;</code><code class="plain">: </code><code class="string">&quot;#/paths/x-path&quot;</code><code class="plain"> } } }</code></div>
+</div>
+    </div>
+    <p>    <span style="color: #333333;">
+The API Builder Console will fail to find GET /find since it is inside a <tt class=" ">$ref</tt>. If the API Builder Console has modified the referenced <tt class=" ">$ref</tt>, it could cause unexpected behavior for other paths referencing #/paths/x-path such as /search - deleting GET /find could unexpectedly delete GET /search too.    </span>
+    </p>
+</li><li class=" ">    <p>Endpoints named with special characters cannot be viewed in the API Builder Console. For example, if you attempt to view the <tt class=" ">[test].json</tt> endpoint, you will receive a Page Not Found error message.    </p>
+</li><li class=" ">    <p>Editing large object parameters on the API Orchestration page in the API Builder Console may cause multiple, confusing node configuration panel scrollbars to appear.    </p>
+</li><li class=" ">    <p>The inline object editor <strong class=" ">Expand</strong> button obscures text.    </p>
+</li><li class=" ">    <p>When editing flows in the console log in the terminal, multiple lines with an unknown format are ignored and the following message is received: unknown format &quot;multiline&quot; ignored in the schema at path &quot;#&quot;    </p>
+</li><li class=" ">    <p>In the flow editor, if a flow-node method description is too long, it may not be visible in its entirety.    </p>
+</li><li class=" ">    <p>Editing large object parameters on the <i class=" ">API Orchestration</i> page in the API Builder Console may cause multiple, confusing flow-node configuration panel scrollbars to appear.    </p>
+</li></ul>    </div>
+    <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-Securityvulnerability">
+        <h2 class="heading "><span>Security vulnerability</span></h2>
+<ul class=" "><li class=" ">    <p class="issue-link">bootstrap 20184    </p>
+<ul class=" "><li class=" ">    <p>    <span style="color: #333333;">
+<strong class=" ">Vulnerability</strong>: API Builder UI uses react-bootstrap which as a dependency on bootstrap@3.3.7, and it is 3.3.7 that contains the vulnerability. At the time of writing this ticket, bootstrap did not publish a 3.x version after 3.3.7, so no fix was ever released. The bootstrap library is now at 4.x. However, the react-bootstrap library that API Builder uses is actively working on a version compatible with bootstrap v4.x. The following issue is logged against bootstrap@3.3.7:    </span>
+    </p>
+<ul class=" "><li class=" ">    <p>    <span style="color: #333333;">
+<a class="external-link external-link" href="https://github.com/twbs/bootstrap/issues/20184">    <span style="color: #333333;">
+20184    </span>
+</a> - XSS in data-target attribute    </span>
+    </p>
+</li></ul></li><li class=" ">    <p>    <span style="color: #333333;">
+<strong class=" ">Analysis</strong>: The vulnerability and risk are documented <a class="external-link external-link" href="https://github.com/twbs/bootstrap/issues/20184">    <span style="color: #333333;">
+20184    </span>
+</a>. The API Builder UI only runs on the developer machine and is locked to localhost by default. The API Builder UI <strong class=" ">will not be installed in production</strong>. Furthermore, the UI bundled with API Builder does not use data-target attributes. The risk to API Builder is low.    </span>
+    </p>
+</li></ul></li></ul>    </div>
     <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-RecentReleases">
         <h2 class="heading "><span>Recent Releases</span></h2>
-<ul class="childpages-macro "><li class=" ">    <p><a class="document-link " href="API_Builder_Tools_3.1.0_Release_Note.html">API Builder Tools 3.1.0 Release Note</a>    </p>
+<ul class="childpages-macro "><li class=" ">    <p><a class="document-link " href="API_Builder_Tools_3.2.5_Release_Note.html">API Builder Tools 3.2.5 Release Note</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="API_Builder_Tools_3.1.0_Release_Note.html">API Builder Tools 3.1.0 Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Tools_3.0.0_Release_Note.html">API Builder Tools 3.0.0 Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="API_Builder_Tools_2.x_Release_Notes.html">API Builder Tools 2.x Release Notes</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Arrow_Builder_0.x_-_5.x_Release_Notes.html">Arrow Builder 0.x - 5.x Release Notes</a>    </p>
