@@ -42,7 +42,7 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Applicationlimitations">Application limitations</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Diskspace">Disk space</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-ServercontainersServercontainers">Server containers</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-Serverports">Server ports</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-ServerPorts">Server Ports</a>    </p>
 </li></ul></li></ul>    <div class="section section-2 " id="src-49153285_APIBuilderProject-Overview">
         <h2 class="heading "><span>Overview</span></h2>
     <p>An API Builder application is a standard Node.js application that runs in the API Runtime Services environment. This guide covers how to manage your project.    </p>
@@ -611,7 +611,7 @@ The following example allows the application to be accessed from     </span>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Createchildprocesses">
         <h2 class="heading "><span>Create child processes</span></h2>
     <p>A single instance of Node.js runs in a single thread. To take advantage of multi-core systems, you can launch a cluster of Node.js processes to handle the load. Applications can use the core Node <a class="external-link external-link" href="http://nodejs.org/api/cluster.html" target="_blank">Cluster</a> module to easily create child processes that all share server ports.    </p>
-    <p>To use this feature you application uses <a class="external-link external-link" href="http://nodejs.org/api/cluster.html#cluster_cluster_setupmaster_settings" target="_blank">cluster.setupMaster()</a> to set a path to a custom file to use for each child process. A cluster should listen on port 9000 or greater to avoid port conflicts. If the port your application is trying to listen on is in use, an <tt class=" ">EADDRINUSE</tt> error will result. Your application must also have privileges to listen on the specified port, otherwise, an <tt class=" ">EACCES</tt> error will result.    </p>
+    <p>To use this feature, your application uses <a class="external-link external-link" href="http://nodejs.org/api/cluster.html#cluster_cluster_setupmaster_settings" target="_blank">cluster.setupMaster()</a> to set a path to a custom file to use for each child process. A cluster should listen on port 9000 or greater to avoid port conflicts. If the port your application is trying to listen on is in use, an <tt class=" ">EADDRINUSE</tt> error will result. Your application must also have privileges to listen on the specified port, otherwise, an <tt class=" ">EACCES</tt> error will result.    </p>
     <p><strong class=" ">Example</strong>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app.js</div>
@@ -795,8 +795,8 @@ The following example allows the application to be accessed from     </span>
 </div>
     </div>
     </div>
-    <div class="section section-3 " id="src-49153285_APIBuilderProject-Serverports">
-        <h3 class="heading "><span>Server ports</span></h3>
+    <div class="section section-3 " id="src-49153285_APIBuilderProject-ServerPorts">
+        <h3 class="heading "><span>Server Ports</span></h3>
     <p>Currently, API Runtime Services only supports applications opening one server listening port. There cannot be more than one TCP/HTTP server started in one application.    <span style="color: #222222;">
      </span>
     </p>
