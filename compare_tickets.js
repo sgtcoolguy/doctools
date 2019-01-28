@@ -49,7 +49,7 @@ async function run() { // execute the functions in proper order
   }
 
   if (!arguments.delay) { // if the delay flag isn't set, assume 10 seconds
-    arguments.delay = 10000; // default the delay of the server response time to six seconds
+    arguments.delay = 10000; // default the delay of the server response time to ten seconds
     console.log('Server response delay not set. Assuming ' + arguments.delay + ' millisecond delay.');
   }
 
@@ -85,7 +85,7 @@ async function run() { // execute the functions in proper order
       }, confluenceSelector)
       .end() // close Electron browser
       .then(obj => { // render html
-        $ = cheerio.load(obj.html.toString()); // read file in
+        $ = cheerio.load(obj.html.toString()); // read object in
 
         $('ul li>a').each(function() { // find all links
           if ($(this).html().indexOf('<s>') > -1) { // skip strike through links
