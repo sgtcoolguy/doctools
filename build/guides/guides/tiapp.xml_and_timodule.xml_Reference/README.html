@@ -363,7 +363,11 @@
     </div>
     <div class="section section-3 " id="src-29004921_tiapp.xmlandtimodule.xmlReference-intent-filter-new-task">
         <h3 class="heading "><span>intent-filter-new-task</span></h3>
-    <p>Since launch modes cannot be used with Titanium Android, to offer similar behavior to <tt class=" ">android:launchMode=&quot;singleTask&quot;</tt> when using intent filters, you can set the <i class=" ">intent-filter-new-task</i> property in your <tt class=" ">tiapp.xml</tt>:    </p>
+    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>As of Titanium 8.0.0, <tt class=" ">tiapp.xml</tt> property <tt class=" ">intent-filter-new-task</tt> is no longer supported. If a Titanium app is currently in the background, then an intent will now resume it and fire a &quot;newintent&quot; event. All apps will now simulate &quot;singleTask&quot;-like behavior automatically    </p>
+    </div>
+        <p>Since launch modes cannot be used with Titanium Android, to offer similar behavior to <tt class=" ">android:launchMode=&quot;singleTask&quot;</tt> when using intent filters, you can set the <i class=" ">intent-filter-new-task</i> property in your <tt class=" ">tiapp.xml</tt>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">tiapp.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="tiapp.xml">
@@ -475,7 +479,11 @@
     </div>
     <div class="section section-3 " id="src-29004921_tiapp.xmlandtimodule.xmlReference-Android-specificapplicationproperties">
         <h3 class="heading "><span>Android-specific application properties</span></h3>
-    <p>Android also supports a number of application properties for various internal settings. (See <a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-app_properties">Application properties</a> above on how to define an application property.)    </p>
+    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>As of Titanium 8.0.0, this property is no longer supported.    </p>
+    </div>
+        <p>Android also supports a number of application properties for various internal settings. (See <a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-app_properties">Application properties</a> above on how to define an application property.)    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -671,7 +679,11 @@
     </div>
     <div class="section section-3 " id="src-29004921_tiapp.xmlandtimodule.xmlReference-PropertiestoworkaroundAndroidbugs2373and5277">
         <h3 class="heading "><span>Properties to work around Android bugs 2373 and 5277</span></h3>
-    <p>See <a class="external-link external-link" href="http://jira.appcelerator.org/browse/TIMOB-4941" target="_blank">TIMOB-4941</a>, <a class="external-link external-link" href="http://jira.appcelerator.org/browse/TIMOB-1559" target="_blank">TIMOB-1559</a> and <a class="external-link external-link" href="http://jira.appcelerator.org/browse/TIMOB-9285" target="_blank">TIMOB-9285</a> for information about the Titanium workaround to Google issues <a class="external-link external-link" href="http://code.google.com/p/android/issues/detail?id=2373" target="_blank">2373</a> and <a class="external-link external-link" href="http://code.google.com/p/android/issues/detail?id=5277" target="_blank">5277</a>. TIMOB-9285 in particular has a useful <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-9285?focusedCommentId=210304&amp;page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-210304" target="_blank">explanation</a> of the issue and of <tt class=" ">ti.android.bug2373.finishfalseroot</tt>, the newest of the properties listed below.    </p>
+    <p>    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>As of Titanium 8.0.0, this has been deprecated. The new behavior is a background app that will be resumed and the &quot;newintent&quot; fired when a new data intent has been received. Also of note, the restart dialog box has been removed.    </p>
+    </div>
+        <p>See <a class="external-link external-link" href="http://jira.appcelerator.org/browse/TIMOB-4941" target="_blank">TIMOB-4941</a>, <a class="external-link external-link" href="http://jira.appcelerator.org/browse/TIMOB-1559" target="_blank">TIMOB-1559</a> and <a class="external-link external-link" href="http://jira.appcelerator.org/browse/TIMOB-9285" target="_blank">TIMOB-9285</a> for information about the Titanium workaround to Google issues <a class="external-link external-link" href="http://code.google.com/p/android/issues/detail?id=2373" target="_blank">2373</a> and <a class="external-link external-link" href="http://code.google.com/p/android/issues/detail?id=5277" target="_blank">5277</a>. TIMOB-9285 in particular has a useful <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-9285?focusedCommentId=210304&amp;page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-210304" target="_blank">explanation</a> of the issue and of <tt class=" ">ti.android.bug2373.finishfalseroot</tt>, the newest of the properties listed below.    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
