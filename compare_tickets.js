@@ -16,7 +16,7 @@ const confluenceSelector = '#main-content'; // selector of where the list of Con
 
 program // set up flags
   .version('0.0.1')
-  .usage('-u <username> -p <password> -j <Jira url> -c <Confluence url> -d <milliseconds>')
+  .usage('-u <username> -p <password> -j <"Jira url"> -c <"Confluence url"> -d <milliseconds>')
   .option('-u, --user', '*required* Username id')
   .option('-p, --password', '*required* User\'s password')
   .option('-j, --jira', '*required* URL for Jira release board')
