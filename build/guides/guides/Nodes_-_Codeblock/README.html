@@ -74,31 +74,6 @@
 </tbody>        </table>
             </div>
     <p>The typical usage of code blocks in a flow involves setting parameters, mapping responses, and setting required configs as noted in the example below.    </p>
-    <div class="section section-3 " id="src-49158419_Nodes-Codeblock-Configurationexample">
-        <h3 class="heading "><span>Configuration example</span></h3>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="string">&quot;block.0&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain"> </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;Codeblock&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain"> </code><code class="string">&quot;config&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">   </code><code class="string">&quot;method&quot;</code><code class="plain">: </code><code class="string">&quot;Greet&quot;</code></div>
-<div class="line"><code class="plain"> },</code></div>
-<div class="line"><code class="plain"> </code><code class="string">&quot;parameters&quot;</code><code class="plain">: [</code></div>
-<div class="line"><code class="plain">   {</code></div>
-<div class="line"><code class="plain">     </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;username&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">     </code><code class="string">&quot;value&quot;</code><code class="plain">: </code><code class="string">&quot;$.params.username&quot;</code></div>
-<div class="line"><code class="plain">   }</code></div>
-<div class="line"><code class="plain"> ],</code></div>
-<div class="line"><code class="plain"> </code><code class="string">&quot;response&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">   </code><code class="string">&quot;context&quot;</code><code class="plain">: {</code></div>
-<div class="line"><code class="plain">     </code><code class="string">&quot;$&quot;</code><code class="plain">: </code><code class="string">&quot;greeting&quot;</code></div>
-<div class="line"><code class="plain">   },</code></div>
-<div class="line"><code class="plain">   </code><code class="string">&quot;routes&quot;</code><code class="plain">: </code><code class="keyword">null</code></div>
-<div class="line"><code class="plain"> }</code></div>
-<div class="line"><code class="plain">}</code></div>
-</div>
-    </div>
-    </div>
     </div>
     <div class="section section-2 " id="src-49158419_Nodes-Codeblock-Metadata">
         <h2 class="heading "><span>Metadata</span></h2>
@@ -163,14 +138,43 @@
         </tr>
 </tbody>        </table>
             </div>
-    <div class="section section-3 " id="src-49158419_Nodes-Codeblock-Metadataexample">
-        <h3 class="heading "><span>Metadata example</span></h3>
+    <div class="section section-3 " id="src-49158419_Nodes-Codeblock-Configurationandmetadataexample">
+        <h3 class="heading "><span>Configuration and metadata example</span></h3>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">{</code></div>
-<div class="line"><code class="plain">  </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;Greet&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">  </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;Some codeblock to run with Greet flow&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">  </code><code class="string">&quot;path&quot;</code><code class="plain">: </code><code class="string">&quot;Greet.js&quot;</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;schemaVersion&quot;</code><code class="plain">: </code><code class="string">&quot;1&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;name&quot;</code><code class="plain">: </code><code class="string">&quot;Greet&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;Some codeblock to run with Greet flow&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;path&quot;</code><code class="plain">: </code><code class="string">&quot;Greet.js&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;parameter&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;object&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;properties&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;username&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;type&quot;</code><code class="plain">: </code><code class="string">&quot;string&quot;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">        },</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;required&quot;</code><code class="plain">: [</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;username&quot;</code></div>
+<div class="line"><code class="plain">        ],</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;additionalProperties&quot;</code><code class="plain">: </code><code class="keyword">false</code></div>
+<div class="line"><code class="plain">    },</code></div>
+<div class="line"><code class="plain">    </code><code class="string">&quot;outputs&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;next&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;The codeblock completed.&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;context&quot;</code><code class="plain">: </code><code class="string">&quot;$.greeting&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;schema&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;$ref&quot;</code><code class="plain">: </code><code class="string">&quot;schema:///schema/foo/greeting&quot;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">        },</code></div>
+<div class="line"><code class="plain">        </code><code class="string">&quot;error&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;description&quot;</code><code class="plain">: </code><code class="string">&quot;The codeblock failed to complete.&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;context&quot;</code><code class="plain">: </code><code class="string">&quot;$.error&quot;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            </code><code class="string">&quot;schema&quot;</code><code class="plain">: {</code></div>
+<div class="line"><code class="plain">                </code><code class="string">&quot;$ref&quot;</code><code class="plain">: </code><code class="string">&quot;schema:///schema/foo/error&quot;</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
@@ -191,7 +195,6 @@
     </div>
         <div class="section section-3 " id="src-49158419_Nodes-Codeblock-Functionalityexample">
         <h3 class="heading "><span>Functionality example</span></h3>
-    <p>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">function</code><code class="plain"> invoke(arrow, params, cb) {</code></div>

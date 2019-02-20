@@ -18,7 +18,7 @@
 
         <div id="src-41845759" class="content">
                         <h1>NavigationWindow</h1>
-    <p>Demonstrates how to navigate a hierarchy of content on iOS devices using the NavigationWindow object.    </p>
+    <p>Demonstrates how to navigate a hierarchy of content using the NavigationWindow object.    </p>
     <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <div class="title">Example App Source Location</div>
             <p>You can find this example app in the Alloy repository under <a class="external-link external-link" href="https://github.com/appcelerator/alloy/tree/master/samples/apps/ui/navwindow" target="_blank">samples/apps/ui/navwindow</a>. Check the <a class="document-link " href="#!/guide/Alloy_Test_Apps">instructions</a> how to run these sample projects.    </p>
@@ -32,23 +32,26 @@ a new window in the navigation group, <a class="external-link external-link" hre
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/ios/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/ios/index.xml">
-<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">    &lt;NavigationWindow platform=</code><code class="string">&quot;ios&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Window id=</code><code class="string">&quot;main&quot;</code><code class="plain"> title=</code><code class="string">&quot;Main Window&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;space&quot;</code><code class="plain">&gt;Click the button below to </code><code class="string">&quot;push&quot;</code><code class="plain"> a </code><code class="keyword">new</code><code class="plain"> window onto the navigation stack&lt;/Label&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Button </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;space&quot;</code><code class="plain"> onClick=</code><code class="string">&quot;Alloy.Globals.openWindow&quot;</code><code class="plain">&gt;push&lt;/Button&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/Window&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/NavigationWindow&gt;</code></div>
-<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">NavigationWindow</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;main&quot;</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">&quot;Main Window&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;space&quot;</code><code class="plain">&gt;Click the button below to &quot;push&quot; a new window onto the navigation stack&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;space&quot;</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;Alloy.Globals.openWindow&quot;</code><code class="plain">&gt;push&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">NavigationWindow</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>When the &quot;Push&quot; button is clicked, it invokes the <tt class=" ">Alloy.Globals.openWindow()</tt> function. This function is defined in the application&apos;s alloy.js file, and calls the <tt class=" ">navWindow&apos;s</tt> <a class="external-link external-link" href="#!/api/Titanium.UI.iOS.NavigationWindow-method-openWindow">openWindow()</a> method, passing it a new window created from the app/views/win.xml view. It also initializes a global counter variable named <tt class=" ">ctr</tt> that&apos;s displayed by each window added to the navigation stack.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>As of Titanium 8.0.0, you don&apos;t need to specify the platform type (e.g. <tt class=" ">&lt;NavigationWindow platform=&quot;ios&quot;&gt;</tt>).    </p>
+    </div>
+        <p>When the &quot;Push&quot; button is clicked, it invokes the <tt class=" ">Alloy.Globals.openWindow()</tt> function. This function is defined in the application&apos;s alloy.js file, and calls the <tt class=" ">navWindow&apos;s</tt> <a class="external-link external-link" href="#!/api/Titanium.UI.iOS.NavigationWindow-method-openWindow">openWindow()</a> method, passing it a new window created from the <tt class=" ">app/views/win.xml</tt> view. It also initializes a global counter variable named <tt class=" ">ctr</tt> that&apos;s displayed by each window added to the navigation stack.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/alloy.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/alloy.js">
 <div class="line"><code class="plain">Alloy.Globals = {</code></div>
-<div class="line"><code class="plain">	ctr: </code><code class="value">0</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	openWindow: function(e) {</code></div>
+<div class="line"><code class="plain">	ctr: 0,</code></div>
+<div class="line"><code class="plain">	openWindow: </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="plain">		Alloy.Globals.ctr++;</code></div>
 <div class="line"><code class="plain">		Alloy.Globals.navwindow.openWindow(Alloy.createController(</code><code class="string">&apos;win&apos;</code><code class="plain">).getView());</code></div>
 <div class="line"><code class="plain">	}</code></div>
@@ -59,36 +62,31 @@ a new window in the navigation group, <a class="external-link external-link" hre
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/ios/win.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/ios/win.xml">
-<div class="line"><code class="plain">&lt;Alloy&gt;</code></div>
-<div class="line"><code class="plain">    &lt;Window layout=</code><code class="string">&quot;vertical&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;LeftNavButton&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Button onClick=</code><code class="string">&quot;closeWindow&quot;</code><code class="plain">&gt;pop&lt;/Button&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/LeftNavButton&gt;</code></div>
-<div class="line"><code class="plain">        &lt;RightNavButton&gt;</code></div>
-<div class="line"><code class="plain">            &lt;Button onClick=</code><code class="string">&quot;Alloy.Globals.openWindow&quot;</code><code class="plain">&gt;push&lt;/Button&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/RightNavButton&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Label </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;space&quot;</code><code class="plain">&gt;Click the left nav button above to pop </code><code class="keyword">this</code><code class="plain"> window off the navigation stack. Click the right one to push another window onto the stack.&lt;/Label&gt;</code></div>
-<div class="line"><code class="plain">        &lt;Label id=</code><code class="string">&quot;windowNumber&quot;</code><code class="plain"> </code><code class="keyword">class</code><code class="plain">=</code><code class="string">&quot;space&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/Window&gt;</code></div>
-<div class="line"><code class="plain">&lt;/Alloy&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain"> </code><code class="color1">layout</code><code class="plain">=</code><code class="string">&quot;vertical&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">LeftNavButton</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;closeWindow&quot;</code><code class="plain">&gt;pop&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">LeftNavButton</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">RightNavButton</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">Button</code><code class="plain"> </code><code class="color1">onClick</code><code class="plain">=</code><code class="string">&quot;Alloy.Globals.openWindow&quot;</code><code class="plain">&gt;push&lt;/</code><code class="keyword">Button</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">RightNavButton</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;space&quot;</code><code class="plain">&gt;Click the left nav button above to pop this window off the navigation stack. Click the right one to push another window onto the stack.&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;windowNumber&quot;</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">&quot;space&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     <p>The view-controller for each window pushed onto the navigation stack displays the value of the global <tt class=" ">ctr</tt> in a Label, as well as property in the window&apos;s title.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/controllers/ios/win.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/controllers/ios/win.js">
-<div class="line"><code class="plain">function closeWindow(e) {</code></div>
+<div class="line"><code class="keyword">function</code><code class="plain"> closeWindow(e) {</code></div>
 <div class="line"><code class="plain">    Alloy.Globals.ctr--;</code></div>
 <div class="line"><code class="plain">    Alloy.Globals.navwindow.closeWindow($.win);</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line"><code class="plain">$.win.title = </code><code class="string">&quot;Window #&quot;</code><code class="plain"> + Alloy.Globals.ctr;</code></div>
 <div class="line"><code class="plain">$.windowNumber.text = </code><code class="string">&quot;I&apos;m window #&quot;</code><code class="plain"> + Alloy.Globals.ctr + </code><code class="string">&quot; on the stack&quot;</code><code class="plain">;</code></div>
 </div>
-    </div>
-    <div class="section section-2 " id="src-41845759_NavigationWindow-SeeAlso">
-        <h2 class="heading "><span>See Also</span></h2>
-<ul class=" "><li class=" ">    <p><a class="external-link external-link" href="#!/api/Titanium.UI.iOS.NavigationWindow">Titanium.UI.iOS.NavigationWindow</a>    </p>
-</li></ul>    <p>    </p>
     </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=41845759"><span>Edit</span></a>
     

@@ -29,18 +29,14 @@
         <h2 class="heading "><span>Titanium SDK and Studio</span></h2>
     <div class="section section-3 " id="src-49153865_TroubleshootingGuide-ErrorenablingCloudservicefortheproject">
         <h3 class="heading "><span>Error enabling Cloud service for the project</span></h3>
-    <p>If you receive a message similar to &quot;Error enabling Cloud service for the project&quot; in Studio when trying to enable Cloud services for your project, the Mobile Backend Services (MBS) server may be down or Studio is unable to connect to the MBS server. Try to enable Cloud services later.<br>If you are still receiving this error when trying to enable Cloud services, check to see if your application was created in <a class="external-link external-link" href="https://platform.axway.com/">https://platform.axway.com/</a>.    </p>
+    <p>If you receive a message similar to &quot;Error enabling Cloud service for the project&quot; in Studio when trying to enable Cloud services for your project, the Mobile Backend Services (MBS) server may be down or Studio is unable to connect to the MBS server. Try to enable Cloud services later.If you are still receiving this error when trying to enable Cloud services, check to see if your application was created in <a class="external-link external-link" href="https://platform.axway.com/">https://platform.axway.com/</a>.    </p>
     <p>If the application was created, check to see if MBS keys were created for the application. To find your MBS keys, go to <a class="external-link external-link" href="https://platform.axway.com/">https://platform.axway.com/</a>, select your application from the <strong class=" ">Apps</strong> drop-down list, then click <strong class=" ">Configuration</strong>. You should see items for <strong class=" ">App Key</strong>, <strong class=" ">OAuth Consumer Key</strong>, and <strong class=" ">OAuth Secret</strong>. Click the <strong class=" ">Show</strong> link to expand these items. Note that you need both the Development and Production version of these items. You can switch between the two by clicking the drop-down box in the top-right corner that displays either <strong class=" ">Development</strong> or <strong class=" ">Production</strong>.    </p>
     <p>If you do <i class=" ">not</i> have MBS keys, try to enable Cloud services again at a later time.    </p>
     <p>If you do have MBS keys, manually enter the MBS key information in the <tt class=" ">tiapp.xml</tt> file. To manually enter this information:    </p>
 <ol class=" "><li class=" ">    <p>Double-click your <tt class=" ">tiapp.xml</tt> file to open it in the <strong class=" ">Editor</strong>.    </p>
 </li><li class=" ">    <p>Click the <strong class=" ">tiapp.xml</strong> tab in the lower-left corner of the <strong class=" ">Editor</strong>.    </p>
 </li><li class=" ">    <p>Insert the following MBS property keys as children of the <tt class=" ">ti:app</tt> parent tag and replace with the application&apos;s MBS keys found earlier:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;?</code><code class="keyword">xml</code><code class="plain"> </code><code class="color1">version</code><code class="plain">=</code><code class="string">&quot;1.0&quot;</code><code class="plain"> </code><code class="color1">encoding</code><code class="plain">=</code><code class="string">&quot;UTF-8&quot;</code><code class="plain">?&gt;</code></div>
 <div class="line"><code class="plain">&lt;</code><code class="keyword">ti</code><code class="plain">:app </code><code class="color1">xmlns:ti</code><code class="plain">=</code><code class="string">&quot;http://ti.appcelerator.org&quot;</code><code class="plain">&gt;</code></div>
@@ -58,10 +54,6 @@
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
 </li><li class=" ">    <p>Save and close your <tt class=" ">tiapp.xml</tt> file.    </p>
 </li><li class=" ">    <p>Reopen your <tt class=" ">tiapp.xml</tt> file. In the <strong class=" ">Overview</strong> tab, it should show that Cloud services are enabled.    </p>
 </li></ol>    </div>

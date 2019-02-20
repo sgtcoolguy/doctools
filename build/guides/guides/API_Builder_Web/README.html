@@ -197,11 +197,11 @@
 </li></ol>    <p>For example, to implement a renderer engine for Jade templates:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var jade = require(</code><code class="string">&apos;jade&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> jade = require(</code><code class="string">&apos;jade&apos;</code><code class="plain">),</code></div>
 <div class="line"><code class="plain">    engine = {};</code></div>
 <div class="line"><code class="plain">engine.jade = jade;</code></div>
-<div class="line"><code class="plain">engine.createRenderer = function (content, filename, app) {</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> function(filename, opts, callback) {</code></div>
+<div class="line"><code class="plain">engine.createRenderer = </code><code class="keyword">function</code><code class="plain"> (content, filename, app) {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">function</code><code class="plain">(filename, opts, callback) {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (!content) {</code></div>
 <div class="line"><code class="plain">            content = require(</code><code class="string">&apos;fs&apos;</code><code class="plain">).readFileSync(filename, </code><code class="string">&apos;utf8&apos;</code><code class="plain">).toString();</code></div>
 <div class="line"><code class="plain">        }</code></div>
@@ -229,10 +229,10 @@ Any view with a     </span>
 </li><li class=" ">    <p>Call either the Handlebar renderer engine&apos;s <tt class=" ">registerHelper()</tt> to register a helper function. Pass the method the name of the helper and the function to invoke.    </p>
 </li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
 <div class="line"><code class="plain">    hbs = Arrow.Middleware.getRendererEngine(</code><code class="string">&apos;hbs&apos;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">hbs.registerHelper(</code><code class="string">&apos;doFoo&apos;</code><code class="plain">, function(foo) {</code></div>
+<div class="line"><code class="plain">hbs.registerHelper(</code><code class="string">&apos;doFoo&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(foo) {</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// this.name references the name parameter passed to the template</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// in the render call, that is, res.render(&apos;template&apos;, {name: &apos;Joe&apos;});</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (foo) {</code></div>
@@ -258,7 +258,7 @@ Any view with a     </span>
 </li><li class=" ">    <p>Call either the Handlebar renderer engine&apos;s <tt class=" ">registerPartial()</tt> to register a partial file. Pass the method the name of the partial and the template file to use as a partial.    </p>
 </li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
 <div class="line"><code class="plain">    hbs = Arrow.Middleware.getRendererEngine(</code><code class="string">&apos;hbs&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">hbs.registerPartial(</code><code class="string">&apos;fooView&apos;</code><code class="plain">, </code><code class="string">&apos;web/views/foo.hbs&apos;</code><code class="plain">);</code></div>
 </div>
@@ -271,7 +271,7 @@ Any view with a     </span>
 <div class="line"><code class="plain">&lt;a href=</code><code class="string">&quot;/people/{{id}}&quot;</code><code class="plain">&gt;{{name}}&lt;/a&gt;</code></div>
 <div class="line"><code class="plain">&#xA0;</code></div>
 <div class="line"><code class="plain">&lt;!-- Main Template web/views/main.hbs --&gt;</code></div>
-<div class="line"><code class="plain">&lt;ul&gt;{{#people}}&lt;li&gt;{{&gt; fooView}}&lt;/li&gt;{{/people}}&lt;/ul&gt;</code></div>
+<div class="line"><code class="plain">&lt;ul&gt;{{</code><code class="preprocessor">#people}}&lt;li&gt;{{&gt; fooView}}&lt;/li&gt;{{/people}}&lt;/ul&gt;</code></div>
 </div>
     </div>
     </div>

@@ -95,9 +95,9 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">models/employee_manager.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/employee_manager.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">var employee_manager = Arrow.createModel(</code><code class="string">&apos;employee_manager&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> employee_manager = Arrow.createModel(</code><code class="string">&apos;employee_manager&apos;</code><code class="plain">,{</code></div>
 <div class="line"><code class="plain">    fields: {</code></div>
 <div class="line"><code class="plain">        fname: {type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, model:</code><code class="string">&apos;employee&apos;</code><code class="plain">},</code></div>
 <div class="line"><code class="plain">        manager: {type:String, description:</code><code class="string">&apos;manager of employee&apos;</code><code class="plain">,model:</code><code class="string">&apos;managers&apos;</code><code class="plain">}</code></div>
@@ -119,9 +119,9 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">models/employee.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/employee.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">var employee = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee&apos;</code><code class="plain">,</code><code class="string">&apos;employee&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> employee = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee&apos;</code><code class="plain">,</code><code class="string">&apos;employee&apos;</code><code class="plain">,{</code></div>
 <div class="line"><code class="plain">    fields: {</code></div>
 <div class="line"><code class="plain">        fname: {type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, name:</code><code class="string">&apos;first_name&apos;</code><code class="plain">}</code></div>
 <div class="line"><code class="plain">    },</code></div>
@@ -134,9 +134,9 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">models/managers.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/managers.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">var managers = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee_manager&apos;</code><code class="plain">,</code><code class="string">&apos;managers&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> managers = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee_manager&apos;</code><code class="plain">,</code><code class="string">&apos;managers&apos;</code><code class="plain">,{</code></div>
 <div class="line"><code class="plain">    fields: {</code></div>
 <div class="line"><code class="plain">        employee_id: { type: Number, description: </code><code class="string">&apos;Employee ID&apos;</code><code class="plain"> },</code></div>
 <div class="line"><code class="plain">        manager: {type:String, name:</code><code class="string">&apos;manager_name&apos;</code><code class="plain">, description:</code><code class="string">&apos;manager name&apos;</code><code class="plain">}</code></div>
@@ -153,10 +153,10 @@
     <p>The example below performs an inner join on the <tt class=" ">employee</tt>, <tt class=" ">employee_manager</tt>, and <tt class=" ">employee_habit</tt> models. Both the <tt class=" ">employee_manager</tt> and <tt class=" ">employee_habit</tt> properties will try to match the <tt class=" ">employee_id</tt> property<tt class=" ">.</tt>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// create a model from a mysql table</code></div>
-<div class="line"><code class="plain">var employee_composite = Arrow.createModel(</code><code class="string">&apos;employee_composite&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> employee_composite = Arrow.createModel(</code><code class="string">&apos;employee_composite&apos;</code><code class="plain">,{</code></div>
 <div class="line"><code class="plain">    fields: {</code></div>
 <div class="line"><code class="plain">        fname: {type: String, description: </code><code class="string">&apos;First name&apos;</code><code class="plain">, model: </code><code class="string">&apos;employee&apos;</code><code class="plain">},</code></div>
 <div class="line"><code class="plain">        manager: {type: String, description: </code><code class="string">&apos;Manager of employee&apos;</code><code class="plain">, model: </code><code class="string">&apos;employee_manager&apos;</code><code class="plain">},</code></div>

@@ -37,11 +37,7 @@
     <p>To specify a size that results in a square image, give the same width and height along with a <tt class=" ">#</tt> immediately after, as shown above.    </p>
     <p>You may specify the <tt class=" ">photo_sizes</tt> parameter when creating or updating a Photos object or when adding a photo with the Users or Places create or update method.    </p>
     <p>The resized images are generated asynchronously, so the API or SDK call returns immediately with a response showing photo metadata:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -b cookies.txt -c cookies.txt -F </code><code class="string">&quot;photo=@photo.jpg&quot;</code><code class="plain"> -F </code><code class="string">&quot;photo_sizes[preview]=100x100#&quot;</code><code class="plain"> -F </code></div>
 <div class="line"><code class="string">&quot;photo_sizes[android]=800x480&quot;</code><code class="plain"> -F </code><code class="string">&quot;photo_sizes[iphone]=960x640&quot;</code><code class="plain"> -F </code><code class="string">&quot;photo_sizes[ipad]=1024x768&quot;</code><code class="plain"> </code></div>
@@ -77,16 +73,8 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     <p>Note that in the above response <tt class=" ">processed=false</tt>. This indicates that the photo is still processing in the background. Once the photo has been processed, the <tt class=" ">processed</tt> flag will be set to <tt class=" ">true</tt> and the URLs to access the photo are shown:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -b cookies.txt -c cookies.txt </code></div>
 <div class="line"><code class="plain">&quot;http:</code><code class="comments">//api.cloud.appcelerator.com/v1/photos/show.json?key=aKgDjsrxM2wqL9fjhS1nnvgvnTlRDdJn&amp;photo_id=</code></div>
@@ -133,19 +121,11 @@
 <div class="line"><code class="plain">  }</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
     <div class="section section-2 " id="src-49153851_PhotoUploadingandResizing-Synchronousphotouploading">
         <h2 class="heading "><span>Synchronous photo uploading</span></h2>
     <p>You can also specify photo sizes to be processed synchronously during the create or update calls for photos and other objects with attached photos. This can be useful for immediately showing a thumbnail of the photo that was just uploaded. Specify <tt class=" ">photo_sync_sizes[]=&lt;size name&gt;</tt> one or more times in the request. The response will contain URLs for the original photo, plus the size or sizes which were processed synchronously. The property <tt class=" ">processed</tt> will be <tt class=" ">false</tt> until all processing has been completed. This feature may be used with either the default photo sizes or custom photo sizes.    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -b cookies.txt -c cookies.txt -F </code><code class="string">&quot;photo=@photo.jpg&quot;</code><code class="plain"> -F </code><code class="string">&quot;photo_sizes[preview]=100x100#&quot;</code><code class="plain"> -F </code></div>
 <div class="line"><code class="string">&quot;photo_sizes[android]=800x480&quot;</code><code class="plain"> -F </code><code class="string">&quot;photo_sizes[iphone]=960x640&quot;</code><code class="plain"> -F </code><code class="string">&quot;photo_sizes[ipad]=1024x768&quot;</code><code class="plain"> -F </code></div>
@@ -188,16 +168,8 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     <p>After processing, all photo sizes will be available and <tt class=" ">processed=true</tt> will be set.    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -b cookies.txt -c cookies.txt </code></div>
 <div class="line"><code class="plain">&quot;http:</code><code class="comments">//api.cloud.appcelerator.com/v1/photos/</code></div>
@@ -253,10 +225,6 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
     <div class="section section-2 " id="src-49153851_PhotoUploadingandResizing-Deprecatedbehavior">
         <h2 class="heading "><span>Deprecated behavior</span></h2>

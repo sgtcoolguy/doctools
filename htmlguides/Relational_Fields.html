@@ -46,11 +46,7 @@
 </div>
     </div>
     <p>For example, when creating a custom <tt class=" ">car</tt> object, we can specify an owner and a picture of the car:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -b c.txt -c c.txt -F </code><code class="string">&quot;key=sesObkV0qTaPSEwcHc6DGcR21EWN9HT0&quot;</code><code class="plain"> -F </code><code class="string">&quot;id=506e4c775554f7470b00001d&quot;</code><code class="plain"> -F </code></div>
 <div class="line"><code class="string">&quot;fields={&quot;</code><code class="plain">[ACS_User]owner_id</code><code class="string">&quot;:&quot;</code><code class="plain">506e4c735554f7470b000003</code><code class="string">&quot;, &quot;</code><code class="plain">[ACS_Photo]picture_id</code><code class="string">&quot;:&quot;</code><code class="plain">506e4c755554f7470b00000a</code><code class="string">&quot;}&quot;</code><code class="plain"> </code></div>
@@ -132,19 +128,11 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
     <div class="section section-2 " id="src-49153824_RelationalFields-Showarelationalfield">
         <h2 class="heading "><span>Show a relational field</span></h2>
     <p>When you show an MBS object, if the MBS object has a relation to another MBS object, MBS includes the referenced Mobile Backend Services object. For example, suppose a Custom object of type <tt class=" ">car</tt> has two relations: an owner and a picture. When you call <tt class=" ">show</tt> on the object, the user and photo object are included in the response. Example JSON response:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">  </code><code class="string">&quot;meta&quot;</code><code class="plain">: {</code></div>
@@ -204,35 +192,19 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
     <div class="section section-2 " id="src-49153824_RelationalFields-Queryarelationalfield">
         <h2 class="heading "><span>Query a relational field</span></h2>
     <p>A relation points to a Mobile Backend Services object, so to query a relation, you must first get the Mobile Backend Services object pointed by the relation. For example, if you want to query cars whose owner is &#x201C;John Smith&#x201D;, you first need to find the {@link Users} object whose full name is &#x201C;John Smith&#x201D;:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -c cookies.txt -b cookies.txt -X GET --data-urlencode </code></div>
 <div class="line"><code class="string">&apos;where={&quot;first_name&quot;:&quot;John&quot;,&quot;last_name&quot;:&#x201D;Smith&#x201D;}&apos;</code><code class="plain"> --data-urlencode </code><code class="string">&apos;order=created_at&apos;</code><code class="plain"> </code></div>
 <div class="line"><code class="string">&quot;https://api.cloud.appcelerator.com/v1/users/query.json?key={YOUR APP APP KEY}&quot;</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     <p>If the user exists, use the user ID to query the custom objects collection for cars that have a <tt class=" ">[ACS_User]owner_id</tt> property with the specified value.    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -c cookies.txt -b cookies.txt -X GET --data-urlencode </code></div>
 <div class="line"><code class="string">&apos;where= {&quot;[ACS_User]owner_id&quot;:&quot;the user&#x2019;s object id&quot;}&apos;</code><code class="plain"> --data-urlencode </code></div>
@@ -240,28 +212,16 @@
 <div class="line"><code class="string">&quot;https://api.cloud.appcelerator.com/v1/objects/car/query.json?key={YOUR APP APP KEY}&quot;</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
     <div class="section section-2 " id="src-49153824_RelationalFields-Removearelationalfield">
         <h2 class="heading "><span>Remove a relational field</span></h2>
     <p>To remove a relational field from a Mobile Backend Services object, set the field&apos;s value to null. For example, remove to picture from a Custom object:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -b cookies.txt -c cookies.txt -X PUT --data-urlencode </code><code class="string">&apos;fields={&#x201C;[ACS_Photo]picture_id&#x201D;:null}&apos;</code><code class="plain"> </code></div>
 <div class="line"><code class="string">&quot;https://api.cloud.appcelerator.com/v1/objects/car/update.json?key={YOUR APP APP KEY}&quot;</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
         </div>
     

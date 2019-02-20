@@ -45,24 +45,24 @@
     <p>In HTTP basic access authentication, the client needs to send a username and password, sent as a base64-encoded string &quot;<tt class=" ">&lt;username&gt;:&lt;password&gt;</tt>&quot;, in the Authorization header of the HTTP request, for example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">GET api/model HTTP/</code><code class="value">1.0</code></div>
+<div class="line"><code class="plain">GET api</code><code class="plain">/model</code><code class="plain"> HTTP</code><code class="plain">/1</code><code class="plain">.0</code></div>
 <div class="line"><code class="plain">Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code></div>
 </div>
     </div>
     <p>For API Builder applications, the username is the API key and the password field is left blank. For a Titanium application, you can construct the header and request as follows:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var xhr = Ti.Network.createHTTPClient({</code></div>
-<div class="line"><code class="plain">    onload: function onLoad() {</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> xhr = Ti.Network.createHTTPClient({</code></div>
+<div class="line"><code class="plain">    onload: </code><code class="keyword">function</code><code class="plain"> onLoad() {</code></div>
 <div class="line"><code class="plain">        alert(</code><code class="string">&quot;Loaded: &quot;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.status + </code><code class="string">&quot;: &quot;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.responseText);</code></div>
 <div class="line"><code class="plain">    },</code></div>
-<div class="line"><code class="plain">    onerror: function onError() {</code></div>
+<div class="line"><code class="plain">    onerror: </code><code class="keyword">function</code><code class="plain"> onError() {</code></div>
 <div class="line"><code class="plain">        alert(</code><code class="string">&quot;Error: &quot;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.status + </code><code class="string">&quot;: &quot;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.responseText);</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">xhr.open(</code><code class="string">&quot;GET&quot;</code><code class="plain">, REQUEST_URL);</code></div>
-<div class="line"><code class="plain">var authstr = </code><code class="string">&apos;Basic &apos;</code><code class="plain"> + Ti.Utils.base64encode(API_KEY + </code><code class="string">&apos;:&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> authstr = </code><code class="string">&apos;Basic &apos;</code><code class="plain"> + Ti.Utils.base64encode(API_KEY + </code><code class="string">&apos;:&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">xhr.setRequestHeader(</code><code class="string">&quot;Authorization&quot;</code><code class="plain">, authstr);</code></div>
 <div class="line"><code class="plain">xhr.send();</code></div>
 </div>
@@ -73,11 +73,11 @@
     <p>In HTTP header authentication, the client sends the API key in a custom APIKey header. The server must only support HTTPS requests, so the key is not sent as plain text (unencrypted).    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var xhr = Ti.Network.createHTTPClient({</code></div>
-<div class="line"><code class="plain">    onload: function onLoad() {</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> xhr = Ti.Network.createHTTPClient({</code></div>
+<div class="line"><code class="plain">    onload: </code><code class="keyword">function</code><code class="plain"> onLoad() {</code></div>
 <div class="line"><code class="plain">        alert(</code><code class="string">&quot;Loaded: &quot;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.status + </code><code class="string">&quot;: &quot;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.responseText);</code></div>
 <div class="line"><code class="plain">    },</code></div>
-<div class="line"><code class="plain">    onerror: function onError() {</code></div>
+<div class="line"><code class="plain">    onerror: </code><code class="keyword">function</code><code class="plain"> onError() {</code></div>
 <div class="line"><code class="plain">        alert(</code><code class="string">&quot;Error: &quot;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.status + </code><code class="string">&quot;: &quot;</code><code class="plain"> + </code><code class="keyword">this</code><code class="plain">.responseText);</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">});</code></div>
@@ -311,17 +311,17 @@
                     <div class="title">lib/plugin.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="lib/plugin.js">
 <div class="line"><code class="comments">// Constructor to get a reference to the config object</code></div>
-<div class="line"><code class="plain">function Plugin(server) {</code></div>
+<div class="line"><code class="keyword">function</code><code class="plain"> Plugin(server) {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">this</code><code class="plain">.config = server.config || {secret: </code><code class="keyword">null</code><code class="plain">};</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// Only validate requests to /api/foo</code></div>
-<div class="line"><code class="plain">Plugin.prototype.matchURL = function(request) {</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> request.url.indexOf(</code><code class="string">&apos;/api/foo&apos;</code><code class="plain">) !== </code><code class="value">0</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">Plugin.prototype.matchURL = </code><code class="keyword">function</code><code class="plain">(request) {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> request.url.indexOf(</code><code class="string">&apos;/api/foo&apos;</code><code class="plain">) !== 0;</code></div>
 <div class="line"><code class="plain">};</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// Check if the request has the X-Secret header and its value matches the config file</code></div>
-<div class="line"><code class="plain">Plugin.prototype.validateRequest = function(request, response) {</code></div>
+<div class="line"><code class="plain">Plugin.prototype.validateRequest = </code><code class="keyword">function</code><code class="plain">(request, response) {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (request.headers[</code><code class="string">&apos;x-secret&apos;</code><code class="plain">] &amp;&amp; request.headers[</code><code class="string">&apos;x-secret&apos;</code><code class="plain">] === </code><code class="keyword">this</code><code class="plain">.config.secret) {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> {</code></div>
@@ -330,23 +330,23 @@
 <div class="line"><code class="plain">};</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// Add the X-Secret header for internal requests</code></div>
-<div class="line"><code class="plain">Plugin.prototype.applyCredentialsForTest = function(options) {</code></div>
+<div class="line"><code class="plain">Plugin.prototype.applyCredentialsForTest = </code><code class="keyword">function</code><code class="plain">(options) {</code></div>
 <div class="line"><code class="plain">    options.headers[</code><code class="string">&apos;x-secret&apos;</code><code class="plain">] = </code><code class="keyword">this</code><code class="plain">.config.secret;</code></div>
 <div class="line"><code class="plain">};</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// Do not process the response</code></div>
-<div class="line"><code class="plain">Plugin.prototype.applyResponseForTest = function(response, body) {</code></div>
+<div class="line"><code class="plain">Plugin.prototype.applyResponseForTest = </code><code class="keyword">function</code><code class="plain">(response, body) {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> body;</code></div>
 <div class="line"><code class="plain">};</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="comments">// Describe the x-security header for the Swagger 2.0 feed</code></div>
-<div class="line"><code class="plain">Plugin.prototype.getSwaggerSecurity = function () {</code></div>
+<div class="line"><code class="plain">Plugin.prototype.getSwaggerSecurity = </code><code class="keyword">function</code><code class="plain"> () {</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">return</code><code class="plain"> {</code></div>
 <div class="line"><code class="plain">		securityDefinitions: {</code></div>
 <div class="line"><code class="plain">			app_auth: {</code></div>
 <div class="line"><code class="plain">				type: </code><code class="string">&apos;apiKey&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">				name: </code><code class="string">&apos;x-secret&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">				in: </code><code class="string">&apos;header&apos;</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">				</code><code class="keyword">in</code><code class="plain">: </code><code class="string">&apos;header&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">				description: </code><code class="string">&apos;Require authorized access to API&apos;</code></div>
 <div class="line"><code class="plain">			}</code></div>
 <div class="line"><code class="plain">		},</code></div>
@@ -363,9 +363,9 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl </code><code class="string">&quot;http://127.0.0.1:8080/api/foo&quot;</code></div>
-<div class="line"><code class="plain">{</code><code class="string">&quot;id&quot;</code><code class="plain">:</code><code class="string">&quot;com.appcelerator.api.unauthorized&quot;</code><code class="plain">,</code><code class="string">&quot;message&quot;</code><code class="plain">:</code><code class="string">&quot;Unauthorized&quot;</code><code class="plain">,</code><code class="string">&quot;success&quot;</code><code class="plain">:</code><code class="keyword">false</code><code class="plain">} </code></div>
+<div class="line"><code class="plain">{</code><code class="string">&quot;id&quot;</code><code class="plain">:</code><code class="string">&quot;com.appcelerator.api.unauthorized&quot;</code><code class="plain">,</code><code class="string">&quot;message&quot;</code><code class="plain">:</code><code class="string">&quot;Unauthorized&quot;</code><code class="plain">,</code><code class="string">&quot;success&quot;</code><code class="plain">:</code><code class="functions">false</code><code class="plain">} </code></div>
 <div class="line"><code class="plain">$ curl </code><code class="string">&quot;http://127.0.0.1:8080/api/foo&quot;</code><code class="plain"> -H </code><code class="string">&apos;X-Secret: secret&apos;</code></div>
-<div class="line"><code class="plain">{</code><code class="string">&quot;success&quot;</code><code class="plain">:</code><code class="keyword">true</code><code class="plain">,</code><code class="string">&quot;request-id&quot;</code><code class="plain">:</code><code class="string">&quot;0d2141f7-57ea-4c78-82cf-b6fa9497c16a&quot;</code><code class="plain">, </code><code class="string">&quot;foo&quot;</code><code class="plain">:</code><code class="string">&quot;bar&quot;</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">{</code><code class="string">&quot;success&quot;</code><code class="plain">:</code><code class="functions">true</code><code class="plain">,</code><code class="string">&quot;request-id&quot;</code><code class="plain">:</code><code class="string">&quot;0d2141f7-57ea-4c78-82cf-b6fa9497c16a&quot;</code><code class="plain">, </code><code class="string">&quot;foo&quot;</code><code class="plain">:</code><code class="string">&quot;bar&quot;</code><code class="plain">}</code></div>
 </div>
     </div>
     </div>

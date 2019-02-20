@@ -64,11 +64,7 @@
 </li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/KeyValues-method-set">KeyValues.set</a>    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/PushNotifications-method-subscribe">PushNotifications.subscribe</a>    </p>
 </li></ul>    <p>For example, the following curl command creates a new status for the specified user:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">curl -b cookies.txt -c cookies.txt -F </code><code class="string">&quot;su_id=520289441e1ef70b1a0236d2&quot;</code><code class="plain"> -F </code><code class="string">&quot;message=Hola, Mundo\!&quot;</code><code class="plain"> </code></div>
 <div class="line"><code class="string">&quot;api.cloud.appcelerator.com/v1/statuses/create.json?key=APP_API_KEY&quot;</code></div>
@@ -102,16 +98,8 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     <p>To verify that the other user created this status and not the admin user, run the following curl command and compare the user IDs:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">curl -b cookies.txt -c cookies.txt </code></div>
 <div class="line"><code class="string">&quot;https://api.cloud.appcelerator.com/v1/statuses/show.json?key=APP_API_KEY&amp;status_id=5202c1ed87173a0afc024524&quot;</code></div>
@@ -153,10 +141,6 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
     <div class="section section-2 " id="src-49153856_AdminAccess-Batchdelete">
         <h2 class="heading "><span>Batch delete</span></h2>
@@ -166,11 +150,7 @@
     </div>
         <p>Certain MBS objects can have dependencies on other objects. For example, when you create a <tt class=" ">Checkins</tt> object you can specify a <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Places">Places</a> or <a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Events">Events</a> object to associate with it. In this case, the Checkins object is a dependency of the Places or Events object. If you delete the Places or Events object, the dependent Checkins object is <strong class=" ">not</strong> deleted.    </p>
     <p>For example, the following deletes all Users objects whose <tt class=" ">favorite_color</tt> custom field is &apos;blue&apos;.    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain"> $curl -b cookies.txt -c cookies.txt -X DELETE -F </code><code class="string">&quot;where={\&quot;favorite_color\&quot;:\&quot;blue\&quot;}&quot;</code><code class="plain"> </code></div>
 <div class="line"><code class="plain"> api.cloud.appcelerator.com/v1/users/batch_delete.json?key&lt;API_KEY&gt;&amp;pretty_json=</code><code class="keyword">true</code><code class="plain">     </code></div>
@@ -183,10 +163,6 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     <p>Note that the method returns an HTTP 200 code (success) even if the query matched no objects.    </p>
     <p>The following MBS objects support batch delete operations:    </p>
 <ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/arrowdb/latest/#!/api/Checkins">Checkins</a>    </p>
@@ -205,11 +181,7 @@
         <h2 class="heading "><span>Admin drop custom collection</span></h2>
     <p>An application admin user can also drop a Custom Object collection using the <tt class=" ">admin_drop_collection</tt> method. When calling the <tt class=" ">admin_drop_collection</tt> method, the admin user must specify a class name to indicate which custom collection to drop.    </p>
     <p>For example, the following drops the <tt class=" ">car</tt> collection:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -b c.txt -c c.txt -X DELETE </code></div>
 <div class="line"><code class="string">&quot;api.cloud.appcelerator.com/v1/objects/car/admin_drop_collection.json?key=hPkMYgNozXR8xegNvWjqBVTcWK8P5fIX&quot;</code></div>
@@ -222,10 +194,6 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     <p>Only Custom Objects support the drop custom collection method.    </p>
     </div>
         </div>

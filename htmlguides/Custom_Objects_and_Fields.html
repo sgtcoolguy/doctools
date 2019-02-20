@@ -51,11 +51,7 @@
 </div>
     </div>
     <p>For example, to associate the above custom fields to users:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -b cookies.txt -c cookies.txt -X POST --data-urlencode </code><code class="string">&quot;email=john.smith@company.com&quot;</code><code class="plain"> --data-urlencode </code></div>
 <div class="line"><code class="string">&quot;role=teacher&quot;</code><code class="plain"> --data-urlencode </code><code class="string">&quot;first_name=John&quot;</code><code class="plain"> --data-urlencode </code><code class="string">&quot;last_name=Smith&quot;</code><code class="plain"> --data-urlencode </code></div>
@@ -99,10 +95,6 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     <p>Custom Data is returned in the <tt class=" ">custom_fields</tt> JSON response field in the type that was specified. Attempting to define custom fields using invalid types or an incorrect naming convention will be silently ignored.    </p>
     </div>
     <div class="section section-2 " id="src-49153774_CustomObjectsandFields-Supporteddatatypes">
@@ -186,11 +178,7 @@
     <p>To support efficient data query operations, MBS indexes the field names and values of each custom object, or custom fields you add to a predefined object. For example, suppose you create a custom object, <tt class=" ">cars</tt>, with the fields <tt class=" ">make</tt> and <tt class=" ">model</tt>. Mobile Backend Services will create two index entries in the MongoDB database, one for each field. The total size of an index entry, including meta-data added by MBS, must be less than <strong class=" ">1024 bytes</strong> (1KB).    </p>
     <p>If a custom field&apos;s name or value exceeds this size, then no index entry for that field is created. Consequently, if you run a custom <a class="document-link " href="Search_and_Query_APIs.html">query</a> against that field, nothing will be returned.    </p>
     <p>For instance, in the previous example, suppose the string value assigned to <tt class=" ">model</tt> was greater than 1KB. If you queried the <tt class=" ">cars</tt> collection for objects whose <tt class=" ">model</tt> matched that value, no objects would be returned:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">Cloud.Objects.query({</code></div>
 <div class="line"><code class="plain">    classname: </code><code class="string">&apos;cars&apos;</code><code class="plain">,</code></div>
@@ -206,10 +194,6 @@
 <div class="line"><code class="plain">});</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
     <div class="section section-2 " id="src-49153774_CustomObjectsandFields-Geographiccoordinatesincustomfields">
         <h2 class="heading "><span>Geographic coordinates in custom fields</span></h2>
@@ -352,11 +336,7 @@
 </tbody>        </table>
             </div>
     <p>For example, if you want to create a user with custom fields, such as eye_color, enrolled_at, etc., you can put all the custom fields in an NSDictionary.    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">NSMutableDictionary *customFields = [NSMutableDictionary dictionary];</code></div>
 <div class="line"><code class="plain">[customFields setObject:@</code><code class="string">&quot;brown&quot;</code><code class="plain"> forKey:@</code><code class="string">&quot;eye_color&quot;</code><code class="plain">]; </code><code class="comments">// set a string</code></div>
@@ -389,16 +369,8 @@
 <div class="line"><code class="plain">    }</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     <p>If you would like to use your own custom data type, you need to provide a class method to JSON encode the data of your object.    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">@interface MyObject : NSObject</code></div>
 <div class="line"><code class="plain">  @property NSString *color;</code></div>
@@ -423,10 +395,6 @@
 <div class="line"><code class="plain">[customFields setObject:[object toJSON] forKey:@</code><code class="string">&quot;MyObject&quot;</code><code class="plain">];</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
         </div>
     

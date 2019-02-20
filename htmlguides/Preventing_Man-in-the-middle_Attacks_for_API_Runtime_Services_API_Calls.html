@@ -23,8 +23,8 @@
     <p>Note: You will need HTTPS module and ti.cloud module to test this sample app:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var Cloud = require(</code><code class="string">&apos;ti.cloud&apos;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">var win = Ti.UI.createWindow({</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Cloud = require(</code><code class="string">&apos;ti.cloud&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({</code></div>
 <div class="line"><code class="plain">	backgroundColor: </code><code class="string">&apos;white&apos;</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
@@ -35,19 +35,19 @@
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">]);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">var btn = Ti.UI.createButton({</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> btn = Ti.UI.createButton({</code></div>
 <div class="line"><code class="plain">	title: </code><code class="string">&apos;Login User in Ti.Cloud&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	top: </code><code class="string">&apos;50%&apos;</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">btn.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">btn.addEventListener(</code><code class="string">&apos;click&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="comments">//any Cloud calls here will do</code></div>
 <div class="line"><code class="plain">	Cloud.Users.login({</code></div>
 <div class="line"><code class="plain">	    login: </code><code class="string">&apos;test@mycompany.com&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	    password: </code><code class="string">&apos;test_password&apos;</code></div>
-<div class="line"><code class="plain">	}, function (e) {</code></div>
+<div class="line"><code class="plain">	}, </code><code class="keyword">function</code><code class="plain"> (e) {</code></div>
 <div class="line"><code class="plain">	    </code><code class="keyword">if</code><code class="plain"> (e.success) {</code></div>
-<div class="line"><code class="plain">	        var user = e.users[</code><code class="value">0</code><code class="plain">];</code></div>
+<div class="line"><code class="plain">	        </code><code class="keyword">var</code><code class="plain"> user = e.users[0];</code></div>
 <div class="line"><code class="plain">	        alert(</code><code class="string">&apos;Success:\n&apos;</code><code class="plain"> +</code></div>
 <div class="line"><code class="plain">	            </code><code class="string">&apos;id: &apos;</code><code class="plain"> + user.id + </code><code class="string">&apos;\n&apos;</code><code class="plain"> +</code></div>
 <div class="line"><code class="plain">	            </code><code class="string">&apos;sessionId: &apos;</code><code class="plain"> + Cloud.sessionId + </code><code class="string">&apos;\n&apos;</code><code class="plain"> +</code></div>

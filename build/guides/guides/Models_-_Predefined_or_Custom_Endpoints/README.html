@@ -36,9 +36,9 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">models/employee.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/employee.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">var employee = createModel(</code><code class="string">&apos;employee&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> employee = createModel(</code><code class="string">&apos;employee&apos;</code><code class="plain">, {</code></div>
 <div class="line"><code class="plain">    fields: {</code></div>
 <div class="line"><code class="plain">        first_name: {type:String, description:</code><code class="string">&apos;First name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">},</code></div>
 <div class="line"><code class="plain">        last_name: {type:String, description:</code><code class="string">&apos;Last name&apos;</code><code class="plain">, required:</code><code class="keyword">true</code><code class="plain">},</code></div>
@@ -55,9 +55,9 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">apis/employeeFindOne.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="apis/employeeFindOne.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">var employeeFindOne = Arrow.API.extend({</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> employeeFindOne = Arrow.API.extend({</code></div>
 <div class="line"><code class="plain">    group: </code><code class="string">&apos;employeeAPIs&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    path: </code><code class="string">&apos;/api/employee/:id&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    method: </code><code class="string">&apos;GET&apos;</code><code class="plain">,</code></div>
@@ -66,7 +66,7 @@
 <div class="line"><code class="plain">    parameters: {</code></div>
 <div class="line"><code class="plain">        id: {description: </code><code class="string">&apos;the employee id&apos;</code><code class="plain">}</code></div>
 <div class="line"><code class="plain">    },</code></div>
-<div class="line"><code class="plain">    action: function (req, resp, next) {</code></div>
+<div class="line"><code class="plain">    action: </code><code class="keyword">function</code><code class="plain"> (req, resp, next) {</code></div>
 <div class="line"><code class="plain">        resp.stream(req.model.find, req.params.id, next);</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">});</code></div>

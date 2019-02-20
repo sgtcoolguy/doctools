@@ -228,7 +228,7 @@
     <p><tt class=" ">index.xml</tt> is a special case that only accepts the following view components as direct children of the Alloy tag:    </p>
 <ul class=" "><li class=" ">    <p>Ti.UI.Window or &lt;Window&gt;    </p>
 </li><li class=" ">    <p>Ti.UI.TabGroup or &lt;TabGroup&gt;    </p>
-</li><li class=" ">    <p>Ti.UI.iOS.NavigationWindow or &lt;NavigationWindow&gt;    </p>
+</li><li class=" ">    <p>Ti.UI.NavigationWindow or &lt;NavigationWindow&gt;    </p>
 </li><li class=" ">    <p>Ti.UI.iOS.SplitWindow or &lt;SplitWindow&gt;    </p>
 </li></ul>    <p>Other views do not have any format restrictions.    </p>
     <p>For examples, refer to the &apos;Alloy XML Markup&apos; examples in the <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/">Titanium API Guides</a> site. Most examples are in the components under the <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI">Titanium.UI</a> section and also in <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.Android.Menu">Titanium.Android.Menu</a>, <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Modules.Facebook.LoginButton">Modules.Facebook.LoginButton</a>, <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Modules.Map">Modules.Map</a> and <a class="external-link external-link" href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.Media.VideoPlayer">Titanium.Media.VideoPlayer</a>.    </p>
@@ -608,10 +608,13 @@
     <p>For UI objects that belong to a specific platform, such as the navigation window. Use the <tt class=" ">platform</tt> attribute to use the object, for example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;NavigationWindow platform=</code><code class="string">&quot;ios&quot;</code><code class="plain">/&gt; </code></div>
+<div class="line"><code class="plain">&lt;SplitWindow platform=</code><code class="string">&quot;ios&quot;</code><code class="plain">/&gt; </code></div>
 </div>
     </div>
-    <p>Many of the Titanium view proxies not part of the <tt class=" ">Titanium.UI</tt> namespace do not require that the <tt class=" ">ns</tt> attribute be explicitly set. The following elements are implicitly mapped to a namespace if one is not defined:    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>If you used <tt class=" ">&lt;NavigationWindow platform=&quot;ios&quot;/&gt;</tt> prior to Titanium 8.0.0, you will need to specify the platform type.    </p>
+    </div>
+        <p>Many of the Titanium view proxies not part of the <tt class=" ">Titanium.UI</tt> namespace do not require that the <tt class=" ">ns</tt> attribute be explicitly set. The following elements are implicitly mapped to a namespace if one is not defined:    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -691,7 +694,7 @@
         <p>NavigationWindow    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Ti.UI.iOS    </p>
+        <p>Ti.UI    </p>
             </td>
         </tr>
     <tr>

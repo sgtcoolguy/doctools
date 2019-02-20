@@ -78,17 +78,17 @@
     <p>To install a model-first connector, execute the <tt class=" ">appc install connector/&lt;CONNECTOR_NAME&gt;</tt> command from the project&apos;s directory. The command downloads and installs the connector in the <tt class=" ">node_modules/connector</tt> directory, updates the <tt class=" ">appc.json</tt> file, and creates a connector configuration file in the project&apos;s <tt class=" ">conf</tt> directory.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">$ appc install connector/appc.mysql</code></div>
-<div class="line"><code class="plain">Appcelerator Command-Line Interface, version </code><code class="value">0.2</code><code class="plain">.</code><code class="value">230</code></div>
-<div class="line"><code class="plain">Copyright (c) </code><code class="value">2014</code><code class="plain">-</code><code class="value">2015</code><code class="plain">, Appcelerator, Inc.  All Rights Reserved.</code></div>
+<div class="line"><code class="plain">$ appc </code><code class="functions">install</code><code class="plain"> connector</code><code class="plain">/appc</code><code class="plain">.mysql</code></div>
+<div class="line"><code class="plain">Appcelerator Command-Line Interface, version 0.2.230</code></div>
+<div class="line"><code class="plain">Copyright (c) 2014-2015, Appcelerator, Inc.  All Rights Reserved.</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">Installing dependencies... &lt;APIBuilderProject&gt;</code></div>
-<div class="line"><code class="plain">Checking </code><code class="keyword">for</code><code class="plain"> </code><code class="value">1</code><code class="plain"> module: connector/appc.mysql</code></div>
-<div class="line"><code class="plain">Fetching connector/appc.mysql</code><code class="color1">@1</code><code class="plain">.0.</code><code class="value">43</code></div>
-<div class="line"><code class="plain">Installed </code><code class="value">1</code><code class="plain"> module</code></div>
-<div class="line"><code class="plain">connector/appc.mysql provided a </code><code class="keyword">default</code><code class="plain"> configuration example which was written to conf/appc.mysql.</code><code class="keyword">default</code><code class="plain">.js</code></div>
-<div class="line"><code class="plain">You must update the config file located in ./&lt;APIBuilderProject&gt;/conf/appc.mysql.</code><code class="keyword">default</code><code class="plain">.js before you can use it!</code></div>
-<div class="line"><code class="plain">Installed:  connector/appc.mysql</code></div>
+<div class="line"><code class="plain">Checking </code><code class="keyword">for</code><code class="plain"> 1 module: connector</code><code class="plain">/appc</code><code class="plain">.mysql</code></div>
+<div class="line"><code class="plain">Fetching connector</code><code class="plain">/appc</code><code class="plain">.mysql@1.0.43</code></div>
+<div class="line"><code class="plain">Installed 1 module</code></div>
+<div class="line"><code class="plain">connector</code><code class="plain">/appc</code><code class="plain">.mysql provided a default configuration example </code><code class="functions">which</code><code class="plain"> was written to conf</code><code class="plain">/appc</code><code class="plain">.mysql.default.js</code></div>
+<div class="line"><code class="plain">You must update the config </code><code class="functions">file</code><code class="plain"> located </code><code class="keyword">in</code><code class="plain"> ./&lt;APIBuilderProject&gt;</code><code class="plain">/conf/appc</code><code class="plain">.mysql.default.js before you can use it!</code></div>
+<div class="line"><code class="plain">Installed:  connector</code><code class="plain">/appc</code><code class="plain">.mysql</code></div>
 </div>
     </div>
     </div>
@@ -102,12 +102,12 @@
 <div class="line"><code class="plain">    connectors: {</code></div>
 <div class="line"><code class="plain">        </code><code class="string">&apos;appc.mysql&apos;</code><code class="plain">: {</code></div>
 <div class="line"><code class="plain">            connectionPooling: </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            connectionLimit: </code><code class="value">10</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            connectionLimit: 10,</code></div>
 <div class="line"><code class="plain">            database: </code><code class="string">&apos;test&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">            user: </code><code class="string">&apos;root&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">            password: </code><code class="string">&apos;&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">            host: </code><code class="string">&apos;localhost&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            port: </code><code class="value">3306</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">            port: 3306,</code></div>
 <div class="line"><code class="plain">            generateModelsFromSchema: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">            modelAutogen: </code><code class="keyword">true</code></div>
 <div class="line"><code class="plain">        }</code></div>
@@ -141,9 +141,9 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">models/employee.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="models/employee.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">var employee = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee&apos;</code><code class="plain">,</code><code class="string">&apos;employee&apos;</code><code class="plain">,{</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> employee = Arrow.Model.reduce(</code><code class="string">&apos;appc.mysql/employee&apos;</code><code class="plain">,</code><code class="string">&apos;employee&apos;</code><code class="plain">,{</code></div>
 <div class="line"><code class="plain">    fields: {</code></div>
 <div class="line"><code class="plain">        first_name: {type: String, description: </code><code class="string">&apos;Give name&apos;</code><code class="plain">}</code></div>
 <div class="line"><code class="plain">        last_name: {type: String, description: </code><code class="string">&apos;Family name&apos;</code><code class="plain">}</code></div>

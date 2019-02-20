@@ -89,7 +89,7 @@
     <p>List application&apos;s access logs within a specified period. By default, a maximum of 100 log messages will be returned at a time.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">acs accesslog [options] [appname]</code></div>
+<div class="line"><code class="plain">accesslog [options] [appname]</code></div>
 </div>
     </div>
     <div class="tablewrap">
@@ -120,7 +120,7 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--show_serverid</tt>    </p>
+        <p><tt class=" ">--show_serverid [appname]</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Show server ID in logs.    </p>
@@ -152,7 +152,7 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--more</tt>    </p>
+        <p><tt class=" ">--more [appname]</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Display the next page of log messages.    </p>
@@ -160,7 +160,7 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--full_content</tt>    </p>
+        <p><tt class=" ">--full_content [appname]</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Show full access logs.    </p>
@@ -231,7 +231,7 @@ The     </span>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--autoscaleup</tt>    </p>
+        <p><tt class=" ">--autoscaleup &lt;true|false&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Boolean (default is <tt class=" ">false</tt>). Enables or disables automatically scaling up the number of cloud servers based on the <tt class=" ">maxqueuedrequests</tt> setting.    </p>
@@ -239,7 +239,7 @@ The     </span>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--autoscaledown</tt>    </p>
+        <p><tt class=" ">--autoscaledown &lt;true|false&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Boolean (default is <tt class=" ">false</tt>). Enables or disables automatically scaling down the number of cloud servers based on the <tt class=" ">maxqueuedrequests</tt> setting.    </p>
@@ -318,7 +318,7 @@ The     </span>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--env</tt>    </p>
+        <p><tt class=" ">--env [appname]</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Lists set environment variables.    </p>
@@ -373,7 +373,7 @@ Manages custom SSL certificates for accessing your application via HTTPS.    </s
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--remove</tt>    </p>
+        <p><tt class=" ">--remove [appname]</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Removes the SSL certificate of the associated application, if one exists.    </p>
@@ -702,7 +702,7 @@ Retrieves and displays a published application&apos;s runtime logs continuously 
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--show_serverid</tt>    </p>
+        <p><tt class=" ">--show_serverid [appname]</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Show server ID in logs.    </p>
@@ -771,7 +771,7 @@ Retrieves and displays a published application&apos;s runtime logs continuously 
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--host</tt>    </p>
+        <p><tt class=" ">--host &lt;hostname&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>The ACS host to log in to. If not specified, the command attempts to log in to the host specified by the <tt class=" ">~/.acs</tt> configuration file, or <tt class=" ">admin.cloudapp.appcelerator.com</tt> if not specified by the <tt class=" ">~/.acs</tt> file.    </p>
@@ -842,7 +842,7 @@ Lists the application&apos;s log within a specific period. By default, a maximum
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--show_serverid</tt>    </p>
+        <p><tt class=" ">--show_serverid [appname]</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Show server ID in logs.    </p>
@@ -874,7 +874,7 @@ Lists the application&apos;s log within a specific period. By default, a maximum
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--more</tt>    </p>
+        <p><tt class=" ">--more [appname]</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Display the next page of log messages.    </p>
@@ -910,10 +910,30 @@ Dates are specified as YYYY-MM-DD or &quot;YYYY-MM-DD HH:MM&quot;. Note that if 
 <div class="line"><code class="plain">acs logout</code></div>
 </div>
     </div>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Name    </p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+        <p>Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+        <p><tt class=" ">-h, --help</tt>    </p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+        <p>Show help information for this command.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
     </div>
     <div class="section section-3 " id="src-43299782_APIRuntimeServicesCommand-LineInterfaceReference-new">
         <h3 class="heading "><span>new</span></h3>
-    <p>Starting with API Runtime Services (Arrow Cloud) 1.6.0, <tt class=" ">acs new</tt> creates a sample Node.js, app and <tt class=" ">acs new --image</tt> creates a sample app with Dockerfile.    </p>
+    <p>Starting with API Runtime Services (Arrow Cloud) 1.6.0, <tt class=" ">acs new</tt> creates a new app and <tt class=" ">acs new --image</tt> creates a new app with a Dockerfile.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">acs </code><code class="keyword">new</code><code class="plain"> [options] &lt;name&gt;</code></div>
@@ -950,7 +970,7 @@ Dates are specified as YYYY-MM-DD or &quot;YYYY-MM-DD HH:MM&quot;. Note that if 
         <p><tt class=" ">--force</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Force to use existing local app directory (add existing project to the cloud).    </p>
+        <p>Force to use existing local app directory (add an existing project to the cloud).    </p>
             </td>
         </tr>
     <tr>
@@ -1066,15 +1086,7 @@ Note that if an application is not listening on port 80, use <tt class=" ">acs c
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--d, --dir &lt;app_directory&gt;</tt>    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Specifies the directory of the application to publish. When omitted, the command must be run from the application directory.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--force</tt>    </p>
+        <p><tt class=" ">--force [appname]</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Required when publishing a version of an application that&apos;s already been published.    </p>
@@ -1082,7 +1094,7 @@ Note that if an application is not listening on port 80, use <tt class=" ">acs c
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--list_versions</tt>    </p>
+        <p><tt class=" ">--list_versions [appname]</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>List all published versions of the application, and the version deployed currently if any.    </p>
@@ -1495,7 +1507,7 @@ Check server system resource usage within a specific period. The server in cloud
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--show_serverid</tt>    </p>
+        <p><tt class=" ">--show_serverid [appname]</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Show server ID in logs.    </p>
@@ -1527,7 +1539,7 @@ Check server system resource usage within a specific period. The server in cloud
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><tt class=" ">--more</tt>    </p>
+        <p><tt class=" ">--more [appname]</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Display the next page of log messages.    </p>

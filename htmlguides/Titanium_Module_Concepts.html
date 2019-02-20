@@ -35,9 +35,9 @@
 </li></ul>    <p>This section deals with extending the Titanium API by building packaged modules, which can be sold through the Appcelerator Marketplace or distributed through other means.    </p>
     <div class="section section-2 " id="src-35621751_TitaniumModuleConcepts-PackagedTitaniummodules">
         <h2 class="heading "><span>Packaged Titanium modules</span></h2>
-    <p>A packaged module is a module that can contain native code, JavaScript, or both. It is built, or packaged, for a specific platform--at this point, packaged modules are supported on Android, iOS and Mobile Web. When you package a module, any native code is compiled and any JavaScript is obfuscated, so the module can be distributed without sharing your source code.    </p>
-    <p>Starting with Release 3.3.0, the Titanium CLI generates one module project for multiple platforms.  The module project contains platform-specific resource folders, called <tt class=" ">android</tt>, <tt class=" ">iphone</tt> and <tt class=" ">mobileweb</tt>, as well as common resources for assets, documentation and examples.    </p>
-    <p>Since packaged modules can contain native code, a module can generally do anything that native code can do. On Mobile Web, of course, JavaScript <i class=" ">is</i> the native language of the platform. On Android and iOS, there are a number of special considerations for writing native code, as well as a set of module APIs for integrating with Titanium.    </p>
+    <p>A packaged module is a module that can contain native code, JavaScript, or both. It is built, or packaged, for a specific platform--at this point, packaged modules are supported on Android and iOS. When you package a module, any native code is compiled and any JavaScript is obfuscated, so the module can be distributed without sharing your source code.    </p>
+    <p>Starting with Release 3.3.0, the Titanium CLI generates one module project for multiple platforms.  The module project contains platform-specific resource folders, called <tt class=" ">android</tt> and <tt class=" ">iphone</tt>, as well as common resources for assets, documentation and examples.    </p>
+    <p>Since packaged modules can contain native code, a module can generally do anything that native code can do. On Android and iOS, there are a number of special considerations for writing native code, as well as a set of module APIs for integrating with Titanium.    </p>
     <div class="section section-3 " id="src-35621751_TitaniumModuleConcepts-Nativemodules">
         <h3 class="heading "><span>Native modules</span></h3>
     <p>To write a native module for Android or iOS, you need to be familiar with several concepts:    </p>
@@ -118,7 +118,7 @@
     <div class="section section-3 " id="src-35621751_TitaniumModuleConcepts-PackagedJavaScriptandhybridmodules">
         <h3 class="heading "><span>Packaged JavaScript and hybrid modules</span></h3>
     <p>To package JavaScript as a native module, create a JavaScript module named &lt;module-id&gt;.js in the module&apos;s <tt class=" ">assets</tt> folder. The APIs exported by this module form the API of the packaged module.    </p>
-    <p>For Android and iOS modules, the module must be formatted as a CommonJS module. For Mobile Web, the module must use the Asynchronous Module Definition (AMD) format.    </p>
+    <p>For Android and iOS modules, the module must be formatted as a CommonJS module.    </p>
     <p>You can place additional JavaScript CommonJS modules in the assets folder and import them into your main module using <tt class=" ">require</tt>.    </p>
     <p>If your module includes both JavaScript and native code, the native and JavaScript module contents are merged when the module is packaged. For example, if your native module exposes a <tt class=" ">createView</tt> method, and you have a JavaScript module that exposes a <tt class=" ">animateView</tt> method, both of these methods are available on your module:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">

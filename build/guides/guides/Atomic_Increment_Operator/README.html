@@ -45,11 +45,7 @@
 </li></ul>    <div class="section section-3 " id="src-49153858_AtomicIncrementOperator-Examples">
         <h3 class="heading "><span>Examples</span></h3>
     <p>The following example increments the <tt class=" ">score</tt> custom field by 10 in a <a class="external-link external-link" href="/arrowdb/latest/#!/api/CustomObjects">CustomObjects</a> update to a custom object called <tt class=" ">family</tt>:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -b c.txt -c c.txt -X PUT -F </code><code class="string">&quot;id=511117915554f74313000009&quot;</code><code class="plain"> -F </code><code class="string">&quot;fields={&quot;</code><code class="plain">favorite</code><code class="string">&quot;:&quot;</code><code class="plain">play xbox 360&quot;, </code></div>
 <div class="line"><code class="string">&quot;pet&quot;</code><code class="plain">:</code><code class="string">&quot;shark&quot;</code><code class="plain"> ,</code><code class="string">&quot;score&quot;</code><code class="plain">:{</code><code class="string">&apos;$inc&apos;</code><code class="plain">:10}}&quot; </code></div>
@@ -92,16 +88,8 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     <p>The following example decrements the <tt class=" ">score</tt> custom field by 20 in a <a class="external-link external-link" href="/arrowdb/latest/#!/api/Checkins">Checkins</a> update:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -b c.txt -c c.txt -X PUT -F </code><code class="string">&quot;checkin_id=511111945554f742d300000b&quot;</code><code class="plain"> -F </code></div>
 <div class="line"><code class="string">&quot;custom_fields={&quot;</code><code class="plain">favorite</code><code class="string">&quot;:&quot;</code><code class="plain">play xbox 360</code><code class="string">&quot;, &quot;</code><code class="plain">pet</code><code class="string">&quot;:&quot;</code><code class="plain">shark</code><code class="string">&quot; ,&quot;</code><code class="plain">score</code><code class="string">&quot;:{&apos;$inc&apos;:-20}}&quot;</code><code class="plain"> </code></div>
@@ -174,16 +162,8 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     <p>If you apply $inc to multiple fields in one Update call, you will get an error:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "/><tfoot class=" "/><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ curl -b c.txt -c c.txt -X PUT -F </code><code class="string">&quot;checkin_id=511111945554f742d300000b&quot;</code><code class="plain"> -F </code></div>
 <div class="line"><code class="string">&quot;custom_fields={&quot;</code><code class="plain">favorite</code><code class="string">&quot;:&quot;</code><code class="plain">play xbox 360</code><code class="string">&quot;, &quot;</code><code class="plain">pet</code><code class="string">&quot;:&quot;</code><code class="plain">shark</code><code class="string">&quot; ,&quot;</code><code class="plain">score</code><code class="string">&quot;:{$inc:10}, &quot;</code><code class="plain">age</code><code class="string">&quot;:{$inc:10}}&quot;</code><code class="plain"> </code></div>
@@ -198,10 +178,6 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
     </div>
         </div><a id="editButton" href="https://wiki.appcelerator.org/pages/editpage.action?pageId=49153858"><span>Edit</span></a>

@@ -43,10 +43,10 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ appc generate</code></div>
-<div class="line"><code class="plain">Appcelerator Command-Line Interface, version </code><code class="value">0.2</code><code class="plain">.</code><code class="value">230</code></div>
-<div class="line"><code class="plain">Copyright (c) </code><code class="value">2014</code><code class="plain">-</code><code class="value">2015</code><code class="plain">, Appcelerator, Inc. All Rights Reserved.</code></div>
+<div class="line"><code class="plain">Appcelerator Command-Line Interface, version 0.2.230</code></div>
+<div class="line"><code class="plain">Copyright (c) 2014-2015, Appcelerator, Inc. All Rights Reserved.</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">? What type of component would you like to generate? Arrow Component</code></div>
+<div class="line"><code class="plain">? What </code><code class="functions">type</code><code class="plain"> of component would you like to generate? Arrow Component</code></div>
 <div class="line"><code class="plain">? What Arrow component would you like to generate? Arrow Connector</code></div>
 <div class="line"><code class="plain">? Which Connector would you like to generate? Empty Connector Project</code></div>
 <div class="line"><code class="plain">? What is the connector name? com.connector.twitter</code></div>
@@ -96,7 +96,7 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
 <div class="line"><code class="plain">    server = </code><code class="keyword">new</code><code class="plain"> Arrow();</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">server.addModel(Arrow.Model.extend(</code><code class="string">&apos;tweet&apos;</code><code class="plain">, {</code></div>
@@ -119,8 +119,8 @@
 <div class="line"><code class="plain">appc run</code></div>
 <div class="line"><code class="plain">...</code></div>
 <div class="line"><code class="plain">This connector does not </code><code class="keyword">do</code><code class="plain"> much of anything at the moment.</code></div>
-<div class="line"><code class="plain">Why don&apos;t you take a look at the </code><code class="string">&quot;capabilities&quot;</code><code class="plain"> array in:</code></div>
-<div class="line"><code class="plain">/Users/jdoe/workspace/com.connector.twitternew/lib/index.js</code></div>
+<div class="line"><code class="plain">Why don&apos;t you take a </code><code class="functions">look</code><code class="plain"> at the </code><code class="string">&quot;capabilities&quot;</code><code class="plain"> array </code><code class="keyword">in</code><code class="plain">:</code></div>
+<div class="line"><code class="plain">/Users/jdoe/workspace/com</code><code class="plain">.connector.twitternew</code><code class="plain">/lib/index</code><code class="plain">.js</code></div>
 </div>
     </div>
     <p>Follow the log instructions and open the ./lib/index.js file. You will see an exposed create function that uses the <tt class=" ">Connector.extend()</tt> method to create a new connector. In the object passed to the <tt class=" ">extend()</tt> method, you will see a capabilities field with an array of <tt class=" ">Capability</tt> constants. The constants are used to indicate to API Builder, which operations the connector can perform. We will add capabilities incrementally.    </p>
@@ -128,11 +128,11 @@
 <ol class=" "><li class=" ">    <p>Add the <tt class=" ">defaultConfig</tt> field to the parameter object passed to the <tt class=" ">extend()</tt> method. The <tt class=" ">defaultConfig</tt> field tells API Builder to copy the example configuration file to the project&apos;s <tt class=" ">conf</tt> directory when the user adds the connector to the project.    </p>
 </li><li class=" ">    <p>Uncomment the line containing <tt class=" ">Capabilities.ConnectsToADataSource.</tt>    </p>
 </li><li class=" ">    <p>Add the <tt class=" ">postCreate()</tt> function to attach a helper function to the connector instance that can be used by other connector methods.    </p>
-</li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./lib/index.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./lib/index.js">
 <div class="line"><code class="plain">...</code></div>
-<div class="line"><code class="plain">exports.create = function (Arrow) {</code></div>
+<div class="line"><code class="plain">exports.create = </code><code class="keyword">function</code><code class="plain"> (Arrow) {</code></div>
 <div class="line"><code class="plain">  ...</code></div>
 <div class="line"><code class="plain">  </code><code class="keyword">return</code><code class="plain"> Connector.extend({</code></div>
 <div class="line"><code class="plain">    defaultConfig: require(</code><code class="string">&apos;fs&apos;</code><code class="plain">).readFileSync(__dirname + </code><code class="string">&apos;/../conf/example.config.js&apos;</code><code class="plain">, </code><code class="string">&apos;utf8&apos;</code><code class="plain">),</code></div>
@@ -151,9 +151,9 @@
 <div class="line"><code class="plain">      </code><code class="comments">//Capabilities.CanDelete,</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">//Capabilities.AuthenticatesThroughConnector</code></div>
 <div class="line"><code class="plain">    ],</code></div>
-<div class="line"><code class="plain">    postCreate: function() {</code></div>
-<div class="line"><code class="plain">      </code><code class="keyword">this</code><code class="plain">.createInstance = function (Model, data) {</code></div>
-<div class="line"><code class="plain">        var model = Model.instance(data, </code><code class="keyword">true</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    postCreate: </code><code class="keyword">function</code><code class="plain">() {</code></div>
+<div class="line"><code class="plain">      </code><code class="keyword">this</code><code class="plain">.createInstance = </code><code class="keyword">function</code><code class="plain"> (Model, data) {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">var</code><code class="plain"> model = Model.instance(data, </code><code class="keyword">true</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        model.setPrimaryKey(data.id_str);</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> model;</code></div>
 <div class="line"><code class="plain">      };</code></div>
@@ -162,18 +162,18 @@
 <div class="line"><code class="plain">};</code></div>
 </div>
     </div>
-    <p>Save the file. You will see the following log output:    </p>
+</li><li class=" ">    <p>Save the file. You will see the following log output:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">The </code><code class="string">&quot;ConnectsToADataSource&quot;</code><code class="plain"> capability has been enabled, so we need to make a couple of changes:</code></div>
-<div class="line"><code class="plain"> - Created `lib/lifecycle/connect.js` (contains </code><code class="value">2</code><code class="plain"> TODOs)</code></div>
-<div class="line"><code class="plain"> - Created `lib/lifecycle/disconnect.js` (contains </code><code class="value">2</code><code class="plain"> TODOs)</code></div>
+<div class="line"><code class="plain"> - Created `lib/lifecycle/connect.js` (contains 2 TODOs)</code></div>
+<div class="line"><code class="plain"> - Created `lib/lifecycle/disconnect.js` (contains 2 TODOs)</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">Please go take a look at the TODOs in these </code><code class="keyword">new</code><code class="plain"> files, then </code><code class="keyword">do</code><code class="plain"> an `appc run` or `npm test` to </code><code class="keyword">try</code><code class="plain"> out the </code><code class="keyword">new</code><code class="plain"> capabilities.</code></div>
+<div class="line"><code class="plain">Please go take a look at the TODOs </code><code class="keyword">in</code><code class="plain"> these </code><code class="keyword">new</code><code class="plain"> files, then </code><code class="keyword">do</code><code class="plain"> an `appc run` or `npm test` to </code><code class="keyword">try</code><code class="plain"> out the </code><code class="keyword">new</code><code class="plain"> capabilities.</code></div>
 </div>
     </div>
     <p>API Builder generates some new files in the <tt class=" ">lib</tt> folder. You will need to implement some logic to connect to and disconnect from the datasource.    </p>
-    <div class="section section-3 " id="src-49153267_APIBuilderConnectorGettingStartedGuide-Addconnectlogic">
+</li></ol>    <div class="section section-3 " id="src-49153267_APIBuilderConnectorGettingStartedGuide-Addconnectlogic">
         <h3 class="heading "><span>Add connect logic</span></h3>
     <p>Open <tt class=" ">./lib/lifecycle/connect.js</tt> and replace the contents of the file with the following. The <tt class=" ">connect.js</tt> file contains logic to implement the connector&apos;s <tt class=" ">connect()</tt> method, which authorizes the connector to talk to the Twitter APIs.    </p>
     <p>Next, let&apos;s implement some logic to retrieve the tweets.    </p>
@@ -185,21 +185,21 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">The </code><code class="string">&quot;CanRetrieve&quot;</code><code class="plain"> capability has been enabled, so we need to make a couple of changes:</code></div>
-<div class="line"><code class="plain"> - Created `lib/methods/distinct.js` (contains </code><code class="value">3</code><code class="plain"> TODOs)</code></div>
-<div class="line"><code class="plain"> - Created `lib/methods/findAll.js` (contains </code><code class="value">3</code><code class="plain"> TODOs)</code></div>
-<div class="line"><code class="plain"> - Created `lib/methods/findById.js` (contains </code><code class="value">4</code><code class="plain"> TODOs)</code></div>
-<div class="line"><code class="plain"> - Created `lib/methods/query.js` (contains </code><code class="value">5</code><code class="plain"> TODOs)</code></div>
-<div class="line"><code class="plain">(Hint: If you only want to support some of these methods, feel free to delete the others.)</code></div>
-<div class="line"><code class="plain">Please go take a look at the TODOs in these </code><code class="keyword">new</code><code class="plain"> files, then </code><code class="keyword">do</code><code class="plain"> an `appc run` or `npm test` to </code><code class="keyword">try</code><code class="plain"> out the </code><code class="keyword">new</code><code class="plain"> capabilities.</code></div>
+<div class="line"><code class="plain"> - Created `lib/methods/distinct.js` (contains 3 TODOs)</code></div>
+<div class="line"><code class="plain"> - Created `lib/methods/findAll.js` (contains 3 TODOs)</code></div>
+<div class="line"><code class="plain"> - Created `lib/methods/findById.js` (contains 4 TODOs)</code></div>
+<div class="line"><code class="plain"> - Created `lib/methods/query.js` (contains 5 TODOs)</code></div>
+<div class="line"><code class="plain">(Hint: If you only want to support some of these methods, feel free to </code><code class="keyword">delete</code><code class="plain"> the others.)</code></div>
+<div class="line"><code class="plain">Please go take a look at the TODOs </code><code class="keyword">in</code><code class="plain"> these </code><code class="keyword">new</code><code class="plain"> files, then </code><code class="keyword">do</code><code class="plain"> an `appc run` or `npm test` to </code><code class="keyword">try</code><code class="plain"> out the </code><code class="keyword">new</code><code class="plain"> capabilities.</code></div>
 </div>
     </div>
 </li><li class=" ">    <p>Remove the <tt class=" ">distinct.js</tt> and <tt class=" ">query.js</tt> files. We will not be implementing these for the example.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./lib/lifecycle/connect.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./lib/lifecycle/connect.js">
-<div class="line"><code class="plain">var Twitter = require(</code><code class="string">&apos;twitter&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Twitter = require(</code><code class="string">&apos;twitter&apos;</code><code class="plain">);</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">exports.connect = function (next) {</code></div>
+<div class="line"><code class="plain">exports.connect = </code><code class="keyword">function</code><code class="plain"> (next) {</code></div>
 <div class="line"><code class="plain">  </code><code class="comments">// Initialize the client</code></div>
 <div class="line"><code class="plain">  </code><code class="comments">// Use this.config to get values from the configuration file</code></div>
 <div class="line"><code class="plain">  </code><code class="keyword">this</code><code class="plain">.client = </code><code class="keyword">new</code><code class="plain"> Twitter({</code></div>
@@ -216,17 +216,17 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./lib/methods/findAll.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./lib/methods/findAll.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
 <div class="line"><code class="plain">  Collection = Arrow.Collection,</code></div>
 <div class="line"><code class="plain">  ORMError = Arrow.ORMError;</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">exports.findAll = function findAll(Model, callback) {</code></div>
-<div class="line"><code class="plain">    var params = {screen_name: </code><code class="keyword">this</code><code class="plain">.config.account};</code></div>
+<div class="line"><code class="plain">exports.findAll = </code><code class="keyword">function</code><code class="plain"> findAll(Model, callback) {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> params = {screen_name: </code><code class="keyword">this</code><code class="plain">.config.account};</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// this Twitter API only returns the last twenty tweets</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">this</code><code class="plain">.client.get(</code><code class="string">&apos;statuses/user_timeline&apos;</code><code class="plain">, params, function(error, tweets, response) {</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">this</code><code class="plain">.client.get(</code><code class="string">&apos;statuses/user_timeline&apos;</code><code class="plain">, params, </code><code class="keyword">function</code><code class="plain">(error, tweets, response) {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (!error) {</code></div>
-<div class="line"><code class="plain">      var results = [];</code></div>
-<div class="line"><code class="plain">      </code><code class="keyword">for</code><code class="plain"> (var i = </code><code class="value">0</code><code class="plain">; i &lt; tweets.length; i++) {</code></div>
+<div class="line"><code class="plain">      </code><code class="keyword">var</code><code class="plain"> results = [];</code></div>
+<div class="line"><code class="plain">      </code><code class="keyword">for</code><code class="plain"> (</code><code class="keyword">var</code><code class="plain"> i = 0; i &lt; tweets.length; i++) {</code></div>
 <div class="line"><code class="plain">        results.push(Model.connector.createInstance(Model, tweets[i]));</code></div>
 <div class="line"><code class="plain">      }</code></div>
 <div class="line"><code class="plain">      callback(</code><code class="keyword">null</code><code class="plain">, </code><code class="keyword">new</code><code class="plain"> Collection(Model, results));</code></div>
@@ -242,11 +242,11 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./lib/methods/findById.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./lib/methods/findById.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
 <div class="line"><code class="plain">  ORMError = Arrow.ORMError;</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">exports.findById = function (Model, id, callback) {</code></div>
-<div class="line"><code class="plain">  </code><code class="keyword">this</code><code class="plain">.client.get(</code><code class="string">&apos;statuses/show/&apos;</code><code class="plain"> + id, {}, function(error, tweet, response) {</code></div>
+<div class="line"><code class="plain">exports.findById = </code><code class="keyword">function</code><code class="plain"> (Model, id, callback) {</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">this</code><code class="plain">.client.get(</code><code class="string">&apos;statuses/show/&apos;</code><code class="plain"> + id, {}, </code><code class="keyword">function</code><code class="plain">(error, tweet, response) {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (!error) {</code></div>
 <div class="line"><code class="plain">      callback(</code><code class="keyword">null</code><code class="plain">, Model.connector.createInstance(Model, tweet));</code></div>
 <div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> {</code></div>
@@ -272,20 +272,20 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">The </code><code class="string">&quot;CanCreate&quot;</code><code class="plain"> capability has been enabled, so we need to make a couple of changes:</code></div>
-<div class="line"><code class="plain"> - Created `lib/methods/create.js` (contains </code><code class="value">3</code><code class="plain"> TODOs)</code></div>
-<div class="line"><code class="plain">Please go take a look at the TODOs in these </code><code class="keyword">new</code><code class="plain"> files, then </code><code class="keyword">do</code><code class="plain"> an `appc run` or `npm test` to </code><code class="keyword">try</code><code class="plain"> out the </code><code class="keyword">new</code><code class="plain"> capabilities.</code></div>
+<div class="line"><code class="plain"> - Created `lib/methods/create.js` (contains 3 TODOs)</code></div>
+<div class="line"><code class="plain">Please go take a look at the TODOs </code><code class="keyword">in</code><code class="plain"> these </code><code class="keyword">new</code><code class="plain"> files, then </code><code class="keyword">do</code><code class="plain"> an `appc run` or `npm test` to </code><code class="keyword">try</code><code class="plain"> out the </code><code class="keyword">new</code><code class="plain"> capabilities.</code></div>
 </div>
     </div>
 </li><li class=" ">    <p>Open <tt class=" ">./lib/methods/create.js</tt> and replace the contents of the file with the following. The <tt class=" ">create.js</tt> file implements the connector&apos;s <tt class=" ">create()</tt> method, which allows the connector to post a tweet on the user&apos;s Twitter feed.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./lib/methods/create.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./lib/methods/create.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
 <div class="line"><code class="plain">  ORMError = Arrow.ORMError;</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">exports.create = function (Model, values, callback) {</code></div>
-<div class="line"><code class="plain">  var params = {</code><code class="string">&apos;status&apos;</code><code class="plain">: values.text};</code></div>
-<div class="line"><code class="plain">  </code><code class="keyword">this</code><code class="plain">.client.post(</code><code class="string">&apos;statuses/update&apos;</code><code class="plain">, params, function(error, tweet, response) {</code></div>
+<div class="line"><code class="plain">exports.create = </code><code class="keyword">function</code><code class="plain"> (Model, values, callback) {</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">var</code><code class="plain"> params = {</code><code class="string">&apos;status&apos;</code><code class="plain">: values.text};</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">this</code><code class="plain">.client.post(</code><code class="string">&apos;statuses/update&apos;</code><code class="plain">, params, </code><code class="keyword">function</code><code class="plain">(error, tweet, response) {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (!error) {</code></div>
 <div class="line"><code class="plain">      callback(</code><code class="keyword">null</code><code class="plain">, Model.connector.createInstance(Model, tweet));</code></div>
 <div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> {</code></div>
@@ -309,10 +309,10 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">The </code><code class="string">&quot;CanDelete&quot;</code><code class="plain"> capability has been enabled, so we need to make a couple of changes:</code></div>
-<div class="line"><code class="plain"> - Created `lib/methods/delete.js` (contains </code><code class="value">4</code><code class="plain"> TODOs)</code></div>
-<div class="line"><code class="plain"> - Created `lib/methods/deleteAll.js` (contains </code><code class="value">3</code><code class="plain"> TODOs)</code></div>
-<div class="line"><code class="plain">(Hint: If you only want to support some of these methods, feel free to delete the others.)</code></div>
-<div class="line"><code class="plain">Please go take a look at the TODOs in these </code><code class="keyword">new</code><code class="plain"> files, then </code><code class="keyword">do</code><code class="plain"> an `appc run` or `npm test` to </code><code class="keyword">try</code><code class="plain"> out the </code><code class="keyword">new</code><code class="plain"> capabilities.</code></div>
+<div class="line"><code class="plain"> - Created `lib/methods/</code><code class="keyword">delete</code><code class="plain">.js` (contains 4 TODOs)</code></div>
+<div class="line"><code class="plain"> - Created `lib/methods/deleteAll.js` (contains 3 TODOs)</code></div>
+<div class="line"><code class="plain">(Hint: If you only want to support some of these methods, feel free to </code><code class="keyword">delete</code><code class="plain"> the others.)</code></div>
+<div class="line"><code class="plain">Please go take a look at the TODOs </code><code class="keyword">in</code><code class="plain"> these </code><code class="keyword">new</code><code class="plain"> files, then </code><code class="keyword">do</code><code class="plain"> an `appc run` or `npm test` to </code><code class="keyword">try</code><code class="plain"> out the </code><code class="keyword">new</code><code class="plain"> capabilities.</code></div>
 </div>
     </div>
 </li><li class=" ">    <p>Remove the <tt class=" ">lib/methods/deleteAll.js</tt>.    </p>
@@ -320,11 +320,11 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./lib/methods/delete.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./lib/methods/delete.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">),</code></div>
 <div class="line"><code class="plain">  ORMError = Arrow.ORMError;</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">exports[</code><code class="string">&apos;delete&apos;</code><code class="plain">] = function (Model, instance, callback) {</code></div>
-<div class="line"><code class="plain">  </code><code class="keyword">this</code><code class="plain">.client.post(</code><code class="string">&apos;statuses/destroy/&apos;</code><code class="plain"> + instance.id + </code><code class="string">&apos;.json&apos;</code><code class="plain">, {}, function(error, tweet, response) {</code></div>
+<div class="line"><code class="plain">exports[</code><code class="string">&apos;delete&apos;</code><code class="plain">] = </code><code class="keyword">function</code><code class="plain"> (Model, instance, callback) {</code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">this</code><code class="plain">.client.post(</code><code class="string">&apos;statuses/destroy/&apos;</code><code class="plain"> + instance.id + </code><code class="string">&apos;.json&apos;</code><code class="plain">, {}, </code><code class="keyword">function</code><code class="plain">(error, tweet, response) {</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (!error) {</code></div>
 <div class="line"><code class="plain">      callback(</code><code class="keyword">null</code><code class="plain">, Model.connector.createInstance(Model, tweet));</code></div>
 <div class="line"><code class="plain">    } </code><code class="keyword">else</code><code class="plain"> {</code></div>
@@ -348,7 +348,7 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">The </code><code class="string">&quot;ContainsModels&quot;</code><code class="plain"> capability has been enabled, so we need to make a couple of changes:</code></div>
-<div class="line"><code class="plain"> - Created `models/yourModel.js` (contains </code><code class="value">2</code><code class="plain"> TODOs)</code></div>
+<div class="line"><code class="plain"> - Created `models/yourModel.js` (contains 2 TODOs)</code></div>
 </div>
     </div>
 </li><li class=" ">    <p>Rename the <tt class=" ">yourModel.js</tt> file to <tt class=" ">tweet.js</tt>.    </p>
@@ -356,9 +356,9 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">./models/tweet.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="./models/tweet.js">
-<div class="line"><code class="plain">var Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Arrow = require(</code><code class="string">&apos;arrow&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain"> </code></div>
-<div class="line"><code class="plain">var Tweet = Arrow.Model.extend(</code><code class="string">&apos;tweet&apos;</code><code class="plain">, {</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> Tweet = Arrow.Model.extend(</code><code class="string">&apos;tweet&apos;</code><code class="plain">, {</code></div>
 <div class="line"><code class="plain">  fields: {</code></div>
 <div class="line"><code class="plain">    status: { type: String, name: </code><code class="string">&apos;text&apos;</code><code class="plain"> }</code></div>
 <div class="line"><code class="plain">  },</code></div>
@@ -368,8 +368,8 @@
 <div class="line"><code class="plain">module.exports = Tweet;</code></div>
 </div>
     </div>
-</li></ol>    <p>Reload the Admin console and retest adding and removing a model.    </p>
-    </div>
+</li><li class=" ">    <p>Reload the Admin console and retest adding and removing a model.    </p>
+</li></ol>    </div>
     </div>
     <div class="section section-2 " id="src-49153267_APIBuilderConnectorGettingStartedGuide-Publishtheconnector">
         <h2 class="heading "><span>Publish the connector</span></h2>

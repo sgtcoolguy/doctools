@@ -97,11 +97,7 @@
     <div class="section section-4 " id="src-49153772_MobileBackendServicesSDKforNode.js-Userloginexample">
         <h4 class="heading "><span>User login example</span></h4>
     <p>The following example uses the standard MBS APIs to log in a user. It defines a custom <tt class=" ">login()</tt> function that takes the <tt class=" ">username</tt> and <tt class=" ">password</tt> properties from the HTTP request body, and in turn, passes those values as input to the <tt class=" ">User.login()</tt> method. On successful login, the user&apos;s information is displayed in the console or, in case of an error, the error response is displayed.    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> ArrowDB = require(</code><code class="string">&apos;arrowdb&apos;</code><code class="plain">),</code></div>
 <div class="line"><code class="plain">    arrowDBApp = </code><code class="keyword">new</code><code class="plain"> ArrowDB(</code><code class="string">&apos;&lt;App Key&gt;&apos;</code><code class="plain">);</code></div>
@@ -124,10 +120,6 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
     <div class="section section-4 " id="src-49153772_MobileBackendServicesSDKforNode.js-Photoorfileuploadexample">
         <h4 class="heading "><span>Photo or file upload example</span></h4>
@@ -138,13 +130,9 @@ The following example uses the standard MBS APIs to upload a photo or a file. It
             <p>For increased file security, it is recommended that files be encrypted prior to uploading them.    </p>
     </div>
         <p>    <span style="color: #000000;">
-<br>    </span>
+     </span>
     </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&#xA0;</code><code class="keyword">function</code><code class="plain"> upload(req, res) {</code></div>
 <div class="line"><code class="plain">    console.log(req.body.fileName);</code></div>
@@ -191,10 +179,6 @@ The following example uses the standard MBS APIs to upload a photo or a file. It
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
     </div>
     <div class="section section-3 " id="src-49153772_MobileBackendServicesSDKforNode.js-GenericMobileBackServicesAPIs">
@@ -209,11 +193,7 @@ The following example uses the standard MBS APIs to upload a photo or a file. It
 </li><li class=" ">    <p><tt class=" ">parameters</tt>: The parameters to pass to the method. May be omitted.    </p>
 </li><li class=" ">    <p><tt class=" ">callback</tt>: The function to call when the request completes. The callback is passed an Error object (or null if successful) and the results of the method call.    </p>
 </li></ul>    <p>Below is a complete REST example that is functionally equivalent to the previous version that used the standard MBS APIs.    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> ArrowDB = require(</code><code class="string">&apos;arrowdb&apos;</code><code class="plain">),</code></div>
 <div class="line"><code class="plain">    arrowDBApp = </code><code class="keyword">new</code><code class="plain"> ArrowDB(</code><code class="string">&apos;&lt;App Key&gt;&apos;</code><code class="plain">);</code></div>
@@ -233,10 +213,6 @@ The following example uses the standard MBS APIs to upload a photo or a file. It
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     </div>
     </div>
     <div class="section section-2 " id="src-49153772_MobileBackendServicesSDKforNode.js-UserloginsessionmanagementUserloginsessionmanagement">
@@ -252,11 +228,7 @@ The following example uses the standard MBS APIs to upload a photo or a file. It
     <p>If a session ID is returned in the API response (for example, <tt class=" ">users/login.json</tt>), the session information is added to the response object. Specifically, it adds a <tt class=" ">Set-Cookie</tt> header to pass back to the client.    </p>
     <p>To manually manage cookie sessions, disable automatic session management by passing an object as the second parameter to the constructor with the <tt class=" ">autoSessionManagement</tt> property set to <tt class=" ">false</tt>. MBS will no longer automatically retrieve and set the session cookie. You must manually set the MBS instance&apos;s <tt class=" ">sessionCookieString</tt> property once you retrieve a cookie string. The cookie string is available in the <tt class=" ">cookieString</tt> property in the callback&apos;s result object if the API response returns a session ID.    </p>
     <p>The example below retrieves and sets the cookie string:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> ArrowDB = require(</code><code class="string">&apos;arrowdb&apos;</code><code class="plain">),</code></div>
 <div class="line"><code class="plain">    arrowDBApp = </code><code class="keyword">new</code><code class="plain"> ArrowDB(</code><code class="string">&apos;&lt;App Key&gt;&apos;</code><code class="plain">, {autoSessionManagement: </code><code class="keyword">false</code><code class="plain">});</code></div>
@@ -276,10 +248,6 @@ The following example uses the standard MBS APIs to upload a photo or a file. It
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     <p><strong class=" ">Important</strong>    </p>
 <ul class=" "><li class=" ">    <p>The MBS Node SDK sets the cookie header in the response object, which must be done <i class=" ">before</i> sending any response data (for example, by calling the response object&apos;s <tt class=" ">send</tt> method). If you send any response data <i class=" ">before</i> the API callback function is invoked, the MBS Node SDK will throw an exception when it tries to set the cookie headers, with a message like, &quot;Can&apos;t render headers after they are sent to the client.&quot;    </p>
 </li><li class=" ">    <p>Session information is stored in a cookie named <tt class=" ">_session_id</tt>. You can also manually set this session ID cookie on the client side. For example, if you are calling your API Runtime service from a Titanium application that uses MBS directly, you can retrieve the active session ID from the Titanium.Cloud.sessionId property, and adding a <tt class=" ">Set-Cookie</tt> header when making a request to the API Runtime service.    </p>
@@ -287,11 +255,7 @@ The following example uses the standard MBS APIs to upload a photo or a file. It
     <div class="section section-3 " id="src-49153772_MobileBackendServicesSDKforNode.js-Manualsessionmanagement">
         <h3 class="heading "><span>Manual session management</span></h3>
     <p>An MBS user login session is identified by a <tt class=" ">session_id</tt> parameter in the request or response data. When logging in to a user account or creating a new user, the <tt class=" ">session_id</tt> is returned in the response data of the API calls. It can be retrieved from the response data by using the <tt class=" ">body.meta.session_id</tt> property of the callback&apos;s result object. For example:    </p>
-    <div class="tablewrap">
-        <table>
-        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td rowspan="1" colspan="1">
-        <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">function</code><code class="plain"> loginUser(req, res) {</code></div>
 <div class="line"><code class="plain">    arrowDBApp.usersLogin({</code></div>
@@ -303,10 +267,6 @@ The following example uses the standard MBS APIs to upload a photo or a file. It
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-            </td>
-        </tr>
-</tbody>        </table>
-            </div>
     <p>To reuse this session for making other API calls, pass it in as part of the request parameters (<tt class=" ">session_id: _stored_session_id_</tt>). This gives you full control of the sessions. You can store a session and reuse it (as long as the session is not expired on the MBS server) later for making API calls. For example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
