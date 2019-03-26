@@ -29,7 +29,7 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="NodeJS_Configuration.html#src-49157246_NodeJSConfiguration-Preinstallandpost-install">Preinstall and post-install</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="NodeJS_Configuration.html#src-49157246_NodeJSConfiguration-Start">Start</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="NodeJS_Configuration.html#src-49157246_NodeJSConfiguration-Version">Version</a>    </p>
-</li></ul>    <p>An API Builder application contains a file called <tt class=" ">package.json</tt> located in the root directory of the project. API Runtime Services uses the <tt class=" ">package.json</tt> file to configure settings and install dependencies for the application.    </p>
+</li></ul>    <p>An API Builder application contains a file called <tt class=" ">package.json</tt> located in the root directory of the project. AMPLIFY Runtime Services uses the <tt class=" ">package.json</tt> file to configure settings and install dependencies for the application.    </p>
     <p>Important fields for API Builder applications are defined below.    </p>
     <div class="section section-2 " id="src-49157246_NodeJSConfiguration-Dependencies">
         <h2 class="heading "><span>Dependencies</span></h2>
@@ -55,13 +55,13 @@
     <p>You may specify any version of Node.js. Node.js 0.8.26, 0.10.22 and 0.12.4 are built in, but other versions will be downloaded from <a class="external-link external-link" href="https://nodejs.org/">https://nodejs.org/</a> when the application is built prior to running <tt class=" ">npm install</tt>. If you do not specify a Node.js version, the application will use 0.12.4 by default.    </p>
     <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <div class="title">Deprecated Behavior</div>
-            <p>Prior to API Runtime Services 1.2.0, if this field is undefined when you publish your application, the application will use 0.10.22 by default.    </p>
-    <p>If this field is undefined when you republish your application and the latest supported Node.js version changed on the API Runtime Services servers, you will receive an error message when trying to publish your application. You must set the Node.js version to republish your application.    </p>
+            <p>Prior to AMPLIFY Runtime Services 1.2.0, if this field is undefined when you publish your application, the application will use 0.10.22 by default.    </p>
+    <p>If this field is undefined when you republish your application and the latest supported Node.js version changed on the AMPLIFY Runtime Services servers, you will receive an error message when trying to publish your application. You must set the Node.js version to republish your application.    </p>
     </div>
         </div>
     <div class="section section-2 " id="src-49157246_NodeJSConfiguration-Healthcheck">
         <h2 class="heading "><span>Health check</span></h2>
-    <p>Starting with API Runtime Services 1.2.0, you may define a health-check endpoint called <tt class=" ">arrowPing.json</tt> that returns a 200 HTTP code. To let API Runtime Services know you defined the health-check endpoint, set the <tt class=" ">healthCheck</tt> field to <tt class=" ">true</tt>. For an example, see <a class="document-link " href="API_Builder_Project.html">API Builder Project</a>.    </p>
+    <p>Starting with AMPLIFY Runtime Services 1.2.0, you may define a health-check endpoint called <tt class=" ">arrowPing.json</tt> that returns a 200 HTTP code. To let AMPLIFY Runtime Services know you defined the health-check endpoint, set the <tt class=" ">healthCheck</tt> field to <tt class=" ">true</tt>. For an example, see <a class="document-link " href="API_Builder_Project.html">API Builder Project</a>.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">{</code></div>
@@ -73,7 +73,7 @@
     </div>
     <div class="section section-2 " id="src-49157246_NodeJSConfiguration-Main">
         <h2 class="heading "><span>Main</span></h2>
-    <p>API Runtime Services uses the <tt class=" ">main</tt> field in the <tt class=" ">package.json</tt> file to determine the application&apos;s main entry point. Set this field to a JavaScript file. API Runtime Services loads and runs this file first.    </p>
+    <p>AMPLIFY Runtime Services uses the <tt class=" ">main</tt> field in the <tt class=" ">package.json</tt> file to determine the application&apos;s main entry point. Set this field to a JavaScript file. AMPLIFY Runtime Services loads and runs this file first.    </p>
     <p>By default, the <tt class=" ">main</tt> field is set to the <tt class=" ">app.js</tt> file located in the project&apos;s root folder:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -174,7 +174,7 @@ he Appcelerator CLI will attempt to read the credentials from <tt class=" ">~/.n
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>Prior to API Runtime Services 1.3.0, you could also use the script to install custom binaries outside the project directory.    </p>
+    <p>Prior to AMPLIFY Runtime Services 1.3.0, you could also use the script to install custom binaries outside the project directory.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <p>Do not name the script <tt class=" ">install.sh</tt>, located in the root folder of the project. The name is reserved to specify a script to install binaries to the container.    </p>
     </div>

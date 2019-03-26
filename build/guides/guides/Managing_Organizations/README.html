@@ -23,11 +23,15 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-Concepts">Concepts</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-Rolesandfeatures">Roles and features</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_safe-id-TWFuYWdpbmdPcmdhbml6YXRpb25zLVZpZXdPcmdhbml6YXRpb25kZXRhaWxzLGFwcGxpY2F0aW9ucyxhbmRtZW1iZXJz">View Organization details, applications, and members</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-Addanorganizationmember">Add an organization member</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-Managinganorganization">Managing an organization</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-Managingorganizationmembers">Managing organization members</a>    </p>
+<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-Addanorganizationmember">Add an organization member</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-ApplicationAddorremoveapplicationteammembers">Add or remove application team members</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-Deleteanapplication">Delete an application</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_safe-id-TWFuYWdpbmdPcmdhbml6YXRpb25zLVZpZXdpbmdhbmRtb2RpZnlpbmdhbWVtYmVyJ3Nyb2xlb3JhY2Nlc3M">Viewing and modifying a member&apos;s role or access</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-Troubleshooting">Troubleshooting</a>    </p>
+</li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-Managingusage">Managing usage</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-Managingorganizationsettings">Managing organization settings</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-Troubleshooting">Troubleshooting</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-IwasrecentlypromotedtoAdministratorbutIcannotseeapplicationsfromotherusers">I was recently promoted to Administrator but I cannot see applications from other users</a>    </p>
 </li></ul></li></ul>    <div class="section section-2 " id="src-43298778_ManagingOrganizations-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
@@ -40,7 +44,7 @@
 </li><li class=" ">    <p>Organization <i class=" ">admins</i> can create applications, invite users to join the organization, and assign organization members to <i class=" ">application teams</i>.    </p>
 </li></ul>    <p>A user can have different administrator rights:    </p>
 <ul class=" "><li class=" ">    <p><i class=" ">Org Admin<strong class=" "> </strong></i>gives the user access to manage the organization.    </p>
-</li><li class=" ">    <p><i class=" ">API Runtime Services Admin</i> gives the user access to manage API Runtime Services application associated with the organization using the <tt class=" ">acs</tt> CLI, including republishing or remove applications.    </p>
+</li><li class=" ">    <p><i class=" ">AMPLIFY Runtime Services Admin</i> gives the user access to manage AMPLIFY Runtime Services application associated with the organization using the <tt class=" ">acs</tt> CLI, including republishing or remove applications.    </p>
 </li></ul>    <p>A user can be a member of multiple organizations. In this case, the user will see an organization switcher in the Profile drop-down, located in top-right of the Appcelerator Dashboard.    </p>
     <p>An application team is a group of people working on a single application. Application team members can have different roles:    </p>
 <ul class=" "><li class=" ">    <p><i class=" ">Application admins</i> can add users to the application team, change user roles, and update or modify the application&apos;s data. The user who creates an application becomes an admin for that application by default. Some ACS APIs can only be called by application admins.    </p>
@@ -59,18 +63,34 @@
     <p><strong class=" ">To manage organizations, applications, and members:</strong>    </p>
 <ol class=" "><li class=" ">    <p>Sign in to the <a class="external-link external-link" href="https://platform.axway.com" target="_blank">AMPLIFY Platform</a>.    </p>
 </li><li class=" ">    <p>To open the <i class=" ">Organization</i> page, select the current organization from the <strong class=" ">User</strong> menu.    </p>
-    <img src="images/download/attachments/43298778/usermenu_multipleorg.png" alt="images/download/attachments/43298778/usermenu_multipleorg.png" class="confluence-embedded-image" width="375">
+    <img src="images/download/attachments/43298778/usermenu_multipleorg.png" alt="images/download/attachments/43298778/usermenu_multipleorg.png" class="confluence-embedded-image">
     </img></li></ol><ul class=" "><li class=" "><ul class=" "><li class=" ">    <p><strong class=" ">Account</strong> - View and manage your account information.    </p>
+</li><li class=" ">    <p><strong class=" ">Organizations</strong> - View and manage organizations.    </p>
 </li><li class=" ">    <p><strong class=" ">Downloads</strong> - Navigate to the Download Center.    </p>
 </li><li class=" ">    <p><strong class=" ">Organization</strong> - Displays the selected organization. To manage the selected the organization, click on the organization name.    </p>
 </li><li class=" ">    <p><strong class=" ">Members</strong> - View organization members. Admins can also manage organization members.    </p>
+</li><li class=" ">    <p><strong class=" ">Usage</strong> - View organizations usage of allocated resources.    </p>
 </li><li class=" ">    <p><strong class=" ">Billing</strong> (Admin only) - View and manage your account billing information.    </p>
 </li><li class=" ">    <p><strong class=" ">Switch Org</strong> - Select to switch organizations.    </p>
 </li><li class=" ">    <p><strong class=" ">Sign out</strong> - Select to sign out of your account.    </p>
-</li></ul></li></ul>    <p>This opens the <i class=" ">Organization</i> page for the currently selected organization.    </p>
+</li></ul></li></ul>    <p>This opens the <strong class=" ">Organization</strong> tab for the currently selected organization.    </p>
+    </div>
+    </div>
+    <div class="section section-2 " id="src-43298778_ManagingOrganizations-Managinganorganization">
+        <h2 class="heading "><span>Managing an organization</span></h2>
+    <p>The Organization tab enables you to select and organization and update the organization name.    </p>
     <p>    <img src="images/download/attachments/43298778/manage_org_new.png" alt="images/download/attachments/43298778/manage_org_new.png" class="confluence-embedded-image" width="700">
         </img></p>
-    </div>
+    <p>To update an organization name:    </p>
+<ol class=" "><li class=" ">    <p>Select the organization from the drop-down menu.    </p>
+</li><li class=" ">    <p>Enter the desired organization name in the <strong class=" ">Name</strong> field.    </p>
+</li><li class=" ">    <p>Click <strong class=" ">Update Organization</strong>.    </p>
+</li></ol>    </div>
+    <div class="section section-2 " id="src-43298778_ManagingOrganizations-Managingorganizationmembers">
+        <h2 class="heading "><span>Managing organization members</span></h2>
+    <p>The <strong class=" ">Members</strong> tab enables you view and manage members of the selected organization,    </p>
+    <p>    <img src="images/download/attachments/43298778/members_tab.png" alt="images/download/attachments/43298778/members_tab.png" class="confluence-embedded-image" width="700">
+        </img></p>
     <div class="section section-3 " id="src-43298778_ManagingOrganizations-Addanorganizationmember">
         <h3 class="heading "><span>Add an organization member</span></h3>
     <p>If you are an organization admin, you can add new members to an organization. An organization admin can only add as many members as the number of available seats in the organization.    </p>
@@ -80,7 +100,7 @@
 </li><li class=" ">    <p>Click the <strong class=" ">Members</strong> tab.    </p>
 </li><li class=" ">    <p>Click the <strong class=" ">+</strong> icon in the upper-right corner.    </p>
 </li><li class=" ">    <p>Enter the user&apos;s email address.    </p>
-</li><li class=" ">    <p>Select the user&apos;s role (Administrator, Developer, or Collaborator) from the <strong class=" ">Role</strong> drop-down menu.     <span style="color: #343a40;">
+</li><li class=" ">    <p>Select the user&apos;s role (Administrator, Developer, Collaborator, or Consumer) from the <strong class=" ">Role</strong> drop-down menu.     <span style="color: #343a40;">
 Administrators can manage all users and applications in the org    </span>
 anization.    </p>
 </li><li class=" ">    <p>If the user is to be an API Runtime Admin, select the <strong class=" ">API Runtime Admin</strong> checkbox. If the <strong class=" ">API Runtime Admin</strong> checkbox is selected,     <span style="color: #343a40;">
@@ -126,13 +146,58 @@ the user can administer API Runtime applications created by other users.    </sp
 </li><li class=" ">    <p>To change a member&apos;s role, select a different role from the <strong class=" ">Role</strong> drop-menu menu.     <span style="color: #343a40;">
 Administrators can manage all users and applications in the organization. All other user roles can view only applications to which they belong.    </span>
     </p>
-</li><li class=" ">    <p>To change a members administrator privileges, enable or disable the <strong class=" ">API Runtime Services Admin</strong> checkbox. API Runtime Services Admin makes the member an administrator of the API Runtime Services apps associated with the organization.    </p>
+</li><li class=" ">    <p>To change a members administrator privileges, enable or disable the <strong class=" ">AMPLIFY Runtime Services Admin</strong> checkbox. AMPLIFY Runtime Services Admin makes the member an administrator of the AMPLIFY Runtime Services apps associated with the organization.    </p>
 </li><li class=" ">    <p>To remove a member from the organization, select the <strong class=" ">Tools</strong> icon and select <strong class=" ">Remove Member</strong> and then confirm the removal.    </p>
 </li><li class=" ">    <p>To change a member&apos;s application team assignments, select the <strong class=" ">Tools</strong> icon and select <strong class=" ">App Teams</strong>. Refer to <a class="document-link " href="#!/guide/Managing_Organizations-section-src-43298778_ManagingOrganizations-Application">Add or remove application team members</a>.    </p>
     <img src="images/download/attachments/43298778/manage_members.png" alt="images/download/attachments/43298778/manage_members.png" class="confluence-embedded-image" width="700">
-    </img></li></ol>    <p>The member&apos;s last login is displayed in the <i class=" ">Last Login</i> column and their current two-factor authentication (2FA) status is displayed in the <i class=" ">2FA</i> column. For more information on 2FA, refer to <a class="document-link " href="#!/guide/Managing_Accounts-section-src-53873214_ManagingAccounts-2FA">Manage two-factor authentication</a>.    </p>
+    </img></li></ol>    <p>The member&apos;s last login is displayed in the <i class=" ">Last Login</i> column and their current multi-factor authentication status is displayed in the <i class=" ">MFA</i> column. For more information on multi-factor authentication, refer to <a class="document-link " href="#!/guide/Managing_Accounts-section-src-53873214_ManagingAccounts-2FA">Manage multi-factor authentication</a>.    </p>
     </div>
     </div>
+    <div class="section section-2 " id="src-43298778_ManagingOrganizations-Managingusage">
+        <h2 class="heading "><span>Managing usage</span></h2>
+    <p>The <strong class=" ">Usage</strong> tab enable you to view the usage of allocated resources for the selected organization for the selected time frame and the summary of the configured applications. Additionally, you can manage the allocated resources for the selected organization. To manage the allocated resources for the selected organization, click <strong class=" ">Manage</strong>. Clicking <strong class=" ">Manage</strong> transfers you to the <i class=" ">Billing</i> page for the selected organization, For additional billing information, refer to <a class="document-link " href="#!/guide/Managing_Billing">Managing Billing</a>.    </p>
+    <p>    <img src="images/download/attachments/43298778/usage_tab.png" alt="images/download/attachments/43298778/usage_tab.png" class="confluence-embedded-image" width="700">
+        </img></p>
+    </div>
+    <div class="section section-2 " id="src-43298778_ManagingOrganizations-Managingorganizationsettings">
+        <h2 class="heading "><span>Managing organization settings</span></h2>
+    <p>The <strong class=" ">Settings</strong> tab enables to brand the Dashboard for the selected organization.    </p>
+    <p>    <img src="images/download/attachments/43298778/settings_tab.png" alt="images/download/attachments/43298778/settings_tab.png" class="confluence-embedded-image" width="700">
+        </img></p>
+    <p>To brand the Dashboard per your organization&apos;s branding requirements:    </p>
+<ol class=" "><li class=" ">    <p>Select your organization&apos;s logo.     <span style="color: #343a40;">
+The logo will be displayed at a maximum height of 45 pixels and the logo file must be less than 100KB.    </span>
+    </p>
+<ol class=" "><li class=" ">    <p>    <span style="color: #343a40;">
+Click <strong class=" ">Choose File</strong>.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #343a40;">
+Select the logo file to upload. Once the logo file is selected, the <i class=" ">Branding Preview</i> will update to display the selected logo.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #343a40;">
+To remove the selected icon file, click <strong class=" ">Remove</strong>.<br>    </br></span>
+    </p>
+</li></ol></li><li class=" ">    <p>    <span style="color: #343a40;">
+Select your catalog colors. As you select your catalog colors, the <i class=" ">Branding Preview</i> will update to display the selected colors.    </span>
+    <span style="color: #343a40;">
+<br>    </br></span>
+    </p>
+<ol class=" "><li class=" ">    <p>    <span style="color: #343a40;">
+Select or enter the <strong class=" ">Header Left</strong> color.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #343a40;">
+Select or enter the <strong class=" ">Header Right</strong> color.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #343a40;">
+Select or enter the <strong class=" ">Tile Border</strong> color.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #343a40;">
+Select or enter the <strong class=" ">Tile Border on Hover</strong> color.    </span>
+    </p>
+</li></ol></li><li class=" ">    <p>    <span style="color: #343a40;">
+Click <strong class=" ">Save</strong>.<br>    </br></span>
+    </p>
+</li></ol>    </div>
     <div class="section section-2 " id="src-43298778_ManagingOrganizations-Troubleshooting">
         <h2 class="heading "><span>Troubleshooting</span></h2>
     <p>    </p>

@@ -45,7 +45,7 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/API_Builder_Project-section-src-49153285_APIBuilderProject-ServerPorts">Server Ports</a>    </p>
 </li></ul></li></ul>    <div class="section section-2 " id="src-49153285_APIBuilderProject-Overview">
         <h2 class="heading "><span>Overview</span></h2>
-    <p>An API Builder application is a standard Node.js application that runs in the API Runtime Services environment. This guide covers how to manage your project.    </p>
+    <p>An API Builder application is a standard Node.js application that runs in the AMPLIFY Runtime Services environment. This guide covers how to manage your project.    </p>
     <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <p>You may also use Appcelerator Studio to manage your API Builder (formerly known as Arrow Builder) projects. For details, see <a class="document-link " href="#!/guide/API_Builder_Development">API Builder Development</a>.    </p>
     </div>
@@ -85,7 +85,7 @@
         <p><tt class=" ">appc.json</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Contains component dependencies and API Runtime Services deployment settings. For details, see <a class="document-link " href="#!/guide/API_Runtime_Configuration">API Runtime Configuration</a>.    </p>
+        <p>Contains component dependencies and AMPLIFY Runtime Services deployment settings. For details, see <a class="document-link " href="#!/guide/API_Runtime_Configuration">API Runtime Configuration</a>.    </p>
             </td>
         </tr>
     <tr>
@@ -261,12 +261,12 @@
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Deploytheapplication">
         <h2 class="heading "><span>Deploy the application</span></h2>
-    <p>To deploy an application to API Runtime Services, run the <tt class=" ">appc publish</tt> command from the API Runtime Services project directory. Your project source code will be uploaded to the API Runtime Services where <tt class=" ">npm install</tt> will be executed against the project, which downloads and installs any NPM module dependencies. When the installation completes, the application is executed using <tt class=" ">node</tt>.    </p>
-    <p>If the application is already deployed, you need to either increment the <tt class=" ">version</tt> field in the <tt class=" ">package.json</tt> file to publish a new version of the application or pass the <tt class=" ">--force</tt> flag to the publish command to republish the application. Before republishing the application, API Runtime Services sends the <tt class=" ">SIGTERM</tt> signal to the currently deployed application to let it shutdown gracefully. If the app does not shut down in time, API Runtime Services will kill the application.    </p>
+    <p>To deploy an application to AMPLIFY Runtime Services, run the <tt class=" ">appc publish</tt> command from the AMPLIFY Runtime Services project directory. Your project source code will be uploaded to the AMPLIFY Runtime Services where <tt class=" ">npm install</tt> will be executed against the project, which downloads and installs any NPM module dependencies. When the installation completes, the application is executed using <tt class=" ">node</tt>.    </p>
+    <p>If the application is already deployed, you need to either increment the <tt class=" ">version</tt> field in the <tt class=" ">package.json</tt> file to publish a new version of the application or pass the <tt class=" ">--force</tt> flag to the publish command to republish the application. Before republishing the application, AMPLIFY Runtime Services sends the <tt class=" ">SIGTERM</tt> signal to the currently deployed application to let it shutdown gracefully. If the app does not shut down in time, AMPLIFY Runtime Services will kill the application.    </p>
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Logoutput">
         <h2 class="heading "><span>Log output</span></h2>
-    <p>API Runtime Services can capture two kinds of log output from applications:    </p>
+    <p>AMPLIFY Runtime Services can capture two kinds of log output from applications:    </p>
 <ul class=" "><li class=" ">    <p>access logs &#x2013; HTTP requests to the application    </p>
 </li><li class=" ">    <p>application logs &#x2013; explicit log calls made in the application    </p>
 </li></ul>    <p>To capture access logs, use the <tt class=" ">appc-logger</tt> module, and to capture application logs, you can either use the standard JavaScript <tt class=" ">console.log()</tt> and <tt class=" ">console.error()</tt> methods, or you can use the <tt class=" ">appc-logger</tt> module.    </p>
@@ -294,7 +294,7 @@
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Viewlogfiles">
         <h2 class="heading "><span>View log files</span></h2>
-    <p>An application typically runs in the cloud, so being able to see what is happening in the application is very important. Any log output written to <tt class=" ">stdout</tt> or <tt class=" ">stderr</tt> in the application&apos;s root process is captured and stored by API Runtime Services, and can be viewed using the Appcelerator command-line tool or in the <strong class=" ">Logs</strong> tab of the Dashboard.    </p>
+    <p>An application typically runs in the cloud, so being able to see what is happening in the application is very important. Any log output written to <tt class=" ">stdout</tt> or <tt class=" ">stderr</tt> in the application&apos;s root process is captured and stored by AMPLIFY Runtime Services, and can be viewed using the Appcelerator command-line tool or in the <strong class=" ">Logs</strong> tab of the Dashboard.    </p>
     <p><strong class=" ">Notes:</strong>    </p>
 <ul class=" "><li class=" ">    <p>Only output written by the application&apos;s root process is included in the log file; output written by child processes forked by the application&apos;s root process will not be caught.    </p>
 </li><li class=" ">    <p>Errors such as syntax errors, application crashes, and system level failures are logged automatically.    </p>
@@ -330,8 +330,8 @@
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Node.jsversion">
         <h2 class="heading "><span>Node.js version</span></h2>
-    <p>Prior to API Runtime Services (formerly known as Arrow Cloud) 1.2.0, the only Node.js versions you could use were 0.8.26 and 0.10.22.    </p>
-    <p>Starting with API Runtime Services 1.2.0, you may specify any version of Node.js. Node.js 0.8.26, 0.10.22 and 0.12.4 are built in, but other versions will be downloaded from <a class="external-link external-link" href="https://nodejs.org/" target="_blank">https://nodejs.org/</a> when the application is built prior to running <tt class=" ">npm install</tt>.    </p>
+    <p>Prior to AMPLIFY Runtime Services (formerly known as Arrow Cloud) 1.2.0, the only Node.js versions you could use were 0.8.26 and 0.10.22.    </p>
+    <p>Starting with AMPLIFY Runtime Services 1.2.0, you may specify any version of Node.js. Node.js 0.8.26, 0.10.22 and 0.12.4 are built in, but other versions will be downloaded from <a class="external-link external-link" href="https://nodejs.org/" target="_blank">https://nodejs.org/</a> when the application is built prior to running <tt class=" ">npm install</tt>.    </p>
     <p>To specify a Node.js version, in the <tt class=" ">package.json</tt> file, set the <tt class=" ">engines.node</tt> key to the version of Node.js you want to use. DO NOT SPECIFY A RANGE. If you do not specify a Node.js version, the application will use 4.4.7 by default (as of SDK 6.0.0).    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">package.json</div>
@@ -346,7 +346,7 @@
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Portbinding">
         <h2 class="heading "><span>Port binding</span></h2>
-    <p>Starting with API Runtime Services 1.2.0, you may explicitly set the port the application listens on. Set the <tt class=" ">cloud.environment.PORT</tt> key in the <tt class=" ">appc.json</tt> file. or use the <tt class=" ">appc cloud config --set &quot;PORT=&lt;PORT_NUMBER&gt;&quot;</tt> command to set the special environment variable PORT. If you do not set PORT explicitly before publishing your application, API Runtime Services sets it to 80 by default.    </p>
+    <p>Starting with AMPLIFY Runtime Services 1.2.0, you may explicitly set the port the application listens on. Set the <tt class=" ">cloud.environment.PORT</tt> key in the <tt class=" ">appc.json</tt> file. or use the <tt class=" ">appc cloud config --set &quot;PORT=&lt;PORT_NUMBER&gt;&quot;</tt> command to set the special environment variable PORT. If you do not set PORT explicitly before publishing your application, AMPLIFY Runtime Services sets it to 80 by default.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">appc.json</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="appc.json">
@@ -363,8 +363,8 @@
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Installcustombinaries">
         <h2 class="heading "><span>Install custom binaries</span></h2>
-    <p>API Runtime Services allows you to install additional binaries before your application is built.    </p>
-    <p>Starting with API Runtime Services 1.3.0, to install additional third-party tools, create a script called <tt class=" ">install.sh</tt> in the project&apos;s root folder, which installs the required packages.    </p>
+    <p>AMPLIFY Runtime Services allows you to install additional binaries before your application is built.    </p>
+    <p>Starting with AMPLIFY Runtime Services 1.3.0, to install additional third-party tools, create a script called <tt class=" ">install.sh</tt> in the project&apos;s root folder, which installs the required packages.    </p>
     <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <div class="title">ImageMagick and PhantomJS</div>
             <p>Both ImageMagick and PhantomJS are pre-installed on the containers.    </p>
@@ -398,7 +398,7 @@
 <div class="line"><code class="plain">  }</code></div>
 </div>
     </div>
-    <p>Note that from API Runtime Services 1.3.0 and later, you can still use the above method but do not name the script <tt class=" ">install.sh</tt> or it will run twice, and only install the binaries in the project directory. Prior to API Runtime Services 1.3.0, binaries could be installed outside the project directory.    </p>
+    <p>Note that from AMPLIFY Runtime Services 1.3.0 and later, you can still use the above method but do not name the script <tt class=" ">install.sh</tt> or it will run twice, and only install the binaries in the project directory. Prior to AMPLIFY Runtime Services 1.3.0, binaries could be installed outside the project directory.    </p>
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Declaredependencies">
         <h2 class="heading "><span>Declare dependencies</span></h2>
@@ -434,7 +434,7 @@
     <p>To check the current environment variables, use the <tt class=" "> appc cloud config --env</tt> command.    </p>
     <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <div class="title">Blacklist Variable Names</div>
-            <p>Prior to API Runtime Services 1.2.0, you could not use the following names for environment variables: &quot;appid&quot;, &quot;basedir&quot;, &quot;bodyParser&quot;, &quot;customConfig&quot;, &quot;dirname&quot;, &quot;framework&quot;, &quot;fullpath&quot;, &quot;name&quot;, &quot;serverId&quot;, &quot;port&quot;, &quot;version&quot;, &quot;NODE&quot;, &quot;NODE_PATH&quot;, &quot;PATH&quot;, &quot;PWD&quot;, &quot;PORT&quot;, &quot;TMPDIR&quot;, and &quot;USER&quot;.    </p>
+            <p>Prior to AMPLIFY Runtime Services 1.2.0, you could not use the following names for environment variables: &quot;appid&quot;, &quot;basedir&quot;, &quot;bodyParser&quot;, &quot;customConfig&quot;, &quot;dirname&quot;, &quot;framework&quot;, &quot;fullpath&quot;, &quot;name&quot;, &quot;serverId&quot;, &quot;port&quot;, &quot;version&quot;, &quot;NODE&quot;, &quot;NODE_PATH&quot;, &quot;PATH&quot;, &quot;PWD&quot;, &quot;PORT&quot;, &quot;TMPDIR&quot;, and &quot;USER&quot;.    </p>
     </div>
         <p>After changing an environment variable, you will be prompted to restart the application.    </p>
     <p>    <span style="color: #222222;">
@@ -455,7 +455,7 @@ The following example sets the     </span>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Scaletheapplication">
         <h2 class="heading "><span>Scale the application</span></h2>
     <p>    <span style="color: #222222;">
-To customize the number of cloud servers the application can enable the auto-scaling feature to automatically scale up and down the number of cloud servers based on the number of queued requests. You specify the maximum number of queued requests that should occur before the application is scaled up. API Runtime Services will increase the number of containers if the queue is too high for at least one minute. You can also specify the minimum and the maximum number of servers that should be used.    </span>
+To customize the number of cloud servers the application can enable the auto-scaling feature to automatically scale up and down the number of cloud servers based on the number of queued requests. You specify the maximum number of queued requests that should occur before the application is scaled up. AMPLIFY Runtime Services will increase the number of containers if the queue is too high for at least one minute. You can also specify the minimum and the maximum number of servers that should be used.    </span>
     </p>
     <p>    <span style="color: #222222;">
 The following example enables autoscaling, using a maximum of five servers when there are at least 20 queued requests. The application is also configured to automatically scale down the number of servers when the number of queued requests drops below 20.    </span>
@@ -488,7 +488,7 @@ command to configure autoscaling:    </span>
     </div>
     <div class="section section-2 " id="src-49153285_APIBuilderProject-Accessaspecificcontainer">
         <h2 class="heading "><span>Access a specific container</span></h2>
-    <p>Starting with API Runtime Services 1.3.1, if you have scaled your application to use more than one server container, you can make a request to a specific container that your application is running on. To make a request to a specific server container, pass the <tt class=" ">_serverid</tt> parameter with the request and set it to the ID of the server container. To retrieve the server container ID, run the <tt class=" ">appc cloud </tt><tt class=" ">accesslog --show_serverid</tt> command.    </p>
+    <p>Starting with AMPLIFY Runtime Services 1.3.1, if you have scaled your application to use more than one server container, you can make a request to a specific container that your application is running on. To make a request to a specific server container, pass the <tt class=" ">_serverid</tt> parameter with the request and set it to the ID of the server container. To retrieve the server container ID, run the <tt class=" ">appc cloud </tt><tt class=" ">accesslog --show_serverid</tt> command.    </p>
     <p>Example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -797,7 +797,7 @@ The following example allows the application to be accessed from     </span>
     </div>
     <div class="section section-3 " id="src-49153285_APIBuilderProject-ServerPorts">
         <h3 class="heading "><span>Server Ports</span></h3>
-    <p>Currently, API Runtime Services only supports applications opening one server listening port. There cannot be more than one TCP/HTTP server started in one application.    <span style="color: #222222;">
+    <p>Currently, AMPLIFY Runtime Services only supports applications opening one server listening port. There cannot be more than one TCP/HTTP server started in one application.    <span style="color: #222222;">
      </span>
     </p>
     </div>
