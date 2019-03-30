@@ -35,7 +35,7 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_safe-id-U2VuZGluZ2FuZFNjaGVkdWxpbmdQdXNoTm90aWZpY2F0aW9ucy0nU3Vic2NyaXB0aW9ubm90Zm91bmQnZXJyb3I">&apos;Subscription not found&apos; error</a>    </p>
 </li></ul></li></ul>    <div class="section section-2 " id="src-43298780_SendingandSchedulingPushNotifications-Sendingpushnotifications">
         <h2 class="heading "><span>Sending push notifications</span></h2>
-    <p>To send a push notification, you must provide the Dashboard the following information:    </p>
+    <p>To send a push notification, you must provide Dashboard the following information:    </p>
 <ul class=" "><li class=" ">    <p><strong class=" ">Notification recipients and channel &#x2013; </strong>If your application users were subscribed using <i class=" ">session-based subscriptions</i>, you can send a notification to specific API Builder users subscribed to a particular channel. For token-based subscriptions, you can send notifications to all users subscribed to a particular channel, or all users regardless of their channel subscriptions.    </p>
 </li><li class=" ">    <p><strong class=" ">Notification schedule &#x2013; </strong>You can send a notification immediately, or schedule it to be sent at a future date and time. Scheduled notifications can be one-time or recurring.    </p>
 </li><li class=" ">    <p><strong class=" ">Notification payload &#x2013; </strong>The content of the notification, which consists minimally of an alert string to display, and optionally a sound to play or badge display. See <a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_SendingandSchedulingPushNotifications-AboutNotificationPayloads">About Notification Payloads</a>.    </p>
@@ -45,8 +45,8 @@
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <p>A warning will be displayed if you attempt to perform a push with an expired or disabled iOS certificate.    </p>
     </div>
-        <p><strong class=" ">To send a push notification from the Dashboard:</strong>    </p>
-<ol class=" "><li class=" ">    <p>In the Dashboard, select your application from the <i class=" ">Projects</i> view.    </p>
+        <p><strong class=" ">To send push notifications from the Dashboard:</strong>    </p>
+<ol class=" "><li class=" ">    <p>In the Dashboard, select your application from the Dashboard home page <strong class=" ">Projects</strong> tab.    </p>
 </li><li class=" ">    <p>From the left-side navigation, select <strong class=" ">Push Notifications</strong>.    </p>
 </li><li class=" ">    <p>Select <strong class=" ">Send</strong> to open the Send Push Notification form<strong class=" ">. </strong>    </p>
 </li><li class=" ">    <p>Select either the <strong class=" ">Standard</strong> or <strong class=" ">Advanced</strong>.    </p>
@@ -341,7 +341,7 @@ The <tt class=" ">icon</tt> payload field specifies an image to display with the
     <div class="section section-3 " id="src-43298780_safe-id-U2VuZGluZ2FuZFNjaGVkdWxpbmdQdXNoTm90aWZpY2F0aW9ucy0nU3Vic2NyaXB0aW9ubm90Zm91bmQnZXJyb3I">
         <h3 class="heading "><span>&apos;Subscription not found&apos; error</span></h3>
     <p>In general, this error indicates that the recipients you selected are not subscribed to the specified channel. If you&apos;re sending a notification to specific API Builder users, make sure that those users are subscribed to the specified channel. Or, if you&apos;re sending a token-based notification (not addressed to specific users) make sure that channel name you specified has at least one subscriber. See <a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_SendingandSchedulingPushNotifications-Viewingsubscribeddevices">Viewing subscribed devices</a> for more information.    </p>
-    <p>When <a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_SendingandSchedulingPushNotifications-SendingandSchedulingPushNotifications-sendSendingpushnotifications">sending</a> a geo-based push notification, this error can also indicate that no devices were found in the selected geographic area. Try the following:    </p>
+    <p>When <a class="document-link " href="Sending_and_Scheduling_Push_Notifications.html#src-43298780_SendingandSchedulingPushNotifications-SendingandSchedulingPushNotifications-sendSendingpushnotifications">sending</a> geo-based push notifications, this error can also indicate that no devices were found in the selected geographic area. Try the following:    </p>
 <ul class=" "><li class=" ">    <p>Make sure your application is sending its current location to API Builder. See <a class="document-link " href="Subscribing_to_push_notifications.html">Updating Subscriptions with Device Location</a>. Devices must report their location to API Builder to enable geo-based push.    </p>
 </li><li class=" ">    <p>Try using a larger <strong class=" ">Radius</strong> value to encompass a larger geographic area.    </p>
 </li></ul>    </div>
