@@ -35,7 +35,7 @@
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Quick_Start_Guide_for_iOS_APS_SDK_using_Swift.html#src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-ModifytheApplication">Modify the Application</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Quick_Start_Guide_for_iOS_APS_SDK_using_Swift.html#src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-SendanAnalyticsFeatureEvent">Send an Analytics Feature Event</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Quick_Start_Guide_for_iOS_APS_SDK_using_Swift.html#src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-QueryCloudUsers">Query Cloud Users</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Quick_Start_Guide_for_iOS_APS_SDK_using_Swift.html#src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-LogintoaCloudAccount">Login to a Cloud Account</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Quick_Start_Guide_for_iOS_APS_SDK_using_Swift.html#src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-LogintoaCloudAccount">Log in to a Cloud Account</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Quick_Start_Guide_for_iOS_APS_SDK_using_Swift.html#src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-SetaUsernameforCrashLogs">Set a Username for Crash Logs</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Quick_Start_Guide_for_iOS_APS_SDK_using_Swift.html#src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-TestingtheTutorialSample">Testing the Tutorial Sample</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="Quick_Start_Guide_for_iOS_APS_SDK_using_Swift.html#src-43298728_safe-id-UXVpY2tTdGFydEd1aWRlZm9yaU9TQVBTU0RLdXNpbmdTd2lmdC1OZXh0U3RlcHNmb3JBcHBjZWxlcmF0b3JBbmFseXRpY3MsQ2xvdWRhbmRQZXJmb3JtYW5jZQ">Next Steps for Appcelerator Analytics, Cloud and Performance</a>    </p>
@@ -195,8 +195,8 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
 </li><li class=" ">    <p>Select your project in the Project navigator and click the <strong class=" ">Build Phases</strong> tab.    </p>
 </li><li class=" ">    <p>Expand the <strong class=" ">Link Binary With Libraries</strong> section and add the <tt class=" ">libsqlite3.tbd</tt> and <tt class=" ">libz.tbd</tt> frameworks. Prior to Xcode 7, the framework extension is <tt class=" ">dylib</tt> rather than <tt class=" ">tbd</tt>.    </p>
 </li><li class=" ">    <p>Click the <strong class=" ">Build Settings</strong> tab, then click the <strong class=" ">All</strong> button in the top-left corner of the tab.    </p>
-</li><li class=" ">    <p>If you are using Xcode 7, you will need to disable bitcode since some third-party libraries do not have bitcode enabled. Expand the <strong class=" ">Build Options</strong> section and set <strong class=" ">Enable Bitcode</strong> to <strong class=" ">No</strong>.    </p>
-</li><li class=" ">    <p>Expand the <strong class=" ">Linking</strong> section and add <tt class=" ">-ObjC</tt>  to <strong class=" ">Other Linker Flags</strong>  .    </p>
+</li><li class=" ">    <p>If you are using Xcode 7, you will need to disable bit code since some third-party libraries do not have bit code enabled. Expand the <strong class=" ">Build Options</strong> section and set <strong class=" ">Enable Bitcode</strong> to <strong class=" ">No</strong>.    </p>
+</li><li class=" ">    <p>Expand the <strong class=" ">Linking</strong> section and add <tt class=" ">-ObjC</tt>  to Other Linker Flags.    </p>
 </li><li class=" ">    <p>Expand the <strong class=" ">Swift Compiler - Code Generation</strong> section (near the bottom) and add the bridging header file (with the relative path from the root folder) to <strong class=" ">Objective-C Bridging Header</strong>, for example, &lt;<tt class=" ">PROJECT_NAME</tt>&gt;/<tt class=" ">&lt;PROJECT_NAME&gt;-Bridging-Header.h</tt>.<br>    <img src="images/download/attachments/43298728/SwiftCompiler.png" alt="images/download/attachments/43298728/SwiftCompiler.png" class="confluence-embedded-image confluence-content-image-border">
         </p>
 </li><li class=" ">    <p>Open the bridging header file and add the following import statement:    </p>
@@ -338,8 +338,8 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     </div>
     </div>
     <div class="section section-3 " id="src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-LogintoaCloudAccount">
-        <h3 class="heading "><span>Login to a Cloud Account</span></h3>
-    <p>To login to a Cloud account, you need the username and password.  Since the application was modified to get all available user accounts and populate the Picker View, the application needs to get the current value of the picker and the text entered in the Text Field.  These values are passed to the <tt class=" ">APSUsers.login()</tt> method.  Modify the <tt class=" ">doClick</tt> method to login to a Cloud user account.    </p>
+        <h3 class="heading "><span>Log in to a Cloud Account</span></h3>
+    <p>To log in to a Cloud account, you need the username and password.  Since the application was modified to get all available user accounts and populate the Picker View, the application needs to get the current value of the picker and the text entered in the Text Field.  These values are passed to the <tt class=" ">APSUsers.login()</tt> method.  Modify the <tt class=" ">doClick</tt> method to login to a Cloud user account.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ViewController.swift</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ViewController.swift">
@@ -365,7 +365,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     </div>
     <div class="section section-3 " id="src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-SetaUsernameforCrashLogs">
         <h3 class="heading "><span>Set a Username for Crash Logs</span></h3>
-    <p>To help differentiate crash logs, use the u<tt class=" ">sername</tt> property.  When the application successfully logs in to the Cloud user account, the application sets the u<tt class=" ">sername</tt> property.    </p>
+    <p>To help differentiate crash logs, use the <tt class=" ">username</tt> property.  When the application successfully logs in to the Cloud user account, the application sets the <tt class=" ">username</tt> property.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ViewController.swift</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ViewController.swift">
@@ -406,7 +406,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
 </li><li class=" ">    <p>Go back to the <a class="external-link external-link" href="https://platform.appcelerator.com/">Appcelerator Dashboard</a>.    </p>
 </li><li class=" ">    <p>In Dashboard, select your application from the <strong class=" ">Apps</strong> menu in the upper-left corner.    </p>
 </li><li class=" ">    <p>In the left navbar, select <strong class=" ">Analytics</strong>.    </p>
-</li><li class=" ">    <p>In the Real Time view, you should see at least one active session.    </p>
+</li><li class=" ">    <p>In the Real-Time view, you should see at least one active session.    </p>
 </li><li class=" ">    <p>In the left navbar, click <strong class=" ">Events</strong>.  You should see the &quot;sample.feature.login&quot; feature event.    </p>
 </li></ol>    </div>
     </div>

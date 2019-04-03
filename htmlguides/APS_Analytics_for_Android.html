@@ -60,7 +60,7 @@
         <h2 class="heading "><span>Terminology</span></h2>
     <p><strong class=" ">Analytics</strong> refers to data about how your application has been used, as well as information about how users interact with your application. Analytics data is transmitted in the form of <i class=" ">events</i>.    </p>
     <p>Events are operational milestones in the application. Some events are generated automatically, such as those that mark an installation, or the beginning and end of a session. Others may be <strong class=" ">custom events</strong>, which have a meaning specific to an application, such as tapping a specific button or opening a certain window.    </p>
-    <p>There are two types custom events: <strong class=" ">feature events</strong> and <strong class=" ">navigation events</strong>. A  feature event represents an action a user could take in an application, such as &apos;liking an item&apos; or launching a video&apos;.  A  navigation event is used to track a users&apos; navigation from one area of the UI to another. Applications use the Titanium or APSAnalytics API to create custom events.    </p>
+    <p>There are two types of custom events: <strong class=" ">feature events</strong> and <strong class=" ">navigation events</strong>. A  feature event represents an action a user could take in an application, such as &apos;liking an item&apos; or launching a video&apos;.  A  navigation event is used to track a users&apos; navigation from one area of the UI to another. Applications use the Titanium or APSAnalytics API to create custom events.    </p>
     <p><strong class=" ">Event funnels</strong> let you define custom, ordered event sequences that let you track a specific user process, such as finding a product and making a purchase.    </p>
     <p>The <strong class=" ">Analytics dashboard</strong> organizes, analyzes, and presents analytics data captured for your applications. You also use the Analytics dashboard to create and view event funnels.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
@@ -130,12 +130,12 @@
 </li><li class="diff-block-target diff-block-context ">    <p>Click <strong class=" ">Show Key</strong> under the Analytics, Performance and Cloud section.    </p>
 </li></ol>    </div>
     </li></ol>    <p>The Android application can now make additional method calls using the <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/android/com/appcelerator/aps/APSAnalytics.html"> <tt class=" ">APSAnalytics</tt> class</a>. Before making API calls to the APSAnalytics class, you need to retrieve a shared instance using the <tt class=" ">getInstance()</tt> method. Make APSAnalytics API calls using the shared instance.    </p>
-    <p>For the Android platform, you need to setup the application to send <a class="document-link " href="APS_Analytics_for_Android.html#src-43298722_APSAnalyticsforAndroid-Setupuser">user session events</a>.    </p>
+    <p>For the Android platform, you need to set up the application to send <a class="document-link " href="APS_Analytics_for_Android.html#src-43298722_APSAnalyticsforAndroid-Setupuser">user session events</a>.    </p>
     <div class="section section-3 " id="src-43298722_APSAnalyticsforAndroid-Advancedinitializationoptions">
         <h3 class="heading "><span>Advanced initialization options</span></h3>
     <div class="section section-4 " id="src-43298722_APSAnalyticsforAndroid-Sessiontimeout">
         <h4 class="heading "><span>Session timeout</span></h4>
-    <p>By default, after the application has been backgrounded for 30000 milliseconds (30 seconds), the Analytics service ends the current user session and starts a new one when the application enter the foreground again.  To adjust the timeout, use the APSAnalytics&apos;s <tt class=" ">setSessionTimeout()</tt> method.    </p>
+    <p>By default, after the application has been backgrounded for 30000 milliseconds (30 seconds), the Analytics service ends the current user session and starts a new one when the application enters the foreground again.  To adjust the timeout, use the APSAnalytics&apos;s <tt class=" ">setSessionTimeout()</tt> method.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// Sets the timeout to 15000 milliseconds (15 seconds) instead of 30000 milliseconds.</code></div>
@@ -147,7 +147,7 @@
     <div class="section section-3 " id="src-43298722_APSAnalyticsforAndroid-Setupusersessionevents">
         <h3 class="heading "><span>Setup user session events</span></h3>
     <p>On the Android platform, user session events are not automatically sent, unlike the iOS and Titanium platforms.  You need to add three <tt class=" ">APSAnalyitcs</tt> method calls in the main Activity of your application in order to capture user session data.    </p>
-<ol class=" "><li class=" ">    <p>Call the <tt class=" ">sendAppEnrollEvent()</tt> method right after the application calls the<tt class=" "> APSServiceManager.getInstance().enable()</tt>  in the  <tt class=" ">onCreate()</tt>  method. The enroll event indicates application installs or upgrades.    </p>
+<ol class=" "><li class=" ">    <p>Call the <tt class=" ">sendAppEnrollEvent()</tt> method right after the application calls the<tt class=" "> APSServiceManager.getInstance().enable()</tt> in the  <tt class=" ">onCreate()</tt>  method. The enroll event indicates application installs or upgrades.    </p>
 </li><li class=" ">    <p>Call the <tt class=" ">sendAppForegroundEvent()</tt> method inside the main Activity&apos;s <tt class=" ">onResume()</tt> method. The foreground event indicates when the application is being used.    </p>
 </li><li class=" ">    <p>Call the<tt class=" "> sendAppBackgroundEvent()</tt> method inside the main Activity&apos;s <tt class=" ">onPause()</tt> method. The background event indicates when the application has been dismissed.    </p>
 </li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -179,7 +179,7 @@
     </div>
     <div class="section section-2 " id="src-43298722_APSAnalyticsforAndroid-Creatingcustomevents">
         <h2 class="heading "><span>Creating custom events</span></h2>
-    <p>You use the the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.Analytics">A</a> PSAnalytics API to log and report custom events. There are two main types of events you can capture: <a class="document-link " href="APS_Analytics_for_Android.html#src-43298722_APSAnalyticsforAndroid-Featureevents">Feature Events</a> and <a class="document-link " href="APS_Analytics_for_Android.html#src-43298722_APSAnalyticsforAndroid-Navigationevents">Navigation Events</a>. Feature events are for capturing a user action, such as selecting a specific menu option, or launching a video. Navigation events track a user&apos;s movement through an application, such as going from the application&apos;s home screen, and then to a search screen.    </p>
+    <p>You use the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.Analytics">A</a> PSAnalytics API to log and report custom events. There are two main types of events you can capture: <a class="document-link " href="APS_Analytics_for_Android.html#src-43298722_APSAnalyticsforAndroid-Featureevents">Feature Events</a> and <a class="document-link " href="APS_Analytics_for_Android.html#src-43298722_APSAnalyticsforAndroid-Navigationevents">Navigation Events</a>. Feature events are for capturing a user action, such as selecting a specific menu option or launching a video. Navigation events track a user&apos;s movement through an application, such as going from the application&apos;s home screen and then to a search screen.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <p>Currently, the optional <tt class=" ">data</tt> parameter of the Titanium.Analytics methods, which is used to log a dictionary object, cannot be accessed through the Dashboard.    </p>
     </div>
@@ -189,7 +189,7 @@
     <p>Feature event names should be as generic as possible. For instance, if you want to track when users select a certain menu option, use a name like  <strong class=" ">     <span style="color: #000000;">
 &quot;user.menu.selection&quot;,    </span>
  </strong>     <span style="color: #000000;">
- not <strong class=" ">&quot;joeuser.menu.selection&quot;</strong>. The first option is better because it groups all the same types of event into a single metric that&apos;s easy to view on Dashboard. The person analyzing the data only has to look at a single number to get an overview of how many users have selected that menu option. The second might be fine for very small user bases, but if you have more than 100 users it means that the person analyzing the data would have to look through 100 different event names to be able to generate any useful data.    </span>
+ not <strong class=" ">&quot;joeuser.menu.selection&quot;</strong>. The first option is better because it groups all the same types of events into a single metric that&apos;s easy to view on Dashboard. The person analyzing the data only has to look at a single number to get an overview of how many users have selected that menu option. The second might be fine for very small user bases, but if you have more than 100 users it means that the person analyzing the data would have to look through 100 different event names to be able to generate any useful data.    </span>
      <span style="color: #000000;">
      </span>
     </p>
@@ -210,7 +210,7 @@
     </div>
     <div class="section section-3 " id="src-43298722_APSAnalyticsforAndroid-Navigationevents">
         <h3 class="heading "><span>Navigation events</span></h3>
-    <p>Use the APSAnalytics&apos;<tt class=" "> sendAppNavEvent()</tt> method to track a user&apos;s navigation within your application from one screen to another. The method&apos;s first and second parameters are strings that specify the &quot;from&quot; and &quot;to&quot; locations, respectively. It&apos;s third parameter is the name you want to assign to the event.    </p>
+    <p>Use the APSAnalytics&apos;<tt class=" "> sendAppNavEvent()</tt> method to track a user&apos;s navigation within your application from one screen to another. The method&apos;s first and second parameters are strings that specify the &quot;from&quot; and &quot;to&quot; locations, respectively. Its third parameter is the name you want to assign to the event.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <p>Currently, navigation events do not appear in Dashboard. As a workaround, consider using <a class="document-link " href="APS_Analytics_for_Android.html#src-43298722_APSAnalyticsforAndroid-Transitionevents">transition events</a>.    </p>
     </div>
