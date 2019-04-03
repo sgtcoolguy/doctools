@@ -133,7 +133,9 @@ node('linux && !master') {
 							[$class: 'CloneOption', depth: 0, honorRefspec: true, noTags: true, reference: '', shallow: true],
 							[$class: 'CleanBeforeCheckout'],
 							[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [
-								[path: 'apidoc']
+								[path: 'apidoc'],
+								[path: 'package.json'],
+								[path: 'package-lock.json']
 							]]
 						],
 						submoduleCfg: [],
