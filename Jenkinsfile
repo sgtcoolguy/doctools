@@ -135,7 +135,8 @@ node('linux && !master') {
 							[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [
 								[path: 'apidoc'],
 								[path: 'package.json'],
-								[path: 'package-lock.json']
+								[path: 'package-lock.json'],
+								[path: 'Source']
 							]]
 						],
 						submoduleCfg: [],
