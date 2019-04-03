@@ -289,6 +289,9 @@ node('linux && !master') {
 				// Wipe redundant html files!
 				sh "rm -rf ${outputDir}/guides/*/README.html" // html files aren't actually used, README.js is!
 				// sh "rm -rf ${outputDir}/guides/*/icon.png" // TODO: Remove icons too?
+
+				// Copy landing
+				sh "cp -r ./landing ${outputDir}/.."
 			} // stage('Misc Assets')
 
 			stage('Archive') {
