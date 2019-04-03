@@ -141,8 +141,8 @@ node('linux && !master') {
 					]
 				)
 
+				sh 'npm ci'
 				dir('apidoc') {
-					sh 'npm ci'
 					sh 'node ti_win_yaml'
 					sh 'rm Titanium/Map.yml'
 					sh 'rm -r Titanium/Map'
