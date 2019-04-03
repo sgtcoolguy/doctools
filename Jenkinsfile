@@ -292,6 +292,9 @@ node('linux && !master') {
 
 				// copy revised API doc navigation images to ../appc_web_docs
 				sh "cp ./API_doc_images/* ${outputDir}/extjs/resources/themes/images/default/."
+
+				// Copy landing
+				sh "cp -r ./landing ${outputDir}/.."
 			} // stage('Misc Assets')
 
 			stage('Archive') {
