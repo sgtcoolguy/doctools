@@ -24,7 +24,6 @@
             <p>This AMPLIFY Appcelerator Services feature requires an Enterprise Subscription.    </p>
     </div>
         <p>    </p>
-    <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Appcelerator_Performance_Management-section-src-43298691_AppceleratorPerformanceManagement-Introduction">Introduction</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Appcelerator_Performance_Management-section-src-43298691_AppceleratorPerformanceManagement-UsingAppceleratorPerformance">Using Appcelerator Performance</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Appcelerator_Performance_Management-section-src-43298691_AppceleratorPerformanceManagement-SetupYourProject">Setup Your Project</a>    </p>
@@ -56,9 +55,9 @@
         </img></p>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-SetupYourProject">
         <h3 class="heading "><span>Setup Your Project</span></h3>
-    <p>When creating a new application in Appcelerator Studio, make sure the <strong class=" ">Enable Appcelerator Services</strong> checkbox is enabled.    </p>
+    <p>When creating a new application in Appcelerator Studio, make sure the <strong class=" ">Enable Appcelerator Services</strong> check box is enabled.    </p>
     <p>For a previously created project, if Appcelerator Services were not previously enabled, open your <tt class=" ">tiapp.xml</tt> file, then click the <strong class=" ">Enable Services</strong> button under the <i class=" ">Appcelerator Service</i> section.    </p>
-    <p>Appcelerator Studio injects code in to the <tt class=" ">tiapp.xml</tt> file to setup the Appcelerator Performance Management module ( <tt class=" ">com.appcelerator.apm</tt> ). See <a class="document-link " href="#!/guide/Platform_Services">Platform Services</a> for the code modifications. Do not modify these changes made by Appcelerator Studio or else you will disable the Appcelerator Performance service .    </p>
+    <p>Appcelerator Studio injects code into the <tt class=" ">tiapp.xml</tt> file to set up the Appcelerator Performance Management module ( <tt class=" ">com.appcelerator.apm</tt> ). See <a class="document-link " href="#!/guide/Platform_Services">Platform Services</a> for the code modifications. Do not modify these changes made by Appcelerator Studio or else you will disable the Appcelerator Performance service.    </p>
     </div>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-InitializetheModule">
         <h3 class="heading "><span>Initialize the Module</span></h3>
@@ -81,7 +80,7 @@
 <div class="line"><code class="plain">Alloy.Globals.apm.init();</code></div>
 </div>
     </div>
-    <p>Make Performance Management module API calls using the  apm  object.  For complete API information, see <a class="external-link external-link" href="#!/api/Modules.Performance">Performance Module API</a>.    </p>
+    <p>Make Performance Management module API calls using the app object.  For complete API information, see <a class="external-link external-link" href="#!/api/Modules.Performance">Performance Module API</a>.    </p>
     <p>By default, the <tt class=" ">init()</tt> method uses the value of the <tt class=" ">com-appcelerator-apm-id</tt> key in the <tt class=" ">tiapp.xml</tt> file to initialize the Performance service.  You can optionally pass a different ID by passing it as an argument to the  <tt class=" ">init</tt>  method .  The app ID passed to the  <tt class=" ">init</tt>  method takes precedence over the <tt class=" ">com-appcelerator-apm-id</tt>   key.     </p>
     <p class="diff-block-target diff-block-context">To get your APM App ID either:    </p>
 <ul class="diff-block-target diff-block-context "><li class=" ">    <p>Open your <tt class=" ">tiapp.xml</tt> file (in the Overview view) and click the <strong class=" ">Show ID</strong> link next to the <strong class=" ">Performance</strong> service or look for the <tt class=" ">com-appcelerator-apm-id</tt> key in the raw view.    </p>
@@ -152,7 +151,7 @@
 </div>
     </div>
     <p>By default, a guest profile is created to differentiate users if a username is not specified.  The username appears with the crash or error reports.    </p>
-    <p>To access the user metadata, either click on a username in a crash or error report to open a detailed view, or in the Appcelerator Peformance dashboard, when viewing a specific application, click <strong class=" ">Search by User</strong> in the left pane then in the right pane, enter a user&apos;s name to find information about them.    </p>
+    <p>To access the user metadata, either click on a username in a crash or error report to open a detailed view, or in the Appcelerator Performance dashboard, when viewing a specific application, click <strong class=" ">Search by User</strong> in the left pane then in the right pane, enter a user&apos;s name to find information about them.    </p>
     </div>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-LogAnError">
         <h3 class="heading "><span>Log An Error</span></h3>
@@ -172,8 +171,8 @@
 </div>
     </div>
     <p>Error logs are useful for tracking crashes in third-party SDKs, code that syncs data between services, or detecting bad data that is returned from a server.    </p>
-    <p>To view handled errors, in the Appcelerator Peformance dashboard, when viewing a specific application, click <strong class=" ">Handled Exceptions</strong> in the left pane.  A list of handled errors and statistics appears in the right pane.  Click an error to view it in more detail.    </p>
-    <p>Appcelerator Performance limits the logging of handled errors to one per minute. Up to five  errors are buffered and are subsequently sent after the one minute limit.    </p>
+    <p>To view handled errors, in the Appcelerator Performance dashboard, when viewing a specific application, click <strong class=" ">Handled Exceptions</strong> in the left pane.  A list of handled errors and statistics appears in the right pane.  Click an error to view it in more detail.    </p>
+    <p>Appcelerator Performance limits the logging of handled errors to one per minute. Up to five errors are buffered and are subsequently sent after the one minute limit.    </p>
     </div>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-AllowtheUsertoOpt-Out">
         <h3 class="heading "><span>Allow the User to Opt-Out</span></h3>
@@ -221,8 +220,8 @@
     <p>See the topics below for a description of each dictionary key.    </p>
     <div class="section section-4 " id="src-43298691_AppceleratorPerformanceManagement-CaptureLogcatData">
         <h4 class="heading "><span>Capture Logcat Data</span></h4>
-    <p>To include Android system log data with your crash reports, you must do the following:    </p>
-    <p>For Google API Level 15 and earlier , add the following line to the Android manifest section of your tiapp.xml file:    </p>
+    <p>To include the Android system log data with your crash reports, you must do the following:    </p>
+    <p>For Google API Level 15 and earlier, add the following line to the Android manifest section of your tiapp.xml file:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;uses-permission android:name=</code><code class="string">&quot;android.permission.READ_LOGS&quot;</code><code class="plain">/&gt;</code></div>

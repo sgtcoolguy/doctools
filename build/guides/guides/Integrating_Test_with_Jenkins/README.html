@@ -24,7 +24,6 @@
             <p>This AMPLIFY Appcelerator Services feature requires an Enterprise Subscription.    </p>
     </div>
         <p>    </p>
-    <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Integrating_Test_with_Jenkins-section-src-43298703_IntegratingTestwithJenkins-Introduction">Introduction</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Integrating_Test_with_Jenkins-section-src-43298703_IntegratingTestwithJenkins-IntegrationOverview">Integration Overview</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Integrating_Test_with_Jenkins-section-src-43298703_IntegratingTestwithJenkins-CreateanApplicationwithAppceleratorTestEnabled">Create an Application with Appcelerator Test Enabled</a>    </p>
@@ -44,7 +43,7 @@
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Integrating_Test_with_Jenkins-section-src-43298703_IntegratingTestwithJenkins-References">References</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-43298703_IntegratingTestwithJenkins-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p>This guide walks through the steps of integrating Appcelerator Test with the Jenkins continuous integration tool.  The primary focus of this document is to integrate Appcelerator Test with Jenkins and briefly discusses how to setup Jenkins to build a Titanium application and assumes you have a working Jenkins setup.  These directions assume the same computer builds the application, installs it to a mobile device and runs the Jenkins tool.    </p>
+    <p>This guide walks through the steps of integrating Appcelerator Test with the Jenkins continuous integration tool.  The primary focus of this document is to integrate Appcelerator Test with Jenkins and briefly discusses how to set up Jenkins to build a Titanium application and assumes you have a working Jenkins setup.  These directions assume the same computer builds the application, installs it to a mobile device and runs the Jenkins tool.    </p>
     <p>For information on getting started with Appcelerator Test, see <a class="document-link " href="#!/guide/Appcelerator_Test">Appcelerator Test</a>.    </p>
     <p>For information on getting started with Jenkins, see <a class="external-link external-link" href="https://wiki.jenkins-ci.org/display/JENKINS/Use+Jenkins" target="_blank">Use Jenkins</a>.    </p>
     </div>
@@ -61,7 +60,7 @@
 </li><li class=" ">    <p>Setup the Jenkins Server to Use Appcelerator Test    </p>
 <ol class=" "><li class=" ">    <p>Install and Configure the SOASTA plugin    </p>
 </li><li class=" ">    <p>Install the iOS App Installer (for testing on iOS devices)    </p>
-</li><li class=" ">    <p>Install the scommand Utiliy    </p>
+</li><li class=" ">    <p>Install the Command Utility    </p>
 </li></ol></li><li class=" ">    <p>Setup the CI Job    </p>
 </li></ol>    <div class="section section-3 " id="src-43298703_IntegratingTestwithJenkins-CreateanApplicationwithAppceleratorTestEnabled">
         <h3 class="heading "><span>Create an Application with Appcelerator Test Enabled</span></h3>
@@ -73,7 +72,7 @@
     </div>
     <div class="section section-3 " id="src-43298703_IntegratingTestwithJenkins-SetupaDeviceFarm">
         <h3 class="heading "><span>Setup a Device Farm</span></h3>
-    <p>To setup a device farm, you need to register each device with Appcelerator Test and connect them to a server using an USB connection.  You need an USB connection to install the application to the device using the Android Debug Bridge or iOS App Installer utilities.  For iOS testing, the server needs to be running Mac OS X.  For information on registering devices with Appcelerator Test, see <a class="document-link " href="#!/guide/Appcelerator_Test-section-src-43298697_AppceleratorTest-RegisteraDeviceorSimulator">Test: Register a Device or Simulator</a>.    </p>
+    <p>To set up a device farm, you need to register each device with Appcelerator Test and connect them to a server using a USB connection.  You need a USB connection to install the application to the device using the Android Debug Bridge or iOS App Installer utilities.  For iOS testing, the server needs to be running Mac OS X.  For information on registering devices with Appcelerator Test, see <a class="document-link " href="#!/guide/Appcelerator_Test-section-src-43298697_AppceleratorTest-RegisteraDeviceorSimulator">Test: Register a Device or Simulator</a>.    </p>
     <p>Each device needs to have a WiFi or data connection enabled to connect to Appcelerator Test:    </p>
 <ul class=" "><li class=" ">    <p>For Android devices, launch the TouchTest Agent.    </p>
 </li><li class=" ">    <p>For iOS devices, launch Safari and log in to <a class="external-link external-link" href="http://appctest-2.appcelerator.com/concerto/touchtest." target="_blank">http://appctest-2.appcelerator.com/concerto/touchtest</a>.    </p>
@@ -91,7 +90,7 @@
     <div class="section section-3 " id="src-43298703_IntegratingTestwithJenkins-SetuptheTestComposition">
         <h3 class="heading "><span>Setup the Test Composition</span></h3>
     <p>For each device in your test farm, you need to create a test composition that runs on that device. Note that to select a device for a composition it needs to be connected to Appcelerator Test.    </p>
-    <p>Before creating a test composition, you need to create a test clip for each device type, that is, Android, iPhone and iPad.  For information on creating a test composition, see <a class="document-link unresolved" href="#!/guide/Integrating_Test_with_Jenkins-section-src-43298703">Test</a>.    </p>
+    <p>Before creating a test composition, you need to create a test clip for each device type, that is, Android, iPhone, and iPad.  For information on creating a test composition, see <a class="document-link unresolved" href="#!/guide/Integrating_Test_with_Jenkins-section-src-43298703">Test</a>.    </p>
     <p>Remember the name of the test composition and the device used to run the test composition.  You need this information for the build script.    </p>
     </div>
     <div class="section section-3 " id="src-43298703_IntegratingTestwithJenkins-SetupJenkinstoUseAppceleratorTest">
@@ -118,12 +117,12 @@
 </li><li class=" ">    <p>After the plugin has been installed, from the Jenkins start page, click <strong class=" ">Manage Jenkins.</strong>    </p>
 </li><li class=" ">    <p>Click <strong class=" ">Configure System.</strong>    </p>
 </li><li class=" ">    <p>Under the <strong class=" ">CloudTest Servers</strong> section, in the <strong class=" ">CloudTest URL</strong> textbox, enter &quot;http://appctest-2.appcelerator.com/concerto/&quot;.    </p>
-</li><li class=" ">    <p>In the <strong class=" ">User Name</strong> and <strong class=" ">Password</strong> textboxes, enter your Appcelerator Test credentials.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">User Name</strong> and <strong class=" ">Password</strong> text boxes, enter your Appcelerator Test credentials.    </p>
 </li><li class=" ">    <p>Click the<strong class=" "> Test Connect</strong> button to verify that the connection to Appcelerator Test works.    </p>
 </li></ol>    <p>If the test connection passes, you are done with this section.  If not, reenter your Appcelerator Test credential and retest the connection.    </p>
     <div class="confbox admonition admonition-info aui-message hint shadowed information-macro">
             <p>If you do not see the SOASTA CloudTest Plugin in the list of available plugins:    </p>
-<ol class=" "><li class=" ">    <p>Log in to the Appclerator Dashboard.    </p>
+<ol class=" "><li class=" ">    <p>Log in to the Appcelerator Dashboard.    </p>
 </li><li class=" ">    <p>Download the Jenkins plugin from <a class="external-link external-link" href="http://appctest-2.appcelerator.com/concerto/downloads/jenkinsplugin/cloudtest.hpi" target="_blank">http://appctest-2.appcelerator.com/concerto/downloads/jenkinsplugin/cloudtest.hpi</a>.    </p>
 </li><li class=" ">    <p>In the Jenkins Manage Plugin page, under the <strong class=" ">Update Plugin</strong> section, click <strong class=" ">Choose File</strong>. A dialog appears.    </p>
 </li><li class=" ">    <p>In the dialog, navigate to and select the <strong class=" ">cloudtest.hpi</strong> file and click <strong class=" ">OK.</strong>    </p>
@@ -136,7 +135,7 @@
     <p>To install your application to iOS devices, you need to install the iOS App Installer utility to the node that has your iOS devices connected to it.    </p>
 <ol class=" "><li class=" ">    <p>Log in to the Appcelerator Dashboard.    </p>
 </li><li class=" ">    <p>Download the iOS App Installer utility from <a class="external-link external-link" href="http://appctest-2.appcelerator.com/concerto/downloads/mobile/iOSAppInstaller.zip" target="_blank">http://appctest-2.appcelerator.com/concerto/downloads/mobile/iOSAppInstaller.zip</a>.    </p>
-</li><li class=" ">    <p>Unzip and copy the contents of the archive where it can be accessed by a user to install the application to device, for example, <tt class=" ">/opt/share</tt>.    </p>
+</li><li class=" ">    <p>Unzip and copy the contents of the archive where it can be accessed by a user to install the application to the device, for example, <tt class=" ">/opt/share</tt>.    </p>
 </li></ol>    <p>Run the command with the user account that is going to install the application to the device to verify it works.  Make a note of the installation path.  You need this information for the build script.    </p>
     </div>
     <div class="section section-4 " id="src-43298703_IntegratingTestwithJenkins-InstallthescommandUtility">
@@ -150,14 +149,14 @@
     </div>
     <div class="section section-3 " id="src-43298703_IntegratingTestwithJenkins-SetuptheContinuousIntegrationJob">
         <h3 class="heading "><span>Setup the Continuous Integration Job</span></h3>
-    <p>Finally, create a CI job that calls a script to run your test composition after it has been successfully built and installed to device.  The sample scripts below shows how to build the application, install it to an Android or iOS device, then call Appcelerator Test to execute the test composition.  The script creates an XML file with the results of the command.  This script assumes that the application is built and installed to the device on the same node.    </p>
+    <p>Finally, create a CI job that calls a script to run your test composition after it has been successfully built and installed to the device.  The sample scripts below shows how to build the application, install it to an Android or iOS device, then call Appcelerator Test to execute the test composition.  The script creates an XML file with the results of the command.  This script assumes that the application is built and installed to the device on the same node.    </p>
 <ol class=" "><li class=" ">    <p>From the Jenkins start page, click <strong class=" ">New Job</strong>.    </p>
 </li><li class=" ">    <p>Enter a name for your job in the <strong class=" ">Job name</strong> textbox.    </p>
 </li><li class=" ">    <p>Select <strong class=" ">Build a free-style software project</strong><strong class=" "> </strong>from the list of job options.    </p>
 </li><li class=" ">    <p>Click <strong class=" ">OK.</strong>    </p>
 </li><li class=" ">    <p>Enter a description for your job and configure the <strong class=" ">Source Code Management</strong> and <strong class=" ">Build Trigger</strong> sections for your setup and tools.    </p>
 </li><li class=" ">    <p>Under the <strong class=" ">Build</strong> section, click the <strong class=" ">Add build step</strong> drop-down and select <strong class=" ">Execute shell</strong>.    </p>
-</li><li class=" ">    <p>In the <strong class=" ">Command</strong> textfield, copy and paste one of the example scripts below, then modify it for your setup.    </p>
+</li><li class=" ">    <p>In the <strong class=" ">Command</strong> text field, copy and paste one of the example scripts below, then modify it for your setup.    </p>
 </li><li class="yuimenuitem yui-button-selectedmenuitem yuimenuitem-disabled ">    <p>Under <strong class=" ">Post-build Actions</strong> section, click the <strong class=" ">Add post-build action</strong> drop-down and select <strong class=" ">Publish JUnit test result report</strong>.    </p>
 </li><li class="yuimenuitem yui-button-selectedmenuitem yuimenuitem-disabled ">    <p>In the <strong class=" ">Test report XMLs</strong> textbox, enter the path to the result files.  For the example scripts, enter &quot;testresults/*.xml&quot;.    </p>
 </li><li class="yuimenuitem yui-button-selectedmenuitem yuimenuitem-disabled ">    <p>Enable <strong class=" ">Include links to SOASTA CloudTest dashboards</strong>. The <strong class=" ">CloudTest URL</strong> textbox appears below.    </p>
@@ -243,8 +242,8 @@
     <p>After a build, you can view the test results and report.    </p>
 <ol class=" "><li class=" ">    <p>When viewing a specific Jenkins build, click <strong class=" ">Test Result</strong>.    </p>
 </li><li class=" ">    <p>In the <strong class=" ">All Test</strong> table, click on <strong class=" ">(root)</strong> and drill down to the name of the test composition.  For example, if your test composition is called <strong class=" ">/DataTest/TestAndroidDevice</strong>, you would need to click <strong class=" ">(root)</strong>, then <strong class=" ">DataTest</strong> and finally <strong class=" ">TestAndroidDevice</strong> to get to the results page.    </p>
-</li><li class=" ">    <p>The test results display a status title,such as &quot;Passed&quot;, &quot;Fixed, &quot;Regression&quot; or &quot;Failed&quot;.    </p>
-</li><li class=" ">    <p>Below the status, click the <strong class=" ">Click here to see the SOASTA CloudTest dashboard for this test</strong> link to show a frame that contains the report of the test.  You many be prompted to login before viewing the report.    </p>
+</li><li class=" ">    <p>The test results display a status title, such as &quot;Passed&quot;, &quot;Fixed, &quot;Regression&quot; or &quot;Failed&quot;.    </p>
+</li><li class=" ">    <p>Below the status, click the <strong class=" ">Click here to see the SOASTA CloudTest dashboard for this test</strong> link to show a frame that contains the report of the test.  You may be prompted to log in before viewing the report.    </p>
 </li></ol>    </div>
     </div>
     <div class="section section-2 " id="src-43298703_IntegratingTestwithJenkins-References">
