@@ -170,7 +170,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
 <ol class=" "><li class=" ">    <p>In Eclipse, create a new Android project with a Blank Activity.    </p>
 </li><li class=" ">    <p>Unpack the <tt class=" ">appcelerator-sdk-android-&lt;VERSION&gt;.zip</tt> file.    </p>
 </li><li class=" ">    <p>Copy the  <tt class=" ">appcelerator-sdk-android-&lt;VERSION&gt;.jar</tt>  file to the  <tt class=" ">libs</tt>  folder of your Android project (if you wish to use Maven or Gradle, see &quot;<a class="document-link " href="#!/guide/Quick_Start_Guide_for_Android_APS_SDK-section-src-43298718_QuickStartGuideforAndroidAPSSDK-BuildingtheApplication">Building the Application</a>&quot; below for setup instructions).    </p>
-</li><li class=" ">    <p>Modify the project&apos;s  <tt class=" ">AndroidManifest.xml</tt>  file to include the  <tt class=" ">ACCESS_NETWORK_STATE</tt> ,  <tt class=" ">ACCESS_WIFI_STATE</tt>,  <tt class=" ">GET_TASKS,  </tt> <tt class=" ">INTERNET</tt>,  <tt class=" ">READ_LOGS</tt>  and  <tt class=" ">WRITER_EXTERNAL_STORAGE</tt>  user permissions and declare the  <tt class=" ">com.appcelerator.aps.AnalyticsService</tt>  as a Service class, which allows the APS library to send analytic events to the APS servers while the application is in the background:    </p>
+</li><li class=" ">    <p>Modify the project&apos;s <tt class=" ">AndroidManifest.xml</tt> file to include the <tt class=" ">ACCESS_NETWORK_STATE</tt>,  <tt class=" ">ACCESS_WIFI_STATE</tt>, <tt class=" ">GET_TASKS</tt>, <tt class=" ">INTERNET</tt>, <tt class=" ">READ_LOGS</tt>, and <tt class=" ">WRITER_EXTERNAL_STORAGE</tt> user permissions and declare the  <tt class=" ">com.appcelerator.aps.AnalyticsService</tt> as a Service class, which allows the APS library to send analytic events to the APS servers while the application is in the background:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">AndroidManifest.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="AndroidManifest.xml">
@@ -206,7 +206,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
 <div class="line"><code class="keyword">import</code><code class="plain"> com.appcelerator.aps.APSServiceManager;</code></div>
 </div>
     </div>
-</li><li class=" ">    <p>In the main Activity&apos;s  <tt class=" ">onCreate()</tt> method, add the following method call to enable the APS services.    </p>
+</li><li class=" ">    <p>In the main Activity&apos;s <tt class=" ">onCreate()</tt> method, add the following method call to enable the APS services.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">MainActivity.java</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="MainActivity.java">
@@ -341,7 +341,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     <div class="section section-3 " id="src-43298718_QuickStartGuideforAndroidAPSSDK-Captureusersessionevents">
         <h3 class="heading "><span>Capture user session events</span></h3>
     <p>Unlike the iOS and Titanium platforms, you need to explicitly make analytic method calls in the application to send user session events to the Analytics service to capture user activity.    </p>
-    <p>Use the Activity&apos;s lifetime events to track when the user is actively using your application.  Call the APSAnalytics&apos;<tt class=" "> sendAppEnrollEvent() </tt>method in the <tt class=" ">onCreateMethod</tt><tt class=" ">()</tt>, which indicates the first installation or upgrade of the application.    </p>
+    <p>Use the Activity&apos;s lifetime events to track when the user is actively using your application.  Call the APSAnalytics&apos; <tt class=" ">sendAppEnrollEvent()</tt> method in the <tt class=" ">onCreateMethod()</tt>, which indicates the first installation or upgrade of the application.    </p>
     <p>Before calling API calls to the APSAnalytics class, you need to get a shared instance of the APSAnalytics class using the <tt class=" ">getInstance()</tt> method.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -356,7 +356,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>Use <tt class=" ">onPause()</tt> and <tt class=" ">onResume() </tt>to call the APSAnalytics<tt class=" ">&apos;</tt> <tt class=" ">sendAppBackgroundEvent()</tt> and  <tt class=" ">sendAppForegroundEvent()</tt>, respectively.  These two APSAnalytics methods send user session events to the APS analytics servers to track how long a user engages with your application.      </p>
+    <p>Use <tt class=" ">onPause()</tt> and <tt class=" ">onResume()</tt> to call the APSAnalytics&apos; <tt class=" ">sendAppBackgroundEvent()</tt> and <tt class=" ">sendAppForegroundEvent()</tt>, respectively.  These two APSAnalytics methods send user session events to the APS analytics servers to track how long a user engages with your application.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="color1">@Override</code></div>
@@ -376,7 +376,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     <div class="section section-3 " id="src-43298718_QuickStartGuideforAndroidAPSSDK-SendanAnalyticsfeatureevent">
         <h3 class="heading "><span>Send an Analytics feature event</span></h3>
     <p>Besides user session events, you can also send custom analytics events, as shown in this example. There are two types of custom events: feature events and navigation events.    </p>
-    <p>In the <tt class=" ">doClick</tt> <tt class=" ">()</tt> function, add an APSAnalytics&apos; <tt class=" ">sendAppFeatureEvent()</tt> method call to send a feature event with the string &quot; sample.feature.login &quot;. The optional second parameter is set to null for this example, but you can send additional data as a JSON object with the event.    </p>
+    <p>In the <tt class=" ">doClick()</tt> function, add an APSAnalytics&apos; <tt class=" ">sendAppFeatureEvent()</tt> method call to send a feature event with the string &quot;<tt class=" ">sample.feature.login</tt>&quot;. The optional second parameter is set to null for this example, but you can send additional data as a JSON object with the event.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">MainActivity.java</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="MainActivity.java">
@@ -432,7 +432,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     </div>
     <div class="section section-3 " id="src-43298718_QuickStartGuideforAndroidAPSSDK-LogintoaCloudaccount">
         <h3 class="heading "><span>Log in to a Cloud account</span></h3>
-    <p>To log in to a Cloud account, you need the username and password. Since the application was modified to get all available user accounts and populate the Spinner, the application needs to get the current value of the spinner and the text entered in the EditText widget. These values are passed to the<tt class=" "> APSUsers.login() </tt>method. Modify the <tt class=" ">doClick()</tt> method to login to a Cloud user account.    </p>
+    <p>To log in to a Cloud account, you need the username and password. Since the application was modified to get all available user accounts and populate the Spinner, the application needs to get the current value of the spinner and the text entered in the <tt class=" ">EditText</tt> widget. These values are passed to the<tt class=" "> APSUsers.login() </tt>method. Modify the <tt class=" ">doClick()</tt> method to login to a Cloud user account.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> doClick(){</code></div>
@@ -519,7 +519,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     <div class="section section-3 " id="src-43298718_QuickStartGuideforAndroidAPSSDK-Testingthetutorialsample">
         <h3 class="heading "><span>Testing the tutorial sample</span></h3>
     <p>Before testing the sample, you need to create user accounts for the application to query. To create Cloud user accounts:    </p>
-<ol class=" "><li class=" ">    <p>Log in to <a class="external-link external-link" href="https://platform.axway.com/" target="_blank">Appcelerator Dashboard</a>.    </p>
+<ol class=" "><li class=" ">    <p>Log in to <a class="external-link external-link" href="https://platform.axway.com/" target="_blank">Dashboard</a>.    </p>
 </li><li class=" ">    <p>In Dashboard, select your application from the <strong class=" ">APIs</strong> menu in the upper-left corner.    </p>
 </li><li class=" ">    <p>In the left navigation bar, click <strong class=" ">Manage</strong> <strong class=" ">Data</strong>.    </p>
 </li><li class=" ">    <p>Click <strong class=" ">Users</strong>, then the <strong class=" ">Create User</strong> button.    </p>
@@ -535,12 +535,12 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     <p>Once the application launches:    </p>
 <ol class=" "><li class=" ">    <p>Click on the Picker/Spinner. You should see a list of all the Cloud user accounts you added.    </p>
 </li><li class=" ">    <p>Select a user account from the Picker/Spinner and enter that user&apos;s password. Click the Button. In the log output, you should see an info log that login command was successful or not.    </p>
-</li><li class=" ">    <p>Go back to the <a class="external-link external-link" href="https://platform.appcelerator.com/" target="_blank">Appcelerator Dashboard</a>.    </p>
+</li><li class=" ">    <p>Go back to the <a class="external-link external-link" href="https://platform.axway.com/" target="_blank">Dashboard</a>.    </p>
 </li><li class=" ">    <p>In Dashboard, select your application from the <strong class=" ">Apps</strong> menu in the upper-left corner.    </p>
 </li><li class=" ">    <p>In the left navbar, click <strong class=" ">Performance</strong>, then <strong class=" ">Handled Exceptions</strong>. You should see the &quot;Something happened...&quot; exception in the list.    </p>
 </li><li class=" ">    <p>In the left navbar, click <strong class=" ">Search by User</strong>.  Enter the username of the account that successfully logged in. Click the username. You should see a crash report for the user.    </p>
 </li><li class=" ">    <p>In the left navbar, select <strong class=" ">Analytics</strong>.    </p>
-</li><li class=" ">    <p>In the Real Time view, you should see at least one active session.    </p>
+</li><li class=" ">    <p>In the Real-Time view, you should see at least one active session.    </p>
 </li><li class=" ">    <p>In the left navbar, click <strong class=" ">Events</strong>. You should see the &quot;sample.feature.login&quot; feature event.    </p>
 </li></ol>    </div>
     <div class="section section-3 " id="src-43298718_safe-id-UXVpY2tTdGFydEd1aWRlZm9yQW5kcm9pZEFQU1NESy1OZXh0U3RlcHNmb3JBcHBjZWxlcmF0b3JBbmFseXRpY3MsQ2xvdWRhbmRQZXJmb3JtYW5jZQ">
@@ -556,10 +556,10 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     <p>Before you can use Appcelerator Test, you need to configure it to enable it to connect to the Test service. To do this you run a small Java utility that makes some changes to your AndroidManifest.xml file. In particular, it adds some required permissions, as well as an Intent Filter and Service. Lastly, the tool registers your application with the external Test service, so that it&apos;s authorized for use.    </p>
     <div class="section section-3 " id="src-43298718_QuickStartGuideforAndroidAPSSDK-Setuptheapplication">
         <h3 class="heading "><span>Set up the application</span></h3>
-    <p>To setup your application to use Appcelerator Test, download and run the <tt class=" ">appcelerator-test</tt> Utility.    </p>
+    <p>To set up your application to use Appcelerator Test, download and run the <tt class=" ">appcelerator-test</tt> Utility.    </p>
 <ol class=" "><li class=" ">    <p>Download the <tt class=" ">appcelerator-test</tt> Utility and copy your Appcelerator Test application key from the Appcelerator Dashboard.  (For instructions, see <a class="document-link " href="#!/guide/Managing_Non-Titanium_Client_Applications_in_Dashboard">Managing Non-Titanium Client Applications in Dashboard</a>.)    </p>
 </li><li class=" ">    <p>Unpack the file to a common location. You will need to use this utility to enable Appcelerator Test for each of your applications.    </p>
-</li></ol>    <p>You can run the Appcelerator-test utility either against an Android project (<i class=" ">static</i> instrumentation), or an APK file.    </p>
+</li></ol>    <p>You can run the Appcelerator-test utility either against an Android project (static instrumentation), or an APK file.    </p>
     <p><strong class=" ">To run the Appcelerator-test utility against an APK file, first export your project as an APK file, then run the following command, and install the APK file to a device or emulator:</strong>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -581,7 +581,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
 <div class="line"><code class="plain">Mobile App Object </code><code class="string">&quot;SampleProject_11111111-2222-3333-4444-555555555555&quot;</code><code class="plain"> representing your Application </code><code class="string">&quot;SampleProject&quot;</code><code class="plain"> has been created </code><code class="keyword">in</code><code class="plain"> CloudTest Repository.</code></div>
 </div>
     </div>
-    <p>This command modifies the Android Manifest file to require extra user permissions, and add an Intent Filter and Service to the application. The final manifest file should look similar to the one below:    </p>
+    <p>This command modifies the Android Manifest file to require extra user permissions and add an Intent Filter and Service to the application. The final manifest file should look similar to the one below:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">AndroidManifest.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="AndroidManifest.xml">
@@ -644,7 +644,7 @@ and     </span>
 click <strong class=" ">Go</strong>.    </p>
 </li><li class=" ">    <p>Enter your AMPLIFY Appcelerator Services credentials. You must append your organization ID to your login name.    </p>
 </li><li class=" ">    <p>On successful login, enter a name for your device and click <strong class=" ">Submit for Approval</strong>.    </p>
-</li><li class=" ">    <p>Once the device has been approved, the TouchTest Agent displays its current connection status to the Test web service, as well as the current TouchTest URL, user name, and TouchTest Agent build number.    </p>
+</li><li class=" ">    <p>Once the device has been approved, the TouchTest Agent displays its current connection status to the Test web service, as well as the current TouchTest URL, user name, and the TouchTest Agent build number.    </p>
 </li></ol>    </div>
     <div class="section section-3 " id="src-43298718_QuickStartGuideforAndroidAPSSDK-Recordatestclip">
         <h3 class="heading "><span>Record a test clip</span></h3>
@@ -654,7 +654,7 @@ click <strong class=" ">Go</strong>.    </p>
         </img></p>
     <p>Typically a recorded test clip is a starting point for you to refine, add validations, inputs, outputs and so forth.    </p>
     <p><strong class=" ">To record a test clip</strong>:    </p>
-<ol class=" "><li class=" ">    <p>Open <a class="external-link external-link" href="https://platform.axway.com/" target="_blank">Appcelerator Dashboard</a> and click the <strong class=" ">Test</strong> tab.    </p>
+<ol class=" "><li class=" ">    <p>Open <a class="external-link external-link" href="https://platform.axway.com/" target="_blank">Dashboard</a> and click the <strong class=" ">Test</strong> tab.    </p>
 </li><li class=" ">    <p>Select the application to test from the Application menu in the upper-left corner.    </p>
 </li><li class=" ">    <p>With your application selected, on the <strong class=" ">Central</strong> tab select <strong class=" ">Clips</strong> in the left navigation, then click the <strong class=" ">New</strong> button. The <strong class=" ">Clip Editor</strong> opens a new untitled clip.    </p>
     <img src="images/download/attachments/43298718/image2014-3-16_20-8-24.png" alt="images/download/attachments/43298718/image2014-3-16_20-8-24.png" class="confluence-embedded-image">

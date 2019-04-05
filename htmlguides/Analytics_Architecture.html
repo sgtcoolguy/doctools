@@ -30,7 +30,7 @@
 </li></ul></li></ul>    <p>This page describes the Analytics Architecture for AMPLIFY Appcelerator Services SDK, and Titanium SDK 3.3.0 and later.    </p>
     <div class="section section-2 " id="src-43298695_AnalyticsArchitecture-Overview">
         <h2 class="heading "><span>Overview</span></h2>
-    <p>Analytics are sent by Titanium applications automatically unless the developer has chosen to turn them off. Generic analytics data about user activity session starts and ends, and application installations and upgrades are sent by default. Developers may send additional data to help understand how users are interacting with their application. Some analytics data can be viewed using the Analytics UI.    </p>
+    <p>Analytics are sent by Titanium applications automatically unless the developer has chosen to turn them off. Generic analytics data about user activity session starts and ends, and application installations and upgrades are sent by default. Developers may send additional data to help understand how users are interacting with their application. Some analytics data can be viewed using the Analytics user interface.    </p>
     <p>By default, only the following events are sent by the Analytics module:    </p>
 <ul class=" "><li class=" ">    <p><tt class=" ">ti.enroll</tt>: indicates the first launch of the application after an installation or upgrade    </p>
 </li><li class=" ">    <p><tt class=" ">ti.foreground</tt>: indicates the application is in the foreground and the start of a new session    </p>
@@ -39,7 +39,7 @@
     </div>
     <div class="section section-2 " id="src-43298695_AnalyticsArchitecture-AndroidAnalytics">
         <h2 class="heading "><span>Android Analytics</span></h2>
-    <p>For the Android platform, the Analytics module sends three events: <tt class=" ">ti.enroll,</tt> which determines user installations or upgrades when the application is first ran, and <tt class=" ">ti.foreground</tt> and <tt class=" ">ti.background</tt>, which determines the session of application activity by the user.    </p>
+    <p>For the Android platform, the Analytics module sends three events: <tt class=" ">ti.enroll,</tt> which determines user installations or upgrades the first time an application is ran, and <tt class=" ">ti.foreground</tt> and <tt class=" ">ti.background</tt>, which determines the session of application activity by the user.    </p>
     <p>The <tt class=" ">ti.enroll</tt> event is generated when <tt class=" ">onCreate()</tt> is called. This event is only sent once on the first launch of the application after it has been installed or updated.    </p>
     <p>The <tt class=" ">ti.foreground</tt> event is generated each time the activity calls the <tt class=" ">onResume()</tt> method. The event is queued and is only sent if this is not the first event and the <tt class=" ">ti.background</tt> event has not been generated recently. If a <tt class=" ">ti.background</tt> event was processed within the last 30 seconds*, this indicates that a new activity is being opened on top of an old activity. A possible scenario is if you hit the Home button, then reopen the app quickly resulting in a <tt class=" ">ti.foreground</tt> event to be placed on top of a <tt class=" ">ti.background</tt> event. In this case, both events are removed from the queue and the current session is still active.    </p>
     <p class="li4">The <tt class=" ">ti.background</tt> event is generated when the activity calls the <tt class=" ">onPause()</tt> method, which occurs in the following scenarios:    </p>
