@@ -47,7 +47,7 @@
     <div class="section section-2 " id="src-43298732_APSPerformanceforiOS-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
     <p>The Appcelerator Performance service, powered by Apteligent, monitors your application&apos;s health, crashes and overall performance. Using Appcelerator Performance, developers are able to analyze crash reports to see why applications crashed and focus on the specific problems on user feedback.    </p>
-    <p>This topic covers how to use the <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/ios/Classes/APSPerformance.html">APSPerformance API</a>.  For information about using the Performance Dashboard, see <a class="document-link " href="Managing_Performance_and_Crash_Data.html">Managing Performance and Crash Data</a>.    </p>
+    <p>This topic covers how to use the <a class="external-link external-link" href="http://docs.appcelerator.com/aps-sdk-apidoc/latest/ios/Classes/APSPerformance.html">APSPerformance API</a>. For information about using the Performance Dashboard, see <a class="document-link " href="Managing_Performance_and_Crash_Data.html">Managing Performance and Crash Data</a>.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <p>When you log into the Appcelerator Performance dashboard, you may encounter a gray navigation bar across the top, right below the AMPLIFY Appcelerator Services navigation bar, and an orange &quot;Contact us!&quot; pop-up when you navigate to certain areas of the dashboard. These items are for Apteligent customers using native SDKs and are invalid for Appcelerator mobile applications.    </p>
     <p>For support with Appcelerator Performance, visit <a class="external-link external-link" href="http://support.appcelerator.com">http://support.appcelerator.com</a>.    </p>
@@ -55,20 +55,20 @@
         </div>
     <div class="section section-2 " id="src-43298732_APSPerformanceforiOS-UsingAppceleratorPerformance">
         <h2 class="heading "><span>Using Appcelerator Performance</span></h2>
-    <p>To use the Appcelerator Performance service, add the APS framework to your project, then use the APSPerformance API to add breadcrumbs, user metadata and exception handling code to log events leading up to a crash.  Login to the Appcelerator Dashboard and use the Appcelerator Performance dashboard to monitor application performance and analyze crash reports.    </p>
+    <p>To use the Appcelerator Performance service, add the APS framework to your project, then use the APSPerformance API to add breadcrumbs, user metadata and exception handling code to log events leading up to a crash. Login to the Appcelerator Dashboard and use the Appcelerator Performance dashboard to monitor application performance and analyze crash reports.    </p>
     <div class="section section-3 " id="src-43298732_APSPerformanceforiOS-SetupYourProject">
         <h3 class="heading "><span>Setup Your Project</span></h3>
     <p>To integrate the Performance service with a new or existing iOS application:    </p>
-<ol class=" "><li class=" ">    <p>Go to the <a class="external-link external-link" href="https://platform.appcelerator.com/">Appcelerator Dashboard</a> and create a new native iOS application.    </p>
+<ol class=" "><li class=" ">    <p>Go to the <a class="external-link external-link" href="https://platform.axway.com/">Dashboard</a> and create a new native iOS application.    </p>
 </li><li class=" ">    <p>Download the Services SDK and get your Performance application key.    </p>
 </li><li class=" ">    <p>Unpack the <tt class=" ">appcelerator-sdk-ios-&lt;VERSION&gt;.zip</tt> file.    </p>
-</li><li class=" ">    <p>Drag the <tt class=" ">Appcelerator.framework</tt> folder into your Xcode project&apos;s root folder if you are using Xcode 6 and above, or the  <tt class=" ">Frameworks</tt>  folder if you are using Xcode 5 or below.      </p>
+</li><li class=" ">    <p>Drag the <tt class=" ">Appcelerator.framework</tt> folder into your Xcode project&apos;s root folder if you are using Xcode 6 and above, or the  <tt class=" ">Frameworks</tt>  folder if you are using Xcode 5 or below.    </p>
 </li><li class=" ">    <p>Select <strong class=" ">Copy items into destination&#x2026;</strong> and click <strong class=" ">Finish</strong>.    </p>
 </li><li class=" ">    <p>Select your project in the Project Navigator and click the <strong class=" ">Build Phases</strong> tab.    </p>
-</li><li class=" ">    <p>Expand the <strong class=" ">Link Binary With Libraries</strong> section and add the  <tt class=" ">libsqlite3.dylib</tt> and <tt class=" ">libz.dylib</tt> frameworks.    </p>
+</li><li class=" ">    <p>Expand the <strong class=" ">Link Binary With Libraries</strong> section and add the <tt class=" ">libsqlite3.dylib</tt> and <tt class=" ">libz.dylib</tt> frameworks.    </p>
 </li><li class=" ">    <p>Click the <strong class=" ">Build Settings</strong> tab, then click the <strong class=" ">All</strong> button in the top-left corner of the tab.    </p>
 </li><li class=" ">    <p>Expand the <strong class=" ">Linking</strong> section and add <tt class=" ">-ObjC</tt>  to <strong class=" ">Other Linker Flags</strong>.    </p>
-</li><li class=" ">    <p>In your application delegate implementation file, import <tt class=" ">Appcelerator/Appcelerator.h.  </tt>    </p>
+</li><li class=" ">    <p>In your application delegate implementation file, import <tt class=" ">Appcelerator/Appcelerator.h.</tt>    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">AppDelegate.m</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="AppDelegate.m">
@@ -88,17 +88,17 @@
     </div>
     <div class="confbox admonition admonition-tip aui-message success shadowed information-macro">
             <p class="diff-block-target diff-block-context">To get your APS App key:    </p>
-<ol class=" "><li class="diff-block-target diff-block-context ">    <p>Go to the <a class="external-link external-link" href="https://platform.appcelerator.com/">Appcelerator Dashboard</a>.    </p>
+<ol class=" "><li class="diff-block-target diff-block-context ">    <p>Go to the <a class="external-link external-link" href="https://platform.axway.com/">Dashboard</a>.    </p>
 </li><li class="diff-block-target diff-block-context ">    <p>Select your application from the <strong class=" ">Apps</strong> drop-down menu.    </p>
 </li><li class="diff-block-target diff-block-context ">    <p>Click the <strong class=" ">Overview</strong> tab.    </p>
 </li><li class="diff-block-target diff-block-context ">    <p>Click the <strong class=" ">Services</strong> button.    </p>
 </li><li class="diff-block-target diff-block-context ">    <p>Click <strong class=" ">Show Key</strong> under the Analytics, Performance and Cloud section.    </p>
 </li></ol>    </div>
-    </li></ol>    <p>The iOS application is now ready to make method calls using the  <tt class=" ">APSPerformance</tt>  class.    </p>
+    </li></ol>    <p>The iOS application is now ready to make method calls using the  <tt class=" ">APSPerformance</tt> class.    </p>
     </div>
     <div class="section section-3 " id="src-43298732_APSPerformanceforiOS-CreateaBreadcrumbTrail">
         <h3 class="heading "><span>Create a Breadcrumb Trail</span></h3>
-    <p>To make it easier to track the events leading up to a crash, use the <tt class=" ">leaveBreadcrumb</tt> method to add breadcrumbs in your code.  Place breadcrumbs near events and application state changes to track problematic paths that can lead to an application crash.  Append variables to your breadcrumbs to track their state.  For example:    </p>
+    <p>To make it easier to track the events leading up to a crash, use the <tt class=" ">leaveBreadcrumb</tt> method to add breadcrumbs in your code. Place breadcrumbs near events and application state changes to track problematic paths that can lead to an application crash. Append variables to your breadcrumbs to track their state. For example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">- (</code><code class="keyword">int</code><code class="plain">)alphaCB:(</code><code class="keyword">int</code><code class="plain">)value {</code></div>
@@ -130,13 +130,13 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>These breadcrumbs are collected and passed to the Appcelerator Performance service.  To view the breadcrumbs, in the Appcelerator Performance dashboard, when viewing a specific application, click either <strong class=" ">Crash Reports </strong>or <strong class=" ">Handled Exceptions</strong>.  In the list of crashes or handled errors in the right pane, click on the crash or error to view its details.  Click the <strong class=" ">Breadcrumbs</strong> tab to view the breadcrumb trails leading up to the crash or error.    </p>
-    <p>The most recent 100 breadcrumbs are displayed before the crash occurred.  A breadcrumb can be up to 140 characters.    </p>
+    <p>These breadcrumbs are collected and passed to the Appcelerator Performance service. To view the breadcrumbs, in the Appcelerator Performance dashboard, when viewing a specific application, click either <strong class=" ">Crash Reports </strong>or <strong class=" ">Handled Exceptions</strong>. In the list of crashes or handled errors in the right pane, click on the crash or error to view its details. Click the <strong class=" ">Breadcrumbs</strong> tab to view the breadcrumb trails leading up to the crash or error.    </p>
+    <p>The most recent 100 breadcrumbs are displayed before the crash occurred. A breadcrumb can be up to 140 characters.    </p>
     </div>
     <div class="section section-3 " id="src-43298732_APSPerformanceforiOS-AddUserMetadata">
         <h3 class="heading "><span>Add User Metadata</span></h3>
-    <p>To differentiate users of your application when viewing reports on the Appcelerator Performance dashboard, use the <tt class=" ">username</tt>property to set the username of the session and use the <tt class=" ">[]</tt>     <span style="color: #222220;">
-subscripting operator to leave custom metadata    </span>
+    <p>To differentiate users of your application when viewing reports on the Appcelerator Performance dashboard, use the <tt class=" ">username</tt> property to set the username of the session and use the <tt class=" ">[]</tt>     <span style="color: #222220;">
+subscription operator to leave custom metadata    </span>
 . For example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -156,12 +156,12 @@ subscripting operator to leave custom metadata    </span>
 <div class="line"><code class="plain">[APSPerformance sharedInstance][@</code><code class="string">&quot;Game Level&quot;</code><code class="plain">] = @(</code><code class="value">2</code><code class="plain">);</code></div>
 </div>
     </div>
-    <p>The username appears with the crash or error reports.  By default, a guest profile is created to differentiate users if a username is not specified. To retrieve this unique identifier, use the <tt class=" ">uniqueIdentifier</tt> property.    </p>
+    <p>The username appears with the crash or error reports. By default, a guest profile is created to differentiate users if a username is not specified. To retrieve this unique identifier, use the <tt class=" ">uniqueIdentifier</tt> property.    </p>
     <p>To access the user metadata, either click on a username in a crash or error report to open a detailed view, or in the Appcelerator Performance dashboard, when viewing a specific application, click <strong class=" ">Search by User</strong> in the left pane then in the right pane, enter a user&apos;s name to find information about them.    </p>
     </div>
     <div class="section section-3 " id="src-43298732_APSPerformanceforiOS-LogAnException">
         <h3 class="heading "><span>Log An Exception</span></h3>
-    <p>You can track handled exceptions in your application by passing an NSException object to the <tt class=" ">logHandledException</tt> method, which can help identify and analyze potential errors and hot spots.  For example:    </p>
+    <p>You can track handled exceptions in your application by passing an NSException object to the <tt class=" ">logHandledException</tt> method, which can help identify and analyze potential errors and hot spots. For example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="color1">@try</code><code class="plain"> {</code></div>
@@ -172,12 +172,12 @@ subscripting operator to leave custom metadata    </span>
 </div>
     </div>
     <p>Exception logs are useful for tracking crashes in third-party SDKs, code that syncs data between services, or detecting bad data that is returned from a server.    </p>
-    <p>To view handled errors, in the Appcelerator Performance dashboard, when viewing a specific application, click <strong class=" ">Handled Exceptions</strong> in the left pane.  A list of handled errors and statistics appears in the right pane.  Click an error to view it in more detail.    </p>
+    <p>To view handled errors, in the Appcelerator Performance dashboard, when viewing a specific application, click <strong class=" ">Handled Exceptions</strong> in the left pane. A list of handled errors and statistics appears in the right pane. Click an error to view it in more detail.    </p>
     <p>Appcelerator Performance limits the logging of handled exceptions to one per minute. Up to five exceptions are buffered and are subsequently sent after the one minute limit.    </p>
     </div>
     <div class="section section-3 " id="src-43298732_APSPerformanceforiOS-AllowtheUsertoOpt-Out">
         <h3 class="heading "><span>Allow the User to Opt-Out</span></h3>
-    <p>Use the <tt class=" ">optOutStatus</tt> property to allow the user <u class=" ">NOT</u> to send any information to the Appcelerator Performance service.  Passing <tt class=" ">true</tt> to this method disables sending data to Appcelerator Performance.    </p>
+    <p>Use the <tt class=" ">optOutStatus</tt> property to allow the user <u class=" ">NOT</u> to send any information to the Appcelerator Performance service. Passing <tt class=" ">true</tt> to this method disables sending data to Appcelerator Performance.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// Disable sending data to Appcelerator Performance</code></div>
@@ -192,7 +192,7 @@ Use the     </span>
 <tt class=" ">didCrashOnLastAppLoad</tt>    <span style="color: #484848;">
  property to check if the application crashed in a previous session. If the property returns     </span>
 YES    <span style="color: #484848;">
-, the application crashed on the last session.  Note that if <tt class=" ">optOutStatus</tt> is set to YES, this method always returns NO.    </span>
+, the application crashed on the last session. Note that if <tt class=" ">optOutStatus</tt> is set to YES, this method always returns NO.    </span>
     </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">

@@ -50,14 +50,14 @@
         </div>
     <div class="section section-2 " id="src-43298691_AppceleratorPerformanceManagement-UsingAppceleratorPerformance">
         <h2 class="heading "><span>Using Appcelerator Performance</span></h2>
-    <p>To use the Appcelerator Performance service, enable Appcelerator Services for your project, then use the Appcelerator Performance module API to add breadcrumbs, user metadata and error handling code to log events leading up to a crash.  Login to the Appcelerator Dashboard and use the Appcelerator Performance dashboard to monitor application performance and analyze crash reports.    </p>
+    <p>To use the Appcelerator Performance service, enable Appcelerator Services for your project, then use the Appcelerator Performance module API to add breadcrumbs, user metadata and error handling code to log events leading up to a crash. Login to the Dashboard and use the Appcelerator Performance dashboard to monitor application performance and analyze crash reports.    </p>
     <p>    <img src="images/download/attachments/43298691/PerformanceDashboard_new.png" alt="images/download/attachments/43298691/PerformanceDashboard_new.png" class="confluence-embedded-image" width="800">
         </p>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-SetupYourProject">
         <h3 class="heading "><span>Setup Your Project</span></h3>
     <p>When creating a new application in Appcelerator Studio, make sure the <strong class=" ">Enable Appcelerator Services</strong> check box is enabled.    </p>
     <p>For a previously created project, if Appcelerator Services were not previously enabled, open your <tt class=" ">tiapp.xml</tt> file, then click the <strong class=" ">Enable Services</strong> button under the <i class=" ">Appcelerator Service</i> section.    </p>
-    <p>Appcelerator Studio injects code into the <tt class=" ">tiapp.xml</tt> file to set up the Appcelerator Performance Management module ( <tt class=" ">com.appcelerator.apm</tt> ). See <a class="document-link " href="Platform_Services.html">Platform Services</a> for the code modifications. Do not modify these changes made by Appcelerator Studio or else you will disable the Appcelerator Performance service.    </p>
+    <p>Appcelerator Studio injects code into the <tt class=" ">tiapp.xml</tt> file to set up the Appcelerator Performance Management module (<tt class=" ">com.appcelerator.apm</tt>). See <a class="document-link " href="Platform_Services.html">Platform Services</a> for the code modifications. Do not modify these changes made by Appcelerator Studio or else you will disable the Appcelerator Performance service.    </p>
     </div>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-InitializetheModule">
         <h3 class="heading "><span>Initialize the Module</span></h3>
@@ -65,7 +65,7 @@
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
             <p><strong class=" ">Prior to Release 3.3.0,</strong> Appcelerator Studio would inject the code to load and initialize the module. The application could make API calls to module using the <tt class=" ">apm</tt> object for classic mobile projects or <tt class=" ">Alloy.Globals.apm</tt> for Alloy projects.    </p>
     </div>
-        <p>Before making API calls to the Performance module, the application needs to load the module and initialize it.  Load the module using the <tt class=" ">require()</tt> method and pass the name of the module ( <tt class=" ">com.appcelerator.apm</tt> ) to the method, then initialize the module by call the <tt class=" ">init()</tt> method.    </p>
+        <p>Before making API calls to the Performance module, the application needs to load the module and initialize it. Load the module using the <tt class=" ">require()</tt> method and pass the name of the module ( <tt class=" ">com.appcelerator.apm</tt> ) to the method, then initialize the module by call the <tt class=" ">init()</tt> method.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var apm = require(</code><code class="string">&quot;com.appcelerator.apm&quot;</code><code class="plain">);</code></div>
@@ -80,15 +80,15 @@
 <div class="line"><code class="plain">Alloy.Globals.apm.init();</code></div>
 </div>
     </div>
-    <p>Make Performance Management module API calls using the app object.  For complete API information, see <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Modules.Performance">Performance Module API</a>.    </p>
-    <p>By default, the <tt class=" ">init()</tt> method uses the value of the <tt class=" ">com-appcelerator-apm-id</tt> key in the <tt class=" ">tiapp.xml</tt> file to initialize the Performance service.  You can optionally pass a different ID by passing it as an argument to the  <tt class=" ">init</tt>  method .  The app ID passed to the  <tt class=" ">init</tt>  method takes precedence over the <tt class=" ">com-appcelerator-apm-id</tt>   key.     </p>
+    <p>Make Performance Management module API calls using the app object. For complete API information, see <a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Modules.Performance">Performance Module API</a>.    </p>
+    <p>By default, the <tt class=" ">init()</tt> method uses the value of the <tt class=" ">com-appcelerator-apm-id</tt> key in the <tt class=" ">tiapp.xml</tt> file to initialize the Performance service. You can optionally pass a different ID by passing it as an argument to the  <tt class=" ">init</tt>  method. The app ID passed to the  <tt class=" ">init</tt>  method takes precedence over the <tt class=" ">com-appcelerator-apm-id</tt> key.    </p>
     <p class="diff-block-target diff-block-context">To get your APM App ID either:    </p>
 <ul class="diff-block-target diff-block-context "><li class=" ">    <p>Open your <tt class=" ">tiapp.xml</tt> file (in the Overview view) and click the <strong class=" ">Show ID</strong> link next to the <strong class=" ">Performance</strong> service or look for the <tt class=" ">com-appcelerator-apm-id</tt> key in the raw view.    </p>
-</li><li class=" ">    <p>Go to the <a class="external-link external-link" href="https://platform.appcelerator.com/">Appcelerator Dashboard</a>, select your application, click <strong class=" ">Performance</strong> and click <strong class=" ">Settings</strong> in the left pane.  In the right pane, select the<strong class=" "> Basics</strong> tab and locate <strong class=" ">Crittercism App ID</strong>.    </p>
+</li><li class=" ">    <p>Go to the <a class="external-link external-link" href="https://platform.axway.com/">Dashboard</a>, select your application, click <strong class=" ">Performance</strong> and click <strong class=" ">Settings</strong> in the left pane. In the right pane, select the<strong class=" "> Basics</strong> tab and locate <strong class=" ">Crittercism App ID</strong>.    </p>
 </li></ul>    </div>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-CreateaBreadcrumbTrail">
         <h3 class="heading "><span>Create a Breadcrumb Trail</span></h3>
-    <p>To make it easier to track the events leading up to a crash, use the <tt class=" ">leaveBreadcrumb</tt> method to add breadcrumbs in your code.  Place breadcrumbs near events and application state changes to track problematic paths that can lead to an application crash.  Append variables to your breadcrumbs to track their state.  For example:    </p>
+    <p>To make it easier to track the events leading up to a crash, use the<tt class=" "> leaveBreadcrumb</tt> method to add breadcrumbs in your code. Place breadcrumbs near events and application state changes to track problematic paths that can lead to an application crash. Append variables to your breadcrumbs to track their state. For example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// If Alloy project</code></div>
@@ -123,12 +123,12 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <p>These breadcrumbs are collected and passed to the Appcelerator Performance service.  To view the breadcrumbs, in the Appcelerator Performance dashboard, when viewing a specific application, click either <strong class=" ">Crash Reports </strong>or <strong class=" ">Handled Exceptions</strong>.  In the list of crashes or handled errors in the right pane, click on the crash or error to view its details.  Click the <strong class=" ">Breadcrumbs</strong> tab to view the breadcrumb trails leading up to the crash or error.    </p>
-    <p>The most recent 100 breadcrumbs are displayed before the crash occurred.  A breadcrumb can be up to 140 characters.    </p>
+    <p>These breadcrumbs are collected and passed to the Appcelerator Performance service. To view the breadcrumbs, in the Appcelerator Performance dashboard, when viewing a specific application, click either <strong class=" ">Crash Reports </strong>or <strong class=" ">Handled Exceptions</strong>. In the list of crashes or handled errors in the right pane, click on the crash or error to view its details. Click the <strong class=" ">Breadcrumbs</strong> tab to view the breadcrumb trails leading up to the crash or error.    </p>
+    <p>The most recent 100 breadcrumbs are displayed before the crash occurred. A breadcrumb can be up to 140 characters.    </p>
     </div>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-AddUserMetadata">
         <h3 class="heading "><span>Add User Metadata</span></h3>
-    <p>Use the <tt class=" ">setUsername</tt> and <tt class=" ">setMetadata</tt> methods to differentiate users of your application when viewing reports on the Appcelerator Performance dashboard.  For example:    </p>
+    <p>Use the <tt class=" ">setUsername</tt> and <tt class=" ">setMetadata</tt> methods to differentiate users of your application when viewing reports on the Appcelerator Performance dashboard. For example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// If Alloy project</code></div>
@@ -150,12 +150,12 @@
 <div class="line"><code class="plain">apm.setMetadata(</code><code class="string">&apos;gameLevel&apos;</code><code class="plain">, </code><code class="value">2</code><code class="plain">);</code></div>
 </div>
     </div>
-    <p>By default, a guest profile is created to differentiate users if a username is not specified.  The username appears with the crash or error reports.    </p>
+    <p>By default, a guest profile is created to differentiate users if a username is not specified. The username appears with the crash or error reports.    </p>
     <p>To access the user metadata, either click on a username in a crash or error report to open a detailed view, or in the Appcelerator Performance dashboard, when viewing a specific application, click <strong class=" ">Search by User</strong> in the left pane then in the right pane, enter a user&apos;s name to find information about them.    </p>
     </div>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-LogAnError">
         <h3 class="heading "><span>Log An Error</span></h3>
-    <p>You can track handled errors in your application by passing a JavaScript Error object to the <tt class=" ">logHandledException</tt> method, which can help identify and analyze potential errors and hot spots.  For example:    </p>
+    <p>You can track handled errors in your application by passing a JavaScript Error object to the <tt class=" ">logHandledException</tt> method, which can help identify and analyze potential errors and hot spots. For example:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// If Alloy project</code></div>
@@ -171,12 +171,12 @@
 </div>
     </div>
     <p>Error logs are useful for tracking crashes in third-party SDKs, code that syncs data between services, or detecting bad data that is returned from a server.    </p>
-    <p>To view handled errors, in the Appcelerator Performance dashboard, when viewing a specific application, click <strong class=" ">Handled Exceptions</strong> in the left pane.  A list of handled errors and statistics appears in the right pane.  Click an error to view it in more detail.    </p>
+    <p>To view handled errors, in the Appcelerator Performance dashboard, when viewing a specific application, click <strong class=" ">Handled Exceptions</strong> in the left pane. A list of handled errors and statistics appears in the right pane. Click an error to view it in more detail.    </p>
     <p>Appcelerator Performance limits the logging of handled errors to one per minute. Up to five errors are buffered and are subsequently sent after the one minute limit.    </p>
     </div>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-AllowtheUsertoOpt-Out">
         <h3 class="heading "><span>Allow the User to Opt-Out</span></h3>
-    <p>Use the <tt class=" ">setOptOutStatus</tt> method to allow the user <u class=" ">NOT</u> to send any information to the Appcelerator Performance service.  Passing <tt class=" ">true</tt> to this method disables sending data to Appcelerator Performance.    </p>
+    <p>Use the <tt class=" ">setOptOutStatus</tt> method to allow the user <u class=" ">NOT</u> to send any information to the Appcelerator Performance service. Passing <tt class=" ">true</tt> to this method disables sending data to Appcelerator Performance.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// If Alloy project</code></div>
@@ -189,7 +189,7 @@
     </div>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-CheckforaCrash">
         <h3 class="heading "><span>Check for a Crash</span></h3>
-    <p>Use the <tt class=" ">didCrashOnLastAppLoad</tt> method to check if the application crashed in a previous session.  If the method returns <tt class=" ">true</tt>, the application crashed on the last session.    </p>
+    <p>Use the <tt class=" ">didCrashOnLastAppLoad</tt> method to check if the application crashed in a previous session. If the method returns <tt class=" ">true</tt>, the application crashed on the last session.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// If Alloy project</code></div>
@@ -227,7 +227,7 @@
 <div class="line"><code class="plain">&lt;uses-permission android:name=</code><code class="string">&quot;android.permission.READ_LOGS&quot;</code><code class="plain">/&gt;</code></div>
 </div>
     </div>
-    <p><u class=" ">For Google API Level 16 and later</u>, when initializing the module, specify <tt class=" ">{shouldCollectLogcat: true}</tt>   as a second parameter when calling the <tt class=" ">init</tt> method:    </p>
+    <p>For Google API Level 16 and later, when initializing the module, specify <tt class=" ">{shouldCollectLogcat: true}</tt> as a second parameter when calling the <tt class=" ">init</tt> method:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">apm.init(</code><code class="string">&apos;YOUR_CRITTERCISM_APP_ID&apos;</code><code class="plain">, {shouldCollectLogcat: </code><code class="keyword">true</code><code class="plain">});</code></div>

@@ -41,7 +41,7 @@
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/Quick_Start_Guide_for_iOS_APS_SDK_using_Swift-section-src-43298728_safe-id-UXVpY2tTdGFydEd1aWRlZm9yaU9TQVBTU0RLdXNpbmdTd2lmdC1OZXh0U3RlcHNmb3JBcHBjZWxlcmF0b3JBbmFseXRpY3MsQ2xvdWRhbmRQZXJmb3JtYW5jZQ">Next Steps for Appcelerator Analytics, Cloud and Performance</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p>This guide walks through the setup of the AMPLIFY Appcelerator Services for iOS applications.  The AMPLIFY Appcelerator Services SDK gives you access to the Appcelerator Analytics, Cloud and Performance services.  Note that the Appcelerator Test service does not currently work with Swift projects.    </p>
+    <p>This guide walks through the setup of the AMPLIFY Appcelerator Services for iOS applications. The AMPLIFY Appcelerator Services SDK gives you access to the Appcelerator Analytics, Cloud and Performance services. Note that the Appcelerator Test service does not currently work with Swift projects.    </p>
     <div class="confbox panel panel">
             <div class="title">Not developing a native iOS application with Swift?</div>
         <p>See the following topics to use the AMPLIFY Appcelerator Services on other platforms:    </p>
@@ -58,7 +58,7 @@
     </div>
     <div class="section section-2 " id="src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-Requirements">
         <h2 class="heading "><span>Requirements</span></h2>
-    <p>You should be familiar with developing native iOS applications using Xcode and Swift.  The SDKs supports the following base SDK and target iOS versions:    </p>
+    <p>You should be familiar with developing native iOS applications using Xcode and Swift. The SDKs supports the following base SDK and target iOS versions:    </p>
     <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
@@ -185,14 +185,14 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     </div>
     <div class="section section-2 " id="src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-QuickTutorial">
         <h2 class="heading "><span>Quick Tutorial</span></h2>
-    <p>The following tutorial demonstrates basic setup and usage of Analytics, Cloud, and Performance libraries in a Swift Xcode project. To complete the tutorial you will need your APS application key for the Cloud, Analytics, and Performance services.  <a class="external-link external-link" href="https://github.com/appcelerator-developer-relations/APSiOSSwift" target="_blank">Download</a> a complete version of the project.    </p>
+    <p>The following tutorial demonstrates basic setup and usage of Analytics, Cloud, and Performance libraries in a Swift Xcode project. To complete the tutorial you will need your APS application key for the Cloud, Analytics, and Performance services. <a class="external-link external-link" href="https://github.com/appcelerator-developer-relations/APSiOSSwift" target="_blank">Download</a> a complete version of the project.    </p>
     <p><strong class=" ">To create a basic application using APS</strong>:    </p>
 <ol class=" "><li class=" ">    <p>In Xcode, create a new iOS Project (Single View Application). When prompted for options, select <strong class=" ">Swift</strong> in the <strong class=" ">Language</strong> drop-down.    </p>
-</li><li class=" ">    <p>Create a Header File and name it <tt class=" ">&lt;PROJECT_NAME&gt;-Bridging-Header.h</tt>.  Make sure the main project&apos;s application target folder is selected, then from the menu, select <strong class=" ">File</strong> &gt; <strong class=" ">New</strong> &gt; <strong class=" ">File...</strong> or drag a <strong class=" ">Header File</strong> from the <strong class=" ">File Template</strong> library to the application target folder.  The application target folder is a folder under the root project folder and will be named the same as the project if the name has not been changed.<br>    <img src="images/download/attachments/43298728/BridgeHeadingFile.png" alt="images/download/attachments/43298728/BridgeHeadingFile.png" class="confluence-embedded-image confluence-content-image-border">
+</li><li class=" ">    <p>Create a Header File and name it <tt class=" ">&lt;PROJECT_NAME&gt;-Bridging-Header.h</tt>. Make sure the main project&apos;s application target folder is selected, then from the menu, select <strong class=" ">File</strong> &gt; <strong class=" ">New</strong> &gt; <strong class=" ">File...</strong> or drag a <strong class=" ">Header File</strong> from the <strong class=" ">File Template</strong> library to the application target folder. The application target folder is a folder under the root project folder and will be named the same as the project if the name has not been changed.<br>    <img src="images/download/attachments/43298728/BridgeHeadingFile.png" alt="images/download/attachments/43298728/BridgeHeadingFile.png" class="confluence-embedded-image confluence-content-image-border">
         </img></br></p>
 </li><li class=" ">    <p>Unzip <tt class=" ">appcelerator-sdk-ios-&lt;VERSION&gt;.zip</tt> file and drag the <tt class=" ">Appcelerator.framework</tt> folder into the root project folder.    </p>
 </li><li class=" ">    <p>Select <strong class=" ">Copy items into destination&#x2026;</strong> and click <strong class=" ">Finish</strong>.    </p>
-</li><li class=" ">    <p>Select your project in the Project navigator and click the <strong class=" ">Build Phases</strong> tab.    </p>
+</li><li class=" ">    <p>Select your project in the Project Navigator and click the <strong class=" ">Build Phases</strong> tab.    </p>
 </li><li class=" ">    <p>Expand the <strong class=" ">Link Binary With Libraries</strong> section and add the <tt class=" ">libsqlite3.tbd</tt> and <tt class=" ">libz.tbd</tt> frameworks. Prior to Xcode 7, the framework extension is <tt class=" ">dylib</tt> rather than <tt class=" ">tbd</tt>.    </p>
 </li><li class=" ">    <p>Click the <strong class=" ">Build Settings</strong> tab, then click the <strong class=" ">All</strong> button in the top-left corner of the tab.    </p>
 </li><li class=" ">    <p>If you are using Xcode 7, you will need to disable bit code since some third-party libraries do not have bit code enabled. Expand the <strong class=" ">Build Options</strong> section and set <strong class=" ">Enable Bitcode</strong> to <strong class=" ">No</strong>.    </p>
@@ -228,22 +228,22 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
         <p>    </p>
     <div class="section section-3 " id="src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-ModifytheApplication">
         <h3 class="heading "><span>Modify the Application</span></h3>
-    <p>Customize the application&apos;s UI to display a picker, text field and button, and add some logic to respond to user interaction.  The picker will display a list of available user accounts.  The user can enter their password in the text field, then click the button to log in.    </p>
+    <p>Customize the application&apos;s UI to display a picker, text field and button, and add some logic to respond to user interaction. The picker will display a list of available user accounts. The user can enter their password in the text field, then click the button to log in.    </p>
 <ol class=" "><li class=" ">    <p>Open your project&apos;s <tt class=" ">Main.storyboard</tt> file.    </p>
 </li><li class=" ">    <p>Drag a Picker View, Text Field and Button from the Object library to the view.    </p>
 </li><li class=" ">    <p>Open the <strong class=" ">Assistant Editor</strong>. (From the menu, select <strong class=" ">View</strong> &gt; <strong class=" ">Assistant Editor </strong>&gt; <strong class=" ">Show Assistant Editor</strong> or click the <strong class=" ">Assistant Editor</strong> button in the top-right corner.)    </p>
 </li><li class=" ">    <p>In the right pane, display the <tt class=" ">ViewController.swift</tt> file.    </p>
-</li><li class=" ">    <p>Control-drag the Picker View to the <strong class=" ">View Controller</strong> icon at the top of the view.  Select <strong class=" ">dataSource</strong>.  Repeat for the <strong class=" ">delegate</strong> option.    </p>
+</li><li class=" ">    <p>Control-drag the Picker View to the <strong class=" ">View Controller</strong> icon at the top of the view. Select <strong class=" ">dataSource</strong>. Repeat for the <strong class=" ">delegate</strong> option.    </p>
     <img src="images/download/attachments/43298728/ViewController.png" alt="images/download/attachments/43298728/ViewController.png" class="confluence-embedded-image confluence-content-image-border">
         <p>    </p>
-</img></li><li class=" ">    <p>Drag the Picker View to the header file to create an IBOutlet.  Name the outlet <tt class=" ">picker</tt> and click <strong class=" ">Connect</strong>.  Repeat the same procedure for the Text Field and name it <tt class=" ">textField</tt>.    </p>
+</img></li><li class=" ">    <p>Drag the Picker View to the header file to create an IBOutlet. Name the outlet <tt class=" ">picker</tt> and click <strong class=" ">Connect</strong>. Repeat the same procedure for the Text Field and name it <tt class=" ">textField</tt>.    </p>
     <img src="images/download/attachments/43298728/OutletCollection.png" alt="images/download/attachments/43298728/OutletCollection.png" class="confluence-embedded-image confluence-content-image-border">
         <p>    </p>
 </img></li><li class=" ">    <p>In the <tt class=" ">ViewController.swift</tt> file:    </p>
 <ol class=" "><li class=" ">    <p>Declare the View Controller to implement the <tt class=" ">UIPickerViewDelegate</tt>, <tt class=" ">UIPickerViewDataSource</tt>, and <tt class=" ">UITextFieldDelegate</tt> protocols.    </p>
 </li><li class=" ">    <p>Add a Dictionary array called <tt class=" ">usernames</tt> to keep track of the Picker View&apos;s data source and a String variable called <tt class=" ">username</tt> to reference the current selection.    </p>
-</li><li class=" ">    <p>Create an IBAction callback for the button named <tt class=" ">doClick</tt>.  In the following sections, you will add code to this handler that calls Cloud, Analytics and Performance services.    </p>
-</li><li class=" ">    <p>Implement the methods of <tt class=" ">UIPickerViewDelegate</tt>, <tt class=" ">UIPickerViewDataSource</tt> and<tt class=" "> UITextFieldDelegate</tt> protocols.  Add the following code to the file:    </p>
+</li><li class=" ">    <p>Create an IBAction callback for the button named <tt class=" ">doClick</tt>. In the following sections, you will add code to this handler that calls Cloud, Analytics and Performance services.    </p>
+</li><li class=" ">    <p>Implement the methods of <tt class=" ">UIPickerViewDelegate</tt>, <tt class=" ">UIPickerViewDataSource</tt> and<tt class=" "> UITextFieldDelegate</tt> protocols. Add the following code to the file:    </p>
 </li></ol>    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ViewController.swift</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ViewController.swift">
@@ -320,7 +320,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     </div>
     <div class="section section-3 " id="src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-QueryCloudUsers">
         <h3 class="heading "><span>Query Cloud Users</span></h3>
-    <p>To use the APS Cloud component, most of the methods require a user to be logged in.  This sample uses the Picker View to select a Cloud user account.  To populate the Picker View values, the application needs to retrieve a list of users. Call the <tt class=" ">APSUsers.query()</tt> method to retrieve a list of user accounts from inside the <tt class=" ">viewDidLoad()</tt> method.    </p>
+    <p>To use the APS Cloud component, most of the methods require a user to be logged in. This sample uses the Picker View to select a Cloud user account. To populate the Picker View values, the application needs to retrieve a list of users. Call the <tt class=" ">APSUsers.query()</tt> method to retrieve a list of user accounts from inside the <tt class=" ">viewDidLoad()</tt> method.    </p>
     <p>Every APS Cloud method includes a <tt class=" ">withBlock</tt> parameter that specifies the callback to handle the server response. The callback is passed an <tt class=" ">APSResponse</tt> object that contains response metadata (such as success or failure) and the response payload.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ViewController.swift</div>
@@ -339,7 +339,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     </div>
     <div class="section section-3 " id="src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-LogintoaCloudAccount">
         <h3 class="heading "><span>Log in to a Cloud Account</span></h3>
-    <p>To log in to a Cloud account, you need the username and password.  Since the application was modified to get all available user accounts and populate the Picker View, the application needs to get the current value of the picker and the text entered in the Text Field.  These values are passed to the <tt class=" ">APSUsers.login()</tt> method.  Modify the <tt class=" ">doClick</tt> method to login to a Cloud user account.    </p>
+    <p>To log in to a Cloud account, you need the username and password. Since the application was modified to get all available user accounts and populate the Picker View, the application needs to get the current value of the picker and the text entered in the Text Field. These values are passed to the <tt class=" ">APSUsers.login()</tt> method. Modify the <tt class=" ">doClick</tt> method to login to a Cloud user account.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ViewController.swift</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ViewController.swift">
@@ -365,7 +365,7 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     </div>
     <div class="section section-3 " id="src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-SetaUsernameforCrashLogs">
         <h3 class="heading "><span>Set a Username for Crash Logs</span></h3>
-    <p>To help differentiate crash logs, use the <tt class=" ">username</tt> property.  When the application successfully logs in to the Cloud user account, the application sets the <tt class=" ">username</tt> property.    </p>
+    <p>To help differentiate crash logs, use the <tt class=" ">username</tt> property. When the application successfully logs in to the Cloud user account, the application sets the <tt class=" ">username</tt> property.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">ViewController.swift</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ViewController.swift">
@@ -386,8 +386,8 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     </div>
     <div class="section section-3 " id="src-43298728_QuickStartGuideforiOSAPSSDKusingSwift-TestingtheTutorialSample">
         <h3 class="heading "><span>Testing the Tutorial Sample</span></h3>
-    <p>Before testing the sample, you need to create user accounts for the application to query.  To create Cloud user accounts:    </p>
-<ol class=" "><li class=" ">    <p>Log in to <a class="external-link external-link" href="https://platform.appcelerator.com/" target="_blank">Appcelerator Dashboard</a>.    </p>
+    <p>Before testing the sample, you need to create user accounts for the application to query. To create Cloud user accounts:    </p>
+<ol class=" "><li class=" ">    <p>Log in to <a class="external-link external-link" href="https://platform.axway.com/" target="_blank">Dashboard</a>.    </p>
 </li><li class=" ">    <p>In Dashboard, select your application from the <strong class=" ">APIs</strong> menu in the upper-left corner.    </p>
 </li><li class=" ">    <p>In the left navigation bar, click <strong class=" ">Manage</strong> <strong class=" ">Data</strong>.    </p>
 </li><li class=" ">    <p>Click <strong class=" ">Users</strong>, then the <strong class=" ">Create User</strong> button.    </p>
@@ -401,18 +401,18 @@ Appcelerator Platform Services (APS) SDK for iOS and Android provides support fo
     </div>
         <p>After you have created a few Cloud user accounts, build the sample and launch it on either a device or emulator.    </p>
     <p>Once the application launches:    </p>
-<ol class=" "><li class=" ">    <p>Click on the Picker.  You should see a list of all the Cloud user accounts you added.    </p>
-</li><li class=" ">    <p>Select a user account from the Picker and enter that user&apos;s password.  Click the Button.  In the log output, you should see an info log that login command was successful or not.    </p>
-</li><li class=" ">    <p>Go back to the <a class="external-link external-link" href="https://platform.appcelerator.com/" target="_blank">Appcelerator Dashboard</a>.    </p>
+<ol class=" "><li class=" ">    <p>Click on the Picker. You should see a list of all the Cloud user accounts you added.    </p>
+</li><li class=" ">    <p>Select a user account from the Picker and enter that user&apos;s password. Click the Button. In the log output, you should see an info log that login command was successful or not.    </p>
+</li><li class=" ">    <p>Go back to the <a class="external-link external-link" href="https://platform.axway.com/" target="_blank">Dashboard</a>.    </p>
 </li><li class=" ">    <p>In Dashboard, select your application from the <strong class=" ">Apps</strong> menu in the upper-left corner.    </p>
 </li><li class=" ">    <p>In the left navbar, select <strong class=" ">Analytics</strong>.    </p>
 </li><li class=" ">    <p>In the Real-Time view, you should see at least one active session.    </p>
-</li><li class=" ">    <p>In the left navbar, click <strong class=" ">Events</strong>.  You should see the &quot;sample.feature.login&quot; feature event.    </p>
+</li><li class=" ">    <p>In the left navbar, click <strong class=" ">Events</strong>. You should see the &quot;sample.feature.login&quot; feature event.    </p>
 </li></ol>    </div>
     </div>
     <div class="section section-2 " id="src-43298728_safe-id-UXVpY2tTdGFydEd1aWRlZm9yaU9TQVBTU0RLdXNpbmdTd2lmdC1OZXh0U3RlcHNmb3JBcHBjZWxlcmF0b3JBbmFseXRpY3MsQ2xvdWRhbmRQZXJmb3JtYW5jZQ">
         <h2 class="heading "><span>Next Steps for Appcelerator Analytics, Cloud and Performance</span></h2>
-    <p>This tutorial only covers a small portion of what the Analytics, Cloud and Performance services can provide.  For more in-depth information about these features, see the following topics. Note that these guides were written for Objective-C projects.  You will need to adapt the API calls for Swift.    </p>
+    <p>This tutorial only covers a small portion of what the Analytics, Cloud and Performance services can provide. For more in-depth information about these features, see the following topics. Note that these guides were written for Objective-C projects. You will need to adapt the API calls for Swift.    </p>
 <ul class=" "><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Analytics_for_iOS">APS Analytics for iOS</a>    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="/arrowdb/latest/#!/guide/ios">APS Cloud for iOS</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/APS_Performance_for_iOS">APS Performance for iOS</a>    </p>
