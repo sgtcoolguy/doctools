@@ -1,24 +1,8 @@
 /*
-  Purpose:
+  Purpose: Scrape https://github.com/appcelerator/titanium_mobile/blob/master/support/module/packaged/modules.json to gather SDK module version info for use in the SDK release notes
   Usage:
 
-  * Scrape https://github.com/appcelerator/titanium_mobile/blob/master/support/module/packaged/modules.json
-  * Gather SDK module version info for the following:
-  ** Android and iOS
-  *** urlSession	2.1.0	n/a
-  *** facebook	6.0.0	8.0.0
-  *** ti.coremotion	2.1.0	n/a
-  *** ti.map	3.1.0	4.3.1
-  *** ti.safaridialog	1.1.1	n/a
-  *** ti.webdialog	1.1.0	1.1.0
-  *** ti.touchid	2.1.4	3.0.1
-  *** ti.identity	1.0.5	2.0.1
-  *** ti.cloudpush	n/a	5.2.0
-  *** ti.playservices	n/a	11.0.40
-  ** CommonJS
-  *** ti.cloud	3.2.11
-  ** Hyperloop
-  *** hyperloop	4.0.1
+  
 */
 
 const Nightmare = require("nightmare");
@@ -62,10 +46,7 @@ var modules = {
       ios: 'n/a'
     },
     ti_identity: {
-      android: {
-        htmlId: 'ti.identity-android',
-        version: 'n/a'
-      },
+      android: 'n/a',
       ios: 'n/a'
     },
     ti_cloudpush: {
@@ -102,41 +83,46 @@ nightmare
 
     var output = ''; // string to hold the names of the documents
 
-    // $('tr').each(function() {
-    //   // console.log($(this).text())
-    //   var text = $(this).text();
-    //   if (text.indexOf('hyperloop') > -1) {
-    //     console.log($(this).next().text());
-    //   }
-    // });
-
     $('td[id^="LC"] span+span').each(function() {
       var text = $(this).text();
-      if (text.indexOf('.zip') > -1) {
+      if (text.indexOf('.zip') > -1) { // hyperloop
         console.log(text)
         if (text.indexOf('hyperloop') > -1) {
           modules.hyperloop.hyperloop = text.slice(text.lastIndexOf('/') + 11, text.length - 5);
         }
-        if (text.indexOf('ti.cloud-commonjs') > -1) {
+        if (text.indexOf('ti.cloud-commonjs') > -1) { // commonjs
           modules.commonjs.ti_cloud = text.slice(text.indexOf('ti.cloud-commonjs') + 18, text.length - 5);
         }
-        if (text.indexOf('ti.identity-android') > -1) {
-          modules.module.ti_identity.android = text.slice(text.indexOf('ti.identity-android') + 20, text.length - 5);
+
+        var modulesId = ['ti.identity-android', 'ti.identity-iphone', 'ti.playservices-android', 'ti.touchid-android', 'ti.touchid-iphone', 'ti.cloudpush-android', 'facebook-android', 'facebook-iphone', 'ti.webdialog-android', 'ti.webdialog-iphone', 'ti.map-android', 'ti.map-iphone', 'urlSession-iphone', 'ti.coremotion-iphone', 'ti.safaridialog-iphone']; // ids to search for in the text. If a new module is added, update this array with the appropriate module id
+
+        for (i in modulesId) { // loop through the arrays to gather module version info for both android and ios
+          var name = modulesId[i].replace('.','_').replace('-', '.');
+          getModule(text, modulesId[i], name);
         }
-        if (text.indexOf('ti.playservices-android') > -1) {
-          modules.module.ti_playservices.android = text.slice(text.indexOf('ti.playservices-android') + 24, text.length - 5);
-        }
-        //"https://github.com/appcelerator-modules/ti.touchid/releases/download/android-3.0.1/ti.touchid-android-3.0.1.zip"
-        if (text.indexOf('ti.touchid-android') > -1) {
-          modules.module.ti_touchid.android = text.slice(text.indexOf('ti.touchid-android') + 19, text.length - 5);
-        }
-        // temp(text);
       }
     });
 
+    function getModule(text, id, moduleNamePlatform) {
+      var moduleName = moduleNamePlatform.split('.')[0];
+      var platform = moduleNamePlatform.split('.')[1];
+      if (platform == 'android') {
+        if (text.indexOf(id) > -1) {
+          modules.module[moduleName][platform] = text.slice(text.indexOf(id) + (id.length + 1), text.length - 5);
+        }
+      } else {
+        if (text.indexOf(id) > -1) {
+          modules.module[moduleName].ios = text.slice(text.indexOf(id) + (id.length + 1), text.length - 5);
+        }
+      }
+    }
 
+    console.log(modules);
 
-    console.log(modules)
+    // create an HTML document with a simple table
+    for (i in modules) {
+
+    }
 
     // fs.writeFileSync(confluenceSiteMap, output, 'utf8'); // save out pages names
   })
