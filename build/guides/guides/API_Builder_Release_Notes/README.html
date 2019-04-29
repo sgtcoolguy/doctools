@@ -83,6 +83,7 @@ The API Builder Console will fail to find GET /find since it is inside a <tt cla
 </li><li class=" ">    <p>When editing flows in the console log in the terminal, multiple lines with an unknown format are ignored and the following message is received: unknown format &quot;multiline&quot; ignored in the schema at path &quot;#&quot;    </p>
 </li><li class=" ">    <p>In the flow editor, if a flow-node method description is too long, it may not be visible in its entirety.    </p>
 </li><li class=" ">    <p>Editing large object parameters on the <i class=" ">API Orchestration</i> page in the API Builder Console may cause multiple, confusing flow-node configuration panel scrollbars to appear.    </p>
+</li><li class=" ">    <p>The following packages have a dependency on the <a class="external-link external-link" href="https://www.npmjs.com/package/dot" target="_blank">doT</a> npm module, which is vulnerable to command injection (see advisory <a class="external-link external-link" href="https://www.npmjs.com/advisories/798" target="_blank">#798</a>): <a class="external-link external-link" href="https://www.npmjs.com/package/@axway/api-builder-plugin-fn-dot" target="_blank">@axway/api-builder-plugin-fn-dot</a>, <a class="external-link external-link" href="https://www.npmjs.com/package/@axway/api-builder-plugin-fn-base64" target="_blank">@axway/api-builder-plugin-fn-base64</a>, <a class="external-link external-link" href="https://www.npmjs.com/package/@axway/api-builder-plugin-fn-restclient" target="_blank">@axway/api-builder-plugin-fn-restclient</a>, <a class="external-link external-link" href="https://www.npmjs.com/package/@axway/@axway/api-builder-plugin-fn-swagger" target="_blank">@axway/api-builder-plugin-fn-swagger</a>, and <a class="external-link external-link" href="https://www.npmjs.com/package/axway-flow-sdk" target="_blank">axway-flow-sdk</a>.    </p>
 </li></ul>    </div>
     <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-Securityvulnerability">
         <h2 class="heading "><span>Security vulnerability</span></h2>
@@ -99,6 +100,8 @@ The API Builder Console will fail to find GET /find since it is inside a <tt cla
 <strong class=" ">Analysis</strong>: The vulnerability and risk are documented <a class="external-link external-link" href="https://github.com/twbs/bootstrap/issues/20184" target="_blank">    <span style="color: #333333;">
 20184    </span>
 </a>. The API Builder UI only runs on the developer machine and is locked to localhost by default. The API Builder UI <strong class=" ">will not be installed in production</strong>. Furthermore, the UI bundled with API Builder does not use data-target attributes. The risk to API Builder is low.    </span>
+    <span style="color: #333333;">
+     </span>
     </p>
 </li></ul></li></ul>    </div>
     <div class="section section-2 " id="src-43299747_APIBuilderReleaseNotes-RecentReleases">
