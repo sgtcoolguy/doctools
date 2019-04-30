@@ -1,8 +1,6 @@
 /*
   Purpose: Scrape https://github.com/appcelerator/titanium_mobile/blob/master/support/module/packaged/modules.json to gather SDK module version info for use in the SDK release notes
-  Usage:
-
-  
+  Usage: node gather_sdk_module_versions.js
 */
 
 const Nightmare = require("nightmare");
@@ -66,8 +64,6 @@ var modules = {
   }
 }
 
-// ** commander stuff (if necessary)
-
 console.log('Getting SDK module version information from "' + site + '"')
 nightmare
   .goto(site) // go to the required document.
@@ -81,12 +77,9 @@ nightmare
   .then(obj => { // render html
     $ = cheerio.load(obj.html.toString()); // read object in
 
-    var output = ''; // string to hold the names of the documents
-
     $('td[id^="LC"] span+span').each(function() {
       var text = $(this).text();
       if (text.indexOf('.zip') > -1) { // hyperloop
-        console.log(text)
         if (text.indexOf('hyperloop') > -1) {
           modules.hyperloop.hyperloop = text.slice(text.lastIndexOf('/') + 11, text.length - 5);
         }
@@ -119,127 +112,26 @@ nightmare
 
     console.log(modules);
 
-    // create an HTML document with a simple table
-    for (i in modules) {
+    var output = '<h3>Android and iOS</h3>' // html elements
+    output += '<table><tr><th>Module</th><th>Android version</th><th>iOS version</th></tr>';
 
+    for (i in modules.module) { // module version output
+      output += '<tr>';
+      output += '<td>' + i + '</td>';
+      output += '<td>' + modules.module[i].android + '</td>';
+      output += '<td>' + modules.module[i].ios + '</td>';
+      output += '</tr>';
     }
 
-    // fs.writeFileSync(confluenceSiteMap, output, 'utf8'); // save out pages names
+    output += '</table><h3>CommonJS</h3><table><tr><th>Module</th><th>Version</th></tr>'; // commonjs output
+    output += '<tr><td>ti.cloud</td><td>' + modules.commonjs.ti_cloud + '</td></tr></table>';
+    output += '<h3>Hyperloop</h3><table><tr><th>Module</th><th>Version</th></tr>';
+    output += '<tr><td>Hyperloop</td><td>' + modules.hyperloop.hyperloop + '</td></tr></table>';
+
+    fs.writeFileSync('sdk_module_versions.html', output, 'utf8'); // write out the HTML document
+
+    // ** open document in browser
   })
   .catch(error => { // catch any errors
     console.error(error);
-  });``
-
-  // function temp(text) {
-  //   console.log(text);
-  //   console.log(typeof(text));
-  //   for (i in modules.module) {
-  //     // console.log(i)
-  //     if (modules.module[i].android.htmlId) {
-  //       console.log(modules.module[i].android.htmlId)
-  //       console.log(typeof(modules.module[i].android.htmlId))
-  //       // console.log(typeof('string'))
-  //       // if (text.indexOf(modules.module[i].android.htmlId) > -1) {
-  //       //   console.log('yup')
-  //       // }
-  //     }
-  //     // if (modules.module[i].android.htmlId) {
-  //     //   console.log('htmlId: ' + modules.module[i].android.htmlId)
-  //     // }
-  //
-  //     // if (text.indexOf(modules.module[i].android.match) > -1) {
-  //     //   console.log('found ' + i)
-  //     // }
-  //   }
-    // console.log(target);
-    // if (text.indexOf(target) > -1) {
-    //   return obj = 'cheese'
-    // }
-    // if (text.indexOf('ti.playservices-android') > -1) {
-    //   modules.module.ti_playservices.android = text.slice(text.indexOf('ti.playservices-android') + 24, text.length - 5);
-    // }
-  // }
-
-  function getVersion(text, target, obj) {
-    // console.log(text)
-    // return 'cheese';
-    // console.log('target: ' + target)
-    // console.log()
-    if (text.indexOf(target) > -1) {
-      // console.log(text.slice(text.indexOf(target), text.length))
-      var temp = text.slice(text.indexOf(target) + (target.length + 1), text.length - 5);
-      console.log(temp)
-      return temp
-    }
-    // var temp = text.split('"');
-    // for (i in temp) {
-    //   if (temp[i].indexOf(target) > -1) {
-    //     return 'cheeseburger'
-    //   }
-    // }
-
-    // var temp = text.split('"');
-    // // console.log(temp)
-    // for (i in temp) {
-    //   if (temp[i].indexOf(target) > -1) {
-    //     console.log(temp[i])
-    //     console.log(temp[i].slice(temp[i].lastIndexOf('/') + (target.length + 2), temp[i].length - 4))
-    //     // console.log(temp[i].slice(temp[i].indexOf(target) + (target.legnth + 1), temp[i].length - 5))
-    //     return temp[i].slice(temp[i].lastIndexOf('/') + (target.length + 2), temp[i].length - 4);
-    //   }
-    // }
-
-
-    // if (text.indexOf(target) > -1) {
-    //   console.log(text.slice(text.indexOf(target) + (target.legnth + 1), text.length - 5))
-    // }
-
-    // if (text.indexOf(target) > -1) {
-    //   obj = text.slice(text.indexOf(target) + target.length + 1, text.length - 5);
-    //   // console.log(text.slice(text.indexOf(target) + target.length + 1, text.length - 5))
-    // }
-  }
-
-
-  // $('tr').each(function() {
-  //   // output += $(this).text();
-  //   var text = $(this).text();
-  //
-  //   //			"url": "https://github.com/appcelerator-modules/titanium-identity/releases/download/android-2.1.0/ti.identity-android-2.1.0.zip",
-  //   if (text.indexOf('ios') > -1) {
-  //     if ($(this).next().text().indexOf('urlSession') > -1) {
-  //       var value = $(this).next().next().text().split('/');
-  //       modules.module.urlSession.ios = value[value.length -2].replace('v','');
-  //     }
-  //     // console.log($(this).next().text())
-  //     // if ($(this).next().text().indexOf('facebook') > -1) {
-  //     //   // console.log($(this).next().next().text())
-  //     //   var value = $(this).next().next().text().split('/');
-  //     //   console.log(value)
-  //     //   // modules.module.urlSession.ios = value[value.length -2].replace('v','');
-  //     // }
-  //   }
-  //   // if (text.indexOf('ios') > -1) {
-  //   //   console.log($(this).next().text())
-  //   //   // if ($(this).next().text().indexOf('facebook') > -1) {
-  //   //   //   console.log('facebook')
-  //   //   // }
-  //   // }
-  //
-  //
-  //   // grab ti.cloud version
-  //   if (text.indexOf('ti.cloud') > -1 && text.indexOf('https') > -1) {
-  //     var temp = text.split('/');
-  //     modules.commonjs.ti_cloud = temp[temp.length - 2];
-  //   }
-  //   // grab hyperloop version
-  //   if (text.indexOf('hyperloop') > -1 && text.indexOf('https') > -1) {
-  //     var temp = text.split('/');
-  //     for (i in temp) {
-  //       if (temp[i].match(/v\d/)) {
-  //         modules.hyperloop.hyperloop = temp[i].slice(1,temp[i].length);
-  //         break;
-  //       }
-  //     }
-  //   }
-  // });
+  });
