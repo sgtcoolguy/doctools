@@ -7,6 +7,7 @@ const Nightmare = require("nightmare");
 const cheerio = require('cheerio');
 const program = require('commander');
 const fs = require('fs');
+const opn = require('opn');
 
 const nightmare = Nightmare({
     show: false // use false if you don't want to see Electron "jumping through all the hoops"
@@ -130,7 +131,7 @@ nightmare
 
     fs.writeFileSync('sdk_module_versions.html', output, 'utf8'); // write out the HTML document
 
-    // ** open document in browser
+    opn('sdk_module_versions.html'); // open HTML document in default browser
   })
   .catch(error => { // catch any errors
     console.error(error);
