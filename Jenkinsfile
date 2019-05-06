@@ -25,7 +25,7 @@ def MODULES = [
 	'com.appcelerator.apm',
 	'appcelerator.encrypteddatabase',
 	'titanium-web-dialog',
-	'ti.systemalert',
+	// 'ti.systemalert', // Removed since it has no apidoc folder
 	'appcelerator.aca'
 ]
 
