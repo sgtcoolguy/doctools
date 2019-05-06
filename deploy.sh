@@ -197,7 +197,8 @@ if [ $include_modules ]; then
       		         $APPC_MODULES/appcelerator.https/apidoc
                    $APPC_MODULES/appcelerator.encrypteddatabase/apidoc
                    $APPC_MODULES/titanium-web-dialog/apidoc
-                   $APPC_MODULES/ti.systemalert"
+                   $APPC_MODULES/ti.systemalert
+                   $APPC_MODULES/appcelerator.aca"
 fi
 #$APPC_MODULES/com.appcelerator.apm/apidoc
 
