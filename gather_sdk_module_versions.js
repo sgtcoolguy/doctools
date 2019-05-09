@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*
   Purpose: Scrape https://github.com/appcelerator/titanium_mobile/blob/master/support/module/packaged/modules.json to gather SDK module version info for use in the SDK release notes
   Usage: node gather_sdk_module_versions.js
@@ -5,7 +6,7 @@
 
 const Nightmare = require("nightmare");
 const cheerio = require('cheerio');
-const program = require('commander');
+// const program = require('commander');
 const fs = require('fs');
 const opn = require('opn');
 
@@ -69,7 +70,7 @@ console.log('Getting SDK module version information from "' + site + '"')
 nightmare
   .goto(site) // go to the required document.
   .evaluate(selector => { // grab html content from browser
-    console.log(document.querySelector(selector).innerHTML)
+    // console.log(document.querySelector(selector).innerHTML)
     return {
       html: document.querySelector(selector).innerHTML, // HTML element where the content is located
     }
