@@ -100,9 +100,6 @@ open http://devops-jenkins.appcelerator.org/job/server_package_deployment/
 #open -a Atom ~/.bash_profile
 #echo "Grab your Jenkins password"
 
-## copy revised API doc navigation images to ../appc_web_docs
-cp $TI_ROOT/doctools/API_doc_images/* $TI_ROOT/appc_web_docs/platform/latest/extjs/resources/themes/images/default/tree
-
 ## open the messages.txt file and you need to manually search for error messages
 # open -a Atom messages.txt
 rm messages.txt

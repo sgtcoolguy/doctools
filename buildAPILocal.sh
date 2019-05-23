@@ -20,9 +20,6 @@ bash build_platform.sh >> API_local_build_report.txt
 cd /Users/bimmel/Documents/Repositories/appc_web_docs/
 bash ../doctools/copy_platform.sh >> API_local_build_report.txt
 
-## copy revised API doc navigation images to ../appc_web_docs
-cp $TI_ROOT/doctools/API_doc_images/* $TI_ROOT/appc_web_docs/platform/latest/extjs/resources/themes/images/default/tree
-
 ## append end timestamp for the end of the task
 date >> API_local_build_report.txt
 date
