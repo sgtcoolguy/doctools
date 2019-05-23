@@ -183,7 +183,6 @@ if [ $include_modules ]; then
     module_dirs="$APPC_MODULES/ti.map/apidoc
     			       $APPC_MODULES/ti.facebook/apidoc
                  $APPC_MODULES/ti.nfc/apidoc
-                 $APPC_MODULES/ti.newsstand/apidoc
                  $APPC_MODULES/ti.coremotion/apidoc
                  $APPC_MODULES/ti.urlsession/apidoc
                  $APPC_MODULES/ti.touchid/apidoc
