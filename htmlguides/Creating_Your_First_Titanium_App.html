@@ -359,13 +359,14 @@ you specify a child view&apos;s coordinates on a grid relative to its parent con
     </div>
     <div class="section section-2 " id="src-37541502_CreatingYourFirstTitaniumApp-Addplatform-specificstylestotheTableView">
         <h2 class="heading "><span>Add platform-specific styles to the TableView</span></h2>
-    <p>If you test the app on an Android device with a high-resolution display, you&#x2019;ll notice that the default height of each table row is a bit small to comfortably read or select with a finger. For instance, the screenshot below was taken with a Pixel 2 emulator.    <img src="images/download/attachments/37541502/platform_specific_changes-android.png" alt="images/download/attachments/37541502/platform_specific_changes-android.png" class="confluence-embedded-image" width="500">
-    </p>
+    <p>If you test the app on an Android device with a high-resolution display, you&#x2019;ll notice that the default height of each table row is a bit small to comfortably read or select with a finger. For instance, the screenshot below was taken with a Pixel 2 emulator.    </p>
     <p>To fix this we will apply a <a class="document-link " href="Alloy_Styles_and_Themes.html#src-35621526_AlloyStylesandThemes-Platform-SpecificStyles">platform-specific style</a> to the <tt class=" ">&lt;TableViewRow&gt;</tt> element. During the build process, platform-specific styles are applied only to builds on the target platform. The following is an example of a platform-specific style that makes all Labels blue in iOS builds.    </p>
+    <p>    <img src="images/download/attachments/37541502/platform_specific_changes-android.png" alt="images/download/attachments/37541502/platform_specific_changes-android.png" class="confluence-embedded-image" width="500">
+        </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="string">&quot;Label[platform=ios]&quot;</code><code class="plain">: { </code></div>
-<div class="line"><code class="plain">  color: </code><code class="string">&apos;blue&apos;</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">  </code><code class="keyword">color</code><code class="plain">: </code><code class="string">&apos;blue&apos;</code><code class="plain"> </code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
@@ -510,7 +511,7 @@ you specify a child view&apos;s coordinates on a grid relative to its parent con
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Toolbar</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-</li><li class=" ">    <p>For Android, open <strong class=" ">views/index.xml</strong> and add the following <strong class=" "> <tt class=" ">&lt;Menu&gt;</tt> </strong>and <strong class=" "> <tt class=" ">&lt;MenuItem&gt;</tt> </strong>elements below the <tt class=" ">&lt;TableView&gt;</tt> element. Note: we cannot add specific node text to the menu item. Instead, we&apos;ll use attributes of <strong class=" "> <tt class=" ">&lt;MenuItem&gt;</tt> </strong>element to accomplish this:    </p>
+</li><li class=" ">    <p>For Android, open <strong class=" ">views/index.xml</strong> and add the following <strong class=" "> <tt class=" ">&lt;Menu&gt;</tt> </strong>and <strong class=" "> <tt class=" ">&lt;MenuItem&gt;</tt> </strong>elements below the <tt class=" ">&lt;TableView&gt;</tt> element. Note: we cannot add specific node text to the menu item. Instead, we&apos;ll use attributes of <strong class=" "><tt class=" ">&lt;MenuItem&gt;</tt> </strong>element to accomplish this:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Menu</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;menu&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;android&quot;</code><code class="plain">&gt;</code></div>

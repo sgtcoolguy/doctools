@@ -247,7 +247,7 @@
     </div>
     <div class="section section-4 " id="src-29004913_CameraandPhotoGalleryAPIs-AlternativeAndroidcapturevideoexample">
         <h4 class="heading "><span>Alternative Android capture video example</span></h4>
-    <p>On Android you can alternatively create an intent to capture video.  This intent is used to start a new activity, which launches the camera to record video.  After the user stops recording, the video is saved to the device&apos;s gallery.  The callback retrieves the URI of the video media and stores the reference in a global variable.  Using the global variable, you can launch the video in a media player or save the content to a different location.    </p>
+    <p>On Android you can alternatively create an intent to capture video. This intent is used to start a new activity, which launches the camera to record video. After the user stops recording, the video is saved to the device&apos;s gallery. The callback retrieves the URI of the video media and stores the reference in a global variable. Using the global variable, you can launch the video in a media player or save the content to a different location.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow({</code></div>
@@ -304,6 +304,10 @@
 <div class="line"><code class="plain">win.open();</code></div>
 </div>
     </div>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Some third party Android camera apps may choose to ignore video recording quality settings. If you wish to specifically set the video quality, don&apos;t assume EXTRA_VIDEO_QUALITY intent will be respected by the camera app and use Titanium&apos;s built-in camera window which can be used to assign the &quot;overlay&quot; property when calling the <tt class=" ">showCamera()</tt> method.    </p>
+    </div>
+        <p>    </p>
     </div>
     </div>
     <div class="section section-3 " id="src-29004913_CameraandPhotoGalleryAPIs-Gallery">
