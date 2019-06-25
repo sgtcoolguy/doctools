@@ -14,7 +14,8 @@ const nightmare = Nightmare({
     show: false // use false if you don't want to see Electron "jumping through all the hoops"
 });
 const selector = 'div.Box-body.p-0.blob-wrapper.data.type-json table'; // selector of the SDK module version content
-const site = 'https://github.com/appcelerator/titanium_mobile/blob/master/support/module/packaged/modules.json';
+// const site = 'https://github.com/appcelerator/titanium_mobile/blob/master/support/module/packaged/modules.json';
+const site = 'https://github.com/appcelerator/titanium_mobile/blob/8_0_X/support/module/packaged/modules.json';
 var modules = {
   module: {
     urlSession: {
