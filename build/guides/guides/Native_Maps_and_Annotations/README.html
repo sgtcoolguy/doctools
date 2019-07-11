@@ -25,8 +25,7 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Native_Maps_and_Annotations-section-src-29004916_NativeMapsandAnnotations-GoogleMapsAPIKeyforAndroid">Google Maps API Key for Android</a>    </p>
 </li></ul>    <p>    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>For new Android applications, use <a class="external-link external-link" href="#!/api/Modules.Map">ti.map add-on module</a> to add native maps support for your application. Google is no longer issuing Google Maps API v1 keys. If you have an application that still uses the old keys, you can either transition to the new module or continue using the built-in Titanium.Maps module. For more information about the add-on module, refer to <a class="document-link " href="#!/guide/Google_Maps_v2_for_Android">Google Maps v2 for Android</a>.    </p>
-    <p>Since 3.2.0 on the iOS platform, use the <a class="external-link external-link" href="#!/api/Modules.Map">ti.map add-on module</a>. The native map functionality for iOS has been removed from the <tt class=" ">Titanium.Map</tt> namespace. For more information about the add-on module, refer to <a class="document-link " href="#!/guide/iOS_Map_Kit">iOS Map Kit</a>.    </p>
+            <p>Use <a class="external-link external-link" href="#!/api/Modules.Map">ti.map add-on module</a> to add native maps support for your application. Google is no longer issuing Google Maps API v1 keys. If you have an application that still uses the old keys, you can either transition to the new module or continue using the built-in Titanium.Maps module. For more information about the add-on module, refer to <a class="document-link " href="#!/guide/Google_Maps_v2_for_Android">Google Maps v2 for Android</a>.    </p>
     </div>
         <div class="section section-2 " id="src-29004916_NativeMapsandAnnotations-Objective">
         <h2 class="heading "><span>Objective</span></h2>
@@ -44,11 +43,11 @@
     <p>The <tt class=" ">MapView</tt> is the core UI component of the <tt class=" ">Ti.Map</tt> module. It allows Titanium to make use of a mobile device&apos;s underlying native maps to view geographic data and add annotations and routes. As it is a native UI component, users will also have access to features like scrolling and multi-touch zoom. In its most basic form, the <tt class=" ">MapView</tt> can simply display a basic map given a geographic position via latitude and longitude.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var win = Ti.UI.createWindow();</code></div>
-<div class="line"><code class="plain">var mapview = Titanium.Map.createView({</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow();</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> mapview = Titanium.Map.createView({</code></div>
 <div class="line"><code class="plain">    mapType: Titanium.Map.STANDARD_TYPE,</code></div>
-<div class="line"><code class="plain">    region: {latitude:</code><code class="value">37.389569</code><code class="plain">, longitude:-</code><code class="value">122.050212</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            latitudeDelta:</code><code class="value">0.1</code><code class="plain">, longitudeDelta:</code><code class="value">0.1</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">    region: {latitude:37.389569, longitude:-122.050212,</code></div>
+<div class="line"><code class="plain">            latitudeDelta:0.1, longitudeDelta:0.1},</code></div>
 <div class="line"><code class="plain">    animate:</code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    regionFit:</code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    userLocation:</code><code class="keyword">false</code></div>
@@ -67,8 +66,9 @@
     </img></img></img></br></p>
 </li><li class=" ">    <p><tt class=" ">region</tt> - This is an object that contains the 4 properties defining the visible area of the <tt class=" ">MapView</tt>. Below we can see how the same latitude and longitude of a <tt class=" ">region</tt> can be represented with a different level of zoom via the <tt class=" ">latitudeDelta</tt> and <tt class=" ">longitudeDelta</tt> properties.<br>    <img src="images/download/attachments/29004916/stan.png" alt="images/download/attachments/29004916/stan.png" class="confluence-embedded-image confluence-content-image-border" height="300">
 <tt class=" ">   </tt>     <img src="images/download/attachments/29004916/delta.png" alt="images/download/attachments/29004916/delta.png" class="confluence-embedded-image confluence-content-image-border" height="300">
-** <tt class=" ">latitude</tt>- The latitude of your map&apos;s target region    </img></img></br></p>
-<ul class=" "><li class=" ">    <p><tt class=" ">longitude</tt> - The longitude of your map&apos;s target region    </p>
+    </img></img></br></p>
+<ul class=" "><li class=" ">    <p><tt class=" ">latitude</tt>- The latitude of your map&apos;s target region    </p>
+</li><li class=" ">    <p><tt class=" ">longitude</tt> - The longitude of your map&apos;s target region    </p>
 </li><li class=" ">    <p><tt class=" ">latitudeDelta</tt> - The measure of latitude north and south from your target regions&apos;s latitude that will be visible in the <tt class=" ">MapView</tt>. The smaller the delta value, the closer the zoom on your map.    </p>
 </li><li class=" ">    <p><tt class=" ">longitudeDelta</tt> - The measure of longitude east and west from your target regions&apos;s longitude that will be visible in the <tt class=" ">MapView</tt>    </p>
 </li></ul></li><li class=" ">    <p><tt class=" ">animate</tt> - A boolean that indicates whether or not map actions, like opening and adding annotations, should be animated    </p>
@@ -91,12 +91,12 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">{</code></div>
-<div class="line"><code class="plain">    latitude: </code><code class="value">37.389569</code></div>
-<div class="line"><code class="plain">    latitudeDelta: </code><code class="value">0.1</code></div>
-<div class="line"><code class="plain">    longitude: -</code><code class="value">122.050212</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    longitudeDelta: </code><code class="value">1</code></div>
-<div class="line"><code class="plain">    source: </code><code class="string">&quot;[object TiMapView]&quot;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    type: </code><code class="string">&apos;regionChanged&apos;</code></div>
+<div class="line"><code class="plain">    latitude: 37.389569</code></div>
+<div class="line"><code class="plain">    latitudeDelta: 0.1</code></div>
+<div class="line"><code class="plain">    longitude: -122.050212,</code></div>
+<div class="line"><code class="plain">    longitudeDelta: 1</code></div>
+<div class="line"><code class="plain">    source: &quot;[object TiMapView]&quot;,</code></div>
+<div class="line"><code class="plain">    type: &apos;regionChanged&apos;</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
@@ -104,28 +104,28 @@
 </li></ul>    <p>As mentioned, the most common way to trigger the above events is through user interaction via scrolling and zooming. Let&apos;s change the <tt class=" ">MapView</tt> example code to handle all of the aforementioned events.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var win = Ti.UI.createWindow();</code></div>
-<div class="line"><code class="plain">var mapview = Titanium.Map.createView({</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow();</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> mapview = Titanium.Map.createView({</code></div>
 <div class="line"><code class="plain">    mapType: Titanium.Map.STANDARD_TYPE,</code></div>
-<div class="line"><code class="plain">    region: {latitude:</code><code class="value">37.389569</code><code class="plain">, longitude:-</code><code class="value">122.050212</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">            latitudeDelta:</code><code class="value">0.1</code><code class="plain">, longitudeDelta:</code><code class="value">0.1</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">    region: {latitude:37.389569, longitude:-122.050212,</code></div>
+<div class="line"><code class="plain">            latitudeDelta:0.1, longitudeDelta:0.1},</code></div>
 <div class="line"><code class="plain">    animate:</code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    regionFit:</code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    userLocation:</code><code class="keyword">false</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;complete&apos;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;complete&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="plain">	Ti.API.info(</code><code class="string">&apos;complete&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">	Ti.API.info(e);</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;error&apos;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;error&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="plain">	Ti.API.info(</code><code class="string">&apos;error&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">	Ti.API.info(e);</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;loading&apos;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;loading&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="plain">	Ti.API.info(</code><code class="string">&apos;loading&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">	Ti.API.info(e);</code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;regionChanged&apos;</code><code class="plain">, function(e) {</code></div>
+<div class="line"><code class="plain">mapview.addEventListener(</code><code class="string">&apos;regionChanged&apos;</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">(e) {</code></div>
 <div class="line"><code class="plain">	Ti.API.info(</code><code class="string">&apos;regionChanged&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">	Ti.API.info(e);</code></div>
 <div class="line"><code class="plain">});</code></div>
@@ -170,12 +170,12 @@
     <p>Adding an annotation to a <tt class=" ">MapView</tt> is simple. Let&apos;s modify the basic <tt class=" ">MapView</tt> example to see how we can add the Appcelerator headquarters, and a few other locations, as annotations. To make things more interesting, we&apos;ll use a number of the styling properties available to annotations through the Titanium API.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var win = Ti.UI.createWindow();</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow();</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">var annotations = [</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> annotations = [</code></div>
 <div class="line"><code class="plain">	Ti.Map.createAnnotation({</code></div>
-<div class="line"><code class="plain">		latitude: </code><code class="value">37.389569</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">		longitude: -</code><code class="value">122.050212</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">		latitude: 37.389569,</code></div>
+<div class="line"><code class="plain">		longitude: -122.050212,</code></div>
 <div class="line"><code class="plain">		title: </code><code class="string">&apos;Appcelerator HQ&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		subtitle: </code><code class="string">&apos;Mountain View, CA&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
@@ -183,8 +183,8 @@
 <div class="line"><code class="plain">		leftButton: </code><code class="string">&apos;appcelerator.gif&apos;</code></div>
 <div class="line"><code class="plain">	}),</code></div>
 <div class="line"><code class="plain">	Ti.Map.createAnnotation({</code></div>
-<div class="line"><code class="plain">		latitude: </code><code class="value">37.331689</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">		longitude: -</code><code class="value">122.030731</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">		latitude: 37.331689,</code></div>
+<div class="line"><code class="plain">		longitude: -122.030731,</code></div>
 <div class="line"><code class="plain">		title: </code><code class="string">&apos;Apple HQ&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		subtitle: </code><code class="string">&apos;Cupertino, CA&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
@@ -192,16 +192,16 @@
 <div class="line"><code class="plain">		rightButton: </code><code class="string">&apos;apple.png&apos;</code></div>
 <div class="line"><code class="plain">	}),</code></div>
 <div class="line"><code class="plain">	Ti.Map.createAnnotation({</code></div>
-<div class="line"><code class="plain">		latitude: </code><code class="value">37.422502</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">		longitude: -</code><code class="value">122.0855498</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">		latitude: 37.422502,</code></div>
+<div class="line"><code class="plain">		longitude: -122.0855498,</code></div>
 <div class="line"><code class="plain">		title: </code><code class="string">&apos;Google HQ&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		subtitle: </code><code class="string">&apos;Mountain View, CA&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		image: </code><code class="string">&apos;google.png&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		leftView: Ti.UI.createButton({</code></div>
 <div class="line"><code class="plain">			title: </code><code class="string">&apos;leftView&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">			height: </code><code class="value">32</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">			width: </code><code class="value">70</code></div>
+<div class="line"><code class="plain">			height: 32,</code></div>
+<div class="line"><code class="plain">			width: 70</code></div>
 <div class="line"><code class="plain">		}),</code></div>
 <div class="line"><code class="plain">		rightView: Ti.UI.createLabel({</code></div>
 <div class="line"><code class="plain">			text: </code><code class="string">&apos;rightView&apos;</code><code class="plain">,</code></div>
@@ -209,13 +209,13 @@
 <div class="line"><code class="plain">		})</code></div>
 <div class="line"><code class="plain">	})</code></div>
 <div class="line"><code class="plain">];</code></div>
-<div class="line"><code class="plain">var mapview = Titanium.Map.createView({</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> mapview = Titanium.Map.createView({</code></div>
 <div class="line"><code class="plain">    mapType: Titanium.Map.STANDARD_TYPE,</code></div>
 <div class="line"><code class="plain">    region: {</code></div>
-<div class="line"><code class="plain">    	latitude:</code><code class="value">37.389569</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    	longitude:-</code><code class="value">122.050212</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        latitudeDelta:.</code><code class="value">05</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        longitudeDelta:.</code><code class="value">05</code></div>
+<div class="line"><code class="plain">    	latitude:37.389569,</code></div>
+<div class="line"><code class="plain">    	longitude:-122.050212,</code></div>
+<div class="line"><code class="plain">        latitudeDelta:.05,</code></div>
+<div class="line"><code class="plain">        longitudeDelta:.05</code></div>
 <div class="line"><code class="plain">    },</code></div>
 <div class="line"><code class="plain">    animate:</code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    regionFit:</code><code class="keyword">true</code><code class="plain">,</code></div>
@@ -248,18 +248,15 @@
     <div class="section section-3 " id="src-29004916_NativeMapsandAnnotations-Routes">
         <h3 class="heading "><span>Routes</span></h3>
     <p>Routes allow us to draw paths between locations on a <tt class=" ">MapView</tt>. These paths can be driving directions, bike paths, or any other reason you have to connect point A to point B.    </p>
-    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>Prior to Titanium Mobile Release 2.1, routes were supported on iOS only.    </p>
-    </div>
-        <p><tt class=" ">Routes</tt> are added to <tt class=" ">MapViews</tt> via the <tt class=" ">Ti.Map.MapView.addRoute()</tt> function. To use the <tt class=" ">addRoute()</tt> function, we pass it a properly structured <tt class=" ">route</tt> object that will then be represented on the <tt class=" ">MapView</tt>. The <tt class=" ">route</tt> object should take the following form:    </p>
+    <p><tt class=" ">Routes</tt> are added to <tt class=" ">MapViews</tt> via the <tt class=" ">Ti.Map.MapView.addRoute()</tt> function. To use the <tt class=" ">addRoute()</tt> function, we pass it a properly structured <tt class=" ">route</tt> object that will then be represented on the <tt class=" ">MapView</tt>. The <tt class=" ">route</tt> object should take the following form:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    name: </code><code class="string">&apos;route name&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    color: </code><code class="string">&apos;#f00&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    width: </code><code class="value">4</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">    width: 4,</code></div>
 <div class="line"><code class="plain">    points: [</code></div>
-<div class="line"><code class="plain">        {latitude:</code><code class="value">50</code><code class="plain">, longitude:</code><code class="value">50</code><code class="plain">},</code></div>
+<div class="line"><code class="plain">        {latitude:50, longitude:50},</code></div>
 <div class="line"><code class="plain">        ...</code></div>
 <div class="line"><code class="plain">    ]</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -269,12 +266,12 @@
     <p>So let&apos;s go back to our <tt class=" ">MapView</tt> example one more time and add a route to it. We&apos;ll create a route that connects the 3 locations we&apos;ve already annotated. The route will go from north to south, connecting each location with a red, 4 pixel wide line.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var win = Ti.UI.createWindow();</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> win = Ti.UI.createWindow();</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">var annotations = [</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> annotations = [</code></div>
 <div class="line"><code class="plain">	Ti.Map.createAnnotation({</code></div>
-<div class="line"><code class="plain">		latitude: </code><code class="value">37.389569</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">		longitude: -</code><code class="value">122.050212</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">		latitude: 37.389569,</code></div>
+<div class="line"><code class="plain">		longitude: -122.050212,</code></div>
 <div class="line"><code class="plain">		title: </code><code class="string">&apos;Appcelerator HQ&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		subtitle: </code><code class="string">&apos;Mountain View, CA&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
@@ -282,8 +279,8 @@
 <div class="line"><code class="plain">		leftButton: </code><code class="string">&apos;appcelerator.gif&apos;</code></div>
 <div class="line"><code class="plain">	}),</code></div>
 <div class="line"><code class="plain">	Ti.Map.createAnnotation({</code></div>
-<div class="line"><code class="plain">		latitude: </code><code class="value">37.331689</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">		longitude: -</code><code class="value">122.030731</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">		latitude: 37.331689,</code></div>
+<div class="line"><code class="plain">		longitude: -122.030731,</code></div>
 <div class="line"><code class="plain">		title: </code><code class="string">&apos;Apple HQ&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		subtitle: </code><code class="string">&apos;Cupertino, CA&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
@@ -291,16 +288,16 @@
 <div class="line"><code class="plain">		rightButton: </code><code class="string">&apos;apple.png&apos;</code></div>
 <div class="line"><code class="plain">	}),</code></div>
 <div class="line"><code class="plain">	Ti.Map.createAnnotation({</code></div>
-<div class="line"><code class="plain">		latitude: </code><code class="value">37.422502</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">		longitude: -</code><code class="value">122.0855498</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">		latitude: 37.422502,</code></div>
+<div class="line"><code class="plain">		longitude: -122.0855498,</code></div>
 <div class="line"><code class="plain">		title: </code><code class="string">&apos;Google HQ&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		subtitle: </code><code class="string">&apos;Mountain View, CA&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		animate: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		image: </code><code class="string">&apos;google.png&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		leftView: Ti.UI.createButton({</code></div>
 <div class="line"><code class="plain">			title: </code><code class="string">&apos;leftView&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">			height: </code><code class="value">32</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">			width: </code><code class="value">70</code></div>
+<div class="line"><code class="plain">			height: 32,</code></div>
+<div class="line"><code class="plain">			width: 70</code></div>
 <div class="line"><code class="plain">		}),</code></div>
 <div class="line"><code class="plain">		rightView: Ti.UI.createLabel({</code></div>
 <div class="line"><code class="plain">			text: </code><code class="string">&apos;rightView&apos;</code><code class="plain">,</code></div>
@@ -308,13 +305,13 @@
 <div class="line"><code class="plain">		})</code></div>
 <div class="line"><code class="plain">	})</code></div>
 <div class="line"><code class="plain">];</code></div>
-<div class="line"><code class="plain">var mapview = Titanium.Map.createView({</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> mapview = Titanium.Map.createView({</code></div>
 <div class="line"><code class="plain">    mapType: Titanium.Map.STANDARD_TYPE,</code></div>
 <div class="line"><code class="plain">    region: {</code></div>
-<div class="line"><code class="plain">    	latitude:</code><code class="value">37.389569</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">    	longitude:-</code><code class="value">122.050212</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        latitudeDelta:.</code><code class="value">05</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">        longitudeDelta:.</code><code class="value">05</code></div>
+<div class="line"><code class="plain">    	latitude:37.389569,</code></div>
+<div class="line"><code class="plain">    	longitude:-122.050212,</code></div>
+<div class="line"><code class="plain">        latitudeDelta:.05,</code></div>
+<div class="line"><code class="plain">        longitudeDelta:.05</code></div>
 <div class="line"><code class="plain">    },</code></div>
 <div class="line"><code class="plain">    animate:</code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    regionFit:</code><code class="keyword">true</code><code class="plain">,</code></div>
@@ -323,12 +320,12 @@
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="plain">mapview.addRoute({</code></div>
 <div class="line"><code class="plain">	name: </code><code class="string">&apos;myroute&apos;</code><code class="plain">,</code></div>
-<div class="line"><code class="plain">	width: </code><code class="value">4</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">	width: 4,</code></div>
 <div class="line"><code class="plain">	color: </code><code class="string">&apos;#f00&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">	points: [</code></div>
-<div class="line"><code class="plain">		{latitude:</code><code class="value">37.422502</code><code class="plain">, longitude:-</code><code class="value">122.0855498</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">		{latitude:</code><code class="value">37.389569</code><code class="plain">, longitude:-</code><code class="value">122.050212</code><code class="plain">},</code></div>
-<div class="line"><code class="plain">		{latitude:</code><code class="value">37.331689</code><code class="plain">, longitude:-</code><code class="value">122.030731</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">		{latitude:37.422502, longitude:-122.0855498},</code></div>
+<div class="line"><code class="plain">		{latitude:37.389569, longitude:-122.050212},</code></div>
+<div class="line"><code class="plain">		{latitude:37.331689, longitude:-122.030731}</code></div>
 <div class="line"><code class="plain">	]</code></div>
 <div class="line"><code class="plain">});</code></div>
 <div class="line"><code class="plain">win.add(mapview);</code></div>
@@ -379,47 +376,47 @@
     <p>So if you were to include this in a basic <tt class=" ">tiapp.xml</tt> file, it would look something like this:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;?xml version=</code><code class="string">&quot;1.0&quot;</code><code class="plain"> encoding=</code><code class="string">&quot;UTF-8&quot;</code><code class="plain">?&gt;</code></div>
-<div class="line"><code class="plain">&lt;ti:app xmlns:ti=</code><code class="string">&quot;http://ti.appcelerator.org&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">    &lt;deployment-targets&gt;</code></div>
-<div class="line"><code class="plain">        &lt;target device=</code><code class="string">&quot;mobileweb&quot;</code><code class="plain">&gt;</code><code class="keyword">false</code><code class="plain">&lt;/target&gt;</code></div>
-<div class="line"><code class="plain">        &lt;target device=</code><code class="string">&quot;iphone&quot;</code><code class="plain">&gt;</code><code class="keyword">false</code><code class="plain">&lt;/target&gt;</code></div>
-<div class="line"><code class="plain">        &lt;target device=</code><code class="string">&quot;ipad&quot;</code><code class="plain">&gt;</code><code class="keyword">false</code><code class="plain">&lt;/target&gt;</code></div>
-<div class="line"><code class="plain">        &lt;target device=</code><code class="string">&quot;android&quot;</code><code class="plain">&gt;</code><code class="keyword">true</code><code class="plain">&lt;/target&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/deployment-targets&gt;</code></div>
-<div class="line"><code class="plain">    &lt;id&gt;com.maps&lt;/id&gt;</code></div>
-<div class="line"><code class="plain">    &lt;name&gt;maps&lt;/name&gt;</code></div>
-<div class="line"><code class="plain">    &lt;version&gt;</code><code class="value">1.0</code><code class="plain">&lt;/version&gt;</code></div>
-<div class="line"><code class="plain">    &lt;publisher&gt;tlukasavage&lt;/publisher&gt;</code></div>
-<div class="line"><code class="plain">    &lt;url&gt;http:</code><code class="comments">//appcelerator.com&lt;/url&gt;</code></div>
-<div class="line"><code class="plain">    &lt;description&gt;not specified&lt;/description&gt;</code></div>
-<div class="line"><code class="plain">    &lt;copyright&gt;</code><code class="value">2011</code><code class="plain"> by tlukasavage&lt;/copyright&gt;</code></div>
-<div class="line"><code class="plain">    &lt;icon&gt;appicon.png&lt;/icon&gt;</code></div>
-<div class="line"><code class="plain">    &lt;persistent-wifi&gt;</code><code class="keyword">false</code><code class="plain">&lt;/persistent-wifi&gt;</code></div>
-<div class="line"><code class="plain">    &lt;prerendered-icon&gt;</code><code class="keyword">false</code><code class="plain">&lt;/prerendered-icon&gt;</code></div>
-<div class="line"><code class="plain">    &lt;statusbar-style&gt;</code><code class="keyword">default</code><code class="plain">&lt;/statusbar-style&gt;</code></div>
-<div class="line"><code class="plain">    &lt;statusbar-hidden&gt;</code><code class="keyword">false</code><code class="plain">&lt;/statusbar-hidden&gt;</code></div>
-<div class="line"><code class="plain">    &lt;fullscreen&gt;</code><code class="keyword">false</code><code class="plain">&lt;/fullscreen&gt;</code></div>
-<div class="line"><code class="plain">    &lt;navbar-hidden&gt;</code><code class="keyword">false</code><code class="plain">&lt;/navbar-hidden&gt;</code></div>
-<div class="line"><code class="plain">    &lt;analytics&gt;</code><code class="keyword">true</code><code class="plain">&lt;/analytics&gt;</code></div>
-<div class="line"><code class="plain">    &lt;guid&gt;YOUR_GUID&lt;/guid&gt;</code></div>
-<div class="line"><code class="plain">    &lt;iphone&gt;</code></div>
-<div class="line"><code class="plain">        &lt;orientations device=</code><code class="string">&quot;iphone&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;orientation&gt;Ti.UI.PORTRAIT&lt;/orientation&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/orientations&gt;</code></div>
-<div class="line"><code class="plain">        &lt;orientations device=</code><code class="string">&quot;ipad&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">            &lt;orientation&gt;Ti.UI.PORTRAIT&lt;/orientation&gt;</code></div>
-<div class="line"><code class="plain">            &lt;orientation&gt;Ti.UI.UPSIDE_PORTRAIT&lt;/orientation&gt;</code></div>
-<div class="line"><code class="plain">            &lt;orientation&gt;Ti.UI.LANDSCAPE_LEFT&lt;/orientation&gt;</code></div>
-<div class="line"><code class="plain">            &lt;orientation&gt;Ti.UI.LANDSCAPE_RIGHT&lt;/orientation&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/orientations&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/iphone&gt;</code></div>
-<div class="line"><code class="plain">    &lt;android xmlns:android=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">    &lt;modules/&gt;</code></div>
+<div class="line"><code class="plain">&lt;?</code><code class="keyword">xml</code><code class="plain"> </code><code class="color1">version</code><code class="plain">=</code><code class="string">&quot;1.0&quot;</code><code class="plain"> </code><code class="color1">encoding</code><code class="plain">=</code><code class="string">&quot;UTF-8&quot;</code><code class="plain">?&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">ti</code><code class="plain">:app </code><code class="color1">xmlns:ti</code><code class="plain">=</code><code class="string">&quot;http://ti.appcelerator.org&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">deployment</code><code class="plain">-targets&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">target</code><code class="plain"> </code><code class="color1">device</code><code class="plain">=</code><code class="string">&quot;mobileweb&quot;</code><code class="plain">&gt;false&lt;/</code><code class="keyword">target</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">target</code><code class="plain"> </code><code class="color1">device</code><code class="plain">=</code><code class="string">&quot;iphone&quot;</code><code class="plain">&gt;false&lt;/</code><code class="keyword">target</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">target</code><code class="plain"> </code><code class="color1">device</code><code class="plain">=</code><code class="string">&quot;ipad&quot;</code><code class="plain">&gt;false&lt;/</code><code class="keyword">target</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">target</code><code class="plain"> </code><code class="color1">device</code><code class="plain">=</code><code class="string">&quot;android&quot;</code><code class="plain">&gt;true&lt;/</code><code class="keyword">target</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">deployment</code><code class="plain">-targets&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">id</code><code class="plain">&gt;com.maps&lt;/</code><code class="keyword">id</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">name</code><code class="plain">&gt;maps&lt;/</code><code class="keyword">name</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">version</code><code class="plain">&gt;1.0&lt;/</code><code class="keyword">version</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">publisher</code><code class="plain">&gt;tlukasavage&lt;/</code><code class="keyword">publisher</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">url</code><code class="plain">&gt;</code><code class="comments">http://appcelerator.com</code><code class="plain">&lt;/</code><code class="keyword">url</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">description</code><code class="plain">&gt;not specified&lt;/</code><code class="keyword">description</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">copyright</code><code class="plain">&gt;2011 by tlukasavage&lt;/</code><code class="keyword">copyright</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">icon</code><code class="plain">&gt;appicon.png&lt;/</code><code class="keyword">icon</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">persistent</code><code class="plain">-wifi&gt;false&lt;/</code><code class="keyword">persistent</code><code class="plain">-wifi&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">prerendered</code><code class="plain">-icon&gt;false&lt;/</code><code class="keyword">prerendered</code><code class="plain">-icon&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">statusbar</code><code class="plain">-style&gt;default&lt;/</code><code class="keyword">statusbar</code><code class="plain">-style&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">statusbar</code><code class="plain">-hidden&gt;false&lt;/</code><code class="keyword">statusbar</code><code class="plain">-hidden&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">fullscreen</code><code class="plain">&gt;false&lt;/</code><code class="keyword">fullscreen</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">navbar</code><code class="plain">-hidden&gt;false&lt;/</code><code class="keyword">navbar</code><code class="plain">-hidden&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">analytics</code><code class="plain">&gt;true&lt;/</code><code class="keyword">analytics</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">guid</code><code class="plain">&gt;YOUR_GUID&lt;/</code><code class="keyword">guid</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">iphone</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">orientations</code><code class="plain"> </code><code class="color1">device</code><code class="plain">=</code><code class="string">&quot;iphone&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">orientation</code><code class="plain">&gt;Ti.UI.PORTRAIT&lt;/</code><code class="keyword">orientation</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">orientations</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">orientations</code><code class="plain"> </code><code class="color1">device</code><code class="plain">=</code><code class="string">&quot;ipad&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">orientation</code><code class="plain">&gt;Ti.UI.PORTRAIT&lt;/</code><code class="keyword">orientation</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">orientation</code><code class="plain">&gt;Ti.UI.UPSIDE_PORTRAIT&lt;/</code><code class="keyword">orientation</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">orientation</code><code class="plain">&gt;Ti.UI.LANDSCAPE_LEFT&lt;/</code><code class="keyword">orientation</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">orientation</code><code class="plain">&gt;Ti.UI.LANDSCAPE_RIGHT&lt;/</code><code class="keyword">orientation</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">orientations</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">iphone</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">android</code><code class="plain"> </code><code class="color1">xmlns:android</code><code class="plain">=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">modules</code><code class="plain">/&gt;</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">    &lt;!-- Here&apos;s where we add the API key --&gt;</code></div>
-<div class="line"><code class="plain">    &lt;property name=</code><code class="string">&quot;ti.android.google.map.api.key&quot;</code><code class="plain">&gt;YOUR_ANDROID_MAPS_API_KEY&lt;/property&gt;</code></div>
-<div class="line"><code class="plain">&lt;/ti:app&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">property</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;ti.android.google.map.api.key&quot;</code><code class="plain">&gt;YOUR_ANDROID_MAPS_API_KEY&lt;/</code><code class="keyword">property</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
 </div>
     </div>
     <p>You are now ready to use the Google map views in your distributable Titanium app.    </p>

@@ -64,14 +64,10 @@
     </div>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-InitializetheModule">
         <h3 class="heading "><span>Initialize the Module</span></h3>
-    <p>    </p>
-    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p><strong class=" ">Prior to Release 3.3.0,</strong> Appcelerator Studio would inject the code to load and initialize the module. The application could make API calls to module using the <tt class=" ">apm</tt> object for classic mobile projects or <tt class=" ">Alloy.Globals.apm</tt> for Alloy projects.    </p>
-    </div>
-        <p>Before making API calls to the Performance module, the application needs to load the module and initialize it. Load the module using the <tt class=" ">require()</tt> method and pass the name of the module ( <tt class=" ">com.appcelerator.apm</tt> ) to the method, then initialize the module by call the <tt class=" ">init()</tt> method.    </p>
+    <p>Before making API calls to the Performance module, the application needs to load the module and initialize it. Load the module using the <tt class=" ">require()</tt> method and pass the name of the module ( <tt class=" ">com.appcelerator.apm</tt> ) to the method, then initialize the module by call the <tt class=" ">init()</tt> method.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var apm = require(</code><code class="string">&quot;com.appcelerator.apm&quot;</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> apm = require(</code><code class="string">&quot;com.appcelerator.apm&quot;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">apm.init();</code></div>
 </div>
     </div>
@@ -97,14 +93,14 @@
 <div class="line"><code class="comments">// If Alloy project</code></div>
 <div class="line"><code class="comments">// var apm = Alloy.Globals.apm;</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">function alphaCB (args) {</code></div>
+<div class="line"><code class="keyword">function</code><code class="plain"> alphaCB (args) {</code></div>
 <div class="line"><code class="plain">    apm.leaveBreadcrumb(</code><code class="string">&apos;enter alphaCB:&apos;</code><code class="plain"> + JSON.stringify(args));</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">//do some stuff...</code></div>
 <div class="line"><code class="plain">    apm.leaveBreadcrumb(</code><code class="string">&apos;exit alphaCB:&apos;</code><code class="plain"> + result);</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> result;</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line"><code class="plain">&#xA0;</code></div>
-<div class="line"><code class="plain">function betaCB (args) {</code></div>
+<div class="line"><code class="keyword">function</code><code class="plain"> betaCB (args) {</code></div>
 <div class="line"><code class="plain">    apm.leaveBreadcrumb(</code><code class="string">&apos;enter betaCB:&apos;</code><code class="plain"> + JSON.stringify(args));</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// do some stuff...</code></div>
 <div class="line"><code class="plain">    apm.leaveBreadcrumb(</code><code class="string">&apos;exit betaCB:&apos;</code><code class="plain"> + result);</code></div>
@@ -114,15 +110,15 @@
 <div class="line"><code class="keyword">switch</code><code class="plain"> (state) {</code></div>
 <div class="line"><code class="plain">    apm.leaveBreadcrumb(</code><code class="string">&apos;switch:&apos;</code><code class="plain"> + state);</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">case</code><code class="plain"> x : </code></div>
-<div class="line"><code class="plain">        alphaCB({foo: </code><code class="value">1</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">        alphaCB({foo: 1});</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">break</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">case</code><code class="plain"> y :</code></div>
-<div class="line"><code class="plain">        alphaCB({foo: </code><code class="value">2</code><code class="plain">});</code></div>
-<div class="line"><code class="plain">        betaCB({foo: </code><code class="value">1</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">        alphaCB({foo: 2});</code></div>
+<div class="line"><code class="plain">        betaCB({foo: 1});</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">break</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">default</code><code class="plain"> :</code></div>
-<div class="line"><code class="plain">        alphaCB({foobar: </code><code class="value">0</code><code class="plain">});</code></div>
-<div class="line"><code class="plain">        betaCB({foobar: </code><code class="value">0</code><code class="plain">});</code></div>
+<div class="line"><code class="plain">        alphaCB({foobar: 0});</code></div>
+<div class="line"><code class="plain">        betaCB({foobar: 0});</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
@@ -137,7 +133,7 @@
 <div class="line"><code class="comments">// If Alloy project</code></div>
 <div class="line"><code class="comments">// var apm = Alloy.Globals.apm;</code></div>
 <div class="line"><code class="plain">&#xA0;</code></div>
-<div class="line"><code class="plain">var status = login(username);</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> status = login(username);</code></div>
 <div class="line"><code class="keyword">if</code><code class="plain"> (status) {</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Sets the username</code></div>
 <div class="line"><code class="plain">    apm.setUsername(username);</code></div>
@@ -146,11 +142,11 @@
 <div class="line"><code class="plain">}</code></div>
 <div class="line"><code class="plain">&#xA0;</code></div>
 <div class="line"><code class="comments">// Track the user&apos;s state</code></div>
-<div class="line"><code class="plain">apm.setMetadata(</code><code class="string">&apos;gameLevel&apos;</code><code class="plain">, </code><code class="value">0</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">apm.setMetadata(</code><code class="string">&apos;gameLevel&apos;</code><code class="plain">, 0);</code></div>
 <div class="line"><code class="comments">// do some stuff...</code></div>
-<div class="line"><code class="plain">apm.setMetadata(</code><code class="string">&apos;gameLevel&apos;</code><code class="plain">, </code><code class="value">1</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">apm.setMetadata(</code><code class="string">&apos;gameLevel&apos;</code><code class="plain">, 1);</code></div>
 <div class="line"><code class="comments">// do some stuff...</code></div>
-<div class="line"><code class="plain">apm.setMetadata(</code><code class="string">&apos;gameLevel&apos;</code><code class="plain">, </code><code class="value">2</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">apm.setMetadata(</code><code class="string">&apos;gameLevel&apos;</code><code class="plain">, 2);</code></div>
 </div>
     </div>
     <p>By default, a guest profile is created to differentiate users if a username is not specified. The username appears with the crash or error reports.    </p>
@@ -165,7 +161,7 @@
 <div class="line"><code class="comments">// var apm = Alloy.Globals.apm;</code></div>
 <div class="line"><code class="plain">&#xA0;</code></div>
 <div class="line"><code class="keyword">try</code><code class="plain"> {</code></div>
-<div class="line"><code class="plain">    var err = </code><code class="keyword">new</code><code class="plain"> Error(</code><code class="string">&apos;FATAL ERROR: Value cannot be null or undefined!&apos;</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> err = </code><code class="keyword">new</code><code class="plain"> Error(</code><code class="string">&apos;FATAL ERROR: Value cannot be null or undefined!&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (value === </code><code class="keyword">null</code><code class="plain"> || value === undefined) </code><code class="keyword">throw</code><code class="plain"> err;</code></div>
 <div class="line"><code class="plain">}</code></div>
 <div class="line"><code class="keyword">catch</code><code class="plain"> (err) {</code></div>
@@ -179,7 +175,7 @@
     </div>
     <div class="section section-3 " id="src-43298691_AppceleratorPerformanceManagement-AllowtheUsertoOpt-Out">
         <h3 class="heading "><span>Allow the User to Opt-Out</span></h3>
-    <p>Use the <tt class=" ">setOptOutStatus</tt> method to allow the user <u class=" ">NOT</u> to send any information to the Appcelerator Performance service. Passing <tt class=" ">true</tt> to this method disables sending data to Appcelerator Performance.    </p>
+    <p>Use the<tt class=" "> setOptOutStatus</tt> method to allow the user <u class=" ">NOT</u> to send any information to the Appcelerator Performance service. Passing <tt class=" ">true</tt> to this method disables sending data to Appcelerator Performance.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="comments">// If Alloy project</code></div>
@@ -213,7 +209,7 @@
 <div class="line"><code class="comments">// If Alloy project</code></div>
 <div class="line"><code class="comments">// var apm = Alloy.Globals.apm;</code></div>
 <div class="line"><code class="plain">&#xA0;</code></div>
-<div class="line"><code class="plain">var params = {</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> params = {</code></div>
 <div class="line"><code class="plain">    shouldCollectLogcat: </code><code class="keyword">true</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">    notificationTitle: </code><code class="string">&apos;customTitle&apos;</code></div>
 <div class="line"><code class="plain">};</code></div>

@@ -23,10 +23,6 @@
 </li><li class=" ">    <p><a class="document-link " href="Platform_Services.html#src-43298675_PlatformServices-EnableAppceleratorServices">Enable Appcelerator Services</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Platform_Services.html#src-43298675_PlatformServices-tiapp.xml">tiapp.xml</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Platform_Services.html#src-43298675_PlatformServices-AndroidPermissions">Android Permissions</a>    </p>
-</li></ul></li><li class=" ">    <p><a class="document-link " href="Platform_Services.html#src-43298675_PlatformServices-BehaviorPriortoRelease3.3.0">Behavior Prior to Release 3.3.0</a>    </p>
-<ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Platform_Services.html#src-43298675_PlatformServices-app.js">app.js</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Platform_Services.html#src-43298675_safe-id-UGxhdGZvcm1TZXJ2aWNlcy1hcHAvYWxsb3kuanM">app/alloy.js</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Platform_Services.html#src-43298675_safe-id-UGxhdGZvcm1TZXJ2aWNlcy1hcHAvY29udHJvbGxlcnMvaW5kZXguanM">app/controllers/index.js</a>    </p>
 </li></ul></li></ul></li><li class=" ">    <p><a class="document-link " href="Platform_Services.html#src-43298675_PlatformServices-Troubleshooting">Troubleshooting</a>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="Platform_Services.html#src-43298675_PlatformServices-UnabletoenableAppceleratorServices">Unable to enable Appcelerator Services</a>    </p>
 </li></ul></li></ul>    <div class="section section-2 " id="src-43298675_PlatformServices-Introduction">
@@ -42,8 +38,7 @@
     <div class="section section-2 " id="src-43298675_PlatformServices-EnableAppceleratorServices">
         <h2 class="heading "><span>Enable Appcelerator Services</span></h2>
     <p>To enable Appcelerator Services for a Titanium or Alloy project:    </p>
-<ul class=" "><li class=" ">    <p>Make sure the Titanium SDK version in the <tt class=" ">tiapp.xml</tt> file is set to 3.1.1 or later.    </p>
-</li><li class=" ">    <p>When creating a new application in Appcelerator Studio, make sure the <strong class=" ">Enable Appcelerator Services</strong> checkbox is enabled.    </p>
+<ul class=" "><li class=" ">    <p>When creating a new application in Appcelerator Studio, make sure the <strong class=" ">Enable Appcelerator Services</strong> checkbox is enabled.    </p>
 </li><li class=" ">    <p>For a previously created project, open your <tt class=" ">tiapp.xml</tt> file, then click the <strong class=" ">Enable Services</strong> button under the <i class=" ">Appcelerator Service</i> section.    </p>
 </li></ul>    <p>Appcelerator Studio injects code in to the <tt class=" ">tiapp.xml</tt> file to enable these services for your project.  See code examples below.  Do not modify these changes or else you will disable these services.    </p>
     <div class="section section-3 " id="src-43298675_PlatformServices-tiapp.xml">
@@ -52,88 +47,88 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">tiapp.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="tiapp.xml">
-<div class="line"><code class="plain">    &lt;!-- Crittercism Application ID </code><code class="keyword">for</code><code class="plain"> Appcelerator Performance service --&gt;</code></div>
-<div class="line"><code class="plain">    &lt;property name=</code><code class="string">&quot;com-apm-id&quot;</code><code class="plain"> type=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;CRITTERCISM_APP_ID&lt;/property&gt;</code></div>
+<div class="line"><code class="plain">    &lt;!-- Crittercism Application ID for Appcelerator Performance service --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">property</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;com-apm-id&quot;</code><code class="plain"> </code><code class="color1">type</code><code class="plain">=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;CRITTERCISM_APP_ID&lt;/</code><code class="keyword">property</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&#xA0;</code></div>
-<div class="line"><code class="plain">    &lt;!-- Set keys </code><code class="keyword">for</code><code class="plain"> the ArrowDB service --&gt;</code></div>
-<div class="line"><code class="plain">    &lt;property name=</code><code class="string">&quot;acs-api-key-production&quot;</code><code class="plain"> type=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;API_KEY_PROD&lt;/property&gt;</code></div>
-<div class="line"><code class="plain">    &lt;property name=</code><code class="string">&quot;acs-authbase-url&quot;</code><code class="plain"> type=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;ACS_AUTH_URL&lt;/property&gt;</code></div>
-<div class="line"><code class="plain">    &lt;property name=</code><code class="string">&quot;acs-base-url&quot;</code><code class="plain"> type=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;ACS_BASE_URL&lt;/property&gt;</code></div>
-<div class="line"><code class="plain">    &lt;property name=</code><code class="string">&quot;acs-api-key-development&quot;</code><code class="plain"> type=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;API_KEY_DEV&lt;/property&gt;</code></div>
+<div class="line"><code class="plain">    &lt;!-- Set keys for the ArrowDB service --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">property</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;acs-api-key-production&quot;</code><code class="plain"> </code><code class="color1">type</code><code class="plain">=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;API_KEY_PROD&lt;/</code><code class="keyword">property</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">property</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;acs-authbase-url&quot;</code><code class="plain"> </code><code class="color1">type</code><code class="plain">=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;ACS_AUTH_URL&lt;/</code><code class="keyword">property</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">property</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;acs-base-url&quot;</code><code class="plain"> </code><code class="color1">type</code><code class="plain">=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;ACS_BASE_URL&lt;/</code><code class="keyword">property</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">property</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;acs-api-key-development&quot;</code><code class="plain"> </code><code class="color1">type</code><code class="plain">=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;API_KEY_DEV&lt;/</code><code class="keyword">property</code><code class="plain">&gt;</code></div>
 <div class="line">&#xA0;</div>
 <div class="line"><code class="plain">    &lt;!-- Enable the Appcelerator Analytics service --&gt;</code></div>
-<div class="line"><code class="plain">    &lt;analytics&gt;</code><code class="keyword">true</code><code class="plain">&lt;/analytics&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">analytics</code><code class="plain">&gt;true&lt;/</code><code class="keyword">analytics</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&#xA0;</code></div>
-<div class="line"><code class="plain">    &lt;!-- Android Manifest keys </code><code class="keyword">for</code><code class="plain"> the Appcelerator Test service --&gt;</code></div>
-<div class="line"><code class="plain">    &lt;android xmlns:android=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">        &lt;manifest&gt;	</code></div>
-<div class="line"><code class="plain">            &lt;application&gt;</code></div>
-<div class="line"><code class="plain">                &lt;activity</code></div>
-<div class="line"><code class="plain">                    android:configChanges=</code><code class="string">&quot;keyboardHidden|orientation&quot;</code></div>
-<div class="line"><code class="plain">                    android:label=</code><code class="string">&quot;&lt;AppName&gt;&quot;</code></div>
-<div class="line"><code class="plain">                    android:name=</code><code class="string">&quot;.&lt;Appname&gt;androidActivity&quot;</code><code class="plain"> android:theme=</code><code class="string">&quot;@style/Theme.Titanium&quot;</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;intent-filter&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;action android:name=</code><code class="string">&quot;android.intent.action.MAIN&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;category android:name=</code><code class="string">&quot;android.intent.category.LAUNCHER&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;/intent-filter&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;intent-filter&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;data android:scheme=</code><code class="string">&quot;touchtest-&lt;GUID&gt;&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;action android:name=</code><code class="string">&quot;android.intent.action.VIEW&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;category android:name=</code><code class="string">&quot;android.intent.category.BROWSABLE&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;category android:name=</code><code class="string">&quot;android.intent.category.DEFAULT&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;/intent-filter&gt;</code></div>
-<div class="line"><code class="plain">                &lt;/activity&gt;</code></div>
-<div class="line"><code class="plain">                &lt;service android:enabled=</code><code class="string">&quot;true&quot;</code><code class="plain"> android:exported=</code><code class="string">&quot;false&quot;</code><code class="plain"> android:name=</code><code class="string">&quot;com.soasta.android.touchtest.TouchTestService&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">            &lt;/application&gt;</code></div>
+<div class="line"><code class="plain">    &lt;!-- Android Manifest keys for the Appcelerator Test service --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">android</code><code class="plain"> </code><code class="color1">xmlns:android</code><code class="plain">=</code><code class="string">&quot;http://schemas.android.com/apk/res/android&quot;</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">manifest</code><code class="plain">&gt;	</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">application</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">activity</code></div>
+<div class="line"><code class="plain">                    </code><code class="color1">android:configChanges</code><code class="plain">=</code><code class="string">&quot;keyboardHidden|orientation&quot;</code></div>
+<div class="line"><code class="plain">                    android:label=&quot;&lt;AppName&gt;&quot;</code></div>
+<div class="line"><code class="plain">                    android:name=&quot;.&lt;</code><code class="keyword">Appname</code><code class="plain">&gt;androidActivity&quot; android:theme=&quot;@style/Theme.Titanium&quot;&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">intent</code><code class="plain">-filter&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">action</code><code class="plain"> </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;android.intent.action.MAIN&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">category</code><code class="plain"> </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;android.intent.category.LAUNCHER&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">intent</code><code class="plain">-filter&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">intent</code><code class="plain">-filter&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">data</code><code class="plain"> android:scheme=&quot;touchtest-&lt;GUID&gt;&quot;/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">action</code><code class="plain"> </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;android.intent.action.VIEW&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">category</code><code class="plain"> </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;android.intent.category.BROWSABLE&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">category</code><code class="plain"> </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;android.intent.category.DEFAULT&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">intent</code><code class="plain">-filter&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">activity</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">service</code><code class="plain"> </code><code class="color1">android:enabled</code><code class="plain">=</code><code class="string">&quot;true&quot;</code><code class="plain"> </code><code class="color1">android:exported</code><code class="plain">=</code><code class="string">&quot;false&quot;</code><code class="plain"> </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;com.soasta.android.touchtest.TouchTestService&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">application</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">            &lt;!-- All services require the ACCESS_WIFI_STATE and INTERNET permissions --&gt;</code></div>
-<div class="line"><code class="plain">            &lt;uses-permission android:name=</code><code class="string">&quot;android.permission.ACCESS_WIFI_STATE&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">            &lt;uses-permission android:name=</code><code class="string">&quot;android.permission.INTERNET&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">uses</code><code class="plain">-permission </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;android.permission.ACCESS_WIFI_STATE&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">uses</code><code class="plain">-permission </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;android.permission.INTERNET&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">            &lt;!-- The Appcelerator Test service requires READ_PHONE_STATE, BLUETOOTH, and BLUETOOTH_ADMIN permissions --&gt;</code></div>
-<div class="line"><code class="plain">            &lt;uses-permission android:name=</code><code class="string">&quot;android.permission.READ_PHONE_STATE&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">            &lt;uses-permission android:name=</code><code class="string">&quot;android.permission.BLUETOOTH&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">            &lt;uses-permission android:name=</code><code class="string">&quot;android.permission.BLUETOOTH_ADMIN&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">uses</code><code class="plain">-permission </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;android.permission.READ_PHONE_STATE&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">uses</code><code class="plain">-permission </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;android.permission.BLUETOOTH&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">uses</code><code class="plain">-permission </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;android.permission.BLUETOOTH_ADMIN&quot;</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">            &lt;!-- The Appcelerator Performance and Test services require the GET_TASKS permission --&gt;</code></div>
-<div class="line"><code class="plain">            &lt;uses-permission android:name=</code><code class="string">&quot;android.permission.GET_TASKS&quot;</code><code class="plain">/&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/manifest&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/android&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">uses</code><code class="plain">-permission </code><code class="color1">android:name</code><code class="plain">=</code><code class="string">&quot;android.permission.GET_TASKS&quot;</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">manifest</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">android</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&#xA0;</code></div>
-<div class="line"><code class="plain">    &lt;!-- Include modules </code><code class="keyword">for</code><code class="plain"> Appcelerator Performance, Cloud and Test services --&gt;</code></div>
-<div class="line"><code class="plain">    &lt;modules&gt;</code></div>
-<div class="line"><code class="plain">        &lt;module platform=</code><code class="string">&quot;commonjs&quot;</code><code class="plain">&gt;ti.cloud&lt;/module&gt;</code></div>
-<div class="line"><code class="plain">        &lt;module platform=</code><code class="string">&quot;android&quot;</code><code class="plain">&gt;com.appcelerator.apm&lt;/module&gt;</code></div>
-<div class="line"><code class="plain">        &lt;module platform=</code><code class="string">&quot;iphone&quot;</code><code class="plain">&gt;com.appcelerator.apm&lt;/module&gt;</code></div>
-<div class="line"><code class="plain">        &lt;module deploy-type=</code><code class="string">&quot;test&quot;</code><code class="plain"> platform=</code><code class="string">&quot;iphone&quot;</code><code class="plain"> version=</code><code class="string">&quot;1.0&quot;</code><code class="plain">&gt;com.soasta.touchtest&lt;/module&gt;</code></div>
-<div class="line"><code class="plain">        &lt;module deploy-type=</code><code class="string">&quot;development&quot;</code><code class="plain"> platform=</code><code class="string">&quot;iphone&quot;</code><code class="plain"> version=</code><code class="string">&quot;1.0&quot;</code><code class="plain">&gt;com.soasta.touchtest&lt;/module&gt;</code></div>
-<div class="line"><code class="plain">        &lt;module deploy-type=</code><code class="string">&quot;test&quot;</code><code class="plain"> platform=</code><code class="string">&quot;android&quot;</code><code class="plain"> version=</code><code class="string">&quot;1.0&quot;</code><code class="plain">&gt;com.soasta.touchtest&lt;/module&gt;</code></div>
-<div class="line"><code class="plain">        &lt;module deploy-type=</code><code class="string">&quot;development&quot;</code><code class="plain"> platform=</code><code class="string">&quot;android&quot;</code><code class="plain"> version=</code><code class="string">&quot;1.0&quot;</code><code class="plain">&gt;com.soasta.touchtest&lt;/module&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/modules&gt;</code></div>
+<div class="line"><code class="plain">    &lt;!-- Include modules for Appcelerator Performance, Cloud and Test services --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">modules</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">module</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;commonjs&quot;</code><code class="plain">&gt;ti.cloud&lt;/</code><code class="keyword">module</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">module</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;android&quot;</code><code class="plain">&gt;com.appcelerator.apm&lt;/</code><code class="keyword">module</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">module</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;iphone&quot;</code><code class="plain">&gt;com.appcelerator.apm&lt;/</code><code class="keyword">module</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">module</code><code class="plain"> </code><code class="color1">deploy-type</code><code class="plain">=</code><code class="string">&quot;test&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;iphone&quot;</code><code class="plain"> </code><code class="color1">version</code><code class="plain">=</code><code class="string">&quot;1.0&quot;</code><code class="plain">&gt;com.soasta.touchtest&lt;/</code><code class="keyword">module</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">module</code><code class="plain"> </code><code class="color1">deploy-type</code><code class="plain">=</code><code class="string">&quot;development&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;iphone&quot;</code><code class="plain"> </code><code class="color1">version</code><code class="plain">=</code><code class="string">&quot;1.0&quot;</code><code class="plain">&gt;com.soasta.touchtest&lt;/</code><code class="keyword">module</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">module</code><code class="plain"> </code><code class="color1">deploy-type</code><code class="plain">=</code><code class="string">&quot;test&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;android&quot;</code><code class="plain"> </code><code class="color1">version</code><code class="plain">=</code><code class="string">&quot;1.0&quot;</code><code class="plain">&gt;com.soasta.touchtest&lt;/</code><code class="keyword">module</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">module</code><code class="plain"> </code><code class="color1">deploy-type</code><code class="plain">=</code><code class="string">&quot;development&quot;</code><code class="plain"> </code><code class="color1">platform</code><code class="plain">=</code><code class="string">&quot;android&quot;</code><code class="plain"> </code><code class="color1">version</code><code class="plain">=</code><code class="string">&quot;1.0&quot;</code><code class="plain">&gt;com.soasta.touchtest&lt;/</code><code class="keyword">module</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">modules</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&#xA0;</code></div>
 <div class="line"><code class="plain">    &lt;!-- Configure Appcelerator Test settings --&gt;</code></div>
-<div class="line"><code class="plain">    &lt;ios&gt;</code></div>
-<div class="line"><code class="plain">        &lt;plist&gt;</code></div>
-<div class="line"><code class="plain">            &lt;dict&gt;</code></div>
-<div class="line"><code class="plain">                &lt;key&gt;CFBundleURLTypes&lt;/key&gt;</code></div>
-<div class="line"><code class="plain">                &lt;array&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;dict&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;key&gt;CFBundleTypeRole&lt;/key&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;string&gt;Editor&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;key&gt;CFBundleURLName&lt;/key&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;string&gt;PACKAGE&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;key&gt;CFBundleURLSchemes&lt;/key&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;array&gt;</code></div>
-<div class="line"><code class="plain">                            &lt;string&gt;touchtest-&lt;GUID&gt;&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">                        &lt;/array&gt;</code></div>
-<div class="line"><code class="plain">                    &lt;/dict&gt;</code></div>
-<div class="line"><code class="plain">                &lt;/array&gt;</code></div>
-<div class="line"><code class="plain">            &lt;/dict&gt;</code></div>
-<div class="line"><code class="plain">        &lt;/plist&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/ios&gt;</code></div>
-<div class="line"><code class="plain">    &lt;plugins&gt;</code></div>
-<div class="line"><code class="plain">        &lt;plugin&gt;com.soasta.touchtest.android&lt;/plugin&gt;</code></div>
-<div class="line"><code class="plain">    &lt;/plugins&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">ios</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">plist</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">dict</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">key</code><code class="plain">&gt;CFBundleURLTypes&lt;/</code><code class="keyword">key</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">array</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">dict</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">key</code><code class="plain">&gt;CFBundleTypeRole&lt;/</code><code class="keyword">key</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">string</code><code class="plain">&gt;Editor&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">key</code><code class="plain">&gt;CFBundleURLName&lt;/</code><code class="keyword">key</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">string</code><code class="plain">&gt;PACKAGE&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">key</code><code class="plain">&gt;CFBundleURLSchemes&lt;/</code><code class="keyword">key</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">array</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                            &lt;</code><code class="keyword">string</code><code class="plain">&gt;touchtest-&lt;</code><code class="keyword">GUID</code><code class="plain">&gt;&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;/</code><code class="keyword">array</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">dict</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">array</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">dict</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">plist</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">ios</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">plugins</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">plugin</code><code class="plain">&gt;com.soasta.touchtest.android&lt;/</code><code class="keyword">plugin</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">plugins</code><code class="plain">&gt;</code></div>
 <div class="line">&#xA0;</div>
-<div class="line"><code class="plain">    &lt;property name=</code><code class="string">&quot;com-soasta-touchtest-version&quot;</code><code class="plain"> type=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;VERSION&lt;/property&gt;</code></div>
-<div class="line"><code class="plain">    &lt;property name=</code><code class="string">&quot;com-soasta-touchtest-ios-appId&quot;</code><code class="plain"> type=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;TEST_APP_ID&lt;/property&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">property</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;com-soasta-touchtest-version&quot;</code><code class="plain"> </code><code class="color1">type</code><code class="plain">=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;VERSION&lt;/</code><code class="keyword">property</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">property</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;com-soasta-touchtest-ios-appId&quot;</code><code class="plain"> </code><code class="color1">type</code><code class="plain">=</code><code class="string">&quot;string&quot;</code><code class="plain">&gt;TEST_APP_ID&lt;/</code><code class="keyword">property</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     <div class="section section-4 " id="src-43298675_PlatformServices-AndroidPermissions">
@@ -194,142 +189,6 @@
         </tr>
 </tbody>        </table>
             </div>
-    </div>
-    </div>
-    <div class="section section-3 " id="src-43298675_PlatformServices-BehaviorPriortoRelease3.3.0">
-        <h3 class="heading "><span>Behavior Prior to Release 3.3.0</span></h3>
-    <p>Prior to Release 3.3.0, Appcelerator Studio injected code in    <span style="color: #484848;">
-to the     </span>
- <tt class=" ">app.js</tt>     <span style="color: #484848;">
- file for classic mobile projects, and     </span>
- <tt class=" ">alloy.js</tt>     <span style="color: #484848;">
- and     </span>
- <tt class=" ">index.js</tt>     <span style="color: #484848;">
- files for Alloy projects to enable Appcelerator Performance and Test Services as shown in the code snippets below.    </span>
-    </p>
-    <p>    <span style="color: #484848;">
-To enable the Performance and Test services for Release 3.3.0 and later:    </span>
-    </p>
-<ul class=" "><li class=" ">    <p>    <span style="color: #484848;">
-For the Performance service, the module and plugin are auto-loaded and provide basic crash monitoring services.  For advanced features, the application needs to load and initialize the Performance module, then make module API calls (see     </span>
- <a class="document-link " href="Performance.html">Performance</a>     <span style="color: #484848;">
- for more details).    </span>
-    </p>
-</li><li class=" ">    <p>    <span style="color: #484848;">
-For the Test service, the module is auto-loaded and does not require any code to start it.    </span>
-    </p>
-</li></ul>    <div class="section section-4 " id="src-43298675_PlatformServices-app.js">
-        <h4 class="heading "><span>app.js</span></h4>
-    <p>The following changes are made to the <tt class=" ">app.js</tt> file to enable Appcelerator Services for a classic mobile projects.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                    <div class="title">app.js</div>
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app.js">
-<div class="line"><code class="comments">// Loads and initializes the Appcelerator Performance module</code></div>
-<div class="line"><code class="comments">// Appended to the beginning of the file</code></div>
-<div class="line"><code class="plain">var apm = undefined;</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">try</code><code class="plain"> {</code></div>
-<div class="line"><code class="plain">    apm = require(</code><code class="string">&quot;com.appcelerator.apm&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="keyword">catch</code><code class="plain"> (e) {</code></div>
-<div class="line"><code class="plain">    Ti.API.info(</code><code class="string">&quot;com.appcelerator.apm module is not available&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">apm &amp;&amp; apm.init();</code></div>
-<div class="line"><code class="plain">&#xA0;</code></div>
-<div class="line"><code class="plain">...</code></div>
-<div class="line"><code class="plain">&#xA0;</code></div>
-<div class="line"><code class="comments">// Loads the Appcelerator iOS Test module to use the Test service for iOS</code></div>
-<div class="line"><code class="comments">// Appended to the end of the file</code></div>
-<div class="line"><code class="keyword">if</code><code class="plain"> (Ti.Platform.osname === </code><code class="string">&apos;iphone&apos;</code><code class="plain"> || Ti.Platform.osname === </code><code class="string">&apos;ipad&apos;</code><code class="plain">)</code></div>
-<div class="line"><code class="plain">{</code></div>
-<div class="line"><code class="plain">    var touchTestModule = undefined;</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">try</code></div>
-<div class="line"><code class="plain">    {</code></div>
-<div class="line"><code class="plain">        touchTestModule = require(</code><code class="string">&quot;com.soasta.touchtest&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">    }</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">catch</code><code class="plain"> (tt_exception)</code></div>
-<div class="line"><code class="plain">    {</code></div>
-<div class="line"><code class="plain">        Ti.API.error(</code><code class="string">&quot;com.soasta.touchest module is required&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">    }</code></div>
-<div class="line"><code class="plain">    var cloudTestURL = Ti.App.getArguments().url;</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (cloudTestURL != </code><code class="keyword">null</code><code class="plain">)</code></div>
-<div class="line"><code class="plain">    {</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// The URL will be null if we don&apos;t launch through TouchTest.</code></div>
-<div class="line"><code class="plain">        touchTestModule &amp;&amp; touchTestModule.initTouchTest(cloudTestURL);</code></div>
-<div class="line"><code class="plain">    }</code></div>
-<div class="line"><code class="plain">    Ti.App.addEventListener(</code><code class="string">&apos;resumed&apos;</code><code class="plain">,function(e)</code></div>
-<div class="line"><code class="plain">    {</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// Hook the resumed from background</code></div>
-<div class="line"><code class="plain">        var cloudTestURL = Ti.App.getArguments().url;</code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (cloudTestURL != </code><code class="keyword">null</code><code class="plain">)</code></div>
-<div class="line"><code class="plain">        {</code></div>
-<div class="line"><code class="plain">            touchTestModule &amp;&amp; touchTestModule.initTouchTest(cloudTestURL);</code></div>
-<div class="line"><code class="plain">        }</code></div>
-<div class="line"><code class="plain">    });</code></div>
-<div class="line"><code class="plain">}</code></div>
-</div>
-    </div>
-    <p>    </p>
-    </div>
-    <div class="section section-4 " id="src-43298675_safe-id-UGxhdGZvcm1TZXJ2aWNlcy1hcHAvYWxsb3kuanM">
-        <h4 class="heading "><span>app/alloy.js</span></h4>
-    <p>The following changes are made to the <tt class=" ">alloy.js</tt> file to enable Appcelerator Service for Alloy projects.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="comments">// Loads and initializes the Appcelerator Performance module</code></div>
-<div class="line"><code class="comments">// Appended to the beginning of the file</code></div>
-<div class="line"><code class="plain">Alloy.Globals.apm = undefined;</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="keyword">try</code><code class="plain"> {</code></div>
-<div class="line"><code class="plain">    Alloy.Globals.apm = require(</code><code class="string">&quot;com.appcelerator.apm&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">}</code></div>
-<div class="line"><code class="keyword">catch</code><code class="plain"> (e) {</code></div>
-<div class="line"><code class="plain">    Ti.API.info(</code><code class="string">&quot;com.appcelerator.apm module is not available&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">}</code></div>
-<div class="line">&#xA0;</div>
-<div class="line"><code class="plain">Alloy.Globals.apm &amp;&amp; Alloy.Globals.apm.init();</code></div>
-</div>
-    </div>
-    <p>    </p>
-    </div>
-    <div class="section section-4 " id="src-43298675_safe-id-UGxhdGZvcm1TZXJ2aWNlcy1hcHAvY29udHJvbGxlcnMvaW5kZXguanM">
-        <h4 class="heading "><span>app/controllers/index.js</span></h4>
-    <p>The following changes are made to the <tt class=" ">index.js</tt> file to enable Appcelerator Services for Alloy projects.    </p>
-    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="comments">// Loads the Appcelerator iOS Test module to use the Test service for iOS</code></div>
-<div class="line"><code class="comments">// Appended to the end of the file</code></div>
-<div class="line"><code class="keyword">if</code><code class="plain"> (Ti.Platform.osname === </code><code class="string">&apos;iphone&apos;</code><code class="plain"> || Ti.Platform.osname === </code><code class="string">&apos;ipad&apos;</code><code class="plain">)</code></div>
-<div class="line"><code class="plain">{</code></div>
-<div class="line"><code class="plain">    var touchTestModule = undefined;</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">try</code></div>
-<div class="line"><code class="plain">    {</code></div>
-<div class="line"><code class="plain">        touchTestModule = require(</code><code class="string">&quot;com.soasta.touchtest&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">    }</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">catch</code><code class="plain"> (tt_exception)</code></div>
-<div class="line"><code class="plain">    {</code></div>
-<div class="line"><code class="plain">        Ti.API.error(</code><code class="string">&quot;com.soasta.touchest module is required&quot;</code><code class="plain">);</code></div>
-<div class="line"><code class="plain">    }</code></div>
-<div class="line"><code class="plain">    var cloudTestURL = Ti.App.getArguments().url;</code></div>
-<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (cloudTestURL != </code><code class="keyword">null</code><code class="plain">)</code></div>
-<div class="line"><code class="plain">    {</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// The URL will be null if we don&apos;t launch through TouchTest.</code></div>
-<div class="line"><code class="plain">        touchTestModule &amp;&amp; touchTestModule.initTouchTest(cloudTestURL);</code></div>
-<div class="line"><code class="plain">    }</code></div>
-<div class="line"><code class="plain">    Ti.App.addEventListener(</code><code class="string">&apos;resumed&apos;</code><code class="plain">,function(e)</code></div>
-<div class="line"><code class="plain">    {</code></div>
-<div class="line"><code class="plain">        </code><code class="comments">// Hook the resumed from background</code></div>
-<div class="line"><code class="plain">        var cloudTestURL = Ti.App.getArguments().url;</code></div>
-<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (cloudTestURL != </code><code class="keyword">null</code><code class="plain">)</code></div>
-<div class="line"><code class="plain">        {</code></div>
-<div class="line"><code class="plain">            touchTestModule &amp;&amp; touchTestModule.initTouchTest(cloudTestURL);</code></div>
-<div class="line"><code class="plain">        }</code></div>
-<div class="line"><code class="plain">    });</code></div>
-<div class="line"><code class="plain">}</code></div>
-</div>
-    </div>
     </div>
     </div>
     </div>

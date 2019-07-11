@@ -227,7 +227,8 @@ The legacy method to publish the API Builder app is as follows:    </p>
 <div class="line"><code class="plain">$ appc cloud config appcteest --minsize &lt;size&gt;</code></div>
 </div>
     </div>
-</li></ol>    <p>Note: If you haven&apos;t set up your DNS yet, your app publish may fail with the following error:    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>If you haven&apos;t set up your DNS yet, your app publish may fail with the following error:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">$ appc cloud logcat appctest</code></div>
@@ -254,7 +255,11 @@ The legacy method to publish the API Builder app is as follows:    </p>
 <div class="line"><code class="plain">extra_hosts = 54.212.208.81 api.cloudapp-1.appctest.com</code></div>
 </div>
     </div>
-    <p>Note about Docker image publish with Alpine: You will need to execute <tt class=" ">apk add --no-cache curl</tt> in the Docker file when publishing the Docker image.    </p>
+    </div>
+        <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>Note about Docker image publish with Alpine: You will need to execute <tt class=" ">apk add --no-cache curl</tt> in the Docker file when publishing the Docker image.    </p>
+    </div>
+    </li></ol>    <p>    </p>
     </div>
     <div class="section section-2 " id="src-49159313_APIBuilderCLI-CLIcommands">
         <h2 class="heading "><span>CLI commands</span></h2>
@@ -401,8 +406,11 @@ The legacy method to publish the API Builder app is as follows:    </p>
         <p><tt class=" "> appc cloud download</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Download source files for the specified application and version. Note: If you publish using a Docker image, this command won&apos;t work.    </p>
-            </td>
+        <p>Download source files for the specified application and version.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>If you publish using a Docker image, this command won&apos;t work.    </p>
+    </div>
+                </td>
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">

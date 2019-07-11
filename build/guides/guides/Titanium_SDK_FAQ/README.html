@@ -21,7 +21,6 @@
     <p>This document provides answers and links to commonly asked questions about Titanium SDK.    </p>
     <p>    </p>
 <ul class="toc-indentation "><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_FAQ-section-src-51252834_safe-id-VGl0YW5pdW1TREtGQVEtQ2FuSXVzZVN3aWZ0Y29kZXRvZGV2ZWxvcGFwcHNmb3JBbmRyb2lkaW5IeXBlcmxvb3A_">Can I use Swift code to develop apps for Android in Hyperloop?</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_FAQ-section-src-51252834_safe-id-VGl0YW5pdW1TREtGQVEtTXVsdGlkZXhjYW5iZWRvbmVpbkFuZHJvaWRTdHVkaW8uSG93Y2FuSWRvaXRpbm15QXBwY2VsZXJhdG9yYXBwPw">Multidex can be done in Android Studio. How can I do it in my Appcelerator app?</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_FAQ-section-src-51252834_safe-id-VGl0YW5pdW1TREtGQVEtRG9lc2dlb2ZlbmNlbW9kdWxldXNlc2NvcmVMb2NhdGlvbihmb3JpT1Mpb3Jkb2VzaXR1c2Vzb21ldGhpbmdlbHNlPw">Does geofence module uses coreLocation (for iOS) or does it use something else?</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_FAQ-section-src-51252834_TitaniumSDKFAQ-HowdoIuseTitanium.Android.IntentinAndroidforcalendar">How do I use Titanium.Android.Intent in Android for calendar</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Titanium_SDK_FAQ-section-src-51252834_safe-id-VGl0YW5pdW1TREtGQVEtQ3JlYXRlYW5BcHBjZWxlcmF0b3JBbmRyb2lkbW9kdWxld2l0aGFybWVhYmktdjdhLHg4NmFyY2hpdGVjdHVyZXM">Create an Appcelerator Android module with armeabi-v7a,x86 architectures</a>    </p>
@@ -38,10 +37,6 @@
         <h2 class="heading "><span>Can I use Swift code to develop apps for Android in Hyperloop?</span></h2>
     <p>Short answer is no. You cannot use Swift code to develop Android apps. Classes in Hyperloop map to the underlying classes defined in Objective-C for iOS and in Java for Android.    </p>
     <p>Refer to <a class="document-link " href="#!/guide/Android_Hyperloop_Programming_Guide">Android Hyperloop Programming Guide</a> and <a class="document-link " href="#!/guide/iOS_Hyperloop_Programming_Guide">iOS Hyperloop Programming Guide</a> for information on how to develop apps using Hyperloop.    </p>
-    </div>
-    <div class="section section-2 " id="src-51252834_safe-id-VGl0YW5pdW1TREtGQVEtTXVsdGlkZXhjYW5iZWRvbmVpbkFuZHJvaWRTdHVkaW8uSG93Y2FuSWRvaXRpbm15QXBwY2VsZXJhdG9yYXBwPw">
-        <h2 class="heading "><span>Multidex can be done in Android Studio. How can I do it in my Appcelerator app?</span></h2>
-    <p>Multidex is coming in TiSDK 6.0.0.    </p>
     </div>
     <div class="section section-2 " id="src-51252834_safe-id-VGl0YW5pdW1TREtGQVEtRG9lc2dlb2ZlbmNlbW9kdWxldXNlc2NvcmVMb2NhdGlvbihmb3JpT1Mpb3Jkb2VzaXR1c2Vzb21ldGhpbmdlbHNlPw">
         <h2 class="heading "><span>Does geofence module uses coreLocation (for iOS) or does it use something else?</span></h2>
@@ -65,7 +60,7 @@
     <p>Create a Titanium module:    </p>
 <ol class=" "><li class=" ">    <p>Edit the manifest and change the <tt class=" ">architectures</tt> line to <tt class=" ">architectures: armeabi-v7a,x86</tt>    </p>
 </li><li class=" ">    <p>Change directories to <tt class=" ">android</tt>.    </p>
-</li><li class=" ">    <p>Execute this command: <tt class=" ">ti build -p android --build-only</tt>    </p>
+</li><li class=" ">    <p>Execute this command: <tt class=" ">appc run -p android --build-only</tt>    </p>
 </li><li class=" ">    <p>Verify the <tt class=" ">libs</tt> and <tt class=" ">dist/&lt;whatever&gt;.zip</tt> file only contains the desired architectures.    </p>
 </li></ol>    </div>
     <div class="section section-2 " id="src-51252834_safe-id-VGl0YW5pdW1TREtGQVEtaU9TMTAgYW5kcGxpc3Q">
@@ -111,7 +106,7 @@
 </li></ol>    </div>
     <div class="section section-2 " id="src-51252834_TitaniumSDKFAQ-Localizationsupportsfortheplistfile">
         <h2 class="heading "><span>Localization supports for the plist file</span></h2>
-    <p>You can add localizaiton support in the plist file. Here is an example for Japanese language for camera permission:    </p>
+    <p>You can add localization support in the plist file. Here is an example for Japanese language for camera permission:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">tiapp.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="tiapp.xml">

@@ -50,7 +50,7 @@
     </div>
     <div class="section section-2 " id="src-37536785_AlloyTaskswiththeCLI-Creatinganewapplicationusingatestapplication">
         <h2 class="heading "><span>Creating a new application using a test application</span></h2>
-    <p>Starting with Appcelerator CLI 5.0.0 or Alloy 1.7.6, you can generate a new Alloy project using a test application from the Alloy Github repo.  (The source code is copied from the global or local install of the Alloy npm package.)    </p>
+    <p>You can generate a new Alloy project using a test application from the Alloy Github repo.  (The source code is copied from the global or local install of the Alloy npm package.)    </p>
     <p>To create an Alloy application based on a test application, first create a skeleton Titanium project, then run the Alloy new command with the <tt class=" ">--testapp &lt;path_to_test_app&gt;</tt> option.  Pass the option the relative path to the test application after the <tt class=" ">alloy/test/apps</tt> path.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -137,7 +137,7 @@
     <p>To generate the build customization file <tt class=" ">alloy.jmk</tt>, run the following command:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">appc lloy generate jmk [-o path_to_project/app]</code></div>
+<div class="line"><code class="plain">appc alloy generate jmk [-o path_to_project/app]</code></div>
 </div>
     </div>
     <p>This creates the JavaScript Makefile <tt class=" ">app/alloy.jmk</tt> with a few task hooks in place. Refer to <a class="document-link " href="#!/guide/Build_Configuration_File_(alloy.jmk)">Build Configuration File (alloy.jmk)</a> for more details.    </p>
@@ -153,11 +153,11 @@
     </div>
     <p><strong class=" ">Parameters</strong>:    </p>
 <ul class=" "><li class=" ">    <p><tt class=" ">language</tt> &#x2013; Optional. The two-letter language code (<tt class=" ">en</tt> or <tt class=" ">es</tt>, for example) of the target language. If not specified, the default is <tt class=" ">en</tt> (English).    </p>
-</li><li class=" ">    <p><tt class=" ">--apply</tt> &#x2013; Optional. If present, the command writes new localization entries to the target language&apos;s strings.xml file. Existing i18n entries are left untouched. If the XML file doesn&apos;t exist, it is created for you. If this parameter is absent, a preview of the changes are displayed in the terminal window.    </p>
+</li><li class=" ">    <p><tt class=" ">--apply</tt> &#x2013; Optional. If present, the command writes new localization entries to the target language <tt class=" ">strings.xml</tt> file. Existing i18n entries are left untouched. If the XML file doesn&apos;t exist, it is created for you. If this parameter is absent, a preview of the changes are displayed in the terminal window.    </p>
 </li></ul>    <p>The following localization functions are supported:    </p>
 <ul class=" "><li class=" ">    <p><tt class=" ">Titanium.Locale.getString()</tt>    </p>
 </li><li class=" ">    <p><tt class=" ">L()</tt>    </p>
-</li></ul>    <p>The command extracts the first parameter (the i18n key) from each localization function and, if it&apos;s a string, adds it to the target language&apos;s strings.xml file. For example, suppose a JavaScript file in your application contained the following code:    </p>
+</li></ul>    <p>The command extracts the first parameter (the i18n key) from each localization function and, if it&apos;s a string, adds it to the target language <tt class=" ">strings.xml</tt> file. For example, suppose a JavaScript file in your application contained the following code:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">var name = Ti.Locale.getString(</code><code class="string">&apos;name&apos;</code><code class="plain">);</code></div>
@@ -174,15 +174,15 @@
     <p>This generates <tt class=" ">app/i18n/en/strings.xml</tt> or (before Alloy 1.8.0) <tt class=" ">i18n/en/strings.xml</tt> in your project directory, if it doesn&apos;t exist. The contents of the generated XML file would appear as follows:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">&lt;resources&gt;</code></div>
-<div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;name&quot;</code><code class="plain">&gt;name&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;color&quot;</code><code class="plain">&gt;color&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;currency&quot;</code><code class="plain">&gt;currency&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">&lt;/resources&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">resources</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;name&quot;</code><code class="plain">&gt;name&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;color&quot;</code><code class="plain">&gt;color&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;currency&quot;</code><code class="plain">&gt;currency&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">resources</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>If you later add more localization functions to your code and run the same command again, the new entries would be added to strings.xml. Existing entries are left untouched.    </p>
-    <p>To generate a strings.xml for a specific language, pass the two-letter language code as a parameter. For example, the following command creates a strings.xml file for Spanish language locales (<tt class=" ">app/i18n/es/strings.xml</tt> or - before Alloy 1.8.0 - <tt class=" ">i18n/es/strings.xml</tt> ):    </p>
+    <p>If you later add more localization functions to your code and run the same command again, the new entries would be added to <tt class=" ">strings.xml</tt>. Existing entries are left untouched.    </p>
+    <p>To generate a <tt class=" ">strings.xml</tt> for a specific language, pass the two-letter language code as a parameter. For example, the following command creates a strings.xml file for Spanish language locales (<tt class=" ">app/i18n/es/strings.xml</tt> or - before Alloy 1.8.0 - <tt class=" ">i18n/es/strings.xml</tt> ):    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&#xA0;appc alloy extract-i18n es --apply</code></div>
@@ -194,28 +194,28 @@
 <div class="line"><code class="plain">appc alloy extract-i18n</code></div>
 </div>
     </div>
-    <p>The output of this command shows the content of the current en/strings.xml file (before) and its content once you apply the changes (after) with <tt class=" ">--apply</tt>.    </p>
+    <p>The output of this command shows the content of the current <tt class=" ">en/strings.xml</tt> file (before) and its content once you apply the changes (after) with <tt class=" ">--apply</tt>.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">[INFO] ######## BEFORE ########</code></div>
-<div class="line"><code class="plain">&lt;resources&gt;</code></div>
-<div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;name&quot;</code><code class="plain">&gt;name&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;color&quot;</code><code class="plain">&gt;color&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;currency&quot;</code><code class="plain">&gt;currency&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">&lt;/resources&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">resources</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;name&quot;</code><code class="plain">&gt;name&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;color&quot;</code><code class="plain">&gt;color&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;currency&quot;</code><code class="plain">&gt;currency&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">resources</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">[INFO] ######## AFTER  ########</code></div>
-<div class="line"><code class="plain">&lt;resources&gt;</code></div>
-<div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;name&quot;</code><code class="plain">&gt;name&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;color&quot;</code><code class="plain">&gt;color&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;currency&quot;</code><code class="plain">&gt;currency&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">  &lt;string name=</code><code class="string">&quot;test&quot;</code><code class="plain">&gt;test&lt;/string&gt;</code></div>
-<div class="line"><code class="plain">&lt;/resources&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">resources</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;name&quot;</code><code class="plain">&gt;name&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;color&quot;</code><code class="plain">&gt;color&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;currency&quot;</code><code class="plain">&gt;currency&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">string</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">&quot;test&quot;</code><code class="plain">&gt;test&lt;/</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">resources</code><code class="plain">&gt;</code></div>
 </div>
     </div>
     </div>
     <div class="section section-2 " id="src-37536785_AlloyTaskswiththeCLI-Compilingaspecificview-controller">
         <h2 class="heading "><span>Compiling a specific view-controller</span></h2>
-    <p>Starting with Appcelerator CLI 5.0.0 or Alloy 1.7.6, you can select which Alloy view-controller to compile to Titanium code.  Use the command to update the Titanium base code for incremental changes to the Alloy project.  Pass the <tt class=" ">file=&lt;filename&gt;</tt> to the <tt class=" ">--config</tt> option when running the Alloy compile command.    </p>
+    <p>You can select which Alloy view-controller to compile to Titanium code.  Use the command to update the Titanium base code for incremental changes to the Alloy project.  Pass the <tt class=" ">file=&lt;filename&gt;</tt> to the <tt class=" ">--config</tt> option when running the Alloy compile command.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">appc alloy compile --config platform=&lt;platform&gt;,</code><code class="functions">file</code><code class="plain">=&lt;</code><code class="functions">file</code><code class="plain">&gt;</code></div>

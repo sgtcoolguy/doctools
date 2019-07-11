@@ -20,7 +20,7 @@
                         <h1>In-place App Upgrading</h1>
     <p>    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>As of AMPLIFY Runtime Services (API Runtime Services) 1.6.0, the in-place app will no longer be supported. We recommend a rolling upgrade (via <tt class=" ">acs publish</tt>) and utilizing more than one server to avoid app downtime.    </p>
+            <p>As of AMPLIFY Runtime Services (API Runtime Services) 1.6.0, the in-place app will no longer be supported. We recommend a rolling upgrade (via <tt class=" ">appc acs publish</tt>) and utilizing more than one server to avoid app downtime.    </p>
     </div>
         <div class="section section-2 " id="src-46245227_In-placeAppUpgrading-Overview">
         <h2 class="heading "><span>Overview</span></h2>
@@ -37,8 +37,8 @@
     <p>From the command line, you can use the <tt class=" ">--nodowntime</tt> flag to set this property:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">acs config --nodowntime </code><code class="keyword">false</code></div>
-<div class="line"><code class="plain">acs config --nodowntime </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">appc acs config --nodowntime </code><code class="keyword">false</code></div>
+<div class="line"><code class="plain">appc acs config --nodowntime </code><code class="keyword">true</code></div>
 </div>
     </div>
     </div>
@@ -47,14 +47,14 @@
     <p>As noted above, when <tt class=" ">Zero-downtime upgrading</tt> is set to true, the upgrade will use additional containers. however, you can disable this with an option when publishing:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">acs publish --force --inplace</code></div>
+<div class="line"><code class="plain">appc acs publish --force --inplace</code></div>
 </div>
     </div>
     <p>The <tt class=" ">inplace</tt> flag makes upgrading happen in-place for this one time.    </p>
     <p>Similarly:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">acs config --set key=value --inplace</code></div>
+<div class="line"><code class="plain">appc acs config --set key=value --inplace</code></div>
 </div>
     </div>
     <p>This makes environment variable change happen in-place for this one time.    </p>

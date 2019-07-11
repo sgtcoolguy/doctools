@@ -54,7 +54,6 @@
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-uses-permission">uses-permission</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-uses-sdk">uses-sdk</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-services">services</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-tool-api-level">tool-api-level</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-Android-specificapplicationproperties">Android-specific application properties</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-PropertiestoworkaroundAndroidbugs2373and5277">Properties to work around Android bugs 2373 and 5277</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-Commonrequirements">Common requirements</a>    </p>
@@ -148,7 +147,10 @@
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">ti</code><code class="plain">:app&gt;</code></div>
 </div>
     </div>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>A note about encryption and <tt class=" ">tiapp.xml</tt>: <tt class=" ">tiapp.xml</tt> properties are encrypted when building the app for production.    </p>
     </div>
+        </div>
     <div class="section section-2 " id="src-29004921_tiapp.xmlandtimodule.xmlReference-Toplevelelements">
         <h2 class="heading "><span>Top level elements</span></h2>
     <p>These configuration elements live under the root <tt class=" ">&lt;ti:app&gt;</tt> tag of the <tt class=" ">tiapp.xml</tt>. Unless otherwise noted, the configuration value goes inside the tag&apos;s content, that is, <tt class=" ">&lt;element&gt;</tt><tt class=" "> VALUE </tt> <tt class=" ">&lt;/element&gt;.</tt>    </p>
@@ -289,9 +291,9 @@
         <h3 class="heading "><span>sdk-version</span></h3>
     <p>Specifies the SDK to build against or use for CLI commands.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
-                    <div class="title">Example: Use Titanium SDK 3.2.0 GA</div>
-                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example: Use Titanium SDK 3.2.0 GA">
-<div class="line"><code class="plain">&lt;</code><code class="keyword">sdk</code><code class="plain">-version&gt;3.2.0.GA&lt;/</code><code class="keyword">sdk</code><code class="plain">-version&gt;</code></div>
+                    <div class="title">Example: Use Titanium SDK 8.0.0 GA</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example: Use Titanium SDK 8.0.0 GA">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">sdk</code><code class="plain">-version&gt;8.0.0.GA&lt;/</code><code class="keyword">sdk</code><code class="plain">-version&gt;</code></div>
 </div>
     </div>
     </div>
@@ -308,8 +310,7 @@
     <div class="section section-3 " id="src-29004921_tiapp.xmlandtimodule.xmlReference-version">
         <h3 class="heading "><span>version</span></h3>
     <p>The application version.    </p>
-    <p><u class=" ">Since Release 3.3.0</u>, for iOS the version number is truncated to three dot-separated numbers.  For example, &apos;2.1&apos; remains as &apos;2.1&apos;, but &apos;2.1.0.1&apos; will be converted to &apos;2.1.0&apos;.    </p>
-    <p><u class=" ">Prior to Release 3.3.0</u>, for the iOS platform, the version number will be converted to three dot-separated numbers according to Apple&apos;s <a class="external-link external-link" href="https://developer.apple.com/library/ios/documentation/general/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-111349" target="_blank">CFBundleShortVersionString</a> and <a class="external-link external-link" href="https://developer.apple.com/library/ios/documentation/general/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-102364" target="_blank">CFBundleVersion</a> when creating a package.  For example, if you specify &apos;2.1&apos; or &apos;2.1.0.1&apos;, the version number will be converted to &apos;2.1.0&apos; for the final package.    </p>
+    <p><u class=" ">F</u>or iOS the version number is truncated to three dot-separated numbers.  For example, &apos;2.1&apos; remains as &apos;2.1&apos;, but &apos;2.1.0.1&apos; will be converted to &apos;2.1.0&apos;.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example">
@@ -329,9 +330,9 @@
     </div>
     <div class="section section-2 " id="src-29004921_tiapp.xmlandtimodule.xmlReference-Applicationproperties">
         <h2 class="heading "><span>Application properties</span></h2>
-    <p><tt class=" ">tiapp.xml</tt> also supports ad-hoc properties that can be used by the application with <a class="external-link external-link" href="#!/api/Titanium.App.Properties">Titanium.App.Properties</a>.  These properties must be placed inside the<tt class=" "> root &lt;ti:app&gt;  </tt>element.    </p>
+    <p><tt class=" ">tiapp.xml</tt> also supports ad-hoc properties that can be used by the application with <a class="external-link external-link" href="#!/api/Titanium.App.Properties">Titanium.App.Properties</a>.  These properties must be placed inside the<tt class=" "> root &lt;ti:app&gt; </tt>element.    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>As of Release 3.2.0, any properties defined inside the <tt class=" ">tiapp.xml</tt> are read-only. Previously, you could overwrite these property values.    </p>
+            <p>Any properties defined inside the <tt class=" ">tiapp.xml</tt> are read-only. Previously, you could overwrite these property values.    </p>
     </div>
         <p>Properties generally follow the form:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -473,10 +474,6 @@
 <ul class=" "><li class=" ">    <p><tt class=" "> &lt;service url=&quot;service.js&quot; type=&quot;standard&quot;/&gt;</tt>: Creates a service with a URL that points to the JavaScript file (under <tt class=" ">Resources</tt>) that defines it. <tt class=" ">type</tt> is optional.    </p>
 </li><li class=" ">    <p>Ad-hoc elements: Under the <tt class=" ">&lt;service&gt;</tt> tag, any ad-hoc element from an AndroidManifest.xml is supported. See the <a class="external-link external-link" href="http://developer.android.com/guide/topics/manifest/service-element.html" target="_blank">documentation for the service element in AndroidManifest.xml</a>.    </p>
 </li></ul>    </div>
-    <div class="section section-3 " id="src-29004921_tiapp.xmlandtimodule.xmlReference-tool-api-level">
-        <h3 class="heading "><span>tool-api-level</span></h3>
-    <p><strong class=" ">Deprecated since Release 3.2.</strong> The version of the Android API that Titanium builds against. Currently defaults to the newest version of the Android SDK you have installed.  To set a target SDK version, see <a class="document-link " href="#!/guide/tiapp.xml_and_timodule.xml_Reference-section-src-29004921_tiapp.xmlandtimodule.xmlReference-SetatargetorminimumSDKlevel">Set a target or minimum SDK level</a>.    </p>
-    </div>
     <div class="section section-3 " id="src-29004921_tiapp.xmlandtimodule.xmlReference-Android-specificapplicationproperties">
         <h3 class="heading "><span>Android-specific application properties</span></h3>
     <p>    </p>
@@ -586,20 +583,6 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>ti.android.threadstacksize    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>int    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>16384    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><strong class=" ">Deprecated since Release 3.0.0.</strong>  This setting is only useful with Rhino. The stack size (in bytes) to use when creating a Javascript thread (default: 16KB). Bump larger when encountering StackOverflow errors in very large Javascript files    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
         <p>ti.android.compilejs    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
@@ -638,34 +621,6 @@
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Restarts the application if the root task was destroyed by Android after a period of inactivity.    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>ti.android.runtime    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>string    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>v8    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p><strong class=" ">Deprecated since Release 3.0.0.</strong> Titanium applications only support the V8 runtime since 3.0.0. &apos;v8&apos; or &apos;rhino&apos; (since 1.8.0)    </p>
-            </td>
-        </tr>
-    <tr>
-            <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>ti.android.useLegacyWindow    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>bool    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>false    </p>
-            </td>
-                <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Not supported since Release 3.3.0. Enables or disables the legacy window behavior that a heavyweight window is created if any of the following properties are defined on creation: <tt class=" ">fullscreen</tt>, <tt class=" ">navBarHidden</tt>, <tt class=" ">modal</tt>, or <tt class=" ">windowSoftInputMode</tt>. By default, the legacy behavior is disabled, which means all the windows are heavyweight. (since 3.2.0)    </p>
             </td>
         </tr>
 </tbody>        </table>
@@ -708,11 +663,10 @@
         <p>bool    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>true (since Release 3.2.0)    </p>
-    <p>false (prior to Release 3.2.0)    </p>
+        <p>true    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>(New since Titanium SDK 2.1.2.) Setting to true will avoid showing any messages to the user and will force any subsequent, anomalous instantiations of the application&apos;s launch Activity to finish and disappear without disturbing the user. This is <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-9285?focusedCommentId=210304&amp;page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-210304" target="_blank">explained in greater detail</a> in JIRA issue TIMOB-9285. This property should be used by itself, without any of the other &quot;bug2373&quot; properties. It is the least intrusive of these properties and should give the best user experience.    </p>
+        <p>Setting to true will avoid showing any messages to the user and will force any subsequent, anomalous instantiations of the application&apos;s launch Activity to finish and disappear without disturbing the user. This is <a class="external-link external-link" href="https://jira.appcelerator.org/browse/TIMOB-9285?focusedCommentId=210304&amp;page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-210304" target="_blank">explained in greater detail</a> in JIRA issue TIMOB-9285. This property should be used by itself, without any of the other &quot;bug2373&quot; properties. It is the least intrusive of these properties and should give the best user experience.    </p>
             </td>
         </tr>
     <tr>
@@ -822,8 +776,8 @@
         <h4 class="heading "><span>Set a target or minimum SDK level</span></h4>
     <p>    </p>
     <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
-            <p>Starting with Release 4.0.0, due to the addition of material theme support, the <tt class=" ">android:targetSDKVersion</tt> attribute must be set to at least 21 or higher, and the <tt class=" ">android:minSdkVersion</tt> attribute must be set to at least 14 or higher.    </p>
-    <p>Prior to Release 4.0.0 and starting with Release 3.3.0, due to the addition of the appcompat library, the <tt class=" ">android:targetSDKVersion</tt> attribute must be set to at least 14 or higher, and the <tt class=" ">android:minSdkVersion</tt> attribute must be set to at least 10 or higher.    </p>
+            <p>Due to the addition of material theme support, the <tt class=" ">android:targetSDKVersion</tt> attribute must be set to at least 21 or higher, and the <tt class=" ">android:minSdkVersion</tt> attribute must be set to at least 14 or higher.    </p>
+    <p>Due to the addition of the appcompat library, the <tt class=" ">android:targetSDKVersion</tt> attribute must be set to at least 14 or higher, and the <tt class=" ">android:minSdkVersion</tt> attribute must be set to at least 10 or higher.    </p>
     <p>If not, the build will fail with a &quot;Failed to package application&quot; error.    </p>
     </div>
         <p>To indicate that your application supports a certain SDK level, add the <tt class=" ">&lt;uses-sdk&gt;</tt> element with the <tt class=" ">android:minSdkVersion</tt> and/or <tt class=" ">android:targetSdkVersion</tt> attributes.  It may be necessary to set these attributes to enable certain Android features, such as the action bar or theme.    </p>

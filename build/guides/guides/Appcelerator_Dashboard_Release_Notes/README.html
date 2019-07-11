@@ -18,86 +18,84 @@
 
         <div id="src-43299549" class="content">
                         <h1>Appcelerator Dashboard Release Notes</h1>
-    <div class="section section-2 " id="src-43299549_AppceleratorDashboardReleaseNotes-Dashboard6.3.0-11June2019">
-        <h2 class="heading "><span>Dashboard 6.3.0 - 11 June 2019</span></h2>
-    <p>Dashboard 6.3.0 is a minor release, which includes new features, improvements, and bug fixes.    </p>
+    <div class="section section-2 " id="src-43299549_AppceleratorDashboardReleaseNotes-Dashboard6.4.0-10July2019">
+        <h2 class="heading "><span>Dashboard 6.4.0 - 10 July 2019</span></h2>
+    <p>Dashboard 6.4.0 is a minor release, which includes several improvements and bug fixes.    </p>
     </div>
-    <div class="section section-2 " id="src-43299549_AppceleratorDashboardReleaseNotes-Newfeatures">
-        <h2 class="heading "><span>New features</span></h2>
-<ul class=" "><li class=" ">    <p>    <span style="color: #ff9900;">
-    <span style="color: #333333;">
-Introduced a daily process to send email notifications to organization administrators when their organization&apos;s usage of Application Development or Cloud Capacity entitlements exceeds specific thresholds. A single notification will be sent once the usage of an entitlement exceeds 75% of its entitlement quota. A second will be sent once usage exceeds 90%. A daily notification will be sent if the usage of any entitlement quotas exceeds 100%.    </span>
-    </span>
-    <span style="color: #333333;">
-     </span>
-    </p>
-</li><li class=" ">    <p>    <span style="color: #333333;">
-Added support for custom queries by location and improved display and consistency of analytics views by location.    </span>
-    <span style="color: #ff9900;">
-     </span>
-    </p>
-</li></ul>    </div>
     <div class="section section-2 " id="src-43299549_AppceleratorDashboardReleaseNotes-Improvements">
         <h2 class="heading "><span>Improvements</span></h2>
-<ul class=" "><li class=" ">    <p>    <span style="color: #333333;">
-Added AMPLIFY Crash Analytics module to the Downloads view and added a link to Downloads view from APM deprecation warning.    </span>
+<ul class=" "><li class=" ">    <p>    <span style="color: #ff9900;">
     <span style="color: #333333;">
-     </span>
-    </p>
-</li><li class=" ">    <p>    <span style="color: #333333;">
-Added tooltips to describe entitlements listed on the Organization <strong class=" ">Usage</strong> view.    </span>
-    <span style="color: #333333;">
-     </span>
-    </p>
-</li><li class=" ">    <p>    <span style="color: #333333;">
-Added tooltips to clarify the column names in the Push Notifications Analytics overview.    </span>
-    <span style="color: #ff9900;">
-    <span style="color: #333333;">
-     </span>
+With recent improvements to AMPLIFY Platform&apos;s single sign-on facilities, the <strong class=" ">Keep me signed in for a week</strong> option has been removed from the <strong class=" ">Sign In</strong> page. Browser sessions will expire after 30 minutes of inactivity. Tooling sessions (logging in via CLI or Studio) will still remain active for 7 days.    </span>
     </span>
     </p>
 </li><li class=" ">    <p>    <span style="color: #ff9900;">
     <span style="color: #333333;">
-Updated <strong class=" ">How It Works</strong> links on the AMPLIFY Platform home page to link to new Developer Portal content.    </span>
+Removed strict normalization of analytics events platform information. Now platforms other than iOS, Android, and &quot;(not set)&quot; will be displayed in chart and table series grouped by Platform.    </span>
     </span>
-    <span style="color: #333333;">
-     </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;" class="js-issue-title">
+Added all usage metrics to the organization <strong class=" ">Usage</strong> view. This view now displays monthly usage of Application Integration transactions and lists usage by environment type (for example, &quot;Axway Managed&quot; vs VPC or &quot;Customer Managed&quot;).    </span>
     </p>
 </li><li class=" ">    <p>    <span style="color: #333333;">
-Removed pie chart with a breakdown by platform from the AMPLIFY Crash Analytics crash event detail view.    </span>
-    <span style="color: #333333;">
-     </span>
+Added a table to the organization overview which shows the product, plan, start, and end dates of each organization subscription.    </span>
     </p>
 </li><li class=" ">    <p>    <span style="color: #333333;">
-Updated file upload fields to improve consistency with other form fields.    </span>
+Improved date range calculations to always include the most recent period. Previously, a selection of <strong class=" ">Last 24 Hours</strong> would exclude the current hour. Analytics view chart series will now include partial results for the current hour.    </span>
     </p>
-</li><li class=" ">    <p>    <span style="color: #ff9900;">
-    <span style="color: #003366;">
-I    </span>
-    <span style="color: #333333;">
-    <span style="color: #003366;">
-m    </span>
-proved render time by decreasing the size of assets fetched on initial load.    </span>
-    </span>
-    <span style="color: #ff9900;">
-     </span>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Improved usability of the <strong class=" ">Custom Query</strong>. The <strong class=" ">New Query</strong> and <strong class=" ">Clear</strong> controls are more consistent and obvious. The label for previewing query results was changed to <strong class=" ">Preview</strong>. Once a query is saved, the user is transitioned back to their list of saved queries.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Removed distinct values for session identifiers in <strong class=" ">Custom Query</strong> filters.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Added Mobile Backend Services (MBS) application creator and date information to the MBS application <strong class=" ">Overview</strong> tab.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Added a primary action on the Choreography tile to link to ACE&apos;s new UI once an organization is subscribed and provisioned.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Corrected the link to the<strong class=" "> Content Collaboration</strong> tile&apos;s <strong class=" ">How It Works</strong> content.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Added the display of the application identifiers on AMPLIFY Runtime Services application <strong class=" ">Overview</strong> view.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Improved build verification error messages to make it clear why the build failed and how users can correct the build process.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Improved the display and consistency of the AMPLIFY Runtime Services and Mobile Backend Services access logs.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Migrated AMPLIFY Crash Analytics views to display <tt class=" ">crash.breadcrumb</tt> events.    </span>
     </p>
 </li></ul>    </div>
     <div class="section section-2 " id="src-43299549_AppceleratorDashboardReleaseNotes-Fixedissues">
         <h2 class="heading "><span>Fixed issues</span></h2>
 <ul class=" "><li class=" ">    <p>    <span style="color: #333333;">
-Resolved an issue where members of organizations with expired subscriptions may not be able to access Community, Developer, or Support Portals and may be inadvertently redirected to the AMPLIFY Platform home page.    </span>
-    <span style="color: #333333;">
-     </span>
+Resolved an issue uploading symbol files for applications.    </span>
     </p>
 </li><li class=" ">    <p>    <span style="color: #333333;">
-Resolved an issue where entitlements on the Organization&apos;s Usage view may not be displayed properly.    </span>
+Resolved a potential login issue when accessing AMPLIFY Platform in private browsing/Incognito.    </span>
     </p>
-</li><li class=" ">    <p>Resolved an issue where the selection of a custom date range on analytics views may not display the selected range correctly.    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Resolved an issue where Mobile Backend Services applications may have been created without an application name.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Fixed breadcrumb sorting and limit in the AMPLIFY Crash Analytics detail view.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Fixed Custom Query display for mix/max values to show infinity if there are no results.    </span>
+    </p>
+</li><li class=" ">    <p>    <span style="color: #333333;">
+Fixed an issue where the <strong class=" ">Back</strong> button on Mobile Backend Services data views may link to the landing page.    </span>
+    </p>
 </li></ul>    </div>
     <div class="section section-2 " id="src-43299549_AppceleratorDashboardReleaseNotes-RecentReleases">
         <h2 class="heading "><span>Recent Releases</span></h2>
-<ul class="childpages-macro "><li class=" ">    <p><a class="document-link " href="#!/guide/Dashboard_6.3.0_Release_Note">Dashboard 6.3.0 Release Note</a>    </p>
+<ul class="childpages-macro "><li class=" ">    <p><a class="document-link " href="#!/guide/Dashboard_6.4.0_Release_Note">Dashboard 6.4.0 Release Note</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="#!/guide/Dashboard_6.3.0_Release_Note">Dashboard 6.3.0 Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Dashboard_6.2.1_Release_Note">Dashboard 6.2.1 Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Dashboard_6.2.0_Release_Note">Dashboard 6.2.0 Release Note</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="#!/guide/Dashboard_6.1.1_Release_Note">Dashboard 6.1.1 Release Note</a>    </p>
