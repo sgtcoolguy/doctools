@@ -456,7 +456,7 @@ model attributes to view properties    </span>
     </div>
     <div class="section section-3 " id="src-36739592_AlloyDataBinding-SimplevsComplexdatabinding">
         <h3 class="heading "><span>Simple vs Complex data binding</span></h3>
-    <p>It&#x2019;s important to understand the difference between simple and complex data binding since until Alloy 1.9 they we&#x2019;re implemented in unique ways, resulting in different behaviour.    </p>
+    <p>It&#x2019;s important to understand the difference between simple and complex data binding as they were implemented in unique ways which results in different behaviour.    </p>
     <p>Simple data binding involves one model attribute where complex data binding involves a combination of strings (including white space) and model attributes or even multiple model attributes:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -504,7 +504,7 @@ model attributes to view properties    </span>
         </div>
     <div class="section section-2 " id="src-36739592_AlloyDataBinding-Binddeepobjectproperties">
         <h2 class="heading "><span>Bind deep object properties</span></h2>
-    <p>Starting with Alloy 1.9, you can <a class="external-link external-link" href="https://jira.appcelerator.org/browse/ALOY-1482" target="_blank">bind deep object properties</a>:    </p>
+    <p>You can <a class="external-link external-link" href="https://jira.appcelerator.org/browse/ALOY-1482" target="_blank">bind deep object properties</a>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
@@ -514,10 +514,19 @@ model attributes to view properties    </span>
 </div>
     </div>
     <p>Before, you needed to use a transformer to create a reference like <tt class=" ">authorName</tt>.    </p>
+    <p>Prior to CLI 7.1.0, the only way to set object properties (e.g. <tt class=" ">font.fontFamily</tt> for a Label) was to use TSS. You can use dot notation in XML:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Model</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;book&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">font.fontFamily</code><code class="plain">=</code><code class="string">&quot;Roboto&quot;</code><code class="plain">&gt;Hello&lt;/</code><code class="keyword">Label</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
     </div>
     <div class="section section-2 " id="src-36739592_AlloyDataBinding-Usemodelsandpropertiesnameswithspecialcharacters">
         <h2 class="heading "><span>Use models and properties names with special characters</span></h2>
-    <p>Starting with Alloy 1.9 you can bind models and properties that use <a class="external-link external-link" href="https://jira.appcelerator.org/browse/ALOY-1478" target="_blank">names with special characters</a> like dashes and spaces. Simply wrap the names in square brackets and quotes like you&#x2019;d do in JavaScript:    </p>
+    <p>You can bind models and properties that use <a class="external-link external-link" href="https://jira.appcelerator.org/browse/ALOY-1478" target="_blank">names with special characters</a> like dashes and spaces. Simply wrap the names in square brackets and quotes like you&#x2019;d do in JavaScript:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
@@ -529,7 +538,7 @@ model attributes to view properties    </span>
     </div>
     <div class="section section-2 " id="src-36739592_AlloyDataBinding-Bindmultiplemodelstothesameview">
         <h2 class="heading "><span>Bind multiple models to the same view</span></h2>
-    <p>As of Alloy 1.9, you have the ability to <a class="external-link external-link" href="https://jira.appcelerator.org/browse/ALOY-1481" target="_blank">bind multiple models to the same view</a>:    </p>
+    <p>You have the ability to <a class="external-link external-link" href="https://jira.appcelerator.org/browse/ALOY-1481" target="_blank">bind multiple models to the same view</a>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
@@ -641,9 +650,22 @@ model attributes to view properties    </span>
 <div class="line"><code class="plain">$.index.open();</code></div>
 </div>
     </div>
-    <div class="section section-4 " id="src-36739592_AlloyDataBinding-TrackerasExample">
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>With the release of CLI 7.1.0, values passed in at creation of a view can be used as values in TSS and XML. For example, if the <strong class=" ">name </strong>property was passed in at creation it can be used on a label:    </p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Model</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">&quot;book&quot;</code><code class="plain"> </code><code class="color1">instance</code><code class="plain">=</code><code class="string">&quot;true&quot;</code><code class="plain"> </code><code class="color1">id</code><code class="plain">=</code><code class="string">&quot;current&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">Label</code><code class="plain"> </code><code class="color1">text</code><code class="plain">=</code><code class="string">&quot;$.args.foo&quot;</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">Window</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+    </div>
+        <div class="section section-4 " id="src-36739592_AlloyDataBinding-TrackerasExample">
         <h4 class="heading "><span>Tracker as Example</span></h4>
-    <p>The <a class="external-link external-link" href="https://github.com/fokkezb/tracker" target="_blank">Tracker App</a> requires Alloy 1.9 and demonstrates <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/views/rides.xml" target="_blank">collection data binding</a>, <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/views/datapoint.xml" target="_blank">model data binding</a>, <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/controllers/data.js#L11" target="_blank">fetching a collection from a query</a>as well as <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/models/ride.js#L32" target="_blank">lazy transformations</a> and <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/controllers/ride.js#L13" target="_blank">populating an existing model</a>.    </p>
+    <p>The <a class="external-link external-link" href="https://github.com/fokkezb/tracker" target="_blank">Tracker App</a> requires Alloy 1.9 or later and demonstrates <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/views/rides.xml" target="_blank">collection data binding</a>, <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/views/datapoint.xml" target="_blank">model data binding</a>, <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/controllers/data.js#L11" target="_blank">fetching a collection from a query</a> as well as <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/models/ride.js#L32" target="_blank">lazy transformations</a> and <a class="external-link external-link" href="https://github.com/FokkeZB/Tracker/blob/master/app/controllers/ride.js#L13" target="_blank">populating an existing model</a>.    </p>
     </div>
     </div>
     </div>

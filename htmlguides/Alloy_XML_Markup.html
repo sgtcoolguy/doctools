@@ -40,10 +40,10 @@
 </li><li class=" ">    <p><a class="document-link " href="Alloy_XML_Markup.html#src-46248608_AlloyXMLMarkup-TextFieldkeyboardshorthands">TextField keyboard shorthands</a>    </p>
 </li></ul></li><li class=" ">    <p><a class="document-link " href="Alloy_XML_Markup.html#src-46248608_AlloyXMLMarkup-Eventhandling">Event handling</a>    </p>
 </li><li class=" ">    <p><a class="document-link " href="Alloy_XML_Markup.html#src-46248608_AlloyXMLMarkup-Databinding">Data binding</a>    </p>
-</li><li class=" ">    <p><a class="document-link " href="Alloy_XML_Markup.html#src-46248608_AlloyXMLMarkup-Nonstandardsyntax">Nonstandard syntax</a>    </p>
+</li><li class=" ">    <p><a class="document-link " href="Alloy_XML_Markup.html#src-46248608_AlloyXMLMarkup-Non-standardsyntax">Non-standard syntax</a>    </p>
 </li></ul>    <div class="section section-2 " id="src-46248608_AlloyXMLMarkup-Introduction">
         <h2 class="heading "><span>Introduction</span></h2>
-    <p>In Alloy, the XML markup abstracts the Titanium SDK UI components, so you do not need to code the creation and setup of these components using JavaScript and the Titanium SDK API. All view files must be placed in the <tt class=" ">app/views</tt> folder of your project with the &apos;.xml&apos; file extension. During code compilation, Alloy looks for these markup files in this specific location to transform them into Titanium code, which can be executed by Studio and the CLI.    </p>
+    <p>In Alloy, the XML markup abstracts the Titanium SDK UI components, so you do not need to code the creation and setup of these components using JavaScript and the Titanium SDK API. All view files must be placed in the <tt class=" ">app/views</tt> folder of your project with the <tt class=" ">.xml</tt> file extension. During code compilation, Alloy looks for these markup files in this specific location to transform them into Titanium code, which can be executed by Studio and the CLI.    </p>
     <p>The following code is an example of a view file:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
@@ -55,9 +55,12 @@
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <p>The <tt class=" ">Alloy</tt> tag is the root element for the XML markup and is required in all views. The Window element defines an instance of the <tt class=" ">Ti.UI.Window</tt> object and within that window instance is the Label element, which defines an instance of a <tt class=" ">Ti.UI.Label</tt> object. Almost all of the Alloy XML tags are the class names of the Titanium UI components without the preceding namespace. Exceptions to this rule are listed in the Element table below.    </p>
-    <p>Within a controller, a UI component can be referenced if its ID attribute is defined. For instance, the Label component in the above example has its ID defined as &apos;label&apos; and can be referenced in the controller using <tt class=" ">$.label</tt>.    </p>
-    <p>If the top-level UI component does not have an ID defined, it can be referenced using the name of the view-controller prefixed with a dollar sign and period (&apos;$.&apos;). For instance, the Window element in the above example can be referenced in the controller using <tt class=" ">$.index</tt>.    </p>
+    <p>The <tt class=" ">Alloy</tt> tag is the root element for the XML markup and is required in all views. The Window element defines an instance of the <tt class=" ">Ti.UI.Window</tt> object and within that window instance is the <tt class=" ">Label</tt> element which defines an instance of a <tt class=" ">Ti.UI.Label</tt> object. Almost all of the Alloy XML tags are the class names of the Titanium UI components without the preceding namespace. Exceptions to this rule are listed in the Element table below.    </p>
+    <div class="confbox admonition admonition-note aui-message warning shadowed information-macro">
+            <p>With the release of CLI 7.1.0, you can use platform as a prefix in the XML. For example: <tt class=" ">&lt;Label ios:text=&quot;Hello iOS!&quot; android:text=&quot;Hello Android!&quot; /&gt;</tt>    </p>
+    </div>
+        <p>Within a controller, a UI component can be referenced if its ID attribute is defined. For instance, the Label component in the above example has its ID defined as <tt class=" ">label</tt> and can be referenced in the controller using <tt class=" ">$.label</tt>.    </p>
+    <p>If the top-level UI component does not have an ID defined, it can be referenced using the name of the view-controller prefixed with a dollar sign and period (<tt class=" ">$.</tt>). For instance, the Window element in the above example can be referenced in the controller using <tt class=" ">$.index</tt>.    </p>
     <p>The following code is how you would traditionally code the markup example using the Titanium SDK:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">Resources/app.js</div>
@@ -87,7 +90,7 @@
         <p><tt class=" ">id</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Identifies UI elements in the controller (prefixed with &apos;$.&apos;) and style sheet (prefixed with &apos;#&apos;). IDs should be unique per view but are not global, so multiple views can have components with the same ID.    </p>
+        <p>Identifies UI elements in the controller (prefixed with <tt class=" ">$.</tt>) and style sheet (prefixed with <tt class=" ">#</tt>). IDs should be unique per view but are not global, so multiple views can have components with the same ID.    </p>
             </td>
         </tr>
     <tr>
@@ -95,7 +98,7 @@
         <p><tt class=" ">class</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>Applies additional styles (prefixed with &apos;.&apos; in the TSS file). Overwrites the element style but not the id style.    </p>
+        <p>Applies additional styles (prefixed with <tt class=" ">.</tt> in the TSS file). Overwrites the element style but not the id style.    </p>
             </td>
         </tr>
     <tr>
@@ -148,7 +151,7 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>&lt;properties&gt;    </p>
+        <p><tt class=" ">&lt;properties&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Assigns values to UI object properties. See <a class="document-link " href="Alloy_XML_Markup.html#src-46248608_AlloyXMLMarkup-Propertymapping">Property mapping</a> for more details.    </p>
@@ -156,7 +159,7 @@
         </tr>
     <tr>
             <td class="confluenceTd" rowspan="1" colspan="1">
-        <p>&lt;events&gt;    </p>
+        <p><tt class=" ">&lt;events&gt;</tt>    </p>
             </td>
                 <td class="confluenceTd" rowspan="1" colspan="1">
         <p>Assigns callbacks to UI object events. See <a class="document-link " href="Alloy_XML_Markup.html#src-46248608_AlloyXMLMarkup-Eventhandling">Event handling</a> for more details.    </p>
@@ -236,8 +239,8 @@
     <div class="section section-2 " id="src-46248608_AlloyXMLMarkup-Collectionelement">
         <h2 class="heading "><span>Collection element</span></h2>
     <p>The <tt class=" ">Collection</tt> XML element creates a singleton or instance of a collection. The <tt class=" ">Collection</tt> tag needs to be a child of the <tt class=" ">Alloy</tt> parent tag.    </p>
-    <p>The collection singleton is available in the <tt class=" ">Alloy.Collections</tt> namespace for the controller code to access. To create a singleton, use the <tt class=" ">Collection</tt> tag in markup and assign the <tt class=" ">src</tt> attribute to the model file minus the &apos;.js&apos; extension. To access the collection from a controller, use the <tt class=" ">Alloy.Collections</tt> namespace and append the model filename (minus the &apos;.js&apos; extension) to the end of it.    </p>
-    <p>For example, the code below creates a collection singleton based on a model called &apos;book.&apos;    </p>
+    <p>The collection singleton is available in the <tt class=" ">Alloy.Collections</tt> namespace for the controller code to access. To create a singleton, use the <tt class=" ">Collection</tt> tag and assign the <tt class=" ">src</tt> attribute to the model file minus the <tt class=" ">.js</tt> extension. To access the collection from a controller, use the <tt class=" ">Alloy.Collections</tt> namespace and append the model filename (minus the <tt class=" ">.js</tt> extension) to the end of it.    </p>
+    <p>For example, the code below creates a collection singleton based on a model called <tt class=" ">book</tt>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
@@ -252,11 +255,12 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> library = Alloy.Collections.book;</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
 <div class="line"><code class="plain">library.fetch();</code></div>
 </div>
     </div>
-    <p>The Collection tag can also be used to create an instance of a collection that is only available to one controller. To create an instance of a collection, use the <tt class=" ">Collection</tt> tag in markup, assign the <tt class=" ">src</tt> attribute to the model file minus the &apos;.js&apos; extension, assign the <tt class=" ">id</tt> attribute to access the collection in the controller, and set the <tt class=" ">instance</tt> attribute to true. To access the instance in a controller, use the ID that was defined in the markup.    </p>
-    <p>For example, the code below creates a collection instance based on a model called &apos;book.&apos;    </p>
+    <p>The Collection tag can also be used to create an instance of a collection that is only available to one controller. To create an instance of a collection, use the <tt class=" ">Collection</tt> tag, assign the <tt class=" ">src</tt> attribute to the model file minus the <tt class=" ">.js</tt> extension, assign the <tt class=" ">id</tt> attribute to access the collection in the controller, and set the <tt class=" ">instance</tt> attribute to true. To access the instance in a controller, use the ID that was defined in the markup.    </p>
+    <p>For example, the code below creates a collection instance based on a model called <tt class=" ">book</tt>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
@@ -278,8 +282,8 @@
     <div class="section section-2 " id="src-46248608_AlloyXMLMarkup-Modelelement">
         <h2 class="heading "><span>Model element</span></h2>
     <p>The <tt class=" ">Model</tt> XML element creates a singleton or instance of a model. The <tt class=" ">Model</tt> tag needs to be a child of the <tt class=" ">Alloy</tt> parent tag.    </p>
-    <p>The model singleton is available in the <tt class=" ">Alloy.Models</tt> namespace for the controller code to access. To create a singleton, use the <tt class=" ">Model</tt> tag in markup and assign the <tt class=" ">src</tt> attribute to the model file minus the &apos;.js&apos; extension. To access the model from a controller, use the <tt class=" ">Alloy.Models</tt> namespace and append the model filename (minus the &apos;.js&apos; extension) to the end of it.    </p>
-    <p>For example, the code below creates a model singleton based on a model called &apos;book.&apos;    </p>
+    <p>The model singleton is available in the <tt class=" ">Alloy.Models</tt> namespace for the controller code to access. To create a singleton, use the <tt class=" ">Model</tt> tag and assign the <tt class=" ">src</tt> attribute to the model file minus the <tt class=" ">.js</tt> extension. To access the model from a controller, use the <tt class=" ">Alloy.Models</tt> namespace and append the model filename (minus the <tt class=" ">.js</tt> extension) to the end of it.    </p>
+    <p>For example, the code below creates a model singleton based on a model called <tt class=" ">book</tt>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
@@ -294,12 +298,13 @@
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="keyword">var</code><code class="plain"> drama = Alloy.Models.book;</code></div>
+<div class="line"><code class="plain">&#xA0;</code></div>
 <div class="line"><code class="plain">drama.set(</code><code class="string">&apos;title&apos;</code><code class="plain">, </code><code class="string">&apos;Hamlet&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">drama.set(</code><code class="string">&apos;author&apos;</code><code class="plain">, </code><code class="string">&apos;William Shakespeare&apos;</code><code class="plain">);</code></div>
 </div>
     </div>
-    <p>The <tt class=" ">Model</tt> tag can also be used to create an instance of a model that is only available to one controller. To create an instance of a model, use the <tt class=" ">Model</tt> tag in markup, assign the <tt class=" ">src</tt> attribute to the model file minus the &apos;.js&apos; extension, assign the <tt class=" ">id</tt> attribute to access the model in the controller, and set the <tt class=" ">instance</tt> attribute to true. To access the instance in a controller, use the ID that was defined in the markup.    </p>
-    <p>For example, the code below creates a model instance based on a model called &apos;book.&apos;    </p>
+    <p>The <tt class=" ">Model</tt> tag can also be used to create an instance of a model that is only available to one controller. To create an instance of a model, use the <tt class=" ">Model</tt> tag, assign the <tt class=" ">src</tt> attribute to the model file minus the <tt class=" ">.js</tt> extension, assign the <tt class=" ">id</tt> attribute to access the model in the controller, and set the <tt class=" ">instance</tt> attribute to true. To access the instance in a controller, use the ID that was defined in the XML.    </p>
+    <p>For example, the code below creates a model instance based on a model called <tt class=" ">book</tt>:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
@@ -336,7 +341,6 @@
 <div class="line"><code class="plain">        height: 100</code></div>
 <div class="line"><code class="plain">    };</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> view = Ti.UI.createView(viewArgs);</code></div>
-<div class="line">&#xA0;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> labelArgs = {</code></div>
 <div class="line"><code class="plain">        color: args.textColor || </code><code class="string">&apos;black&apos;</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">        text: args.text || </code><code class="string">&apos;Foobar&apos;</code><code class="plain"> </code></div>
@@ -398,7 +402,7 @@
     <p>The <tt class=" ">Require</tt> XML element has two uses: including external views and importing widgets into the current view.    </p>
     <div class="section section-3 " id="src-46248608_AlloyXMLMarkup-Includingviews">
         <h3 class="heading "><span>Including views</span></h3>
-    <p>Views may be included in other views using the <tt class=" ">Require</tt> element. Specify the <tt class=" ">type</tt> attribute as &apos;view&apos; and the <tt class=" ">src</tt> attribute should be the view file minus the &apos;.xml&apos; extension, and assign a unique value to the <tt class=" ">id</tt> attribute to reference the UI objects in the controller code. If you omit the <tt class=" ">type</tt> attribute, Alloy assumes it is implicitly set to &apos;view&apos;.    </p>
+    <p>Views may be included in other views using the <tt class=" ">Require</tt> element. Specify the <tt class=" ">type</tt> attribute as <tt class=" ">view</tt> and the <tt class=" ">src</tt> attribute should be the view file minus the <tt class=" ">.xml</tt> extension, and assign a unique value to the <tt class=" ">id</tt> attribute to reference the UI objects in the controller code. If you omit the <tt class=" ">type</tt> attribute, Alloy assumes it is implicitly set to <tt class=" ">view</tt>.    </p>
     <p>The example below creates a tab group in the main view file and includes two separate files for each tab.    </p>
     <p>Contents of the main view file (<tt class=" ">index.xml</tt>) that includes the rss and about views:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -438,7 +442,7 @@
     <p>To use UI objects from the included views, the controller needs to reference the ID specified in the <tt class=" ">Require</tt> element and use the <tt class=" ">getView</tt> function with the ID of the object as the argument: <tt class=" ">var object = $.requireId.getView(&apos;objectId&apos;)</tt>. The code below demonstrates how to access the web view object from the about view, in the previous example code, to change the URL property.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
-<div class="line"><code class="plain">var aboutView = $.aboutTab.getView(</code><code class="string">&apos;aboutView&apos;</code><code class="plain">); </code></div>
+<div class="line"><code class="plain">var aboutView = $.aboutTab.getView(</code><code class="string">&apos;aboutView&apos;</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">aboutView.url = </code><code class="string">&apos;http://www.google.com&apos;</code><code class="plain">; </code></div>
 </div>
     </div>
@@ -448,7 +452,7 @@
     <p>Within a view in the regular Alloy project space (<tt class=" ">app/views)</tt>, use the <tt class=" ">&lt;Widget&gt;</tt> tag to import the widget into the application. A <tt class=" ">&lt;Widget/&gt;</tt> element is equivalent to a <tt class=" ">&lt;Require/&gt;</tt> element whose <tt class=" ">type</tt> attribute is set to &quot;widget&quot;.    </p>
     <p><strong class=" ">To import a widget:</strong>    </p>
 <ol class=" "><li class=" ">    <p>Copy the widget to the <tt class=" ">app/widgets</tt> folder. The widget must be contained within its own folder.    </p>
-</li><li class=" ">    <p>Add the <tt class=" ">&lt;Widget&gt;</tt> tag in the XML markup and specify its <tt class=" ">src</tt> attribute as the folder name of the widget.    </p>
+</li><li class=" ">    <p>Add the <tt class=" ">&lt;Widget&gt;</tt> tag in the XML and specify its <tt class=" ">src</tt> attribute as the folder name of the widget.    </p>
 </li><li class=" ">    <p>Update the <tt class=" ">dependencies</tt> object in the <tt class=" ">config.json</tt> file by adding a key/value pair with the name of the widget as the key and the version number as the value.    </p>
 </li></ol>    <p>You can optionally add the <tt class=" ">id</tt> and <tt class=" ">name</tt> attributes to the <tt class=" ">Require</tt> element:    </p>
 <ul class=" "><li class=" ">    <p>The <tt class=" ">id</tt> attribute allows you to reference the widget in the controller code. You can use this reference to call methods exported by the widget.    </p>
@@ -473,7 +477,7 @@
 <div class="line"><code class="plain">        &#x2514;&#x2500;&#x2500; widget.json</code></div>
 </div>
     </div>
-    <p>Then, add the <tt class=" ">&lt;Widget&gt;</tt> tag in the XML markup. Specify the <tt class=" ">src</tt> attribute as <tt class=" ">mywidget</tt>. Additionally, define the <tt class=" ">id</tt> and <tt class=" ">name</tt> attributes. Since the <tt class=" ">name</tt> attribute is defined, the <tt class=" ">foo</tt> view-controller is used instead of the <tt class=" ">widget</tt> view-controller.    </p>
+    <p>Then, add the <tt class=" ">&lt;Widget&gt;</tt> tag in the XML. Specify the <tt class=" ">src</tt> attribute as <tt class=" ">mywidget</tt>. Additionally, define the <tt class=" ">id</tt> and <tt class=" ">name</tt> attributes. Since the <tt class=" ">name</tt> attribute is defined, the <tt class=" ">foo</tt> view-controller is used instead of the <tt class=" ">widget</tt> view-controller.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                     <div class="title">app/views/index.xml</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="app/views/index.xml">
@@ -739,7 +743,7 @@
         </tr>
 </tbody>        </table>
             </div>
-    <p>Additionally, use the alias &apos;Ti&apos; for &apos;Titanium.&apos;    </p>
+    <p>Additionally, use the alias <tt class=" ">Ti</tt> for <tt class=" ">Titanium</tt>.    </p>
     </div>
     <div class="section section-2 " id="src-46248608_AlloyXMLMarkup-Conditionalcode">
         <h2 class="heading "><span>Conditional code</span></h2>
@@ -748,7 +752,7 @@
 </li><li class=" ">    <p>To specify a device-size-specific element, use the <tt class=" ">formFactor</tt> attribute and assign it a device size&#x2013;either <tt class=" ">handheld</tt> or <tt class=" ">tablet</tt>.    </p>
 </li><li class=" ">    <p>To use a custom query, assign the <tt class=" ">if</tt> attribute to a conditional statement in the <tt class=" ">Alloy.Globals</tt> namespace. This conditional statement must return a boolean value. You may only assign <u class=" "><strong class=" ">one</strong></u> query to the <tt class=" ">if</tt> attribute.    </p>
 </li><li class=" ">    <p>The application can also pass custom Boolean properties with the <tt class=" ">Alloy.createController()</tt> method, which can be accessed by the XML. Assign the <tt class=" ">if</tt> attribute to the name of the property prefixed with the <tt class=" ">$.args</tt> namespace, for example, <tt class=" ">$.args.someProperty</tt>.    </p>
-</li></ul>    <p>You can use all the attributes in combination.    </p>
+</li></ul>    <p>You can use all the attributes in any combination.    </p>
     <p>In the example below, different Annotation objects are displayed in the view based on the platform and device size.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -769,7 +773,7 @@
     </div>
     <div class="section section-2 " id="src-46248608_AlloyXMLMarkup-Propertymapping">
         <h2 class="heading "><span>Property mapping</span></h2>
-    <p>Each Titanium UI object property is defined as an attribute in the XML markup and TSS file if it accepts a string, boolean, number or Titanium SDK constant, such as <tt class=" ">TI.UI.SIZE</tt> or <tt class=" ">Ti.UI.TEXT_ALIGNMENT_CENTER</tt>. Setting properties in the XML markup overrides the settings in the TSS file. Node text can also be used to define the Label text and Button title properties.    </p>
+    <p>Each Titanium UI object property is defined as an attribute in the XML and TSS file if it accepts a string, boolean, number or Titanium SDK constant, such as <tt class=" ">TI.UI.SIZE</tt> or <tt class=" ">Ti.UI.TEXT_ALIGNMENT_CENTER</tt>. Setting properties in the XML overrides the settings in the TSS file. Node text can also be used to define the Label text and Button title properties.    </p>
     <p>For example, the following code defines multiple <tt class=" ">Ti.UI.Label</tt> properties and defines the Label text property as node text:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
@@ -779,7 +783,7 @@
     <p>Refer to the <a class="external-link external-link" href="http://docs.appcelerator.com/titanium/latest#!/api">Titanium API Guides</a> for the properties of each UI object.    </p>
     <div class="section section-3 " id="src-46248608_AlloyXMLMarkup-Proxyproperties">
         <h3 class="heading "><span>Proxy properties</span></h3>
-    <p>For properties that are assigned Titanium proxies, such as Views or Buttons, these properties can be declared in markup. Create a child tag under the Titanium UI object tag, using the name of the property with the first character capitalized. Then, declare your Titanium proxy inline with the child property tag. For example, the following code declares a <tt class=" ">rightNavButton</tt> for a Window:    </p>
+    <p>For properties that are assigned Titanium proxies, such as Views or Buttons, these properties can be declared. Create a child tag under the Titanium UI object tag, using the name of the property with the first character capitalized. Then, declare your Titanium proxy inline with the child property tag. For example, the following code declares a <tt class=" ">rightNavButton</tt> for a Window:    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
@@ -1093,7 +1097,7 @@
     </div>
     <div class="section section-2 " id="src-46248608_AlloyXMLMarkup-Eventhandling">
         <h2 class="heading "><span>Event handling</span></h2>
-    <p>In Alloy, events may be added in the views using a special attribute. Capitalize the first character of the event name and prefix it with &apos;on,&apos; so the <tt class=" ">Ti.UI.Button</tt> object events <tt class=" ">click</tt>, <tt class=" ">dblclick</tt> and <tt class=" ">swipe</tt> events will become the attributes: <tt class=" ">onClick</tt>, <tt class=" ">onDblclick</tt>, and <tt class=" ">onSwipe</tt>, respectively. These attributes can be used to assign callbacks from the corresponding controller. For example, the view code below binds the button <tt class=" ">click</tt> event to the <tt class=" ">confirmCB</tt> callback using the <tt class=" ">onClick</tt> attribute. The <tt class=" ">confirmCB</tt> callback needs to be defined in the associated controller of the view.    </p>
+    <p>In Alloy, events may be added in the views using a special attribute. Capitalize the first character of the event name and prefix it with <tt class=" ">on</tt>, so the <tt class=" ">Ti.UI.Button</tt> object events <tt class=" ">click</tt>, <tt class=" ">dblclick</tt> and <tt class=" ">swipe</tt> events will become the attributes: <tt class=" ">onClick</tt>, <tt class=" ">onDblclick</tt>, and <tt class=" ">onSwipe</tt>, respectively. These attributes can be used to assign callbacks from the corresponding controller. For example, the view code below binds the button <tt class=" ">click</tt> event to the <tt class=" ">confirmCB</tt> callback using the <tt class=" ">onClick</tt> attribute. The <tt class=" ">confirmCB</tt> callback needs to be defined in the associated controller of the view.    </p>
     <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Alloy</code><code class="plain">&gt;</code></div>
@@ -1109,9 +1113,9 @@
         <h2 class="heading "><span>Data binding</span></h2>
     <p>If you have a collection of model data that needs to be automatically updated to a view as it changes, you need to use data binding techniques to synchronize the model to a view. See <a class="document-link " href="Alloy_Data_Binding.html">Alloy Data Binding</a> for more details.    </p>
     </div>
-    <div class="section section-2 " id="src-46248608_AlloyXMLMarkup-Nonstandardsyntax">
-        <h2 class="heading "><span>Nonstandard syntax</span></h2>
-    <p>Some Titanium view elements use special syntax. Refer to the &apos;Alloy XML Markup&apos; examples in the Titanium API Guides site for the following view objects:    </p>
+    <div class="section section-2 " id="src-46248608_AlloyXMLMarkup-Non-standardsyntax">
+        <h2 class="heading "><span>Non-standard syntax</span></h2>
+    <p>Some Titanium view elements use special syntax. Refer to the <strong class=" ">Alloy XML Markup</strong> examples in the Titanium API Guides site for the following view objects:    </p>
 <ul class=" "><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.AlertDialog">AlertDialog</a> or Ti.UI.AlertDialog    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.ButtonBar">ButtonBar</a> or Ti.UI.ButtonBar    </p>
 </li><li class=" ">    <p><a class="external-link external-link" href="http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.CoverFlowView">CoverFlowView</a> or Ti.UI.iOS.CoverFlowView    </p>
