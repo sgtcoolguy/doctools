@@ -84,6 +84,39 @@ cd $DOCTOOLS
 sh css_fix.sh ## See TIDOC-2739
 sh js_fix.sh ## See TIDOC-3141
 
+say 'Main processing done.'
+
+printf "Do you need to gather SDK Module version information [y]es? "
+read -r input4
+if [ $input4 == "y" ] || [ $input4 == "yes" ]; then
+	printf "Which branch of Titanium SDK do you need to gather SDK Module info from? (i.e. #_#): "
+	read -r input6
+	if [ $input6 ]; then
+        node gather_sdk_module_versions.js -r $input6
+		say 'SDK module version data gathered'
+	else
+		echo "You need to enter a SDK Module version number (i.e. #_#). Skipping SDK Module data gathering step."
+	fi
+else
+	echo "Invalid option. Skipping the step to gather SDK Module version info."
+fi
+
+printf "Do you need to gather Android SDK information for https://wiki.appcelerator.org/display/guides2/Installing+the+Android+SDK? [y]es?"
+read -r input5
+if [ $input5 == "y" ] || [ $input5 == "yes" ]; then
+    printf "Which branch of Titanium SDK do you need to gather SDK Module info from?  (i.e. #_#): "
+	read -r input7
+	if [ $input7 ]; then
+        node get_android_sdk_versions.js -r $input7
+        say 'Android SDK data gathered'
+		open https://wiki.appcelerator.org/display/guides2/Installing+the+Android+SDK
+    else
+        echo "You need to enter a SDK Module version number (i.e. #_#). Skipping Android SDK data gathering step."
+    fi
+else
+	echo "Invalid option. Skipping the step to gather Android SDK version info."
+fi
+
 ## open localhost and manually review the pages
 # open http://localhost
 open http://localhost/platform/latest/
