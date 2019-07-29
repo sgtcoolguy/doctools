@@ -56,7 +56,7 @@ printf "Is this a SDK major or minor change? [y]es?"
 read -r input3
 if [ $input3 == "y" ] || [ $input3 == "yes" ]; then
 	echo "You will need to update the upstream for the git pull for the SDK in the repo_update.sh file"
-	open -a Atom $DOCTOOLS/repo_update.sh
+	code $DOCTOOLS/repo_update.sh
 else
 	echo "Invalid option. If the SDK version isn't a major or minor change, then there is nothing to change in the repo_update.sh file"
 fi
@@ -77,14 +77,34 @@ sh copyFavicon.sh >> messages.txt ## copy Griffin favicon.ico from ../doctools t
 cd $APPCWEBDOCS
 
 ## open the messages.txt file and you need to manually search for error messages
-# open -a Atom messages.txt
+# code ./messages.txt
 bash ../doctools/copy_platform.sh 2>> messages.txt
 bash ../doctools/copy_cloud.sh 2>> messages.txt
 cd $DOCTOOLS
 sh css_fix.sh ## See TIDOC-2739
 sh js_fix.sh ## See TIDOC-3141
 
-say 'Main processing done.'
+## open localhost and manually review the pages
+# open http://localhost
+open http://localhost/platform/latest/
+open http://localhost/platform/latest/#!/api
+open http://localhost/arrowdb/latest/
+open http://localhost/arrowdb/latest/#!/api
+open http://localhost/platform/latest/#!/guide
+echo "Manually check the page(s) you updated.\nIf everything looks good, check in the appc_web_docs directory."
+
+## open the Jenkins job pages so you can publish the docs (as needed)
+open http://devops-jenkins.appcelerator.org/job/appc_web_docs/
+open http://devops-jenkins.appcelerator.org/job/server_package_deployment/
+
+## open the messages.txt file and you need to manually search for error messages
+# code ./messages.txt
+rm messages.txt
+
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
+
+say "public build done"
 
 printf "Do you need to gather SDK Module version information [y]es? "
 read -r input4
@@ -116,31 +136,6 @@ if [ $input5 == "y" ] || [ $input5 == "yes" ]; then
 else
 	echo "Invalid option. Skipping the step to gather Android SDK version info."
 fi
-
-## open localhost and manually review the pages
-# open http://localhost
-open http://localhost/platform/latest/
-open http://localhost/platform/latest/#!/api
-open http://localhost/arrowdb/latest/
-open http://localhost/arrowdb/latest/#!/api
-open http://localhost/platform/latest/#!/guide
-echo "Manually check the page(s) you updated.\nIf everything looks good, check in the appc_web_docs directory."
-
-## open the Jenkins job pages so you can publish the docs (as needed)
-open http://devops-jenkins.appcelerator.org/job/appc_web_docs/
-open http://devops-jenkins.appcelerator.org/job/server_package_deployment/
-
-#open -a Atom ~/.bash_profile
-#echo "Grab your Jenkins password"
-
-## open the messages.txt file and you need to manually search for error messages
-# open -a Atom messages.txt
-rm messages.txt
-
-duration=$SECONDS
-echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
-
-say "public build done"
 
 printf "Generate an HTML version of the release not (if this is for a SDK release)? [y]es?"
 read -r input2
