@@ -1,9 +1,8 @@
-/* eslint-disable no-undef */
 /*
   Purpose: Scrape https://github.com/appcelerator/titanium_mobile/blob/master/support/module/packaged/modules.json to gather SDK module version info for use in the SDK release notes
   Usage: node gather_sdk_module_versions.js -r #_#
 
-  See ?? for more detail
+  See https://wiki.appcelerator.org/x/pq6VAw for more details.
 */
 
 const Nightmare = require("nightmare");
@@ -27,18 +26,14 @@ for (var i = 0; i < program.rawArgs.length; i++) { // loop through the array of 
 }
 
 if (!arguments.release) { // user id is required
-  console.log('SDK version number (#_#_X) is required. Quitting.');
+  console.warn('SDK version number (#_#_X) is required. Quitting.');
 
   process.exit(1);
 } else {
-
-  // console.log(arguments.release)
-
   const nightmare = Nightmare({
     show: false // use false if you don't want to see Electron "jumping through all the hoops"
     });
     const selector = 'div.Box-body.p-0.blob-wrapper.data.type-json table'; // selector of the SDK module version content
-    // const site = 'https://github.com/appcelerator/titanium_mobile/blob/master/support/module/packaged/modules.json';
     var site = 'https://github.com/appcelerator/titanium_mobile/blob/' + arguments.release + '_X/support/module/packaged/modules.json';
 
     var modules = {
@@ -123,8 +118,6 @@ if (!arguments.release) { // user id is required
         }
       });
 
-      console.log(modules);
-
       var output = '<p>You may copy and paste the following tables into your release note section for the SDK module version info</p><hr/><h3>Android and iOS</h3><table><tr><th>Module</th><th>Android version</th><th>iOS version</th></tr>' // begin building HTML elements
 
       for (i in modules.module) { // module version output
@@ -162,6 +155,3 @@ function getModule(text, id, moduleNamePlatform) {
     }
   }
 }
-
-
-
