@@ -48,8 +48,11 @@ touch messages.txt
 ## ** copy redirect documents into ../doctools/htmlguides
 ## see TIDOC-????
 cp $doctools/page_redirects/htmlguides/*.html $doctools/htmlguides
-
 cd $doctools
+
+# update all the required npm modules
+npm i
+
 ##echo "moved into $doctools\n"
 echo "Executing deploy.sh prod script\n"
 sh deploy.sh prod #> messages.txt

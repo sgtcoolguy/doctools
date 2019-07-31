@@ -34,6 +34,9 @@ cd $DOCTOOLS
 rm messages.txt
 touch messages.txt
 
+# update all the required npm modules
+npm i
+
 ## because the user is updating which branch to pull titanium_mobile from, this causes branch switching in other processes.
 ## This should only be used for generating API changes. **** change the generateAPIChanges.sh script accordingly
 ## ask if the repos should be updated. If not, check on the npm modules anyway

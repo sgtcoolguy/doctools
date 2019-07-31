@@ -1,5 +1,8 @@
 ## The following commands should only be used to build local docs for the purposes of testing the API docs:
 
+# update all the required npm modules
+npm i
+
 # clean up build report
 cd /Users/bimmel/Documents/Repositories/doctools
 rm API_local_build_report.txt
