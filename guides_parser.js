@@ -1,60 +1,41 @@
 /*
- * Copyright (c) 2015 Appcelerator, Inc. All Rights Reserved.
+ * Copyright (c) 2015-2018 Appcelerator, Inc. All Rights Reserved.
  * Licensed under the terms of the Apache Public License.
  *
  * Script to convert Wiki-exported content for JSDuck site.
  */
-var cheerio = require('cheerio'),
-	xml2js = require('xml2js').parseString,
-	exec = require('child_process').exec,
-	fs = require('fs'),
-	path = require('path'),
-	argc = 0,
-	inputFile = null,
-	outputDir = null,
-	showEditButton = false,
-	whiteList = [
-		'https://wiki.appcelerator.org/display/community',
-		'https://wiki.appcelerator.org/display/titans',
-		'https://wiki.appcelerator.org/display/td'
-		],
-	toc = [];
+'use strict';
 
-// Create path if it does not exist
-function mkdirDashP(path) {
-	var p = path.substring(0, path.lastIndexOf('/'));
-	if(!fs.existsSync(p)) {
-		mkdirDashP(p);
-	}
-	if(!fs.existsSync(path)) {
-		fs.mkdirSync(path);
-	}
-}
+const cheerio = require('cheerio');
+const xml2js = require('xml2js').parseString;
+const fs = require('fs-extra');
+const path = require('path');
+const whiteList = [
+	'https://wiki.appcelerator.org/display/community',
+	'https://wiki.appcelerator.org/display/titans',
+	'https://wiki.appcelerator.org/display/td'
+];
 
-function parse (node) {
-	// console.log(node);
-	var rv = [];
-	for (var x = 0; x < node.length; x++) {
-		var child = node[x];
-		//console.log("child" + child);
-		//console.log("child href:" + child.$.href)
-		//if (true) {
-		if (child.$.href.indexOf('#') === -1) {
-			var res = {},
-				dom = null,
-				shortname = child.$.href.replace('.html', ''),
-				dir = path.join(outputDir, 'guides', shortname);
+let inputFile = null;
+let outputDir = null;
+let showEditButton = false;
 
-			mkdirDashP(dir);
-			//console.log(path.join(path.dirname(inputFile), child.$.href));
-			//try {
-					dom = cheerio.load(fs.readFileSync(path.join(path.dirname(inputFile), child.$.href)), {xmlMode: true, decodeEntities: false});
-			//} catch (e) {
-				//console.log(e);
-			//} finally {
+function parse(node, topicsDone = new Set()) {
+	const rv = [];
+	for (let x = 0; x < node.length; x++) {
+		const child = node[x];
+		const hashIndex = child.$.href.indexOf('#');
+		const htmlFilename = hashIndex === -1 ? child.$.href : child.$.href.substring(0, hashIndex);
+		const shortname = htmlFilename.replace('.html', '');
 
-			//}
+		// If we're already done this file, no need to re-process the HTML!
+		if (!topicsDone.has(shortname)) {
+			topicsDone.add(shortname);
 
+			const dir = path.join(outputDir, 'guides', shortname);
+			fs.ensureDirSync(dir);
+
+			const dom = cheerio.load(fs.readFileSync(path.join(path.dirname(inputFile), `${shortname}.html`)), {xmlMode: true, decodeEntities: false});
 
 			dom('a').each(function (i, elem) {
 				var href = elem.attribs.href;
@@ -132,31 +113,31 @@ function parse (node) {
 
 			if (showEditButton) {
 				if (dom('.content')) {
-					var id = dom('.content').attr('id'),
-						wiki_url = 'https://wiki.appcelerator.org/pages/editpage.action?pageId=' + id;
-						// Fix for TIDOC-2718
-						if (wiki_url.indexOf('src-') >= 0) { // if wiki_url contains 'src-'
-							wiki_url = wiki_url.replace('src-',''); // remove 'src-' from the wiki_url
-						}
-					dom('.content').after('<a id="editButton" href = "' + wiki_url + '"><span>Edit</span></a>');
+					const id = dom('.content').attr('id');
+					let wiki_url = `https://wiki.appcelerator.org/pages/editpage.action?pageId=${id}`;
+					// Fix for TIDOC-2718
+					if (wiki_url.indexOf('src-') !== -1) { // if wiki_url contains 'src-'
+						wiki_url = wiki_url.replace('src-',''); // remove 'src-' from the wiki_url
+					}
+					dom('.content').after(`<a id="editButton" href = "${wiki_url}"><span>Edit</span></a>`);
 				}
 			}
 
 			fs.writeFileSync(path.join(dir, 'README.html'), dom.html());
 
-			res.name = shortname;
-			res.title = child.$.label;
+			const res = {
+				name: shortname,
+				title: child.$.label
+			};
 			if ('topic' in child) {
-				res.items = parse(child.topic);
+				res.items = parse(child.topic, topicsDone);
 				if (res.items.length <= 0) {
 					delete res.items;
 				}
 			}
-			//console.log(res);
 			rv.push(res);
 		}
 	}
-	//console.log(rv);
 	return rv;
 }
 
@@ -165,9 +146,9 @@ function cliUsage() {
 }
 
 // Start of Main Flow
-if ((argc = process.argv.length) > 2) {
+const argc = process.argv.length;
+if (argc > 2) {
 	for (var x = 2; x < argc; x++) {
-		//console.log("argument: " + process.argv[x]);
 		switch (process.argv[x]) {
 			case "--input":
 				if (++x >= argc) {
@@ -210,10 +191,11 @@ if (!outputDir) {
 }
 
 xml2js(fs.readFileSync(inputFile, 'utf8'), function (err, result) {
-    if (!err) {
-    	toc = parse(result.toc.topic);
+		if (err) {
+			console.error('Error converting XML to JSON: ' + err);
+			process.exit(1);
+		}
+
+		const toc = parse(result.toc.topic);
 		fs.writeFileSync(path.join(outputDir, 'guides.json'), JSON.stringify(toc, null, 4));
-    } else {
-    	console.error('Error converting XML to JSON: ' + err);
-    }
 });
