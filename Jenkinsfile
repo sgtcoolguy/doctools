@@ -232,7 +232,7 @@ node('linux && !master') {
 				sh 'bundle exec compass compile ./template/resources/sass'
 
 				// Grab extjs 4.1.1 to use
-				sh 'curl -o template/extjs.zip http://download.huihoo.com/extjs/ext-4.1.1a-gpl.zip'
+				sh 'curl -L -o template/extjs.zip http://download.huihoo.com/extjs/ext-4.1.1a-gpl.zip'
 				// unzip it
 				sh 'unzip template/extjs.zip -d template/'
 				sh 'rm template/extjs.zip'
@@ -286,6 +286,9 @@ node('linux && !master') {
 				// Wipe redundant html files!
 				sh "rm -rf ${outputDir}/guides/*/README.html" // html files aren't actually used, README.js is!
 				// sh "rm -rf ${outputDir}/guides/*/icon.png" // TODO: Remove icons too?
+
+				// copy revised API doc navigation images to ../appc_web_docs
+				sh "cp ./API_doc_images/* ${outputDir}/extjs/resources/themes/images/default/."
 			} // stage('Misc Assets')
 
 			stage('Archive') {
