@@ -301,7 +301,7 @@ node('linux && !master') {
 				// sh "rm -rf ${outputDir}/guides/*/icon.png" // TODO: Remove icons too?
 
 				// copy revised API doc navigation images to ../appc_web_docs
-				sh "cp ./API_doc_images/* ${outputDir}/extjs/resources/themes/images/default/."
+				sh "cp ./API_doc_images/* ${outputDir}/extjs/resources/themes/images/default/tree/."
 
 				// Copy landing
 				sh "cp -r ./landing ${outputDir}/.."
