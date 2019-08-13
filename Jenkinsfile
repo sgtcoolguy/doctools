@@ -240,6 +240,7 @@ node('linux && !master') {
 			def outputDir = './dist/platform/latest'
 			stage('JSDuck') {
 				sh 'bundle exec compass compile ./template/resources/sass'
+				sh 'rm -rf ./templates/resources/sass' // No longer need input sass files
 
 				// Grab extjs 4.1.1 to use
 				sh 'curl -L -o template/extjs.zip http://download.huihoo.com/extjs/ext-4.1.1a-gpl.zip'
