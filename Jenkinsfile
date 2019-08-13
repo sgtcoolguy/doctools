@@ -256,6 +256,10 @@ node('linux && !master') {
 				sh "mkdir -p ${outputDir}"
 				// Build docs
 				sh "bundle exec jsduck --template ./template --seo --output ${outputDir} --title 'Appcelerator Platform - Appcelerator Docs' --config ./jsduck.config ${alloyDirs}"
+				// FIXME: What do we need to do to make it generate a minified app.js?
+				// looks like it's baked into JSDuck's Rakefile here: https://github.com/appcelerator/jsduck/blob/master/Rakefile#L101
+				// which of course is using sencha command 2.x which I *cannot* even find on the Internet!
+				// TODO: I could cheat and steal the already generated version from appc_web_docs...
 			} // stage('JSDuck')
 
 			stage('Solr') {
@@ -269,11 +273,10 @@ node('linux && !master') {
 				sh 'bundle exec jsduck --external "void,Callback,Backbone.Collection,Backbone.Model,Backbone.Events" --export full --meta-tags ./meta --pretty-json -o - ../alloy/Alloy/lib ../alloy/docs/apidoc > ./build/alloy.json'
 				sh "node ./jsduck2json/alloy2solr.js ./build/alloy.json ${outputDir}/../data/solr/alloy_api.json"
 
-				// if [ $include_arrow ]; then
-				// 		echo "Generating Solr content for Arrow..."/
-				// 		bash $DOCTOOLS/jsduck2json.sh arrow solr
-				// 		cp ./dist/solr.json $outdir/../data/solr/arrow_api.json
-				// fi
+				// Arrow search index
+				// TODO: If we still need to do this, we need to clone 'arrow' and 'arrow-orm' repositories
+				// sh 'bundle exec jsduck --export full --meta-tags ./meta --pretty-json -o - ../arrow-orm/apidoc ../arrow-orm/lib/collection.js ../arrow-orm/lib/connector.js ../arrow-orm/lib/error.js ../arrow-orm/lib/instance.js ../arrow-orm/lib/model.js ../arrow-orm/lib/connector/capabilities/index.js ../arrow/apidoc ../arrow/lib/engines ../arrow/lib/api.js ../arrow/lib/arrow.js ../arrow/lib/block.js ../arrow/lib/middleware.js ../arrow/lib/router.js > ./build/arrow.json'
+				// sh "node ./jsduck2json/alloy2solr.js ./build/arrow.json ${outputDir}/../data/solr/arrow_api.json"
 			} // stage('Solr')
 
 			stage('Misc Assets') {
