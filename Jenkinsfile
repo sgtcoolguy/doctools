@@ -347,7 +347,7 @@ node('linux && !master') {
 					// add all our changes to staged in git
 					sh 'git add platform'
 					sh 'git commit -m "chore(release): update platform docs"' // commit it!
-					gitPush(name: 'docs') // push 'docs' branch to github
+					pushGit(name: 'docs') // push 'docs' branch to github
 				}
 			} // stage('Publish')
 		} // if 'docs' branch
