@@ -4,6 +4,9 @@ library 'pipeline-library'
 // Keep logs/reports/etc of last 30 builds, only keep build artifacts of last 3 builds
 properties([buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '3'))])
 
+// Publish only on the 'docs' branch
+def publish = env.BRANCH_NAME.equals('docs')
+
 // Variables to tune to grab different branches of products
 def SDK_BRANCH = 'master' // change to target branch to use for APIDoc generation: i.e. 7_4_X, master, 8_0_X
 def ALLOY_BRANCH = 'master'  // change to target branch to use for alloy doc generation: i.e. master
@@ -309,6 +312,44 @@ node('linux && !master') {
 					archiveArtifacts 'platform/'
 				} // dir('doctools/dist')
 			} // stage('Archive')
+
 		} // dir('doctools')
+
+		if (publish) {
+			stage('Publish') {
+				// when branch is "docs" check out appc_web_docs, then check in platform/latest to it!
+				sh 'mkdir -p appc_web_docs'
+				dir('appc_web_docs') {
+					// checkout appc_web_docs repo
+					checkout(changelog: false,
+						poll: false,
+						scm: [$class: 'GitSCM',
+							branches: [[name: '*/docs']],
+							doGenerateSubmoduleConfigurations: false,
+							extensions: [
+								[$class: 'CloneOption', depth: 1, honorRefspec: true, noTags: true, reference: '', shallow: true],
+								[$class: 'CleanBeforeCheckout'],
+								[$class: 'LocalBranch'] // so we can make changes and push them!
+							],
+							submoduleCfg: [],
+							userRemoteConfigs: [[credentialsId: 'f63e8a0a-536e-4695-aaf1-7a0098147b59', url: "git@github.com:appcelerator/appc_web_docs.git", refspec: '+refs/heads/docs:refs/remotes/origin/docs']]
+						]
+					)
+					sh 'rm -rf platform/latest-old' // wipe the "backup"
+					sh 'rm -rf platform/data'
+					sh 'rm -rf platform/landing'
+					// move existing to "backup"
+					sh 'mv platform/latest platform/latest-old'
+					// copy what we generated into repo
+					sh 'cp -R ../doctools/dist/platform/latest platform/latest'
+					sh 'cp -R ../doctools/dist/platform/data platform/data'
+					sh 'cp -R ../doctools/dist/platform/landing platform/landing'
+					// add all our changes to staged in git
+					sh 'git add platform'
+					sh 'git commit -m "chore(release): update platform docs"' // commit it!
+					gitPush(name: 'docs') // push 'docs' branch to github
+				}
+			} // stage('Publish')
+		} // if 'docs' branch
 	} // nodejs
 } // node
