@@ -78,6 +78,8 @@ async function minifyTemplate() {
 	// (But keep prettify lib, which is needed for source files)
 	console.log('Removing unused resources in minified templated...');
 	await Promise.all([
+		fs.remove(path.join(ROOT_DIR, 'template-min/app.js')),
+		fs.remove(path.join(ROOT_DIR, 'template-min/extjs-assets.zip')),
 		fs.remove(path.join(ROOT_DIR, 'template-min/resources/css/docs-ext.css')),
 		fs.remove(path.join(ROOT_DIR, 'template-min/resources/css/viewport.css')),
 		fs.remove(path.join(ROOT_DIR, 'template-min/resources/sass')),
@@ -109,16 +111,18 @@ async function concatenateCSSAndJS(templateHTMLPath) {
 // resources/css/app.css
 // Finally replaces the CSS section with <link> to that one CSS file.
 async function combineCSS(html, dir) {
-	const css = [];
 	const match = html.match(CSS_SECTION_PATTERN)[0];
-	await Promise.all(match.split(NEWLINE_PATTERN).map(async line => {
+	// enforce we retain order
+	// FIXME: Instead of retaining order, sort by original asset filename?
+	// That way if we have the same set of assets we'll always return same result!
+	const css = (await Promise.all(match.split(NEWLINE_PATTERN).map(async line => {
 		const fileMatch = line.match(STYLESHEET_LINK_PATTERN);
 		if (fileMatch) {
 			const file = fileMatch[1];
-			const content = await fs.readFile(path.join(dir, file));
-			css.push(content);
+			return fs.readFile(path.join(dir, file));
 		}
-	}));
+		return undefined;
+	}))).filter(val => val);
 
 	const minified = await yuiCompress(css.join('\n'), 'css');
 	const hash = await md5Hash(minified);
@@ -147,23 +151,24 @@ async function md5Hash(contents) {
 
 // Same thing for JavaScript, result is written to: app.js
 async function combineJS(html, dir) {
-	const js = [];
 	const match = html.match(JS_SECTION_PATTERN)[0];
-	await Promise.all(
+	// enforce we retain order
+	// FIXME: Instead of retaining order, sort by original asset filename?
+	// That way if we have the same set of assets we'll always return same result!
+	const js = (await Promise.all(
 		match.split(NEWLINE_PATTERN).map(async line => {
-		const fileMatch = line.match(SCRIPT_LINK_PATTERN);
-		if (fileMatch) {
-			const file = fileMatch[1];
-			const content = await fs.readFile(path.join(dir, file));
-			js.push(content);
-			return;
-		}
-		const scriptMatch = line.match(SCRIPT_BLOCK_PATTERN);
-		if (scriptMatch) {
-			js.push(scriptMatch[1]);
-		}
+			const fileMatch = line.match(SCRIPT_LINK_PATTERN);
+			if (fileMatch) {
+				const file = fileMatch[1];
+				return await fs.readFile(path.join(dir, file));
+			}
+			const scriptMatch = line.match(SCRIPT_BLOCK_PATTERN);
+			if (scriptMatch) {
+				return scriptMatch[1];
+			}
+			return undefined;
 		})
-	);
+	)).filter(val => val);
 
 	const minified = await yuiCompress(js.join('\n'), 'js');
 	const hash = await md5Hash(minified);
