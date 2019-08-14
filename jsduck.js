@@ -1,5 +1,6 @@
 const path = require('path');
 const util = require('util');
+const yuicompressor = require('yuicompressor');
 const child_process = require('child_process');
 const exec = util.promisify(child_process.exec);
 // const spawn = util.promisify(child_process.spawn);
@@ -17,6 +18,7 @@ const SCRIPT_LINK_PATTERN = /<script .* src="(.*)">/;
 const SCRIPT_BLOCK_PATTERN = /<script .*>(.*)<\/script>/;
 
 async function compileSass() {
+	// TODO Use an npm package to compile the scss files!
 	console.log('Compiling SASS...');
 	await exec('bundle exec compass compile ./template/resources/sass', { cwd: ROOT_DIR });
 	console.log('Compiled SASS');
@@ -31,25 +33,30 @@ async function grabExtJs() {
 	console.log('Set up EXTJS!');
 }
 
+async function senchaBuild() {
+	console.log('Running equivalent of sencha build command on JSB3 file...');
+	const json = await fs.readJson(path.join(ROOT_DIR, 'template/app.jsb3'));
+	const js = [];
+	await Promise.all(json.builds[0].files.map(async fileObj => {
+		const filename = path.join(ROOT_DIR, 'template', fileObj.path + fileObj.name);
+		const content = await fs.readFile(filename, 'utf8');
+		js.push(content);
+	}));
+	const appJSContent = await fs.readFile(path.join(ROOT_DIR, 'template/app.js'));
+	// TODO: Minify the file? We do it later, so probably a waste to do it now?
+	return fs.writeFile(path.join(ROOT_DIR, 'template-min/app.js'), js.join('\n') + '\n' + appJSContent);
+}
+
 async function minifyTemplate() {
 	// Minify the template!
 	await fs.remove(path.join(ROOT_DIR, 'template-min'));
 	await fs.copy(path.join(ROOT_DIR, 'template'), path.join(ROOT_DIR, 'template-min'));
 
-	// Concatenate files listed in JSB3 file
-	// FIXME: Rewrite this logic in Node.JS!
-	// Basically need to read in app.jsb3 as JSON, builds[0].files -> take path + name
-	console.log('Running sencha command on JSB3 file...');
-	await exec('./sencha/sencha build -p ./template/app.jsb3 -d ./template-min', { cwd: ROOT_DIR });
+	await senchaBuild();
 
 	console.log('Cleaning up template-min dir...');
-	await fs.remove(path.join(ROOT_DIR, 'template-min/app.js')),
 	await Promise.all([
-		// Remove intermediate build files
 		fs.remove(path.join(ROOT_DIR, 'template-min/app.jsb3')),
-		fs.remove(path.join(ROOT_DIR, 'template-min/all-classes.js')),
-		// Replace app.js with app-all.js
-		fs.move(path.join(ROOT_DIR, 'template-min/app-all.js'), path.join(ROOT_DIR, 'template-min/app.js')),
 		// Remove the entire app/ dir
 		fs.remove(path.join(ROOT_DIR, 'template-min/app')),
 	]);
@@ -112,32 +119,30 @@ async function combineCSS(html, dir) {
 			css.push(content);
 		}
 	}));
-	let filename = path.join(dir, 'resources/css/app.css');
-	await fs.writeFile(filename, css.join('\n'));
-	await yuiCompress(filename);
-	filename = await md5Rename(filename);
+
+	const minified = await yuiCompress(css.join('\n'), 'css');
+	const hash = await md5Hash(minified);
+	const filename = path.join(dir, `resources/css/app-${hash}.css`);
+	await fs.writeFile(filename, minified);
 
 	return html.replace(CSS_SECTION_PATTERN, `<link rel="stylesheet" href="resources/css/${path.basename(filename)}" type="text/css" />`);
 }
 
-async function yuiCompress(filepath) {
-	// no-op for now
-}
-
-// read in contents, generate md5 hash, change basename to basename-hash.extension
-async function md5Rename(filename) {
-	return new Promise(resolve => {
-		const shasum = crypto.createHash('md5');
-		const stream = fs.ReadStream(filename);
-		stream.on('data', d => shasum.update(d));
-		stream.on('end', () => {
-			const hash = shasum.digest('hex');
-			const extension = path.extname(filename);
-			const hashedName = path.join(path.dirname(filename), `${path.basename(filename, extension)}-${hash}${extension}`);
-			fs.renameSync(filename, hashedName);
-			resolve(hashedName);
+async function yuiCompress(string, type) {
+	return new Promise((resolve, reject) => {
+		yuicompressor.compressString(string, { type }, (err, data, extra) => {
+			if (err) {
+				return reject(err);
+			}
+			resolve(data);
 		});
 	});
+}
+
+async function md5Hash(contents) {
+	const shasum = crypto.createHash('md5');
+	shasum.update(contents);
+	return shasum.digest('hex');
 }
 
 // Same thing for JavaScript, result is written to: app.js
@@ -160,10 +165,10 @@ async function combineJS(html, dir) {
 		})
 	);
 
-	let filename = path.join(dir, 'app.js');
-	await fs.writeFile(filename, js.join('\n'));
-	await yuiCompress(filename);
-	filename = await md5Rename(filename);
+	const minified = await yuiCompress(js.join('\n'), 'js');
+	const hash = await md5Hash(minified);
+	const filename = path.join(dir, `app-${hash}.js`);
+	await fs.writeFile(filename, minified);
 	return html.replace(JS_SECTION_PATTERN, `<script type="text/javascript" src="${path.basename(filename)}"></script>`);
 }
 
