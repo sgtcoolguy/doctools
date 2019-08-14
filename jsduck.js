@@ -78,12 +78,8 @@ async function minifyTemplate() {
 		fs.remove(path.join(ROOT_DIR, 'template-min/resources/.sass-cache')),
 		fs.remove(path.join(ROOT_DIR, 'template-min/extjs/resources/css')),
 	]);
-
-	// Empty the extjs dir, leave only the main JS file and images
-	// await fs.emptyDir(path.join(ROOT_DIR, 'template-min/extjs'));
-	// await fs.copy(path.join(ROOT_DIR, 'template/extjs/ext-all.js'), path.join(ROOT_DIR, 'template-min/extjs/ext-all.js'));
-	// await fs.ensureDir(path.join(ROOT_DIR, 'template-min/extjs/resources/themes/images'));
-	// return fs.copy(path.join(ROOT_DIR, 'template/extjs/resources/themes/images/default'), path.join(ROOT_DIR, 'template-min/extjs/resources/themes/images'));
+	// Restore ext-all.css
+	await fs.copy(path.join(ROOT_DIR, 'template/extjs/resources/css/ext-all.css'), path.join(ROOT_DIR, 'template-min/extjs/resources/css/ext-all.css'));
 }
 
 async function rewriteCSSLinks(filePath) {
@@ -147,7 +143,6 @@ async function md5Rename(filename) {
 // Same thing for JavaScript, result is written to: app.js
 async function combineJS(html, dir) {
 	const js = [];
-	console.log(`trying to find JS tags in ${html}`);
 	const match = html.match(JS_SECTION_PATTERN)[0];
 	await Promise.all(
 		match.split(NEWLINE_PATTERN).map(async line => {
@@ -176,6 +171,7 @@ async function main() {
 	await grabExtJs();
 	await compileSass();
 	return minifyTemplate();
+	// TODO: Run jsduck with the minified template now!
 }
 
 main().then(() => {
