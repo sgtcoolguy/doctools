@@ -49,6 +49,10 @@ node('linux && !master') {
 			// We set a max 15 minute timeout for our sentinel loop
 			def taskOut = sh(returnStdout: true, script: "curl -s -H Accept:application/json 'https://wiki.appcelerator.org/rest/scroll-eclipsehelp/1.0/export?exportSchemeId=guides2-7F000001015A6C6CD20B1E0B58AE1D82&rootPageId=29004729&os_username=${env.USER}&os_password=${env.PASS}'").trim()
 			def exportTask = jsonParse(taskOut)
+			// TODO: Query to see if any wiki pages have been edited since our last export!
+			// Need to iterate over pagination of:
+			// curl -s -H Accept:application/json 'https://wiki.appcelerator.org/rest/api/content?type=page&spaceKey=guides2&expand=history.lastUpdated&limit=100'
+			// and check result[i].history.lastUpdated.when for a date string of format: "2012-04-20T17:30:38.000-0700"
 			taskId = exportTask['id']
 		} // withCredentials
 	} // stage
@@ -239,31 +243,12 @@ node('linux && !master') {
 
 			def outputDir = './dist/platform/latest'
 			stage('JSDuck') {
-				sh 'bundle exec compass compile ./template/resources/sass'
-				sh 'rm -rf ./templates/resources/sass' // No longer need input sass files
-
-				// Grab extjs 4.1.1 to use
-				sh 'curl -L -o template/extjs.zip http://download.huihoo.com/extjs/ext-4.1.1a-gpl.zip'
-				// unzip it
-				sh 'unzip template/extjs.zip -d template/'
-				sh 'rm template/extjs.zip'
-				// make dir for extjs files we need
-				sh 'rm -rf template/extjs'
-				sh 'mkdir -p template/extjs/resources/themes/images'
-				// copy extjs-all.js and resources to template
-				sh 'cp template/ext-4.1.1a/ext-all.js template/extjs/ext-all.js'
-				sh 'cp -r template/ext-4.1.1a/resources/themes/images/default template/extjs/resources/themes/images'
-				sh 'cp -r template/ext-4.1.1a/resources/css template/extjs/resources/css'
-				sh 'rm -rf template/ext-4.1.1a' // wipe expanded zip dir
+				sh 'node jsduck' // generate the minified template dir!
 
 				// Create output dir tree
 				sh "mkdir -p ${outputDir}"
 				// Build docs
-				sh "bundle exec jsduck --template ./template --seo --output ${outputDir} --title 'Appcelerator Platform - Appcelerator Docs' --config ./jsduck.config ${alloyDirs}"
-				// FIXME: What do we need to do to make it generate a minified app.js?
-				// looks like it's baked into JSDuck's Rakefile here: https://github.com/appcelerator/jsduck/blob/master/Rakefile#L101
-				// which of course is using sencha command 2.x which I *cannot* even find on the Internet!
-				// TODO: I could cheat and steal the already generated version from appc_web_docs...
+				sh "bundle exec jsduck --template ./template-min --seo --output ${outputDir} --title 'Appcelerator Platform - Appcelerator Docs' --config ./jsduck.config ${alloyDirs}"
 			} // stage('JSDuck')
 
 			stage('Solr') {
