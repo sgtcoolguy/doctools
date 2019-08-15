@@ -26,5 +26,13 @@
 	"engines": {
 		"node": ">=0.10.13"
 	},
-	"license": "Apache Public License v2"
+	"license": "Apache Public License v2",
+	"scripts": {
+		"jsduck": "node jsduck dist/platform/latest add-ons",
+		"wiki:export": "node wiki_export.js",
+		"wiki:unzip": "unzip -o wiki_export.zip -d htmlguides",
+		"wiki:redirects": "cp page_redirects/htmlguides/*.html htmlguides",
+		"wiki:finalize": "node htmlguides.js",
+		"wiki:guides": "mkdir -p build/guides && node guides_parser --input ./htmlguides/toc.xml --output ./build/guides --show_edit_button"
+	}
 }
