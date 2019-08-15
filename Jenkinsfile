@@ -35,16 +35,21 @@ def MODULES = [
 
 node('osx') { // Need to use osx, because our sencha command zip is for osx right now!
 	def SDK_DOC_DIR = '../titanium_mobile/apidoc'
-	def alloyDirs = '../alloy/Alloy/lib ../alloy/docs/apidoc ./add-ons ../alloy/Alloy/builtins'
+	def alloyDirs = '../alloy/Alloy/lib ../alloy/docs/apidoc ../alloy/Alloy/builtins'
 	def windowsArgs = '-a ../titanium_mobile_windows/apidoc/WindowsOnly -a ../titanium_mobile_windows/apidoc/Titanium'
 	def moduleArgs = ''
 	// TODO Include arrow repos/docs!
 
 	def taskId = ''
 	stage('Wiki Export Request') {
+		// TODO: change to "npm run wiki:request" - would requires us to checkout doctools and run npm ci first, which would delay this by about ~25s?
+		// TODO: ANother option I am leaning towards - let's just make a wiki-export repo which runs nightly, queries to see if any pages have changed since last export
+		// If so, request an export and archive the zipfile (or do the post processing here and then archive that?)
+		// Then we should also be able to just ask for the last successful build here and avoid the 5+ minute delay wiki exports generate
+
 		// Immediately start the async wiki export and record the task id, so it can run while we do other things...
 		withCredentials([usernamePassword(credentialsId: '58ae51f6-2708-4ed5-875c-ad410c06ef7c', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-			// Note that the synchronous APi just seems to never respond even with a 30 minute read timeout!
+			// Note that the synchronous API just seems to never respond even with a 30 minute read timeout!
 			// So here we schedule it to run async, then poll every 30 seconds to grab the result
 			// We set a max 15 minute timeout for our sentinel loop
 			def taskOut = sh(returnStdout: true, script: "curl -s -H Accept:application/json 'https://wiki.appcelerator.org/rest/scroll-eclipsehelp/1.0/export?exportSchemeId=guides2-7F000001015A6C6CD20B1E0B58AE1D82&rootPageId=29004729&os_username=${env.USER}&os_password=${env.PASS}'").trim()
@@ -220,38 +225,25 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 						} // while
 					} // timeout
 				} // withCredentials
-				sh 'mkdir Confluence_working'
-				sh 'mv com.appcelerator.tisdk.help_*.jar Confluence_working/confluence_guide2.zip'
+				sh 'mv com.appcelerator.tisdk.help_*.jar wiki_export.zip'
+				sh 'npm run wiki:unzip'
+				sh 'npm run wiki:redirects'
+				sh 'npm run wiki:finalize' // Massage the htmlguides: strip footer, add redirects, add banner, minify HTML
 				// TODO: Archive the wiki export?
-				sh 'mkdir htmlguides'
-				dir ('htmlguides') {
-					sh 'unzip -o ../Confluence_working/confluence_guide2.zip'
-				}
-				sh 'cp ./page_redirects/htmlguides/*.html ./htmlguides'
-				// Massage the htmlguides: strip footer, add redirects, add banner, minify HTML
-				sh 'node htmlguides.js'
 			} // stage('Wiki Download')
 
 			stage('Guides') {
 				// TODO: Allow addon guides?
-				sh 'mkdir -p build/guides'
-				sh 'node guides_parser --input ./htmlguides/toc.xml --output ./build/guides --show_edit_button' // generates build/guides/guides.json (and various folders/files under guides)
+				sh 'npm run wiki:guides'
 			} // stage('Guides')
 
 			// Copy videos.json over? WTF?
+			// TODO: Remove? This seems unnecesary
 			sh 'cp videos.json build/videos.json'
 
 			def outputDir = './dist/platform/latest'
 			stage('JSDuck') {
-				// FIXME: The sencha command I grabbed is osx! Can we get a version for windows/linux? I need to
-				// Somehow run the .run files foudn here: https://github.com/Shereef/Sencha-Touch-2/find/master
-				// on a linux node, and then copy the resulting /opt/SenchaSDKTools stuff out and massage into a zip file!
-				sh 'node jsduck' // generate the minified template dir!
-
-				// Create output dir tree
-				sh "mkdir -p ${outputDir}"
-				// Build docs
-				sh "bundle exec jsduck --template ./template-min --seo --output ${outputDir} --title 'Appcelerator Platform - Appcelerator Docs' --config ./jsduck.config ${alloyDirs}"
+				sh "npm run jsduck ${alloyDirs}"
 			} // stage('JSDuck')
 
 			stage('Solr') {
@@ -272,6 +264,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 			} // stage('Solr')
 
 			stage('Misc Assets') {
+				// TODO: Move this htmlguides stuff into the wiki Download/Guides section!
 				// TIDOC-1327 Fix server errors
 				sh "cp -r ./htmlguides/images/icons ${outputDir}/resources/images/."
 
@@ -284,10 +277,6 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 
 				// Copy API images folder
 				sh "cp -r ${SDK_DOC_DIR}/images ${outputDir}/."
-
-				// Wipe redundant html files!
-				sh "rm -rf ${outputDir}/guides/*/README.html" // html files aren't actually used, README.js is!
-				// sh "rm -rf ${outputDir}/guides/*/icon.png" // TODO: Remove icons too?
 
 				// Copy landing
 				sh "cp -r ./landing ${outputDir}/.."
