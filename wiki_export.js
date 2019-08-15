@@ -10,7 +10,6 @@ async function requestExport(username, password) {
 
 async function main(username, password) {
 	const taskId = await requestExport(username, password);
-	console.log(`Requested wiki export, given task id of ${taskId}`);
 	await pollForExport(taskId, username, password);
 	return downloadExport(taskId, username, password);
 }
@@ -61,8 +60,10 @@ async function downloadExport(taskId, username, password) {
 		response.data.pipe(writeStream);
 	});
 }
+
+// FIXME: Allow breaking up process into just requesting and getting task id back; polling on task given id; or doing full request + polling/export
 if (process.argv.length !== 4) {
-	console.log('This script expects two argumments: username and password - used to interact with Confluence wiki APIs');
+	console.log('This script expects two arguments: username and password - used to interact with Confluence wiki APIs');
 	process.exit(1);
 }
 
