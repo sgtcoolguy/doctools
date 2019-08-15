@@ -202,17 +202,49 @@ async function combineJS(html, dir) {
 	return html.replace(JS_SECTION_PATTERN, `<script type="text/javascript" src="${path.basename(filename)}"></script>`);
 }
 
-async function main() {
+async function runJSDuck(outputDir, additionalDirs) {
+	// Create output dir tree
+	fs.ensureDir(path.join(ROOT_DIR, outputDir));
+	// Build docs
+	return exec(`bundle exec jsduck --template ./template-min --output ${outputDir} --title 'Appcelerator Platform - Appcelerator Docs' --config ./jsduck.config ${additionalDirs.join(' ')}`, { cwd: ROOT_DIR });
+}
+
+async function removeUnusedGeneratedAssets(outputDir) {
+	const guidesDir = path.join(ROOT_DIR, outputDir, 'guides');
+	const dirs = await fs.readdir(guidesDir);
+	// Delete all the unused icon.png/README.html files in the guides
+	return Promise.all(dirs.map(async d => {
+		return Promise.all([
+			fs.remove(path.join(guidesDir, d, 'icon.png')),
+			fs.remove(path.join(guidesDir, d, 'README.html')),
+		]);
+	}));
+}
+
+async function main(outputDir, ...additionalDirs) {
+	// Do some sanity checks on necessary input files
+	if (!(await fs.exists(path.join(ROOT_DIR, 'build/guides/guides.json')))) {
+		throw new Error(`JSDuck requires that build/guides/guides.json has already been generated from a Wiki export`);
+	}
+	if (!(await fs.exists(path.join(ROOT_DIR, 'build/titanium.js')))) {
+		throw new Error(`JSDuck requires that build/titanium.js has already been generated from Titanium Mobile SDK and/or Windows SDK and modules.`);
+	}
 	await Promise.all([
 		setupEXTJS(),
 		setupSencha(),
 	]);
 	await compileSass(); // Do we need EXTJS first to compile the scss files?
-	return minifyTemplate();
-	// TODO: Run jsduck with the minified template now!
+	await minifyTemplate();
+	await runJSDuck(outputDir, additionalDirs);
+	return removeUnusedGeneratedAssets(outputDir);
 }
 
-main().then(() => {
+if (process.argv.length < 4) {
+	console.error('This script must be run with at least one output directory argument, and optionally extra paths to use for inputs');
+	process.exit(1);
+}
+
+main(process.argv[2], process.argv.slice(3)).then(() => {
 	process.exit(0);
 }).catch(err => {
 	console.error(err);
