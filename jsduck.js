@@ -27,24 +27,49 @@ async function compileSass() {
 // Just get away with a customized subset of EXTJS 4.1.1a GPL -
 // extjs/ext-all.js, extjs/resources/themes/images/default, extjs/resources/css
 // We have extjs-assets.zip now we could check in and use!
-async function grabExtJs() {
+async function setupEXTJS() {
 	await fs.remove(path.join(ROOT_DIR, 'template/extjs'));
 	await exec('unzip -qq template/extjs-assets.zip -d template/', { cwd: ROOT_DIR }); // unzip it
 	console.log('Set up EXTJS!');
 }
 
+async function setupSencha() {
+	console.log('Unzipping sencha...');
+	await fs.remove(path.join(ROOT_DIR, 'sencha'));
+	await exec('unzip ./sencha.zip -d .', { cwd: ROOT_DIR });
+	console.log('Set up Sencha!');
+}
+
 async function senchaBuild() {
-	console.log('Running equivalent of sencha build command on JSB3 file...');
-	const json = await fs.readJson(path.join(ROOT_DIR, 'template/app.jsb3'));
-	const js = [];
-	await Promise.all(json.builds[0].files.map(async fileObj => {
-		const filename = path.join(ROOT_DIR, 'template', fileObj.path + fileObj.name);
-		const content = await fs.readFile(filename, 'utf8');
-		js.push(content);
-	}));
-	const appJSContent = await fs.readFile(path.join(ROOT_DIR, 'template/app.js'));
-	// TODO: Minify the file? We do it later, so probably a waste to do it now?
-	return fs.writeFile(path.join(ROOT_DIR, 'template-min/app.js'), js.join('\n') + '\n' + appJSContent);
+	console.log('Running Sencha build on EXTJS app...');
+	await exec('node ./sencha/sencha.js build -p template-min/app.jsb3 -d template-min', { cwd: ROOT_DIR });
+	console.log('Cleaning up template-min dir...');
+	await fs.remove(path.join(ROOT_DIR, 'template-min/app.js'));
+	await Promise.all([
+		fs.remove(path.join(ROOT_DIR, 'template-min/app.jsb3')),
+		fs.remove(path.join(ROOT_DIR, 'template-min/all-classes.js')),
+		// Remove the entire app/ dir
+		fs.remove(path.join(ROOT_DIR, 'template-min/app')),
+		fs.move(path.join(ROOT_DIR, 'template-min/app-all.js'), path.join(ROOT_DIR, 'template-min/app.js')),
+	]);
+
+	// // FIXME: Something is not right here. Sencha's build does more than just concatenate!
+	// console.log('Running equivalent of sencha build command on JSB3 file...');
+	// const json = await fs.readJson(path.join(ROOT_DIR, 'template/app.jsb3'));
+	// const js = [];
+	// await Promise.all(json.builds[0].files.map(async fileObj => {
+	// 	const filename = path.join(ROOT_DIR, 'template', fileObj.path + fileObj.name);
+	// 	const content = await fs.readFile(filename, 'utf8');
+	// 	js.push(content);
+	// }));
+	// const appJSContent = await fs.readFile(path.join(ROOT_DIR, 'template/app.js'));
+	// // TODO: Minify the file? We do it later, so probably a waste to do it now?
+	// await fs.writeFile(path.join(ROOT_DIR, 'template-min/app.js'), js.join('\n') + '\n' + appJSContent);
+	// return Promise.all([
+	// 	fs.remove(path.join(ROOT_DIR, 'template-min/app.jsb3')),
+	// 	// Remove the entire app/ dir
+	// 	fs.remove(path.join(ROOT_DIR, 'template-min/app')),
+	// ]);
 }
 
 async function minifyTemplate() {
@@ -53,13 +78,6 @@ async function minifyTemplate() {
 	await fs.copy(path.join(ROOT_DIR, 'template'), path.join(ROOT_DIR, 'template-min'));
 
 	await senchaBuild();
-
-	console.log('Cleaning up template-min dir...');
-	await Promise.all([
-		fs.remove(path.join(ROOT_DIR, 'template-min/app.jsb3')),
-		// Remove the entire app/ dir
-		fs.remove(path.join(ROOT_DIR, 'template-min/app')),
-	]);
 
 	console.log('Rewriting CSS links in template files...');
 	// FIXME: These both clobber one another because they're dealing with same concatenated filename app.css
@@ -133,6 +151,7 @@ async function combineCSS(html, dir) {
 }
 
 async function yuiCompress(string, type) {
+	// TODO: Instead of using npm package, use the version inside the sencha zip?
 	return new Promise((resolve, reject) => {
 		yuicompressor.compressString(string, { type }, (err, data, extra) => {
 			if (err) {
@@ -178,8 +197,11 @@ async function combineJS(html, dir) {
 }
 
 async function main() {
-	await grabExtJs();
-	await compileSass();
+	await Promise.all([
+		setupEXTJS(),
+		setupSencha(),
+	]);
+	await compileSass(); // Do we need EXTJS first to compile the scss files?
 	return minifyTemplate();
 	// TODO: Run jsduck with the minified template now!
 }
