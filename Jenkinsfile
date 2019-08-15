@@ -33,7 +33,7 @@ def MODULES = [
 ]
 
 
-node('linux && !master') {
+node('osx') { // Need to use osx, because our sencha command zip is for osx right now!
 	def SDK_DOC_DIR = '../titanium_mobile/apidoc'
 	def alloyDirs = '../alloy/Alloy/lib ../alloy/docs/apidoc ./add-ons ../alloy/Alloy/builtins'
 	def windowsArgs = '-a ../titanium_mobile_windows/apidoc/WindowsOnly -a ../titanium_mobile_windows/apidoc/Titanium'
@@ -243,6 +243,9 @@ node('linux && !master') {
 
 			def outputDir = './dist/platform/latest'
 			stage('JSDuck') {
+				// FIXME: The sencha command I grabbed is osx! Can we get a version for windows/linux? I need to
+				// Somehow run the .run files foudn here: https://github.com/Shereef/Sencha-Touch-2/find/master
+				// on a linux node, and then copy the resulting /opt/SenchaSDKTools stuff out and massage into a zip file!
 				sh 'node jsduck' // generate the minified template dir!
 
 				// Create output dir tree
