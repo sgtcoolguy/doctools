@@ -6,6 +6,7 @@ const exec = util.promisify(child_process.exec);
 // const spawn = util.promisify(child_process.spawn);
 const fs = require('fs-extra');
 const crypto = require('crypto');
+const os = require('os');
 
 const ROOT_DIR = __dirname;
 const NEWLINE_PATTERN = /\r?\n/;
@@ -36,7 +37,12 @@ async function setupEXTJS() {
 async function setupSencha() {
 	console.log('Unzipping sencha...');
 	await fs.remove(path.join(ROOT_DIR, 'sencha'));
-	await exec('unzip ./sencha.zip -d .', { cwd: ROOT_DIR });
+	const platform = os.platform();
+	const exists = fs.exists(path.join(ROOT_DIR, `sencha-${platform}.zip`));
+	if (!exists) {
+		throw new Error(`We do not have a copy of the sencha command binaries/scripts for ${platform} yet!`);
+	}
+	await exec(`unzip ./sencha-${platform}.zip -d .`, { cwd: ROOT_DIR });
 	console.log('Set up Sencha!');
 }
 
