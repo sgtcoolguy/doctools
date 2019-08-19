@@ -15,7 +15,7 @@ const CSS_SECTION_PATTERN = /<!-- BEGIN CSS -->.*<!-- END CSS -->/s;
 const STYLESHEET_LINK_PATTERN = /<link rel="stylesheet" href="(.*?)"/;
 
 const JS_SECTION_PATTERN = /<!-- BEGIN JS -->.*<!-- END JS -->/s;
-const SCRIPT_LINK_PATTERN = /<script .* src="(.*)">/;
+const SCRIPT_LINK_PATTERN = /<script .* src="(.*)"(\s*\/)?>/;
 const SCRIPT_BLOCK_PATTERN = /<script .*>(.*)<\/script>/;
 
 async function compileSass() {
