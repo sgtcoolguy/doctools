@@ -40,28 +40,6 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 	def moduleArgs = ''
 	// TODO Include arrow repos/docs!
 
-	def taskId = ''
-	stage('Wiki Export Request') {
-		// TODO: change to "npm run wiki:request" - would requires us to checkout doctools and run npm ci first, which would delay this by about ~25s?
-		// TODO: ANother option I am leaning towards - let's just make a wiki-export repo which runs nightly, queries to see if any pages have changed since last export
-		// If so, request an export and archive the zipfile (or do the post processing here and then archive that?)
-		// Then we should also be able to just ask for the last successful build here and avoid the 5+ minute delay wiki exports generate
-
-		// Immediately start the async wiki export and record the task id, so it can run while we do other things...
-		withCredentials([usernamePassword(credentialsId: '58ae51f6-2708-4ed5-875c-ad410c06ef7c', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-			// Note that the synchronous API just seems to never respond even with a 30 minute read timeout!
-			// So here we schedule it to run async, then poll every 30 seconds to grab the result
-			// We set a max 15 minute timeout for our sentinel loop
-			def taskOut = sh(returnStdout: true, script: "curl -s -H Accept:application/json 'https://wiki.appcelerator.org/rest/scroll-eclipsehelp/1.0/export?exportSchemeId=guides2-7F000001015A6C6CD20B1E0B58AE1D82&rootPageId=29004729&os_username=${env.USER}&os_password=${env.PASS}'").trim()
-			def exportTask = jsonParse(taskOut)
-			// TODO: Query to see if any wiki pages have been edited since our last export!
-			// Need to iterate over pagination of:
-			// curl -s -H Accept:application/json 'https://wiki.appcelerator.org/rest/api/content?type=page&spaceKey=guides2&expand=history.lastUpdated&limit=100'
-			// and check result[i].history.lastUpdated.when for a date string of format: "2012-04-20T17:30:38.000-0700"
-			taskId = exportTask['id']
-		} // withCredentials
-	} // stage
-
 	nodejs(nodeJSInstallationName: 'node 8.11.4') {
 		stage('Checkout') {
 			ensureNPM('latest')
@@ -206,30 +184,10 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 			} // stage('APIDocs')
 
 			stage('Wiki Download') {
-				// Grab down a jar file with the contents of the wiki guide
-				// we requested the export start at the very top and now we poll for the result.
-				// It should likely already be done by time we reach here, but we'll wait for up to 5 more minutes to grab it
-				withCredentials([usernamePassword(credentialsId: '58ae51f6-2708-4ed5-875c-ad410c06ef7c', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-					timeout(10) {
-						while (true) {
-							def headers = sh(returnStdout: true, script: "curl -Is --connect-timeout 5 'https://wiki.appcelerator.org/rest/scroll-eclipsehelp/1.0/export/${taskId}?os_username=${env.USER}&os_password=${env.PASS}' || echo 1 500").trim()
-							// split headers by whitespace, second entry is http status code
-							def httpCode = Integer.valueOf(headers.split()[1])
-							if (httpCode == 200) { // yay! download it!
-								sh "curl -f --remote-header-name --remote-name 'https://wiki.appcelerator.org/rest/scroll-eclipsehelp/1.0/export/${taskId}?os_username=${env.USER}&os_password=${env.PASS}'"
-								break
-							} else if (httpCode != 202) { // something went wrong, fail!
-								error "Failed to grab down export of wiki with http code: ${httpCode}"
-							}
-							sleep 30 // sleep 30 seconds between polling again
-						} // while
-					} // timeout
-				} // withCredentials
-				sh 'mv com.appcelerator.tisdk.help_*.jar wiki_export.zip'
+				copyArtifacts fingerprintArtifacts: true, projectName: '../wiki-export/master'
 				sh 'npm run wiki:unzip'
 				sh 'npm run wiki:redirects'
 				sh 'npm run wiki:finalize' // Massage the htmlguides: strip footer, add redirects, add banner, minify HTML
-				// TODO: Archive the wiki export?
 			} // stage('Wiki Download')
 
 			stage('Guides') {
