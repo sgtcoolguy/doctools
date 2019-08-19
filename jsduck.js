@@ -206,7 +206,7 @@ async function runJSDuck(outputDir, additionalDirs) {
 	// Create output dir tree
 	fs.ensureDir(path.join(ROOT_DIR, outputDir));
 	// Build docs
-	return exec(`bundle exec jsduck --template ./template-min --output ${outputDir} --title 'Appcelerator Platform - Appcelerator Docs' --config ./jsduck.config ${additionalDirs.join(' ')}`, { cwd: ROOT_DIR });
+	return exec(`bundle exec jsduck --template ./template-min --seo --output ${outputDir} --title 'Appcelerator Platform - Appcelerator Docs' --config ./jsduck.config ${additionalDirs.join(' ')}`, { cwd: ROOT_DIR });
 }
 
 async function removeUnusedGeneratedAssets(outputDir) {
