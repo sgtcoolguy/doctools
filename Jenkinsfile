@@ -268,17 +268,15 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 							userRemoteConfigs: [[credentialsId: 'f63e8a0a-536e-4695-aaf1-7a0098147b59', url: "git@github.com:appcelerator/appc_web_docs.git", refspec: '+refs/heads/docs:refs/remotes/origin/docs']]
 						]
 					)
-					sh 'rm -rf platform/latest-old' // wipe the "backup"
 					sh 'rm -rf platform/data'
 					sh 'rm -rf platform/landing'
-					// move existing to "backup"
-					sh 'mv platform/latest platform/latest-old'
 					// copy what we generated into repo
 					sh 'cp -R ../doctools/dist/platform/latest platform/latest'
 					sh 'cp -R ../doctools/dist/platform/data platform/data'
 					sh 'cp -R ../doctools/dist/platform/landing platform/landing'
 					// add all our changes to staged in git
 					sh 'git add platform'
+					// FIXME: Add details of any changes to this build of doctools into our commit message here!
 					sh 'git commit -m "chore(release): update platform docs"' // commit it!
 					pushGit(name: 'docs') // push 'docs' branch to github
 				}
