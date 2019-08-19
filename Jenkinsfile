@@ -276,11 +276,36 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 					sh 'cp -R ../doctools/dist/platform/landing platform/landing'
 					// add all our changes to staged in git
 					sh 'git add platform'
-					// FIXME: Add details of any changes to this build of doctools into our commit message here!
-					sh 'git commit -m "chore(release): update platform docs"' // commit it!
+					//  Add details of any changes to this build of doctools into our commit message here!
+					// https://support.cloudbees.com/hc/en-us/articles/217630098-How-to-access-Changelogs-in-a-Pipeline-Job-
+					def changes = getChangeString()
+					writeFile file: 'commit.txt', text: "chore(release): update platform docs\n\n${changes}"
+					sh 'git commit -F commit.txt' // commit it!
 					pushGit(name: 'docs') // push 'docs' branch to github
 				}
 			} // stage('Publish')
 		} // if 'docs' branch
 	} // nodejs
 } // node
+
+@NonCPS
+def getChangeString() {
+    MAX_MSG_LEN = 100
+    def changeString = ''
+
+    echo 'Gathering SCM changes'
+    def changeLogSets = currentBuild.changeSet
+    for (int i = 0; i < changeLogSets.size(); i++) {
+        def entries = changeLogSets[i].items
+        for (int j = 0; j < entries.length; j++) {
+            def entry = entries[j]
+            truncated_msg = entry.msg.take(MAX_MSG_LEN)
+            changeString += " - ${truncated_msg} [${entry.author}] (${entry.commitId})\n"
+        }
+    }
+
+    if (!changeString) {
+        changeString = ' - No new changes\n'
+    }
+    return changeString
+}
