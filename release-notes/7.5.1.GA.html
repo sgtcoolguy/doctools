@@ -1,0 +1,1712 @@
+<title>Titanium SDK 7.5.1.GA</title>
+<link type="text/css" rel="stylesheet" href="css/release_note.css" media="all">
+<h1>Titanium SDK 7.5.1.GA - 26 February 2019</h1>
+<div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-Aboutthisrelease">
+  <h2>About this release</h2>
+  <p>Titanium SDK 7.5.1 is a patch release of the SDK, addressing high-priority issues from previous releases.</p>
+  <p>As of this GA release, the previous Titanium SDK patch release is no longer supported. End of support for this version will be 2019-08-26 or until the next patch release. Note: major and minor releases continue to be supported according to their nominal
+    lifetime. See <a class="external-link " href="https://wiki.appcelerator.org/display/guides2/Axway+Appcelerator+Deprecation+Policy">Axway Appcelerator Deprecation Policy</a> and <a class="external-link " href="https://wiki.appcelerator.org/display/guides2/Axway+Appcelerator+Product+Lifecycle#AxwayAppceleratorProductLifecycle-NominalLifetimes">Nominal Lifetimes</a>    documents for details.</p>
+</div>
+<div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-Newfeatures">
+  <h2>New features</h2>
+  <ul>
+    <li><a href="https://jira.appcelerator.org/browse/TIMOB-13966">TIMOB-13966</a> - TiAPI: Select Locale for L() at runtime
+      <ul>
+        <li>Change language on runtime across app-launches</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-Communitycredits">
+  <h2>Community credits</h2>
+  <ul>
+    <li>Jorge Macias Garcia - <a href="https://jira.appcelerator.org/browse/TIMOB-26625">TIMOB-26625</a></li>
+    <li>Joe Finnigan - <a href="https://jira.appcelerator.org/browse/TIMOB-26628">TIMOB-26628</a></li>
+    <li>Thomas Weber - <a href="https://jira.appcelerator.org/browse/TIMOB-26612">TIMOB-26612</a></li>
+    <li><a href="https://github.com/viezel">Mads Moller</a> - <a href="https://jira.appcelerator.org/browse/TIMOB-13966">TIMOB-13966</a></li>
+    <li>Ricardo Ramirez - <a href="https://jira.appcelerator.org/browse/TIMOB-20266">TIMOB-20266</a></li>
+    <li><a href="https://github.com/johnstan">John Staunton</a> - <a href="https://jira.appcelerator.org/browse/TIMOB-26688">TIMOB-26688</a></li>
+    <li>Teun Klijn - <a href="https://jira.appcelerator.org/browse/TIMOB-26594">TIMOB-26594</a></li>
+  </ul>
+</div>
+<div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-Fixedissues">
+  <h2>Fixed issues</h2>
+  <div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-Android">
+    <h3>Android</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-20266">TIMOB-20266</a> - Android: ListView with attributed strings are not rendering sometimes</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-26545">TIMOB-26545</a> - Android: Using global L() method for localization does not work if second argument is not supplied</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-26580">TIMOB-26580</a> - Android: ListView templates not compatible with native modules</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-26625">TIMOB-26625</a> - Android: Can&apos;t open Titanium app through intent (7.5.0 regression)</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-26626">TIMOB-26626</a> - Android apps are taking much longer to load than they did on previous sdks</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-26632">TIMOB-26632</a> - Android: App sometimes crashes when backgrounded as of 7.5.0</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-26774">TIMOB-26774</a> - Android: When backgrounded, data intent no longer re-executes &quot;app.js&quot; as of 7.5.0</li>
+    </ul>
+  </div>
+  <div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-iOS">
+    <h3>iOS</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-26452">TIMOB-26452</a> - iOS: Object.hasProperty incorrectly reports false when a property&apos;s value is null</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-26594">TIMOB-26594</a> - iOS: Exception when canceling local notifications with removePendingNotifications</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-26612">TIMOB-26612</a> - Problem with Internationalization</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-26628">TIMOB-26628</a> - iOS 11.0: App crashes on launch</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-26688">TIMOB-26688</a> - iOS: Proxy objects created in timers aren&apos;t released properly</li>
+    </ul>
+  </div>
+</div>
+<div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-APIchanges">
+  <h2>API changes</h2>
+  <div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-NewAPIs">
+    <h3>New APIs</h3>
+    <p>The following APIs are new or have expanded platform support in release 7.5.1.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <p>API</p>
+            </th>
+            <th>
+              <p>Type</p>
+            </th>
+            <th>
+              <p>Notes</p>
+            </th>
+          </tr>
+        </thead>
+        <tfoot></tfoot>
+        <tbody>
+          <tr>
+            <td>
+              <p>Global.console.timeLog</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Log duration taken so far for an operation. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Android.Activity.userinteraction</p>
+            </td>
+            <td>
+              <p>event</p>
+            </td>
+            <td>
+              <p>Called whenever a key, touch, or trackball event is dispatched to the activity. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Android.NotificationChannel.getSound</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.Android.NotificationChannel.sound property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Android.NotificationChannel.setSound</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.Android.NotificationChannel.sound property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Android.NotificationChannel.sound</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>A URL to the sound to play. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.App.Android.shortcutitemclick</p>
+            </td>
+            <td>
+              <p>event</p>
+            </td>
+            <td>
+              <p>Fired when a Titanium.UI.ShortcutItem is clicked. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.App.shortcutitemclick</p>
+            </td>
+            <td>
+              <p>event</p>
+            </td>
+            <td>
+              <p>Fired when a Titanium.UI.ShortcutItem is clicked. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.App.trackUserInteraction</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Indicates whether or not the user interaction shoud be tracked. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.App.userinteraction</p>
+            </td>
+            <td>
+              <p>event</p>
+            </td>
+            <td>
+              <p>Called whenever an interaction with the window occurred. To be used together with the Titanium.App.trackUserInteraction property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Locale.change</p>
+            </td>
+            <td>
+              <p>event</p>
+            </td>
+            <td>
+              <p>Fired when the device locale changes. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AUDIO_STATE_BUFFERING</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Audio data is being buffered from the network. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AUDIO_STATE_INITIALIZED</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Audio playback is being initialized. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AUDIO_STATE_PAUSED</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Playback is paused. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AUDIO_STATE_PLAYING</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Audio playback is active. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AUDIO_STATE_STARTING</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Audio playback is starting. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AUDIO_STATE_STOPPED</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Audio playback is stopped. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AUDIO_STATE_STOPPING</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Audio playback is stopping. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AUDIO_STATE_WAITING_FOR_DATA</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Player is waiting for audio data from the network. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AUDIO_STATE_WAITING_FOR_QUEUE</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Player is waiting for audio data to fill the queue. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.allowsExternalPlayback</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Indicates whether the player allows switching to &quot;external playback&quot; mode. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.complete</p>
+            </td>
+            <td>
+              <p>event</p>
+            </td>
+            <td>
+              <p>Fired when the audio has finished playing. (Added support for iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.externalPlaybackActive</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Indicates whether the player is currently playing video in &quot;external playback&quot; mode. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.getAllowsExternalPlayback</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.Media.AudioPlayer.allowsExternalPlayback property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.getExternalPlaybackActive</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.Media.AudioPlayer.externalPlaybackActive property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.getMuted</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.Media.AudioPlayer.muted property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.getRate</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.Media.AudioPlayer.rate property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.metadata</p>
+            </td>
+            <td>
+              <p>event</p>
+            </td>
+            <td>
+              <p>Fired when the timed metadata was encountered most recently within the media as it plays. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.muted</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Indicates whether or not audio output of the player is muted. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.rate</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Indicates the desired rate of playback; 0.0 means &quot;paused&quot;, 1.0 indicates a desire to play at the natural rate of the current item. In addition, 2.0would mean that the audio plays twice as fast. (New API, supported on iPhone and
+                iPad.)
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.release</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Stops buffering audio data and releases audio resources. (Added support for iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.restart</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Restarts (stops and stars) audio playback. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.seekToTime</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Moves the playback cursor and invokes the specified block when the seek operation has either been completed or been interrupted. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.setAllowsExternalPlayback</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.Media.AudioPlayer.allowsExternalPlayback property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.setMuted</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.Media.AudioPlayer.muted property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.setRate</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.Media.AudioPlayer.rate property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.QUALITY_640x480</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Media type constant for medium-quality video recording. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.QUALITY_HIGH</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Media type constant for high-quality video recording. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.QUALITY_IFRAME_1280x720</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Media type constant for medium-quality video recording. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.QUALITY_LOW</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Media type constant for low-quality video recording. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.getQUALITY_640x480</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.Media.QUALITY_640x480 property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.getQUALITY_IFRAME_1280x720</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.Media.QUALITY_IFRAME_1280x720 property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ATTRIBUTE_PARAGRAPH_STYLE</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Use with Attribute.type to manages the behaviour of string set. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ActivityIndicator.anchorPoint</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Coordinate of the view about which to pivot an animation. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ActivityIndicator.getAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.ActivityIndicator.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ActivityIndicator.setAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.ActivityIndicator.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.AlertDialog.anchorPoint</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Coordinate of the view about which to pivot an animation. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.AlertDialog.buttonClickRequired</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Setting this to true requires the end-user to click a dialog button to close the dialog. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.AlertDialog.getAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.AlertDialog.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.AlertDialog.getButtonClickRequired</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.AlertDialog.buttonClickRequired property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.AlertDialog.setAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.AlertDialog.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.AlertDialog.setButtonClickRequired</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.AlertDialog.buttonClickRequired property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Android.FLAG_TRANSLUCENT_NAVIGATION</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Window flag which makes the Android system&apos;s navigation bar semi-transparent. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Android.FLAG_TRANSLUCENT_STATUS</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Window flag which makes the Android system&apos;s top status bar semi-transparent. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Android.ProgressIndicator.anchorPoint</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Coordinate of the view about which to pivot an animation. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Android.ProgressIndicator.getAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.Android.ProgressIndicator.anchorPoint property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Android.ProgressIndicator.setAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.Android.ProgressIndicator.anchorPoint property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Button.attributedString</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Specify an attributed string for the label. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Button.getAttributedString</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.Button.attributedString property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Button.setAttributedString</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.Button.attributedString property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.EmailDialog.anchorPoint</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Coordinate of the view about which to pivot an animation. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.EmailDialog.getAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.EmailDialog.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.EmailDialog.setAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.EmailDialog.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.OptionDialog.anchorPoint</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Coordinate of the view about which to pivot an animation. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.OptionDialog.getAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.OptionDialog.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.OptionDialog.setAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.OptionDialog.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Picker.anchorPoint</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Coordinate of the view about which to pivot an animation. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Picker.getAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.Picker.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Picker.setAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.Picker.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ScrollableView.clipViews</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Determines whether the previous and next pages are clipped, so that they are not visibleadjacent to the current page. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ScrollableView.getClipViews</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.ScrollableView.clipViews property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ScrollableView.getPadding</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.ScrollableView.padding property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ScrollableView.padding</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>The padding applied to the scrollable view. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ScrollableView.setClipViews</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.ScrollableView.clipViews property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ScrollableView.setPadding</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.ScrollableView.padding property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.SearchBar.fieldBackgroundDisabledImage</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Background image of the text field in disabled state, specified as a local file path or URL. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.SearchBar.fieldBackgroundImage</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Background image of the text field, specified as a local file path or URL. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.SearchBar.getFieldBackgroundDisabledImage</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.SearchBar.fieldBackgroundDisabledImage property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.SearchBar.getFieldBackgroundImage</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.SearchBar.fieldBackgroundImage property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.SearchBar.setFieldBackgroundDisabledImage</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.SearchBar.fieldBackgroundDisabledImage property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.SearchBar.setFieldBackgroundImage</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.SearchBar.fieldBackgroundImage property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ShortcutItem</p>
+            </td>
+            <td>
+              <p>object</p>
+            </td>
+            <td>
+              <p>An application shortcut. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Tab.anchorPoint</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Coordinate of the view about which to pivot an animation. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Tab.getAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.Tab.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Tab.setAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.Tab.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.TabGroup.anchorPoint</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Coordinate of the view about which to pivot an animation. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.TabGroup.getAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.TabGroup.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.TabGroup.setAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.TabGroup.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.TextArea.getLines</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.TextArea.lines property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.TextArea.getMaxLines</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.TextArea.maxLines property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.TextArea.lines</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Number of lines tall the text area height will be, if set. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.TextArea.maxLines</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Maximum line count of text field input. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.TextArea.setLines</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.TextArea.lines property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.TextArea.setMaxLines</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.TextArea.maxLines property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.TextField.getPasswordRules</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.TextField.passwordRules property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.TextField.passwordRules</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Set password rules that should be used for this text field. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.TextField.setPasswordRules</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.TextField.passwordRules property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.View.anchorPoint</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Coordinate of the view about which to pivot an animation. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.View.getAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.View.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.View.setAnchorPoint</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.View.anchorPoint property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.WebView.getMixedContentMode</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.WebView.mixedContentMode property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.WebView.getOnlink</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.WebView.onlink property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.WebView.mixedContentMode</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>If <tt>true</tt>, allows the loading of insecure resources from a secure origin. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.WebView.onlink</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Fired before navigating to a link. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.WebView.setMixedContentMode</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.WebView.mixedContentMode property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.WebView.setOnlink</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.WebView.onlink property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.extendSafeArea</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Specifies whether the screen insets/notches are allowed to overlap the window&apos;s content or not. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.getExtendSafeArea</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.Window.extendSafeArea property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.getHidesBackButton</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.Window.hidesBackButton property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.getSafeAreaPadding</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.Window.safeAreaPadding property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.hidesBackButton</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Set this to true to hide the back button of navigation bar. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.safeAreaPadding</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>The padding needed to safely display content without it being overlapped by the screen insets and notches. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.setExtendSafeArea</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.Window.extendSafeArea property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.setHidesBackButton</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.Window.hidesBackButton property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.createShortcutItem</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Creates and returns an instance of Titanium.UI.ShortcutItem. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p> <span id="src-58006766_deprecated_apis"><a name="src-58006766_deprecated_apis"></a></span>
+    </p>
+  </div>
+  <div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-DeprecatedAPIs">
+    <h3>Deprecated APIs</h3>
+    <p>The following APIs are deprecated in release 7.5.1.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <p>API</p>
+              
+              </th><th>
+                <p>Type</p>
+                
+                </th><th>
+                  <p>Notes</p>
+                  
+          </th></tr>
+        </thead>
+        <tfoot></tfoot>
+        <tbody>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.STATE_BUFFERING</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Use Titanium.Media.AUDIO_STATE_BUFFERING instead.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.STATE_INITIALIZED</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Use Titanium.Media.AUDIO_STATE_INITIALIZED instead.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.STATE_PAUSED</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Use Titanium.Media.AUDIO_STATE_PAUSED instead.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.STATE_PLAYING</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Use Titanium.Media.AUDIO_STATE_PLAYING instead.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.STATE_STARTING</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Use Titanium.Media.AUDIO_STATE_STARTING instead.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.STATE_STOPPED</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Use Titanium.Media.AUDIO_STATE_STOPPED instead.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.STATE_STOPPING</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Use Titanium.Media.AUDIO_STATE_STOPPING instead.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.STATE_WAITING_FOR_DATA</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Use Titanium.Media.AUDIO_STATE_WAITING_FOR_DATA instead.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.STATE_WAITING_FOR_QUEUE</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Use Titanium.Media.AUDIO_STATE_WAITING_FOR_QUEUE instead.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.play</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Use the cross-platform API start instead.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Media.AudioPlayer.setPaused</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Use the cross-platform API pause instead.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ATTRIBUTE_LINE_BREAK</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Use Titanium.UI.ATTRIBUTE_PARAGRAPH_STYLE.lineBreakMode instead.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-SDKmodulesversions">
+  <h2>SDK modules versions</h2>
+  <div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-AndroidandiOS">
+    <h3>Android and iOS</h3>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <p>Module</p>
+            </th>
+            <th>
+              <p>iOS version</p>
+            </th>
+            <th>
+              <p>Android version</p>
+            </th>
+          </tr>
+        </thead>
+        <tfoot></tfoot>
+        <tbody>
+          <tr>
+            <td>
+              <p>urlSession</p>
+            </td>
+            <td>
+              <p>2.1.0</p>
+            </td>
+            <td>
+              <p>n/a</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>facebook
+              </p>
+            </td>
+            <td>
+              <p>5.9.0</p>
+            </td>
+            <td>
+              <p>7.3.1</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+                ti.coremotion
+              </p>
+            </td>
+            <td>
+              <p>2.0.1</p>
+            </td>
+            <td>
+              <p>n/a</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+                ti.map
+              </p>
+            </td>
+            <td>
+              <p>3.1.0</p>
+            </td>
+            <td>
+              <p>4.3.1</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+                ti.safaridialog
+              </p>
+            </td>
+            <td>
+              <p>1.1.1</p>
+            </td>
+            <td>
+              <p>n/a</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+                ti.webdialog
+              </p>
+            </td>
+            <td>
+              <p>1.1.0</p>
+            </td>
+            <td>
+              <p>1.1.0</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+                ti.touchid
+              </p>
+            </td>
+            <td>
+              <p>2.1.4</p>
+            </td>
+            <td>
+              <p>3.0.1</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+                ti.identity
+              </p>
+            </td>
+            <td>
+              <p>1.0.5</p>
+            </td>
+            <td>
+              <p>2.1.0</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+                ti.cloudpush
+              </p>
+            </td>
+            <td>
+              <p>n/a</p>
+            </td>
+            <td>
+              <p>6.0.0</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+                ti.playservices
+              </p>
+            </td>
+            <td>
+              <p>n/a</p>
+            </td>
+            <td>
+              <p>16.1.2</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-CommonJS">
+    <h3>CommonJS</h3>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <p>Module</p>
+            </th>
+            <th>
+              <p>Version</p>
+            </th>
+          </tr>
+        </thead>
+        <tfoot></tfoot>
+        <tbody>
+          <tr>
+            <td>
+              <p>
+                ti.cloud
+              </p>
+            </td>
+            <td>
+              <p>3.2.11</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="src-58006766_TitaniumSDK7.5.1.GAReleaseNote-Hyperloop">
+    <h3>Hyperloop</h3>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <p>Module</p>
+            </th>
+            <th>
+              <p>Version</p>
+            </th>
+          </tr>
+        </thead>
+        <tfoot></tfoot>
+        <tbody>
+          <tr>
+            <td>
+              <p>
+                hyperloop
+              </p>
+            </td>
+            <td>
+              <p>3.1.4</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

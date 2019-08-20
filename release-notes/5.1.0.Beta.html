@@ -1,0 +1,640 @@
+<title>Titanium SDK 5.1.0 Beta</title>
+<h1>Titanium SDK 5.1.0 Beta</h1>
+
+<h4>Contents</h4>
+
+<ul>
+<li><a href="#about">About This Release</a>
+<ul>
+<li><a href="#android">Android Support</a></li>
+<li><a href="#cli">CLI 5.1.0</a></li>
+<li><a href="#node">Node Support</a></li>
+<li><a href="#studio">Studio 4.4.0</a></li>
+</ul></li>
+<li><a href="#changes">Notice of Feature and Behavior Changes</a>
+<ul>
+<li><a href="#deprecate_android">Android Platform</a>
+<ul>
+<li><a href="#button">AppCompat Button</a></li>
+<li><a href="#target_sdk">Target SDK</a></li>
+</ul></li>
+<li><a href="#deprecate_ios">iOS Platform</a>
+<ul>
+<li><a href="#activity_indicator">Activity Indicator Style Constants</a></li>
+<li><a href="#tab_events">TabGroup Events</a></li>
+<li><a href="#user_activity">User Activity Support</a></li>
+</ul></li>
+<li><a href="#device_permissions">Device Permissions</a></li>
+<li><a href="#deprecate_windows">Windows Platform</a>
+<ul>
+<li><a href="#package_id">Package Identity Name</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#features">New Features</a>
+<ul>
+<li><a href="#new_android">Android Platform</a>
+<ul>
+<li><a href="#cardview">CardView</a></li>
+<li><a href="#reveal">Reveal Effect</a></li>
+</ul></li>
+<li><a href="#new_ios">iOS Platform</a>
+<ul>
+<li><a href="#threed_touch">3D Touch</a></li>
+<li><a href="#alert_dialog">Alert Dialog</a></li>
+<li><a href="#asset_catalog">Asset Catalog</a></li>
+<li><a href="#autolayout">Auto Layout</a></li>
+<li><a href="#js_thread">JavaScript Thread</a></li>
+<li><a href="#picker">Picker Height</a></li>
+<li><a href="#safari_dialog">Safari Dialog Module</a></li>
+<li><a href="#watch_os">WatchOS Message Callback</a></li>
+</ul></li>
+<li><a href="#new_windows">Windows Platform</a>
+<ul>
+<li><a href="#windows_parity">API Parity</a></li>
+<li><a href="#icons">Icons</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#credits">Community Credits</a></li>
+<li><a href="#apis">API Changes</a> 
+<ul>
+<li><a href="#new_apis">New APIs</a></li>
+<li><a href="#deprecated_apis">Deprecated APIs</a></li>
+</ul></li>
+</ul>
+
+<p><a name="about"></a></p>
+
+<h2>About This Release</h2>
+
+<p>This is a Beta version of Titanium SDK 5.1.0 and should not be used for production.</p>
+
+<p>Note that this release includes feature and behavior changes. See <a href="#changes">Notice of Feature and Behavior Changes</a> for details.</p>
+
+<p>This Release introduces a number of new features.  See <a href="#features">New Features</a> for a summary of new features in this release.</p>
+
+<p>This release includes over 100 bug fixes and improvements, see the <a href="https://jira.appcelerator.org/issues/?filter=16989">full list of issues that were addressed in Release 5.1.0</a></p>
+
+<p><a name="android"></a></p>
+
+<h3>Android Support</h3>
+
+<p>This Release includes support for Android 6.0 (Marshmallow). The Android 6.0 SDK must be installed in order to build applications that target the Android platform.</p>
+
+<p>If you set the target SDK, it must be set to API level 23 (Android 6.0/Marshmallow) or later.  Previously, the minimum target SDK was API level 21 (Android 5.0/Lollipop).</p>
+
+<p><a name="cli"></a></p>
+
+<h3>CLI 5.1.0</h3>
+
+<p>This Release conincides with the release of Appcelerator CLI 5.1.0. For details, see the
+<a href="//docs.appcelerator.com/platform/latest/#!/guide/Appcelerator_CLI_Release_Notes">CLI Release Notes</a>.</p>
+
+<p><a name="node"></a></p>
+
+<h3>Node Support</h3>
+
+<p>As of this Release, the Titanium SDK and toolchain support Node.js 4.x as the highest supported version. Previously, 0.12.x was the highest supported version.</p>
+
+<p><a name="studio"></a></p>
+
+<h3>Studio 4.4.0</h3>
+
+<p>This Release coincides with the release of Studio 4.4.0.  For details, see the
+<a href="//docs.appcelerator.com/platform/latest/#!/guide/Studio_Release_Notes">Studio Release Notes</a>.</p>
+
+<p><a name="changes"></a></p>
+
+<h2>Notice of Feature and Behavior Changes</h2>
+
+<p><a name="deprecate_android"></a></p>
+
+<h3>Android Platform</h3>
+
+<p><a name="button"></a></p>
+
+<h4>AppCompat Button</h4>
+
+<p>As of this Release, the Android platform uses the AppCompat button, where the appearance of the button will be the same across all versions of Android the application runs on.  Previously, the appearance of the button was different depending on the version of Android the application was running on.</p>
+
+<p><a name="target_sdk"></a></p>
+
+<h4>Target SDK</h4>
+
+<p>The Android 6.0 SDK (API level 23) must be installed in order to build applications that target the Android platform.</p>
+
+<p>If you set the target SDK in the <code>tiapp.xml</code> file, it must be set to API level 23 (Android 6.0/Marshmallow) or later.  Previously, the minimum target SDK was API level 21 (Android 5.0/Lollipop).</p>
+
+<p><a name="deprecate_ios"></a></p>
+
+<h3>iOS Platform</h3>
+
+<p><a name="activity_indicator"></a></p>
+
+<h4>Activity Indicator Style Constants</h4>
+
+<p>As of this Release, the Activity Indicator Style constants with the iPhone namespace are deprecated.  Use the
+<a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.ActivityIndicatorStyle">Activity Indicator Style constants</a>
+without the iPhone namespace instead to set the style of an ActivityIndicator on iOS.</p>
+
+<p><a name="tab_events"></a></p>
+
+<h4>TabGroup Events</h4>
+
+<p>This Release introduces the <code>selected</code> and <code>unselected</code> events for <code>Titanium.UI.TabGroup</code> to determine when a tab is selected or unselected in a TabGroup.  The new events deprecate the TabGroup's <code>focus</code> and <code>blur</code> events for iOS.</p>
+
+<p><a name="user_activity"></a></p>
+
+<h4>User Activity Support</h4>
+
+<p>As of this Release, the new <code>Titanium.App.iOS.UserActivity.isSupported()</code> method deprecates the <code>Titanium.App.iOS.UserActivity.supported</code> property to match parity with other APIs.</p>
+
+<p><a name="device_permissions"></a></p>
+
+<h3>Device Permissions</h3>
+
+<p>This Release re-architected the way an application requests device permissions in order to support the new Android 6.0 model
+for requesting device permissions during runtime and to achieve parity between the Android and iOS platforms.
+Support for the Windows platform will be added in a later release.</p>
+
+<p>Use the following methods to check and request for permission to use the device's calendar, camera,
+contacts and location on devices running Android 6.0 and later, and iOS:</p>
+
+<ul>
+<li><a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.Calendar-method-hasCalendarPermissions">Titanium.Calendar.hasCalendarPermissions</a></li>
+<li><a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.Calendar-method-requestCalendarPermissions">Titanium.Calendar.requestCalendarPermissions</a></li>
+<li><a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.Contacts-method-hasContactsPermissions">Titanium.Contacts.hasContactsPermissions</a></li>
+<li><a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.Contacts-method-requestContactsPermissions">Titanium.Contacts.requestContactsPermissions</a></li>
+<li><a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.Geolocation-method-hasLocationPermissions">Titanium.Geolocation.hasLocationPermissions</a></li>
+<li><a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.Geolocation-method-requestLocationPermissions">Titanium.Geolocation.requestLocationPermissions</a></li>
+<li><a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.Media-method-hasCameraPermissions">Titanium.Media.hasCameraPermissions</a></li>
+<li><a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.Media-method-requestCameraPermissions">Titanium.Media.requestCameraPermissions</a></li>
+</ul>
+
+<p>The new methods deprecate the following methods on iOS:</p>
+
+<ul>
+<li><code>Titanium.Calendar.requestEventsAuthorization</code></li>
+<li><code>Titanium.Media.requestCameraAccess</code></li>
+</ul>
+
+<p><a name="deprecate_windows"></a></p>
+
+<h3>Windows Platform</h3>
+
+<p><a name="package_id"></a></p>
+
+<h4>Package Identity Name</h4>
+
+<p>As of this Release, in the <code>tiapp.xml</code> file, add the <code>id</code> element as a child of the <code>windows</code> element and set it to the Package/Identity/Name of the application that was generated when you created the application in the Windows Dev Center Dashboard.  The Package Identity Name is required to package the application.  Microsoft will validate this field when you submit the package to the Windows Store.</p>
+
+<pre><code>&lt;ti:app&gt;
+  &lt;windows&gt;
+    &lt;id&gt;12345FooInc.FooApp&lt;/id&gt;
+  &lt;/windows&gt;
+&lt;/ti:app&gt;
+</code></pre>
+
+<p>Previously, the Package Identity Name was specified in the <code>id</code> element under the <code>ti:app</code> element.</p>
+
+<p><a name="features"></a></p>
+
+<h2>New Features</h2>
+
+<p>This section describes new features introduced in Release 5.1.0.</p>
+
+<p><a name="new_android"></a></p>
+
+<h3>Android Platform</h3>
+
+<p>This section lists new features and improvements only available on the Android platform.</p>
+
+<p><a name="cardview"></a></p>
+
+<h4>CardView</h4>
+
+<p>This Release introduces support for <a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.Android.CardView">CardView</a>,
+an elevated view with rounded corners. Use multiple CardViews in a layout to display a collection that contains different elements,
+layouts and content as opposed to a ListView, which displays data of the same type with a uniformed layout.</p>
+
+<p><a name="reveal"></a></p>
+
+<h4>Reveal Effect</h4>
+
+<p>On Android, Views now support the circular reveal effect when showing or hiding the View.
+Pass a dictionary with the <code>animated</code> property set to <code>true</code> to the View's <code>show()</code> and <code>hide()</code> method to enable the effect.</p>
+
+<pre><code>view.show({animated: true});
+</code></pre>
+
+<p>The reveal effect is only supported on Android 5.0 (Lollipop) and later.</p>
+
+<p><a name="new_ios"></a></p>
+
+<h3>iOS Platform</h3>
+
+<p>This section lists new features and improvements only available on the iOS platform.</p>
+
+<p><a name="threed_touch"></a></p>
+
+<h4>3D Touch</h4>
+
+<p>The Titanium SDK supports the
+<a href="//developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/3DTouch.html#//apple_ref/doc/uid/TP40006556-CH71-SW1">Peek and Pop, and Quick Action features</a>
+of 3D touch.  Both features require a 3D Touch enabled device running iOS 9 or later.  Note that you can only test 3D touch features on device. Use the
+<a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS-property-forceTouchSupported">Titanium.UI.iOS.forceTouchSupported</a>
+property to check if the device supports 3D touch.</p>
+
+<p><strong>Peek and Pop</strong> provides a way for the user to quickly preview item content in the application by pressing on it, then optionally switching to the peeked item. For details, see the <a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext">Titanium.UI.iOS.PreviewContext API reference</a>.</p>
+
+<p><strong>Quick Action</strong> provides application shortcuts when the user presses the application icon on the Home Screen.  The shortcuts allow the user to quickly perform an action with your application without navigating through the application.  For details, see the <a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.ApplicationShortcuts">Titanium.UI.iOS.ApplicationShortcuts API reference</a>.</p>
+
+<p><a name="alert_dialog"></a></p>
+
+<h4>Alert Dialog</h4>
+
+<p>Starting in this Release, when using the alert dialog style <code>Titanium.UI.iPhone.AlertDialogStyle.PLAIN_TEXT_INPUT</code> or
+<code>Titanium.UI.iPhone.AlertDialogStyle.SECURE_TEXT_INPUT</code>, you can set the <code>placeholder</code> property to specify the placeholder
+text of the textfield, and <code>keyboardType</code> and <code>returnKeyType</code> properties to specify the keyboard type. </p>
+
+<p>When using the alert dialog style <code>Titanium.UI.iPhone.AlertDialogStyle.LOGIN_AND_PASSWORD_INPUT</code>, you can
+set the <code>loginPlaceholder</code> and <code>passwordPlaceholder</code> properties to specify the placeholder text
+of the login and password textfields, respectively.</p>
+
+<p><a name="asset_catalog"></a></p>
+
+<h4>Asset Catalog</h4>
+
+<p>To support App Thinning, PNG and JPEG images, following the iOS naming convention, will be automatically added to an Asset Catalog.  When a user installs your application to their device, only the supported assets will be included.</p>
+
+<p>To mark images for use with the Asset Catalog, add the <code>@2x</code> and <code>@3x</code> to indicate the asset is for retina displays and the iPhone 6 Plus, respectively. For non-retina displays, do not add a suffix. Add the <code>~iphone</code> and <code>~ipad</code> suffix for iPhone- and iPad-specific images, respectively. For example:</p>
+
+<ul>
+<li><code>pic.png</code></li>
+<li><code>pic@2x~ipad.png</code></li>
+<li><code>pic@2x~iphone.png</code></li>
+<li><code>pic@3x.png</code></li>
+</ul>
+
+<p>Only new applications created with Release 5.1.0 and above will have this feature enabled.  For existing applications, you need to add the <code>use-app-thinning</code> element to the <code>ios</code> element in the <code>tiapp.xml</code> file and set it to <code>true</code>.</p>
+
+<pre><code>&lt;ti:app&gt;
+  &lt;ios&gt;
+    &lt;use-app-thinning&gt;true&lt;/use-app-thinning&gt;
+  &lt;/ios&gt;
+&lt;/ti:app&gt;
+</code></pre>
+
+<p>Note that since the images are in an Asset Catalog, you cannot access the image files from the filesystem, such as using the <code>Ti.Filesystem</code> APIs or any equivalent functionality. If you need to access the image files, you can disable adding images to the Asset Catalog by setting the <code>use-app-thinning</code> element to <code>false</code>.</p>
+
+<p><a name="autolayout"></a></p>
+
+<h4>Auto Layout</h4>
+
+<p>As of this Release, the application can use
+<a href="//developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">iOS's Auto Layout engine</a>
+to layout view components.</p>
+
+<p>To enable autolayout, add the <code>use-autolayout</code> element as a child of the <code>ios</code> element in the <code>tiapp.xml</code> file, and set it
+to <code>true</code>.</p>
+
+<pre><code>&lt;ti:app&gt;
+  &lt;ios&gt;
+    &lt;use-autolayout&gt;true&lt;/use-autolayout&gt;
+  &lt;/ios&gt;
+&lt;/ti:app&gt;
+</code></pre>
+
+<p>Note that this is an experimental feature with known issues:</p>
+
+<ul>
+<li><a href="https://jira.appcelerator.org/browse/TIMOB-19808">TIMOB-19808</a></li>
+<li><a href="https://jira.appcelerator.org/browse/TIMOB-19807">TIMOB-19807</a></li>
+<li><a href="https://jira.appcelerator.org/browse/TIMOB-19806">TIMOB-19806</a></li>
+<li><a href="https://jira.appcelerator.org/browse/TIMOB-19805">TIMOB-19805</a></li>
+</ul>
+
+<p>If you encounter an issue using auto layout, file a bug in <a href="https://jira.appcelerator.org/">JIRA</a>.</p>
+
+<p><a name="js_thread"></a></p>
+
+<h4>JavaScript Thread</h4>
+
+<p>As of this Release, you may enable JavaScript to execute on the main thread.  By default, JavaScript executes on a separate secondary thread.</p>
+
+<p>To run JavaScript on the main thread, add the <code>run-on-main-thread</code> element to the <code>ios</code> element in the <code>tiapp.xml</code> file and set the value to <code>true</code>.</p>
+
+<pre><code>&lt;ti:app&gt;
+  &lt;ios&gt;
+    &lt;run-on-main-thread&gt;false&lt;/run-on-main-thread&gt;
+  &lt;/ios&gt;
+&lt;/ti:app&gt;
+</code></pre>
+
+<p>Note that this is an experimental feature with known issues:</p>
+
+<ul>
+<li><a href="https://jira.appcelerator.org/browse/TIMOB-19762">TIMOB-19762</a></li>
+<li><a href="https://jira.appcelerator.org/browse/TIMOB-19760">TIMOB-19760</a></li>
+</ul>
+
+<p>If you encounter an issue running JavaScript on the main thread, file a bug in <a href="https://jira.appcelerator.org/">JIRA</a>.</p>
+
+<p><a name="picker"></a></p>
+
+<h4>Picker Height</h4>
+
+<p>As of this Release, the <a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.Picker-property-height">height</a>
+of a picker can be set during creation if the device runs iOS 9 or later.</p>
+
+<p>In prior versions of iOS, the Picker height is fixed.</p>
+
+<p><a name="safari_dialog"></a></p>
+
+<h4>Safari Dialog Module</h4>
+
+<p>The Titanium SDK now includes the <code>ti.safaridialog</code> module.  Use the module to browse web content in a view similar to the Safari app.</p>
+
+<p>Requires that the device runs iOS 9 or later, and the application must be built against Xcode 7 or later.</p>
+
+<p>For details, see the <a href="//docs.appcelerator.com/platform/latest/#!/api/Modules.SafariDialog">Module API reference</a>.</p>
+
+<p><a name="watch_os"></a></p>
+
+<h4>WatchOS Message Callback</h4>
+
+<p>As of this Release, you can pass an optional callback that is executed when the watch application receives the message to the
+<a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.WatchSession-method-sendMessage">Titanium.WatchSession.sendMessage()</a>
+method.</p>
+
+<p><a name="new_windows"></a></p>
+
+<h3>Windows Platform</h3>
+
+<p>This section lists new features and improvements only available on the Windows platform.</p>
+
+<p><a name="windows_parity"></a></p>
+
+<h4>API Parity</h4>
+
+<p>The Windows Platform expands support for several APIs, including:</p>
+
+<ul>
+<li><a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.Buffer">Titanium.Buffer</a></li>
+<li><a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.Contacts">Titanium.Contacts</a></li>
+<li><a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.IOStream">Titanium.IOStream</a></li>
+<li><a href="//docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.Picker">Titanium.UI.Picker</a></li>
+</ul>
+
+<p>For details, see the <a href="#new_apis">New APIs section below</a>.</p>
+
+<p><a name="icons"></a></p>
+
+<h4>Icons</h4>
+
+<p>As of this Release, the Titanium SDK will generate missing icons using the <code>DefaultIcon.png</code> file located in the root level of the project.  This is the same mechanism introduced for iOS in Release 5.0.0.</p>
+
+<p>For a Windows-specific icon, name the file <code>DefaultIcon-windows.png</code>.</p>
+
+<p><a name="credits"></a></p>
+
+<h2>Community Credits</h2>
+
+<p>The following Appcelerator Community members contributed PRs that were included in this Release:</p>
+
+<ul>
+<li><a href="https://github.com/benbahrenburg">Ben Bahrenburg</a> for implementing support for iOS 3-D touch quick actions (<a href="https://jira.appcelerator.org/browse/TIMOB-19489">TIMOB-19489</a>)</li>
+<li><a href="https://github.com/manumaticx">Manuel Lehner</a> for fixing a bug with the Android reveal effect (<a href="https://jira.appcelerator.org/browse/TIMOB-19722">TIMOB-19722</a>) and implementing support for the Android AppCompat button (<a href="https://jira.appcelerator.org/browse/TIMOB-19506">TIMOB-19506</a>)</li>
+<li><a href="https://github.com/mano-mykingdom">Manoj Kumar</a> for fixing a bug when the content type was not specified in an HTTP response (<a href="https://jira.appcelerator.org/browse/TIMOB-19555">TIMOB-19555</a>)</li>
+</ul>
+
+<p><a name="apis"></a></p>
+
+<h2>API Changes</h2>
+
+<p><a name="new_apis"></a></p>
+
+<h3>New APIs</h3>
+
+<p>The following APIs are new or have expanded platform support in Release 5.1.0.</p>
+
+<table>
+<tr><th>API</th><th>Type</th><th>Notes</th></tr>
+
+  <tr><td>Titanium.App.iOS.USER_NOTIFICATION_BEHAVIOR_DEFAULT</td><td>property</td><td><p>There will not appear a text input.
+Use with the behavior property.
+ (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.App.iOS.USER_NOTIFICATION_BEHAVIOR_TEXTINPUT</td><td>property</td><td><p>There will appear a text input to answer an action outside the application.
+Use with the behavior property.
+ (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.App.iOS.UserNotificationAction.behavior</td><td>property</td><td><p>Selects whether to show a text input outside the application to reply to a notification. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.App.iOS.UserNotificationAction.getBehavior</td><td>method</td><td><p>Gets the value of the Titanium.App.iOS.UserNotificationAction.behavior property. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.App.iOS.UserNotificationAction.setBehavior</td><td>method</td><td><p>Sets the value of the Titanium.App.iOS.UserNotificationAction.behavior property. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.App.iOS.shortcutitemclick</td><td>event</td><td><p>Fired when a user taps the Application Shortcut. (New API, supported on iPhone.)</p></td></tr>
+
+  <tr><td>Titanium.Buffer</td><td>object</td><td><p>Buffer is a mutable, resizable container for raw data. (Added support for Windows Phone.)</p></td></tr>
+
+  <tr><td>Titanium.Calendar.hasCalendarPermissions</td><td>method</td><td><p>Returns <code>true</code> if the app has calendar access (New API, supported on Android, iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.Calendar.requestCalendarPermissions</td><td>method</td><td><p>Requests for calendar access (New API, supported on Android, iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.Contacts</td><td>object</td><td><p>The top-level Contacts module, used for accessing and modifying the system contacts address book.
+ (Added support for Windows Phone.)</p></td></tr>
+
+  <tr><td>Titanium.Contacts.Group</td><td>object</td><td><p>An object which represents a group in the system contacts address book. (Added support for Windows Phone.)</p></td></tr>
+
+  <tr><td>Titanium.Contacts.Person</td><td>object</td><td><p>An object that represents a contact record for a person or organization in the system contacts 
+address book.
+ (Added support for Windows Phone.)</p></td></tr>
+
+  <tr><td>Titanium.Geolocation.hasLocationPermissions</td><td>method</td><td><p>Returns <code>true</code> if the app has location access. (New API, supported on Android, iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.Geolocation.requestLocationPermissions</td><td>method</td><td><p>Requests for location access (New API, supported on Android, iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.IOStream</td><td>object</td><td><p>IOStream is the interface that all stream types implement. (Added support for Windows Phone.)</p></td></tr>
+
+  <tr><td>Titanium.Media.hasCameraPermissions</td><td>method</td><td><p>Returns <code>true</code> if the app has camera access (New API, supported on Android, iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.Media.requestCameraPermissions</td><td>method</td><td><p>Requests for camera access (New API, supported on Android, iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.ActivityIndicatorStyle</td><td>object</td><td><p>A set of constants for the styles available for Titanium.UI.ActivityIndicator objects. (Added support for iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.AlertDialog.getLoginPlaceholder</td><td>method</td><td><p>Gets the value of the Titanium.UI.AlertDialog.loginPlaceholder property. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.AlertDialog.getPasswordPlaceholder</td><td>method</td><td><p>Gets the value of the Titanium.UI.AlertDialog.passwordPlaceholder property. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.AlertDialog.getPlaceholder</td><td>method</td><td><p>Gets the value of the Titanium.UI.AlertDialog.placeholder property. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.AlertDialog.loginPlaceholder</td><td>property</td><td><p>Placeholder of the login text field inside the dialog. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.AlertDialog.passwordPlaceholder</td><td>property</td><td><p>Placeholder of the password text field inside the dialog. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.AlertDialog.placeholder</td><td>property</td><td><p>Placeholder of the text field inside the dialog. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.AlertDialog.setLoginPlaceholder</td><td>method</td><td><p>Sets the value of the Titanium.UI.AlertDialog.loginPlaceholder property. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.AlertDialog.setPasswordPlaceholder</td><td>method</td><td><p>Sets the value of the Titanium.UI.AlertDialog.passwordPlaceholder property. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.AlertDialog.setPlaceholder</td><td>method</td><td><p>Sets the value of the Titanium.UI.AlertDialog.placeholder property. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.Android.CardView</td><td>object</td><td><p>A Card view with a rounded corner background and shadow.
+ (New API, supported on Android.)</p></td></tr>
+
+  <tr><td>Titanium.UI.Picker</td><td>object</td><td><p>A control used to select one or more fixed values.
+ (Added support for Windows Phone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.PickerColumn</td><td>object</td><td><p>A picker column, representing a selectable group of items in a Titanium.UI.Picker. (Added support for Windows Phone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.PickerRow</td><td>object</td><td><p>A picker row, representing a selectable item in a Titanium.UI.Picker. 
+ (Added support for Windows Phone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.TabGroup.selected</td><td>event</td><td><p>Fired when a tab is selected. 
+ (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.TabGroup.unselected</td><td>event</td><td><p>Fired when a tab is unselected. 
+ (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.View.getPreviewContext</td><td>method</td><td><p>Gets the value of the Titanium.UI.View.previewContext property. (New API, supported on iPhone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.View.previewContext</td><td>property</td><td><p>The preview context used in the 3D-Touch feature "Peek and Pop". (New API, supported on iPhone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.View.setPreviewContext</td><td>method</td><td><p>Sets the value of the Titanium.UI.View.previewContext property. (New API, supported on iPhone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.createPicker</td><td>method</td><td><p>Creates and returns an instance of Titanium.UI.Picker.
+ (Added support for Windows Phone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.createPickerColumn</td><td>method</td><td><p>Creates and returns an instance of Titanium.UI.PickerColumn.
+ (Added support for Windows Phone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.createPickerRow</td><td>method</td><td><p>Creates and returns an instance of Titanium.UI.PickerRow.
+ (Added support for Windows Phone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.ApplicationShortcuts</td><td>object</td><td><p>The Home screen quick action API is for adding shortcuts to your app icon that anticipate and accelerate a user's interaction with your app. (New API, supported on iPhone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.PREVIEW_ACTION_STYLE_DEFAULT</td><td>property</td><td><p>The normal style for preview actions.
+ (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.PREVIEW_ACTION_STYLE_DESTRUCTIVE</td><td>property</td><td><p>The destructive style for preview actions. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.PREVIEW_ACTION_STYLE_SELECTED</td><td>property</td><td><p>The selected style for preview actions. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.PreviewAction</td><td>object</td><td><p>A PreviewAction provides options to configure action used by the iOS9 3D-Touch feature "Peek and Pop".
+ (New API, supported on iPhone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.PreviewActionGroup</td><td>object</td><td><p>A PreviewActionGroup provides options to configure a group of actions used by the iOS9 3D-Touch
+feature "Peek and Pop".
+ (New API, supported on iPhone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.PreviewContext</td><td>object</td><td><p>A PreviewContext provides options to configure the iOS9 3D-Touch feature "Peek and Pop".
+ (New API, supported on iPhone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_ADD</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_ALARM</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_AUDIO</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_BOOKMARK</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_CAPTURE_PHOTO</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_CAPTURE_VIDEO</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_CLOUD</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_COMPOSE</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_CONFIRMATION</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_CONTACT</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_DATE</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_FAVORITE</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_HOME</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_INVITATION</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_LOCATION</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_LOVE</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_MAIL</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_MARK_LOCATION</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_MESSAGE</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_PAUSE</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_PLAY</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_PROHIBIT</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_SEARCH</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_SHARE</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_SHUFFLE</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_TASK</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_TASK_COMPLETED</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_TIME</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.SHORTCUT_ICON_TYPE_UPDATE</td><td>property</td><td><p>Number that represents the icon used for the application shortcut (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.createApplicationShortcuts</td><td>method</td><td><p>Creates and returns an instance of Titanium.UI.iOS.ApplicationShortcuts.
+ (New API, supported on iPhone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.createPreviewAction</td><td>method</td><td><p>Creates and returns an instance of Titanium.UI.iOS.PreviewAction.
+ (New API, supported on iPhone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.createPreviewActionGroup</td><td>method</td><td><p>Creates and returns an instance of Titanium.UI.iOS.PreviewActionGroup.
+ (New API, supported on iPhone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.createPreviewContext</td><td>method</td><td><p>Creates and returns an instance of Titanium.UI.iOS.PreviewContext.
+ (New API, supported on iPhone.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.forceTouchSupported</td><td>property</td><td><p>Determines if the 3D-Touch capability "Force Touch" is supported (<code>true</code>) or not (<code>false</code>) by the device. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.getForceTouchSupported</td><td>method</td><td><p>Gets the value of the Titanium.UI.iOS.forceTouchSupported property. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+  <tr><td>Titanium.UI.iOS.setForceTouchSupported</td><td>method</td><td><p>Sets the value of the Titanium.UI.iOS.forceTouchSupported property. (New API, supported on iPhone and iPad.)</p></td></tr>
+
+<tr>
+</table>
+
+<p><a name="deprecated_apis"></a></p>
+
+<h3>Deprecated APIs</h3>
+
+<p>The following APIs are deprecated in Release 5.1.0.</p>
+
+<table>
+<tr><th>API</th><th>Type</th><th>Notes</th></tr>
+
+  <tr><td>Titanium.App.iOS.UserActivity.getSupported</td><td>method</td><td><p>Use the Ti.App.iOS.UserActivity.isSupported() method instead.</p></td></tr>
+
+  <tr><td>Titanium.App.iOS.UserActivity.setSupported</td><td>method</td><td><p>Use the Ti.App.iOS.UserActivity.isSupported() method instead.</p></td></tr>
+
+  <tr><td>Titanium.App.iOS.UserActivity.supported</td><td>property</td><td><p>Use the Ti.App.iOS.UserActivity.isSupported() method instead.</p></td></tr>
+
+  <tr><td>Titanium.Calendar.requestEventsAuthorization</td><td>method</td><td><p>Use requestCalendarPermissions instead.</p></td></tr>
+
+  <tr><td>Titanium.Media.requestCameraAccess</td><td>method</td><td><p>Use requestCameraPermissions instead.</p></td></tr>
+
+  <tr><td>Titanium.UI.TabGroup.blur</td><td>event</td><td><p>Use unselected instead.</p></td></tr>
+
+  <tr><td>Titanium.UI.TabGroup.focus</td><td>event</td><td><p>Use selected instead.</p></td></tr>
+
+  <tr><td>Titanium.UI.iPhone.ActivityIndicatorStyle</td><td>object</td><td><p>Use Ti.UI.ActivityIndicatorStyle instead.</p></td></tr>
+
+<tr>
+</table>

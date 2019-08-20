@@ -1,0 +1,795 @@
+<title>Titanium SDK 7.0.0.RC</title>
+<link type="text/css" rel="stylesheet" href="css/release_note.css" media="all">
+<h1>Titanium SDK 7.0.0.RC - 30 November 2017</h1>
+<div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Aboutthisrelease">
+  <h2>About this release</h2>
+  <p>Titanium SDK 7.0.0.RC is a major release of the SDK, addressing high-priority issues from previous releases. Highlights for this release include integration of Hyperloop in the SDK core and introduction of Appcelerator Daemon.</p>
+</div>
+<div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-AppceleratorDaemon">
+  <h2>Appcelerator Daemon</h2>
+  <p>The Appcelerator Daemon is a server that runs on the developer&apos;s computer and hosts services which power the tooling for Axway products such as Titanium SDK. The Appcelerator Daemon aims to solve tooling issues by introducing a robust, flexible, and
+    consistent foundation for implementing product tooling. It does this by providing plugins that define services which are exposed via the built-in web server to any HTTP, WebSocket, Node.js client, or shell script. The Appcelerator Daemon is designed
+    to be highly decoupled. All product-specific logic is run inside a plugin while the Appcelerator Daemon provides core functionality to plugins such as file system watching and spawning subprocesses.</p>
+  <p> <span id="src-52298972_issues"><a name="src-52298972_issues"></a></span>
+  </p>
+</div>
+<div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-NoticeoffeatureandbehaviorChanges">
+  <h2>Notice of feature and behavior Changes</h2>
+  <ul>
+    <li>Integrated Hyperloop into SDK core
+      <ul>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-25058">TIMOB-25058</a> - Begin making hyperloop part of the core SDK (and using it for SDK development)</li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-25059">TIMOB-25059</a> - Add Hyperloop to pre-packaged native modules listing in the SDK</li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-25060">TIMOB-25060</a> - Build Android hyperloop against SDK 7.0.0 / v8 5.7+</li>
+      </ul>
+    </li>
+    <li><a href="https://jira.appcelerator.org/browse/TIMOB-25459">TIMOB-25459</a> - Android: toImage method needs parity with iOS
+      <ul>
+        <li>The <tt>toImage</tt> method has changed for iOS with this release. Test case:<p></p>
+          <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+              <div><code>var win = Ti.UI.createWindow();</code></div>
+              <div><code>var view = Ti.UI.createView({backgroundColor: &apos;green&apos;, width: 150, height: 150, top: 100});</code></div>
+              <div><code>var content = Ti.UI.createView({backgroundColor: &apos;blue&apos;, width: 45, height: 45});</code></div>
+              <div><code>var imageView = Ti.UI.createImageView({width: 150, height: 150, top: 300});</code></div>
+              <div>&#xA0;</div>
+              <div><code>view.add(content);</code></div>
+              <div><code>win.add(view);</code></div>
+              <div><code>win.addEventListener(&apos;postlayout&apos;, function() {</code></div>
+              <div><code class="indent1">view.toImage(function(blob) {</code></div>
+              <div><code class="indent2">imageView.setImage(blob);</code></div>
+              <div><code class="indent1">});</code></div>
+              <div><code>});</code></div>
+              <div>&#xA0;</div>
+              <div><code>win.add(imageView);</code></div>
+              <div><code>win.open();</code></div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li><a href="https://jira.appcelerator.org/browse/TIMOB-23958">TIMOB-23958</a> - Remove deprecated Python and unused files
+      <ul>
+        <li>Removed Python dependency</li>
+      </ul>
+    </li>
+    <li><a href="https://jira.appcelerator.org/browse/TIMOB-24593">TIMOB-24593</a> - TiAPI: Update Facebook-SDKs to 4.22, support Graph v2.9
+      <ul>
+        <li>Update Android Facebook SDK to 4.20.0 and iOS Facebook SDK to 4.20.2</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Newfeatures">
+  <h2>New features</h2>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Androidplatform">
+    <h3>Android platform</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-17340">TIMOB-17340</a> - TiAPI: Text - Add lineHeight property to Ti.UI.Label and Ti.Ui.TextArea
+        <ul>
+          <li>Added <tt>Ti.UI.ATTRIBUTE_BASELINE_OFFSET</tt> support to <tt>AttributedString</tt> (controls line height in Labels, TextFields, and TextAreas)</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-23802">TIMOB-23802</a> - Android N: Expose Sustained Performance API for Nexus devices
+        <ul>
+          <li>Added support for <tt>sustainedPerformancemode</tt></li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-23903">TIMOB-23903</a> - Android: Update V8 runtime to 5.7.492.71
+        <ul>
+          <li>Updated Android&apos;s runtime to build against V8 5.7.492.71. Details about the V8 update can be found here: <a href="https://v8project.blogspot.com/">https://v8project.blogspot.com</a>.</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24510">TIMOB-24510</a> - Android N: Implement support for Custom quick settings tiles
+        <ul>
+          <li>Add support for custom quick settings tiles in Android N and above</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24639">TIMOB-24639</a> - Android: Support TextInputLayout
+        <ul>
+          <li>Allow animated hintType to be set using <tt>attributedHintText</tt> although attributes will be ignored (Android limitation)</li>
+          <li>Always respect <tt>height</tt> property</li>
+          <li>Set <tt>EditText</tt> background color to transparent</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24723">TIMOB-24723</a> - Android: Support V8 inspector API for debugging to replace &quot;legacy&quot; debugger protocol
+        <ul>
+          <li>Added support for V8 inspector for debugging</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24963">TIMOB-24963</a> - Android: Add scrollToTop() to ScrollView
+        <ul>
+          <li>Added <tt>scrollToTop()</tt> to <tt>ScrollView</tt></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-iOSplatform">
+    <h3>iOS platform</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-10787">TIMOB-10787</a> - iOS: Expose UDID replacements available in iOS6
+        <ul>
+          <li>Added support for UDID replacement</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Windowsplatform">
+    <h3>Windows platform</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24964">TIMOB-24964</a> - Windows: Add scrollToTop() to ScrollView
+        <ul>
+          <li>Added <tt>scrollToTop()</tt> to <tt>ScrollView</tt></li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25233">TIMOB-25233</a> - Windows: Feature request - Ti.UI.TextField setSelection method
+        <ul>
+          <li>Added Windows parity for <tt>setSelection</tt> of <tt>Ti.UI.TextFields</tt></li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25234">TIMOB-25234</a> - Windows: Feature request - Ti.UI.TextField clearButtonMode
+        <ul>
+          <li>Added Windows parity for <tt>clearButtonMode</tt> of <tt>Ti.UI.TextFields</tt></li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25235">TIMOB-25235</a> - Windows: Feature request - Ti.UI.TextField blur method
+        <ul>
+          <li>Added Windows parity for <tt>blur</tt> of <tt>Ti.UI.TextField</tt></li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25236">TIMOB-25236</a> - Windows: Feature request - Ti.UI.TEXT_ALIGNMENT_JUSTIFY
+        <ul>
+          <li>Added Windows parity for <tt>Ti.UI.TEXT_ALIGNMENT_JUSTIFY</tt></li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25237">TIMOB-25237</a> - Windows: Feature request - Ti.UI.Picker borderColor property
+        <ul>
+          <li>Added Windows parity for <tt>borderColor</tt> of <tt>Ti.UI.Picker</tt></li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25250">TIMOB-25250</a> - Windows: Feature request - Ti.UI.ActivityIndicator.style/ Titanium.UI.ActivityIndicator.indicatorDiameter
+        <ul>
+          <li>Added Windows parity for <tt>Ti.UI.ActivityIndicator.style</tt> and <tt>Titanium.UI.ActivityIndicator.indicatorDiameter</tt></li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25303">TIMOB-25303</a> - Windows: Feature request - Ti.UI.Picker font property
+        <ul>
+          <li>Added Windows parity for <tt>Ti.UI.Picker</tt> of <tt>Ti.UI.PICKER_TYPE_DATE</tt></li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25345">TIMOB-25345</a> - Windows: Prevent app from suspension
+        <ul>
+          <li>
+            Implemened extended execution to prevent suspension</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25400">TIMOB-25400</a> - Update module apiversion
+        <ul>
+          <li>Updated <tt>apiversion</tt> to use &quot;4&quot; for SDK 7.0.0</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Multipleplatforms">
+    <h3>Multiple platforms</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-14795">TIMOB-14795</a> - TiAPI: Add &quot;parent&quot; property for all Ti.UI.View subclasses
+        <ul>
+          <li>Added support for <tt>parent</tt> property for <tt>Ti.UI.View</tt></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Communitycredits">
+  <h2>Community credits</h2>
+  <p>We would like to thank the community for their assistance on the following tickets:
+    <ul>
+      <li><a href="https://github.com/gaspardle">Luc-Edmond Gaspard</a>
+        <ul>
+          <li>TIMOB-25382 - Android: Wrong thread error in DrawerLayout when not running on main thread</li>
+        </ul>
+      </li>
+      <li><a href="https://github.com/dieskim">David van de Meer</a>
+        <ul>
+          <li>TIMOB-23645 - Android notification: allow to set color of background</li>
+        </ul>
+      </li>
+      <li><a href="https://github.com/drauggres">Sergey Volkov</a>
+        <ul>
+          <li>TIMOB-25051 - Android. persistentObjects leak</li>
+        </ul>
+      </li>
+      <li><a href="https://github.com/m1ga">Michael Gangolf</a>
+        <ul>
+          <li><a href="https://jira.appcelerator.org/browse/TIMOB-24963">TIMOB-24963</a> - Android: Add scrollToTop() to ScrollView</li>
+          <li><a href="https://jira.appcelerator.org/browse/TIMOB-17340">TIMOB-17340</a> - TiAPI: Text - Add lineHeight property to Ti.UI.Label and Ti.Ui.TextArea</li>
+          <li><a href="https://jira.appcelerator.org/browse/TIMOB-24426">TIMOB-24426</a> - Remove &quot;Alert&quot; title from alert()</li>
+        </ul>
+      </li>
+      <li><a href="https://github.com/Brianggalvez">Brian G Galvez</a>
+        <ul>
+          <li><a href="https://jira.appcelerator.org/browse/TIMOB-24327">TIMOB-24327</a> - iOS: Implement AllowsMultipleSelectionWhenEditing and getSelectedRow in ListView</li>
+        </ul>
+      </li>
+    </ul>
+</p></div>
+<div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Fixedissues">
+  <h2>Fixed issues</h2>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Android">
+    <h3>Android</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-6392">TIMOB-6392</a> - Android: Ti.UI.Button text values with too many displayable characters draw improperly</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-9680">TIMOB-9680</a> - Android: Textfield: The focus on textfield does not happen through textfield focus method</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-10070">TIMOB-10070</a> - Android: Landscape Left/Right handling is backwards</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-11709">TIMOB-11709</a> - Android: String.formatTime causes app crash when date is string.</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-18500">TIMOB-18500</a> - Android: event.cancel not set properly for optionsDialog</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-19878">TIMOB-19878</a> - Orientation Change is not correctly detected on Android</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-20439">TIMOB-20439</a> - Android: Using camera bloats app storage</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-23996">TIMOB-23996</a> - Android: Can&apos;t package android modules with NDK r13 &amp; r14</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24297">TIMOB-24297</a> - Android native modules build is getting failed with Android NDK r13b</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24537">TIMOB-24537</a> - TI Gestures not firing even on orientation change on Android</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24679">TIMOB-24679</a> - Android: Deprecate invalid proxy constants in 7.0.0</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24866">TIMOB-24866</a> - Android: Setting a TextField&apos;s &quot;padding&quot; resets its alignment to left/center</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24937">TIMOB-24937</a> - Android: Default module manifest template uses wrong API version</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25021">TIMOB-25021</a> - Android: Unable to release weak global references</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25051">TIMOB-25051</a> - Android. persistentObjects leak</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25160">TIMOB-25160</a> - Android O : CLI does not detect android O device&apos;s model &amp; shows &quot;android device&quot; when &quot;appc ti info&quot; is run</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25225">TIMOB-25225</a> - Android: Touch Id authentication issue</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25241">TIMOB-25241</a> - Android: Ti.Network.createHTTPClient log 404 : Not Found error in application log</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25242">TIMOB-25242</a> - Android: V8Exception on launch</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25323">TIMOB-25323</a> - Android: Application can crash after exiting</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25324">TIMOB-25324</a> - Android: AssetManager will release when suspended to background</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25374">TIMOB-25374</a> - borderColor not visible on Android tiSDK 6.2.2</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25382">TIMOB-25382</a> - Android: Wrong thread error in DrawerLayout when not running on main thread</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25384">TIMOB-25384</a> - Android: extendBackground extends the screen below soft system navigation</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25456">TIMOB-25456</a> - Android: Crash after calling Stringify on Ti.UI.Window</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25462">TIMOB-25462</a> - Android: webview userAgent doesn&apos;t change</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25467">TIMOB-25467</a> - Android: &quot;Ti.UI.Window.orientation&quot; should return screen orientation in split-screen mode</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25471">TIMOB-25471</a> - TableView : java.lang.NullPointerException: Attempt to invoke virtual method &apos;boolean java.util.HashMap.containsKey(java.lang.Object)&apos; on a null object reference</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25487">TIMOB-25487</a> - Android: Prevent kroll from removing null proxy object pointer</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25501">TIMOB-25501</a> - Android: App crash on receiving notification if app in background</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25514">TIMOB-25514</a> - Android: Vertical ScrollView.scrollTo() goes to wrong position when animated as of 6.2.2</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25515">TIMOB-25515</a> - Android: ScrollView.scrollTo() ignores &quot;ti.ui.defaultunit&quot; when animated</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25525">TIMOB-25525 </a> - Android: Textfield focus issue with multiple textfields</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25546">TIMOB-25546</a> - Android: Simple Code Crash after installing Titanium SDK 7.0.0 Beta</li>
+    </ul>
+  </div>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-iOS">
+    <h3>iOS</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-9111">TIMOB-9111</a> - TiAPI: Ti.Utils.base64encode() modified to not insert newlines in returned result</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-19040">TIMOB-19040</a> - iOS9: Replace MPMoviePlayerController in Ti.Media.VideoPlayer with AVPlayerViewController</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-20404">TIMOB-20404</a> - iOS: ProgressBar gets clipped in parent with height Ti.UI.SIZE</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24994">TIMOB-24994</a> - iOS: Remove Ti.UI.iOS.AdView</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25005">TIMOB-25005</a> - iOS: Remove Ti.UI.iPhone namespace</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25024">TIMOB-25024</a> - iOS: Remove &lt;iphone&gt; section from tiapp.xml</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25449">TIMOB-25449</a> - iOS: WebView content offset of 20 pixels when positioned at the top</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25459">TIMOB-25459</a> - iOS: toImage method needs parity with Android &amp; Windows</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25466">TIMOB-25466</a> - setLargeTitleEnabled - unrecognized selector sent to instance</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25491">TIMOB-25491</a> - iOS: Ti.UI.SearchBar not slide down when set visible a view on top</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25496">TIMOB-25496</a> - iOS Document Viewer no longer allows sharing of pdf to other apps</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25504">TIMOB-25504</a> -2436h@3x Images on iPhone X are not used when -736h@3x exists</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25519">TIMOB-25519</a> - iOS: App can crash with unhandled Analytics SQLite error</li>
+    </ul>
+  </div>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Windows">
+    <h3>Windows</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-23291">TIMOB-23291</a> - Windows: Random Values while trying to decrypt value using AES encryption on device</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24124">TIMOB-24124</a> - Windows: Updating a tableView section with a headerView causes a layout issue</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24832">TIMOB-24832</a> - Windows: Unable to set a footerView or headerView on a TableView after data has been set</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24858">TIMOB-24858</a> - Windows: TableViewRow defaults to horizontal layout</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24863">TIMOB-24863</a> - Windows: TableView.filterAttribute does not work</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24906">TIMOB-24906</a> - Windows: Get an &quot;Error device not found&quot; error now and again when building to an Android emulator</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25013">TIMOB-25013</a> - Windows: Asserting the value returned from getPersonByIdentifier crashes an application</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25027">TIMOB-25027</a> - Windows: Remove deprecated property Ti.UI.View.enabled</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25038">TIMOB-25038</a> - (Windows) When &quot;SearchBar.showCancel&quot; Is used and the &quot;X&quot; is pressed text is removed but not &quot;X&quot;</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25255">TIMOB-25255</a> - Windows: Setting label.color to null causes label text to become transparent</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25257">TIMOB-25257</a> - Windows: Crash when adding tableview back to window</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25275">TIMOB-25275</a> - Windows: index property of TableView click event should be index of whole TableView and not section</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25281">TIMOB-25281</a> - Windows: Ti.Media.saveToPhotoGallery does not accept a blob</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25282">TIMOB-25282</a> - Windows: saveToPhotoGallery throws exception</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25291">TIMOB-25291</a> - Windows: Calling send with data will upgrade from a GET to a POST</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25325">TIMOB-25325</a> - Windows: Click event of Button does not provide X, Y coordinates</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25326">TIMOB-25326</a> - Windows: image property of ListItem should not overlay text</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25327">TIMOB-25327</a> - Windows: currentPage property of scrollableview.scrollend event is always 0</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25460">TIMOB-25460</a> - Windows: picker height not working</li>
+    </ul>
+  </div>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Multipleplatforms.1">
+    <h3>Multiple platforms</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25010">TIMOB-25010</a> - nodejs build script: npm install failing on linux and windows</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25016">TIMOB-25016</a> - Allow node-ios-device to be installed on Windows and Linux</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25176">TIMOB-25176</a> - CLI: SDK 7 broken on node 4</li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25328">TIMOB-25328</a> - CLI: Option &quot;Enable Javascript Minification&quot; break code from SDK &gt;= 6.1.1.G.A</li>
+    </ul>
+  </div>
+</div>
+<div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Improvements">
+  <h2>Improvements</h2>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Android.1">
+    <h3>Android</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-10724">TIMOB-10724</a> - Android: Modules: remove gperf as a build dependency
+        <ul>
+          <li>Removed gperf as an Android build dependency on Windows 7</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-18441">TIMOB-18441</a> - Android: Add CLI option to override keystore signature algorithm
+        <ul>
+          <li>
+            Added <tt>--sigalg</tt> option in the CLI for overriding keystore signing algorithm</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-23645">TIMOB-23645</a> - Android notification: allow to set color of background
+        <ul>
+          <li>Added <tt>Color</tt> to Android notification color behind icon</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25353">TIMOB-25353</a> - Android: Move Play Services into a module
+        <ul>
+          <li>Moved Google Play Services to <tt>ti.playservices</tt> module</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25441">TIMOB-25441</a> - Android: Support ARM64
+        <ul>
+          <li>Added native support for ARM64</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25448">TIMOB-25448</a> - Android: Update module build tools to compile with Java 7
+        <ul>
+          <li>Updated module build tools to support Java 7 language features</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25483">TIMOB-25483</a> - Android: Add FACE_UP/FACE_DOWN support to Ti.Gesture
+        <ul>
+          <li>Added support for <tt>FACE_UP</tt> and <tt>FACE_DOWN</tt> for Android</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25498">TIMOB-25498</a> - Android: Deprecate getEventsInYear and getEventsInMonth
+        <ul>
+          <li>Deprecated <tt>getEventsInYear()</tt> and <tt>getEventsInMonth()</tt> methods from <tt>Ti.Calendar.Calendar</tt></li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25510">TIMOB-25510</a> - Android: Lower min &quot;targetSdkVersion&quot; from 25 to 23
+        <ul>
+          <li>Due to file permission issues, this release pushed the targetSdkVersion back to 23</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-iOS.1">
+    <h3>iOS</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-23136">TIMOB-23136</a> - iOS: Deprecate TiJScore / Kroll-Thread in SDK-Core
+        <ul>
+          <li>Deprecated TiJSCore. TiJSCore will be removed in SDK 8.0.0.</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-23495">TIMOB-23495</a> - iOS: Support parent property on Ti.Filesystem.File
+        <ul>
+          <li>Added iOS parity for <tt>Ti.Filesystem.File.parent</tt> property</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24327">TIMOB-24327</a> - iOS: Implement AllowsMultipleSelectionWhenEditing and getSelectedRow in ListView
+        <ul>
+          <li>Implemented <tt>AllowMultipleSelectionWhenEditing</tt> property and <tt>getSelectedRows</tt> method</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25195">TIMOB-25195</a> - iOS: Improve native module template
+        <ul>
+          <li>Create new iOS modules in <tt>ios/</tt> instead of <tt>iphone/</tt></li>
+          <li>Use recommended build-settings like post-processing and assert-removal</li>
+          <li>Refactored the default readme attached to a module</li>
+          <li>Refactored and linted the default templates to match our clang-format</li>
+          <li>Prevent the README.md<a href="http://README.md"> from the <tt>platform/</tt> directory from being zipped</a></li>
+          <li>Added a .gitignore for default ignored files and directories</li>
+          <li>Updated the default license-headers to match Axway</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25279">TIMOB-25279</a> - iOS: Clean-up Titanium core, resolve all compiler warnings
+        <ul>
+          <li>Improved on the following Xcode 9 features:
+            <ul>
+              <li>Static analyser warnings</li>
+              <li>Fix some &quot;missing localization&quot; warnings by using NSLocalizedString</li>
+              <li>Fix unreachable code</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Windows.1">
+    <h3>Windows</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24426">TIMOB-24426</a> - Remove &quot;Alert&quot; title from alert()
+        <ul>
+          <li>Removed the &quot;Alert&quot; title from <tt>alert()</tt> function</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24975">TIMOB-24975</a> - Windows: SearchBar should show No Results text if there are no results in a search
+        <ul>
+          <li>SearchBar now displays &quot;No Results&quot; if there are no results from a search</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25433">TIMOB-25433</a> - Windows: Auto-detect requirement of cmake needing to be rerun in module build
+        <ul>
+          <li>Added feature that automatically builds the <tt>cmake</tt> directory if it doesn&apos;t exist. Use the <tt>--run-cmake</tt> command.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-Multipleplatforms.2">
+    <h3>Multiple platforms</h3>
+    <ul>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-24000">TIMOB-24000</a> - CLI: Module build should error if the apiversion in manifest does not match the SDKs apiversion
+        <ul>
+          <li>Added feature that the module build will announce an error if the apiversion in the manifest does not match the SDK&apos;s apiversion</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25561">TIMOB-25561</a> - CLI: Module build should error if the apiversion in manifest does not match the SDKs apiversion
+        <ul>
+          <li>Module build will throw an error if the apiversion is incorrect</li>
+        </ul>
+      </li>
+      <li><a href="https://jira.appcelerator.org/browse/TIMOB-25562">TIMOB-25562</a> - CLI: Automatically migrate native Android modules to SDK 7 during module-build
+        <ul>
+          <li>Added feature that will migrate older module&apos;s <tt>apiversion</tt>, <tt>minsdk</tt>, and <tt>version</tt> and create a backup of the <tt>manifest</tt> file (<tt>manifest.bak</tt>)</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-APIchanges">
+  <h2>API changes</h2>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-NewAPIs">
+    <h3>New APIs</h3>
+    <p>The following APIs are new or have expanded platform support in Release 7.0.0.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <p>API</p>
+              
+              </th><th>
+                <p>Type</p>
+                
+                </th><th>
+                  <p>Notes</p>
+                  
+          </th></tr>
+        </thead>
+        <tfoot></tfoot>
+        <tbody>
+          <tr>
+            <td>
+              <p>Titanium.Android.Notification.color</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Accent color used behind icon. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Android.Notification.getColor</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.Android.Notification.color property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Android.Notification.setColor</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.Android.Notification.color property. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Android.QuickSettingsService</p>
+            </td>
+            <td>
+              <p>object</p>
+            </td>
+            <td>
+              <p>Android service for creating custom quick settings tiles and handling user&apos;s interaction with them. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Android.TILE_STATE_ACTIVE</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>QuickSettings tile is active. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Android.TILE_STATE_INACTIVE</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>QuickSettings tile is inactive. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Android.TILE_STATE_UNAVAILABLE</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>QuickSettings tile is unavailble. (New API, supported on Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ListView.allowsMultipleSelectionDuringEditing</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Determines whether multiple items of this list view can be selected at the same time while editing the table. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ListView.getAllowsMultipleSelectionDuringEditing</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.ListView.allowsMultipleSelectionDuringEditing property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ListView.getSelectedItems</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.ListView.selectedItems property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ListView.selectedItems</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Returns the selected list view items. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ListView.setAllowsMultipleSelectionDuringEditing</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.ListView.allowsMultipleSelectionDuringEditing property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ListView.setSelectedItems</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.ListView.selectedItems property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ScrollView.getRefreshControl</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.ScrollView.refreshControl property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ScrollView.refreshControl</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>View positioned above the first row that is only revealed when the user drags the scroll view contents down. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.ScrollView.setRefreshControl</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.ScrollView.refreshControl property. (Added support for Android.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.getLargeTitleDisplayMode</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.Window.largeTitleDisplayMode property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.getLargeTitleEnabled</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Gets the value of the Titanium.UI.Window.largeTitleEnabled property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.largeTitleDisplayMode</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>The mode to use when displaying the title of the navigation bar. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.largeTitleEnabled</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>A Boolean value indicating whether the title should be displayed in a large format. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.setLargeTitleDisplayMode</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.Window.largeTitleDisplayMode property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.Window.setLargeTitleEnabled</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Sets the value of the Titanium.UI.Window.largeTitleEnabled property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.iOS.LARGE_TITLE_DISPLAY_MODE_ALWAYS</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Always use a larger title when this item is top most. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.iOS.LARGE_TITLE_DISPLAY_MODE_AUTOMATIC</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Automatically use the large out-of-line title based on the state of the p revious item in the navigation bar. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.UI.iOS.LARGE_TITLE_DISPLAY_MODE_NEVER</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Never use a larger title when this item is top most. (New API, supported on iPhone and iPad.)</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="src-52298972_TitaniumSDK7.0.0.RCReleaseNote-DeprecatedAPIs">
+    <h3>Deprecated APIs</h3>
+    <p>The following APIs are deprecated in Release 7.0.0.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <p>API</p>
+              
+              </th><th>
+                <p>Type</p>
+                
+                </th><th>
+                  <p>Notes</p>
+                  
+          </th></tr>
+        </thead>
+        <tfoot></tfoot>
+        <tbody>
+          <tr>
+            <td>
+              <p>Titanium.Filesystem.File.getParent</p>
+            </td>
+            <td>
+              <p>method</p>
+            </td>
+            <td>
+              <p>Use the Titanium.Filesystem.File.parent property to receive a <tt>File</tt> reference instead. If you wish to receive the path, use the <tt>nativePath</tt> property of that reference instead.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Titanium.Geolocation.AUTHORIZATION_AUTHORIZED</p>
+            </td>
+            <td>
+              <p>property</p>
+            </td>
+            <td>
+              <p>Use Titanium.Geolocation.AUTHORIZATION_ALWAYS as advised by Apple.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

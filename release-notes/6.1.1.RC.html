@@ -1,0 +1,1466 @@
+<title>Titanium SDK 6.1.1.RC</title>
+<link type="text/css" rel="stylesheet" href="css/release_note.css" media="all">
+<h1>Titanium SDK 6.1.1.RC - 16 June 2017</h1>
+    <div id="src-49163164_TitaniumSDK6.1.1.RCReleaseNote-Contents">
+        <h2>Contents</h2>
+    </div>
+    <div id="src-49163164_TitaniumSDK6.1.1.RCReleaseNote-Aboutthisrelease">
+        <h2>About this release</h2>
+    <p>Titanium SDK 6.1.1.RC is a patch release of the SDK which addresses important fixes for 6.1.0.</p>
+    </div>
+    <div id="src-49163164_TitaniumSDK6.1.1.RCReleaseNote-Fixedissues">
+        <h2>Fixed issues</h2>
+<ul><li><a href="https://jira.appcelerator.org/browse/TIMOB-24665">TIMOB-24665</a> - Android: Fix inaccessible Ti.Media constants</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24680">TIMOB-24680</a> - iOS: Enterprise ad hoc provisioning profiles not validating properly for watch extensions</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24741">TIMOB-24741</a> - Android: Using &quot;transparent&quot; as a color crashes the app (Regression)</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24745">TIMOB-24745</a> - Android: Cannot build CommonJS modules with multiple JS files</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24748">TIMOB-24748</a> - Android: HTTPClient - can&apos;t use streaming mode with authentication</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24751">TIMOB-24751</a> - Windows: Cannot build for Android if Windows SDK is not installed</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24753">TIMOB-24753</a> - iOS: View sizes are incorrect in 6.1.0.GA (regression)</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24756">TIMOB-24756</a> - Android: Ti.UI.ImageView with &quot;images&quot; property causes crash</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24770">TIMOB-24770</a> - iOS: Incorrect badge display on Ti.UI.DashboardView (no background image)</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24778">TIMOB-24778</a> - CLI: Minimum android build tools is incorrect</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24792">TIMOB-24792</a> - Android: Horizontal layouts do not behave correctly with &apos;right&apos;</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24793">TIMOB-24793</a> - Android: Ti.UI.View.center is incorrectly calculated</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24796">TIMOB-24796</a> - iOS: Hybrid CommonJS and Native modules don&apos;t handle multiple js files</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24799">TIMOB-24799</a> - Android: Theme Causing Issues in SDK 6.2.2.GA</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24809">TIMOB-24809</a> - Android: HTTPClient - &quot;onload&quot; not dispatched</li></ul>    </div>
+    <div id="src-49163164_TitaniumSDK6.1.1.RCReleaseNote-APIchanges">
+        <h2>API changes</h2>
+    <div id="src-49163164_TitaniumSDK6.1.1.RCReleaseNote-NewAPIs">
+        <h3>New APIs</h3>
+    <p>    <span style="color: #000000;">
+The following APIs are new or have expanded platform support in Release 6.1.1.    </span>
+</p>
+    <div class="tablewrap">
+        <table>
+        <thead>    <tr>
+            <th>
+        <p>API</p>
+
+                </th><th>
+        <p>Type</p>
+
+                </th><th>
+        <p>Notes</p>
+
+        </th></tr>
+</thead><tfoot></tfoot><tbody>    <tr>
+            <td>
+        <p>Titanium.Android.Notification.setProgress</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Set the progress this notification represents. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Blob.imageAsCompressed</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Creates a new blob by compressing the underlying image to the specified quality. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.Calendar.getSourceIdentifier</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.Calendar.Calendar.sourceIdentifier property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.Calendar.getSourceTitle</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.Calendar.Calendar.sourceTitle property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.Calendar.getSourceType</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.Calendar.Calendar.sourceType property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.Calendar.sourceIdentifier</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Displays the source identifier. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.Calendar.sourceTitle</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Displays the source title. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.Calendar.sourceType</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Displays the source type. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.SOURCE_TYPE_BIRTHDAYS</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A birthday calendar source. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.SOURCE_TYPE_CALDAV</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A calDev calendar source. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.SOURCE_TYPE_EXCHANGE</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A microsoft exchange calendar source. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.SOURCE_TYPE_LOCAL</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A local calendar source. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.SOURCE_TYPE_MOBILEME</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A mobileMe calendar source. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.SOURCE_TYPE_SUBSCRIBED</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A subscribed calendar source. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Filesystem.File.createFile</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Creates a file at the path identified by this file object. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Media.SystemAlert</p>
+            </td>
+                <td>
+        <p>object</p>
+            </td>
+                <td>
+        <p>An object for playing system sounds. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Media.hasAudioRecorderPermissions</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Returns <tt>true</tt> if the app has audio permissions. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Media.requestAudioRecorderPermissions</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Request the user&apos;s permission for audio recording. (New API, supported on iPhone, iPad and Windows Phone.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ATTRIBUTE_SUBSCRIPT_STYLE</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Use with Attribute.type to place the text in a lower position. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ATTRIBUTE_SUPERSCRIPT_STYLE</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Use with Attribute.type to place the text in an upper position. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.getLoginValue</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.AlertDialog.loginValue property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.getPasswordValue</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.AlertDialog.passwordValue property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.getValue</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.AlertDialog.value property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.loginValue</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Value of the login text field inside the dialog. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.passwordValue</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Value of the password text field inside the dialog. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.setLoginValue</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.AlertDialog.loginValue property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.setPasswordValue</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.AlertDialog.passwordValue property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.setValue</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.AlertDialog.value property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.value</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Value of the text field inside the dialog. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Button.backgroundSelectedColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Selected background color of the view, as a color name or hex triplet. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Button.getBackgroundSelectedColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.Button.backgroundSelectedColor property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Button.setBackgroundSelectedColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.Button.backgroundSelectedColor property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.allowCreation</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Create a clipboard identified by name if it doesn&apos;t exist. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.getAllowCreation</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.Clipboard.allowCreation property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.getName</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the <a href="http://titanium.ui.clipboard.name/">Titanium.UI.Clipboard.name</a> property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.getUnique</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.Clipboard.unique property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p><a href="http://titanium.ui.clipboard.name/">Titanium.UI.Clipboard.name</a></p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Create a new named clipboard. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.remove</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Removes the clipboard. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.setAllowCreation</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.Clipboard.allowCreation property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.setName</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the <a href="http://titanium.ui.clipboard.name/">Titanium.UI.Clipboard.name</a> property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.setUnique</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.Clipboard.unique property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.unique</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Create a new clipboard identified by a unique system-generated name. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.HIDDEN_BEHAVIOR_GONE</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Release free space when hiding an object. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.HIDDEN_BEHAVIOR_INVISIBLE</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Keeps free space when hiding an object. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Label.getMaxLines</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.Label.maxLines property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Label.getMinimumFontSize</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.Label.minimumFontSize property. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Label.maxLines</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Makes the label at most this many lines tall. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Label.minimumFontSize</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Minimum font size when the font is sized based on the contents. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Label.setMaxLines</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.Label.maxLines property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Label.setMinimumFontSize</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.Label.minimumFontSize property. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListItem.getSelectedSubtitleColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.ListItem.selectedSubtitleColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListItem.selectedSubtitleColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Color to use for the item subtitle when the item is selected, as a color name or hex triplet. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListItem.setSelectedSubtitleColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.ListItem.selectedSubtitleColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListItem.subtitleColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Default text color of the subtitle, as a color name or hex triplet. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.canScroll</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Determines if the list view can scroll in response to user actions. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.cancelprefetch</p>
+            </td>
+                <td>
+        <p>event</p>
+            </td>
+                <td>
+        <p>Fired when list items that previously were considered as candidates for pre-fetching were not actually used. Note that this event is only available on iOS 10 and later (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.getCanScroll</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.ListView.canScroll property. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.getResultsBackgroundColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.ListView.resultsBackgroundColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.getResultsSeparatorColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.ListView.resultsSeparatorColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.getResultsSeparatorInsets</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.ListView.resultsSeparatorInsets property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.getResultsSeparatorStyle</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.ListView.resultsSeparatorStyle property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.prefetch</p>
+            </td>
+                <td>
+        <p>event</p>
+            </td>
+                <td>
+        <p>Fired when new list items are prefetched. The items are ordered ascending by geometric distance from the list view. Note that this event is only available on iOS 10 and later. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.resultsBackgroundColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>The background color of the search results (iOS-only). (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.resultsSeparatorColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Separator line color between rows inside search results, as a color name or hex triplet (iOS-only). (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.resultsSeparatorInsets</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>The insets for search results separators (applies to all cells &amp; iOS-only). (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.resultsSeparatorStyle</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>The separator style of the search results (iOS-only). (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.scrolling</p>
+            </td>
+                <td>
+        <p>event</p>
+            </td>
+                <td>
+        <p>Fires when the list view is scrolling. Calling the <tt>scrollTo</tt> methods will not fire this event (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.setCanScroll</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.ListView.canScroll property. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.setResultsBackgroundColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.ListView.resultsBackgroundColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.setResultsSeparatorColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.ListView.resultsSeparatorColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.setResultsSeparatorInsets</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.ListView.resultsSeparatorInsets property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.setResultsSeparatorStyle</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.ListView.resultsSeparatorStyle property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TEXT_ALIGNMENT_JUSTIFY</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Justify align text. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Tab.badgeColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>If this item displays a badge, this color will be used for the badge&apos;s background. If set to null, the default background color will be used instead. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Tab.getBadgeColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.Tab.badgeColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Tab.setBadgeColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.Tab.badgeColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TabGroup.getUnselectedItemTintColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.TabGroup.unselectedItemTintColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TabGroup.setUnselectedItemTintColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.TabGroup.unselectedItemTintColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TabGroup.unselectedItemTintColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Unselected items in this tab group will be tinted with this color. Setting this value to null indicates that the tab group should use its default value instead. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextArea.fullscreen</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Leave some space above the keyboard in landscape mode or not. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextArea.getFullscreen</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.TextArea.fullscreen property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextArea.getPadding</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.TextArea.padding property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextArea.padding</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Sets the left and right padding of this TextArea. The text will always be vertically centered. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextArea.setFullscreen</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.TextArea.fullscreen property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextArea.setPadding</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.TextArea.padding property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.fullscreen</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Leave some space above the keyboard in landscape mode or not. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.getFullscreen</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.TextField.fullscreen property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.setFullscreen</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.TextField.fullscreen property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.getHiddenBehavior</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.View.hiddenBehavior property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.getTouchFeedback</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.View.touchFeedback property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.getTouchFeedbackColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.View.touchFeedbackColor property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.getViewById</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Returns the matching view of a given view ID. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.hiddenBehavior</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Sets the behavior when hiding an object to release or keep the free space (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.setHiddenBehavior</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.View.hiddenBehavior property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.setTouchFeedback</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.View.touchFeedback property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.setTouchFeedbackColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.View.touchFeedbackColor property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.touchFeedback</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A material design visual construct that provides an instantaneous visual confirmation of touch point. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.touchFeedbackColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Optional touch feedback ripple color. This has no effect unless <tt>touchFeedback</tt> is true. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.blacklistedURLs</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>An array of url strings to blacklist. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.blacklisturl</p>
+            </td>
+                <td>
+        <p>event</p>
+            </td>
+                <td>
+        <p>Fired when a blacklisted URL is stopped. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.disableContextMenu</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Determines whether or not the webview should not be able to display the context menu. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.getBlacklistedURLs</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.WebView.blacklistedURLs property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.getDisableContextMenu</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.WebView.disableContextMenu property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.getKeyboardDisplayRequiresUserAction</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.WebView.keyboardDisplayRequiresUserAction property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.getRequestHeaders</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.WebView.requestHeaders property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.getUserAgent</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.WebView.userAgent property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.keyboardDisplayRequiresUserAction</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A Boolean value indicating whether web content can programmatically display the keyboard. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.requestHeaders</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Sets extra request headers for this web view to use on subsequent URL requests. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.setBlacklistedURLs</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.WebView.blacklistedURLs property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.setDisableContextMenu</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.WebView.disableContextMenu property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.setKeyboardDisplayRequiresUserAction</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.WebView.keyboardDisplayRequiresUserAction property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.setRequestHeaders</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.WebView.requestHeaders property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.setUserAgent</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.WebView.userAgent property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.userAgent</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>The User-Agent header used by the web view when requesting content. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.iOS.AnimationStyle.CROSS_DISSOLVE</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A transition that dissolves from one view to the next. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.iOS.AnimationStyle.FLIP_FROM_BOTTOM</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Flip from bottom to top during a transition animation. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.iOS.AnimationStyle.FLIP_FROM_TOP</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Flip from top to bottom during a transition animation. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div id="src-49163164_TitaniumSDK6.1.1.RCReleaseNote-DeprecatedAPIs">
+        <h3>Deprecated APIs</h3>
+    <p>    <span style="color: #000000;">
+The following APIs are deprecated in Release 6.1.1.    </span>
+</p>
+    <div class="tablewrap">
+        <table>
+        <thead>    <tr>
+            <th>
+        <p>API</p>
+
+                </th><th>
+        <p>Type</p>
+
+                </th><th>
+        <p>Notes</p>
+
+        </th></tr>
+</thead><tfoot></tfoot><tbody>    <tr>
+            <td>
+        <p>Titanium.Gesture.isLandscape</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.Gesture.landscape for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Gesture.isPortrait</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.Gesture.portrait for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Media.hasAudioPermissions</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.Media.hasAudioRecorderPermissions instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Media.requestAudioPermissions</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.Media.requestAudioRecorderPermissions instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.getPaddingLeft</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.UI.TextField.padding for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.getPaddingRight</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.UI.TextField.padding for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.paddingLeft</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Use Titanium.UI.TextField.padding for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.paddingRight</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Use Titanium.UI.TextField.padding for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.setPaddingLeft</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.UI.TextField.padding for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.setPaddingRight</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.UI.TextField.padding for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.onStopBlacklistedUrl</p>
+            </td>
+                <td>
+        <p>event</p>
+            </td>
+                <td>
+        <p>Use the cross-platform <tt>blacklisturl</tt> event instead.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>

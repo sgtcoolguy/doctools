@@ -1,0 +1,133 @@
+<title>Titanium SDK 5.5.0.RC - 31 August 2016</title>
+<style>
+	td, th {tpadding: 5px;}
+	thead, tr:nth-child(even) {background-color: #f8f8f8;}
+</style>
+<h1>Titanium SDK 5.5.0.RC - 31 August 2016</h1>
+    <div  id="46256312_TitaniumSDK5.5.0.RCReleaseNote-Contents"  >
+        <h2>Contents</h2>
+<ul><li>
+<a href="#46256312_TitaniumSDK5.5.0.RCReleaseNote-AboutThisRelease">About This Release</a></li><li>
+<a href="#46256312_TitaniumSDK5.5.0.RCReleaseNote-NoticeofFeatureandBehaviorChanges">Notice of Feature and Behavior Changes</a><ul><li>
+<a href="#46256312_TitaniumSDK5.5.0.RCReleaseNote-iOSPlatform">iOS Platform</a></li></ul></li><li>
+<a href="#46256312_TitaniumSDK5.5.0.RCReleaseNote-NewFeatures">New Features</a><ul><li>
+<a href="#46256312_TitaniumSDK5.5.0.RCReleaseNote-iOSPlatform.1">iOS Platform</a></li></ul></li><li>
+<a href="#46256312_TitaniumSDK5.5.0.RCReleaseNote-CommunityCredits">Community Credits</a></li><li>
+<a href="#46256312_TitaniumSDK5.5.0.RCReleaseNote-FixedIssues">Fixed Issues</a></li><li>
+<a href="#46256312_TitaniumSDK5.5.0.RCReleaseNote-Improvements">Improvements</a></li><li>
+<a href="#46256312_TitaniumSDK5.5.0.RCReleaseNote-KnownIssues">Known Issues</a></li><li>
+<a href="#46256312_TitaniumSDK5.5.0.RCReleaseNote-APIChanges">API Changes</a></li></ul>    </div>
+    <div  id="46256312_TitaniumSDK5.5.0.RCReleaseNote-AboutThisRelease"  >
+        <h2>About This Release</h2>
+    <p>
+Titanium SDK 5.5.0.RC is a minor release of the SDK, adding support for iOS 10 and Xcode 8, as well as addressing high-priority issues from previous releases.</p>
+    <p>
+    <span id="46256312_issues"><a  name="46256312_issues"></a></span>
+</p>
+    </div>
+    <div  id="46256312_TitaniumSDK5.5.0.RCReleaseNote-NoticeofFeatureandBehaviorChanges"  >
+        <h2>Notice of Feature and Behavior Changes</h2>
+    <div  id="46256312_TitaniumSDK5.5.0.RCReleaseNote-iOSPlatform"  >
+        <h3>iOS Platform</h3>
+<ul class="alternate "><li>
+This release adds Xcode support from 7.3.x to the maximum version of 8.x</li><li>
+The team-id is now required in tiapp.xml when building an app with a watch extension and Xcode 8</li><li>
+Minimum iOS SDK version is set to 8.0 by default if not explicitly set in the tiapp.xml when compiling using Xcode 8<ul class="alternate "><li>
+This behavior is following the one Xcode 8 provides. You can still change your minimum iOS version to 7.1 in tiapp.xml</li></ul></li></ul>    </div>
+    </div>
+    <div  id="46256312_TitaniumSDK5.5.0.RCReleaseNote-NewFeatures"  >
+        <h2>New Features</h2>
+    <div  id="46256312_TitaniumSDK5.5.0.RCReleaseNote-iOSPlatform.1"  >
+        <h3>iOS Platform</h3>
+<ul><li>
+Teams IDs are required for Watch apps. Add the <tt>&lt;team-id&gt;</tt> to the <tt>&lt;ios&gt;</tt> section of your <tt>tiapp.xml:</tt></p>
+<div>
+<div>
+<div><code>&lt;ios&gt;</code></div>
+<div><code>&nbsp;&nbsp;&lt;team-id&gt;YOUR-TEAM-ID&lt;/team-id&gt;</code></div>
+<div><code>&nbsp;&nbsp;&lt;!-- more iOS specific keys --&gt;</code></div>
+<div><code>&lt;/ios&gt;</code></div>
+</div>
+</div></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23509">TIMOB-23509</a> - iOS10: Expose new visual effects on Ti.UI.iOS.BlurView<ul><li>
+Exposed the <tt>Ti.UI.iOS.BLUR_EFFECT_STYLE_PROMINENT</tt> and <tt>Ti.UI.iOS.BLUR_EFFECT_STYLE_REGULAR</tt> on Ti.UI.iOS.BlurView</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23513">TIMOB-23513</a> - iOS10: Support for new WatchConnectivity features<ul><li>
+Added support for the new WatchConnectivity features such as <tt>hasContentPending</tt> and <tt>remainingComplicationUserInfoTransfers</tt></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23519">TIMOB-23519</a> - iOS10: Expose new Ti.UI.Pasteboard APIs<ul><li>
+Exposed <tt>hasURLs</tt>, <tt>hasImages</tt>, and <tt>hasColors</tt> in the Ti.UI.Pasteboard API</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23524">TIMOB-23524</a> - iOS10: Support RefreshControl in Ti.UI.ScrollView<ul><li>
+Added support for <tt>refreshControl</tt> in Ti.UI.ScrollView for iOS10</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23528">TIMOB-23528</a> - iOS10: Support new Ti.App.iOS.SearchableItemAttributeSet properties<ul><li>
+Added support for: fullyFormattedAddress, postalCode, thoroughfare and subThoroughfare</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23828">TIMOB-23828</a> - iOS10: Support the new CoreSpotlight CSSearchQuery API<ul><li>
+Added the ability to query searchable indexes with iOS 10</li></ul></li></ul>    </div>
+    </div>
+    <div  id="46256312_TitaniumSDK5.5.0.RCReleaseNote-CommunityCredits"  >
+        <h2>Community Credits</h2>
+<ul><li>
+<a href="https://github.com/vladimir-trifonov">Vladimir Trifonov</a> for resolving <a href="https://jira.appcelerator.org/browse/CLI-1022">CLI-1022</a> - If you set access to an Arrow connector, &quot;Successfully set access for &lt;ACCESS_RIGHT&gt; to null.&quot; will appear</li><li>
+<a href="https://github.com/m1ga">Michael Gangolf</a> for his work on android: add setRequestHeaders({});, docs, add getter, change docu, adding parameter, and updating documentation.</li></ul>    </div>
+    <div  id="46256312_TitaniumSDK5.5.0.RCReleaseNote-FixedIssues"  >
+        <h2>Fixed Issues</h2>
+<ul><li>
+<a href="https://jira.appcelerator.org/browse/CLI-1070">CLI-1070</a> - If you use node 0.12.X, then you'll be unable to download the Hyperloop module through 'appc new'</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-1079">CLI-1079</a> - Modules and plugins are not overwritten if the files already exist</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23518">TIMOB-23518</a> - iOS: Cannot build with Xcode 8.0</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23549">TIMOB-23549</a> - ioslib doesn't recognize global WatchOS simulators</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23614">TIMOB-23614</a> - iOS10: Titanium with Swift Watch App fails to build on Xcode 8.0 Beta</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23616">TIMOB-23616</a> - Class not found: Ti.UI.ScrollableView in ListView Template</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23620">TIMOB-23620</a> - ioslib fails to choose a watch simulator under Xcode 8.0 Beta</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23627">TIMOB-23627</a> - Calendar, Contacts and Camera can crash on iOS 10 / Xcode 8</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23636">TIMOB-23636</a> - Failed watchOS pairing will silently fail appc run without error</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23671">TIMOB-23671</a> - Receiving &quot;Segmentation fault: 11&quot; when trying to build after updating SDK to 5.4.0 from June 6 (or later)</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23747">TIMOB-23747</a> - iOS: Handoff crashes from iOS9 to iOS8</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23756">TIMOB-23756</a> - iOS: Build fails if project name matches file/folder in built app</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23722">TIMOB-23722</a> - Hyperloop: Classes that are unavailable on watchOS/tvOS are also not compiled on iOS</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23761">TIMOB-23761</a> - Hyperloop: Errors when running project with liveview and hyperloop enabled</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23815">TIMOB-23815</a> - Hyperloop: Android error when creating proxy after Hyperloop version 1.2.6</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23769">TIMOB-23769</a> - iOS: Deprecated warnings are thrown in unrelated API's</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23790">TIMOB-23790</a> - node-ios-device: emitter error during process exit and uncaught exception</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23823">TIMOB-23823 </a> - iOS: Error when device is disconnected while running a build</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23824">TIMOB-23824</a> - iOS: Using animationStyle will cause the app to crash</li></ul>    </div>
+    <div  id="46256312_TitaniumSDK5.5.0.RCReleaseNote-Improvements"  >
+        <h2>Improvements</h2>
+<ul><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23514">TIMOB-23514</a> - iOS10: Deprecate iAds<ul><li>
+Removed support for iAd framework as noted in <a href="https://developer.apple.com/library/prerelease/content/releasenotes/General/iOS10APIDiffs/Objective-C/iAd.html">iOS 10.0 API Diffs</a></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23778">TIMOB-23778</a> - iOS: Improve warning when calling iOS10 visual effects for Ti.UI.iOS.BlurView on &lt; iOS10<ul><li>
+Improved the warning when calling iOS10 visual effects for Ti.UI.iOS.BlurView on non-iOS10 devices. The error message should look something like this:</p>
+<div>
+<div>
+<div><code>ERROR : The provided value </code><code>for</code><code> the Ti.UI.iOS.BlurView.effect property is not available in </code><code>this</code><code> iOS version.</code></div>
+</div>
+</div></li></ul></li></ul>    </div>
+    <div  id="46256312_TitaniumSDK5.5.0.RCReleaseNote-KnownIssues"  >
+        <h2>Known Issues</h2>
+<ul><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23726">TIMOB-2372</a> - iOS: Debugger for Alloy project hangs on Device with run-on-main-thread enabled - open<ul><li>
+Running an Alloy project in Debug mode to Device causes the app to hang on &quot;The Debugger is waiting for you to launch the app on your device&quot;.</li><li>
+This is a Regression from 5.3.0.GA</li><li>
+The hang does not occur on simulator, classic titanium mobile project, or with run-on-main-thread disabled</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23781">TIMOB-23781</a> - iOS8: Image Assets in Xcode 8.0 are distorted (Xcode 8 Beta issue) - open<ul><li>
+Image assets are distorted in apps built with Xcode 8.0 (10.0 SDK) on iOS8 devices. For a default two-tabbed classic application with an ImageView, it affects:<ul><li>
+The LaunchScreen Icon</li><li>
+The two Tab Icons</li><li>
+The Custom Image within the ImageView</li></ul></li><li>
+This does not occur in Simulators or with iOS9 or iOS10</li><li>
+When reverting to Xcode 7.3 (9.3 SDK), the issue is no longer reproducible</li><li>
+This affects Classic &amp; Alloy Projects</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23786">TIMOB-23786</a> - iOS10: Logs not working on iOS 10 devices (Xcode 8 Beta issue) - open</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23761">TIMOB-23761</a> - Hyperloop: Errors when running project with liveview and hyperloop enabled<ul><li>
+Currently, Liveview only supports Hyperloop on simulators of Alloy projects</li></ul></li></ul>    <p>
+    <span id="46256312_apichanges"><a  name="46256312_apichanges"></a></span>
+</p>
+    </div>
+    <div  id="46256312_TitaniumSDK5.5.0.RCReleaseNote-APIChanges"  >
+        <h2>API Changes</h2>
+    <p>
+No API changes were made in this release.</p>
+    </div>
+    </div>
+        </div>
+    
+        

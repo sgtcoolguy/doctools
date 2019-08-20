@@ -1,0 +1,160 @@
+<title>Appcelerator Platform 3.1.2 General Availability - 08/15/2013</title>
+<h1>Appcelerator Platform 3.1.2 General Availability - 08/15/2013</h1>
+
+<h5>Contents</h5>
+
+<ul>
+<li><a href="#about">About This Release</a></li><ul>
+<li><a href="#install">Installation Directions</a></li>
+</ul>
+<li><a href="#changes">Breaking Changes</a></li><ul>
+<li><a href="#multiple_analyzer">Running Multiple Platforms with the Code Analyzer</a></li>
+<li><a href="#liveview">Enabling LiveView with a Toggle Button</a></li>
+</ul>
+<li><a href="#features">New Features</a></li><ul>
+<li><a href="#export_analyzer">Export Code Analyzer Results</a></li>
+</ul>
+<li><a href="#known">Known Issues</a></li><ul>
+<li><a href="#liveiew_issues">LiveView with Alloy Limitation</a></li></ul>
+<li><a href="#titanium">Titanium Components</a></li>
+</ul>
+
+<p><a name="about"></a></p>
+
+<h2>About This Release</h2>
+
+<p>
+This is a General Availability (GA) release of the Appcelerator Platform, including Appcelerator Studio 3.1.2,
+addressing high-priority issues in previous releases.
+</p>
+
+<p>
+These release notes only address the enterprise features associated with the Appcelerator Platform.
+For updates about the underlying components of the Appcelerator Platform, see the links in the
+<a href="#titanium">Titanium Components section below</a>.
+</p>
+
+<a name="install"></a>
+<h2>Installation Directions</h2>
+Before upgrading Appcelerator Studio, uninstall the LiveView plugin first. LiveView is now shipped
+with Appcelerator Studio and may conflict with an existing LiveView plugin installation.
+
+To uninstall the LiveView plugin:
+
+<ol>
+<li>Open the <b>About Appcelerator Studio</b> dialog.  <br/> For Mac OS X, from the menu bar,
+select <b>Appcelerator Studio > About Appcelerator Studio</b>.  <br/> For Linux and Windows, from
+the menu bar, select <b>Help > About Appcelerator Studio</b>.</li>
+<li>In the About dialog, click <b>Installation Details</b>.</li>
+<li>Select <b>LiveView Feature</b>, click <b>Uninstall...</b>, then <b>Finish</b>.
+</ol>
+
+After the process completes, restart Studio then start the Studio upgrade process.
+
+Do not forget to remove or disable the LiveView update site:
+<ol>
+<li>Open the Preferences dialog and navigate to <b>Install/Update > Available Software Sites</b>.</li>
+<li>Select the LiveView update site and click either <b>Disable</b> or <b>Remove</b>.</li>
+</ol>
+
+<a name="changes"></a>
+<h2>Breaking Changes</h2>
+
+<a name="multiple_analyzer"></a>
+<h3>Running Multiple Platforms with the Code Analyzer</h3>
+<p>
+To run the code analyzer for multiple platforms, select the <b>Code Analysis > Multiple...</b> option
+from the project's right-click context menu.  For more information, see the
+<a href="http://docs.appcelerator.com/platform/latest/#!/guide/Code_Analyzer">Code Analyzer guide</a>.</p>
+
+Previously, this option was called <b>Run Selected Platforms</b>.
+
+<a name="liveview"></a>
+<h3>Enabling LiveView with a Toggle Button</h3>
+<p>
+As of this Release, to enable LiveView, toggle the <b>LiveView</b> button on and off to enable or
+disable LiveView for each run.  For more information, see the
+<a href="http://docs.appcelerator.com/platform/latest/#!/guide/LiveView">LiveView guide</a>.
+</p>
+<p>
+Previously, this feature was controlled in the <b>Run Configurations</b> dialog.
+</p>
+
+<a name="features"></a>
+<h2>New Features</h2>
+
+<a name="export_analyzer"></a>
+<h3>Export Code Analyzer Results</h3>
+<p>
+Results from the Code Analyzer can be exported by right-clicking on the results and selecting
+<b>Export</b> or selecting <b>Code Analysis > Export Results...</b> from the project's right-click context menu.
+For more information, see the
+<a href="http://docs.appcelerator.com/platform/latest/#!/guide/Code_Analyzer">Code Analyzer guide</a>.</p>
+
+
+<a name="known"></a>
+<h2>Known Issues</h2>
+
+<a name="liveview_issues"></a>
+<h3>LiveView with Alloy Limitation</h3>
+
+When using the LiveView tool with multiple launches of an Alloy project, LiveView only properly updates the last
+platform you run.  For an existing launch with LiveView on another platform, relaunch the application
+for that platform. 
+
+<a name="titanium"></a>
+<h2>Titanium Components</h2>
+
+<p>Appcelerator Studio requires Titanium components to develop mobile applications.
+By default, Appcelerator Studio automatically checks and prompts you to update the components that
+are GA.
+To manually check for updates, from the menu bar, select <b>Help > Check for Appcelerator Updates</b>.</p>
+
+<p>This version of Studio is tested against and supports the following Titanium components:</p>
+
+<a name="table"></a>
+
+<table>
+<tr>
+    <td><b>Component</b></td>
+    <td><b>Version</b></td>
+    <td><b>Changelog</b></td>
+    <td><b>Notes</b></td>
+</tr>
+<tr>
+    <td>Titanium SDK</td>
+    <td>3.1.2.GA</td>
+    <td><a href="http://docs.appcelerator.com/titanium/release-notes/?version=3.1.2.GA">3.1.2.GA Release Notes</a></td>
+    <td>Required to build mobile applications</td>
+</tr>
+<tr>
+    <td>node-appc</td>
+    <td>0.1.30</td>
+    <td><a href="https://github.com/appcelerator/node-appc/blob/3_1_X/CHANGELOG.md">CHANGELOG</a></td>
+    <td>Required for the Titanium toolchain</td>
+</tr>
+<tr>
+    <td>Titanium CLI</td>
+    <td>3.1.2</td>
+    <td><a href="https://github.com/appcelerator/titanium/blob/3_1_X/CHANGELOG.md">CHANGELOG</a></td>
+    <td>Required to build mobile applications</td>
+</tr>
+<tr>
+    <td>Alloy</td>
+    <td>1.2.0</td>
+    <td><a href="https://github.com/appcelerator/alloy/blob/1_1_X/CHANGELOG.md">CHANGELOG</a></td>
+    <td>Required to build mobile applications with the Alloy framework</td>
+</tr>
+<tr>
+    <td>Titanium Code Processor</td>
+    <td>1.0.2</td>
+    <td><a href="https://github.com/appcelerator/titanium-code-processor/blob/1_0_X/CHANGELOG.md">CHANGELOG</a></td>
+    <td>Required for the Code Analysis tool</td>
+</tr>
+<tr>
+    <td>Node.ACS CLI</td>
+    <td>1.0.6</td>
+    <td><a href="http://docs.appcelerator.com/cloud/latest/#!/guide/node_releasenotes">Release Notes</a></td>
+    <td>Required to build custom cloud services</td>
+</tr>
+</table>

@@ -1,0 +1,917 @@
+<title>Titanium SDK 5.5.0.GA - 13 September 2016</title>
+<link type="text/css" rel="stylesheet" href="css/release_note.css" media="all">
+<h1>Titanium SDK 5.5.0.GA - 13 September 2016</h1>
+    <div  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-Contents"  >
+        <h2>Contents</h2>
+<ul><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-AboutThisRelease">About This Release</a></li><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-NoticeofFeatureandBehaviorChanges">Notice of Feature and Behavior Changes</a><ul><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-iOSPlatform">iOS Platform</a></li><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-UsingFacebookmodulewithiOS10andXcode8">Using Facebook module with iOS 10 and Xcode 8</a></li><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-UsingiOSHyperloopwithmorethanoneversionofXcodeinstalled">Using iOS Hyperloop with more than one version of Xcode installed</a></li></ul></li><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-NewFeaturesmajor%2Fminorreleases">New Features major/minor releases</a><ul><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-Hyperloop">Hyperloop</a></li><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-iOSPlatform.1">iOS Platform</a></li></ul></li><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-FixedIssues">Fixed Issues</a></li><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-Improvementspatchreleases">Improvements patch releases</a></li><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-KnownIssues">Known Issues</a></li><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-APIChanges">API Changes</a><ul><li>
+<a href="#46256880_TitaniumSDK5.5.0.GAReleaseNote-NewAPIs">New APIs</a></li></ul></li></ul>    </div>
+    <div  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-AboutThisRelease"  >
+        <h2>About This Release</h2>
+    <p>
+Titanium SDK 5.5.0.GA is a minor release of the SDK, adding support for iOS 10 and Xcode 8, as well as addressing high-priority issues from previous releases.</p>
+    <p>
+    <span id="46256880_issues"><a  name="46256880_issues"></a></span>
+</p>
+    </div>
+    <div  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-NoticeofFeatureandBehaviorChanges"  >
+        <h2>Notice of Feature and Behavior Changes</h2>
+    <div  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-iOSPlatform"  >
+        <h3>iOS Platform</h3>
+    <p>
+Although the SDK and CLI take care of most of the iOS 10 changes, there are some privacy changes that will need to be handled by the developer. These changes include the requirement of the following keys in the <tt>plist</tt> of your <tt>tiapp.xml</tt> file. If you use the...<ul class="alternate "><li>
+    <span style="color: #000000;" >
+Ti.Contacts API to access contacts from the address book, update     </span>
+<strong>NSContactsUsageDescription</strong></li><li>
+Ti.Media.showCamera API to capture photos and videos, update <strong>    <span style="color: #000000;" >
+NSCameraUsageDescription    </span>
+</strong></li><li>
+    <span style="color: #000000;" >
+Ti.Calendar API to access device calendars, update <strong>NSCalendarsUsageDescription</strong>    </span>
+</li><li>
+    <span style="color: #000000;" >
+Ti.Media.openPhotoGallery API to access the photo gallery or Ti.Media.showCamera API to save photos, update <strong>NSPhotoLibraryUsageDescription</strong>    </span>
+</li><li>
+    <span style="color: #000000;" >
+Ti.Media.AudioRecorder API to record audio or Ti.Media.showCamera to record videos, update <strong>NSMicrophoneUsageDescription</strong>    </span>
+</li><li>
+Ti.Media.queryMusicLibrary API to query the native music-library, update <strong>NSAppleMusicUsageDescription</strong></li></ul>    <p>
+    <span style="color: #000000;" >
+For example:    </span>
+</p>
+<div>
+<div>
+<div><code>&lt;ios&gt;</code></div>
+<div><code class="indent1">plist&gt;</code></div>
+<div><code class="indent2">dict&gt;</code></div>
+<div><code class="indent3">key&gt;NSContactsUsageDescription&lt;/key&gt;</code></div>
+<div><code class="indent3">string&gt;Can we use to your contacts?&lt;/string&gt;</code></div>
+<div><code class="indent3">key&gt;NSCameraUsageDescription&lt;/key&gt;</code></div>
+<div><code class="indent3">string&gt;Can we use your camera?&lt;/string&gt;</code></div>
+<div><code class="indent3">key&gt;NSCalendarsUsageDescription&lt;/key&gt;</code></div>
+<div><code class="indent3">string&gt;Can we use your calendar?&lt;/string&gt;</code></div>
+<div><code class="indent3">key&gt;NSPhotoLibraryUsageDescription&lt;/key&gt;</code></div>
+<div><code class="indent3">string&gt;Can we save to your library?&lt;/string&gt;</code></div>
+<div><code class="indent3">key&gt;NSMicrophoneUsageDescription&lt;/key&gt;</code></div>
+<div><code class="indent3">string&gt;Can we use your microphone?&lt;/string&gt;</code></div>
+<div><code class="indent3">key&gt;NSAppleMusicUsageDescription&lt;/key&gt;</code></div>
+<div><code class="indent3">string&gt;Can we use your music library?&lt;/string&gt;</code></div>
+<div><code class="indent2">/dict&gt;</code></div>
+<div><code class="indent1">/plist&gt;</code></div>
+<div><code>&lt;/ios&gt;</code></div>
+</div>
+</div>    <p>
+If you test your application on iOS 10, the SDK will log an error that you haven't included these permissions so that you know when the API requires a certain permission. On devices prior to iOS 10, the privacy-keys are not required but are recommended.</p>
+    <p>
+    <span style="color: #000000;" >
+This release also includes the following iOS changes:    </span>
+<ul class="alternate "><li>
+Xcode support from 7.3.x to the maximum version of 8.x</li><li>
+The team-id is now required in tiapp.xml when building an app with a watch extension and Xcode 8</li><li>
+Minimum iOS SDK version is set to 8.0 by default if not explicitly set in the tiapp.xml when compiling using Xcode 8<ul class="alternate "><li>
+This behavior is following the one Xcode 8 provides. You can still change your minimum iOS version to 7.1 in tiapp.xml</li></ul></li></ul>    </div>
+    <div class="section section-4 p1"  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-UsingFacebookmodulewithiOS10andXcode8"  >
+        <h3 class="heading p1"><span>Using Facebook module with iOS 10 and Xcode 8</h3>
+
+To log in using Facebook on iOS Simulator, you now must include an entitlements file that enables Keychain Sharing Capabilities. While the entitlement file is not necessary for device builds (it is self-generated), it won't affect anything in your build. To do this, create a /platform/ios/&lt;name&gt;.entitlements file (replace &lt;name&gt; with the name element in tiapp.xml) with this content:</p>
+<div>
+<div class="title">Facebook login with iOS 10 and Xcode 8</div>
+<div>
+<div><code>&lt;?xml </code><code class="color1">version="1.0" </code><code class="color1">encoding="UTF-8"?&gt;</code></div>
+<div><code>&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</code></div>
+<div><code>&lt;plist </code><code class="color1">version="1.0"&gt;</code></div>
+<div><code>&lt;dict&gt;</code></div>
+<div><code class="indent1">key&gt;keychain-access-groups&lt;/key&gt;</code></div>
+<div><code class="indent1">array&gt;</code></div>
+<div><code class="indent2">!-- APP_ID same as the id value in the tiapp.xml file --&gt;</code></div>
+<div><code class="indent2">string&gt;$(AppIdentifierPrefix)APP_ID&lt;/string&gt;</code></div>
+<div><code class="indent1">/array&gt;</code></div>
+<div><code>&lt;/dict&gt;</code></div>
+<div><code>&lt;/plist&gt;</code></div>
+</div>
+</div>    </div>
+    <div class="section section-4 p1"  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-UsingiOSHyperloopwithmorethanoneversionofXcodeinstalled"  >
+        <h3 class="heading p1"><span>Using iOS Hyperloop with more than  one  version of  Xcode installed</h3>
+
+If you use Appc CLI for development and have more than one version of Xcode installed, make sure your Xcode ActiveSDK is consistent with the iOS SDK you build against. For example:<ul><li class="p1 ">    <p>
+<tt>sudo xcode-select --switch</tt><tt> /Applications/Xcode8.app</tt> followed by<tt> appc run -p ios -I 10.0</tt></li><li class="p1 ">    <p>
+<tt>sudo xcode-select --switch</tt><tt> /Applications/Xcode731.app</tt> followed by<tt> appc run -p ios -I 9.3</tt></li></ul>    </div>
+    </div>
+    <div  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-NewFeaturesmajor/minorreleases"  >
+        <h2>New Features major/minor releases</h2>
+    <div  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-Hyperloop"  >
+        <h3>Hyperloop</h3>
+<ul><li>
+This release includes Hyperloop 1.2.7.</li></ul>    </div>
+    <div  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-iOSPlatform.1"  >
+        <h3>iOS Platform</h3>
+<ul><li>
+Team id is now required in <tt>tiapp.xml</tt> when building an app with a watch extension and Xcode 8. Add the <tt>&lt;team-id&gt;</tt> to the <tt>&lt;ios&gt;</tt> section of your <tt>tiapp.xml:</tt></p>
+<div>
+<div>
+<div><code>&lt;ios&gt;</code></div>
+<div><code class="indent1">team-id&gt;YOUR-TEAM-ID&lt;/team-id&gt;</code></div>
+<div><code class="indent1">!-- more iOS specific keys --&gt;</code></div>
+<div><code>&lt;/ios&gt;</code></div>
+</div>
+</div></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23509">TIMOB-23509</a> - iOS10: Expose new visual effects on Ti.UI.iOS.BlurView<ul><li>
+Exposed the <tt>Ti.UI.iOS.BLUR_EFFECT_STYLE_PROMINENT</tt> and <tt>Ti.UI.iOS.BLUR_EFFECT_STYLE_REGULAR</tt> on Ti.UI.iOS.BlurView</li><li>
+Demo:</p>
+<div>
+<div>
+<div><code>var win = Ti.UI.createWindow({</code></div>
+<div><code class="indent1">backgroundColor: "#fff"</code></div>
+<div><code>});</code></div>
+<div><code>// Reference image (or view)</code></div>
+<div><code>var img = Ti.UI.createImageView({</code></div>
+<div><code class="indent1">image: "/default_app_logo.png",</code></div>
+<div><code class="indent1">top: 100,</code></div>
+<div><code class="indent1">width: 300,</code></div>
+<div><code class="indent1">height: 300</code></div>
+<div><code>});</code></div>
+<div><code>// Blur view</code></div>
+<div><code>var blur = Ti.UI.iOS.createBlurView({</code></div>
+<div><code class="indent1">width: Ti.UI.FILL,</code></div>
+<div><code class="indent1">height: Ti.UI.FILL</code></div>
+<div><code>});</code></div>
+<div><code>img.add(blur);</code></div>
+<div><code>// Effect controls</code></div>
+<div><code>var tabs = Ti.UI.iOS.createTabbedBar({</code></div>
+<div><code class="indent1">labels: "Extra light", "Light", "Dark", "Regular", "Prominent",</code></div>
+<div><code class="indent1">bottom: 100</code></div>
+<div><code>});</code></div>
+<div><code>// Available blur effects</code></div>
+<div><code>var effects = </code></div>
+<div><code class="indent1">Ti.UI.iOS.BLUR_EFFECT_STYLE_EXTRA_LIGHT,</code></div>
+<div><code class="indent1">Ti.UI.iOS.BLUR_EFFECT_STYLE_LIGHT,</code></div>
+<div><code class="indent1">Ti.UI.iOS.BLUR_EFFECT_STYLE_DARK,</code></div>
+<div><code class="indent1">Ti.UI.iOS.BLUR_EFFECT_STYLE_REGULAR,</code></div>
+<div><code class="indent1">Ti.UI.iOS.BLUR_EFFECT_STYLE_PROMINENT</code></div>
+<div><code>;</code></div>
+<div><code>tabs.addEventListener("click", function(e) {</code></div>
+<div><code class="indent1">blur.setEffect(effectse.index);</code></div>
+<div><code>});</code></div>
+<div><code>win.add(tabs);</code></div>
+<div><code>win.add(img);</code></div>
+<div><code>win.open();</code></div>
+</div>
+</div></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23513">TIMOB-23513</a> - iOS10: Support for new WatchConnectivity features<ul><li>
+Added support for the new WatchConnectivity features such as <tt>hasContentPending</tt> and <tt>remainingComplicationUserInfoTransfers</tt></li><li>
+Demo:</p>
+<div>
+<div>
+<div><code>Ti.WatchSession.activateSession();</code></div>
+<div><code>Ti.API.warn("Has content pending: " + Ti.WatchSession.hasContentPending);</code></div>
+<div><code>Ti.API.warn("Number of remaining complication userInfo transfers: " + Ti.WatchSession.remainingComplicationUserInfoTransfers);</code></div>
+</div>
+</div></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23519">TIMOB-23519</a> - iOS10: Expose new Ti.UI.Pasteboard APIs<ul><li>
+Exposed <tt>hasURLs</tt>, <tt>hasImages</tt>, and <tt>hasColors</tt> in the Ti.UI.Pasteboard API</li><li>
+Demo:</p>
+<div>
+<div>
+<div><code>Ti.API.warn("Has URLs:" + Ti.UI.Clipboard.hasURLs());</code></div>
+<div><code>Ti.API.warn("Has images" + Ti.UI.Clipboard.hasImages());</code></div>
+<div><code>Ti.API.warn("Has colors:" + Ti.UI.Clipboard.hasColors());</code></div>
+<div><code>var localOnly = Ti.UI.CLIPBOARD_OPTION_LOCAL_ONLY;</code></div>
+<div><code>var expirationDate = Ti.UI.CLIPBOARD_OPTION_EXPIRATION_DATE;</code></div>
+<div><code>// Set mime-type based items with additional options</code></div>
+<div><code>Ti.UI.Clipboard.setItems({</code></div>
+<div><code class="indent1">items: [{</code></div>
+<div><code class="indent2">"text/plain": "John",</code></div>
+<div><code class="indent1">},{</code></div>
+<div><code class="indent2">"text/plain": "Doe"</code></div>
+<div><code class="indent1">}],</code></div>
+<div><code class="indent1">options: {</code></div>
+<div><code class="indent2">localOnly: true,</code></div>
+<div><code class="indent2">expirationDate: new Date(2020, 04, 20)</code></div>
+<div><code class="indent1">}</code></div>
+<div><code>});</code></div>
+</div>
+</div></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23524">TIMOB-23524</a> - iOS10: Support RefreshControl in Ti.UI.ScrollView<ul><li>
+Added support for <tt>refreshControl</tt> in Ti.UI.ScrollView for iOS10</li><li>
+Demo:</p>
+<div>
+<div>
+<div><code>var win = Ti.UI.createWindow({</code></div>
+<div><code class="indent1">backgroundColor: "#fff"</code></div>
+<div><code>});</code></div>
+<div><code>var refreshControl = Ti.UI.createRefreshControl({</code></div>
+<div><code class="indent1">tintColor: "red"</code></div>
+<div><code>});</code></div>
+<div><code>var scroll = Ti.UI.createScrollView({</code></div>
+<div><code class="indent1">backgroundColor: "yellow",</code></div>
+<div><code class="indent1">refreshControl: refreshControl</code></div>
+<div><code>});</code></div>
+<div><code>refreshControl.addEventListener("refreshstart", function() {</code></div>
+<div><code class="indent1">setTimeout(function() {</code></div>
+<div><code class="indent2">refreshControl.endRefreshing();</code></div>
+<div><code class="indent1">},1000);</code></div>
+<div><code>})</code></div>
+<div><code>scroll.add(Ti.UI.createLabel({</code></div>
+<div><code class="indent1">text: "Scroll down!"</code></div>
+<div><code>}));</code></div>
+<div><code>win.add(scroll);</code></div>
+<div><code>win.open();</code></div>
+</div>
+</div></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23528">TIMOB-23528</a> - iOS10: Support new Ti.App.iOS.SearchableItemAttributeSet properties<ul><li>
+Added support for: fullyFormattedAddress, postalCode, thoroughfare and subThoroughfare</li><li>
+Demo:</p>
+<div>
+<div>
+<div><code>var win = Ti.UI.createWindow({</code></div>
+<div><code>	backgroundColor : "#fff"</code></div>
+<div><code>}); </code></div>
+<div><code>var btn = Ti.UI.createButton({</code></div>
+<div><code class="indent1">title : "Add searchable index"</code></div>
+<div><code>});</code></div>
+<div><code>btn.addEventListener("click", function() {</code></div>
+<div><code class="indent1">addToSearchableIndex();</code></div>
+<div><code>});</code></div>
+<div><code>win.add(btn);</code></div>
+<div><code>var nav = Ti.UI.iOS.createNavigationWindow({window: win});</code></div>
+<div><code>nav.open();</code></div>
+<div><code>function addToSearchableIndex() {</code></div>
+<div><code class="indent1">var itemAttr = Ti.App.iOS.createSearchableItemAttributeSet({</code></div>
+<div><code class="indent2">itemContentType: Ti.App.iOS.UTTYPE_AUDIO,</code></div>
+<div><code class="indent2">title: 'Who rocks iOS 10?',</code></div>
+<div><code class="indent2">// iOS 10 only</code></div>
+<div><code class="indent2">fullyFormattedAddress: "1732 N 1st St, San Jose, CA 95112",</code></div>
+<div><code class="indent2">postalCode: "95112",</code></div>
+<div><code class="indent2">thoroughfare: "N 1st St",</code></div>
+<div><code class="indent2">subThoroughfare: "1732",</code></div>
+<div><code class="indent2">keywords: 'appcelerator', 'titanium_mobile', 'ios10', 'corespotlight'</code></div>
+<div><code class="indent1">});</code></div>
+<div><code class="indent1">var item = Ti.App.iOS.createSearchableItem({</code></div>
+<div><code class="indent2">identifier: 'core-spotlight',</code></div>
+<div><code class="indent2">domainIdentifier: 'ios10',</code></div>
+<div><code class="indent2">attributeSet: itemAttr</code></div>
+<div><code class="indent1">});</code></div>
+<div><code class="indent1">var indexer = Ti.App.iOS.createSearchableIndex();</code></div>
+<div><code class="indent1">indexer.addToDefaultSearchableIndex(item, function(e) {</code></div>
+<div><code class="indent2">if (e.success) {</code></div>
+<div><code class="indent3">alert('Press the home button and now search for your keywords');</code></div>
+<div><code class="indent2">} else {</code></div>
+<div><code class="indent3">alert('Error: ' + JSON.stringify(e.error));</code></div>
+<div><code class="indent2">}</code></div>
+<div><code class="indent1">});</code></div>
+<div><code>}</code></div>
+</div>
+</div></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23828">TIMOB-23828</a> - iOS10: Support the new CoreSpotlight CSSearchQuery API<ul><li>
+Added the ability to query searchable indexes with iOS 10</li><li>
+Demo:</p>
+<div>
+<div>
+<div><code>var win = Ti.UI.createWindow({</code></div>
+<div><code class="indent1">backgroundColor: "#fff"</code></div>
+<div><code>});</code></div>
+<div><code>var btn = Ti.UI.createButton({</code></div>
+<div><code class="indent1">title: "Start search-query"</code></div>
+<div><code>});</code></div>
+<div><code>var searchItems = [];</code></div>
+<div><code>var itemAttr = Ti.App.iOS.createSearchableItemAttributeSet({</code></div>
+<div><code class="indent1">itemContentType: Ti.App.iOS.UTTYPE_IMAGE,</code></div>
+<div><code class="indent1">title: "Titanium Core Spotlight Tutorial"</code></div>
+<div><code>});</code></div>
+<div><code>itemAttr.contentDescription = "Tech Example \nOn: " + String.formatDate(new Date(), "short");</code></div>
+<div><code>itemAttr.keywords = ["Mobile", "Appcelerator", "Titanium"];</code></div>
+<div><code>itemAttr.displayName = "Hello world";</code></div>
+<div><code>var item = Ti.App.iOS.createSearchableItem({</code></div>
+<div><code class="indent1">uniqueIdentifier: "my-id",</code></div>
+<div><code class="indent1">domainIdentifier: "com.mydomain",</code></div>
+<div><code class="indent1">attributeSet: itemAttr</code></div>
+<div><code>});</code></div>
+<div><code>searchItems.push(item);</code></div>
+<div><code>var indexer = Ti.App.iOS.createSearchableIndex();</code></div>
+<div><code>indexer.addToDefaultSearchableIndex(searchItems, function(e) {</code></div>
+<div><code class="indent1">if (e.success) {</code></div>
+<div><code class="indent2">Ti.API.info("Press the home button and now search for your keywords");</code></div>
+<div><code class="indent1">} else {</code></div>
+<div><code class="indent2">alert("Errored: " + JSON.stringify(e.error));</code></div>
+<div><code class="indent1">}</code></div>
+<div><code>});</code></div>
+<div><code>btn.addEventListener("click", function() {</code></div>
+<div><code class="indent1">// An array of found Ti.App.iOS.SearchableItem's</code></div>
+<div><code class="indent1">var allItems = [];</code></div>
+<div><code class="indent1">// The search-query</code></div>
+<div><code class="indent1">var searchQuery = Ti.App.iOS.createSearchQuery({</code></div>
+<div><code class="indent2">queryString: 'title == "Titanium*"',</code></div>
+<div><code class="indent2">attributes: ["title", "displayName", "keywords", "contentType"]</code></div>
+<div><code class="indent1">});</code></div>
+<div><code class="indent1">// The event to be called when a new batch of items is found</code></div>
+<div><code class="indent1">searchQuery.addEventListener("founditems", function(e) {</code></div>
+<div><code class="indent2">for (var i = 0; i &lt; e.items.length; i++) {</code></div>
+<div><code class="indent3">allItems.push(e.items[i]);</code></div>
+<div><code class="indent2">}</code></div>
+<div><code class="indent1">});</code></div>
+<div><code class="indent1">// The event to be called when the search-query completes</code></div>
+<div><code class="indent1">searchQuery.addEventListener("completed", function(e) {</code></div>
+<div><code class="indent2">if (!e.success) {</code></div>
+<div><code class="indent3">alert(e.error);</code></div>
+<div><code class="indent2">}</code></div>
+<div><code class="indent2">for (var i = 0; i &lt; allItems.length; i++) {</code></div>
+<div><code class="indent3">var attributeSet = allItems[i].attributeSet</code></div>
+<div><code class="indent3">var foundTitle = attributeSet.title</code></div>
+<div><code class="indent3">var foundDisplayName = attributeSet.displayName</code></div>
+<div><code> </code></div>
+<div><code class="indent3">Ti.API.info("title: " + foundTitle + ", displayName: " + foundDisplayName);</code></div>
+<div><code class="indent2">}</code></div>
+<div><code class="indent1">});</code></div>
+<div><code class="indent1">// Start the search-query (or use searchQuery.cancel()) to abort it</code></div>
+<div><code class="indent1">searchQuery.start();</code></div>
+<div><code>});</code></div>
+<div><code>win.add(btn);</code></div>
+<div><code>win.open();</code></div>
+</div>
+</div></li></ul></li></ul>    </div>
+    </div>
+    <div  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-FixedIssues"  >
+        <h2>Fixed Issues</h2>
+<ul><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23518">TIMOB-23518</a> - iOS: Cannot build with Xcode 8.0</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23549">TIMOB-23549</a> - ioslib doesn't recognize global WatchOS simulators</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23614">TIMOB-23614</a> - iOS10: Titanium with Swift Watch App fails to build on Xcode 8.0 Beta</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23616">TIMOB-23616</a> - Class not found: Ti.UI.ScrollableView in ListView Template</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23620">TIMOB-23620</a> - ioslib fails to choose a watch simulator under Xcode 8.0 Beta</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23627">TIMOB-23627</a> - Calendar, Contacts and Camera can crash on iOS 10 / Xcode 8</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23636">TIMOB-23636</a> - Failed watchOS pairing will silently fail appc run without error</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23671">TIMOB-23671</a> - Receiving &quot;Segmentation fault: 11&quot; when trying to build after updating SDK to 5.4.0 from June 6 (or later)</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23722">TIMOB-23722</a> - Hyperloop: Classes that are unavailable on watchOS/tvOS are also not compiled on iOS</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23747">TIMOB-23747</a> - iOS: Handoff crashes from iOS9 to iOS8</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23751">TIMOB-23751</a> - Hyperloop iOS: Block callback arguments are null</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23756">TIMOB-23756</a> - iOS: Build fails if project name matches file/folder in built app</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23769">TIMOB-23769</a> - iOS: Deprecated warnings are thrown in unrelated API's</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23790">TIMOB-23790</a> - node-ios-device: emitter error during process exit and uncaught exception</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23798">TIMOB-23798</a> - iOS: Ti.UI.Clipboard.clearData() crashes when no MIME type is provided</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23812">TIMOB-23812</a> - Hyperloop: UIColor type properties is not working with Xcode 8 beta</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23823">TIMOB-23823</a> - iOS: Error when device is disconnected while running a build</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23824">TIMOB-23824</a> - iOS: Using animationStyle will cause the app to crash</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23850">TIMOB-23850</a> - iOS: Unable to package project. Provisioning Profile doesn't include signing cert</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23858">TIMOB-23858</a> - iOS: getItems() on cleared Pasteboard errors and crashes</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23859">TIMOB-23859</a> - App created with 6.0.0 SDK &amp; with hyperloop references fails to build with 5.5.0 SDK with error &quot;You cannot use the Hyperloop compiler with a version of Titanium older than 6.0.0&quot;</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23865">TIMOB-23865</a> - iOS: iOS 10 sim with WatchOS 2 sim doesn't work</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23890">TIMOB-23890</a> - iOS10: Facebook Login is not working</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23894">TIMOB-23894</a> - iOS: -I flag not acknowledged when selecting iOS9 and watchos2.2 using iOS sdk 10.0</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23897">TIMOB-23897</a> - iOS: Support Ti.Facebook 5.2.5 on Titanium SDK &lt; 5.5.0</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23900">TIMOB-23900</a> - ioslib: Tailing simulator log doesn't output initial contents</li></ul>    </div>
+    <div  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-Improvementspatchreleases"  >
+        <h2>Improvements  patch releases</h2>
+<ul><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23514">TIMOB-23514</a> - iOS10: Deprecate iAds<ul><li>
+Removed support for iAd framework as noted in <a href="https://developer.apple.com/library/prerelease/content/releasenotes/General/iOS10APIDiffs/Objective-C/iAd.html">iOS 10.0 API Diffs</a></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23778">TIMOB-23778</a> - iOS: Improve warning when calling iOS10 visual effects for Ti.UI.iOS.BlurView on &lt; iOS10<ul><li>
+Improved the warning when calling iOS10 visual effects for Ti.UI.iOS.BlurView on non-iOS10 devices. The error message should look something like this:</p>
+<div>
+<div>
+<div><code>ERROR : The provided value for the Ti.UI.iOS.BlurView.effect property is not available in this iOS version.</code></div>
+</div>
+</div></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23797">TIMOB-23797</a> - iOS: Improve Pasteboard support<ul><li>
+Added support for named pasteboards</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23896">TIMOB-23896</a> - iOS: Add Ti.App.iOS &quot;handleurl&quot; event to handle incoming URL schemes    <span style="color: #ffcc00;" >
+<br/>    </span>
+<ul><li>
+Added support for Ti.App.iOS module to get notified when a new URL scheme is handled by the application delegate</li><li>
+Sample code:</p>
+<div>
+<div>
+<div><code>var safari = require('ti.safaridialog');</code></div>
+<div><code>var win = Ti.UI.createWindow({</code></div>
+<div><code class="indent1">backgroundColor: 'white'</code></div>
+<div><code>})</code></div>
+<div><code>var btn = Ti.UI.createButton({</code></div>
+<div><code class="indent1">title: "Open safari dialog"</code></div>
+<div><code>});</code></div>
+<div><code>btn.addEventListener("click", function() {</code></div>
+<div><code class="indent1">safari.open({</code></div>
+<div><code class="indent2">url:"http://hans-knoechel.de/TIMOB-23884.php",</code></div>
+<div><code class="indent2">title:"Hello World"</code></div>
+<div><code class="indent1">});</code></div>
+<div><code>});</code></div>
+<div><code>Ti.App.iOS.addEventListener("handleurl", function(e) {</code></div>
+<div><code class="indent1">// If the handled url is provided by the safari-dialog, close it (use-case for OAuth)</code></div>
+<div><code class="indent1">if (e.launchOptions.source == "com.apple.SafariViewService") {</code></div>
+<div><code class="indent2">safari.close();</code></div>
+<div><code class="indent1">}</code></div>
+<div><code>});</code></div>
+<div><code>win.add(btn);</code></div>
+<div><code>win.open();</code></div>
+</div>
+</div></li><li>
+You will need to update the <tt>tiapp.xml</tt> file to be able to handle the url-scheme <tt>safaritest://</tt>:</p>
+<div>
+<div>
+<div><code>&lt;ios&gt;</code></div>
+<div><code class="indent1">plist&gt;</code></div>
+<div><code class="indent1">  &lt;dict&gt;</code></div>
+<div><code class="indent2">key&gt;CFBundleURLTypes&lt;/key&gt;</code></div>
+<div><code class="indent2">array&gt;</code></div>
+<div><code class="indent2">  &lt;dict&gt;</code></div>
+<div><code class="indent3">key&gt;CFBundleURLName&lt;/key&gt;</code></div>
+<div><code class="indent3">string&gt;com.appc.safaridialogtest&lt;/string&gt;</code></div>
+<div><code class="indent3">key&gt;CFBundleURLSchemes&lt;/key&gt;</code></div>
+<div><code class="indent3">array&gt;</code></div>
+<div><code class="indent3">  &lt;string&gt;safaritest&lt;/string&gt;</code></div>
+<div><code class="indent3">/array&gt;</code></div>
+<div><code class="indent2">  &lt;/dict&gt;</code></div>
+<div><code class="indent2">/array&gt;</code></div>
+<div><code class="indent1">  &lt;/dict&gt;</code></div>
+<div><code class="indent1">/plist&gt;</code></div>
+<div><code>&lt;/ios&gt;</code></div>
+</div>
+</div></li></ul></li></ul>    </div>
+    <div  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-KnownIssues"  >
+        <h2>Known Issues</h2>
+<ul><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23726">TIMOB-23726</a> - iOS: Debugger for Alloy project hangs on Device with run-on-main-thread enabled - open<ul><li>
+Running an Alloy project in Debug mode to Device causes the app to hang on &quot;The Debugger is waiting for you to launch the app on your device&quot;.</li><li>
+This is a Regression from 5.3.0.GA</li><li>
+The hang does not occur on simulator, classic titanium mobile project, or with run-on-main-thread disabled</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23786">TIMOB-23786</a> - iOS10: Logs not working on iOS 10 devices (Xcode 8 Beta issue) - open</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-23761">TIMOB-23761</a> - Hyperloop: Errors when running project with liveview and hyperloop enabled<ul><li>
+Currently, Liveview only supports Hyperloop on simulators of Alloy projects</li></ul></li></ul>    <p>
+    <span id="46256880_apichanges"><a  name="46256880_apichanges"></a></span>
+</p>
+    </div>
+    <div  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-APIChanges"  >
+        <h2>API Changes</h2>
+    <div  id="46256880_TitaniumSDK5.5.0.GAReleaseNote-NewAPIs"  >
+        <h3>New APIs</h3>
+    <p>
+    <span style="color: #000000;" >
+The following APIs are new or have expanded platform support in Release 5.5.0.    </span>
+</p>
+    <div class="tablewrap">
+        <table>
+        <thead>    <tr >
+            <th>
+        <p>
+API</p>
+            </td>
+                <th>
+        <p>
+Type</p>
+            </td>
+                <th>
+        <p>
+Notes</p>
+            </td>
+        </tr>
+</thead><tfoot></tfoot><tbody>    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchQuery</p>
+            </td>
+                <td>
+        <p>
+object</p>
+            </td>
+                <td>
+        <p>
+A search query object manages the criteria to apply when searching app content that you have previously indexed by using the Core Spotlight APIs. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchableItemAttributeSet.fullyFormattedAddress</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+The fully formatted address of the item (obtained from MapKit). (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchableItemAttributeSet.getFullyFormattedAddress</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.App.iOS.SearchableItemAttributeSet.fullyFormattedAddress property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchableItemAttributeSet.getPostalCode</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.App.iOS.SearchableItemAttributeSet.postalCode property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchableItemAttributeSet.getSubThoroughfare</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.App.iOS.SearchableItemAttributeSet.subThoroughfare property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchableItemAttributeSet.getThoroughfare</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.App.iOS.SearchableItemAttributeSet.thoroughfare property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchableItemAttributeSet.postalCode</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+The postal code for the item according to guidelines established by the provider. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchableItemAttributeSet.setFullyFormattedAddress</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.App.iOS.SearchableItemAttributeSet.fullyFormattedAddress property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchableItemAttributeSet.setPostalCode</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.App.iOS.SearchableItemAttributeSet.postalCode property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchableItemAttributeSet.setSubThoroughfare</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.App.iOS.SearchableItemAttributeSet.subThoroughfare property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchableItemAttributeSet.setThoroughfare</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.App.iOS.SearchableItemAttributeSet.thoroughfare property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchableItemAttributeSet.subThoroughfare</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+The sub-location (e.g., street number) for the item according to guidelines established by the provider. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.SearchableItemAttributeSet.thoroughfare</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+The location (e.g., street name) for the item according to guidelines established by the provider. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.createSearchQuery</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Creates and returns an instance of Titanium.App.iOS.SearchQuery. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.Media.hasAudioPermissions</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Returns <tt>true</tt> if the app has audio permissions. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.CLIPBOARD_OPTION_EXPIRATION_DATE</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Specifies the time and date that you want the system to remove the clipboard items from the clipboard. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.CLIPBOARD_OPTION_LOCAL_ONLY</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Specifies that the clipboard items should not be available to other devices through Handoff. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Clipboard.getItems</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the items that have been specified earlier using Titanium.UI.Clipboard.setItems. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Clipboard.hasColors</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Indicates whether any colors are stored in the clipboard. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Clipboard.hasImages</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Indicates whether any images are stored in the clipboard. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Clipboard.hasURLs</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Indicates whether any URLs are stored in the clipboard. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Clipboard.setItems</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Adds an array of items to a clipboard, and sets privacy options for all included items. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.ScrollView.getRefreshControl</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.UI.ScrollView.refreshControl property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.ScrollView.refreshControl</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+View positioned above the first row that is only revealed when the user drags the scroll view contents down. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.ScrollView.setRefreshControl</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.UI.ScrollView.refreshControl property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.iOS.BLUR_EFFECT_STYLE_PROMINENT</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use with BlurView.effect to specify a blur effect. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.iOS.BLUR_EFFECT_STYLE_REGULAR</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use with BlurView.effect to specify a blur effect. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.WatchSession.getHasContentPending</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.WatchSession.hasContentPending property. (New API, supported on iPhone.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.WatchSession.getRemainingComplicationUserInfoTransfers</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.WatchSession.remainingComplicationUserInfoTransfers property. (New API, supported on iPhone.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.WatchSession.hasContentPending</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Returns <tt>true</tt> if there is more content for the session to deliver. (New API, supported on iPhone.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.WatchSession.remainingComplicationUserInfoTransfers</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+The number of calls remaining to <tt>transferCurrentComplication</tt> before the system starts transferring the complicationUserInfo as regular userInfos. (New API, supported on iPhone.)</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    </div>
+        </div>
+    
+        

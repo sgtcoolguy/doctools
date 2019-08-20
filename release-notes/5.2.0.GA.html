@@ -1,0 +1,2096 @@
+<title>Titanium SDK 5.2.0 22 February 2016</title>
+<style>
+	td, th {tpadding: 5px;}
+	thead, tr:nth-child(even) {background-color: #f8f8f8;}
+</style>
+<h1>Titanium SDK 5.2.0 22 February 2016</h1>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-Contents"  >
+        <h2>Contents</h2>
+<ul><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-AboutThisRelease">About This Release</a></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-NewFeatures">New Features</a><ul><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-AndroidPlatform">Android Platform</a><ul><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-AdditionalTypeSupportforIntentProxy">Additional Type Support for IntentProxy</a></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-GoogleMaps">Google Maps</a></li></ul></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-iOSPlatform">iOS Platform</a><ul><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-NewiOS9Features">New iOS9 Features</a></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-NewiOS9.1Features">New iOS9.1 Features</a></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-Storyboard-basedLaunchScreen">Storyboard-based Launch Screen</a></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-EnablingSplit%2FSlideView">Enabling Split/Slide View</a></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-MiscellaneousiOSFeatures">Miscellaneous iOS Features</a></li></ul></li></ul></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-CommunityCredits">Community Credits</a></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-FixedIssues">Fixed Issues</a></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-Improvements">Improvements</a></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-APIChanges">API Changes</a><ul><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-NewAPIs">New APIs</a></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-DeprecatedAPIs">Deprecated APIs</a></li></ul></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-KnownIssues">Known Issues</a><ul><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-iOSLaunchLogoCachingIssue">iOS Launch Logo Caching Issue</a></li><li>
+<a href="Titanium_SDK_5.2.0_Release_Note.html#46245011_TitaniumSDK5.2.0ReleaseNote-iOS9.1PHLivePhotoandPHLivePhotoView">iOS9.1 PHLivePhoto and PHLivePhotoView</a></li></ul></li></ul>    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-AboutThisRelease"  >
+        <h2>About This Release</h2>
+    <p>
+Titanium SDK 5.2.0 is a minor release of the SDK, addressing high-priority issues from previous releases.</p>
+    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-NewFeatures"  >
+        <h2>New Features</h2>
+    <p>
+This section describes new features introduced in Release 5.2.0.</p>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-AndroidPlatform"  >
+        <h3>Android Platform</h3>
+    <p>
+This section lists new features and improvements only available on the Android platform.</p>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-AdditionalTypeSupportforIntentProxy"  >
+        <h4><span>Additional Type Support for IntentProxy</span></h4>
+    <p>
+5.2.0 now added additional type support for IntentProxy (supporting only Java primitives). Creating a shortcut requires an intent and an image to be set.</p>
+    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-GoogleMaps"  >
+        <h4><span>Google Maps</span></h4>
+    <p>
+<strong>Street View</strong> panorama for Google Maps Android API v2 has been implemented. Try it out with the following test code:</p>
+<div>
+<div>
+<div><code>// Add in the module</code></div>
+<div><code>var</code><code> MapModule = require(</code><code class="string">'ti.map'</code><code>);</code></div>
+<div><code>var</code><code> win = Ti.UI.createWindow({backgroundColor: </code><code class="string">'white'</code><code>});</code></div>
+<div><code>var</code><code> street = MapModule.createStreetViewPanorama({</code></div>
+<div><code>	position: {latitude:1.281581286057009, longitude:103.8641372560966}</code></div>
+<div><code>});</code></div>
+<div><code>win.add(street);</code></div>
+<div><code>win.open();</code></div>
+</div>
+</div>    <p>
+<strong>Hide Soft Navigation Bar</strong></p>
+    <p>
+During the launching of an app, you can hide the navigation bar however, there are two caveats that you should be aware of:</p>
+<ol><li>
+When you tap the screen, the navigation bar returns</li><li>
+This setting affects all activities and windows in Android when you set the property <tt>Fullscreen</tt> to <tt>true</tt>.</li></ol>    <p>
+To try this feature out, set this property in the TiApp.xml to true:</p>
+<div>
+<div>
+<div><code>&lt;fullscreen&gt;</code><code>true</code><code>&lt;/fullscreen&gt;</code></div>
+</div>
+</div>    <p>
+<strong>Multiple URI to an Intent</strong></p>
+    <p>
+Ti.Android.Intent allows for either a single or multiple URI to be sent to an intent.</p>
+    <p>
+Example:</p>
+<div>
+<div>
+<div><code>var photos = [ firstImage.nativePath, secondImage.nativePath ];</code></div>
+<div><code>intent.putExtraUri(Ti.Android.EXTRA_STREAM, photos);</code></div>
+</div>
+</div>    </div>
+    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-iOSPlatform"  >
+        <h3>iOS Platform</h3>
+    <p>
+    <span style="color: #2b4771;" >
+This section lists new features and improvements only available on the iOS platform.    </span>
+</p>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-NewiOS9Features"  >
+        <h4><span>New iOS9 Features</span></h4>
+<ul><li>
+Support included for iOS9's 3D-Touch property and events. Properties supported include<ul><li>
+<tt>force</tt>: the force of the touch where the value of 1.0 represents the force of an average touch (predetermined by the system and is not user-specific). This property is read-only.</li><li>
+<tt>maximumPossibleForce</tt>: The value of this property is sufficently high to provide a wide dynamic range for values of the force property.</li></ul></li><li>
+Support for iOS9's &quot;Continue&quot; button and fallback for older devices as well as support for Twitter and WebSearch keyboards.</li></ul>    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-NewiOS9.1Features"  >
+        <h4><span>New iOS9.1 Features</span></h4>
+<ul><li>
+Support for PHLivePhoto and PHLivePhotoView via the <tt>Ti.Media.openPhotoGallery()</tt> method and display live photos via <tt>Ti.UI.iOS.LivePhoto</tt>.</li><li>
+Full coverage for Apple Pencil APIs including force, maximumPossibleForce, timestamp and altitudeAngle.</li></ul>    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-Storyboard-basedLaunchScreen"  >
+        <h4><span>Storyboard-based Launch Screen</span></h4>
+    <p>
+When building a new app, you won't have to do anything other than build your app to take advantage of the storyboard-based launch screen. There is a default <tt>LaunchScreen.storyboard</tt> that ships with Titanium. It is a simple white background with a centered <tt>ImageView</tt>. It uses an image set called <strong>LaunchLogo</strong> from the asset catalog. Existing apps will have to enable this manually by adding the following to the <tt>&lt;ios&gt;</tt> section fo the <tt>tiapp.xml</tt>:</p>
+<div>
+<div>
+<div><code>&lt;enable-launch-screen-storyboard&gt;</code><code>true</code><code>&lt;/enable-launch-screen-storyboard&gt;</code></div>
+</div>
+</div>    <p>
+By default, this property is set to true so that all new projects have the storyboard launch screen enabled.</p>
+    <p>
+</p>
+    <p>
+<strong>Launch Logo</strong></p>
+    <p>
+By default, it will generate LaunchLogos based on the <tt>LaunchLogo.png</tt>. If <tt>LaunchLogo.png</tt> doesn't exists, it will fall back to either <tt>DefaultIcon-ios.png</tt> or <tt>DefaultIcon.png</tt>. You can manually create them in the <tt>Resources/iphone</tt> (<tt>app/assets/iphone</tt> for Alloy) directory if you like. The following tables lists the different filenames and sizes:</p>
+    <div class="tablewrap">
+        <table>
+        <thead>    <tr >
+            <th>
+        <p>
+Filename</p>
+            </td>
+                <th>
+        <p>
+Devices</p>
+            </td>
+                <th>
+        <p>
+Scale</p>
+            </td>
+                <th>
+        <p>
+Recommended Size</p>
+            </td>
+        </tr>
+</thead><tfoot></tfoot><tbody>    <tr >
+            <td>
+        <p>
+LaunchLogo~iphone.png</p>
+            </td>
+                <td>
+        <p>
+iPhone 3G and older</p>
+            </td>
+                <td>
+        <p>
+1x</p>
+            </td>
+                <td>
+        <p>
+320x320</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+LaunchLogo@2x~iphone.png</p>
+            </td>
+                <td>
+        <p>
+iPhone 4, 4s 5, 5s, 6, 6s</p>
+            </td>
+                <td>
+        <p>
+2x</p>
+            </td>
+                <td>
+        <p>
+374x374</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+LaunchLogo@3x~iphone.png</p>
+            </td>
+                <td>
+        <p>
+iPhone 6 Plus, 6s Plus</p>
+            </td>
+                <td>
+        <p>
+3x</p>
+            </td>
+                <td>
+        <p>
+621x621</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+LaunchLogo~ipad.png</p>
+            </td>
+                <td>
+        <p>
+iPad 1, 2, Mini 1</p>
+            </td>
+                <td>
+        <p>
+1x</p>
+            </td>
+                <td>
+        <p>
+384x384</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+LaunchLogo@2x~ipad.png</p>
+            </td>
+                <td>
+        <p>
+iPad 3, 4, Air, Air 2, Mini 2, 3, 4</p>
+            </td>
+                <td>
+        <p>
+2x</p>
+            </td>
+                <td>
+        <p>
+1024x1024</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p>
+Since the <tt>ImageView</tt> is constrained to 50% of the device width, these dimensions are based on the width of each device per scale divided by 2.</p>
+    <p>
+Any missing images will be generated from the <tt>DefaultIcon.png</tt>. If <tt>DefaultIcon.png</tt> doesn't exist, the missing images will be copied from TiSDK which is just a black Ti logo on a white background.</p>
+    <p>
+</p>
+    <p>
+<strong>Background Color</strong></p>
+    <p>
+By default, the launch screen's background color is white. However, the LaunchLogo may look better against some other background color. You can specify the default background color in the <tt>tiapp.xml</tt>'s <tt>&lt;ios&gt;</tt> section:</p>
+<div>
+<div>
+<div><code>&lt;ios&gt;</code></div>
+<div><code>    &lt;</code><code>default</code><code>-background-color&gt;#ff0000&lt;/</code><code>default</code><code>-background-color&gt;</code></div>
+<div><code>&lt;/ios&gt;</code></div>
+</div>
+</div>    <p>
+The <tt>default-background-color</tt> must be either a 3 or 6 character RGB hex value. Note: the <tt>#</tt> is optional for this hex value.</p>
+    <p>
+This will change the background color of the storyboard launch screen (defaults to white) as well as the root view controller (defaults to white when you use a storyboard, black otherwise). This causes a noticeable rendering artifact where the screen dims for a frame or two on launch. However, after this change, the root view controller will have the same background color and the transition should look much better. It is worth noting that the <tt>default-background-color </tt>property is applied regardless of whether or not you are using a storyboard launch screen. It also has no effect if the <tt>app.js</tt> immediately calls <tt>Titanium.UI.setBackgroundColor('#000');</tt> as is the case when running the default 2 tab app.</p>
+    <p>
+</p>
+    <p>
+<strong>Overriding The Default LaunchScreen.storyboard</strong></p>
+    <p>
+You can override the default <tt>LaunchScreen.storyboard</tt> by placing a custom version of this file in the <tt>plateform/ios</tt> or <tt>plateform/iphone</tt> directories. If a custom launch screen storyboard is present, then it will NOT attempt to copy or generate LaunchLogos or change the storyboard's background color. All files in the <tt>platform/ios</tt> are blindly copied into the <tt>build/iphone</tt> directory which is what the Android and Windows platforms do. This is a breaking change. Files in <tt>platform/iphone</tt> used to copied into <tt>build/iphone/build/Products/Debug-iphonesimulator/AppName.app</tt>. This change affects any existing iOS app or iOS Titanium module that has an <tt>platform/ios</tt> or <tt>platform/iphone</tt> directory. Apps and modules will need to be updated to use a CLI hook to copy the files to the correct destination. Because of this change, We added support for <tt>&lt;project-dir&gt;/hooks</tt> where project-specific hooks can be placed. These CLI hooks are loaded regardless of the <tt>&lt;plugins&gt;</tt> section in the <tt>tiapp.xml</tt>.</p>
+    <p>
+Custom LaunchScreen.storyboard files will need to be authored in Xcode and then manually copied into the <tt>platform/ios</tt> directory. Custom storyboard asset support is possible but difficult. You can put a PNG in the <tt>Resources/ios</tt> (<tt>app/assets/ios</tt> for Alloy) directory but then it will need to be converted into an asset but that is only performed if app thinning is enabled. You could put a PNG into <tt>platform/ios</tt> directory but it would be copied to the <tt>build/iphone</tt> directory and won't actually be bundled into the app. If you enable app thinning, then any images in <tt>platform/ios</tt> will get converted into an asset catalog which your storyboard could reference. However, the asset imageset's name would be a SHA and would be cumbersome to work with.</p>
+    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-EnablingSplit/SlideView"  >
+        <h4><span>Enabling Split/Slide View</span></h4>
+    <p>
+With the addition of the launchScreen.storyboard features, you can now enable the split and slide views. To enable this features, follow these steps:</p>
+<ol><li>
+In <strong> <tt>tiapp.xml</tt> </strong>, set the following properties:<ul><li><div>
+<div>
+<div><code>...</code></div>
+<div><code>&lt;ios&gt;</code></div>
+<div><code>		&lt;enable-launch-screen-storyboard&gt;</code><code>true</code><code>&lt;/enable-launch-screen-storyboard&gt;</code></div>
+<div><code>		&lt;use-auto-layout&gt;</code><code>true</code><code>&lt;/use-auto-layout&gt;</code></div>
+<div><code>		&lt;plist&gt;</code></div>
+<div><code>			&lt;dict&gt;</code></div>
+<div><code>				&lt;key&gt;UIRequiresFullScreen&lt;/key&gt;</code></div>
+<div><code>				&lt;</code><code>false</code><code>/&gt;</code></div>
+<div><code>...</code></div>
+</div>
+</div></li></ul></li><li>
+Run either <strong> <tt>ti build -p ios -F ipad</tt> </strong> or <strong> <tt>appc run -p ios -F ipad</tt> </strong>.</li><li>
+While the app is running, press <strong>Home</strong>.</li><li>
+Open <strong>Contacts</strong> or <strong>Map</strong>.</li><li>
+<strong>Slide</strong> from right edge. You should see the Titanium app.</li><li>
+Open the Titanium app. It will show up as a slide view.</li><li>
+If you turn your device to landscape and repeat from step #5, you can drag the divider to see it in split view.</li></ol>    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-MiscellaneousiOSFeatures"  >
+        <h4><span>Miscellaneous iOS Features</span></h4>
+<ul><li>
+Scroll event for  <a href="http://docs.appcelerator.com/titanium/latest/#%21%2Fapi%2FTitanium.UI.ScrollView">Titanium.UI.ScrollView</a> now sends the contentSize property to scroll event.</li><li>
+Added support for the Ti.UI.iOS.MenuPopup API. A menu popup provides the ability to create custom tooltip options using the  <tt>items</tt>  property covering the native UIMenuController class.</li><li>
+Introduced <tt>dragstart</tt> and <tt>dragend</tt> (just like scroll view) for list view in this release. Dragstart fires when the user starts dragging a list view. Dragend fires when the user stops dragging the list view.</li><li>
+UIEdgeInsets allows for the re-positioning of an image inside a tab when it has no title text. This method allows you to pass absolute values for image insets and properly realign images inside the tab.<ul><li>
+Demo:</li><li><div>
+<div>
+<div><code>Titanium.UI.setBackgroundColor(</code><code class="string">'#fff'</code><code>);</code></div>
+<div><code>var tabGroup = Titanium.UI.createTabGroup();</code></div>
+<div><code>var win1 = Titanium.UI.createWindow();</code></div>
+<div><code>var tab1 = Titanium.UI.createTab({</code></div>
+<div><code>	window: win1,</code></div>
+<div><code>	icon:</code><code class="string">'images/tabs/KS_nav_ui.png'</code><code>,</code></div>
+<div><code>	iconInsets: {</code></div>
+<div><code>		top:</code><code>6</code><code>,</code></div>
+<div><code>		bottom:-</code><code>6</code><code>,</code></div>
+<div><code>		right:</code><code>0</code><code>,</code></div>
+<div><code>		left:</code><code>0</code></div>
+<div><code>	}</code></div>
+<div><code>});</code></div>
+<div><code>var win2 = Titanium.UI.createWindow();</code></div>
+<div><code>var tab2 = Titanium.UI.createTab({</code></div>
+<div><code>	window: win2,</code></div>
+<div><code>	icon:</code><code class="string">'images/tabs/KS_nav_ui.png'</code><code>,</code></div>
+<div><code>	title: </code><code class="string">"Test"</code></div>
+<div><code>});</code></div>
+<div><code>tabGroup.addTab(tab1);</code></div>
+<div><code>tabGroup.addTab(tab2);</code></div>
+<div><code>tabGroup.open();</code></div>
+</div>
+</div></li></ul></li><li>
+Added Swift versions of the applewatch templates so you have a choice of watchos2-swift (Swift and new default) and watchos2-objc (Obj-C).</li><li>
+Support for contact icons.</li><li>
+<tt>Ti.UI.iPad.Popover</tt> now supports popover's backgroundColor property.</li></ul>    </div>
+    </div>
+    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-CommunityCredits"  >
+        <h2>Community Credits</h2>
+    <p>
+The following Appcelerator Community members contributed PRs that were included in this release:<ul><li>
+Shawn Lipscomb for finding a bug with ti.inappbilling failing to work on Android 5.0 (<a href="https://jira.appcelerator.org/browse/MOD-2154">MOD-2154</a>)</li><li>
+<a href="https://github.com/m1ga">Michael</a> for updating TiCameraActivity.java (<a href="https://jira.appcelerator.org/browse/TIMOB-19769">TIMOB-19769</a>), and various documents</li><li>
+<a href="https://github.com/mgkimsal">Michael Kimsal</a> for updating Media.yml (<a href="https://jira.appcelerator.org/browse/TIMOB-17987">TIMOB-17987</a>)</li><li>
+<a href="https://github.com/kopiro">Flavio De Stefano</a> for iOS: Added trackTintColor (<a href="https://jira.appcelerator.org/browse/TIMOB-19829">TIMOB-19829</a>)</li><li>
+<a href="https://github.com/xavierlacot">Xavier Lacot</a> for fixing check that the view's layout is not null before comparing it to horizontal or vertical layout arrangements (<a href="https://jira.appcelerator.org/browse/TIMOB-20089">TIMOB-20089</a>)</li><li>
+<a href="https://github.com/collinprice">Collin Price</a> for adding null check to activity object in callOrientationChangedListener method (<a href="https://jira.appcelerator.org/browse/TIMOB-20108">TIMOB-20108</a>) and additional type support for IntentProxy (<a href="https://jira.appcelerator.org/browse/TIMOB-19679">TIMOB-19679</a>)</li><li>
+<a href="https://github.com/wsliaw">Wilson</a> for adding dragstart and dragend event (<a href="https://jira.appcelerator.org/browse/TIMOB-18210">TIMOB-18210</a>)</li><li>
+<a href="https://github.com/Topener">Rene Pot</a> for adding deleteButtonTitle to the docs (<a href="https://jira.appcelerator.org/browse/TIDOC-2366">TIDOC-2366</a>)</li><li>
+<a href="https://github.com/manumaticx">Manuel Lehner</a> for fixing NullPointerException in TiConvert (<a href="https://jira.appcelerator.org/browse/TIMOB-19579">TIMOB-19579</a>)</li><li>
+<a href="https://github.com/cdrx">Chris R</a> for updating <a href="http://README.md">README.md</a> and adding titanium slack to readme</li><li>
+<a href="https://github.com/jasonkneen">Jason Kneen</a> for updating ApplicationShortcuts.yml (<a href="https://jira.appcelerator.org/browse/TIDOC-2348">TIDOC-2348</a>)</li><li>
+<a href="https://github.com/ludolphus">Steven van Loef</a> for adding contentSize property to scroll event (<a href="https://jira.appcelerator.org/browse/TIMOB-17247">TIMOB-17247</a>)</li><li>
+<a href="https://github.com/animecyc">Seth Benjamin</a> for iOS: TiUIListView does not resume the ImageLoader (<a href="https://jira.appcelerator.org/browse/TIMOB-19647">TIMOB-19647</a>)</li></ul>    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-FixedIssues"  >
+        <h2>Fixed Issues</h2>
+    <p>
+This release includes 142 bug fixes.<ul><li>
+<a href="https://jira.appcelerator.org/browse/CLI-778">CLI-778</a> - Update check from the appcelerator npm does not inform the user of available update</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-788">CLI-788</a> - &quot;use&quot; not listed in help</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-818">CLI-818</a> - If a login is required before switching orgs it shouldn't switch at all</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-827">CLI-827</a> - Only CLI 5.0.2 &amp; NodeJS 0.12.7 give: [Error: Module did not self-register.]</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-881">CLI-881</a> - If you create an Arrow project with European character sets, then the next prompt will be &quot;What is the api name?&quot;</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-882">CLI-882</a> - Cannot create an Arrow project with DEBUG=* and -l trace</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-885">CLI-885</a> - Appc new should be more cautious when unable to read Ti activeSDK value</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-893">CLI-893</a> - CLI fails to find core dependencies, incorrect location.</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-895">CLI-895</a> - CLI should not honor invalid url in proxy settings</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-918">CLI-918</a> - appc run doesn't recognize --project-dir</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-919">CLI-919</a> - Cannot create mobile project from Appc CLI</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-921">CLI-921</a>: Appc alloy -v returns error</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-922">CLI-922</a> - -d flag error on appc ti sdk install</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-925">CLI-925</a> - CLI flags are not being honored</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-926">CLI-926</a> - Error during arrow app publishing: unknown option `--username' with CLI 5.2.0-233</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-927">CLI-927</a> - When installing new SDK, the CLI Does not allow ctrl + c</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-935">CLI-935</a> - &quot;appc command random&quot; results command.opts is not a function error</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-936">CLI-936</a> - If you use &quot;-o json&quot;, then text is returned along with the JSON data</li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-940">CLI-940</a> - iOS: Unable to package project. 'Undefined is not a function'</li><li>
+<a href="https://jira.appcelerator.org/browse/MOD-1827">MOD-1827</a> - TiCloud: Logout - Logout method does not recognize device_token parameter</li><li>
+<a href="https://jira.appcelerator.org/browse/MOD-2148">MOD-2148</a> - Ti.CloudPush is not working on Android 6</li><li>
+<a href="https://jira.appcelerator.org/browse/MOD-2149">MOD-2149</a> - EncryptedDatabase: java.lang.UnsatisfiedLinkError: dlopen failed: cannot locate symbol &quot;EVP_CipherFinal&quot;</li><li>
+<a href="https://jira.appcelerator.org/browse/MOD-2154">MOD-2154</a> - ti.inappbilling: Does not work with Android 5.0</li><li>
+<a href="https://jira.appcelerator.org/browse/MOD-2156">MOD-2156</a> - SafariDialog: opened and supported should be read-only</li><li>
+<a href="https://jira.appcelerator.org/browse/MOD-2163">MOD-2163</a> - Android: Ti.Compression, app crashes right after launching with this module</li><li>
+<a href="https://jira.appcelerator.org/browse/MOD-2166">MOD-2166</a> - Android: Ti.ImageFactory crash on Android 6.0 with latest SDK</li><li>
+<a href="https://jira.appcelerator.org/browse/MOD-2167">MOD-2167</a> - Android: ti.paint crash on Android 6.0 with latest SDK</li><li>
+<a href="https://jira.appcelerator.org/browse/MOD-2171">MOD-2171</a> - Annotations crash on iOS 9</li><li>
+<a href="https://jira.appcelerator.org/browse/MOD-2175">MOD-2175</a> - Android: ti.gigya error on Android 6.0 with latest SDK</li><li>
+<a href="https://jira.appcelerator.org/browse/MOD-2191">MOD-2191</a> - Ti.SafariDialog: URL's containing # do not work</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-2908">TIMOB-2908</a> - iOS: Switch - Disable animation on init and allow developer to disable for setValue</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-5817">TIMOB-5817</a> - Android: keyboard type set as number pad permits input of non-numeric values</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-16355">TIMOB-16355</a> - iOS: separatorInsets should not be used for header/section titles</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-18132">TIMOB-18132</a> - Android: App Crashes with CalledFromWrongThreadException opening DatePicker after typing in a tf</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-18168">TIMOB-18168</a> - iOS: Module - Cannot build 32-bit module urlSession and coremotion with SDK 3.5.0</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-18926">TIMOB-18926</a> - iOS: Calendar events status shows wrong status number or null</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19103">TIMOB-19103</a> - Windows Phone: Lots of scary warnings in successful build of default app</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19138">TIMOB-19138</a> - Windows: DefaultLanguage property should be set (to &quot;en&quot;) in manifest</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19192">TIMOB-19192</a> - Android: Date &amp; Time Picker change event not fired nor is picker.value updated</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19206">TIMOB-19206</a> - Android: Encrypted Database: Not being able to read installed database</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19231">TIMOB-19231</a> - Debug: Breakpoint won't stop if the app name contains space</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19234">TIMOB-19234</a> - iOS debugger connection refused with SDKs 3.5.0 and 3.5.1</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19383">TIMOB-19383</a> - iOS9: Upgrade Facebook module to facebook 4.7.0</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19386">TIMOB-19386</a> - iOS9: Upgrade coremotion module to support bitcode, rewrite code base</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19529">TIMOB-19529</a> - Validation of workspace-dir option always uses default workspace</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19566">TIMOB-19566</a> - Ti.Locale.currentLanguage returns locale on iOS 9</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19567">TIMOB-19567</a> - Last change made after useractivitywillsave does not make it to other device</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19597">TIMOB-19597</a> - Android: Add previewRect (height, width) to camera callback</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19633">TIMOB-19633</a> - iOS: AUDIO_SESSION_CATEGORY_AMBIENT stops background music</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19647">TIMOB-19647</a> - iOS: ImageViews with remote images slow and failing</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19633">TIMOB-19633</a> - iOS: AUDIO_SESSION_CATEGORY_AMBIENT stops background music</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19650">TIMOB-19650</a> - Windows: Builder.createAppIconSet ignores existing assets</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19663">TIMOB-19663</a> - Windows: Missing .apiName properties</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19722">TIMOB-19722</a> - Android: Use the Reveal Effect has NPE</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19725">TIMOB-19725</a> - iOS: Toggled action buttons display over keyboard</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19737">TIMOB-19737</a> - Error when selecting an iOS certificate without provisioning profiles</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19739">TIMOB-19739</a> - iOS: Ti.Contacts custom phone label in phones become undefined</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19741">TIMOB-19741</a> - iOS: webViews within a scrollableView disappear</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19755">TIMOB-19755</a> - Ti.Media calls break app</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19767">TIMOB-19767</a> - iOS: toImage does not honor the scale factor for retina devices</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19776">TIMOB-19776</a> - IOS: TableViewRow text become blank after selecting searched item from TableView default searchbar</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19777">TIMOB-19777</a> - iOS: ListView separator has huge margins on iOS 9</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19779">TIMOB-19779</a> - Android orientations on orientationchange not providing accurate results in some Android Tablets</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19784">TIMOB-19784</a> - Android: Cloud Files Create Error &quot;Invalid Name&quot;</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19799">TIMOB-19799</a> - iOS: ioslib: TypeError: Cannot read property 'sort' of undefined</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19807">TIMOB-19807</a> - KitchenSink: Control-&gt;Buttons.Image is positioned on top of the label and can't be resized.</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19808">TIMOB-19808</a> - KitchenSink: BasicUi-&gt;Views-&gt;ScrollViews-&gt;Many on screen causes app to freeze</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19817">TIMOB-19817</a> - Android: HTTPClient multipart header error</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19821">TIMOB-19821</a> - Android 6.0: Device &amp; emulator logs don't show up in studio console</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19823">TIMOB-19823</a> - Android: ConcurrentModificationException at TiListView</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19836">TIMOB-19836</a> - Windows: Missing properties for TitaniumKit Proxy</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19837">TIMOB-19837</a> - Windows: Missing TitaniumKit View properties</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19838">TIMOB-19838</a> - Windows: Fix Jenkins Windows SDK PR Build</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19846">TIMOB-19846</a> - Android fix documentation errors in activity transition</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19850">TIMOB-19850</a> - iOS: Permissions (Geolocation) Bugs in implementation &amp; documentation</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19851">TIMOB-19851</a> - Android: Permissions (Camera) crash and other bugs</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19855">TIMOB-19855</a> - Android 6.0 : Row height in a TableView on android 6.0 is abnormally big</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19863">TIMOB-19863</a> - iOS9: ListView not filling screen width</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19884">TIMOB-19884</a> - iOS: Debug crash when setting breakpoint in alloy model response</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19885">TIMOB-19885</a> - Android 6.0 : Asking for contacts permissions fails with &quot;one or more permissions denied&quot; with SDK 5.1.0.v20151104190037</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19889">TIMOB-19889</a> - iOS: Core Motion crashes when the user moves</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19899">TIMOB-19899</a> - Android 6: Remote images not loading</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19916">TIMOB-19916</a> - Android: HTTPClient ondatastream method responseText is empty for Android</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19921">TIMOB-19921</a> - Windows: Implement missing View properties</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19925">TIMOB-19925</a> - Windows: Implement Ti.App.Properties &quot;change&quot; event</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19927">TIMOB-19927</a> - Windows: Implement Blob.width and height</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19929">TIMOB-19929</a> - Windows: Implement Ti.Filesystem.File.append</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19930">TIMOB-19930</a> - Windows: Implement Ti.Filesystem.File.deleteDirectory</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19939">TIMOB-19939</a> - keyboardType should not list KEYBOARD_APPEARANCE_* constants</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19947">TIMOB-19947</a> - Windows: Implement Titanium.UI.AttributedString</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19952">TIMOB-19952</a> - Windows: Image support for Ti.UI.Button</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19953">TIMOB-19953</a> - Windows: Button only supports &quot;click&quot; event</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19955">TIMOB-19955</a> - Windows: Label only supports &quot;click&quot; event</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19963">TIMOB-19963</a> - Windows: &quot;return&quot; and &quot;change&quot; event for Titanium.UI.TextArea</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19968">TIMOB-19968</a> - Changing use-app-thinning does not force rebuild</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19970">TIMOB-19970</a> - Windows: Warning about duplicate default icon, not overwritten by DefaultIcon</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19972">TIMOB-19972</a> - iOS: Peek&amp;Pop only works on first elements of Ti.UI.ListView</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20004">TIMOB-20004</a> - iOS: Differences between new permission request responses</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20017">TIMOB-20017</a> - Hitting a breakpoint when debugging in Studio causes crash in TiDebuggerUtils</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20018">TIMOB-20018</a> - iOS: Ti.App.fireEvent from webView is not working</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20022">TIMOB-20022</a> - Windows: apidoc YAML generator reports wrong result</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20028">TIMOB-20028</a> - iOS: Layout fails on iOS8 with iOS9-only Picker height set</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20036">TIMOB-20036</a> - Android: HttpClient.abort() on andorid throw errors if the request is just created</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20038">TIMOB-20038</a> - Android: TableView crashes when scrolling more than 29 rows</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20061">TIMOB-20061</a> - TLS Version set in Android ignored on Publish</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20070">TIMOB-20070</a> - iOS Apple watch Integration | Embedded Content Contains Swift Code is not enabled error</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20072">TIMOB-20072</a> - iOS: Ti.Media.saveToPhotoGallery does not call back for unsupported mime types</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20073">TIMOB-20073</a> - iOS: Dynamic Shortcut crashes app when it has no userInfo</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20078">TIMOB-20078</a> - Windows: Ti.UI.TextArea selected event doesn't work</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20087">TIMOB-20087</a> - 5.1.X breaks ability to bind one collection to different views / reset collection</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20089">TIMOB-20089</a> - Android: setting a view layout to null crashes the app</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20101">TIMOB-20101</a> - Windows: Link error with JavaScriptCore for Windows 10 ARM</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20108">TIMOB-20108</a> - App sometimes crashes on resume</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20113">TIMOB-20113</a> - Android: Rounded view is not being shown if its size more than screen size</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20130">TIMOB-20130</a> - SDK no longer finds Genymotion after upgrade to 2.6.0</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20138">TIMOB-20138</a> - Consecutive calls to ScrollableView.setViews causes the app to become unresponsive</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20165">TIMOB-20165</a> - iOS Ti Geolocation callback thread issue.</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20172">TIMOB-20172</a> - Windows 10: Cannot package for the phonestore or winstore</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20192">TIMOB-20192</a> - [Windows Phone 8.1] Certification reject - This API is not supported for this application type - Api=OutputDebugStringA. Module=api-ms-win-core-debug-l1-1-1.dll</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20196">TIMOB-20196</a> - iOS: on ScrollableView is not possible to change views</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20197">TIMOB-20197</a> - Windows: Phone App crashes after Splash Screen</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20199">TIMOB-20199</a> - iOS: Views disappear from ScrollableView on change</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20213">TIMOB-20213</a> - iOS: app crash when closing the active window while searchbar in listview is focused</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20217">TIMOB-20217</a> - iOS: Ti.Geolocation.hasGeolocationPermission() and Ti.Geolocation.getCurrentPosition() are not working on IOS 7</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20233">TIMOB-20233</a> - ti.SafariDialog module folder exists outside the modules/iphone folder in the titanium folder along with rogue _MACOSX folder after installing SDK 5.2.0.v20160111111831</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20238">TIMOB-20238</a> - Build Server Zip files to not unzip on download or Finder</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20239">TIMOB-20239</a> - Windows: HttpClient error on NTLM authentication</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20251">TIMOB-20251</a> - Android 6.0: <a href="http://java.io/">java.io</a>.FileNotFoundException: open failed: ENOENT (No such file or directory)</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20252">TIMOB-20252</a> - Windows: Windows 10 SDK is not detected</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20260">TIMOB-20260</a> - Android 6: CameraView with overlay crash with message &quot;AppName is not responding&quot;</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20265">TIMOB-20265</a> - Android: Ti.UI.View &quot;borderRadius&quot; property not working on android 4.4.2 &amp; 4.2.2</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20274">TIMOB-20274</a> - Hyperloop: Plugin fails if the source does not contain HL references</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20283">TIMOB-20283</a> - Facebook iOS Module 5.0.0 crashes on resume on iOS 8.4</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20298">TIMOB-20298</a> - Classic Titanium app with tabs crashes when closed on iOS</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20299">TIMOB-20299</a> - Windows: Build errors out with 'mix is not a function'</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20368">TIMOB-20368</a> - Docs: Ti.UI.KEYBOARD_TYPE_* &quot;since&quot; incorrect</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20389">TIMOB-20389</a> - iOS: Listview delete event sends wrong itemId</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20393">TIMOB-20393</a> - iOS: Launch Image Set leaves out required sizes if no (&gt;=8.0) minimum iOS version is set</li><li>
+ <a href="https://jira.appcelerator.org/browse/TIMOB-20400">TIMOB-20400</a> -   WWDR certificate can not be found in keychain other than system</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20408">TIMOB-20408</a> - Apple WWDR certificate update is not recognized</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20410">TIMOB-20410</a> - Android: Adding view as a customView to an annotation in maps crashes the app</li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20434">TIMOB-20434</a> - Kitchen Sink Crashes on initial install</li></ul>    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-Improvements"  >
+        <h2>Improvements</h2>
+    <p>
+This release includes 28 improvements.<ul><li>
+<a href="https://jira.appcelerator.org/browse/CLI-746">CLI-746</a> - Add SPDX-compliant license string<ul><li>
+Users can now use the SPDX &quot;LicenseRef-LICENSE&quot; instead of &quot;Appcelerator Commercial&quot; in the package.json files to avoid the &quot;license should be a valid SPDX license expression&quot; warning.</li><li>
+The root also now includes a LICENSE.md file</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-852">CLI-852</a> - appc run can not set port for Arrow apps<ul><li>
+You can now set the port for Arrow apps by using this command: <tt>appc run --port xxxx:</tt></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-858">CLI-858</a> - Add timestamps to logging output<ul><li>
+When using <tt>-l trace</tt> or <tt>-l debug</tt>, a timestamp is added to log levels of the output. For example:</li><li><div>
+<div>
+<div><code>2015</code><code>-</code><code>10</code><code>-29T08:</code><code>38</code><code>:</code><code>48</code><code>+</code><code>00</code><code>:</code><code>00</code><code> | INFO   | Get the registry...</code></div>
+</div>
+</div></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/CLI-934">CLI-934</a> - Output warning message if appc-install is less than 4.2.3-2<ul><li>
+Appc CLI 5.2.0 requires appc-install 4.2.3-2+ to work. If a lesser version is installed, users will see the following error message:</li><li><div>
+<div>
+<div><code>Appcelerator Command-Line Interface, version </code><code>5.2</code><code>.</code><code>0</code><code>-</code><code>249</code></div>
+<div><code>Copyright (c) </code><code>2014</code><code>-</code><code>2016</code><code>, Appcelerator, Inc.  All Rights Reserved.</code></div>
+<div><code>AppC CLI requires appcelerator</code><code class="color1">@4</code><code>.2.</code><code>3</code><code> or newer.</code></div>
+<div><code>To install the latest version: [sudo] npm install appcelerator -g</code></div>
+<div><code>....</code></div>
+</div>
+</div></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-16547">TIMOB-16547</a> - iOS: Add ability to set color and backgroundColor for Picker control<ul><li>
+The hardcoded background color (white) of the Picker control can now be set through the Ti Picker control.</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-16865">TIMOB-16865</a> - Android / MobileWeb: Unable to remove the TableView row separators even if the color is set to transparent<ul><li>
+Android and MobileWeb now allows for the removal of TableView row separators when color is set to transparent.</li></ul></li><li>
+    <span style="color: #000000;" >
+ <a href="https://jira.appcelerator.org/browse/TIMOB-19185">     <span style="color: #000000;" >
+TIMOB-19185    </span>
+ </a> - Liveview: Update liveview to work with Windows Platform    </span>
+<ul><li>
+Liveview now works when building Windows Platform by passing the --liveview flag</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19194">TIMOB-19194</a> - Ti.Android.Intent: Ability to send multiple URI to an intent<ul><li>
+Ti.Android.Intent allows you to send multiple URI to an intent.</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19452">TIMOB-19452</a> - Extensions should default to the app's provisioning profile if not set<ul><li>
+If extension provisioning profile is not set up, the CLI will use the application provision profile.</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19512">TIMOB-19512</a> - iOS build: ensure app icons are 24-bit (no transparency)<ul><li>
+Since iOS apps cannot use app icons with an alpha channel, any builds attempting to use icons with alpha channels will have the alpha channel stripped from the image.</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19577">TIMOB-19577</a> - Android: Update Facebook Module to support Facebook SDK 4.7.0<ul><li>
+Facebook Module for Android now supports Facebook SDK 4.7.0</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19580">TIMOB-19580</a>: Custom activity transition<ul><li class="li1 ">
+You can specify custom animations in material design app&rsquo;s enter and exit (content) transitions and for transitions shared elements between activities.</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19726">TIMOB-19726</a> - Android: Refactor map module to remove deprecated method getMap()<ul><li>
+Android developers should use <tt>getMapAsync()</tt> method instead of the deprecated <tt>getMap()</tt> method</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19759">TIMOB-19759</a> - iOS: Parity: tab listeners<ul><li>
+Event listeners for iOS's TabGroup <tt>selected</tt> and <tt>unselected</tt> have been deprecated in favor of <tt>focus</tt></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19763">TIMOB-19763</a> - iOS: Support item-specific peek for previewContext on ListView<ul><li>
+Support for providing a preview context based on the current Ti.UI.ListItem.</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19819">TIMOB-19819</a> - iOS: Disable ATS in builtin KitchenSink by default<ul><li>
+iOS 9's App Transport Security (ATS) is now disabled by default when developing for the SDK to achieve parity between the development and production environment. </li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19825">TIMOB-19825</a>  - Android module build should support AIDL files<ul><li>
+Android module builds now support AIDL files</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19828">TIMOB-19828</a> - Ti.SDK 5.2.0 supports Node.js 5.0<ul><li>
+Ti.SDK 5.2.0 supports Node.js 5.0</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19829">TIMOB-19829</a> - iOS: Add trackTintColor to Ti.UI.ProgressBar<ul><li>
+Ti.UI.ProgressBar on iOS supports coloring options for active progress</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19940">TIMOB-19940</a> - Add *appearance-properties to AlertDialog<ul><li>
+Deprecated <tt>*appearance</tt> property in favor for <tt>keyboardApperance</tt></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-19948">TIMOB-19948</a> - Windows: Use font cache for TextArea and Button<ul><li>
+Font cache has been extended to <tt>TextArea</tt> and <tt>Button</tt></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20000">TIMOB-20000</a> - Rename appearance properties to keyboardAppearance<ul><li>
+Added keyboardAppearance for searchBar, textArea, textField, and textWidget</li><li>
+Also deprecated all the constants (Keyboard_Default and Keyboard_Type_Default)</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20001">TIMOB-20001</a> - iOS: Rename Ti.Media.CAMERA_AUTHORIZATION_NOT_DETERMINED to UNKNOWN<ul><li>
+Renamed the API <tt>CAMERA_AUTHORIZATION_*</tt> to <tt>CAMERA_AUTHORIZATION_UNKNOWN</tt></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20005">TIMOB-20005</a> - Line up *Authorization properties<ul><li>
+Renamed <tt>Ti.Calendar.eventsAuthorization</tt> to <tt>calendarAuthorization</tt></li><li>
+Renamed <tt>Ti.Media.cameraAuthorizationStatus</tt> to <tt>cameraAuthorization</tt></li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20015">TIMOB-20015</a> - iOS: Improve deprecation macros<ul><li>
+Deprecation warnings now follow a standardized format style.</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20055">TIMOB-20055</a> - iOS: Refactor previewContext to be more memory-efficient<ul><li>
+The 3D-Touch feature &quot;Peek and Pop&quot; is now more memory-efficient when working will a huge number of cells.</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20059">TIMOB-20059</a> - iOS: 'person' property in Ti.Contacts.showContacts is empty<ul><li>
+The callback event for both <tt>selectedProperty</tt> and <tt>selectedPerson</tt> of <tt>Ti.Contacts.showContacts</tt> no longer returns an empty value for the person property</li></ul></li><li>
+<a href="https://jira.appcelerator.org/browse/TIMOB-20098">TIMOB-20098</a> - Windows: Update bundled cmake to 3.4.1<ul><li>
+Updated cmake to 3.4.1 for some Windows 10 related fixes and improvements</li></ul></li></ul>    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-APIChanges"  >
+        <h2>API Changes</h2>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-NewAPIs"  >
+        <h3>New APIs</h3>
+    <p>
+    <span style="color: #000000;" >
+The following APIs are new or have expanded platform support in Release 5.2.0.<br/>     </span>
+</p>
+    <div class="tablewrap">
+        <table>
+        <thead>    <tr >
+            <th>
+        <p>
+API</p>
+            </td>
+                <th>
+        <p>
+Type</p>
+            </td>
+                <th>
+        <p>
+Notes</p>
+            </td>
+        </tr>
+</thead><tfoot></tfoot><tbody>    <tr >
+            <td>
+        <p>
+Titanium.Calendar.calendarAuthorization</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Returns an authorization constant indicating if the application has access to the events in the EventKit. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.Calendar.getCalendarAuthorization</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.Calendar.calendarAuthorization property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.Media.CAMERA_AUTHORIZATION_UNKNOWN</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Constant specifying that app is not yet authorized to use camera. This is available on iOS7 and later. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.Media.MEDIA_TYPE_LIVEPHOTO</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Media type constant for live photo media. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.Media.cameraAuthorization</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Returns the authorization status for the camera. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.Media.getCameraAuthorization</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.Media.cameraAuthorization property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.AlertDialog.getKeyboardAppearance</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.UI.AlertDialog.keyboardAppearance property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.AlertDialog.keyboardAppearance</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Keyboard appearance to be displayed when the text field inside the dialog is focused. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.AlertDialog.setKeyboardAppearance</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.UI.AlertDialog.keyboardAppearance property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Android.TRANSITION_CHANGE_BOUNDS</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Captures layout bounds of target views before and after the scene change and animates those changes during the transition. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Android.TRANSITION_CHANGE_CLIP_BOUNDS</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Captures the clip bounds before and after the scene change and animates those changes during the transition. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Android.TRANSITION_CHANGE_IMAGE_TRANSFORM</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Captures an ImageView's matrix before and after the scene change and animates it during the transition. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Android.TRANSITION_CHANGE_TRANSFORM</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Captures scale and rotation for Views before and after the scene change and animates those changes during the transition. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Android.TRANSITION_EXPLODE</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Moves views in or out from the edges of the scene. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Android.TRANSITION_FADE_IN</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Fades in the views. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Android.TRANSITION_FADE_OUT</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Fades out the views. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Android.TRANSITION_NONE</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Resets transition to platform default. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Android.TRANSITION_SLIDE_BOTTOM</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Moves views to bottom. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Android.TRANSITION_SLIDE_LEFT</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Moves views to left. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Android.TRANSITION_SLIDE_RIGHT</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Moves views to right. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Android.TRANSITION_SLIDE_TOP</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Moves views to top. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_APPEARANCE_DARK</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use the platform-specific dark keyboard appearance. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_APPEARANCE_LIGHT</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use the platform-specific light keyboard appearance. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_TYPE_ASCII</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use an ASCII keyboard, with the standard keyboard layout. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use a keyboard with decimal numbers only, with the pad keyboard layout. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_TYPE_DEFAULT</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use the default keyboard, depending on the platform. (New API, supported on Android, iPhone, iPad and Mobile Web.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_TYPE_EMAIL</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use a keyboard suitable for composing email, with the standard keyboard layout. (New API, supported on Android, iPhone, iPad and Mobile Web.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_TYPE_NAMEPHONE_PAD</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use a keyboard suitable for entering names and phone numbers, with the pad keyboard layout. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_TYPE_NUMBERS_PUNCTUATION</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use a keyboard with numbers and punctuation only, with the standard keyboard layout. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_TYPE_NUMBER_PAD</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use a keyboard with a number pad only, with the pad keyboard layout. (New API, supported on Android, iPhone, iPad and Mobile Web.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_TYPE_PHONE_PAD</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use a keyboard with a phone-style number pad, with the pad keyboard layout. (New API, supported on Android, iPhone, iPad and Mobile Web.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_TYPE_TWITTER</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use a keyboard optimized for twitter text entry, with easy access to the @ and (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_TYPE_URL</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use a keyboard optimized for entering URLs, with the standard keyboard layout. (New API, supported on Android, iPhone, iPad and Mobile Web.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_TYPE_WEBSEARCH</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use a keyboard optimized for web search terms and URL entry. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.ListItem.canInsert</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Specifies if the item can be inserted by a user initiated action. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.ListView.dragend</p>
+            </td>
+                <td>
+        <p>
+event</p>
+            </td>
+                <td>
+        <p>
+Fired when the user stops dragging the list view. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.ListView.dragstart</p>
+            </td>
+                <td>
+        <p>
+event</p>
+            </td>
+                <td>
+        <p>
+Fired when the user starts dragging the list view. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Picker.backgroundColor</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Background color of the picker, as a color name or hex triplet. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Picker.dateTimeColor</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Sets the text color of date- and time-pickers. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Picker.getBackgroundColor</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.UI.Picker.backgroundColor property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Picker.getDateTimeColor</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.UI.Picker.dateTimeColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Picker.setBackgroundColor</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.UI.Picker.backgroundColor property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Picker.setDateTimeColor</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.UI.Picker.dateTimeColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.ProgressBar.getTrackTintColor</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.UI.ProgressBar.trackTintColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.ProgressBar.setTrackTintColor</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.UI.ProgressBar.trackTintColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.ProgressBar.trackTintColor</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+The color shown for the portion of the progress bar that is not filled. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.RETURNKEY_CONTINUE</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Set the return key text to &quot;Continue&quot;. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.SearchBar.getKeyboardAppearance</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.UI.SearchBar.keyboardAppearance property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.SearchBar.keyboardAppearance</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Determines the appearance of the keyboard to be displayed the field is focused. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.SearchBar.setKeyboardAppearance</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.UI.SearchBar.keyboardAppearance property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TABLE_VIEW_SEPARATOR_STYLE_NONE</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+The row divider is hidden. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TABLE_VIEW_SEPARATOR_STYLE_SINGLE_LINE</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+The row divider is shown as a single line. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Tab.getIconInsets</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.UI.Tab.iconInsets property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Tab.iconInsets</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+The icon inset or outset for each edge. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Tab.selected</p>
+            </td>
+                <td>
+        <p>
+event</p>
+            </td>
+                <td>
+        <p>
+Fired when the tab is selected. (New API, supported on Android, iPhone, iPad and Mobile Web.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Tab.setIconInsets</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.UI.Tab.iconInsets property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Tab.unselected</p>
+            </td>
+                <td>
+        <p>
+event</p>
+            </td>
+                <td>
+        <p>
+Fired when the tab is no longer selected. (New API, supported on Android, iPhone, iPad and Mobile Web.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TableView.getMaxClassname</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.UI.TableView.maxClassname property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TableView.getSeparatorStyle</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.UI.TableView.separatorStyle property. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TableView.maxClassname</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Max number of row class names. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TableView.separatorStyle</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Separator style constant. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TableView.setMaxClassname</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.UI.TableView.maxClassname property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TableView.setSeparatorStyle</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.UI.TableView.separatorStyle property. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TextField.getInputType</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.UI.TextField.inputType property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TextField.inputType</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Input type to accept in thetext field. Also influences the Keyboard type to display. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TextField.setInputType</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.UI.TextField.inputType property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Window.addSharedElement</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Adds a common UI element to participate in window transition animation. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Window.getSwipeToClose</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.UI.Window.swipeToClose property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Window.removeAllSharedElements</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Clears all added shared elements. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Window.setSwipeToClose</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.UI.Window.swipeToClose property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Window.swipeToClose</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Boolean value indicating if the user should be able to close a window using a swipe gesture. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.iOS.LIVEPHOTO_PLAYBACK_STYLE_FULL</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Plays back the entire motion and sound content of the Live Photo, including transition effects at the start and end. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.iOS.LIVEPHOTO_PLAYBACK_STYLE_HINT</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Plays back only a brief section of the motion content of the Live Photo, without sound. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.iOS.LivePhotoView</p>
+            </td>
+                <td>
+        <p>
+object</p>
+            </td>
+                <td>
+        <p>
+A view to display a Live Photo object introduced in iOS 9.1. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.iOS.createLivePhotoView</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Creates and returns an instance of Titanium.UI.iOS.LivePhotoView. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.iPad.Popover.backgroundColor</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Sets the background color of the popover. (New API, supported on iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.iPad.Popover.getBackgroundColor</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Gets the value of the Titanium.UI.iPad.Popover.backgroundColor property. (New API, supported on iPad.)</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.iPad.Popover.setBackgroundColor</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Sets the value of the Titanium.UI.iPad.Popover.backgroundColor property. (New API, supported on iPad.)</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-DeprecatedAPIs"  >
+        <h3>Deprecated APIs</h3>
+    <p>
+    <span style="color: #000000;" >
+The following APIs are deprecated in Release 5.2.0.    </span>
+</p>
+    <p>
+    <span style="color: #000000;" >
+     </span>
+</p>
+    <div class="tablewrap">
+        <table>
+        <thead>    <tr >
+            <th>
+        <p>
+API</p>
+            </td>
+                <th>
+        <p>
+Type</p>
+            </td>
+                <th>
+        <p>
+Notes</p>
+            </td>
+        </tr>
+</thead><tfoot></tfoot><tbody>    <tr >
+            <td>
+        <p>
+Titanium.App.iOS.UserActivity.useractivitywillsave</p>
+            </td>
+                <td>
+        <p>
+event</p>
+            </td>
+                <td>
+        <p>
+set property <tt>needsSave</tt> to true everytime you update current activity state instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.Calendar.STATUS_CANCELLED</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use STATUS_CANCELED instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.Calendar.eventsAuthorization</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use calendarAuthorization instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.Calendar.getEventsAuthorization</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Use calendarAuthorization instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.Media.CAMERA_AUTHORIZATION_NOT_DETERMINED</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use CAMERA_AUTHORIZATION_UNKNOWN instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.Media.cameraAuthorizationStatus</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use cameraAuthorization instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.Media.getCameraAuthorizationStatus</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Use cameraAuthorization instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_ASCII</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use KEYBOARD_TYPE_ASCII instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_DECIMAL_PAD</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use KEYBOARD_TYPE_DECIMAL_PAD instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_DEFAULT</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use KEYBOARD_TYPE_DEFAULT instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_EMAIL</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use KEYBOARD_TYPE_EMAIL instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_NAMEPHONE_PAD</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use KEYBOARD_TYPE_NAMEPHONE_PAD instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use KEYBOARD_TYPE_NUMBERS_PUNCTUATION instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_NUMBER_PAD</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use KEYBOARD_TYPE_NUMBER_PAD instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_PHONE_PAD</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use KEYBOARD_TYPE_PHONE_PAD instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.KEYBOARD_URL</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use KEYBOARD_TYPE_URL instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Tab.blur</p>
+            </td>
+                <td>
+        <p>
+event</p>
+            </td>
+                <td>
+        <p>
+Use unselected instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.Tab.focus</p>
+            </td>
+                <td>
+        <p>
+event</p>
+            </td>
+                <td>
+        <p>
+Use selected instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TabGroup.selected</p>
+            </td>
+                <td>
+        <p>
+event</p>
+            </td>
+                <td>
+        <p>
+Use focus instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TabGroup.unselected</p>
+            </td>
+                <td>
+        <p>
+event</p>
+            </td>
+                <td>
+        <p>
+Use blur instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TextArea.appearance</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use keyboardAppearance instead</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TextArea.getAppearance</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Use keyboardAppearance instead</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TextArea.setAppearance</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Use keyboardAppearance instead</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TextField.appearance</p>
+            </td>
+                <td>
+        <p>
+property</p>
+            </td>
+                <td>
+        <p>
+Use keyboardAppearance instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TextField.getAppearance</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Use keyboardAppearance instead.</p>
+            </td>
+        </tr>
+    <tr >
+            <td>
+        <p>
+Titanium.UI.TextField.setAppearance</p>
+            </td>
+                <td>
+        <p>
+method</p>
+            </td>
+                <td>
+        <p>
+Use keyboardAppearance instead.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-KnownIssues"  >
+        <h2>Known Issues</h2>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-iOSLaunchLogoCachingIssue"  >
+        <h3>iOS Launch Logo Caching Issue</h3>
+    <p>
+Launch logo updates are not reflected when rebuilding the app. iOS caches launch screens to a PNG file that appears to only be invalidated by restarting the iOS. The following changes have no effect: uninstalling the app, cleaning the Titanium app and rebuilding, and removing the cached image from the hard drive. Upon installing the updated app, it writes a new PNG file to cache of the old launch screen. It appears iOS keeps the cached launch screen in memory despite the app is not running. The only way to show the updated launch logo is to restart the simulator and/or device. Users should see a warning about this issue.</p>
+    </div>
+    <div  id="46245011_TitaniumSDK5.2.0ReleaseNote-iOS9.1PHLivePhotoandPHLivePhotoView"  >
+        <h3>iOS9.1 PHLivePhoto and PHLivePhotoView</h3>
+    <p>
+Apple currently does not expose an API to capture live photos, just to select existing ones. The feature will be added as soon as Apple exposes that API as well.<br/></p>
+    </div>
+    </div>
+    </div>
+        </div>
+    
+        

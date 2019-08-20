@@ -248,6 +248,9 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 
 				// Copy landing
 				sh "cp -r ./landing ${outputDir}/.."
+
+				// Copy release-notes
+				sh "cp -r ./release-notes ${outputDir}/.."
 			} // stage('Misc Assets')
 
 			stage('Archive') {

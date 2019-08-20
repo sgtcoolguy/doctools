@@ -1,0 +1,118 @@
+<title>Appcelerator Platform 3.1.3 General Availability - 09/18/2013</title>
+<h1>Appcelerator Platform 3.1.3 General Availability - 09/18/2013</h1>
+
+<h5>Contents</h5>
+
+<ul>
+<li><a href="#about">About This Release</a></li>
+<li><a href="#changes">Breaking Changes</a></li><ul>
+<li><a href="#test_upgrade">Appcelerator Test 6619.13 Upgrade</a></li>
+</ul>
+<li><a href="#titanium">Titanium Components</a></li>
+</ul>
+
+<p><a name="about"></a></p>
+
+<h2>About This Release</h2>
+
+<p>
+This is a General Availability (GA) release of the Appcelerator Platform including Appcelerator
+Studio 3.2.0 and support for Titanium SDK 3.2.0 and Alloy 1.3.
+</p>
+
+<p>
+These release notes only address the enterprise features associated with the Appcelerator Platform.
+For updates about the underlying components of the Appcelerator Platform, see the links in the
+<a href="#titanium">Titanium Components section below</a>.
+</p>
+
+<a name="changes"></a>
+<h2>Breaking Changes</h2>
+
+<a name="test_upgrade"></a>
+<h3>Appcelerator Test 6619.13 Upgrade</h3>
+
+<p>The Appcelerator Test 6619.13 upgrade contains some
+breaking changes from the previous version:</p>
+
+<ul>
+<li>Support for universal mobile applications</li>
+<li>In the <strong>Central</strong> tab of the Test Dashboard, <strong>Device Agents</strong> was
+renamed to <strong>Device
+ Clouds</strong>, though it is still reference as Device Agents in the other parts of the GUI.</li>
+</ul>
+
+<p>Since this upgrade, Appcelerator Test supports universal
+mobile applications that can be played on both Android and iOS.  Previously, two separate mobile
+applications were created in the Test dashboard.</p>
+
+<p>After you upgrade the Test module, all existing projects using Appcelerator Test will have this
+service disabled and you will need to migrate to the universal application.</p>
+
+<p>In Appcelerator Studio, re-enable Appcelerator Service for your application, which 
+creates the universal mobile application for you.</p>
+
+<p> If you have existing test clips, you need to update your Targets (device/test clip pair) in
+the Test dashboard to reference the new universal mobile application.</p>
+
+<p>
+For instructions, see the "Test Module Build 6619.13 Upgrade" section of the 
+<a href="http://docs.appcelerator.com/platform/latest/#!/guide/Test">Test page</a>.
+<p>
+
+<a name="titanium"></a>
+<h2>Titanium Components</h2>
+
+<p>Appcelerator Studio requires Titanium components to develop mobile applications.
+By default, Appcelerator Studio automatically checks and prompts you to update the components that
+are GA.
+To manually check for updates, from the menu bar, select <b>Help > Check for Appcelerator Updates</b>.</p>
+
+<p>This version of Studio is tested against and supports the following Titanium components:</p>
+
+<a name="table"></a>
+
+<table>
+<tr>
+    <td><b>Component</b></td>
+    <td><b>Version</b></td>
+    <td><b>Changelog</b></td>
+    <td><b>Notes</b></td>
+</tr>
+<tr>
+    <td>Titanium SDK</td>
+    <td>3.1.3.GA</td>
+    <td><a href="http://docs.appcelerator.com/titanium/release-notes/?version=3.1.3.GA">3.1.3.GA Release Notes</a></td>
+    <td>Required to build mobile applications</td>
+</tr>
+<tr>
+    <td>node-appc</td>
+    <td>0.1.30</td>
+    <td><a href="https://github.com/appcelerator/node-appc/blob/3_1_X/CHANGELOG.md">CHANGELOG</a></td>
+    <td>Required for the Titanium toolchain</td>
+</tr>
+<tr>
+    <td>Titanium CLI</td>
+    <td>3.1.2</td>
+    <td><a href="https://github.com/appcelerator/titanium/blob/3_1_X/CHANGELOG.md">CHANGELOG</a></td>
+    <td>Required to build mobile applications</td>
+</tr>
+<tr>
+    <td>Alloy</td>
+    <td>1.2.2</td>
+    <td><a href="https://github.com/appcelerator/alloy/blob/1_1_X/CHANGELOG.md">CHANGELOG</a></td>
+    <td>Required to build mobile applications with the Alloy framework</td>
+</tr>
+<tr>
+    <td>Titanium Code Processor</td>
+    <td>1.0.3</td>
+    <td><a href="https://github.com/appcelerator/titanium-code-processor/blob/1_0_X/CHANGELOG.md">CHANGELOG</a></td>
+    <td>Required for the Code Analysis tool</td>
+</tr>
+<tr>
+    <td>Node.ACS CLI</td>
+    <td>1.0.6</td>
+    <td><a href="http://docs.appcelerator.com/cloud/latest/#!/guide/node_releasenotes">Release Notes</a></td>
+    <td>Required to build custom cloud services</td>
+</tr>
+</table>

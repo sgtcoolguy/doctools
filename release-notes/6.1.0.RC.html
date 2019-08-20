@@ -1,0 +1,1871 @@
+<title>Titanium SDK 6.1.0.RC</title>
+<link type="text/css" rel="stylesheet" href="css/release_note.css" media="all">
+<h1>Titanium SDK 6.1.0.RC - 19 May 2017</h1>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Contents">
+        <h2>Contents</h2>
+    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Aboutthisrelease">
+        <h2>About this release</h2>
+    <p>Titanium SDK 6.1.0.RC is a minor release of the SDK, addressing high-priority issues from previous releases.</p>
+    <p>    <span id="src-49161894_issues"><a name="src-49161894_issues"></a></span>
+</p>
+    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Noticeoffeatureandbehaviorchanges">
+        <h2>Notice of feature and behavior changes</h2>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Androidplatform">
+        <h3>Android platform</h3>
+<ul><li><a href="https://jira.appcelerator.org/browse/TIMOB-19578">TIMOB-19578</a> - Android: Customize Touch Feedback<ul><li>Added the opt-in feature from Android Lollipop&apos;s touch feedback</li></ul></li></ul>    </div>
+    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Newfeatures">
+        <h2>New features</h2>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Androidplatform.1">
+        <h3>Android platform</h3>
+<ul><li><a href="https://jira.appcelerator.org/browse/TIMOB-16005">TIMOB-16005</a> - Android: Small device textfield issue in landscape mode<ul><li>When rotating a small screen device into landscape mode, the textField now expands to full screen</li><li>Demo:<p></p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div><code>var win = Ti.UI.createWindow({</code></div>
+<div><code>	backgroundColor : &apos;white&apos;,</code></div>
+<div><code>	layout : &apos;vertical&apos;</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>var aTextField = Ti.UI.createTextField({</code></div>
+<div><code>	height : Titanium.UI.SIZE,</code></div>
+<div><code>	top : 10,</code></div>
+<div><code>	width : Titanium.UI.FILL,</code></div>
+<div><code>	hintText : &apos;This is hint text&apos;,</code></div>
+<div><code>	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_DEFAULT_ON_FOCUS, // Android only</code></div>
+<div><code>	keyboardType : Ti.UI.KEYBOARD_DEFAULT,</code></div>
+<div><code>	returnKeyType : Ti.UI.RETURNKEY_DEFAULT,</code></div>
+<div><code>	borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>win.add(aTextField);</code></div>
+<div>&#xA0;</div>
+<div><code>var aTextField1 = Ti.UI.createTextField({</code></div>
+<div><code>	height : Titanium.UI.SIZE,</code></div>
+<div><code>	top : 10,</code></div>
+<div><code>	width : Titanium.UI.FILL,</code></div>
+<div><code>	hintText : &apos;This is hint text&apos;,</code></div>
+<div><code>	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_DEFAULT_ON_FOCUS, // Android only</code></div>
+<div><code>	keyboardType : Ti.UI.KEYBOARD_DEFAULT,</code></div>
+<div><code>	returnKeyType : Ti.UI.RETURNKEY_DEFAULT,</code></div>
+<div><code>	borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>win.add(aTextField1);</code></div>
+<div><code>win.open();</code></div>
+<div><code>&#xA0;</code></div>
+</div>
+    </div>
+</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-16369">TIMOB-16369</a> - Android: Disable copy,define,share popup contextual bar inside webview when selecting text<ul><li>Added feature that allows for the disabling of the contextual bar: <tt>disableContextMenu</tt> (set to false by default)</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-18053">TIMOB-18053</a> - Android: expose the text color for the picker<ul><li>Revised picker for row text color</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-18565">TIMOB-18565</a> - Android: Support android *.aar libraries while building module<ul><li>Added support for Android *.aar libraries while building modules</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20477">TIMOB-20477</a> - Android: Request to support Superscript/Subscript Attributed String<ul><li>Added support for superscript and subscript styles in <tt>Ti.UI.AtrributedString</tt></li><li>Demo:<p></p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div><code>var win = Titanium.UI.createWindow({</code></div>
+<div><code class="indent1">backgroundColor: &apos;#ddd&apos;,</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>var attr = Titanium.UI.createAttributedString({</code></div>
+<div><code class="indent1">text: &apos;x2 + y3, hello world!&apos;,</code></div>
+<div><code class="indent1">attributes: [</code></div>
+<div><code class="indent2">{</code></div>
+<div><code class="indent3">type: Titanium.UI.ATTRIBUTE_SUPERSCRIPT_STYLE,</code></div>
+<div><code class="indent3">range: [1, 1]</code></div>
+<div><code class="indent2">},</code></div>
+<div><code class="indent2">{</code></div>
+<div><code class="indent3">type: Titanium.UI.ATTRIBUTE_SUPERSCRIPT_STYLE,</code></div>
+<div><code class="indent3">range: [6, 1]</code></div>
+<div><code class="indent2">},</code></div>
+<div><code class="indent2">{</code></div>
+<div><code class="indent3">type: Titanium.UI.ATTRIBUTE_SUBSCRIPT_STYLE,</code></div>
+<div><code class="indent3">range: [15, 5]</code></div>
+<div><code class="indent2">}</code></div>
+<div><code class="indent1">]</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>var label = Titanium.UI.createLabel({</code></div>
+<div><code class="indent1">height: 50,</code></div>
+<div><code class="indent1">color: &quot;#000&quot;,</code></div>
+<div><code class="indent1">attributedString: attr</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>win.add(label);</code></div>
+<div><code>win.open();</code></div>
+</div>
+    </div>
+</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23429">TIMOB-23429</a> - Android N: File Permissions<ul><li>Added support for Android N restrictions to file system permissions</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23455">TIMOB-23455</a> - Android: Support for requesting Audio Focus<ul><li>Added support for <a href="https://developer.android.com/training/managing-audio/audio-focus.html">Audio Focus</a> which allows Ti.Media.AudioPlayer to grab focus from other audio sources</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23974">TIMOB-23974</a> - Android: Add property to release space when hiding an object<ul><li>Added support for the &#x201D;gone&#x201D;&#x201D; property for visibility of elements in the layout views</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24400">TIMOB-24400</a> - Android: Download video and save it to the Device&apos;s Gallery<ul><li>Added support for saving video files to gallery</li></ul></li></ul>    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-iOSplatform">
+        <h3>iOS platform</h3>
+<ul><li><a href="https://jira.appcelerator.org/browse/TIMOB-5436">TIMOB-5436</a> - iOS: Expose SystemAlert<ul><li>Added support for Ti.Media.SystemAlert</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-7406">TIMOB-7406</a> - iOS: Set a user-agent for a webview<ul><li>Added support to set an user-agent for WebView (iOS)</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-15275">TIMOB-15275</a> - iOS: Enable ARC by default in Titanium Mobile Module projects<ul><li>Added support for ARC and other improvements in native iOS modules</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-19911">TIMOB-19911</a> - iOS: Set Entitlements.plist keys from tiapp.xml like we do for Info.plist<ul><li>Set <tt>entitlements.plist</tt> keys from <tt>tiapp.xml</tt> in a similar fashion like <tt>info.plist</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20024">TIMOB-20024</a> - iOS: Support setting values for Ti.UI.AlertDialog input fields<ul><li>Added support for <tt>value</tt>, <tt>loginValue</tt>, and <tt>passwordValue</tt> for <tt>Ti.UI.AlertDialog</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20547">TIMOB-20547</a> - iOS: Add Keychain-access to Ti.TouchID, add passcode-fallback mode, expose new iOS 10 TouchID API&apos;s<ul><li>Added support for native keychain-access in <tt>Ti.TouchID</tt> and passcode-fallback mode</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23836">TIMOB-23836</a> - iOS10: Support UITableView data-source prefetching<ul><li>Added support for UITableView data-source prefetching</li><li>Demo:<p></p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div><code>var win = Ti.UI.createWindow();</code></div>
+<div><code>var list = Ti.UI.createListView();</code></div>
+<div><code>var items = [];</code></div>
+<div>&#xA0;</div>
+<div><code>for (var i = 0; i &lt; 200; i++) {</code></div>
+<div><code class="indent1">items.push({</code></div>
+<div><code class="indent2">properties: {</code></div>
+<div><code class="indent3">title: &quot;Item &quot; + i</code></div>
+<div><code class="indent2">}</code></div>
+<div><code class="indent1">});</code></div>
+<div><code>}</code></div>
+<div>&#xA0;</div>
+<div><code>list.setSections([Ti.UI.createListSection({items: items})]);</code></div>
+<div>&#xA0;</div>
+<div>&#xA0;</div>
+<div><code>list.addEventListener(&quot;prefetch&quot;, function(e) {</code></div>
+<div><code class="indent1">Ti.API.warn(&quot;event:prefetch&quot;);</code></div>
+<div><code class="indent1">Ti.API.warn(e.prefetchedItems);</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>list.addEventListener(&quot;cancelprefetch&quot;, function(e) {</code></div>
+<div><code class="indent1">Ti.API.warn(&quot;event:cancelprefetch&quot;);</code></div>
+<div><code class="indent1">Ti.API.warn(e.prefetchedItems);</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>win.add(list);</code></div>
+<div><code>win.open();</code></div>
+</div>
+    </div>
+</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23837">TIMOB-23837</a> - iOS10: Support new TabGroup API&apos;s<ul><li>Added support for new iOS 10 TabGroup API&apos;s</li><li>Demo:<p></p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div><code>var tabGroup = Ti.UI.createTabGroup({</code></div>
+<div><code class="indent1">unselectedItemTintColor: &quot;red&quot;,</code></div>
+<div><code class="indent1">tabs: [createTab(&quot;Tab 1&quot;), createTab(&quot;Tab 2&quot;), createTab(&quot;Tab 3&quot;), createTab(&quot;Tab 4&quot;)]</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>// Sets the badge after 3 seconds</code></div>
+<div><code>setTimeout(function() {</code></div>
+<div><code class="indent1">tabGroup.tabs[1].badge = 3;</code></div>
+<div><code class="indent1">tabGroup.tabs[1].badgeColor = &quot;gray&quot;;</code></div>
+<div><code>},3000);</code></div>
+<div>&#xA0;</div>
+<div><code>tabGroup.open();</code></div>
+<div>&#xA0;</div>
+<div><code>function createTab(title) {</code></div>
+<div><code class="indent1">return Ti.UI.createTab({</code></div>
+<div><code class="indent2">title: title,</code></div>
+<div><code class="indent2">icon: &quot;chat.png&quot;,</code></div>
+<div><code class="indent2">window: Ti.UI.createWindow({</code></div>
+<div><code class="indent3">title: title</code></div>
+<div><code class="indent2">})</code></div>
+<div><code class="indent1">})</code></div>
+<div><code>}</code></div>
+</div>
+    </div>
+</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23992">TIMOB-23992</a> - iOS: Disable context menu inside webview when selecting text<ul><li>Added support to disable context menu inside WebView when selecting text</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24110">TIMOB-24110</a> - iOS: Expose keyboardDisplayRequiresUserAction property in Ti.UI.WebView<ul><li>Added support for the <tt>keyboardDisplayRequiresUserAction</tt> in <tt>Ti.UI.WebView</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24356">TIMOB-24356</a> - iOS: Add missing animation transitions (top to bottom, bottom to top, cross-dissolve)<ul><li>Added animation transitions for top to bottom, bottom to top, and cross-dissolve</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24372">TIMOB-24372</a> - iOS: Get file path from Ti.Media.openMusicLibrary, use media identifier to Ti.Media.systemMusicPlayer<ul><li>Added support for all missing <tt>Ti.Media.Item</tt> properties and the ability to play Apple Music items in the <tt>Ti.Media.AudioPlayer</tt></li></ul></li></ul>    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Windowsplatform">
+        <h3>Windows platform</h3>
+<ul><li><a href="https://jira.appcelerator.org/browse/TIMOB-19935">TIMOB-19935</a> - Windows: Implement Ti.Network.Socket.TCP<ul><li>Implemented <tt>Ti.Network.Socket.TCP</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23388">TIMOB-23388</a> - Windows: autoLink URLs support for Ti.UI.Label<ul><li>Support autoLink URLs for <tt>Ti.UI.Label</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24093">TIMOB-24093</a> - Windows: Modularize Hyperloop<ul><li>Add support for Hyperloop on Windows</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24245">TIMOB-24245</a> - Windows: listview.scrollToItem not working<ul><li>Implemented <tt>listview.scrollToItem</tt> for Windows</li></ul></li></ul>    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Multipleplatforms">
+        <h3>Multiple platforms</h3>
+<ul><li><a href="https://jira.appcelerator.org/browse/TIMOB-17467">TIMOB-17467</a> - iOS/Android: Expose request-headers for WebView<ul><li>Added capability to add custom request-header to <tt>Ti.UI.WebView</tt> request</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20286">TIMOB-20286</a> - Support getElementById method to lookup views by ID<ul><li>Added capability for the <tt>getElementById</tt> method to lookup views by ID</li><li>Demo:<p></p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div><code>&#xA0;var win = Ti.UI.createWindow({</code></div>
+<div><code class="indent1">backgroundColor: &apos;#fff&apos;</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>var container = Ti.UI.createView({</code></div>
+<div><code class="indent1">width: 300,</code></div>
+<div><code class="indent1">height: 300,</code></div>
+<div><code class="indent1">backgroundColor: &apos;red&apos;</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>var btn = Ti.UI.createButton({</code></div>
+<div><code class="indent1">title: &apos;Get view by ID&apos;,</code></div>
+<div><code class="indent1">id: &apos;myButton&apos;</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>btn.addEventListener(&apos;click&apos;, function () {</code></div>
+<div><code class="indent1">var myButton = win.getViewById(&apos;myButton&apos;);</code></div>
+<div>&#xA0;</div>
+<div><code class="indent1">// If no button is found, it will return null</code></div>
+<div><code class="indent1">if (myButton) {</code></div>
+<div><code class="indent2">myButton.setTitle(&apos;Worked! &apos;);</code></div>
+<div><code class="indent1">}</code></div>
+<div><code>});</code></div>
+<div>&#xA0;</div>
+<div><code>container.add(btn);</code></div>
+<div><code>win.add(container);</code></div>
+<div><code>win.open();</code></div>
+</div>
+    </div>
+</li></ul></li></ul>    </div>
+    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Communitycredits">
+        <h2>Community credits</h2>
+<ul><li><a href="https://github.com/auda2016">Ivo Tasevski </a>for his help on Android: Mime-type in Ti.Media.openPhotoGallery() (<a href="https://jira.appcelerator.org/browse/TIMOB-23898">TIMOB-23898</a>)</li><li><a href="https://github.com/chmiiller">Carlos Henrique Zinato</a> for iOS: Expose Ti.UI.Label maxLines (Parity) (<a href="https://jira.appcelerator.org/browse/TIMOB-24071">TIMOB-24071</a>)</li><li>Thomas Neerup Andersen for Android: Ti.TouchID fails on SDK &lt; 23 (<a href="https://jira.appcelerator.org/browse/TIMOB-24230">TIMOB-24230</a>)</li><li><a href="https://github.com/gaspardle">Luc-Edmond Gaspard</a> for Android: Add support for the roundIcon attribute (<a href="https://jira.appcelerator.org/browse/TIMOB-24659">TIMOB-24659</a>)</li><li><a href="https://github.com/ulizama">Uriel Lizama</a> for iOS CLI: Improve the way dist-appstore build works (<a href="https://jira.appcelerator.org/browse/TIMOB-24565">TIMOB-24565</a>)</li><li><a href="https://github.com/kopiro">Flavio Maria De Stefano</a> for<ul><li>Android: ImageView quality (gradient banding) (<a href="https://jira.appcelerator.org/browse/TIMOB-24465">TIMOB-24465</a>)</li><li>iOS: Multiple Webviews with same local URL does not inject Titanium XHR bridge properly (<a href="https://jira.appcelerator.org/browse/TIMOB-24259">TIMOB-24259</a>)</li><li>iOS: Expose keyboardDisplayRequiresUserAction property in Ti.UI.WebView (<a href="https://jira.appcelerator.org/browse/TIMOB-24110">TIMOB-24110</a>)</li><li>iOS: Label doesn&apos;t fire link event correctly (<a href="https://jira.appcelerator.org/browse/TIMOB-24086">TIMOB-24086</a>)</li><li>iOS: Expose SystemAlert (<a href="https://jira.appcelerator.org/browse/TIMOB-5436">TIMOB-5436</a>)</li></ul></li><li><a href="https://github.com/mrkiley">Kiley Williams</a> for Android: Ti.Calendar.Calendar.getEventsBetweenDates returns same events for all calendars (<a href="https://jira.appcelerator.org/browse/TIMOB-24464">TIMOB-24464</a>)</li><li><a href="https://github.com/m1ga">Michael Gangolf</a> for<ul><li>TiAPI: Enable ScrollView.smoothScrollTo(x,y) method (<a href="https://jira.appcelerator.org/browse/TIMOB-24411">TIMOB-24411</a>)</li><li>Android: Small device textfield issue in landscape mode (<a href="https://jira.appcelerator.org/browse/TIMOB-16005">TIMOB-16005</a>)</li><li>Android: androidback event not working in Ti SDK 6.0.0.GA (<a href="https://jira.appcelerator.org/browse/TIMOB-24253">TIMOB-24253</a>)</li><li>Docs: Title in ListView example rendered wrong</li><li>Android: Adding getLocationOnScreen() to retrieve location after translation (<a href="https://jira.appcelerator.org/browse/TIMOB-24190">TIMOB-24190</a>)</li><li>Android: Update TableView/ListView accessory images, fix spacing (<a href="https://jira.appcelerator.org/browse/TIMOB-24174">TIMOB-24174</a>)</li><li>Android: Null pointer exception in destroyRunners() of Android.Service (<a href="https://jira.appcelerator.org/browse/TIMOB-24159">TIMOB-24159</a>)</li><li>Android: Add property to release space when hiding an object (<a href="https://jira.appcelerator.org/browse/TIMOB-23974">TIMOB-23974</a>)</li><li>iOS/Android: Add &apos;scrolling&apos; event to ListView to track scroll direction (up or down) (<a href="https://jira.appcelerator.org/browse/TIMOB-23406">TIMOB-23406</a>)</li><li>Android HTTPClient onsendstream progress is wrong (<a href="https://jira.appcelerator.org/browse/TIMOB-20483">TIMOB-20483</a>)</li></ul></li><li><a href="https://github.com/chreck">Christoph Eck</a> for<ul><li>iOS: WebView - load a webpage with request headers (<a href="https://jira.appcelerator.org/browse/TIMOB-24397">TIMOB-24397</a>)</li><li>iOS: setting additional request header disallows POST form requests (<a href="https://jira.appcelerator.org/browse/TIMOB-24329">TIMOB-24329</a>)</li></ul></li><li><a href="https://github.com/gimdongwoo">Dongwoo Gim</a> for Android: Child view&apos;s percent width incorrect of horizontal layout parent view (6.1.0 regression) (<a href="https://jira.appcelerator.org/browse/TIMOB-24308">TIMOB-24308</a>)</li><li><a href="https://github.com/Brianggalvez">Brianggalvez</a> for Allow Multiple Selection When Editing in ListView</li><li><a href="https://github.com/grazianogrespan">Graziano Grespan</a> for Android: SearchView: &#x201C;change&#x201D; event is fired on SearchView first initialization (<a href="https://jira.appcelerator.org/browse/TIMOB-24322">TIMOB-24322</a>)</li><li><a href="https://github.com/rlustemberg">Richard Lustemberg</a> for<ul><li>Ti.UI.iOS.LivePhotoView does not update it&apos;s layout when it&apos;s livePhoto property is updated (<a href="https://jira.appcelerator.org/browse/TIMOB-24249">TIMOB-24249</a>)</li><li>iOS/Android: Add &apos;scrolling&apos; event to ListView to track scroll direction (up or down) (<a href="https://jira.appcelerator.org/browse/TIMOB-23406">TIMOB-23406</a>)</li></ul></li><li><a href="https://github.com/snakewa">Tim Ma</a> for 6.1.0.v20161006012211-osx iOS App Store distribution build fail</li><li><a href="https://github.com/dulmandakh">Dulmandakh</a> for Android: Expose &quot;setProgress&quot; method in Ti.Android.Notification (<a href="https://jira.appcelerator.org/browse/TIMOB-23991">TIMOB-23991</a>)</li><li><a href="https://github.com/Topener">Rene Pot</a> for getResponseHeaders method is missing from docs (<a href="https://jira.appcelerator.org/browse/TIDOC-2628">TIDOC-2628</a>)</li><li><a href="https://github.com/HazemKhaled">Hazem Khaled</a> for <a href="http://ti.platform.name/">Ti.Platform.name</a> return value not documented since 5.5.0 (<a href="https://jira.appcelerator.org/browse/TIDOC-2611">TIDOC-2611</a>)</li><li><a href="https://github.com/gstreetmedia">Andrew Greenstreet</a> for Android: Remove Default Sound Effect when touchEnabled = false (<a href="https://jira.appcelerator.org/browse/TIMOB-16080">TIMOB-16080</a>)</li></ul>    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Fixedissuespatchreleases">
+        <h2>Fixed issues patch releases</h2>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Androidplatform.2">
+        <h3>Android platform</h3>
+<ul><li><a href="https://jira.appcelerator.org/browse/TIMOB-3887">TIMOB-3887</a> - Android: Image taken in portrait orients itself to landscape</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-8430">TIMOB-8430</a> - Android: TimePicker - Switching between am and pm time does not makes changes in time format on the top of the page</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-14285">TIMOB-14285</a> - Android: applyProperties() does not apply custom properties to proxy</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-15890">TIMOB-15890</a> - Android: Text shadow not working as expected</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-17954">TIMOB-17954</a> - Android: ScrollView&apos;s ScrollTo(x,y) incorrect behavior (Parity)</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-19035">TIMOB-19035</a> - Android: Ti.UI.SIZE on ScrollableView not working</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-19629">TIMOB-19629</a> - Android: Buttons stay uppercased in UI</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-19984">TIMOB-19984</a> - Android: transform animation doesn&apos;t work immediately after creating a view android</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20448">TIMOB-20448</a> - Android: Adding text color to a singular row adds the color to multiple down the list</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20483">TIMOB-20483</a> - Android HTTPClient onsendstream progress is wrong</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20490">TIMOB-20490</a> - Android: Apps should be able to open/resume and respond to intents</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20502">TIMOB-20502</a> - Using Android shortcut to start new activity fails to detect Alloy.</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23135">TIMOB-23135</a> - Android: Ti.Geolocation.locationServicesEnabled returns false, but works</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23428">TIMOB-23428</a> - Android: Ti.Media.Sound method &apos;setUrl&apos; not working</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23556">TIMOB-23556</a> - Android: Update the Android package.json in the sdk to support Android build tools 24</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23646">TIMOB-23646</a> - Android: Button source missing properties on bubbleParent event.</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23715">TIMOB-23715</a> - Android: Memory leak when window has listView inside</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23873">TIMOB-23873</a> - Android: Template for Manifest needs updating</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23881">TIMOB-23881</a> - Android: Analytics not enabled when root activity is not launched</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23885">TIMOB-23885</a> - Android WebView Video stays black sound only</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23898">TIMOB-23898</a> - Android: Mime-type in Ti.Media.openPhotoGallery() is always image/bitmap</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24039">TIMOB-24039</a> - Android: ti.map.PolylineProxy cannot be cast to ti.map.PolygonProxy when adding polyline to map</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24048">TIMOB-24048</a> - Android: Window transition animations are not working as expected</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24058">TIMOB-24058</a> - Android: backgroundSelectedColor &amp; backgroundSelectedImage property does not work for tableviewrow</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24082">TIMOB-24082</a> - Ti.Media.soundPlayer is not working on Android KitKat (4.4)</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24095">TIMOB-24095</a> - Android: Cannot set HTML property in WebViews</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24149">TIMOB-24149</a> - Android: Remove redundant Ti.UI.Window url property code</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24158">TIMOB-24158</a> - Android: Ti.UI.TableViewRow not shown in 6.1.0 (Regression)</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24159">TIMOB-24159</a> - Android: Null pointer exception in destroyRunners() of Android.Service</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24161">TIMOB-24161</a> - Android: Ti.UI.AlertDialog.androidView doesn&apos;t work when borderRadius is set</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24177">TIMOB-24177</a> - Android : TiHTTPClient / Request Length Expected Wrong (6.1.0 regression)</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24192">TIMOB-24192</a> - Android: PickerRow.setColor is not a function</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24204">TIMOB-24204</a> - Android: require() not working with Android if path has ../ after Titanium SDK 6.0.0+</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24225">TIMOB-24225</a> - Android: close event is not fired when a window is closed</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24231">TIMOB-24231</a> - Android: Clean module build folder appropriately</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24232">TIMOB-24232</a> - Android: Module build should not error when incompatible native libraries are in the &apos;libs&apos; folder</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24233">TIMOB-24233</a> - Android: tabsBackgroundColor is not working.</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24244">TIMOB-24244</a> - Android: Large file uploads fail with java.lang.OutOfMemoryError</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24246">TIMOB-24246</a> - Android: Use SecureRandom for SSLContext</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24250">TIMOB-24250</a> - Android: TextField AUTOCAPITALIZATION_ALL property doesn&apos;t work with googles new keyboard: GBoard</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24262">TIMOB-24262</a> - Android : Crash when Try to remove view from parents.</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24277">TIMOB-24277</a> - Android: ListView horizontal layout ignores &apos;right&apos;</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24322">TIMOB-24322</a> - Android: SearchView: &#x201C;change&#x201D; event is fired on SearchView first initialization.</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24344">TIMOB-24344</a> - Android: hdpi is mapped to incorrect value 213 in DisplayCapsProxy.java</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24347">TIMOB-24347</a> - Android: Get image frames at times out of local video</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24367">TIMOB-24367</a> - Android: Going back to the tabgroup with android back button crashes app with &quot;java.lang.NullPointerException: Attempt to invoke virtual method &apos;java.lang.Object ti.modules.titanium.ui.TabGroupProxy.getProperty(java.lang.String)&quot;</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24407">TIMOB-24407</a> - Android: calendarViewShown does not work on Lollipop and above</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24413">TIMOB-24413</a> - Android: Ti.TouchID crashes app on unsupported devices</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24417">TIMOB-24417</a> - LiveView: App does not refresh after second time on android 7.0 &amp; above</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24428">TIMOB-24428</a> - Android: Titanium.UI.View.center setter does not work</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24459">TIMOB-24459</a> - Android: Can&#x2019;t remove unused permissions from AndroidManifest.xml using Ti SDK 6.x</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24464">TIMOB-24464</a> - Android: Ti.Calendar.Calendar.getEventsBetweenDates returns same events for all calendars</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24654">TIMOB-24654</a> - Android: Hybrid CommonJS and Native Modules don&apos;t export the commonjs code</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24660">TIMOB-24660</a> - Android: openPhotoGallery is not working for downloads</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24667">TIMOB-24667</a> - Android: borderRadius doesn&apos;t clip the backgroundColor on android 4.1.x, 4.2.x on SDK 6+</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24681">TIMOB-24681</a> - Android: AVD detection fails if matching SDK is not installed</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24698">TIMOB-24698</a> - Android: Unable to find default AVD emulator from CLI</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24703">TIMOB-24703</a> - Android: Missing R class for modules</li></ul>    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-iOSplatform.1">
+        <h3>iOS platform</h3>
+<ul><li><a href="https://jira.appcelerator.org/browse/TIMOB-3408">TIMOB-3408</a> - iOS: Expose Ti.UI.Label.textAlign &quot;justify&quot;</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-7855">TIMOB-7855</a> - iOS: Ti.Gesture.landscape and Ti.Gesture.portrait are undefined</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-9007">TIMOB-9007</a> - iOS: UI.Switch - does not display if value is not set when rendered</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-10488">TIMOB-10488</a> - iOS: webView.loading always returns null</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-14763">TIMOB-14763</a> - iOS: titleid and messageid properties don&apos;t work for AlertDialog</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-16100">TIMOB-16100</a> - iOS9: TextField with passwordMask &amp; fontFamily changes its fontSize</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-18276">TIMOB-18276</a> - UI.Notification.setMessage function is not found even though it is documented</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-19241">TIMOB-19241</a> - iOS: Keyboard loses focus after 1 character when TextField is in a TableView TableViewRow</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-19924">TIMOB-19924</a> - iOS: &quot;onclick&quot; event is not triggered in the WebView if you are listening to multiple &quot;click&quot; events</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20380">TIMOB-20380</a> - iOS: Views height / width properties are not respected inside ScrollableView</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20482">TIMOB-20482</a> - iOS: WebView converting spaces into extra lines</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20506">TIMOB-20506</a> - iOS: Ti.App.Properties.setList failes when array element is object with null property</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20513">TIMOB-20513</a> - iOS: Activity indicator label cut off when auto layout is enabled</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20623">TIMOB-20623</a> - iOS: The application has crashed with an uncaught exception &apos;org.voya_crash.TiUITabProxy&apos;</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23542">TIMOB-23542</a> - Memory-leaks and warnings across the iOS-project</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23391">TIMOB-23391</a> - iOS: View is not getting horizontally wrapped properly.</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23666">TIMOB-23666</a> - iOS: Button setting remote backgroundImage doesn&apos;t appear to work</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23810">TIMOB-23810</a> - iOS: Delay in firing click event listener on View when using run-on-main-thread</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23887">TIMOB-23887</a> - Attributed string link on a TextArea doesn&apos;t fire link event</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23916">TIMOB-23916</a> - iOS: After taking picture from landscape mode showing white color on top and bottom portion.</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23929">TIMOB-23929</a> - Rename contextId to stop confusing Apple&apos;s private API scan</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23934">TIMOB-23934</a> - iOS: The first view-children not firing click-events when using run-on-main-thread</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23960">TIMOB-23960</a> - iOS: Application crashes from background-notifications when delegate method is not implemented</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23997">TIMOB-23997</a> - iOS and Android revert incorrect CommonJS module changes</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24015">TIMOB-24015</a> - Camera preview on app has red line across screen</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24067">TIMOB-24067</a> - iOS: List view crash when deleting rows with &quot;pruneSectionsOnEdit&quot; set</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24086">TIMOB-24086</a> - iOS: Label doesn&apos;t fire link event correctly</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24141">TIMOB-24141</a> - iOS: TiBlob.imageAsResized resizing the Blob image but file size is very high (JPG)</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24196">TIMOB-24196</a> - iOS: Debugging app with Safari throws error when adding event-listeners</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24203">TIMOB-24203</a> - iOS: TextField ignores backgroundColor when borderStyle set</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24249">TIMOB-24249</a> - Ti.UI.iOS.LivePhotoView does not update it&apos;s layout when it&apos;s livePhoto property is updated</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24259">TIMOB-24259</a> - iOS: Multiple Webviews with same local URL does not inject Titanium XHR bridge properly</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24273">TIMOB-24273</a> - iOS: Overwriting existing event listeners only calls the last one (Regression from 6.0.1)</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24320">TIMOB-24320</a> - iOS: Removing a TableView with headerView may cause the app to crash</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24329">TIMOB-24329</a> - iOS: setting additional request header disallows POST form requests</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24352">TIMOB-24352</a> - iOS: Add MaskedImage, BlurView, LivePhotoView and and ButtonBar API&apos;s to ListView template types</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24358">TIMOB-24358</a> - iOS: Ti.Media.systemMusicPlayer crashes with Apple Music</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24361">TIMOB-24361</a> - iOS: Using rgb color values causing a false warning, Android: 2-digit float-values do not work</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24397">TIMOB-24397</a> - iOS: WebView - load a webpage with request headers</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24474">TIMOB-24474</a> - iOS: Animate object&apos;s opacity with animate({}) method don&apos;t change the opacity property</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24484">TIMOB-24484</a> - iOS: Bundle images are copied to asset catalog when using app-thinning, causing apps to crash</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24489">TIMOB-24489</a> - iOS: Ti.TouchID - Callback error with Ti.Network.createHTTPClient</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24525">TIMOB-24525</a> - ioslib: Error detecting simulators when Xcode is not installed</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24535">TIMOB-24535</a> - iOS: Ti.Geolocation Speed returning incorrect number or -1 for speed</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24663">TIMOB-24663</a> - iOS: App with &quot;More&quot; tab crashes on tapping (6.0.4.GA)</li></ul>    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Windowsplatform.1">
+        <h3>Windows platform</h3>
+<ul><li><a href="https://jira.appcelerator.org/browse/TIMOB-23319">TIMOB-23319</a> - Windows: Ti.Platform.openURL does not open some media files</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23547">TIMOB-23547</a> - Windows: Not all emulators shown when building with mismatched SDKs</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23613">TIMOB-23613</a> - CLI: Encryption process fails on Windows with spawn ENAMETOOLONG on a large amount of files</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23664">TIMOB-23664</a> - LiveView: vEthernet network connection is selected when building on a Windows system</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23678">TIMOB-23678</a> - Windows: Device is unable to connect to LiveView server</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23682">TIMOB-23682</a> - Windows: borderRadius for ProgressBar</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23728">TIMOB-23728</a> - Windows: Items missing in parity report</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23758">TIMOB-23758</a> - Windows: Unable to build to 10.0.10586 emulator after installing Windows SDK 10.0.14393</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23785">TIMOB-23785</a> - Windows: Error thrown when updating list section item that doesn&apos;t exist</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23832">TIMOB-23832</a> - Windows: Proximity sensor not included in auto-generated capabilities</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23879">TIMOB-23879</a> - Windows: Unexpected behaviour when rebuilding an app and app is already open on device</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23976">TIMOB-23976</a> - Windows: Unable to build to a Windows 10 device if no Windows 10 emulators are installed</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23977">TIMOB-23977</a> - Windows: Invalid value returned for Ti.App.getSessiondId</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24103">TIMOB-24103</a> - Windows: Tabgroup disappears when navigating back from an opened window</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24104">TIMOB-24104</a> - Windows: appendrow does not work on a tableview with no data</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24125">TIMOB-24125</a> - Windows: Calling insertRowBefore with an existing row causes application to freeze</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24130">TIMOB-24130</a> - Windows: Labels in a tableviewrow are not sized correctly</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24132">TIMOB-24132</a> - Windows: touchmove event not fired on tableview</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24134">TIMOB-24134</a> - Windows: tableview.data/getData does not return a tableviewsection</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24147">TIMOB-24147</a> - Windows: Unable to &quot;new&quot; EasClientDeviceInformation</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24185">TIMOB-24185</a> - Windows: console log not printing right arguments</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24222">TIMOB-24222</a> - Universal Windows App (UWP): ScrollView doesn&apos;t scroll vertically when the content is larger then height</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24223">TIMOB-24223</a> - Universal Windows App (UWP) not getting the correct <a href="http://source.id/">source.id</a></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24226">TIMOB-24226</a> - Windows: Phone TCP Write Error</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24239">TIMOB-24239</a> - Windows: zIndex property/method applied but without any effect</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24252">TIMOB-24252</a> - Windows: touchEnabled property/method applied but without any effect</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24285">TIMOB-24285</a> - Windows: Build fails when no target is specified</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24299">TIMOB-24299</a> - Universal Windows App (UWP): Unable to render different fonts</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24328">TIMOB-24328</a> - UniversalWindowsApp: touchEnabled: false does not disable button</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24336">TIMOB-24336</a> - Windows: App crashes when Ti.Network.Socket.TCP fails to connect</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24371">TIMOB-24371</a> - UniversalWindowsApp: Textfield&apos;s return event fires twice</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24385">TIMOB-24385</a> - Windows: Ti.Network.Socket.TCP.readAsync() is not continuous</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24554">TIMOB-24554</a> - Windows: Ti.UI.FILL resizes Label incorrectly</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24583">TIMOB-24583</a> - Windows: Native view should use absolute position in Ti View</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24595">TIMOB-24595</a> - Windows: Hyperloop addEventListener doesn&apos;t work</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24603">TIMOB-24603</a> - Windows: Remove all children is not working on windows devices</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24615">TIMOB-24615</a> - Windows -HTTPClient - responseText is not cleared between two requests</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24634">TIMOB-24634</a> - (Windows) Unable to run a Windows application using the 6.1.0.v20170426072049 build</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24651">TIMOB-24651</a> - Windows: Hyperloop unable to compile generic collections</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24656">TIMOB-24656</a> - Windows: Failed to install app on device</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24689">TIMOB-24689</a> - (Windows) Unable to build for Android on 6.0.4.GA</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24699">TIMOB-24699</a> - LiveView: Alloy app errors out when built for Windows</li></ul>    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Multipleplatforms.1">
+        <h3>Multiple platforms</h3>
+<ul><li><a href="https://jira.appcelerator.org/browse/TIMOB-20247">TIMOB-20247</a> - Regression in android HTTPClient</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-20544">TIMOB-20544</a> - Align permission methods Ti.Media.AudioRecorder with the others</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23490">TIMOB-23490</a> - Packaged JavaScript and Hybrid Modules: it doesn&apos;t work properly</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23999">TIMOB-23999</a> - CLI: Building a module on Windows errors with &apos;Missing required manifest key &quot;name&quot;&apos;</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24181">TIMOB-24181</a> - Parity: ListItem properties set to undefined/null have inconsistent results on iOS and Android</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24642">TIMOB-24642</a> - TiAPI: Require call in a node_modules directory causes infinite loop</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24662">TIMOB-24662</a> - CLI: Build errors out with &quot;Couldn&apos;t find preset &quot;babili&quot; relative to directory&quot; when deploy type is test</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24691">TIMOB-24691</a> - Forked correct SDK command args doesn&apos;t resolve platform when using short flag</li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24693">TIMOB-24693</a> - LiveView: Incorrect argument checked for custom IP</li></ul>    </div>
+    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-Improvements">
+        <h2>Improvements</h2>
+<ul><li><a href="https://jira.appcelerator.org/browse/TIMOB-1618">TIMOB-1618</a> - Android: Expose Ti.UI.Label.minimumFontSize for Parity<ul><li>Added support for the <tt>minimumFontSize </tt>property in<tt> Ti.UI.Label  </tt></li><li>Demo:<p></p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div><code>var win = Ti.UI.createWindow({</code></div>
+<div><code class="indent1">backgroundColor: &apos;white&apos;</code></div>
+<div><code>});</code></div>
+<div><code> </code></div>
+<div><code>var label = Ti.UI.createLabel({</code></div>
+<div><code class="indent1">text: &apos;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore&apos;,</code></div>
+<div><code class="indent1">minimumFontSize: 6,</code></div>
+<div><code class="indent1">width: 200,</code></div>
+<div><code class="indent1">height: 30,</code></div>
+<div><code class="indent1">color: &quot;#333&quot;</code></div>
+<div><code>});</code></div>
+<div><code> </code></div>
+<div><code>win.add(label);</code></div>
+<div><code>win.open();</code></div>
+</div>
+    </div>
+</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-16080">TIMOB-16080</a> - Android: Remove Default Sound Effect when touchEnabled = false<ul><li>Added new property called <tt>PROPERTY_TOUCH_SOUND_ENABLED</tt> that allows for the separation of functionality of clicking on a window and toggling the default sound (defaults to on) which can be specified by the user</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-19482">TIMOB-19482</a> - Parity: Ti.UI.View.add should support array of views on Android as iOS<ul><li>Added support for passing arrays to <tt>Ti.UI.View.Add</tt></li><li>Demo:<p></p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div><code>var win = Ti.UI.createWindow({</code></div>
+<div><code class="indent1">backgroundColor: &quot;#fff&quot;</code></div>
+<div><code>});</code></div>
+<div><code>var btn1 = Ti.UI.createButton({</code></div>
+<div><code class="indent1">title: &quot;Add views together&quot;,</code></div>
+<div><code class="indent1">top: 0</code></div>
+<div><code>});</code></div>
+<div><code> </code></div>
+<div><code>var view1 = Ti.UI.createView({</code></div>
+<div><code class="indent1">backgroundColor: &quot;red&quot;,</code></div>
+<div><code class="indent1">top: 50,</code></div>
+<div><code class="indent1">height: 100</code></div>
+<div><code>});</code></div>
+<div><code>var view2 = Ti.UI.createView({</code></div>
+<div><code class="indent1">backgroundColor: &quot;green&quot;,</code></div>
+<div><code class="indent1">bottom: 50,</code></div>
+<div><code class="indent1">height: 100</code></div>
+<div><code>});</code></div>
+<div><code> </code></div>
+<div><code>btn1.addEventListener(&quot;click&quot;, function() {</code></div>
+<div><code class="indent1">win.remove(view1);</code></div>
+<div><code class="indent1">win.remove(view2);</code></div>
+<div><code> </code></div>
+<div><code class="indent1">// Just to see that they are actually removed before</code></div>
+<div><code class="indent1">setTimeout(function() {</code></div>
+<div><code class="indent2">win.add([view1, view2]);</code></div>
+<div><code class="indent1">}, 250);</code></div>
+<div><code>});</code></div>
+<div><code> </code></div>
+<div><code>var btn2 = Ti.UI.createButton({</code></div>
+<div><code class="indent1">title: &quot;Add views after each other&quot;,</code></div>
+<div><code class="indent1">bottom: 0</code></div>
+<div><code>});</code></div>
+<div><code> </code></div>
+<div><code>btn2.addEventListener(&quot;click&quot;, function() {</code></div>
+<div><code class="indent1">win.remove(view1);</code></div>
+<div><code class="indent1">win.remove(view2);</code></div>
+<div><code> </code></div>
+<div><code class="indent1">// Just to see that they are actually removed before</code></div>
+<div><code class="indent1">setTimeout(function() {</code></div>
+<div><code class="indent2">win.add(view1);</code></div>
+<div><code class="indent2">win.add(view2);</code></div>
+<div><code class="indent1">}, 250);</code></div>
+<div><code>});</code></div>
+<div><code> </code></div>
+<div><code>win.add(btn1);</code></div>
+<div><code>win.add(btn2);</code></div>
+<div><code> </code></div>
+<div><code>win.open();&#xA0;</code></div>
+</div>
+    </div>
+</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-19985">TIMOB-19985</a> - Android - ListView doesn&apos;t have canScroll property<ul><li>Implemented <tt>canScroll</tt> property in ListView for Android</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23193">TIMOB-23193</a> - Windows: Change target specific build options into target agnostic build options<ul><li>Deprecated the commands for <tt>wp-*</tt> and <tt>ws-*</tt></li><li>The following replaces the deprecated commands:<ul><li>ws-cert &gt; win-cert</li><li>wp-sdk &gt; win-sdk</li><li>wp-product-guid &gt; win-product-guid</li></ul></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23206">TIMOB-23206</a> - iOS: Unable to Retrieve Detailed Calendar Information via Ti.Calendar.CalendarOS: Refactor default new app-projects<ul><li>Added support for retrieving source details in calendar events</li><li>Demo:<p></p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div><code>function showCalendars(calendars) {</code></div>
+<div><code class="indent1">for (var i = 0; i &lt; calendars.length; i++) {</code></div>
+<div><code class="indent2">Ti.API.info(calendars[i].name);</code></div>
+<div><code class="indent2">Ti.API.info(calendars[i].sourceTitle);</code></div>
+<div><code class="indent2">Ti.API.info(calendars[i].sourceIdentifier);</code></div>
+<div><code class="indent2">Ti.API.info(formatSourceType(calendars[i].sourceType)+ &apos;\n&apos;);</code></div>
+<div><code class="indent1">}</code></div>
+<div><code>}</code></div>
+<div><code> </code></div>
+<div><code> function formatSourceType(type) {</code></div>
+<div><code class="indent1">switch (type) {</code></div>
+<div><code class="indent2">case Ti.Calendar.SOURCE_TYPE_LOCAL:</code></div>
+<div><code class="indent2">return &quot;Ti.Calendar.SOURCE_TYPE_LOCAL&quot;;</code></div>
+<div><code class="indent2"></code></div>
+<div><code class="indent2">case Ti.Calendar.SOURCE_TYPE_EXCHANGE:</code></div>
+<div><code class="indent2">return &quot;Ti.Calendar.SOURCE_TYPE_EXCHANGE&quot;;</code></div>
+<div><code class="indent1"></code></div>
+<div><code class="indent2">case Ti.Calendar.SOURCE_TYPE_CALDAV:</code></div>
+<div><code class="indent2">return &quot;Ti.Calendar.SOURCE_TYPE_CALDAV&quot;;</code></div>
+<div><code class="indent1"></code></div>
+<div><code class="indent2">case Ti.Calendar.SOURCE_TYPE_MOBILEME:</code></div>
+<div><code class="indent2">return &quot;Ti.Calendar.SOURCE_TYPE_MOBILEME&quot;;</code></div>
+<div><code class="indent1"></code></div>
+<div><code class="indent2">case Ti.Calendar.SOURCE_TYPE_SUBSCRIBED:</code></div>
+<div><code class="indent2">return &quot;Ti.Calendar.SOURCE_TYPE_SUBSCRIBED&quot;;        </code></div>
+<div><code> </code></div>
+<div><code class="indent2">case Ti.Calendar.SOURCE_TYPE_BIRTHDAYS:</code></div>
+<div><code class="indent2">return &quot;Ti.Calendar.SOURCE_TYPE_BIRTHDAYS&quot;;      </code></div>
+<div><code class="indent1">}</code></div>
+<div><code class="indent1"></code></div>
+<div><code class="indent1">return &quot;Unknown attendee role: &quot; + type;</code></div>
+<div><code>}</code></div>
+<div><code> </code></div>
+<div><code>Ti.API.info(&apos;ALL CALENDARS:&apos;+&apos;\n&apos;);</code></div>
+<div><code>if (Ti.Calendar.hasCalendarPermissions()) {</code></div>
+<div><code class="indent1">showCalendars(Ti.Calendar.allCalendars);</code></div>
+<div><code>} else {</code></div>
+<div><code class="indent1">Ti.Calendar.requestCalendarPermissions(function(e) {</code></div>
+<div><code class="indent2">if (e.success) {</code></div>
+<div><code class="indent3">showCalendars(Ti.Calendar.allCalendars);</code></div>
+<div><code class="indent2">} else {</code></div>
+<div><code class="indent3">Ti.API.error(e.error);</code></div>
+<div><code class="indent3">alert(&apos;Access to calendar is not allowed&apos;);</code></div>
+<div><code class="indent2">}</code></div>
+<div><code class="indent1">});</code></div>
+<div><code>}&#xA0;</code></div>
+</div>
+    </div>
+</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23281">TIMOB-23281</a> - Search Bar: search results listview background color change<ul><li>Added option to style the search results in <tt>Ti.UI.ListView</tt></li><li>Demo:<p></p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div><code>var win = Ti.UI.createWindow({</code></div>
+<div><code class="indent1">backgroundColor: &apos;#000&apos;,</code></div>
+<div><code class="indent1">fullscreen: true</code></div>
+<div><code>});</code></div>
+<div><code>var search = Titanium.UI.createSearchBar({</code></div>
+<div><code class="indent1">barColor: &apos;#000&apos;,</code></div>
+<div><code class="indent1">showCancel: true,</code></div>
+<div><code class="indent1">height: 43,</code></div>
+<div><code class="indent1">top: 0,</code></div>
+<div><code>});</code></div>
+<div><code>search.addEventListener(&apos;cancel&apos;, function() {</code></div>
+<div><code class="indent1">search.blur();</code></div>
+<div><code>});</code></div>
+<div><code> </code></div>
+<div><code>var listView = Ti.UI.createListView({</code></div>
+<div><code class="indent1">searchView: search,</code></div>
+<div><code class="indent1">caseInsensitiveSearch: true,</code></div>
+<div><code class="indent1">backgroundColor: &apos;transparent&apos;,</code></div>
+<div><code> </code></div>
+<div><code class="indent1">// NEW since 6.1.0</code></div>
+<div><code class="indent1">resultsBackgroundColor: &quot;red&quot;,</code></div>
+<div><code class="indent1">resultsSeparatorColor: &quot;green&quot;,</code></div>
+<div><code class="indent1">resultsSeparatorInsets: {</code></div>
+<div><code class="indent2">left: 0</code></div>
+<div><code class="indent1">},</code></div>
+<div><code> </code></div>
+<div><code class="indent1">templates: {</code></div>
+<div><code class="indent2">&quot;a&quot;: {</code></div>
+<div><code class="indent3">properties: {</code></div>
+<div><code class="indent3">    backgroundColor: &apos;transparent&apos;</code></div>
+<div><code class="indent3">},</code></div>
+<div><code class="indent3">childTemplates: [{</code></div>
+<div><code class="indent3">    type: &apos;Ti.UI.Label&apos;,</code></div>
+<div><code class="indent3">    bindId: &apos;bindLabel&apos;,</code></div>
+<div><code class="indent3">    properties: {</code></div>
+<div><code class="indent3">        color: &apos;#fff&apos;</code></div>
+<div><code class="indent3">    }</code></div>
+<div><code> </code></div>
+<div><code class="indent3">}]</code></div>
+<div><code class="indent2">}</code></div>
+<div><code class="indent1">}</code></div>
+<div><code>});</code></div>
+<div><code> </code></div>
+<div><code>var listSection = Ti.UI.createListSection();</code></div>
+<div><code>var fruits = [&apos;Papaya&apos;, &apos;Peach&apos;, &apos;Pear&apos;, &apos;Persimmon&apos;, &apos;Pineapple&apos;, &apos;Pluot&apos;, &apos;Pomegranate&apos;];</code></div>
+<div><code>var data = [];</code></div>
+<div><code>for (var i = 0; i &lt; fruits.length; i++) {</code></div>
+<div><code class="indent1">data.push({</code></div>
+<div><code class="indent2">template: &apos;a&apos;,</code></div>
+<div><code class="indent2">properties: {</code></div>
+<div><code class="indent3">searchableText: fruits[i]</code></div>
+<div><code class="indent2">},</code></div>
+<div><code class="indent2">bindLabel: {</code></div>
+<div><code class="indent3">text: fruits[i]</code></div>
+<div><code class="indent2">}</code></div>
+<div><code class="indent1">});</code></div>
+<div><code>}</code></div>
+<div><code>listSection.setItems(data);</code></div>
+<div><code>listView.addEventListener(&apos;noresults&apos;, function(e) {</code></div>
+<div><code class="indent1">alert(&quot;No results found!&quot;);</code></div>
+<div><code>});</code></div>
+<div><code>listView.sections = [listSection];</code></div>
+<div><code>win.add(listView);</code></div>
+<div><code>win.open();</code></div>
+</div>
+    </div>
+</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23327">TIMOB-23327</a> - iOS: Webview request send out beforeload event is excuted on Webview (Parity)<ul><li>Handle blacklisted URL&apos;s on iOS (Parity with Android)</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23331">TIMOB-23331</a> - Windows: Implement Ti.UI.TableView filter properties<ul><li>Implemented <tt>filterAttribute</tt>, <tt>filterAnchored</tt>, and filterCaseInsensitive properties for Ti.UI.TableView</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23370">TIMOB-23370</a> - Windows: Log the Windows SDK version being built with<ul><li>Display SDK version being built with Windows</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23406">TIMOB-23406</a> - iOS/Android: Add &apos;scrolling&apos; event to ListView to track scroll direction (up or down)<ul><li>Added support to track the scroll direction in <tt>Ti.UI.ListView</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23493">TIMOB-23493</a> - Android: Support #append() method on Ti.Filesystem.File<ul><li>Added support for <tt>Ti.Filesystem.File#append()</tt> to the Android platform</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23494">TIMOB-23494</a> - Android: Support #createFile() method on Ti.Filesystem.File<ul><li>Added support for <tt>Ti.Filesystem.File#createFile()</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23497">TIMOB-23497</a> - Android: Support indicatorColor and indicatorDiameter properties on Ti.UI.ActivityIndicator<ul><li>Implement Ti.UI.ActivityIndicator&apos;s <tt>indicatorColor</tt> and <tt>indicatorDiameter</tt> properties</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23621">TIMOB-23621</a> - Windows: Improve error message when passing an invalid number of arguments to a function<ul><li>Improved error message when passing an invalid number of arguments to a function</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23660">TIMOB-23660</a> - Windows: Implement Ti.UI.TableView separatorColor property<ul><li>Implemented separatorColor property for Ti.UI.TableView</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23661">TIMOB-23661</a> - Windows: Remove the concept of a selected Windows SDK in ti info<ul><li>Using <tt>appc ti config windows.wpsdk.selectedVersion &lt;version&gt;</tt> changes selected Windows SDK</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23683">TIMOB-23683</a> - Windows: Default to users OS version when building ws-local projects<ul><li>Unless selected, <tt>ws-local</tt> defaults to Windows 10 OS</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23759">TIMOB-23759</a> - Windows: Allow a user to define a target Windows version and Minimum Version in the tiapp.xml<ul><li>Added feature to define a target version and a minimum target version in <tt>tiapp.xml</tt></li><li>Example:<p></p>
+    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div><code>&lt;windows&gt;</code></div>
+<div><code class="indent1">TargetPlatformVersion&gt;10.0.14393.0&lt;/TargetPlatformVersion&gt;</code></div>
+<div><code class="indent1">TargetPlatformMinVersion&gt;10.0.10240.0&lt;/TargetPlatformMinVersion&gt;</code></div>
+<div><code>&lt;/windows&gt;</code></div>
+</div>
+    </div>
+</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23760">TIMOB-23760</a> - Windows: --wp-sdk option should handle actual Windows SDK versions<ul><li>CLI&apos;s <tt>--wp-sdk</tt> option now accepts Windows SDK versions</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23799">TIMOB-23799</a> - iOS: Support Named Pasteboards<ul><li>Added support to name Pasteboards</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23833">TIMOB-23833</a> - Windows: Generate capabilities even when they are defined in tiapp.xml<ul><li>Added support to generate capabilities even if they were not defined in the <tt>tiapp.xml</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23931">TIMOB-23931</a> - Windows: Allow an event to be logged to the console for inspection<ul><li>Added parity to log an event to the console to inspect the properties returned in the JSON payload</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23988">TIMOB-23988</a> - iOS: Ti.Map - Add click event to &quot;callout&quot; bubble and return clicksource==infoWindow, deprecate showsCompass<ul><li>Added parity for click-events on the callout bubble / info window, indicating with the clicksource being equal to &quot;infoWindow&quot;</li><li>deprecated <tt>showsCompass</tt> iOS property in favor of the cross-platform <tt>compassEnabled</tt> property</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-23991">TIMOB-23991</a> - Android: Expose &quot;setProgress&quot; method in Ti.Android.Notification<ul><li>Added progress notification support</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24051">TIMOB-24051</a> - Windows: Add the ability to remove all Ti.App.Properties at once<ul><li>Parity for <tt>Ti.App.Properties.removeAllProperties()</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24063">TIMOB-24063</a> - Windows: Allow a developer to specify required capabilities in their timodule file<ul><li>Added support that lets developers specify required capabilities in <tt>timodule.xml</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24071">TIMOB-24071</a> - iOS: Expose Ti.UI.Label maxLines (Parity)<ul><li>Added support for numberOfLines property on UILabel component</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24085">TIMOB-24085</a> - iOS: Add ability to style subtitle in native UITableViewCell templates<ul><li>Added <tt>subtitleColor</tt> and <tt>selectedSubtitleColor</tt> properties to style subtitle in native UITableViewCell templates</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24097">TIMOB-24097</a> - Windows: Native event handling<ul><li>Added support for native event handling for Hyperloop using <tt>addEventListener</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24099">TIMOB-24099</a> - Windows: Mix WinRT APIs with Titanium APIs<ul><li>Added support for mixing WinRT APIs with Titanium APIs</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24101">TIMOB-24101</a> - Windows: Ability to use 3rd-party native classes<ul><li>Added capability to use third-party dependencies in Hyperloop enabled projects</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24102">TIMOB-24102</a> - Windows: Native method resolution and casting<ul><li>Implemented better method overload handling with given type</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24126">TIMOB-24126</a> - Windows: Adding a searchbar to a tableview or listview search property should also add it to the window<ul><li>Added support to use search bar without explicitly adding to the Window</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24153">TIMOB-24153</a> - iOS: Add parity for Ti.UI.TextField.padding<ul><li>Added parity for <tt>Ti.UI.TextField.padding</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24211">TIMOB-24211</a> - iOS: Support Ti.UI.TextArea padding (Parity)<ul><li>Added parity for <tt>Ti.UI.TextArea.padding</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24230">TIMOB-24230</a> - Android: Ti.TouchID fails on SDK &lt; 23<ul><li>Added support for Ti.TouchID on SDK &lt; 23</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24237">TIMOB-24237</a> - iOS: Add backgroundSelectedColor property (Parity)<ul><li>Added parity for backgroundSelectedColor property</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24288">TIMOB-24288</a> - Deprecate &quot;onStopBlacklistedUrl&quot; WebView event in favor of cross-platform &quot;blacklisturl&quot; event<ul><li>Deprecated blacklistedUrls property in favor of <tt>blacklisturl</tt></li></ul></li>
+<li><a href="https://jira.appcelerator.org/browse/TIMOB-24382">TIMOB-24382</a> - Windows: Adding same component multiple times should not cause error<ul><li>Fixed issue where adding the same component multiple times doesn&apos;t cause an error</li></ul></li>
+<li><a href="https://jira.appcelerator.org/browse/TIMOB-24386">TIMOB-24386</a> - Windows: Resize Label when Window is resized<ul><li><tt>Label</tt> resizes it&apos;s content when the parent <tt>Window</tt> is resized</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24402">TIMOB-24402</a> - Windows: Building module for specific platform/architecture<ul><li>Added feature to limit target platform for module</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24409">TIMOB-24409</a> - Android: Improve Android 6.0 permission requirements<ul><li>Improved how permission requirements are handled for Android 6.0</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24411">TIMOB-24411</a> - TiAPI: Enable ScrollView.smoothScrollTo(x,y) method<ul><li>Added support for the <tt>smoothScrollTo</tt> method in <tt>Ti.UI.ScrollView</tt></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24438">TIMOB-24438</a> - Android: Update bundled Android libraries to 23.4.0<ul><li>Updated bundled Android Support Libraries to version 23.4.0</li></ul></li>
+<li><a href="https://jira.appcelerator.org/browse/TIMOB-24454">TIMOB-24454</a> - Windows: Improve library integration with module<ul><li>Improved packaging libraries for use of third party JARs<ul><li>Every <tt>.lib</tt>, <tt>.dll</tt>, and <tt>.winmd</tt> file in the <tt>lib</tt> director will be packaged into a module and copied or linked during Ti app build</li><li>Every file in <tt>platform</tt> directory is packaged into a module and copied into Ti app so the module can overwrite file using Ti app build</li></ul></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24455">TIMOB-24455</a> - Windows: Allow custom Extensions in manifest root<ul><li>Added support to allow <a href="https://msdn.microsoft.com/en-us/library/windows/apps/dn934749.aspx">Package/Extensions</a> for package manifest</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24565">TIMOB-24565</a> - iOS CLI: Improve the way dist-appstore build works<ul><li>Improved the way <tt>dist-appstore</tt> packaging works making it easier to integrate other CLI tools such as <a href="https://github.com/ulizama/TiFastlane">TiFastlane</a></li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24609">TIMOB-24609</a> - Replace uglifyjs usage with babel to parse ES6+ code<ul><li>Babel replaces uglifyjs to parse ES6+ code</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24618">TIMOB-24618</a> - Windows: Replace uglify usage in build process<del> <br> </del><ul><li>Replaced uglifyjs with Babel in the build process</li></ul></li><li><a href="https://jira.appcelerator.org/browse/TIMOB-24682">TIMOB-24682</a> - Windows: require proper document for memory leaks and tracking memory allocations<ul><li>Added documentation for <a class="external-link " href="https://wiki.appcelerator.org/display/guides2/Managing+Memory+and+Finding+Leaks#ManagingMemoryandFindingLeaks-MonitoringallocationsonWindows">Managing Memory and Finding Leaks#MonitoringallocationsonWindows</a></li></ul></li></ul>    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-APIchanges">
+        <h2>API changes</h2>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-NewAPIs">
+        <h3>New APIs</h3>
+    <p>The following APIs are new or have expanded platform support in Release 6.1.0.</p>
+    <div class="tablewrap">
+        <table>
+        <thead>    <tr>
+            <th>
+        <p>API</p>
+
+                </th><th>
+        <p>Type</p>
+
+                </th><th>
+        <p>Notes</p>
+
+        </th></tr>
+</thead><tfoot></tfoot><tbody>    <tr>
+            <td>
+        <p>Titanium.Android.Notification.setProgress</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Set the progress this notification represents. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Blob.imageAsCompressed</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Creates a new blob by compressing the underlying image to the specified quality. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.Calendar.getSourceIdentifier</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.Calendar.Calendar.sourceIdentifier property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.Calendar.getSourceTitle</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.Calendar.Calendar.sourceTitle property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.Calendar.getSourceType</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.Calendar.Calendar.sourceType property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.Calendar.sourceIdentifier</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Displays the source identifier. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.Calendar.sourceTitle</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Displays the source title. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.Calendar.sourceType</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Displays the source type. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.SOURCE_TYPE_BIRTHDAYS</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A birthday calendar source. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.SOURCE_TYPE_CALDAV</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A calDev calendar source. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.SOURCE_TYPE_EXCHANGE</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A microsoft exchange calendar source. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.SOURCE_TYPE_LOCAL</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A local calendar source. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.SOURCE_TYPE_MOBILEME</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A mobileMe calendar source. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Calendar.SOURCE_TYPE_SUBSCRIBED</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A subscribed calendar source. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Filesystem.File.createFile</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Creates a file at the path identified by this file object. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Media.SystemAlert</p>
+            </td>
+                <td>
+        <p>object</p>
+            </td>
+                <td>
+        <p>An object for playing system sounds. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Media.hasAudioRecorderPermissions</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Returns <tt>true</tt> if the app has audio permissions. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Media.requestAudioRecorderPermissions</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Request the user&apos;s permission for audio recording. (New API, supported on iPhone, iPad and Windows Phone.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ATTRIBUTE_SUBSCRIPT_STYLE</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Use with Attribute.type to place the text in a lower position. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ATTRIBUTE_SUPERSCRIPT_STYLE</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Use with Attribute.type to place the text in an upper position. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.getLoginValue</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.AlertDialog.loginValue property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.getPasswordValue</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.AlertDialog.passwordValue property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.getValue</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.AlertDialog.value property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.loginValue</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Value of the login text field inside the dialog. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.passwordValue</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Value of the password text field inside the dialog. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.setLoginValue</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.AlertDialog.loginValue property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.setPasswordValue</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.AlertDialog.passwordValue property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.setValue</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.AlertDialog.value property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.AlertDialog.value</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Value of the text field inside the dialog. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Button.backgroundSelectedColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Selected background color of the view, as a color name or hex triplet. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Button.getBackgroundSelectedColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.Button.backgroundSelectedColor property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Button.setBackgroundSelectedColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.Button.backgroundSelectedColor property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.allowCreation</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Create a clipboard identified by name if it doesn&apos;t exist. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.getAllowCreation</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.Clipboard.allowCreation property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.getName</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the <a href="http://titanium.ui.clipboard.name/">Titanium.UI.Clipboard.name</a> property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.getUnique</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.Clipboard.unique property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p><a href="http://titanium.ui.clipboard.name/">Titanium.UI.Clipboard.name</a></p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Create a new named clipboard. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.remove</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Removes the clipboard. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.setAllowCreation</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.Clipboard.allowCreation property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.setName</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the <a href="http://titanium.ui.clipboard.name/">Titanium.UI.Clipboard.name</a> property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.setUnique</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.Clipboard.unique property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Clipboard.unique</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Create a new clipboard identified by a unique system-generated name. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.HIDDEN_BEHAVIOR_GONE</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Release free space when hiding an object. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.HIDDEN_BEHAVIOR_INVISIBLE</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Keeps free space when hiding an object. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Label.getMaxLines</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.Label.maxLines property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Label.getMinimumFontSize</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.Label.minimumFontSize property. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Label.maxLines</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Makes the label at most this many lines tall. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Label.minimumFontSize</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Minimum font size when the font is sized based on the contents. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Label.setMaxLines</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.Label.maxLines property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Label.setMinimumFontSize</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.Label.minimumFontSize property. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListItem.getSelectedSubtitleColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.ListItem.selectedSubtitleColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListItem.selectedSubtitleColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Color to use for the item subtitle when the item is selected, as a color name or hex triplet. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListItem.setSelectedSubtitleColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.ListItem.selectedSubtitleColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListItem.subtitleColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Default text color of the subtitle, as a color name or hex triplet. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.canScroll</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Determines if the list view can scroll in response to user actions. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.cancelprefetch</p>
+            </td>
+                <td>
+        <p>event</p>
+            </td>
+                <td>
+        <p>Fired when list items that previously were considered as candidates for pre-fetching were not actually used. Note that this event is only available on iOS 10 and later (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.getCanScroll</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.ListView.canScroll property. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.getResultsBackgroundColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.ListView.resultsBackgroundColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.getResultsSeparatorColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.ListView.resultsSeparatorColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.getResultsSeparatorInsets</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.ListView.resultsSeparatorInsets property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.getResultsSeparatorStyle</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.ListView.resultsSeparatorStyle property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.prefetch</p>
+            </td>
+                <td>
+        <p>event</p>
+            </td>
+                <td>
+        <p>Fired when new list items are prefetched. The items are ordered ascending by geometric distance from the list view. Note that this event is only available on iOS 10 and later. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.resultsBackgroundColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>The background color of the search results (iOS-only). (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.resultsSeparatorColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Separator line color between rows inside search results, as a color name or hex triplet (iOS-only). (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.resultsSeparatorInsets</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>The insets for search results separators (applies to all cells &amp; iOS-only). (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.resultsSeparatorStyle</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>The separator style of the search results (iOS-only). (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.scrolling</p>
+            </td>
+                <td>
+        <p>event</p>
+            </td>
+                <td>
+        <p>Fires when the list view is scrolling. Calling the <tt>scrollTo</tt> methods will not fire this event (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.setCanScroll</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.ListView.canScroll property. (Added support for Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.setResultsBackgroundColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.ListView.resultsBackgroundColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.setResultsSeparatorColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.ListView.resultsSeparatorColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.setResultsSeparatorInsets</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.ListView.resultsSeparatorInsets property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.ListView.setResultsSeparatorStyle</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.ListView.resultsSeparatorStyle property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TEXT_ALIGNMENT_JUSTIFY</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Justify align text. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Tab.badgeColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>If this item displays a badge, this color will be used for the badge&apos;s background. If set to null, the default background color will be used instead. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Tab.getBadgeColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.Tab.badgeColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.Tab.setBadgeColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.Tab.badgeColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TabGroup.getUnselectedItemTintColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.TabGroup.unselectedItemTintColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TabGroup.setUnselectedItemTintColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.TabGroup.unselectedItemTintColor property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TabGroup.unselectedItemTintColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Unselected items in this tab group will be tinted with this color. Setting this value to null indicates that the tab group should use its default value instead. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextArea.fullscreen</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Leave some space above the keyboard in landscape mode or not. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextArea.getFullscreen</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.TextArea.fullscreen property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextArea.getPadding</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.TextArea.padding property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextArea.padding</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Sets the left and right padding of this TextArea. The text will always be vertically centered. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextArea.setFullscreen</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.TextArea.fullscreen property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextArea.setPadding</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.TextArea.padding property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.fullscreen</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Leave some space above the keyboard in landscape mode or not. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.getFullscreen</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.TextField.fullscreen property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.setFullscreen</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.TextField.fullscreen property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.getHiddenBehavior</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.View.hiddenBehavior property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.getTouchFeedback</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.View.touchFeedback property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.getTouchFeedbackColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.View.touchFeedbackColor property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.getViewById</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Returns the matching view of a given view ID. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.hiddenBehavior</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Sets the behavior when hiding an object to release or keep the free space (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.setHiddenBehavior</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.View.hiddenBehavior property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.setTouchFeedback</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.View.touchFeedback property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.setTouchFeedbackColor</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.View.touchFeedbackColor property. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.touchFeedback</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A material design visual construct that provides an instantaneous visual confirmation of touch point. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.View.touchFeedbackColor</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Optional touch feedback ripple color. This has no effect unless <tt>touchFeedback</tt> is true. (New API, supported on Android.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.blacklistedURLs</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>An array of url strings to blacklist. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.blacklisturl</p>
+            </td>
+                <td>
+        <p>event</p>
+            </td>
+                <td>
+        <p>Fired when a blacklisted URL is stopped. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.disableContextMenu</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Determines whether or not the webview should not be able to display the context menu. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.getBlacklistedURLs</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.WebView.blacklistedURLs property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.getDisableContextMenu</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.WebView.disableContextMenu property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.getKeyboardDisplayRequiresUserAction</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.WebView.keyboardDisplayRequiresUserAction property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.getRequestHeaders</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.WebView.requestHeaders property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.getUserAgent</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Gets the value of the Titanium.UI.WebView.userAgent property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.keyboardDisplayRequiresUserAction</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A Boolean value indicating whether web content can programmatically display the keyboard. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.requestHeaders</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Sets extra request headers for this web view to use on subsequent URL requests. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.setBlacklistedURLs</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.WebView.blacklistedURLs property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.setDisableContextMenu</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.WebView.disableContextMenu property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.setKeyboardDisplayRequiresUserAction</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.WebView.keyboardDisplayRequiresUserAction property. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.setRequestHeaders</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.WebView.requestHeaders property. (New API, supported on Android, iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.setUserAgent</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Sets the value of the Titanium.UI.WebView.userAgent property. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.userAgent</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>The User-Agent header used by the web view when requesting content. (Added support for iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.iOS.AnimationStyle.CROSS_DISSOLVE</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>A transition that dissolves from one view to the next. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.iOS.AnimationStyle.FLIP_FROM_BOTTOM</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Flip from bottom to top during a transition animation. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.iOS.AnimationStyle.FLIP_FROM_TOP</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Flip from top to bottom during a transition animation. (New API, supported on iPhone and iPad.)</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div id="src-49161894_TitaniumSDK6.1.0.RCReleaseNote-DeprecatedAPIs">
+        <h3>Deprecated APIs</h3>
+    <p>The following APIs are deprecated in Release 6.1.0.</p>
+    <div class="tablewrap">
+        <table>
+        <thead>    <tr>
+            <th>
+        <p>API</p>
+
+                </th><th>
+        <p>Type</p>
+
+                </th><th>
+        <p>Notes</p>
+
+        </th></tr>
+</thead><tfoot></tfoot><tbody>    <tr>
+            <td>
+        <p>Titanium.Gesture.isLandscape</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.Gesture.landscape for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Gesture.isPortrait</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.Gesture.portrait for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Media.hasAudioPermissions</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.Media.hasAudioRecorderPermissions instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.Media.requestAudioPermissions</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.Media.requestAudioRecorderPermissions instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.getPaddingLeft</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.UI.TextField.padding for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.getPaddingRight</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.UI.TextField.padding for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.paddingLeft</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Use Titanium.UI.TextField.padding for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.paddingRight</p>
+            </td>
+                <td>
+        <p>property</p>
+            </td>
+                <td>
+        <p>Use Titanium.UI.TextField.padding for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.setPaddingLeft</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.UI.TextField.padding for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.TextField.setPaddingRight</p>
+            </td>
+                <td>
+        <p>method</p>
+            </td>
+                <td>
+        <p>Use Titanium.UI.TextField.padding for parity instead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td>
+        <p>Titanium.UI.WebView.onStopBlacklistedUrl</p>
+            </td>
+                <td>
+        <p>event</p>
+            </td>
+                <td>
+        <p>Use the cross-platform <tt>blacklisturl</tt> event instead.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
