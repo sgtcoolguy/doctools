@@ -183,17 +183,14 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				// TODO: Can we specify multiple formats at once and get solr output too? Looks like it does work (though the output for result filenames is busted and repeats last format)
 			} // stage('APIDocs')
 
-			stage('Wiki Download') {
+			stage('Wiki') {
 				copyArtifacts fingerprintArtifacts: true, projectName: '../wiki-export/master'
 				sh 'npm run wiki:unzip'
 				sh 'npm run wiki:redirects'
 				sh 'npm run wiki:finalize' // Massage the htmlguides: strip footer, add redirects, add banner, minify HTML
-			} // stage('Wiki Download')
-
-			stage('Guides') {
 				// TODO: Allow addon guides?
 				sh 'npm run wiki:guides'
-			} // stage('Guides')
+			} // stage('Wiki')
 
 			// Copy videos.json over? WTF?
 			// TODO: Remove? This seems unnecesary
