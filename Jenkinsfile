@@ -184,7 +184,9 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 			} // stage('APIDocs')
 
 			stage('Wiki') {
-				copyArtifacts fingerprintArtifacts: true, projectName: '../wiki-export/master'
+				dir('wiki') {
+					copyArtifacts fingerprintArtifacts: true, projectName: '../wiki-export/master'
+				}
 				sh 'npm run wiki:unzip'
 				sh 'npm run wiki:redirects'
 				sh 'npm run wiki:finalize' // Massage the htmlguides: strip footer, add redirects, add banner, minify HTML
@@ -221,14 +223,14 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 			stage('Misc Assets') {
 				// TODO: Move this htmlguides stuff into the wiki Download/Guides section!
 				// TIDOC-1327 Fix server errors
-				sh "cp -r ./htmlguides/images/icons ${outputDir}/resources/images/."
+				sh "cp -r wiki/htmlguides/images/icons ${outputDir}/resources/images/."
 
 				// Copy resources
 				// Workaround for new Confluence plugin
-				sh "cp -r ./htmlguides/attachments_* ${outputDir}/."
+				sh "cp -r wiki/htmlguides/attachments_* ${outputDir}/."
 
-				sh "cp -r ./htmlguides/css/common.css ${outputDir}/resources/css/common.css"
-				sh "cp -r ./htmlguides/images ${outputDir}/images"
+				sh "cp -r wiki/htmlguides/css/common.css ${outputDir}/resources/css/common.css"
+				sh "cp -r wiki/htmlguides/images ${outputDir}/images"
 
 				// Copy API images folder
 				sh "cp -r ${SDK_DOC_DIR}/images ${outputDir}/."
