@@ -5,18 +5,11 @@
 	"dependencies": {
 		"axios": "^0.19.0",
 		"cheerio": "^0.19.0",
-		"colors": "^0.6.2",
 		"ejs": "^2.5.7",
 		"fs-extra": "^7.0.0",
 		"html-entities": "^1.1.3",
 		"html-minifier": "^3.5.20",
-		"js-yaml": "^3.10.0",
-		"pagedown": "^1.1.0",
-		"shelljs": "^0.7.4",
 		"xml2js": "^0.4.17",
-		"yaml-markdown-to-html": "^7.1.0",
-		"yaml-to-json": "^0.3.0",
-		"yamljs": "^0.3.0",
 		"yuicompressor": "^2.4.8"
 	},
 	"repository": {
@@ -24,15 +17,15 @@
 		"url": "git://github.com/appcelerator/doctools.git"
 	},
 	"engines": {
-		"node": ">=0.10.13"
+		"node": ">=8"
 	},
 	"license": "Apache Public License v2",
 	"scripts": {
 		"jsduck": "node jsduck dist/platform/latest add-ons",
-		"wiki:export": "node wiki_export.js",
-		"wiki:unzip": "unzip -o wiki_export.zip -d htmlguides",
-		"wiki:redirects": "cp page_redirects/htmlguides/*.html htmlguides",
-		"wiki:finalize": "node htmlguides.js",
-		"wiki:guides": "mkdir -p build/guides && node guides_parser --input ./htmlguides/toc.xml --output ./build/guides --show_edit_button"
+		"wiki:export": "node wiki/export.js",
+		"wiki:unzip": "unzip -o wiki/wiki_export.zip -d wiki/htmlguides",
+		"wiki:redirects": "cp wiki/page_redirects/htmlguides/*.html wiki/htmlguides",
+		"wiki:finalize": "node wiki/htmlguides.js",
+		"wiki:guides": "mkdir -p build/guides && node wiki/guides_parser --input wiki/htmlguides/toc.xml --output ./build/guides --show_edit_button"
 	}
 }

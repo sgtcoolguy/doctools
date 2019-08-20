@@ -3,23 +3,31 @@
  * Licensed under the terms of the Apache Public License.
  *
  * Script to convert Wiki-exported content for JSDuck site.
+ * This will generated a guides.json with the tree of the guides;
+ * as well as modifies the html contents of each guide in-place mainly to manipulate links
+ * and possibly add an "edit" button/link.
  */
 'use strict';
 
-const cheerio = require('cheerio');
-const xml2js = require('xml2js').parseString;
 const fs = require('fs-extra');
 const path = require('path');
-const whiteList = [
+const promisify = require('util').promisify;
+
+const cheerio = require('cheerio');
+const xml2js = promisify(require('xml2js').parseString);
+
+const WHITELIST = [
 	'https://wiki.appcelerator.org/display/community',
 	'https://wiki.appcelerator.org/display/titans',
 	'https://wiki.appcelerator.org/display/td'
 ];
 
+// FIXME: Move to processCommandLineArgs, return in an object!
 let inputFile = null;
 let outputDir = null;
 let showEditButton = false;
 
+// TODO: Rewrite to be async!
 function parse(node, topicsDone = new Set()) {
 	const rv = [];
 	for (let x = 0; x < node.length; x++) {
@@ -82,7 +90,7 @@ function parse(node, topicsDone = new Set()) {
 						} else if (href.indexOf('https://wiki.appcelerator.org') === 0) {
 							// Check for unconverted wiki URLs
 							var inList = false;
-							whiteList.forEach(function (whiteUrl) {
+							WHITELIST.forEach(function (whiteUrl) {
 								if (href.indexOf(whiteUrl) === 0) {
 									inList = true;
 								}
@@ -145,57 +153,73 @@ function cliUsage() {
 	console.log('Usage: node guides_parser --input htmlguides/toc.xml --output ./build/guides/ [--show_edit_button]');
 }
 
-// Start of Main Flow
-const argc = process.argv.length;
-if (argc > 2) {
-	for (var x = 2; x < argc; x++) {
-		switch (process.argv[x]) {
-			case "--input":
-				if (++x >= argc) {
-					console.error('Specify an XML input file!');
-					cliUsage();
-					process.exit(1);
-				}
-				inputFile = process.argv[x];
-				if (!fs.existsSync(inputFile)) {
-					console.error('File does not exist: ' + inputFile);
-				}
-				inputFile = path.resolve(path.dirname(process.argv[1]), inputFile);
-				break;
-			case "--output":
-				if (++x >= argc) {
-					console.error('Specify an output directory!');
-					cliUsage();
-					process.exit(1);
-				}
-				outputDir = path.resolve(path.dirname(process.argv[1]), process.argv[x]);
-				break;
-			case "--show_edit_button":
-				showEditButton = true;
-				break;
-			default:
-				console.warn('unknown option: ' + process.argv[x]);
+function processCommandLineArgs() {
+	const cwd = process.cwd();
+	const argc = process.argv.length;
+	if (argc > 2) {
+		for (var x = 2; x < argc; x++) {
+			switch (process.argv[x]) {
+				case "--input":
+					if (++x >= argc) {
+						console.error('Specify an XML input file!');
+						cliUsage();
+						process.exit(1);
+					}
+					// Try to take the filename as-is, if doesn't exist try to resolve relative to cwd, then try relative to this file
+					inputFile = process.argv[x];
+					if (!fs.existsSync(inputFile)) {
+						inputFile = path.resolve(cwd, inputFile);
+						if (!fs.existsSync(inputFile)) {
+							inputFile = path.resolve(__dirname, inputFile);
+							if (!fs.existsSync(inputFile)) {
+								console.error(`Input file does not exist: ${process.argv[x]}`);
+								process.exit(1);
+							}
+						}
+					}
+					break;
+				case "--output":
+					if (++x >= argc) {
+						console.error('Specify an output directory!');
+						cliUsage();
+						process.exit(1);
+					}
+					outputDir = path.resolve(cwd, process.argv[x]);
+					break;
+				case "--show_edit_button":
+					showEditButton = true;
+					break;
+				default:
+					console.warn(`unknown option: ${process.argv[x]}`);
+			}
 		}
+	}
+
+	if (!inputFile) {
+		console.error('Input file required.');
+		cliUsage();
+		process.exit(1);
+	}
+	if (!outputDir) {
+		console.error('Output directory required.');
+		cliUsage();
+		process.exit(1);
 	}
 }
 
-if (!inputFile) {
-	console.error('Input file required.');
-	cliUsage();
-	process.exit(1);
-}
-if (!outputDir) {
-	console.error('Output directory required.');
-	cliUsage();
-	process.exit(1);
+async function convertTOC(inputFile, outputDir) {
+	const contents = await fs.readFile(inputFile, 'utf8');
+	const result = await xml2js(contents);
+	const toc = parse(result.toc.topic);
+	return fs.writeFile(path.join(outputDir, 'guides.json'), JSON.stringify(toc, null, 4));
 }
 
-xml2js(fs.readFileSync(inputFile, 'utf8'), function (err, result) {
-		if (err) {
-			console.error('Error converting XML to JSON: ' + err);
-			process.exit(1);
-		}
+async function main() {
+	processCommandLineArgs();
+	return convertTOC(inputFile, outputDir);
+}
 
-		const toc = parse(result.toc.topic);
-		fs.writeFileSync(path.join(outputDir, 'guides.json'), JSON.stringify(toc, null, 4));
+main().then(() => process.exit(0)).catch(err => {
+	console.error(`Error converting XML to JSON: ${err}`);
+	process.exit(1);
 });

@@ -1,8 +1,15 @@
+/**
+ * This script does a first pass of manipulating the exported wiki HTML files
+ * This main does some stripping of the wiki export footer, some redirect tags for certian pages,
+ * and minifies the HTML.
+ * 
+ * More manipulations are done in a second pass by the guides_parser.js file which converts the 
+ */
 'use strict';
 
-const fs = require('fs');
+const path = require('path');
+const fs = require('fs-extra');
 const cheerio = require('cheerio');
-const shell = require('shelljs');
 
 const minify = require('html-minifier').minify;
 const MINIFY_CONFIG = require('./html-minifier.json');
@@ -122,17 +129,42 @@ function htmlMinify(node) {
 	return minify(html, MINIFY_CONFIG);
 }
 
-
-// loop through all HTML documents found in the htmlguides directory
-const htmlFiles = shell.ls('htmlguides/*.html');
-// TODO Do them in parallel?
-htmlFiles.forEach(file => {
-	console.log(file);
-	let $ = cheerio.load(fs.readFileSync(file).toString()); // add jquery-like features
+/**
+ * Given a path to an HTML file we will:
+ * - parse the html
+ * - strip the footer
+ * - add some redirects if necessary
+ * - run through a minifier
+ * - write the modified contents back to the file
+ * @param {string} file 
+ */
+async function manipulateHTMLFile(file) {
+	console.log(path.basename(file));
+	const contents = await fs.readFile(file, 'utf8');
+	let $ = cheerio.load(contents); // add jquery-like features
 	$ = stripFooter($);
 	// $ = addBanner($); // Don't add migration banner yet!
 	$ = addInternalRedirect(file, $);
 	$ = addExternalRedirect(file, $);
 	const html = htmlMinify($);
-	fs.writeFileSync(file, html);
+	return fs.writeFile(file, html);
+}
+
+async function main() {
+	// loop through all HTML documents found in the htmlguides directory
+	const htmlGuidesDir = path.join(__dirname, 'htmlguides');
+	const files = await fs.readdir(htmlGuidesDir);
+	const htmlFiles = files.filter(f => f.endsWith('.html'));
+	// Do them in parallel
+	return Promise.all(htmlFiles.map(async filename => {
+		const filepath = path.join(htmlGuidesDir, filename);
+		return manipulateHTMLFile(filepath);
+	}));
+}
+
+main().then(() => {
+	process.exit(0);
+}).catch (err => {
+	console.error(err);
+	process.exit(1);
 });
