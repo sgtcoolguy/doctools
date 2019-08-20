@@ -72,7 +72,11 @@ const REPLACEMENTS = new Map([
 async function generateReleaseNote(wikiFile, outputDir) {
 	const basename = path.basename(wikiFile);
 	const end = basename.indexOf('_Release_Note.html');
-	const version = basename.slice('Titanium_SDK_'.length, end);
+	let version = basename.slice('Titanium_SDK_'.length, end);
+	// if no suffix, assume it's a GA (older release notes)
+	if (!version.endsWith('.GA') && !version.endsWith('.RC') && !version.endsWith('Beta')) {
+		version = version + '.GA';
+	}
 
 	const outputFilePath = path.join(outputDir, `${version}.html`);
 	if (await fs.exists(outputFilePath)) {
