@@ -212,7 +212,9 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				sh "cp ./build/api_solr.json ${outputDir}/../data/solr/."
 
 				// Alloy search index
-				sh 'bundle exec jsduck --external "void,Callback,Backbone.Collection,Backbone.Model,Backbone.Events" --export full --meta-tags apidocs/meta --pretty-json -o - ../alloy/Alloy/lib ../alloy/docs/apidoc > ./build/alloy.json'
+				dir('apidocs') {
+					sh 'bundle exec jsduck --external "void,Callback,Backbone.Collection,Backbone.Model,Backbone.Events" --export full --meta-tags ./meta --pretty-json -o - ../../alloy/Alloy/lib ../../alloy/docs/apidoc > ../build/alloy.json'
+				}
 				sh "node apidocs/jsduck2json/alloy2solr.js ./build/alloy.json ${outputDir}/../data/solr/alloy_api.json"
 
 				// Arrow search index
