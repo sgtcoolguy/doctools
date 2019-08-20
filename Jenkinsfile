@@ -41,26 +41,42 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 	// TODO Include arrow repos/docs!
 
 	nodejs(nodeJSInstallationName: 'node 8.11.4') {
-		stage('Checkout') {
-			ensureNPM('latest')
-
-			sh 'rm -rf build' // wipe build directory
-			sh 'rm -rf dist' // wipe dist directory
-
-			// Create the 3 major repo folders we need!
-			sh 'mkdir -p doctools'
-			dir('doctools') {
+		sh 'mkdir -p doctools'
+		dir('doctools') {
+			// check out doctools
+			stage('Checkout') {
 				checkout([
-					$class: 'GitSCM',
-					branches: scm.branches,
-					extensions: scm.extensions + [
-						[$class: 'CloneOption', depth: 0, honorRefspec: true, noTags: true, reference: '', shallow: true],
-						[$class: 'CleanBeforeCheckout']
-					],
-					userRemoteConfigs: scm.userRemoteConfigs
-				])
-			} // dir('doctools')
+						$class: 'GitSCM',
+						branches: scm.branches,
+						extensions: scm.extensions + [
+							[$class: 'CloneOption', depth: 0, honorRefspec: true, noTags: true, reference: '', shallow: true],
+							[$class: 'CleanBeforeCheckout']
+						],
+						userRemoteConfigs: scm.userRemoteConfigs
+					])
+			} // stage('Checkout')
 
+			// npm ci
+			stage('Setup') {
+				ensureNPM('latest')
+				sh 'npm ci'
+			} // stage('Setup')
+
+			// run the wiki export/conversion (to generate build/guides/guides.json)
+			stage('Wiki') {
+				dir('wiki') {
+					copyArtifacts fingerprintArtifacts: true, projectName: '../wiki-export/master'
+				}
+				sh 'npm run wiki:unzip'
+				sh 'npm run wiki:redirects'
+				sh 'npm run wiki:finalize' // Massage the htmlguides: strip footer, add redirects, add banner, minify HTML
+				// TODO: Allow addon guides?
+				sh 'npm run wiki:guides'
+			} // stage('Wiki')
+		} // dir('doctools')
+
+		// Then checkout modules/sdk/alloy
+		stage('APIDocs Repos') {
 			// Alloy
 			sh 'mkdir -p alloy'
 			dir('alloy') {
@@ -169,45 +185,30 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 					moduleArgs += " ../${mod}/apidoc"
 				} // dir(mod)
 			} // MODULES.each
-		} // stage('Checkout')
+		} // stage('APIDocs Repos')
 
 		dir('doctools') {
-			stage('Setup') {
-				sh 'bundle install --path vendor/bundle' // install jsduck
-				sh 'npm ci'
-			} // stage('Setup')
+			def outputDir = './dist/platform/latest'
 
+			// run docgen to generate build/titanium.js
 			stage('APIDocs') {
 				// First we generate APIdocs for titanium_mobile, modules, windows
 				sh "node ${SDK_DOC_DIR}/docgen.js -f jsduck -o ./build/ ${moduleArgs} ${windowsArgs}" // generates build/titanium.js
 				// TODO: Can we specify multiple formats at once and get solr output too? Looks like it does work (though the output for result filenames is busted and repeats last format)
 			} // stage('APIDocs')
 
-			stage('Wiki') {
-				dir('wiki') {
-					copyArtifacts fingerprintArtifacts: true, projectName: '../wiki-export/master'
-				}
-				sh 'npm run wiki:unzip'
-				sh 'npm run wiki:redirects'
-				sh 'npm run wiki:finalize' // Massage the htmlguides: strip footer, add redirects, add banner, minify HTML
-				// TODO: Allow addon guides?
-				sh 'npm run wiki:guides'
-			} // stage('Wiki')
-
-			// Copy videos.json over? WTF?
-			// TODO: Remove? This seems unnecesary
-			sh 'cp videos.json build/videos.json'
-
-			def outputDir = './dist/platform/latest'
+			// run jsduck on that to generate html output
 			stage('JSDuck') {
+				sh 'bundle install --path vendor/bundle' // install jsduck
 				sh "npm run jsduck ${alloyDirs}"
 			} // stage('JSDuck')
 
+			// generate solr index
 			stage('Solr') {
 				sh "mkdir -p ${outputDir}/../data/solr" // create output dir
 
 				// SDK search index
-				sh "node ${SDK_DOC_DIR}/docgen -f solr -o ./build/" // TODO: Add windows/modules
+				sh "node ${SDK_DOC_DIR}/docgen -f solr -o ./build/ ${moduleArgs} ${windowsArgs}"
 				sh "cp ./build/api_solr.json ${outputDir}/../data/solr/."
 
 				// Alloy search index
@@ -215,13 +216,17 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				sh "node ./jsduck2json/alloy2solr.js ./build/alloy.json ${outputDir}/../data/solr/alloy_api.json"
 
 				// Arrow search index
+				// Looks like we just have a static version of arrow's output already?
+				sh "cp ./dist/solr.json ${outputDir}/../data/solr/arrow_api.json"
+
 				// TODO: If we still need to do this, we need to clone 'arrow' and 'arrow-orm' repositories
 				// sh 'bundle exec jsduck --export full --meta-tags ./meta --pretty-json -o - ../arrow-orm/apidoc ../arrow-orm/lib/collection.js ../arrow-orm/lib/connector.js ../arrow-orm/lib/error.js ../arrow-orm/lib/instance.js ../arrow-orm/lib/model.js ../arrow-orm/lib/connector/capabilities/index.js ../arrow/apidoc ../arrow/lib/engines ../arrow/lib/api.js ../arrow/lib/arrow.js ../arrow/lib/block.js ../arrow/lib/middleware.js ../arrow/lib/router.js > ./build/arrow.json'
 				// sh "node ./jsduck2json/alloy2solr.js ./build/arrow.json ${outputDir}/../data/solr/arrow_api.json"
 			} // stage('Solr')
 
+			// assemble final contents of dist/platform/latest
 			stage('Misc Assets') {
-				// TODO: Move this htmlguides stuff into the wiki Download/Guides section!
+				// TODO: Move this htmlguides stuff into the wiki Download/Guides section and have it push the files into the template dir?
 				// TIDOC-1327 Fix server errors
 				sh "cp -r wiki/htmlguides/images/icons ${outputDir}/resources/images/."
 
@@ -235,6 +240,10 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				// Copy API images folder
 				sh "cp -r ${SDK_DOC_DIR}/images ${outputDir}/."
 
+				// Copy videos.json over? WTF?
+				// TODO: Remove? This seems unnecesary
+				sh 'cp videos.json build/videos.json'
+
 				// Copy landing
 				sh "cp -r ./landing ${outputDir}/.."
 			} // stage('Misc Assets')
@@ -244,7 +253,6 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 					archiveArtifacts 'platform/'
 				} // dir('doctools/dist')
 			} // stage('Archive')
-
 		} // dir('doctools')
 
 		if (publish) {
