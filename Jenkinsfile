@@ -282,10 +282,13 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 					)
 					sh 'rm -rf platform/data'
 					sh 'rm -rf platform/landing'
+					sh 'rm -rf platform/latest'
+					sh 'rm -rf platform/release-notes'
 					// copy what we generated into repo
-					sh 'cp -R ../doctools/dist/platform/latest platform/latest'
 					sh 'cp -R ../doctools/dist/platform/data platform/data'
 					sh 'cp -R ../doctools/dist/platform/landing platform/landing'
+					sh 'cp -R ../doctools/dist/platform/latest platform/latest'
+					sh 'cp -R ../doctools/dist/platform/release-notes platform/release-notes'
 					// add all our changes to staged in git
 					sh 'git add platform'
 					//  Add details of any changes to this build of doctools into our commit message here!
