@@ -213,6 +213,7 @@ async function runJSDuck(outputDir, additionalDirs) {
 	// Create output dir tree
 	const fullOutputPath = path.join(ROOT_DIR, outputDir);
 	fs.ensureDir(fullOutputPath);
+	console.log(`Running JSDuck with additional directories: ${additionalDirs}`);
 	// Build docs
 	return exec(`bundle exec jsduck --template ./template-min --seo --output ${fullOutputPath} --title 'Appcelerator Platform - Appcelerator Docs' --config ./jsduck.config ${additionalDirs.join(' ')}`, { cwd: JSDUCK_DIR });
 }
@@ -229,7 +230,7 @@ async function removeUnusedGeneratedAssets(outputDir) {
 	}));
 }
 
-async function main(outputDir, ...additionalDirs) {
+async function main(outputDir, additionalDirs) {
 	// Do some sanity checks on necessary input files
 	if (!(await fs.exists(path.join(ROOT_DIR, 'build/guides/guides.json')))) {
 		throw new Error(`JSDuck requires that build/guides/guides.json has already been generated from a Wiki export`);
@@ -237,6 +238,15 @@ async function main(outputDir, ...additionalDirs) {
 	if (!(await fs.exists(path.join(ROOT_DIR, 'build/titanium.js')))) {
 		throw new Error(`JSDuck requires that build/titanium.js has already been generated from Titanium Mobile SDK and/or Windows SDK and modules.`);
 	}
+
+	// convert the additional directories based on path.resolve(process.cwd(), dir) for each!
+	const cwd = process.cwd();
+	additionalDirs = (additionalDirs || []).map(dir => path.join(cwd, dir));
+	const missingDirs = additionalDirs.filter(dir => !fs.existsSync(dir));
+	if (missingDirs.length !== 0) {
+		throw new Error(`JSDuck was given additional directories to process, but one or more do not exist: ${missingDirs}`);
+	}
+
 	await Promise.all([
 		setupEXTJS(),
 		setupSencha(),
