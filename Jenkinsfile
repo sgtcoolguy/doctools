@@ -44,7 +44,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 		sh 'mkdir -p doctools'
 		dir('doctools') {
 			// check out doctools
-			stage('Checkout') {
+			stage('Setup') {
 				checkout([
 						$class: 'GitSCM',
 						branches: scm.branches,
@@ -54,10 +54,8 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 						],
 						userRemoteConfigs: scm.userRemoteConfigs
 					])
-			} // stage('Checkout')
 
-			// npm ci
-			stage('Setup') {
+				// npm ci
 				ensureNPM('latest')
 				sh 'npm ci'
 			} // stage('Setup')
@@ -226,7 +224,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 
 			// assemble final contents of dist/platform/latest
 			stage('Misc Assets') {
-				// TODO: Move this htmlguides stuff into the wiki Download/Guides section and have it push the files into the template dir?
+				// TODO: Move this htmlguides stuff into the Wiki stage and have it push the files into the template dir?
 				// TIDOC-1327 Fix server errors
 				sh "cp -r wiki/htmlguides/images/icons ${outputDir}/resources/images/."
 
