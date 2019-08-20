@@ -197,7 +197,9 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 
 			// run jsduck on that to generate html output
 			stage('JSDuck') {
-				sh 'bundle install --path vendor/bundle' // install jsduck
+				dir('apidocs') {
+					sh 'bundle install --path vendor/bundle' // install jsduck
+				}
 				sh "npm run jsduck ${alloyDirs}"
 			} // stage('JSDuck')
 
@@ -211,7 +213,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 
 				// Alloy search index
 				sh 'bundle exec jsduck --external "void,Callback,Backbone.Collection,Backbone.Model,Backbone.Events" --export full --meta-tags ./meta --pretty-json -o - ../alloy/Alloy/lib ../alloy/docs/apidoc > ./build/alloy.json'
-				sh "node ./jsduck2json/alloy2solr.js ./build/alloy.json ${outputDir}/../data/solr/alloy_api.json"
+				sh "node apidocs/jsduck2json/alloy2solr.js ./build/alloy.json ${outputDir}/../data/solr/alloy_api.json"
 
 				// Arrow search index
 				// Looks like we just have a static version of arrow's output already?
@@ -219,7 +221,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 
 				// TODO: If we still need to do this, we need to clone 'arrow' and 'arrow-orm' repositories
 				// sh 'bundle exec jsduck --export full --meta-tags ./meta --pretty-json -o - ../arrow-orm/apidoc ../arrow-orm/lib/collection.js ../arrow-orm/lib/connector.js ../arrow-orm/lib/error.js ../arrow-orm/lib/instance.js ../arrow-orm/lib/model.js ../arrow-orm/lib/connector/capabilities/index.js ../arrow/apidoc ../arrow/lib/engines ../arrow/lib/api.js ../arrow/lib/arrow.js ../arrow/lib/block.js ../arrow/lib/middleware.js ../arrow/lib/router.js > ./build/arrow.json'
-				// sh "node ./jsduck2json/alloy2solr.js ./build/arrow.json ${outputDir}/../data/solr/arrow_api.json"
+				// sh "node apidocs/jsduck2json/alloy2solr.js ./build/arrow.json ${outputDir}/../data/solr/arrow_api.json"
 			} // stage('Solr')
 
 			// assemble final contents of dist/platform/latest

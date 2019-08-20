@@ -8,7 +8,14 @@ const fs = require('fs-extra');
 const crypto = require('crypto');
 const os = require('os');
 
-const ROOT_DIR = __dirname;
+/**
+ * path to root of repo
+ */
+const ROOT_DIR = path.join(__dirname, '..');
+/**
+ * Directory where all the jsduck/template stuff lives
+ */
+const JSDUCK_DIR = __dirname;
 const NEWLINE_PATTERN = /\r?\n/;
 
 const CSS_SECTION_PATTERN = /<!-- BEGIN CSS -->.*<!-- END CSS -->/s;
@@ -21,7 +28,7 @@ const SCRIPT_BLOCK_PATTERN = /<script .*>(.*)<\/script>/;
 async function compileSass() {
 	// TODO Use an npm package to compile the scss files!
 	console.log('Compiling SASS...');
-	await exec('bundle exec compass compile ./template/resources/sass', { cwd: ROOT_DIR });
+	await exec('bundle exec compass compile ./template/resources/sass', { cwd: JSDUCK_DIR });
 	console.log('Compiled SASS');
 }
 
@@ -29,90 +36,90 @@ async function compileSass() {
 // extjs/ext-all.js, extjs/resources/themes/images/default, extjs/resources/css
 // We have extjs-assets.zip now we could check in and use!
 async function setupEXTJS() {
-	await fs.remove(path.join(ROOT_DIR, 'template/extjs'));
-	await exec('unzip -qq template/extjs-assets.zip -d template/', { cwd: ROOT_DIR }); // unzip it
+	await fs.remove(path.join(JSDUCK_DIR, 'template/extjs'));
+	await exec('unzip -qq template/extjs-assets.zip -d template/', { cwd: JSDUCK_DIR }); // unzip it
 	console.log('Set up EXTJS!');
 }
 
 async function setupSencha() {
 	console.log('Unzipping sencha...');
-	await fs.remove(path.join(ROOT_DIR, 'sencha'));
+	await fs.remove(path.join(JSDUCK_DIR, 'sencha'));
 	const platform = os.platform();
-	const exists = fs.exists(path.join(ROOT_DIR, `sencha-${platform}.zip`));
+	const exists = fs.exists(path.join(JSDUCK_DIR, `sencha-${platform}.zip`));
 	if (!exists) {
 		throw new Error(`We do not have a copy of the sencha command binaries/scripts for ${platform} yet!`);
 	}
-	await exec(`unzip ./sencha-${platform}.zip -d .`, { cwd: ROOT_DIR });
+	await exec(`unzip ./sencha-${platform}.zip -d .`, { cwd: JSDUCK_DIR });
 	console.log('Set up Sencha!');
 }
 
 async function senchaBuild() {
 	console.log('Running Sencha build on EXTJS app...');
-	await exec('node ./sencha/sencha.js build -p template-min/app.jsb3 -d template-min', { cwd: ROOT_DIR });
+	await exec('node ./sencha/sencha.js build -p template-min/app.jsb3 -d template-min', { cwd: JSDUCK_DIR });
 	console.log('Cleaning up template-min dir...');
-	await fs.remove(path.join(ROOT_DIR, 'template-min/app.js'));
+	await fs.remove(path.join(JSDUCK_DIR, 'template-min/app.js'));
 	await Promise.all([
-		fs.remove(path.join(ROOT_DIR, 'template-min/app.jsb3')),
-		fs.remove(path.join(ROOT_DIR, 'template-min/all-classes.js')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/app.jsb3')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/all-classes.js')),
 		// Remove the entire app/ dir
-		fs.remove(path.join(ROOT_DIR, 'template-min/app')),
-		fs.move(path.join(ROOT_DIR, 'template-min/app-all.js'), path.join(ROOT_DIR, 'template-min/app.js')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/app')),
+		fs.move(path.join(JSDUCK_DIR, 'template-min/app-all.js'), path.join(JSDUCK_DIR, 'template-min/app.js')),
 	]);
 
 	// // FIXME: Something is not right here. Sencha's build does more than just concatenate!
 	// console.log('Running equivalent of sencha build command on JSB3 file...');
-	// const json = await fs.readJson(path.join(ROOT_DIR, 'template/app.jsb3'));
+	// const json = await fs.readJson(path.join(JSDUCK_DIR, 'template/app.jsb3'));
 	// const js = [];
 	// await Promise.all(json.builds[0].files.map(async fileObj => {
-	// 	const filename = path.join(ROOT_DIR, 'template', fileObj.path + fileObj.name);
+	// 	const filename = path.join(JSDUCK_DIR, 'template', fileObj.path + fileObj.name);
 	// 	const content = await fs.readFile(filename, 'utf8');
 	// 	js.push(content);
 	// }));
-	// const appJSContent = await fs.readFile(path.join(ROOT_DIR, 'template/app.js'));
+	// const appJSContent = await fs.readFile(path.join(JSDUCK_DIR, 'template/app.js'));
 	// // TODO: Minify the file? We do it later, so probably a waste to do it now?
-	// await fs.writeFile(path.join(ROOT_DIR, 'template-min/app.js'), js.join('\n') + '\n' + appJSContent);
+	// await fs.writeFile(path.join(JSDUCK_DIR, 'template-min/app.js'), js.join('\n') + '\n' + appJSContent);
 	// return Promise.all([
-	// 	fs.remove(path.join(ROOT_DIR, 'template-min/app.jsb3')),
+	// 	fs.remove(path.join(JSDUCK_DIR, 'template-min/app.jsb3')),
 	// 	// Remove the entire app/ dir
-	// 	fs.remove(path.join(ROOT_DIR, 'template-min/app')),
+	// 	fs.remove(path.join(JSDUCK_DIR, 'template-min/app')),
 	// ]);
 }
 
 async function minifyTemplate() {
 	// Minify the template!
-	await fs.remove(path.join(ROOT_DIR, 'template-min'));
-	await fs.copy(path.join(ROOT_DIR, 'template'), path.join(ROOT_DIR, 'template-min'));
+	await fs.remove(path.join(JSDUCK_DIR, 'template-min'));
+	await fs.copy(path.join(JSDUCK_DIR, 'template'), path.join(JSDUCK_DIR, 'template-min'));
 
 	await senchaBuild();
 
 	console.log('Rewriting CSS links in template files...');
 	// FIXME: These both clobber one another because they're dealing with same concatenated filename app.css
 	// await Promise.all([
-	// 	rewriteCSSLinks(path.join(ROOT_DIR, 'template-min/print-template.html')),
-	// 	rewriteCSSLinks(path.join(ROOT_DIR, 'template-min/index-template.html')),
+	// 	rewriteCSSLinks(path.join(JSDUCK_DIR, 'template-min/print-template.html')),
+	// 	rewriteCSSLinks(path.join(JSDUCK_DIR, 'template-min/index-template.html')),
 	// ]);
-	await rewriteCSSLinks(path.join(ROOT_DIR, 'template-min/print-template.html'));
-	await rewriteCSSLinks(path.join(ROOT_DIR, 'template-min/index-template.html'));
+	await rewriteCSSLinks(path.join(JSDUCK_DIR, 'template-min/print-template.html'));
+	await rewriteCSSLinks(path.join(JSDUCK_DIR, 'template-min/index-template.html'));
 
 	console.log('Concatenating CSS/JS in template.html...');
 	// Concatenate CSS and JS files referenced in template.html file
-	await concatenateCSSAndJS(path.join(ROOT_DIR, 'template-min/template.html'));
+	await concatenateCSSAndJS(path.join(JSDUCK_DIR, 'template-min/template.html'));
 
 	// Clean up SASS files
 	// (But keep prettify lib, which is needed for source files)
 	console.log('Removing unused resources in minified templated...');
 	await Promise.all([
-		fs.remove(path.join(ROOT_DIR, 'template-min/app.js')),
-		fs.remove(path.join(ROOT_DIR, 'template-min/extjs-assets.zip')),
-		fs.remove(path.join(ROOT_DIR, 'template-min/resources/css/docs-ext.css')),
-		fs.remove(path.join(ROOT_DIR, 'template-min/resources/css/viewport.css')),
-		fs.remove(path.join(ROOT_DIR, 'template-min/resources/sass')),
-		fs.remove(path.join(ROOT_DIR, 'template-min/resources/codemirror')),
-		fs.remove(path.join(ROOT_DIR, 'template-min/resources/.sass-cache')),
-		fs.remove(path.join(ROOT_DIR, 'template-min/extjs/resources/css')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/app.js')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/extjs-assets.zip')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/resources/css/docs-ext.css')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/resources/css/viewport.css')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/resources/sass')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/resources/codemirror')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/resources/.sass-cache')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/extjs/resources/css')),
 	]);
 	// Restore ext-all.css
-	await fs.copy(path.join(ROOT_DIR, 'template/extjs/resources/css/ext-all.css'), path.join(ROOT_DIR, 'template-min/extjs/resources/css/ext-all.css'));
+	await fs.copy(path.join(JSDUCK_DIR, 'template/extjs/resources/css/ext-all.css'), path.join(JSDUCK_DIR, 'template-min/extjs/resources/css/ext-all.css'));
 }
 
 async function rewriteCSSLinks(filePath) {
@@ -204,9 +211,10 @@ async function combineJS(html, dir) {
 
 async function runJSDuck(outputDir, additionalDirs) {
 	// Create output dir tree
-	fs.ensureDir(path.join(ROOT_DIR, outputDir));
+	const fullOutputPath = path.join(ROOT_DIR, outputDir);
+	fs.ensureDir(fullOutputPath);
 	// Build docs
-	return exec(`bundle exec jsduck --template ./template-min --seo --output ${outputDir} --title 'Appcelerator Platform - Appcelerator Docs' --config ./jsduck.config ${additionalDirs.join(' ')}`, { cwd: ROOT_DIR });
+	return exec(`bundle exec jsduck --template ./template-min --seo --output ${fullOutputPath} --title 'Appcelerator Platform - Appcelerator Docs' --config ./jsduck.config ${additionalDirs.join(' ')}`, { cwd: JSDUCK_DIR });
 }
 
 async function removeUnusedGeneratedAssets(outputDir) {
