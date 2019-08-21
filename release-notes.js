@@ -9,75 +9,21 @@ const cheerio = require('cheerio');
  * Class attributes we drop from the final HTML
  */
 const CLASSES_TO_REMOVE = [
-	'plain', 'line', 'value', 'external-link', 'document-link', 'comments', 'keyword', 'toc-indentation',
-	'confluenceTable', 'section', 'section-2', 'section-3', 'heading',
+	// code snippets
+	'plain', 'line', 'value', 'comments', 'keyword', 'string',
+	// links
+	'external-link', 'document-link',
+	// misc
+	'toc-indentation', 'confluenceTable', 'section', 'section-2', 'section-3', 'heading',
 ];
 
-// Find/Replace content in the page
-// FIXME: This is very inefficent and likely does not work very well.
-// Can we come up with some more generalized substitutions?
+/**
+ * Find/Replace content in the page
+ * Easier done via regexp search/replace than trying to perform via cheeriojs
+ */
 const REPLACEMENTS = new Map([
-	// Drop "heading" class and wrapping spans on headers
-	[ '<h2 class="heading\s*"><span>([^<]+)</span></h2>', '<h2>$1</h2>' ],
-	[ '<h3 class="heading\s*"><span>([^<]+)</span></h3>', '<h3>$1</h3>' ],
-	// drop empty class attributes
-	[ '\s+class>', '' ],
-
-	// [ '<h2><span>', '<h2>' ],
-	// [ '</span></h2>', '</h2>' ],
-	[ '<li class="\s*">    <p  >', '<li>' ],
-	[ '</p>\n</li>', '</li>' ],
-	// [ '<p  >', '<p>' ],
-	// [ '<h4', '<h3' ],
-	// [ '</h4>', '</h3>' ],
-	// [ '<h5', '<h4' ],
-	// [ '</h5>', '</h4>' ],
-	[ '<div xmlns="http://www.w3.org/1999/xhtml" class="confbox programlisting scroll-unprocessed">', '<div>' ],
-	[ '<div class="defaultnew syntaxhighlighter">', '<div>' ],
-	// [ '\s+class="plain"', '' ],
-	// [ '\s+class="line"', '' ],
-	// [ '\s+class="value"', '' ],
-	// [ '\s+class="external-link external-link"', '' ],
-	[ '\s+class="section section-3\s*"', '' ],
-	[ '\s+class="\s*"', '' ],
-	[ '\s+</p>', '</p>' ],
-	[ '\s+</li>', '</li>' ],
-	// [ '\s+class="toc-indentation\s*"' ,'' ],
-	// [ '\s+class="document-link\s*"', '' ],
-	[ '</p>\n<ul', '<ul'  ],
-	[ '\s+class="section section-4\s*"', '' ],
-	[ '\s+class="section section-5\s*"', '' ],
-	// [ '\s+class="heading\s*"', '' ],
-	// [ '\s+class="comments"', '' ],
-	// [ '\s+class="keyword"', '' ],
-	[ '<td  class="confluenceTh"', '<th  class="confluenceTh"' ],
-	[ '<li class="li1 ">    <p>', '<li>' ],
-	[ '</p>\n<ul>', '<ul>' ],
-	[ '    <p  class="p1">', '' ],
-	[ ' class="section section-2\s*"', '' ],
-	// [ '<h3><span>', '<h3>' ],
-	// [ '</span></h3>', '</h3>' ],
-	[ '  class="confluenceTh" rowspan="1" colspan="1"', '' ],
-	[ '  class="confluenceTd" rowspan="1" colspan="1"', '' ],
-	// [ '\s+class="confluenceTable"', '' ],
 	[ '</code><code>', '' ],
-	[ '<code>            &lt;', '<code class="indent3">' ],
-	[ '<code>        &lt;', '<code class="indent2">' ],
-	[ '<code>    &lt;', '<code class="indent1">' ],
-	[ '</code><code class="string">', '' ],
-	[ '<code>    ', '<code class="indent1">' ],
-	[ '<code>Â </code>', '<code></code>' ],
-	[ '<code class="indent1">    ', '<code class="indent2">' ],
-	[ '<code class="indent2">    ', '<code class="indent3">' ],
-	[ '<h1></h1>', '' ],
-	[ '<h3 class="heading li3"><span>', '<h3>' ],
-	[ '<li class="li3\s*">', '<li>' ],
-	[ '<p class="li1">', '<p>' ],
-	[ '<p class="gh-header-title">', '<p>' ],
-	[ '<li class="p2\s*">', '<li>' ],
-	[ '<code>  ', '<code class="indent1">' ],
 ]);
-
 
 /**
  * 
@@ -159,15 +105,14 @@ async function generateReleaseNote(wikiFile, outputDir, options) {
 	// 	element.attr('href', modified);
 	// });
 
-	// Do our nasty find/replacements brute-force
-	// let wikiPage = node.html();
-	// console.log(wikiPage);
-	// for (const [key, value] of REPLACEMENTS) {
-	// 	const re = new RegExp(key, 'g');
-	// 	wikiPage = wikiPage.replace(re, value);
-	// }
+	// Combine </code><code> to become nothing!
+	let wikiPage = node.html();
+	for (const [key, value] of REPLACEMENTS) {
+		const re = new RegExp(key, 'g');
+		wikiPage = wikiPage.replace(re, value);
+	}
 
-	return fs.writeFile(outputFilePath, node.html());
+	return fs.writeFile(outputFilePath, wikiPage);
 }
 
 /**
