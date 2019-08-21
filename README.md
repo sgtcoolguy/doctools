@@ -16,9 +16,9 @@ unzip it, copy in redirects, "massage" the HTML, and generate the HTML contents 
 "guides" section of the [docs.appcelerator.com](https://docs.appcelerator.com) site.
 
 ```sh
-npm run wiki
+npm run wiki <username> <password>
 # This actually just delegates to the various scripts that do all the steps:
-npm run wiki:export
+npm run wiki:export -u <username> -p <password>
 npm run wiki:unzip
 npm run wiki:redirects
 npm run wiki:finalize
