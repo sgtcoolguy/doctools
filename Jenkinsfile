@@ -78,16 +78,16 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 		// Then checkout modules/sdk/alloy/arrow
 		stage('APIDocs Repos') {
 			// Alloy
-			sparseCheckout('alloy', ALLOY_BRANCH, [ 'Alloy/lib/', 'Alloy/builtins/', '!Alloy/builtins/moment.js', '!Alloy/builtins/moment/', 'docs/apidoc/' ])
+			sparseCheckout('appcelerator', 'alloy', ALLOY_BRANCH, [ 'Alloy/lib/', 'Alloy/builtins/', '!Alloy/builtins/moment.js', '!Alloy/builtins/moment/', 'docs/apidoc/' ])
 
 			// Titanium Mobile
-			sparseCheckout('titanium_mobile', SDK_BRANCH, [ 'apidoc/', 'package.json', 'package-lock.json' ])
+			sparseCheckout('appcelerator', 'titanium_mobile', SDK_BRANCH, [ 'apidoc/', 'package.json', 'package-lock.json' ])
 			dir('titanium_mobile') {
 				sh 'npm ci'
 			} // dir('titanium_mobile')
 
 			// Titanium Mobile Windows
-			sparseCheckout('titanium_mobile_windows', SDK_BRANCH, [ 'apidoc/', 'package.json', 'package-lock.json', 'Source' ])
+			sparseCheckout('appcelerator', 'titanium_mobile_windows', SDK_BRANCH, [ 'apidoc/', 'package.json', 'package-lock.json', 'Source' ])
 			dir('titanium_mobile_windows') {
 				sh 'npm ci'
 				dir('apidoc') {
@@ -98,14 +98,14 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 			} // dir('titanium_mobile_windows')
 
 			// Arrow
-			sparseCheckout('arrow', ARROW_BRANCH, [ 'apidoc/', 'lib/' ])
+			sparseCheckout('appcelerator', 'arrow', ARROW_BRANCH, [ 'apidoc/', 'lib/' ])
 
 			// Arrow ORM // FIXME Repository no longer exists!
 			// sparseCheckout('arrow-orm', ARROW_BRANCH, [ 'apidoc/', 'lib/' ])
 
 			// Check out a series of native modules
 			MODULES.each { mod ->
-				sparseCheckout(mod, 'master', [ 'apidoc/ '])
+				sparseCheckout('appcelerator-modules', mod, 'master', [ 'apidoc/ '])
 				moduleArgs += " ../${mod}/apidoc"
 			} // MODULES.each
 		} // stage('APIDocs Repos')
@@ -250,7 +250,7 @@ def getChangeString() {
     return changeString
 }
 
-def sparseCheckout(dirName, branchName, paths) {
+def sparseCheckout(orgName, dirName, branchName, paths) {
 	sh "mkdir -p ${dirName}"
 	dir(dirName) {
 		checkout(changelog: false,
@@ -264,7 +264,7 @@ def sparseCheckout(dirName, branchName, paths) {
 					[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: paths.collect { p -> [path: p] }]
 				],
 				submoduleCfg: [],
-				userRemoteConfigs: [[credentialsId: 'f63e8a0a-536e-4695-aaf1-7a0098147b59', url: "git@github.com:appcelerator/${dirName}.git", refspec: "+refs/heads/${branchName}:refs/remotes/origin/${branchName}"]]
+				userRemoteConfigs: [[credentialsId: 'f63e8a0a-536e-4695-aaf1-7a0098147b59', url: "git@github.com:${orgName}/${dirName}.git", refspec: "+refs/heads/${branchName}:refs/remotes/origin/${branchName}"]]
 			]
 		)
 	}
