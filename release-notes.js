@@ -1,55 +1,65 @@
 'use strict';
 
-const fs = require('fs-extra');
 const path = require('path');
 
+const fs = require('fs-extra');
 const cheerio = require('cheerio');
+
+/**
+ * Class attributes we drop from the final HTML
+ */
+const CLASSES_TO_REMOVE = [
+	'plain', 'line', 'value', 'external-link', 'document-link', 'comments', 'keyword', 'toc-indentation',
+	'confluenceTable', 'section', 'section-2', 'section-3', 'heading',
+];
 
 // Find/Replace content in the page
 // FIXME: This is very inefficent and likely does not work very well.
 // Can we come up with some more generalized substitutions?
 const REPLACEMENTS = new Map([
-	[ '<h2 class="heading "><span>', '<h1>' ],
-	[ '</span></h2>','</h1>' ],
-	[ '<h3 class="heading ">', '<h2>' ],
-	[ '</h3>', '</h2>' ],
-	[ '<h2><span>', '<h2>' ],
-	[ '</span></h2>', '</h2>' ],
-	[ '<li class=" ">    <p  >', '<li>' ],
+	// Drop "heading" class and wrapping spans on headers
+	[ '<h2 class="heading\s*"><span>([^<]+)</span></h2>', '<h2>$1</h2>' ],
+	[ '<h3 class="heading\s*"><span>([^<]+)</span></h3>', '<h3>$1</h3>' ],
+	// drop empty class attributes
+	[ '\s+class>', '' ],
+
+	// [ '<h2><span>', '<h2>' ],
+	// [ '</span></h2>', '</h2>' ],
+	[ '<li class="\s*">    <p  >', '<li>' ],
 	[ '</p>\n</li>', '</li>' ],
-	[ '<p  >', '<p>' ],
-	[ '<h4', '<h3' ],
-	[ '</h4>', '</h3>' ],
-	[ '<h5', '<h4' ],
-	[ '</h5>', '</h4>' ],
+	// [ '<p  >', '<p>' ],
+	// [ '<h4', '<h3' ],
+	// [ '</h4>', '</h3>' ],
+	// [ '<h5', '<h4' ],
+	// [ '</h5>', '</h4>' ],
 	[ '<div xmlns="http://www.w3.org/1999/xhtml" class="confbox programlisting scroll-unprocessed">', '<div>' ],
 	[ '<div class="defaultnew syntaxhighlighter">', '<div>' ],
-	[ ' class="plain"', '' ],
-	[ ' class="line"', '' ],
-	[ ' class="value"', '' ],
-	[ ' class="external-link external-link"', '' ],
-	[ ' class="section section-3 "', '' ],
-	[ ' class=" "', '' ],
-	[ '    </p>', '</p>' ],
-	[ '    </li>', '</li>' ],
-	[ ' class="toc-indentation "' ,'' ],
-	[ '  class="document-link "', '' ],
+	// [ '\s+class="plain"', '' ],
+	// [ '\s+class="line"', '' ],
+	// [ '\s+class="value"', '' ],
+	// [ '\s+class="external-link external-link"', '' ],
+	[ '\s+class="section section-3\s*"', '' ],
+	[ '\s+class="\s*"', '' ],
+	[ '\s+</p>', '</p>' ],
+	[ '\s+</li>', '</li>' ],
+	// [ '\s+class="toc-indentation\s*"' ,'' ],
+	// [ '\s+class="document-link\s*"', '' ],
 	[ '</p>\n<ul', '<ul'  ],
-	[ ' class="section section-4 "', '' ],
-	[ ' class="section section-5 "', '' ],
-	[ ' class="heading "', '' ],
-	[ ' class="comments"', '' ],
-	[ ' class="keyword"', '' ],
+	[ '\s+class="section section-4\s*"', '' ],
+	[ '\s+class="section section-5\s*"', '' ],
+	// [ '\s+class="heading\s*"', '' ],
+	// [ '\s+class="comments"', '' ],
+	// [ '\s+class="keyword"', '' ],
 	[ '<td  class="confluenceTh"', '<th  class="confluenceTh"' ],
 	[ '<li class="li1 ">    <p>', '<li>' ],
 	[ '</p>\n<ul>', '<ul>' ],
 	[ '    <p  class="p1">', '' ],
-	[ ' class="section section-2 "', '' ],
-	[ '<h3><span>', '<h3>' ],
-	[ '</span></h3>', '</h3>' ],
+	[ ' class="section section-2\s*"', '' ],
+	// [ '<h3><span>', '<h3>' ],
+	// [ '</span></h3>', '</h3>' ],
 	[ '  class="confluenceTh" rowspan="1" colspan="1"', '' ],
 	[ '  class="confluenceTd" rowspan="1" colspan="1"', '' ],
-	[ ' class="confluenceTable"', '' ],
+	// [ '\s+class="confluenceTable"', '' ],
 	[ '</code><code>', '' ],
 	[ '<code>            &lt;', '<code class="indent3">' ],
 	[ '<code>        &lt;', '<code class="indent2">' ],
@@ -61,15 +71,22 @@ const REPLACEMENTS = new Map([
 	[ '<code class="indent2">    ', '<code class="indent3">' ],
 	[ '<h1></h1>', '' ],
 	[ '<h3 class="heading li3"><span>', '<h3>' ],
-	[ '<li class="li3 ">', '<li>' ],
+	[ '<li class="li3\s*">', '<li>' ],
 	[ '<p class="li1">', '<p>' ],
 	[ '<p class="gh-header-title">', '<p>' ],
-	[ '<li class="p2 ">', '<li>' ],
+	[ '<li class="p2\s*">', '<li>' ],
 	[ '<code>  ', '<code class="indent1">' ],
 ]);
 
 
-async function generateReleaseNote(wikiFile, outputDir) {
+/**
+ * 
+ * @param {string} wikiFile filepath to wiki input file with release notes content
+ * @param {string} outputDir path to directroy generated release note html file shoudl be written
+ * @param {object} [options] options object
+ * @param {boolean} [options.force=false] whether to force overwriting existing release notes
+ */
+async function generateReleaseNote(wikiFile, outputDir, options) {
 	const basename = path.basename(wikiFile);
 	const end = basename.indexOf('_Release_Note.html');
 	let version = basename.slice('Titanium_SDK_'.length, end);
@@ -79,8 +96,8 @@ async function generateReleaseNote(wikiFile, outputDir) {
 	}
 
 	const outputFilePath = path.join(outputDir, `${version}.html`);
-	if (await fs.exists(outputFilePath)) {
-		console.log(`Expected release note file ${outputFilePath} already exists, skipping!`);
+	if (!options.force && await fs.exists(outputFilePath)) {
+		console.log(`Expected release note file ${outputFilePath} already exists, skipping! Provide --force option to overwrite`);
 		return;
 	}
 
@@ -101,7 +118,37 @@ async function generateReleaseNote(wikiFile, outputDir) {
 	node('head').append('<link type="text/css" rel="stylesheet" href="css/release_note.css" media="all">');
 
 	// Drop the ToC
-	node('ul.toc-indentation').remove();
+	node('ul.toc-indentation').first().remove();
+
+	// Drop the wrapping div.container (unwrap it)
+	const htmlContents = node('div.content').first().html();
+	node('body').html(htmlContents);
+
+	// Drop wrapping spans in h2/h3 heading class tags (we drop the "heading" class later)
+	node('.heading>span').each(function (i, elem) {
+		const innerHTML = node(this).text();
+		node(this).replaceWith(innerHTML);
+	});
+
+	// Convert td.confluenceTh to th tags
+	node('td.confluenceTh').each(function (i, elem) {
+		const innerHTML = node(this).html();
+		node(this).replaceWith(`<th>${innerHTML}</th>`);
+	});
+
+	// Replace td tags like this:
+	// <td class="confluenceTh" rowspan="1" colspan="1"></td>
+	// with empty <td> tag
+	node('td.confluenceTd[rowspan="1"][colspan="1"]').removeAttr('class').removeAttr('rowspan').removeAttr('colspan');
+
+	// Drop a whole bunch of class attributes we don't use!
+	for (const klass of CLASSES_TO_REMOVE) {
+		node(`.${klass}`).removeClass(klass);
+	}
+
+	// Drop empty class attributes
+	node('*[class=""]').removeAttr('class');
+
 
 	// Fix absolute links in the ToC with relative links
 	// TODO: Remove if we're dropping ToC now?
@@ -113,31 +160,39 @@ async function generateReleaseNote(wikiFile, outputDir) {
 	// });
 
 	// Do our nasty find/replacements brute-force
-	let wikiPage = node.html();
-	for (const [key, value] of REPLACEMENTS) {
-		const re = new RegExp(key, 'g');
-		wikiPage = wikiPage.replace(re, value);
-	}
+	// let wikiPage = node.html();
+	// console.log(wikiPage);
+	// for (const [key, value] of REPLACEMENTS) {
+	// 	const re = new RegExp(key, 'g');
+	// 	wikiPage = wikiPage.replace(re, value);
+	// }
 
-	return fs.writeFile(outputFilePath, wikiPage);
+	return fs.writeFile(outputFilePath, node.html());
 }
 
-async function main() {
+/**
+ * @param {string[]} args 
+ */
+async function main(args) {
 	const htmlGuidesDir = path.join(__dirname, 'wiki/htmlguides');
 	if (!await fs.exists(htmlGuidesDir)) {
 		throw new Error('This script expects an exported wiki under wiki/htmlguides. Please run `npm run wiki:export && npm run wiki:unzip` first.');
 	}
+	const force = args.includes('--force');
+	const options = {
+		force
+	};
 
 	const releaseNotesDir = path.join(__dirname, 'release-notes');
 	const files = await fs.readdir(htmlGuidesDir);
 	const titaniumSDKReleaseNotes = files.filter(f => f.startsWith('Titanium_SDK_') && f.endsWith('_Release_Note.html'));
 	return Promise.all(titaniumSDKReleaseNotes.map(filename => {
 		const filepath = path.join(htmlGuidesDir, filename);
-		return generateReleaseNote(filepath, releaseNotesDir);
+		return generateReleaseNote(filepath, releaseNotesDir, options);
 	}));
 }
 
-main().then(() => process.exit(0)).then(err => {
+main(process.argv.slice(2)).then(() => process.exit(0)).then(err => {
 	console.error(err);
 	process.exit(1);
 });
