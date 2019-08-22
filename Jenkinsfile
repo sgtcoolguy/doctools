@@ -220,8 +220,10 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 					// https://support.cloudbees.com/hc/en-us/articles/217630098-How-to-access-Changelogs-in-a-Pipeline-Job-
 					def changes = getChangeString()
 					writeFile file: 'commit.txt', text: "chore(release): update platform docs\n\n${changes}"
-					sh 'git commit -F commit.txt' // commit it!
-					pushGit(name: 'docs') // push 'docs' branch to github
+					def status = sh returnStatus: true, script: 'git commit -F commit.txt' // commit it!
+					if (status == 0) {
+						pushGit(name: 'docs') // push 'docs' branch to github
+					}
 				}
 			} // stage('Publish')
 		} // if 'docs' branch
