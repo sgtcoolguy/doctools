@@ -99,11 +99,11 @@ async function minifyTemplate() {
 	console.log('Rewriting CSS links in template files...');
 	// FIXME: These both clobber one another because they're dealing with same concatenated filename app.css
 	// await Promise.all([
-	// 	rewriteCSSLinks(path.join(JSDUCK_DIR, 'template-min/print-template.html')),
-	// 	rewriteCSSLinks(path.join(JSDUCK_DIR, 'template-min/index-template.html')),
+	// 	concatenateCSSAndJS(path.join(JSDUCK_DIR, 'template-min/print-template.html')),
+	// 	concatenateCSSAndJS(path.join(JSDUCK_DIR, 'template-min/index-template.html')),
 	// ]);
-	await rewriteCSSLinks(path.join(JSDUCK_DIR, 'template-min/print-template.html'));
-	await rewriteCSSLinks(path.join(JSDUCK_DIR, 'template-min/index-template.html'));
+	await concatenateCSSAndJS(path.join(JSDUCK_DIR, 'template-min/print-template.html'));
+	await concatenateCSSAndJS(path.join(JSDUCK_DIR, 'template-min/index-template.html'));
 
 	console.log('Concatenating CSS/JS in template.html...');
 	// Concatenate CSS and JS files referenced in template.html file
@@ -115,22 +115,16 @@ async function minifyTemplate() {
 	await Promise.all([
 		fs.remove(path.join(JSDUCK_DIR, 'template-min/app.js')),
 		fs.remove(path.join(JSDUCK_DIR, 'template-min/extjs-assets.zip')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/resources/codemirror')),
 		fs.remove(path.join(JSDUCK_DIR, 'template-min/resources/css/docs-ext.css')),
 		fs.remove(path.join(JSDUCK_DIR, 'template-min/resources/css/viewport.css')),
+		fs.remove(path.join(JSDUCK_DIR, 'template-min/resources/js')),
 		fs.remove(path.join(JSDUCK_DIR, 'template-min/resources/sass')),
-		fs.remove(path.join(JSDUCK_DIR, 'template-min/resources/codemirror')),
 		fs.remove(path.join(JSDUCK_DIR, 'template-min/resources/.sass-cache')),
 		fs.remove(path.join(JSDUCK_DIR, 'template-min/extjs/resources/css')),
 	]);
 	// Restore ext-all.css
 	await fs.copy(path.join(JSDUCK_DIR, 'template/extjs/resources/css/ext-all.css'), path.join(JSDUCK_DIR, 'template-min/extjs/resources/css/ext-all.css'));
-}
-
-async function rewriteCSSLinks(filePath) {
-	const dir = path.dirname(filePath);
-	let html = await fs.readFile(filePath, 'utf8');
-	html = await combineCSS(html, dir);
-	return fs.writeFile(filePath, html);
 }
 
 async function concatenateCSSAndJS(templateHTMLPath) {
