@@ -18,12 +18,12 @@ const ROOT_DIR = path.join(__dirname, '..');
 const JSDUCK_DIR = __dirname;
 const NEWLINE_PATTERN = /\r?\n/;
 
-const CSS_SECTION_PATTERN = /<!-- BEGIN CSS -->.*<!-- END CSS -->/s;
+const CSS_SECTION_PATTERN = /<!-- BEGIN CSS -->.*<!-- END CSS -->/sg;
 const STYLESHEET_LINK_PATTERN = /<link rel="stylesheet" href="(.*?)"/;
 
-const JS_SECTION_PATTERN = /<!-- BEGIN JS -->.*<!-- END JS -->/s;
+const JS_SECTION_PATTERN = /<!-- BEGIN JS -->.*?<!-- END JS -->/sg;
 const SCRIPT_LINK_PATTERN = /<script .* src="(.*)"(\s*\/)?>/;
-const SCRIPT_BLOCK_PATTERN = /<script .*>(.*)<\/script>/;
+const SCRIPT_BLOCK_PATTERN = /<script.*?>(.*)/s;
 
 async function compileSass() {
 	// TODO Use an npm package to compile the scss files!
@@ -85,6 +85,9 @@ async function senchaBuild() {
 	// ]);
 }
 
+/**
+ * Generates a minified version of the `template` directory under `template-min`
+ */
 async function minifyTemplate() {
 	// Minify the template!
 	await fs.remove(path.join(JSDUCK_DIR, 'template-min'));
@@ -92,6 +95,7 @@ async function minifyTemplate() {
 
 	await senchaBuild();
 
+	// TODO: concatenate both JS and CSS!
 	console.log('Rewriting CSS links in template files...');
 	// FIXME: These both clobber one another because they're dealing with same concatenated filename app.css
 	// await Promise.all([
@@ -137,11 +141,16 @@ async function concatenateCSSAndJS(templateHTMLPath) {
 	return fs.writeFile(templateHTMLPath, html);
 }
 
-// Reads in all CSS files referenced between BEGIN CSS and END CSS markers.
-// Deletes those input CSS files and writes out concatenated CSS to
-// resources/css/app.css
-// Finally replaces the CSS section with <link> to that one CSS file.
+/**
+ * Reads in all CSS files referenced between BEGIN CSS and END CSS markers.
+ * Deletes those input CSS tags and writes out concatenated CSS to
+ * resources/css/app.css, then minifies and hashes
+ * Finally replaces the CSS section with <link> to that one CSS file.
+ * @param {string} html original HTML contents
+ * @param {string} dir base directory to resolve files 
+ */
 async function combineCSS(html, dir) {
+	// TODO: Support multiple sections, like we do for JS!
 	const match = html.match(CSS_SECTION_PATTERN)[0];
 	// enforce we retain order
 	// FIXME: Instead of retaining order, sort by original asset filename?
@@ -181,14 +190,42 @@ async function md5Hash(contents) {
 	return shasum.digest('hex');
 }
 
-// Same thing for JavaScript, result is written to: app.js
-async function combineJS(html, dir) {
-	const match = html.match(JS_SECTION_PATTERN)[0];
-	// enforce we retain order
+/**
+ * An async compatible version of String.prototype.replace()
+ * @param {string} str original string we're running replace() on
+ * @param {RegExp} regex regular expression used
+ * @param {function} aReplacer function to do the replacements
+ */
+async function asyncStringReplace(str, regex, aReplacer) {
+    const substrs = [];
+    let restStr;
+	let match;
+	let i = 0;
+    while ((match = regex.exec(str)) !== null) {
+        // put non matching string
+        substrs.push(str.slice(i, match.index));
+        // call the async replacer function with the matched array spreaded
+        substrs.push(aReplacer(...match));
+        restStr = str.slice(i = regex.lastIndex);
+    }
+    // put the rest of str
+    substrs.push(restStr);
+    // wait for aReplacer calls to finish and join them back into string
+    return (await Promise.all(substrs)).join('');
+};
+
+/**
+ * Given a block of JS script tags, extracts the actual JS from the linked files (or the script tag contents)
+ * @param {string} dir base directory
+ * @param {string[]} lines lines of HTML in a block
+ */
+async function extractJS(dir, lines) {
+	// enforce we retain order (by using Promise.all, which retains order of input)
 	// FIXME: Instead of retaining order, sort by original asset filename?
 	// That way if we have the same set of assets we'll always return same result!
-	const js = (await Promise.all(
-		match.split(NEWLINE_PATTERN).map(async line => {
+	return (await Promise.all(
+		lines.map(async line => {
+			line = line.trim(); // trimm off leading/trailing newlines/spaces
 			const fileMatch = line.match(SCRIPT_LINK_PATTERN);
 			if (fileMatch) {
 				const file = fileMatch[1];
@@ -201,12 +238,28 @@ async function combineJS(html, dir) {
 			return undefined;
 		})
 	)).filter(val => val);
+}
 
-	const minified = await yuiCompress(js.join('\n'), 'js');
-	const hash = await md5Hash(minified);
-	const filename = path.join(dir, `app-${hash}.js`);
-	await fs.writeFile(filename, minified);
-	return html.replace(JS_SECTION_PATTERN, `<script type="text/javascript" src="${path.basename(filename)}"></script>`);
+/**
+ * Finds blocks of script tags between <!-- BEGIN JS --> and <!-- END JS --> comments,
+ * then concatenates all the actual code together, compresses it through yui,
+ * hashes the result and writes an app-<hash>.js file, replaces the block with a script tag pointing at it.
+ * 
+ * NOTE that this supports multiple blocks in a file. ONLY script tags must be inside of it!
+ * 
+ * @param {string} html original HTML contents
+ * @param {string} dir base directory to resolve files from
+ */
+async function combineJS(html, dir) {
+	return asyncStringReplace(html, JS_SECTION_PATTERN, async match => {
+		// the match is the entire block, now split by </script> tags
+		const js = await extractJS(dir, match.split(/<\/script>/g));
+		const minified = await yuiCompress(js.join('\n'), 'js');
+		const hash = await md5Hash(minified);
+		const filename = path.join(dir, `app-${hash}.js`); // FIXME: How can we use separate names for different sections?
+		await fs.writeFile(filename, minified);
+		return `<script type="text/javascript" src="${path.basename(filename)}"></script>`;
+	});
 }
 
 async function runJSDuck(outputDir, additionalDirs) {
