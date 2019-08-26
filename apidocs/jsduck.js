@@ -21,7 +21,7 @@ const NEWLINE_PATTERN = /\r?\n/;
 const CSS_SECTION_PATTERN = /<!-- BEGIN CSS -->.*<!-- END CSS -->/sg;
 const STYLESHEET_LINK_PATTERN = /<link rel="stylesheet" href="(.*?)"/;
 
-const JS_SECTION_PATTERN = /<!-- BEGIN JS -->.*?<!-- END JS -->/sg;
+const JS_SECTION_PATTERN = /<!-- BEGIN JS(:(\w+))? -->.*?<!-- END JS -->/sg;
 const SCRIPT_LINK_PATTERN = /<script .* src="(.*)"(\s*\/)?>/;
 const SCRIPT_BLOCK_PATTERN = /<script.*?>(.*)/s;
 
@@ -245,12 +245,15 @@ async function extractJS(dir, lines) {
  * @param {string} dir base directory to resolve files from
  */
 async function combineJS(html, dir) {
-	return asyncStringReplace(html, JS_SECTION_PATTERN, async match => {
-		// the match is the entire block, now split by </script> tags
-		const js = await extractJS(dir, match.split(/<\/script>/g));
+	return asyncStringReplace(html, JS_SECTION_PATTERN, async (match, blah, name) => {
+		// the match is the entire block
+		console.log(match);
+		console.log(name);
+		const js = await extractJS(dir, match.split(/<\/script>/g)); // now split by </script> tags
 		const minified = await yuiCompress(js.join('\n'), 'js');
 		const hash = await md5Hash(minified);
-		const filename = path.join(dir, `app-${hash}.js`); // FIXME: How can we use separate names for different sections?
+		name = name || 'app';
+		const filename = path.join(dir, `${name}-${hash}.js`);
 		await fs.writeFile(filename, minified);
 		return `<script type="text/javascript" src="${path.basename(filename)}"></script>`;
 	});
