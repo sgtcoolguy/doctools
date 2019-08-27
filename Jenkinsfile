@@ -37,9 +37,7 @@ def MODULES = [
 node('osx') { // Need to use osx, because our sencha command zip is for osx right now!
 	def SDK_DOC_DIR = '../titanium_mobile/apidoc'
 	def alloyDirs = '../alloy/Alloy/lib ../alloy/docs/apidoc ../alloy/Alloy/builtins'
-	def arrowDirs = '../arrow/apidoc ../arrow/lib/engines ../arrow/lib/api.js ../arrow/lib/arrow.js ../arrow/lib/block.js ../arrow/lib/middleware.js ../arrow/lib/router.js'
-	// FIXME: arrow-orm repo no longer exists!
-	// def arrowDirs = '../arrow-orm/apidoc ../arrow-orm/lib/connector/capabilities/index.js ../arrow-orm/lib/collection.js ../arrow-orm/lib/connector.js ../arrow-orm/lib/error.js ../arrow-orm/lib/instance.js ../arrow-orm/lib/model.js ../arrow/apidoc ../arrow/lib/engines ../arrow/lib/api.js ../arrow/lib/arrow.js ../arrow/lib/block.js ../arrow/lib/middleware.js ../arrow/lib/router.js'
+	def arrowDirs = '../arrow-orm/apidoc ../arrow-orm/lib/connector/capabilities/index.js ../arrow-orm/lib/collection.js ../arrow-orm/lib/connector.js ../arrow-orm/lib/error.js ../arrow-orm/lib/instance.js ../arrow-orm/lib/model.js ../arrow/apidoc ../arrow/lib/engines ../arrow/lib/api.js ../arrow/lib/arrow.js ../arrow/lib/block.js ../arrow/lib/middleware.js ../arrow/lib/router.js'
 	def windowsArgs = '-a ../titanium_mobile_windows/apidoc/WindowsOnly -a ../titanium_mobile_windows/apidoc/Titanium'
 	def moduleArgs = ''
 
@@ -100,8 +98,8 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 			// Arrow
 			sparseCheckout('appcelerator', 'arrow', ARROW_BRANCH, [ 'apidoc/', 'lib/' ])
 
-			// Arrow ORM // FIXME Repository no longer exists!
-			// sparseCheckout('arrow-orm', ARROW_BRANCH, [ 'apidoc/', 'lib/' ])
+			// Arrow ORM
+			sparseCheckout('appcelerator', 'arrow-orm', ARROW_BRANCH, [ 'apidoc/', 'lib/' ])
 
 			// Check out a series of native modules
 			MODULES.each { mod ->
