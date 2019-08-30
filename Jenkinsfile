@@ -115,7 +115,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 			// run docgen to generate build/titanium.js
 			stage('APIDocs') {
 				// First we generate APIdocs for titanium_mobile, modules, windows
-				sh "node ${SDK_DOC_DIR}/docgen.js -f jsduck -o ./build/ ${moduleArgs} ${windowsArgs}" // generates build/titanium.js
+				sh "npm run docgen -- -f jsduck -o ./build/ ${SDK_DOC_DIR} ${moduleArgs} ${windowsArgs}" // generates build/titanium.js
 				// TODO: Can we specify multiple formats at once and get solr output too? Looks like it does work (though the output for result filenames is busted and repeats last format)
 			} // stage('APIDocs')
 
@@ -132,7 +132,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				sh "mkdir -p ${outputDir}/../data/solr" // create output dir
 
 				// SDK search index
-				sh "node ${SDK_DOC_DIR}/docgen -f solr -o ./build/ ${moduleArgs} ${windowsArgs}"
+				sh "npm run docgen -- -f solr -o ./build/ ${SDK_DOC_DIR} ${moduleArgs} ${windowsArgs}"
 				sh "cp ./build/api_solr.json ${outputDir}/../data/solr/."
 
 				// Alloy search index
