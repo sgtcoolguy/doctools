@@ -2,21 +2,21 @@
 library 'pipeline-library'
 
 def isMainBranch = env.BRANCH_NAME.equals('docs')
-
-properties([
+def buildProperties = [
 	// Keep logs/reports/etc of last 30 builds, only keep build artifacts of last 3 builds
-	buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '3')),
-	// if we're on our main 'docs' branch, trigger a re-build if we have a new successful wiki export
-	if (isMainBranch) {
-		pipelineTriggers([
+	buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '3'))
+]
+// if on our main branch, trigger if a new wiki export happens
+if (isMainBranch) {
+	buildProperties << pipelineTriggers([
 			upstream(
 				threshold: 'SUCCESS',
 				upstreamProjects: '../wiki-export/master'
 			)
 		])
-	}
-])
+}
 
+properties(buildProperties)
 
 // Publish only on the 'docs' branch
 def publish = isMainBranch
