@@ -1,11 +1,25 @@
 #! groovy
 library 'pipeline-library'
 
-// Keep logs/reports/etc of last 30 builds, only keep build artifacts of last 3 builds
-properties([buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '3'))])
+def isMainBranch = env.BRANCH_NAME.equals('docs')
+
+properties([
+	// Keep logs/reports/etc of last 30 builds, only keep build artifacts of last 3 builds
+	buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '3')),
+	// if we're on our main 'docs' branch, trigger a re-build if we have a new successful wiki export
+	if (isMainBranch) {
+		pipelineTriggers([
+			upstream(
+				threshold: 'SUCCESS',
+				upstreamProjects: '../wiki-export/master'
+			)
+		])
+	}
+])
+
 
 // Publish only on the 'docs' branch
-def publish = env.BRANCH_NAME.equals('docs')
+def publish = isMainBranch
 
 // Variables to tune to grab different branches of products
 def SDK_BRANCH = 'master' // change to target branch to use for APIDoc generation: i.e. 7_4_X, master, 8_0_X
