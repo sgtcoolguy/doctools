@@ -1,0 +1,1141 @@
+<link type="text/css" rel="stylesheet" href="css/release_note.css" media="all">
+<h1>Titanium SDK 8.2.0.RC - 6 September 2019</h1>
+<div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-Aboutthisrelease">
+    <h2>About this release</h2>
+    <p>Titanium SDK 8.2.0 is a minor release of the SDK, addressing high-priority issues from previous releases.</p>
+    <p>As of this release, Titanium SDK 8.1.x.x will not receive updates more than six months after the release of 8.2.0
+        (current) (2020-03-06). Any needed fixes will be in 8.2.x or later supported releases within the 8.x branch. See
+        <a class="external-link "
+            href="https://wiki.appcelerator.org/display/guides2/Axway+Appcelerator+Deprecation+Policy">Axway
+            Appcelerator Deprecation Policy</a> and <a class="external-link "
+            href="https://wiki.appcelerator.org/display/guides2/Axway+Appcelerator+Product+Lifecycle#AxwayAppceleratorProductLifecycle-NominalLifetimes">Nominal
+            Lifetimes</a> documents for details.</p>
+    <div class="confbox admonition admonition-warning aui-message problem shadowed information-macro">
+        <p>With the release of Titanium SDK 9.0.0, we will no longer support Node.js 8.X. Node 10.2.0 will be the new
+            minimum supported version with SDK 9.0.0.</p>
+    </div>
+</div>
+<div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-NoticeoffeatureandbehaviorChanges">
+    <h2>Notice of feature and behavior Changes</h2>
+    <ul>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27114">TIMOB-27114</a> - iOS: Support iOS 13 and Xcode
+            11</li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27126">TIMOB-27126</a> - iOS 13: Support dark mode<ul>
+                <li>Added TiColor support for all color-setters</li>
+            </ul>
+            <ul>
+                <li>In iOS 13, Apple introduced support for users to adopt a system-wide Dark Mode setting where the
+                    screens, view, menus, and controls use a darker color palette. You can read more about this in the
+                    <a href="https://developer.apple.com/design/human-interface-guidelines/">Apple Human Interface
+                        Guidelines</a>. There are two aspects to dark mode that can be specified for your app: colors
+                    and images. To specify colors for dark mode, also known as semantic colors, first create a file
+                    called <tt>semantic.colors.json</tt> in the <tt>Resources</tt> directory for classic applications,
+                    or in the <tt>assets</tt> directory for Alloy applications. Then you can specify color names in the
+                    following format:</p>
+                    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                            class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+                            <div><code>{</code></div>
+                            <div><code class="indent1">"textColor": { // the name for your color</code></div>
+                            <div><code class="indent1">"dark": {</code></div>
+                            <div><code class="indent1">"color": "#ff85e2", // hex color code to be set</code></div>
+                            <div><code class="indent1">"alpha": "50.0" // can be set from a range of 0-100</code></div>
+                            <div><code class="indent1">},</code></div>
+                            <div><code class="indent1">"light": "#ff1f1f"</code></div>
+                            <div><code class="indent1">}</code></div>
+                            <div><code>}</code></div>
+                        </div>
+                    </div>
+                </li>
+                <li>To reference these colors in your application use the <a
+                        href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.fetchSemanticColor">Titanium.UI.fetchSemanticColor</a>
+                    API, this is a cross platform API that on iOS 13 and above will use the native method that checks
+                    the users system-wide setting, and in all other instances will check the <a
+                        href="https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.semanticColorType">Titanium.UI.semanticColorType</a>
+                    property and return the correct color for the current setting.</li>
+                <li>Note: Dark Mode images are iOS only.</li>
+                <li>To specify dark mode images, use the <tt>-dark</tt> suffix on the image name. When building your app
+                    the images are set as the dark mode variant, then refer to images as normal and iOS will select the
+                    correct image dependent on the users system-wide setting.</li>
+            </ul>
+            <ul>
+                <li>For example given an image <tt>logo.png</tt> with <tt>@2x</tt> and <tt>@3x</tt> variants, the
+                    following dark mode images should exist:</li>
+            
+                <ul>
+                    
+                    <li>logo-dark.png</li>
+                    <li>logo-dark@2x.png</li>
+                    <li>logo-dark@3x.png</li>    
+                </ul>
+            </ul>
+            
+            <ul>
+                <li>And you would reference the image as before using <tt>logo-dark.png</tt></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-Newfeatures">
+    <h2>New features</h2>
+    <ul>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-26566">TIMOB-26566</a> - iOS: Add ability to remove
+            previously added motion effects<ul>
+                <li>Added <tt>clearMotionEffects()</tt> method</li>
+            </ul>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27127">TIMOB-27127</a> - iOS 13 : Expose new APIs to
+            support Apple login<ul>
+                <li>Added <a
+                        href="https://docs.appcelerator.com/platform/latest/#!/api/Modules.Applesignin">ti.applesignin
+                        1.1.0</a> module</li>
+            </ul>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27133">TIMOB-27133</a> - iOS 13: Add support for SF
+            Symbols<ul>
+                <li>Added support for <a
+                        href="https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/">SF
+                        Symbols</a></li>
+                <li>
+                    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                            class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+                            <div><code>var win = Ti.UI.createWindow({</code></div>
+                            <div><code class="indent1">backgroundColor: '#fff'</code></div>
+                            <div><code>});</code></div>
+                            <div><code>var triangle = Ti.UI.iOS.systemImage('drop.triangle.fill');</code></div>
+                            <div><code>var forward = Ti.UI.iOS.systemImage('forward');</code></div>
+                            <div><code>var backward = Ti.UI.iOS.systemImage('backward');</code></div>
+                            <div><code>var folder = Ti.UI.iOS.systemImage('folder.fill');</code></div>
+                            <div><code> </code></div>
+                            <div><code>var imageView = Ti.UI.createImageView({</code></div>
+                            <div><code class="indent1">width: '150',</code></div>
+                            <div><code class="indent1">height: '150',</code></div>
+                            <div><code class="indent1">image: triangle,</code></div>
+                            <div><code class="indent1">tintColor: 'red'</code></div>
+                            <div><code>});</code></div>
+                            <div> </div>
+                            <div><code>var button = Ti.UI.createButton({</code></div>
+                            <div><code class="indent1">top: 60,</code></div>
+                            <div><code class="indent1">width: 100,</code></div>
+                            <div><code class="indent1">height: 50,</code></div>
+                            <div><code class="indent1">//backgroundImage: folder</code></div>
+                            <div><code class="indent1">image: folder</code></div>
+                            <div><code>})</code></div>
+                            <div><code> </code></div>
+                            <div><code>var stepper = Ti.UI.iOS.createStepper({</code></div>
+                            <div><code class="indent1">top: 150,</code></div>
+                            <div><code class="indent1">incrementImage: forward,</code></div>
+                            <div><code class="indent1">decrementImage: backward</code></div>
+                            <div><code>});</code></div>
+                            <div> </div>
+                            <div><code>win.add(button);</code></div>
+                            <div><code>win.add(stepper);</code></div>
+                            <div><code>win.add(imageView);</code></div>
+                            <div><code>win.open();</code></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27142">TIMOB-27142</a> - iOS 13 : Multiple row selection
+            in ListView<ul>
+                <li>Added multiple row selection support in ListView and TableView</li>
+                <li>
+                    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                        <div class="title">Ti.UI.ListView</div>
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                            class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Ti.UI.ListView">
+                            <div><code>var win = Ti.UI.createWindow({</code></div>
+                            <div><code class="indent1">backgroundColor: '#fff'</code></div>
+                            <div><code>});</code></div>
+                            <div><code> </code></div>
+                            <div><code>var nav = Ti.UI.createNavigationWindow({ </code></div>
+                            <div><code class="indent1">window: win,</code></div>
+                            <div><code> });</code></div>
+                            <div><code> </code></div>
+                            <div><code> var items = [];</code></div>
+                            <div><code> for (var i = 0; i &lt; 20; i++) {</code></div>
+                            <div><code class="indent1">items.push({</code></div>
+                            <div><code class="indent3">properties: {</code></div>
+                            <div><code class="indent3"> title: 'Item ' + i,</code></div>
+                            <div><code class="indent3"> canEdit: true,</code></div>
+                            <div><code class="indent3">}</code></div>
+                            <div><code class="indent2">});</code></div>
+                            <div><code class="indent1">}</code></div>
+                            <div><code> </code></div>
+                            <div><code>var list = Ti.UI.createListView({</code></div>
+                            <div><code class="indent1">allowsMultipleSelectionDuringEditing: true,</code></div>
+                            <div><code class="indent1">allowsMultipleSelectionInteraction: true,</code></div>
+                            <div><code class="indent1">sections: [Ti.UI.createListSection({</code></div>
+                            <div><code class="indent3"> items: items</code></div>
+                            <div><code class="indent3">})]</code></div>
+                            <div><code>})</code></div>
+                            <div><code> </code></div>
+                            <div><code> list.addEventListener('itemclick', function(e) {</code></div>
+                            <div><code class="indent1">Ti.API.info('click at index: ' + e.itemIndex); </code></div>
+                            <div><code>})</code></div>
+                            <div><code> </code></div>
+                            <div><code> list.addEventListener("delete", function(e){</code></div>
+                            <div><code class="indent1">Ti.API.info("Deleted Row Index is is: " +e.itemIndex);</code>
+                            </div>
+                            <div><code class="indent1">Ti.API.info("Deleted Section Index is is: "
+                                    +e.sectionIndex);</code></div>
+                            <div><code> </code></div>
+                            <div><code> });</code></div>
+                            <div><code> </code></div>
+                            <div><code class="indent1">list.addEventListener("itemsselected", function(e){</code></div>
+                            <div><code class="indent1">Ti.API.info("Selected Item count is: "
+                                    +e.selectedItems.length);</code></div>
+                            <div><code> </code></div>
+                            <div><code> </code></div>
+                            <div><code class="indent1">var dialog = Ti.UI.createAlertDialog({</code></div>
+                            <div><code class="indent1">buttonNames: ['Change Color', 'Cancel'],</code></div>
+                            <div><code class="indent1">message: 'Would you like to change title color of selected
+                                    rows?',</code></div>
+                            <div><code class="indent1">});</code></div>
+                            <div><code> </code></div>
+                            <div><code class="indent1">dialog.addEventListener('click', function(f) {</code></div>
+                            <div><code class="indent1">if (f.index === 1) {</code></div>
+                            <div><code class="indent1"> list.editing = false;</code></div>
+                            <div><code class="indent1">} else {</code></div>
+                            <div><code class="indent2">for (var i = 0; i &lt; e.selectedItems.length; i++) { </code>
+                            </div>
+                            <div><code class="indent3">var rowObject = e.selectedItems[i];</code></div>
+                            <div><code class="indent3">var item =
+                                    rowObject.section.getItemAt(rowObject.itemIndex)</code></div>
+                            <div><code class="indent3">item.properties.color = 'green';</code></div>
+                            <div><code class="indent3">rowObject.section.updateItemAt(rowObject.itemIndex, item);</code>
+                            </div>
+                            <div><code class="indent2">}</code></div>
+                            <div><code class="indent2">list.editing = false;</code></div>
+                            <div><code class="indent1">}</code></div>
+                            <div><code class="indent1">});</code></div>
+                            <div><code> dialog.show();</code></div>
+                            <div><code> </code></div>
+                            <div><code>});</code></div>
+                            <div><code> </code></div>
+                            <div><code>win.add(list);</code></div>
+                            <div><code>nav.open();</code></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-Communitycredits">
+    <h2>Community credits</h2>
+    <ul>
+        <li>VDLP - <a href="https://jira.appcelerator.org/browse/TIMOB-27207">TIMOB-27207</a></li>
+        <li>Christy Thomas - <a href="https://jira.appcelerator.org/browse/TIMOB-24171">TIMOB-24171</a></li>
+        <li>Fabian Martinez - <a href="https://jira.appcelerator.org/browse/TIMOB-27205">TIMOB-27205</a></li>
+        <li>Sergey Volkov - <a href="https://jira.appcelerator.org/browse/TIMOB-27234">TIMOB-27234</a></li>
+        <li>Hans Kn&ouml;chel - <a href="https://jira.appcelerator.org/browse/TIMOB-27263">TIMOB-27263</a>, <a
+                href="https://jira.appcelerator.org/browse/TIMOB-27367">TIMOB-27367</a>, <a
+                href="https://jira.appcelerator.org/browse/TIMOB-27169">TIMOB-27169</a>, <a
+                href="https://jira.appcelerator.org/browse/TIMOB-27171">TIMOB-27171</a>, <a
+                href="https://jira.appcelerator.org/browse/TIMOB-27209">TIMOB-27209</a></li>
+    </ul>
+</div>
+<div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-Fixedissues">
+    <h2>Fixed issues</h2>
+    <ul>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-24171">TIMOB-24171</a> - iOS: AccessibilityLabel or
+            AccessibilityValue does not work.</li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27195">TIMOB-27195</a> - iOS: Using a commonjs module in
+            an itemtemplate fails in a classic app</li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27205">TIMOB-27205</a> - Webview http redirects not
+            working as on 7.5.1</li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27234">TIMOB-27234</a> - iOS: VideoPlayer natural size
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27263">TIMOB-27263</a> - iOS 13: Modal windows with
+            large titles do not honor barColor</li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27292">TIMOB-27292</a> - iOS: App crashes on startup on
+            iOS 9</li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27351">TIMOB-27351</a> - iOS: Unit tests failing on
+            Xcode 11 / iOS 13</li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27360">TIMOB-27360</a> - Watch app does not get
+            installed on the watch with watch OS 6.0 &amp; IOS 13 <span style="color: #ffcc00;">
+                <br /> </span>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27367">TIMOB-27367</a> - iOS: Apps can be rejected when
+            including UIWebView refs</li>
+    </ul>
+</div>
+<div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-Improvements">
+    <h2>Improvements</h2>
+    <ul>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-26573">TIMOB-26573</a> - TiAPI: Make Ti.Buffer
+            Node-compatible with Node's Buffer type<ul>
+                <li>Added Node.js compatible Buffer module</li>
+            </ul>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27125">TIMOB-27125</a> - iOS 13: Make iOS
+            development-project compatible with Xcode 11<ul>
+                <li>Added support for Xcode 11 and iOS 13 development environment</li>
+            </ul>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27163">TIMOB-27163</a> - iOS: Update Xcode project
+            template settings and resolve warnings<ul>
+                <li>Resolved project warnings for missing method selectors, nullability flags, and strict prototypes
+                </li>
+            </ul>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27169">TIMOB-27169</a> - iOS 13: Prevent modal windows
+            from being swiped down<ul>
+                <li>Added support to prevent modal windows from being swiped down</li>
+                <li>
+                    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                            class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+                            <div><code>var window1 = Ti.UI.createWindow({</code></div>
+                            <div><code class="indent1">title: "Modal Window",</code></div>
+                            <div><code class="indent1">backgroundColor: 'white'</code></div>
+                            <div><code>});</code></div>
+                            <div><code> </code></div>
+                            <div><code>var win = Ti.UI.createNavigationWindow({ window: window1 });</code></div>
+                            <div><code> </code></div>
+                            <div><code>var button1 = Ti.UI.createButton({ title: 'Open Window' });</code></div>
+                            <div><code> </code></div>
+                            <div><code>window1.add(button1);</code></div>
+                            <div><code> </code></div>
+                            <div><code>win.open();</code></div>
+                            <div><code> </code></div>
+                            <div><code>var window2 = Ti.UI.createWindow({ backgroundColor: 'blue' });</code></div>
+                            <div><code> </code></div>
+                            <div><code>var button2 = Ti.UI.createButton({ title: 'Close Window' });</code></div>
+                            <div><code> </code></div>
+                            <div><code>window2.add(button2);</code></div>
+                            <div><code> </code></div>
+                            <div><code>button1.addEventListener('click', function(e){</code></div>
+                            <div><code class="indent1">window2.open({</code></div>
+                            <div><code class="indent1">modal:true,</code></div>
+                            <div><code class="indent1">forceModal: true</code></div>
+                            <div><code class="indent1">});</code></div>
+                            <div><code>});</code></div>
+                            <div><code> </code></div>
+                            <div><code>button2.addEventListener('click', function(e){</code></div>
+                            <div><code class="indent1">window2.close();</code></div>
+                            <div><code>});</code></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27171">TIMOB-27171</a> - iOS 13: Support new
+            UITableViewStyleInsetGrouped style in list-view<ul>
+                <li>Added support for UITableViewStyleInsetGrouped style in ListView</li>
+            </ul>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27209">TIMOB-27209</a> - iOS: Be able to determine dark
+            / light mode, as well as changes on it<ul>
+                <li>Added feature that allows for detection of dark and light mode</li>
+                <li>
+                    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                            class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+                            <div><code>var currentStyle = Ti.App.iOS.userInterfaceStyle;</code></div>
+                            <div><code> </code></div>
+                            <div><code>console.log('Initial style:' + formattedUserInterfaceStyle(currentStyle));</code>
+                            </div>
+                            <div><code> </code></div>
+                            <div><code>var win = Ti.UI.createWindow({</code></div>
+                            <div><code class="indent1">backgroundColor: '#fff'</code></div>
+                            <div><code>});</code></div>
+                            <div><code> </code></div>
+                            <div><code>var btn = Ti.UI.createButton({</code></div>
+                            <div><code class="indent1">title: 'Check User Interface Style'</code></div>
+                            <div><code>});</code></div>
+                            <div><code> </code></div>
+                            <div><code>btn.addEventListener('click', function() {</code></div>
+                            <div><code class="indent1">Ti.API.info('User Interface Style: ' +
+                                    formattedUserInterfaceStyle(currentStyle));</code></div>
+                            <div><code>});</code></div>
+                            <div><code> </code></div>
+                            <div><code>Ti.App.iOS.addEventListener('traitcollectionchange', function (event) {</code>
+                            </div>
+                            <div><code class="indent1">if (currentStyle !== Ti.App.iOS.userInterfaceStyle) {</code>
+                            </div>
+                            <div><code class="indent2">currentStyle = Ti.App.iOS.userInterfaceStyle;</code></div>
+                            <div><code class="indent2">Ti.API.info('User Interface Style changed: ' +
+                                    formattedUserInterfaceStyle(currentStyle));</code></div>
+                            <div><code class="indent1">}</code></div>
+                            <div><code>});</code></div>
+                            <div><code> </code></div>
+                            <div><code>win.add(btn);</code></div>
+                            <div><code>win.open();</code></div>
+                            <div><code> </code></div>
+                            <div><code>function formattedUserInterfaceStyle(style) {</code></div>
+                            <div><code class="indent1">switch (style) {</code></div>
+                            <div><code class="indent2">case Ti.App.iOS.USER_INTERFACE_STYLE_LIGHT: return
+                                    'Light';</code></div>
+                            <div><code class="indent2">case Ti.App.iOS.USER_INTERFACE_STYLE_DARK: return 'Dark';</code>
+                            </div>
+                            <div><code class="indent1">}</code></div>
+                            <div><code> </code></div>
+                            <div><code class="indent1">return 'Unspecified';</code></div>
+                            <div><code>}</code></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27273">TIMOB-27273</a> - iOS 13: Support new type of
+            status bar style UIStatusBarStyleDarkContent<ul>
+                <li>Added support for UIStatusBarStyleDarkContent</li>
+                <li>
+                    <div class="confbox programlisting defaultnew syntaxhighlighter scroll-html-formatted-code">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                            class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+                            <div><code>var win = Ti.UI.createWindow({</code></div>
+                            <div><code class="indent1">backgroundColor: 'white',</code></div>
+                            <div><code class="indent1">statusBarStyle: Ti.UI.iOS.StatusBar.DARK_CONTENT</code></div>
+                            <div><code>});</code></div>
+                            <div><code> </code></div>
+                            <div><code>var btn = Ti.UI.createButton({ title: 'Trigger' });</code></div>
+                            <div><code> </code></div>
+                            <div><code>btn.addEventListener('click', function() {</code></div>
+                            <div><code class="indent1">Ti.API.info('Hello world!');</code></div>
+                            <div><code class="indent1">Ti.API.info(Ti.UI.iOS.StatusBar.DARK_CONTENT);</code></div>
+                            <div><code>});</code></div>
+                            <div><code> </code></div>
+                            <div><code>win.add(btn);</code></div>
+                            <div><code>win.open(); </code></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27310">TIMOB-27310</a> - iOS 13: Support new type of
+            UIBlurEffectStyle constants<ul>
+                <li>Added support for UIBlurEffectStyle</li>
+            </ul>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27318">TIMOB-27318</a> - iOS: Use swift 5 for apple
+            watch template<ul>
+                <li>Updated Swift to version 5 for Apple watch template</li>
+            </ul>
+        </li>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27358">TIMOB-27358</a> - iOS: Support Apple Developer
+            certificates<ul>
+                <li>Added support for generic Apple certificates</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-Knownissues">
+    <h2>Known issues</h2>
+    <ul>
+        <li><a href="https://jira.appcelerator.org/browse/TIMOB-27362">TIMOB-27362</a> - Hyperloop example with Xcode 11
+            throws error on pod<ul>
+                <li>Building the Pods project with <tt>xcodebuild</tt> from Xcode 11 fails if
+                    <tt>project.xcworkspace/contents.xcworkspacedata</tt> is not present</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-APIchanges">
+    <h2>API changes</h2>
+    <div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-NewAPIs">
+        <h3>New APIs</h3>
+        <p>The following APIs are new or have expanded platform support in release 8.2.0.</p>
+        <div class="tablewrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <p>API</p>
+                            </td>
+                        <th>
+                            <p>Type</p>
+                            </td>
+                        <th>
+                            <p>Notes</p>
+                            </td>
+                    </tr>
+                </thead>
+                <tfoot></tfoot>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Titanium.App.iOS.USER_INTERFACE_STYLE_DARK</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>A dark interface style. (New API, supported on iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.App.iOS.USER_INTERFACE_STYLE_LIGHT</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>A light interface style. (New API, supported on iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.App.iOS.USER_INTERFACE_STYLE_UNSPECIFIED</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>An unspecified interface style. (New API, supported on iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.App.iOS.getUserInterfaceStyle</p>
+                        </td>
+                        <td>
+                            <p>method</p>
+                        </td>
+                        <td>
+                            <p>Access Titanium.App.iOS.userInterfaceStyle instead.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.App.iOS.traitcollectionchange</p>
+                        </td>
+                        <td>
+                            <p>event</p>
+                        </td>
+                        <td>
+                            <p>Fired when the trait collection of the device changes, e.g. the user interface style.
+                                (New API, supported on iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.App.iOS.userInterfaceStyle</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>The style associated with the user interface. (New API, supported on iPhone and iPad.)
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.ListView.allowsMultipleSelectionInteraction</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Allows a two-finger pan gesture to automatically transition the table view into editing
+                                mode and start selecting rows. (New API, supported on iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.ListView.getAllowsMultipleSelectionInteraction</p>
+                        </td>
+                        <td>
+                            <p>method</p>
+                        </td>
+                        <td>
+                            <p>Access Titanium.UI.ListView.allowsMultipleSelectionInteraction instead.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.ListView.itemsselected</p>
+                        </td>
+                        <td>
+                            <p>event</p>
+                        </td>
+                        <td>
+                            <p>Fired when user stops two-pan gesture interaction for selecting multiple items.It is used
+                                with Titanium.UI.ListView.allowsMultipleSelectionInteraction.(New API, supported on
+                                iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.ListView.setAllowsMultipleSelectionInteraction</p>
+                        </td>
+                        <td>
+                            <p>method</p>
+                        </td>
+                        <td>
+                            <p>Set the value using Titanium.UI.ListView.allowsMultipleSelectionInteraction instead.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.SEMANTIC_COLOR_TYPE_DARK</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Return the dark value from the applications colorset (New API, supported on Android,
+                                iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.SEMANTIC_COLOR_TYPE_LIGHT</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Return the light value from the applications colorset. (New API, supported on Android,
+                                iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.TableView.allowsMultipleSelectionDuringEditing</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Determines whether multiple items of this table view can be selected at the same time
+                                while editing the table. (New API, supported on iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.TableView.allowsMultipleSelectionInteraction</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Allows a two-finger pan gesture to automatically transition the table view into editing
+                                mode and start selecting rows. (New API, supported on iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.TableView.getAllowsMultipleSelectionDuringEditing</p>
+                        </td>
+                        <td>
+                            <p>method</p>
+                        </td>
+                        <td>
+                            <p>Access Titanium.UI.TableView.allowsMultipleSelectionDuringEditing instead.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.TableView.getAllowsMultipleSelectionInteraction</p>
+                        </td>
+                        <td>
+                            <p>method</p>
+                        </td>
+                        <td>
+                            <p>Access Titanium.UI.TableView.allowsMultipleSelectionInteraction instead.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.TableView.rowsselected</p>
+                        </td>
+                        <td>
+                            <p>event</p>
+                        </td>
+                        <td>
+                            <p>Fired when user stops two-pan gesture interaction for selecting multiple rows.It is used
+                                in conjunction with Titanium.UI.TableView.allowsMultipleSelectionInteraction.(New API,
+                                supported on iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.TableView.setAllowsMultipleSelectionDuringEditing</p>
+                        </td>
+                        <td>
+                            <p>method</p>
+                        </td>
+                        <td>
+                            <p>Set the value using Titanium.UI.TableView.allowsMultipleSelectionDuringEditing instead.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.TableView.setAllowsMultipleSelectionInteraction</p>
+                        </td>
+                        <td>
+                            <p>method</p>
+                        </td>
+                        <td>
+                            <p>Set the value using Titanium.UI.TableView.allowsMultipleSelectionInteraction instead.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.View.clearMotionEffects</p>
+                        </td>
+                        <td>
+                            <p>method</p>
+                        </td>
+                        <td>
+                            <p>Removes all previously added motion effects. (New API, supported on iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.fetchSemanticColor</p>
+                        </td>
+                        <td>
+                            <p>method</p>
+                        </td>
+                        <td>
+                            <p>Fetches the correct color to be used with a UI element dependent on the users current
+                                dark mode setting on iOS 13 and above, or the Titanium.UI.semanticColorType setting in
+                                other instances.(New API, supported on Android, iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.getSemanticColorType</p>
+                        </td>
+                        <td>
+                            <p>method</p>
+                        </td>
+                        <td>
+                            <p>Access Titanium.UI.semanticColorType instead.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_CHROME_MATERIAL</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_CHROME_MATERIAL_DARK</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_CHROME_MATERIAL_LIGHT</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_MATERIAL</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_MATERIAL_DARK</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_MATERIAL_LIGHT</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_THICK_MATERIAL</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_THICK_MATERIAL_DARK</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_THICK_MATERIAL_LIGHT</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_THIN_MATERIAL</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_THIN_MATERIAL_DARK</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_THIN_MATERIAL_LIGHT</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_ULTRA_THIN_MATERIAL</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_ULTRA_THIN_MATERIAL_DARK</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.BLUR_EFFECT_STYLE_SYSTEM_ULTRA_THIN_MATERIAL_LIGHT</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>Use with BlurView.effect to specify a blur effect.(New API, supported on iPhone and
+                                iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.TableViewStyle.INSET_GROUPED</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>A table view whose sections present distinct groups of rows and grouped sections are
+                                inset with rounded corners.The section headers and footers do not float.(New API,
+                                supported on iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.iOS.systemImage</p>
+                        </td>
+                        <td>
+                            <p>method</p>
+                        </td>
+                        <td>
+                            <p>Get image from SF Symbols provided by Apple.(New API, supported on iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.semanticColorType</p>
+                        </td>
+                        <td>
+                            <p>property</p>
+                        </td>
+                        <td>
+                            <p>When running on Android, iOS 10 or lower, or Windows the value to return form the
+                                applications colorset. (New API, supported on Android, iPhone and iPad.)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Titanium.UI.setSemanticColorType</p>
+                        </td>
+                        <td>
+                            <p>method</p>
+                        </td>
+                        <td>
+                            <p>Set the value using Titanium.UI.semanticColorType instead.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-SDKmodulesversions">
+    <h2>SDK modules versions</h2>
+    <div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-AndroidandiOS">
+        <h3>Android and iOS</h3>
+        <div class="tablewrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <p>Module</p>
+                            </td>
+                        <th>
+                            <p>Android version</p>
+                            </td>
+                        <th>
+                            <p>iOS version</p>
+                            </td>
+                    </tr>
+                </thead>
+                <tfoot></tfoot>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>urlSession</p>
+                        </td>
+                        <td>
+                            <p>n/a</p>
+                        </td>
+                        <td>
+                            <p>2.2.0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>facebook</p>
+                        </td>
+                        <td>
+                            <p>8.0.0</p>
+                        </td>
+                        <td>
+                            <p>6.0.0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>ti_coremotion</p>
+                        </td>
+                        <td>
+                            <p>n/a</p>
+                        </td>
+                        <td>
+                            <p>2.0.1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>ti_map</p>
+                        </td>
+                        <td>
+                            <p>4.3.1</p>
+                        </td>
+                        <td>
+                            <p>3.1.2</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>ti_safaridialog</p>
+                        </td>
+                        <td>
+                            <p>n/a</p>
+                        </td>
+                        <td>
+                            <p>1.1.1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>ti_webdialog</p>
+                        </td>
+                        <td>
+                            <p>1.1.0</p>
+                        </td>
+                        <td>
+                            <p>1.1.0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>ti_touchid</p>
+                        </td>
+                        <td>
+                            <p>3.0.1</p>
+                        </td>
+                        <td>
+                            <p>2.1.4</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>ti_identity</p>
+                        </td>
+                        <td>
+                            <p>2.1.0</p>
+                        </td>
+                        <td>
+                            <p>1.0.6</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>ti_cloudpush</p>
+                        </td>
+                        <td>
+                            <p>6.0.1</p>
+                        </td>
+                        <td>
+                            <p>n/a</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>ti_playservices</p>
+                        </td>
+                        <td>
+                            <p>16.1.3</p>
+                        </td>
+                        <td>
+                            <p>n/a</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-CommonJS">
+        <h3>CommonJS</h3>
+        <div class="tablewrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <p>Module</p>
+                            </td>
+                        <th>
+                            <p>Version</p>
+                            </td>
+                    </tr>
+                </thead>
+                <tfoot></tfoot>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>ti.cloud</p>
+                        </td>
+                        <td>
+                            <p>3.2.11</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="src-60145652_TitaniumSDK8.2.0.RCReleaseNote-Hyperloop">
+        <h3>Hyperloop</h3>
+        <div class="tablewrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <p>Module</p>
+                            </td>
+                        <th>
+                            <p>Version</p>
+                            </td>
+                    </tr>
+                </thead>
+                <tfoot></tfoot>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Hyperloop</p>
+                        </td>
+                        <td>
+                            <p>4.0.3</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
