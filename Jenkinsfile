@@ -95,13 +95,11 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 
 			// Titanium Mobile
 			sparseCheckout('appcelerator', 'titanium_mobile', SDK_BRANCH, [ 'apidoc/', 'package.json', 'package-lock.json' ])
-			dir('titanium_mobile') {
-				sh 'npm ci'
-			} // dir('titanium_mobile')
 
 			// Titanium Mobile Windows
 			sparseCheckout('appcelerator', 'titanium_mobile_windows', SDK_BRANCH, [ 'apidoc/', 'package.json', 'package-lock.json', 'Source' ])
 			dir('titanium_mobile_windows') {
+				// generate more apidocs on demand...
 				sh 'npm ci'
 				dir('apidoc') {
 					sh 'node ti_win_yaml'
