@@ -162,6 +162,15 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				// 	sh 'bundle exec jsduck --export full --meta-tags ./meta --pretty-json -o - ../../arrow-orm/apidoc ../../arrow-orm/lib/collection.js ../../arrow-orm/lib/connector.js ../../arrow-orm/lib/error.js ../../arrow-orm/lib/instance.js ../../arrow-orm/lib/model.js ../../arrow-orm/lib/connector/capabilities/index.js ../../arrow/apidoc ../../arrow/lib/engines ../../arrow/lib/api.js ../../arrow/lib/arrow.js ../../arrow/lib/block.js ../../arrow/lib/middleware.js ../../arrow/lib/router.js > ./build/arrow.json'
 				// }
 				// sh "node apidocs/jsduck2json/alloy2solr.js ./build/arrow.json ${outputDir}/../data/solr/arrow_api.json"
+
+				// Upload the solr index files to the server!
+				if (publish) {
+					// TODO: Do we really need to retain the solr json files in appc_web_docs, then?
+					sh 'npm run solr:upload -- ${outputDir}/../data/solr/arrow_api.json'
+					sh 'npm run solr:upload -- ${outputDir}/../data/solr/alloy_api.json'
+					sh 'npm run solr:upload -- ${outputDir}/../data/solr/api_solr.json'
+					sh 'npm run solr:upload -- build/guides/guides.json'
+				}
 			} // stage('Solr')
 
 			// assemble final contents of dist/platform/latest
