@@ -166,9 +166,9 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				// Upload the solr index files to the server!
 				if (publish) {
 					// TODO: Do we really need to retain the solr json files in appc_web_docs, then?
-					sh 'npm run solr:upload -- ${outputDir}/../data/solr/arrow_api.json'
-					sh 'npm run solr:upload -- ${outputDir}/../data/solr/alloy_api.json'
-					sh 'npm run solr:upload -- ${outputDir}/../data/solr/api_solr.json'
+					sh "npm run solr:upload -- ${outputDir}/../data/solr/arrow_api.json"
+					sh "npm run solr:upload -- ${outputDir}/../data/solr/alloy_api.json"
+					sh "npm run solr:upload -- ${outputDir}/../data/solr/api_solr.json"
 					sh 'npm run solr:upload -- build/guides/guides.json'
 				}
 			} // stage('Solr')
