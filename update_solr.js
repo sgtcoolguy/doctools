@@ -1,15 +1,15 @@
 // Just use normal API here: https://lucene.apache.org/solr/guide/6_6/uploading-data-with-index-handlers.html#uploading-data-with-index-handlers
 // We should be able to just POST to:
-// http://35.162.89.194:8983/solr/#/appc_doc/update/json/docs?json.command=false
+// http://34.214.104.105:8983/solr/#/appc_doc/update/json/docs?json.command=false
 // with Content-Type: application/json
 // overwrite should default to true
-// curl 'http://35.162.89.194:8983/solr/appc_doc/update/json/docs?json.command=false' --data-binary @dist/solr.json -H 'Content-type:application/json'
+// curl 'http://34.214.104.105:8983/solr/appc_doc/update/json/docs?json.command=false' --data-binary @dist/solr.json -H 'Content-type:application/json'
 
 const path = require('path');
 const fs = require('fs-extra');
 const axios = require('axios');
 
-const BASE_URL = 'http://35.162.89.194:8983/solr/appc_doc';
+const BASE_URL = 'http://34.214.104.105:8983/solr/appc_doc';
 const workingDir = process.cwd();
 
 async function uploadFile(file) {
