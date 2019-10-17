@@ -9,7 +9,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const axios = require('axios');
 
-const BASE_URL = 'http://34.214.104.105:8983/solr/appc_doc';
+const BASE_URL = require('./constants').BASE_URL;
 const workingDir = process.cwd();
 
 /**

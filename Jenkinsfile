@@ -169,8 +169,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 					sh "npm run solr:upload -- ${outputDir}/../data/solr/arrow_api.json"
 					sh "npm run solr:upload -- ${outputDir}/../data/solr/alloy_api.json"
 					sh "npm run solr:upload -- ${outputDir}/../data/solr/api_solr.json"
-					// FIXME: This is not right!
-					sh 'npm run solr:upload -- build/guides/guides.json'
+					sh 'npm run solr:guides'
 				}
 			} // stage('Solr')
 
