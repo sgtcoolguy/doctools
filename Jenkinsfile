@@ -45,6 +45,7 @@ def MODULES = [
 	'titanium-web-dialog',
 	// 'ti.systemalert', // Removed since it has no apidoc folder
 	'appcelerator.aca',
+	// 'ti.barcode', // TODO: add once https://github.com/appcelerator-modules/ti.barcode/pull/112 is merged
 	'titanium-apple-sign-in'
 ]
 
@@ -122,6 +123,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 		} // stage('APIDocs Repos')
 
 		dir('doctools') {
+			sh 'mkdir -p dist'
 			def outputDir = './dist/platform/latest'
 
 			// run docgen to generate build/titanium.js
@@ -155,7 +157,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 
 				// Arrow Search Index
 				// Looks like we just have a static version of arrow's output already?
-				sh "cp ./dist/solr.json ${outputDir}/../data/solr/arrow_api.json"
+				sh "cp ./solr/arrow_api.json ${outputDir}/../data/solr/arrow_api.json"
 				// dir('apidocs') {
 				// 	sh 'bundle exec jsduck --export full --meta-tags ./meta --pretty-json -o - ../../arrow-orm/apidoc ../../arrow-orm/lib/collection.js ../../arrow-orm/lib/connector.js ../../arrow-orm/lib/error.js ../../arrow-orm/lib/instance.js ../../arrow-orm/lib/model.js ../../arrow-orm/lib/connector/capabilities/index.js ../../arrow/apidoc ../../arrow/lib/engines ../../arrow/lib/api.js ../../arrow/lib/arrow.js ../../arrow/lib/block.js ../../arrow/lib/middleware.js ../../arrow/lib/router.js > ./build/arrow.json'
 				// }
@@ -167,6 +169,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 					sh "npm run solr:upload -- ${outputDir}/../data/solr/arrow_api.json"
 					sh "npm run solr:upload -- ${outputDir}/../data/solr/alloy_api.json"
 					sh "npm run solr:upload -- ${outputDir}/../data/solr/api_solr.json"
+					// FIXME: This is not right!
 					sh 'npm run solr:upload -- build/guides/guides.json'
 				}
 			} // stage('Solr')
