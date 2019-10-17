@@ -12,10 +12,35 @@ const axios = require('axios');
 const BASE_URL = 'http://34.214.104.105:8983/solr/appc_doc';
 const workingDir = process.cwd();
 
+/**
+ * Returns an array with arrays of the given size.
+ *
+ * @param myArray {Array} Array to split
+ * @param chunkSize {Integer} Size of every group
+ */
+function chunkArray(myArray, chunk_size) {
+    let results = [];
+
+    while (myArray.length) {
+        results.push(myArray.splice(0, chunk_size))
+    }
+
+    return results;
+}
+async function postJSON(json) {
+	return axios.post(`${BASE_URL}/update?commit=true`, json);
+}
+
 async function uploadFile(file) {
 	const filepath = path.resolve(workingDir, file);
-	const json = fs.readJSON(filepath);
-	return axios.post(`${BASE_URL}/update/json/docs?json.command=false`, json);
+	const json = await fs.readJSON(filepath);
+	// To help avoid issues, if json is an Array split and do like 1000 objects at a time
+	if (Array.isArray(json)) {
+		console.log('Chunking array of documents to POST into documents of length <= 1000 at a time');
+		const chunks = chunkArray(json, 1000);
+		return Promise.all(chunks.map(c => postJSON(c)));
+	}
+	return postJSON(json);
 }
 
 async function main(files) {
