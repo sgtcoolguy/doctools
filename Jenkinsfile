@@ -18,6 +18,27 @@ if (isMainBranch) {
 
 properties(buildProperties)
 
+// Overall workflow:
+// wiki-export runs and generates a wiki export zipfile
+// we do a checkout of doctools
+// we process the wiki export to generate html/guides.json
+// we check out sdk repos and lots of native module repos
+// we generate a titanium.js file for JSDuck from the sdk/module apidoc files
+// we run jsduck on the guides.json, titanium.js files to generate the doc site contents
+// we generate solr json files from arrow, sdk/module apidocs, build/guides html contents
+// weo copy around various assets/images/etc
+// archive the generated site
+// check it in to appc_web_docs (in effect firing off a new deploy/build there)
+// we upload the solr files to server (so deploy of site can go forward while this happens) - they should finish around the same time, roughly
+
+// So how can we re-arrange this?
+// we can try to split apart the apidoc and wiki/guides sections, so updating either half is done entirely separately
+// separate jobs for each half?
+// (i.e. extend wiki-export to do the processing of guides, generation fo guides.json, updating solr?; 
+// add new apidocs job/repo to do the apidoc checkouts/generation/solr updates?) Thenw e could work towards doing partial updates (i.e. don't re-upload entire wiki contents to solr, just changed pages since last export/build)
+// both can be run in parallel, but must be finished to do the jsduck/final site contents
+
+
 // Publish only on the 'docs' branch
 def publish = isMainBranch
 
@@ -122,9 +143,11 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 			} // MODULES.each
 		} // stage('APIDocs Repos')
 
+		def outputDir = './dist/platform/latest'
+		// FIXME: Don't include solr index files in the dist/platform folder, appc_web_docs doesn't need them since we upload them in this job
+		def solrDir = "${outputDir}/../data/solr"
 		dir('doctools') {
 			sh 'mkdir -p dist'
-			def outputDir = './dist/platform/latest'
 
 			// run docgen to generate build/titanium.js
 			stage('APIDocs') {
@@ -141,36 +164,27 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				sh "npm run jsduck ${alloyDirs} ${arrowDirs}"
 			} // stage('JSDuck')
 
-			// generate solr index
+			// generate solr indices
 			stage('Solr') {
-				sh "mkdir -p ${outputDir}/../data/solr" // create output dir
+				sh "mkdir -p ${solrDir}" // create output dir
 
-				// SDK search index
+				// SDK/modules apidocs search index
 				sh "npm run docgen -- -f solr -o ./build/ ${SDK_DOC_DIR} ${moduleArgs} ${windowsArgs}"
-				sh "cp ./build/api_solr.json ${outputDir}/../data/solr/."
+				sh "cp ./build/api_solr.json ${solrDir}/."
 
 				// Alloy search index
 				dir('apidocs') {
 					sh 'bundle exec jsduck --external "void,Callback,Backbone.Collection,Backbone.Model,Backbone.Events" --export full --meta-tags ./meta --pretty-json -o - ../../alloy/Alloy/lib ../../alloy/docs/apidoc > ../build/alloy.json'
 				}
-				sh "node apidocs/jsduck2json/alloy2solr.js ./build/alloy.json ${outputDir}/../data/solr/alloy_api.json"
+				sh "node apidocs/jsduck2json/alloy2solr.js ./build/alloy.json ${solrDir}/alloy_api.json"
 
 				// Arrow Search Index
 				// Looks like we just have a static version of arrow's output already?
-				sh "cp ./solr/arrow_api.json ${outputDir}/../data/solr/arrow_api.json"
+				sh "cp ./solr/arrow_api.json ${solrDir}/arrow_api.json"
 				// dir('apidocs') {
 				// 	sh 'bundle exec jsduck --export full --meta-tags ./meta --pretty-json -o - ../../arrow-orm/apidoc ../../arrow-orm/lib/collection.js ../../arrow-orm/lib/connector.js ../../arrow-orm/lib/error.js ../../arrow-orm/lib/instance.js ../../arrow-orm/lib/model.js ../../arrow-orm/lib/connector/capabilities/index.js ../../arrow/apidoc ../../arrow/lib/engines ../../arrow/lib/api.js ../../arrow/lib/arrow.js ../../arrow/lib/block.js ../../arrow/lib/middleware.js ../../arrow/lib/router.js > ./build/arrow.json'
 				// }
-				// sh "node apidocs/jsduck2json/alloy2solr.js ./build/arrow.json ${outputDir}/../data/solr/arrow_api.json"
-
-				// Upload the solr index files to the server!
-				if (publish) {
-					// TODO: Do we really need to retain the solr json files in appc_web_docs, then?
-					sh "npm run solr:upload -- ${outputDir}/../data/solr/arrow_api.json"
-					sh "npm run solr:upload -- ${outputDir}/../data/solr/alloy_api.json"
-					sh "npm run solr:upload -- ${outputDir}/../data/solr/api_solr.json"
-					sh 'npm run solr:guides'
-				}
+				// sh "node apidocs/jsduck2json/alloy2solr.js ./build/arrow.json ${solrDir}/arrow_api.json"
 			} // stage('Solr')
 
 			// assemble final contents of dist/platform/latest
@@ -248,6 +262,18 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 					}
 				}
 			} // stage('Publish')
+
+			// Upload the solr index files to the server!
+			stage('Solr Upload') {
+				dir('doctools') {
+					// api docs
+					sh "npm run solr:upload -- ${solrDir}/arrow_api.json"
+					sh "npm run solr:upload -- ${solrDir}/alloy_api.json"
+					sh "npm run solr:upload -- ${solrDir}/api_solr.json"
+					// guides / wiki
+					sh 'npm run solr:guides'
+				} // dir('doctools')
+			} // stage('Solr Upload')
 		} // if 'docs' branch
 	} // nodejs
 } // node
