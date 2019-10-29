@@ -40,16 +40,13 @@ function fix_links($html) {
     $param = isset($_GET["print"]) ? "print" : "mobile";
     $patterns = array(
       // regex for apidoc w/ sections
-      '/<a (?:class=".+" )href=([\'"])#!?\/(api\/[^-\'"]+?)-([^\'"]+?)/' => '<a href=$1?'.$param.'=/$2#$3',
-      // regex for apidocs w/o sections
-      '/<a (?:class=".+" )href=([\'"])#!?\/(api\/[^\'"]+?)/' => '<a href=$1?'.$param.'=/$2',
-      // regex for markdown guides w/section
-      '/<a href=([\'"])#!?\/guide\/([^-\'"]+?)-section-([^\'"]+?)/' => '<a href=$1?'.$param.'=/guide/$2#$2-section-$3',
+      '/href=[\'"]#!?\/(api\/[^-\'"]+?)-([^\'"]+?)[\'"]/' => 'href="?'.$param.'=/$1#$2"',
       // regex for html guides w/ sections
-      '/<a class=".+" href=([\'"])#!?\/(guide\/[^-\'"]+?)-section-([^\'"]+?)/' => '<a href=$1?'.$param.'=/$2#$3',
-      // regex for guides w/o sections
-      '/<a (?:class=".+" )href=([\'"])#!?\/(guide\/[^-\'"]+?)/' => '<a href=$1?'.$param.'=/$2',
-      '/<a href=([\'"])#!?\//' => '<a href=$1?'.$param.'=/',
+      '/href=[\'"]#!?\/(guide\/[^-\'"]+?)-section-([^\'"]+?)[\'"]/' => 'href="?'.$param.'=/$1#$2"',
+      // regex for markdown guides w/section
+      '/href=[\'"]#!?\/guide\/([^-\'"]+?)-section-([^\'"]+?)[\'"]/' => 'href="?'.$param.'=/guide/$1#$1-section-$2"',
+      // general regex for apidocs/guides without sections
+      '/href=[\'"]#!?\/(api|guide)(\/[^\'"]+?)[\'"]/' => 'href="?'.$param.'=/$1$2"',
       // workaround for guides not displaying in print toc
       '/display:none/' => ''
     );
