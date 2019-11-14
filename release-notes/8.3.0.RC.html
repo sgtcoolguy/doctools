@@ -1,0 +1,794 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Titanium SDK 8.3.0.RC - 15 November 2019</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link type="text/css" rel="stylesheet" href="css/release_note.css" media="all">
+</head>
+
+<body>
+	<h1>Titanium SDK 8.3.0.RC - 14 November 2019</h1>
+	<div id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-Aboutthisrelease">
+		<h2>About this release</h2>
+		<p class="code-line">Titanium SDK 8.3.0 is a minor release of the SDK, addressing high-priority issues from
+			previous releases. </p>
+		<p class="code-line">As of this release, Titanium SDK 8.2.x will not receive updates more than six months after
+			the release of 8.3.0 (2020-05-15). Any needed fixes will be in 8.3.x or later supported releases within the
+			8.x branch. See <a
+				href="https://docs.axway.com/bundle/AMPLIFY_Appcelerator_Services_Overview_allOS_en/page/axway_appcelerator_deprecation_policy.html">Axway
+				Appcelerator Deprecation Policy</a>and <a
+				href="https://docs.axway.com/bundle/AMPLIFY_Appcelerator_Services_Overview_allOS_en/page/axway_appcelerator_product_lifecycle.html#AxwayAppceleratorProductLifecycle-NominalLifetimes">Nominal
+				Lifetimes</a> documents for details. </p>
+		<div class="confbox admonition admonition-warning aui-message problem shadowed information-macro">
+			<p>With the release of Titanium SDK 9.0.0, we will no longer support Node.js 8.X. Node 10.2.0 will be the
+				new minimum supported version with SDK 9.0.0. </p>
+		</div>
+	</div>
+	<div class="code-line" id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-CommunityCredits">
+		<h2 class="code-line">Community Credits</h2>
+		<ul>
+			<li class="code-line">
+				<p class="code-line">Sergey Volkov </p>
+				<ul>
+					<li class="code-line">
+						<p>add missing comma (<a
+								href="https://github.com/appcelerator/titanium_mobile/commit/f08041e6c9914a1b1f3a1ec559b7b53079a4933a">f08041e</a>)
+						</p>
+					</li>
+					<li class="code-line">
+						<p><a href="https://jira.appcelerator.org/browse/TIMOB-26463">TIMOB-26463</a> - accessibility
+							properties SDK version (<a
+								href="https://github.com/appcelerator/titanium_mobile/commit/72a57ef247abb0bedb0288260ac300385cb3d518">72a57ef</a>)
+						</p>
+					</li>
+					<li class="code-line">
+						<p><a href="https://jira.appcelerator.org/browse/TIMOB-26463">TIMOB-26463</a> - add
+							accessibility properties to MenuItem (<a
+								href="https://github.com/appcelerator/titanium_mobile/commit/9f3c6b75c3d71dd65ca7cd33383bc90d3e565d6f">9f3c6b7</a>)
+						</p>
+					</li>
+				</ul>
+			</li>
+			<li class="code-line">
+				<p class="code-line">Hans Kn&#xF6;chel </p>
+				<ul>
+					<li class="code-line">
+						<p><a href="https://jira.appcelerator.org/browse/TIMOB-27450">TIMOB-27450</a> - fix webview
+							basic authentication (<a
+								href="https://github.com/appcelerator/titanium_mobile/commit/1553fcdf0f688f106c32fc72a3765e9fba962ac5">1553fcd</a>)
+						</p>
+					</li>
+					<li class="code-line">
+						<p><a href="https://jira.appcelerator.org/browse/TIMOB-27272">TIMOB-27272</a> - expose
+							Ti.UI.Slider &#x201E;tintColor&#x201C; and &#x201E;trackTintColor&#x201C; (<a
+								href="https://github.com/appcelerator/titanium_mobile/commit/723842717199b1244162a7b14a9874ed46103d42">7238427</a>)
+						</p>
+					</li>
+					<li class="code-line">
+						<p>properly set tint-color on image-view (<a
+								href="https://github.com/appcelerator/titanium_mobile/commit/7d96b8132a8569818c78d656fd13463deceab354">7d96b81</a>)
+						</p>
+					</li>
+				</ul>
+			</li>
+			<li class="code-line">
+				<p class="code-line">Giorgio Mandolini </p>
+				<ul>
+					<li class="code-line">
+						<p><a href="https://jira.appcelerator.org/browse/TIMOB-27396">TIMOB-27396</a> - inverted
+							condition on baseURL construction (<a
+								href="https://github.com/appcelerator/titanium_mobile/commit/a59cf84fb19d96a48589be4f59cc215ac490dc2d">a59cf84</a>)
+						</p>
+					</li>
+				</ul>
+			</li>
+			<li class="code-line">
+				<p class="code-line">Michael Gangolf </p>
+				<ul>
+					<li class="code-line">
+						<p>fix permission example for Android 8 (<a
+								href="https://github.com/appcelerator/titanium_mobile/commit/be984a177c3c279eaf79f6206dff2aa04ed6b56b">be984a1</a>)
+						</p>
+					</li>
+					<li class="code-line">
+						<p><a href="https://jira.appcelerator.org/browse/TIMOB-7786">TIMOB-7786</a>update log strings
+							(<a
+								href="https://github.com/appcelerator/titanium_mobile/commit/1fc77a1a1b2355b3b8bf93dfb332edeceb40e054">1fc77a1</a>)
+						</p>
+					</li>
+					<li class="code-line">
+						<p>reset before doing a release (#10800) (<a
+								href="https://github.com/appcelerator/titanium_mobile/commit/50c645e57f563e8499ff318e23e5dd18f920ecd8">50c645e</a>)
+						</p>
+					</li>
+					<li class="code-line">
+						<p><a href="https://jira.appcelerator.org/browse/TIMOB-27283">TIMOB-27283</a> - add contentSize
+							to Ti.UI.ScrollView scroll event (<a
+								href="https://github.com/appcelerator/titanium_mobile/commit/6ffd9d4ce217839017ef66ccf7bc10e9f494e399">6ffd9d4</a>)
+						</p>
+					</li>
+				</ul>
+			</li>
+			<li class="code-line">
+				<p class="code-line">teunklijn </p>
+				<ul>
+					<li class="code-line">
+						<p><a href="https://jira.appcelerator.org/browse/TIMOB-27165">TIMOB-27165</a> -
+							localnotificationaction event contains notification id instead of the action id (<a
+								href="https://github.com/appcelerator/titanium_mobile/commit/11956d2a7364f5900f43f68736b333bc1e40dc04">11956d2</a>)
+						</p>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="code-line" id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-BugFixes">
+		<h2 class="code-line">Bug Fixes</h2>
+		<div class="code-line" id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-Androidplatform">
+			<h3 class="code-line">Android platform</h3>
+			<ul>
+				<li class="code-line">
+					<p>allow requestLegacyExternalStorage attribute (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/097c5af442fdd278db87246fbd8640460f23e6ca">097c5af</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>allow WebView.setData() to decrypt assets (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/13658500189a8de1c8fa9773518fbe0ee7947036">1365850</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27512">TIMOB-27512</a> - amend constants for
+						showSoftKeyboard() (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/ae3da3a64997e00f18beace9498e0287f8362da1">ae3da3a</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>calculate correct stream size (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/dbfa5011ae0048ca77c45ae3c3428e4ed5120342">dbfa501</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>call WebView.stopLoading() from main thread (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/438a43a9ec8d244f358af347b44bb7bb0d28fc5b">438a43a</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27496">TIMOB-27496</a> - do not set
+						properties on recycled proxy (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/e4459a12c6767466c702f9c734f240c54a40731f">e4459a1</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>exclude JS in HTML files from processing (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/bc45db4d43dc763282b5bf6a6710be362c205b82">bc45db4</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>fix dialog without selectedIndex reusage (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/a2a048fda702bfaee61e2e0f6f9dc85aed9983f5">a2a048f</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27238">TIMOB-27238</a> - fix onlink callback
+						being creation only (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/3a46b793111f054cf78babad6c9e2c5fcdaca4e7">3a46b79</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27293">TIMOB-27293</a> - fix onprogress
+						payload value for data other than HashMap (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/a190a5dc743d4076b6128db83f7c2ff77588c896">a190a5d</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>fix reusing a dialog with a new &quot;parent&quot; window (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/a8d06c35a02d77698ac6fca71e7f118e19108906">a8d06c3</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>fix views with border and transparency (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/95fed440df6051018c73d17e01a0649af820b317">95fed44</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>fixes background color animation with borders (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/86b3699667d89077e38f7ebf60aaef867ff95b7e">86b3699</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>focus on TextInputEditText view (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/8192ea2ef626a427d9599324d9c00d8eec785793">8192ea2</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27302">TIMOB-27302</a> - guard for tab counts
+						limit for bottom style (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/6a2aa4d7d5101824741fe79a77ffa2e0e48fe904">6a2aa4d</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27191">TIMOB-27191</a> - handle file: URIs
+						without // after scheme (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/f4cf7c6e97fd19f6c7e7141114a78cafb3e1c7e1">f4cf7c6</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27108">TIMOB-27108</a> - HTTPClient
+						&quot;responseData&quot; blob returns 0 width/height for images over 512kb (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/722d6bc04c79b7831f4fa1ae239d7fb54398e75c">722d6bc</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27271">TIMOB-27271</a> - resuming with intent
+						&quot;FLAG_ACTIVITY_MULTIPLE_TASK&quot; can hang the app (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/632c4398bc71c56be81ffff47422b5686fbb14d1">632c439</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>performance issue with deeply nested views as of 7.5.0 (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/057dad3a09c6b041d6ce3ca38a76bca2f6254fb3">057dad3</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>prevent conflict with TextField.isSingleLine() (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/20ae5fde99a0d8d29b7721d15fccd2b3faf88fcf">20ae5fd</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27118">TIMOB-27118</a> - prevents TabGroup
+						duplicate close event firing (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/34714b854c6faf47d85730ca15e02edcdd5b1eb0">34714b8</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27177">TIMOB-27177</a> - regression where
+						closing root window from child window causes app exit issues as of 8.0.1 (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/be7b77663bd5312a38b025ef70d6870312060d2d">be7b776</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>release string (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/0e21a4f634008eaffd0b0263d5740fcfdc84fcf0">0e21a4f</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>remove usage of getResourceAsStream() (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/a4c2b7ae919c0b8de1b9e0c4c2790abe0379194f">a4c2b7a</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>support Geolocation altitudeAccuracy (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/ac32e75de7cd7d7c2ab23e539ca223800129d13f">ac32e75</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>ui module dependency path (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/3b9bac8db0f802825c6ff32848cc4289a3551168">3b9bac8</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27190">TIMOB-27190</a> - up button flickering
+						when clicked in NavigationWindow (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/69dfda5ef5eba65df20cbe979d0bfa912bd4aaa6">69dfda5</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27314">TIMOB-27314</a> - update titanium_prep
+						windows binaries (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/978d625b7b1fb730b53ba8c15929f64b868e91d8">978d625</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27193">TIMOB-27193</a> - use specified
+						Ti.Filesystem.File path to createFile() (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/37aace6017ec9a4b4ca49aff192c27a64c01e7bd">37aace6</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27444">TIMOB-27444</a> - video player with
+						border fails to render as of 8.3.0 (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/364724b0c994b15a4362b97ad2fb946f7fc77286">364724b</a>)
+					</p>
+				</li>
+			</ul>
+		</div>
+		<div class="code-line" id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-Multipleplatforms">
+			<h3 class="code-line">Multiple platforms</h3>
+			<ul>
+				<li class="code-line">
+					<p>fix typo and add tests for weak map/set (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/bc9faba2f5a8ee7ba1a5470399f66a17a7846346">bc9faba</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27496">TIMOB-27496</a> - do not modify
+						original ListView proxy (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/b3a0306d093d1550979f6851478eeec4a44b8c61">b3a0306</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>Change from ifdef to if due to variable always being defined (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/da45e5f84f348cfb0dde1911dc7b14a0455a133e">da45e5f</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>disable bigint type checks (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/cbb81651ffd9c0f54a1d487888523c446d3f69c3">cbb8165</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>rename isRegexp usage to isRegExp (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/8c1e265c88270436476668074d3b0ab7c7d8c7d7">8c1e265</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>update Hyperloop to v4.0.4 for iOS 13 compatibility (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/d1cc406abd29662e4e6e1b674caa95a73e8dc95f">d1cc406</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>use correct should assertion syntax (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/00b98453cf948338fba3986def6cfc057e105508">00b9845</a>)
+					</p>
+				</li>
+			</ul>
+		</div>
+		<div class="code-line" id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-iOSplatform">
+			<h3 class="code-line">iOS platform</h3>
+			<ul>
+				<li class="code-line">
+					<p>added xcworkspacedata file generation (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/75f388128a5f6b9035e1c205ff57cd025995eae2">75f3881</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27403">TIMOB-27403</a> - also lookup
+						semnantic colors in correct location for classic (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/8ecfb1e95397c7257c5f2ec71446b2ecb2a3e7fe">8ecfb1e</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>app crashes when error happens in fetching location (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/610037935b92cb26760b2cafdd5e7711b5bfc51d">6100379</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27515">TIMOB-27515</a> - avoid crash when
+						openStream fails (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/d16b69f29a3473f30d0907ce672e02bae7c81ecd">d16b69f</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-26453">TIMOB-26453</a> - can not show
+						fullscreen modal windows anymore (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/1e3d161928136583d8d997b6bb629a495d1c8feb">1e3d161</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>close window handling from presentationController&#x2019;s delegate method (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/40154d7b68053f68593c804eacd5221a92b43edd">40154d7</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>console.log does not log properly if it has multiple arguments (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/a57701dafdc34e65470cb3921cc9302c5273dcd4">a57701d</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27386">TIMOB-27386</a> - correctly decode
+						device token for ios 13 compatability (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/715ef612ac3bfe6ece73bdfd8dc80b4fe4867765">715ef61</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>fix TiBase header to order macros properly, re-use macros (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/ef266481f9588bf74dac4fd9e770eb1940f368a9">ef26648</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27354">TIMOB-27354</a> - guard source
+						property and removed NSNull if it is nil (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/80cb01890f32a94df07b702ce133a21db551455d">80cb018</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>hide dimming view (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/3d492b727d37548732d13afb8d43da527611fcfd">3d492b7</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>hideShadow handling for iOS 13 (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/3b925d3b89e0d59bf89b846bfa127e9656746dbf">3b925d3</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27395">TIMOB-27395</a> - include new iphone
+						models into os extension (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/b3a720a415e577d1a93f5d49b3ad4498bdd67a53">b3a720a</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27503">TIMOB-27503</a> - ipad popover crash
+						(<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/4a2afb987872f24b6fa987b7cc2b4a944ae299b3">4a2afb9</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>non large title navigation bars show default navigation bar (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/11aef9cc1069c395e8f9a45570633e40dd80f76e">11aef9c</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>remove additional gc protection once proxy is remembered (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/2ac7d80fba4418ddd0187b1b22c9f49b1ede2930">2ac7d80</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>select a valid ios sim xcodebuild destination (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/65527be0e66071b53a35f5eee80bbc64caad1928">65527be</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27488">TIMOB-27488</a> - set dest to generic
+						iOS sim (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/87bf091e69b2b305072e72edd6791d57d400d25c">87bf091</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27480">TIMOB-27480</a> - setting last index
+						of TabbedBar doesn&apos;t work (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/afb2a494707ec15605d560d6d38b20c8646df226">afb2a49</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>sf symbol handling for application shortcut (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/28907e0c3808ca019ee02cdc167d6ef4314f0b0b">28907e0</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27410">TIMOB-27410</a> - update objc module
+						template clang settings (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/da079713a65ad9a257b67d18c9222bac92e58c3a">da07971</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/MOD-2542">MOD-2542</a> - update ti.applesigning
+						module to 1.1.1 (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/1571e400817a89101360ffcc5e97868708e3da1c">1571e40</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27484">TIMOB-27484</a> - update to core-js 3
+						(<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/4918823b5865cfae6deaa8c4cf6bd71bf08e4e39">4918823</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>verify module class type (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/3b120151ade168e4ffacc58534fd09d5e8881ef2">3b12015</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>volume event handling (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/c6978221163cb9a628859b39042fa697b6065471">c697822</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27385">TIMOB-27385</a> - wkwebview is
+						stripping out = characters in cookies (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/1bd852b5f29963c3455da35106fd18a74fc64c80">1bd852b</a>)
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="code-line" id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-Features">
+		<h2 class="code-line">Features</h2>
+		<div class="code-line" id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-Androidplatform.1">
+			<h3 class="code-line">Android platform</h3>
+			<ul>
+				<li class="code-line">
+					<p>add new constants for video scaling (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/16f04c5a2437a948b6cbd3895421035a4c180983">16f04c5</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>add support for TabGroup in NavigationWindow (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/a886ccdacbc5beb0e981aa4d54e0d9e1de0fa126">a886ccd</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-26542">TIMOB-26542</a> - Added Ti.App
+						&quot;close&quot; event support (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/44a596834c3be1f2c4725461901584a195e861ba">44a5968</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-26953">TIMOB-26953</a> - implement
+						foregroundServiceType parameter (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/9ca5864439e2b1c2e4e3ff71db983938adb313b7">9ca5864</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>target api level 29 by default (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/4d73a63e9562b25a26c1015278d4bd13b798a80e">4d73a63</a>)
+					</p>
+				</li>
+			</ul>
+		</div>
+		<div class="code-line" id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-Multipleplatforms.1">
+			<h3 class="code-line">Multiple platforms</h3>
+			<ul>
+				<li class="code-line">
+					<p>enable color mode for inspect (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/78a15ecbdb881de1a7d5ceb68c2d7ba616546aa8">78a15ec</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>add custom inspect behavior for buffers (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/1feaf6d272f7d4b0ee69be123c43ab3cd94bd119">1feaf6d</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>add method to convert Buffer to Ti.Buffer (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/32da366fd1b2bc1b62de6ffdab77305ffd9ed590">32da366</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-18583">TIMOB-18583</a> - node compatible fs
+						module (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/74d07c1d26eda73397a2c1805425ee0b376ea541">74d07c1</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/TIMOB-27286">TIMOB-27286</a> - add string_decoder
+						module (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/4c5ac3df760c2cfe9b244374582ab329b8f90fd3">4c5ac3d</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p>node 12 compatible util module and improved console (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/7f19662607d0aae7a43a3e4de79d591889c9b659">7f19662</a>)
+					</p>
+				</li>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/MOD-2545">MOD-2545</a> - update to 3.3.0-ios,
+						4.5.0-android module releases (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/d0f0cb98eb768aee5b90753971246f6070ab5b71">d0f0cb9</a>)
+					</p>
+				</li>
+			</ul>
+		</div>
+		<div class="code-line" id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-iOSplatform.1">
+			<h3 class="code-line">iOS platform</h3>
+			<ul>
+				<li class="code-line">
+					<p><a href="https://jira.appcelerator.org/browse/MOD-2534">MOD-2534</a> - update facebook module to
+						7.0.0 (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/16f4d190c1c5bbf02d07f8e528ab6c019addb15e">16f4d19</a>)
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="code-line" id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-PerformanceImprovements">
+		<h2 class="code-line">Performance Improvements</h2>
+		<div class="code-line" id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-Androidplatform.2">
+			<h3 class="code-line">Android platform</h3>
+			<ul>
+				<li class="code-line">
+					<p>implement ability to pre-cache common js assets (<a
+							href="https://github.com/appcelerator/titanium_mobile/commit/c3806d041c945044e4b6a1ca3ab05584ee3b2a15">c3806d0</a>)
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-SDKmodulesversions">
+		<h2>SDK modules versions</h2>
+		<div id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-AndroidandiOS">
+			<h3>Android and iOS</h3>
+			<div class="tablewrap">
+				<table>
+					<thead>
+						<tr>
+							<th>
+								<p>Module </p>
+							</th>
+							<th>
+								<p>Android version </p>
+							</th>
+							<th>
+								<p>iOS version </p>
+							</th>
+						</tr>
+					</thead>
+					<tfoot></tfoot>
+					<tbody>
+						<tr>
+							<td>
+								<p>urlSession </p>
+							</td>
+							<td>
+								<p>n/a </p>
+							</td>
+							<td>
+								<p>2.2.0 </p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>facebook </p>
+							</td>
+							<td>
+								<p>8.0.0 </p>
+							</td>
+							<td>
+								<p>7.0.0 </p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>ti.coremotion </p>
+							</td>
+							<td>
+								<p>n/a </p>
+							</td>
+							<td>
+								<p>2.0.1 </p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>ti.map </p>
+							</td>
+							<td>
+								<p>4.5.0 </p>
+							</td>
+							<td>
+								<p>3.3.0 </p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>ti.safaridialog </p>
+							</td>
+							<td>
+								<p>n/a </p>
+							</td>
+							<td>
+								<p>1.1.1 </p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>ti.webdialog </p>
+							</td>
+							<td>
+								<p>1.1.0 </p>
+							</td>
+							<td>
+								<p>1.1.0 </p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>ti.touchid </p>
+							</td>
+							<td>
+								<p>3.0.1 </p>
+							</td>
+							<td>
+								<p>2.1.4 </p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>ti.identity </p>
+							</td>
+							<td>
+								<p>2.1.0 </p>
+							</td>
+							<td>
+								<p>1.0.6 </p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>ti.applesignin </p>
+							</td>
+							<td>
+								<p>n/a </p>
+							</td>
+							<td>
+								<p>1.1.1 </p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>ti.cloudpush </p>
+							</td>
+							<td>
+								<p>6.0.1 </p>
+							</td>
+							<td>
+								<p>n/a </p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>ti.playservices </p>
+							</td>
+							<td>
+								<p>16.1.3 </p>
+							</td>
+							<td>
+								<p>n/a </p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-CommonJS">
+			<h3>CommonJS</h3>
+			<div class="tablewrap">
+				<table>
+					<thead>
+						<tr>
+							<th>
+								<p>Module </p>
+							</th>
+							<th>
+								<p>Version </p>
+							</th>
+						</tr>
+					</thead>
+					<tfoot></tfoot>
+					<tbody>
+						<tr>
+							<td>
+								<p>ti.cloud </p>
+							</td>
+							<td>
+								<p>3.2.11 </p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="src-60153998_TitaniumSDK8.3.0.RCReleaseNote-Hyperloop">
+			<h3>Hyperloop</h3>
+			<div class="tablewrap">
+				<table>
+					<thead>
+						<tr>
+							<th>
+								<p>Module </p>
+							</th>
+							<th>
+								<p>Version </p>
+							</th>
+						</tr>
+					</thead>
+					<tfoot></tfoot>
+					<tbody>
+						<tr>
+							<td>
+								<p>hyperloop </p>
+							</td>
+							<td>
+								<p>4.0.4 </p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
