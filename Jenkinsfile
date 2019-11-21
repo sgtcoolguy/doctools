@@ -109,7 +109,10 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				sh 'npm run wiki:guides'
 				// Trigger Zoomin to sync up
 				withCredentials([sshUserPrivateKey(credentialsId: '190db4ff-79b3-459d-8cec-20048b3e91d5', keyFileVariable: 'SSH_KEY', passphraseVariable: 'PASSPHRASE', usernameVariable: 'USERNAME')]) {
-					sh 'npm run wiki:zoomin -- -i $SSH_KEY'
+					// Use our special keypair installed on Jenkins and set up with zoomin
+					// (see https://axway.jiveon.com/docs/DOC-99675#jive_content_id_Connecting_to_Zoomins_SFTP_server for details on who to give public key to)
+					// Also, avoid prompt about the host key
+					sh 'npm run wiki:zoomin -- -i $SSH_KEY -oStrictHostKeyChecking=no'
 				}
 			} // stage('Wiki')
 		} // dir('doctools')
