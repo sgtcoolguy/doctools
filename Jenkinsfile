@@ -107,6 +107,10 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				sh 'npm run wiki:finalize' // Massage the htmlguides: strip footer, add redirects, add banner, minify HTML
 				// TODO: Allow addon guides?
 				sh 'npm run wiki:guides'
+				// Trigger Zoomin to sync up
+				withCredentials([sshUserPrivateKey(credentialsId: '190db4ff-79b3-459d-8cec-20048b3e91d5', keyFileVariable: 'SSH_KEY', passphraseVariable: 'PASSPHRASE', usernameVariable: 'USERNAME')]) {
+					sh 'npm run wiki:zoomin -- -i $SSH_KEY'
+				}
 			} // stage('Wiki')
 		} // dir('doctools')
 
