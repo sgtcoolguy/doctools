@@ -57,7 +57,6 @@ def MODULES = [
 	'ti.touchid',
 	'titanium-identity',
 	'Ti.SafariDialog',
-	'appcelerator.apm',
 	'ti.playservices',
 	'ti.geofence',
 	'appcelerator.https',
