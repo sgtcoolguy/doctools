@@ -60,7 +60,6 @@ def MODULES = [
 	'ti.playservices',
 	'ti.geofence',
 	'appcelerator.https',
-	'com.appcelerator.apm',
 	'appcelerator.encrypteddatabase',
 	'titanium-web-dialog',
 	// 'ti.systemalert', // Removed since it has no apidoc folder
