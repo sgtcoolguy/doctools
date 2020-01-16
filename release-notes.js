@@ -48,7 +48,15 @@ async function generateReleaseNote(wikiFile, outputDir, options) {
 	}
 
 	const contents = await fs.readFile(wikiFile, 'utf8');
+	const wikiPage = massageNoteHTML(contents);
+	return fs.writeFile(outputFilePath, wikiPage);
+}
 
+/**
+ * @param {string} contents original html contents for a release note wiki page (exported)
+ * @return {string} the modified html contents after transforming
+ */
+function massageNoteHTML(contents) {
 	let node = cheerio.load(contents); // add jquery-like features
 	// strip the footer
 	if (node('div.footer').length > 0) {
@@ -111,9 +119,12 @@ async function generateReleaseNote(wikiFile, outputDir, options) {
 		const re = new RegExp(key, 'g');
 		wikiPage = wikiPage.replace(re, value);
 	}
-
-	return fs.writeFile(outputFilePath, wikiPage);
+	return wikiPage;
 }
+
+module.exports = {
+	massageNoteHTML
+};
 
 /**
  * @param {string[]} args 
@@ -123,6 +134,7 @@ async function main(args) {
 	if (!await fs.exists(htmlGuidesDir)) {
 		throw new Error('This script expects an exported wiki under wiki/htmlguides. Please run `npm run wiki:export && npm run wiki:unzip` first.');
 	}
+	// TODO: Allow specifying an exact wiki page to grab?
 	const force = args.includes('--force');
 	const options = {
 		force
@@ -137,7 +149,9 @@ async function main(args) {
 	}));
 }
 
-main(process.argv.slice(2)).then(() => process.exit(0)).then(err => {
-	console.error(err);
-	process.exit(1);
-});
+if (require.main === module) {
+	main(process.argv.slice(2)).then(() => process.exit(0)).then(err => {
+		console.error(err);
+		process.exit(1);
+	});
+}

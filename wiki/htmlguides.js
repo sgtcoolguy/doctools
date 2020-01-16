@@ -141,13 +141,23 @@ function htmlMinify(node) {
 async function manipulateHTMLFile(file) {
 	console.log(path.basename(file));
 	const contents = await fs.readFile(file, 'utf8');
+	const html = await manipulateHTMLContent(contents, file);
+	return fs.writeFile(file, html);
+}
+
+/**
+ * @param {string} contents HTML contents
+ * @param {string} [filepath]
+ */
+async function manipulateHTMLContent(contents, filepath) {
 	let $ = cheerio.load(contents); // add jquery-like features
 	$ = stripFooter($);
 	// $ = addBanner($); // Don't add migration banner yet!
-	$ = addInternalRedirect(file, $);
-	$ = addExternalRedirect(file, $);
-	const html = htmlMinify($);
-	return fs.writeFile(file, html);
+	if (filepath) {
+		$ = addInternalRedirect(filepath, $);
+		$ = addExternalRedirect(filepath, $);
+	}
+	return htmlMinify($);
 }
 
 async function main() {
@@ -162,9 +172,15 @@ async function main() {
 	}));
 }
 
-main().then(() => {
-	process.exit(0);
-}).catch (err => {
-	console.error(err);
-	process.exit(1);
-});
+module.exports = {
+	manipulateHTMLContent
+};
+
+if (require.main === module) {
+	main().then(() => {
+		process.exit(0);
+	}).catch (err => {
+		console.error(err);
+		process.exit(1);
+	});
+}
