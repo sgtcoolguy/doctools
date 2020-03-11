@@ -238,9 +238,12 @@ function fixLinks(dom) {
 			} else if (href.indexOf('attachment') === 0) {
 				href = './' + href;
 			} else {
-				// Replace internal guide links to JSDuck style links
-				href = href.replace(' ', '_');
-				href = '#!/guide/' + href.replace('.html', '').replace('#', '-section-');
+				// If it's a mailto: link, then don't change it!
+				if (!href.startsWith('mailto:')) {
+					// Replace internal guide links to JSDuck style links
+					href = href.replace(' ', '_');
+					href = '#!/guide/' + href.replace('.html', '').replace('#', '-section-');
+				}
 			}
 			elem.attribs.href = href;
 		}
