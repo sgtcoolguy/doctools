@@ -18,10 +18,7 @@ const TurndownService = require('turndown');
 const manipulateHTMLContent = require('./htmlguides').manipulateHTMLContent;
 
 // Regexp/Patterns used to match link styles to rewrite them to work in docsy!
-const SAFE_ID_PATTERN = /^([\.\w]+)-section-src-\d+_safe-id-(\w+)/; // safe-id style anchor link: group 1 is page name, 2 is base64-encoded anchor name
-const ANCHOR_PATTERN = /^([\.\w]+)-section-src-\d+_([^-]+?)-(.+)/; // typical anchor link: group 1 is page name, 3 is anchor name
-const WIPE_ANCHOR_PATTERN = /^([\.\w]+)-section-src-\d+$/; // just drop the link?
-const DUMB_PATTERN = /^(.+?)-section-src-\d+_(.+)$/; // group 1 is the page name, group 2 is the full anchor name
+const DUMB_PATTERN = /^(.+?)-section-src-\d+(_(.+))?$/; // group 1 is the page name, group 2 is the full anchor name
 
 const WHITELIST = [
 	'https://wiki.appcelerator.org/display/community',
@@ -127,7 +124,7 @@ function processCommandLineArgs() {
 async function handleEntry(entry, index, outDir, lookupTable) {
 	// console.log(`Converting ${entry.title} to markdown`);
 	let outputName;
-	// TODO: if the entry has 'items' property, it's a parent! Need to recurse, and change filename to _index
+	// if the entry has 'items' property, it's a parent! Need to recurse, and change filename to _index
 	if (entry.items) {
 		outDir = path.join(outDir, entry.name);
 		outputName = '_index.md';
@@ -141,14 +138,16 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 	const content = await fs.readFile(filepath, 'utf8');
 	// We need to alter the HTML like we do in htmlguides here: strip footer, etc.
 	const modified = await manipulateHTMLContent(content, filepath);
-	// TODO: Can we extract the page title/strip it (so it isn't duplicated)?
-
 	// Convert the html -> markdown prepend the frontmatter
 	const frontmatter = {
 		title: entry.title,
 		weight: ((index + 1) * 10).toString() // Make the weight the (index + 1) * 10 as string
 	};
+	const thisDocWikiPath = lookupTable.get(entry.name);
 	const turndownService = new TurndownService({ headingStyle: 'atx' });
+	// Skip the title since we put that in frontmatter
+	// FIXME: What if they don't match? Use the actual title tag value in preference? What does entry.title become? 'linkTitle'?
+	turndownService.remove(['head', 'title']);
 	// Convert the export HTML links to intra-docsy links if we can
 	turndownService.addRule('a', {
 		filter: function (node, options) {
@@ -161,7 +160,7 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 		replacement: function (content, node) {
 			let href = node.getAttribute('href');
 			if (href.startsWith('#!/guide/')) {
-				href = wikiLinkToMarkdown(href, lookupTable);
+				href = wikiLinkToMarkdown(href, lookupTable, thisDocWikiPath);
 			}
 
 			const title = node.title ? ' "' + node.title + '"' : ''
@@ -190,37 +189,40 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 		}
 	});
 	const markdown = turndownService.turndown(modified);
-	const converted = `${JSON.stringify(frontmatter)}\n\n${markdown}`;
+	const converted = `${JSON.stringify(frontmatter)}${markdown}`;
 	return fs.writeFile(path.join(outDir, outputName), converted);
 }
 
 /**
- * @param {string} href 
- * @param {Map<string, String>} lookupTable 
+ * @param {string} href The original URL we're converting
+ * @param {Map<string, String>} lookupTable The lookup table from entry names to wiki absolkute link/paths
+ * @param {string} thisDocWikiPath the wiki url/path for the current document
  * @returns {string}
  */
-function wikiLinkToMarkdown(href, lookupTable) {
+function wikiLinkToMarkdown(href, lookupTable, thisDocWikiPath) {
 	let anchor;
 	const endPath = href.replace('#!/guide/', '');
 	let pageName = endPath;
 	const dumbMatch = endPath.match(DUMB_PATTERN);
 	if (dumbMatch) {
 		pageName = dumbMatch[1];
-		anchor = dumbMatch[2];
-		if (anchor.startsWith('safe-id-')) {
-			const buff = Buffer.from(anchor.substring(8), 'base64');
-			anchor = buff.toString('ascii');
-			// TODO: Url encode?
+		anchor = dumbMatch[3];
+		if (anchor) {
+			if (anchor.startsWith('safe-id-')) {
+				const buff = Buffer.from(anchor.substring(8), 'base64');
+				anchor = buff.toString('ascii');
+				// TODO: Url encode?
+			}
+			// ok now we need to drop the pagename from prefix of anchor!
+			const anchorPageName = pageName.replace(/_/g, '');
+			if (anchor.startsWith(anchorPageName)) {
+				anchor = anchor.substring(anchorPageName.length + 1); // drop the page name prefix plus the trailing '-'
+			}
+			// FIXME: I think the anchor links are busted anyways because they combined all spaces
+			// i.e. #Fixedissues should point to the heading "Fixed Issues" and should instead be #fixed-issues
+			// so how the hell do we fix this? Serach the page for all headings and remove spaces and find match and then convert?
+			// What about cross-page anchor links?!
 		}
-		// ok now we need to drop the pagename from prefix of anchor!
-		const anchorPageName = pageName.replace(/_/g, '');
-		if (anchor.startsWith(anchorPageName)) {
-			anchor = anchor.substring(anchorPageName.length + 1); // drop the page name prefix plus the trailing '-'
-		}
-		// FIXME: I think the anchor links are busted anyways because they combined all spaces
-		// i.e. #Fixedissues should point to the heading "Fixed Issues" and should instead be #fixed-issues
-		// so how the hell do we fix this? Serach the page for all headings and remove spaces and find match and then convert?
-		// What about cross-page anchor links?!
 	}
 
 	// console.log(`path: ${endPath}\npage: ${pageName}\nanchor: ${anchor}`);
@@ -230,13 +232,19 @@ function wikiLinkToMarkdown(href, lookupTable) {
 		return href;
 	}
 
-	// TODO: if link is pointing to itself, drop the page name and just use the anchor!
-
 	const docPath = lookupTable.get(pageName);
 	if (!docPath) {
-		console.warn(`Unable to find path of page: ${pageName}, from: ${href}`);
+		console.warn(`Unable to find path of page: ${pageName}, from: ${href} (linked in ${thisDocWikiPath})`);
 		return href;
 	}
+
+	// We're linking to another section of the page!
+	if (docPath === thisDocWikiPath) {
+		// Drop the doc path and just return the anchor!
+		return `#${anchor}`;
+	}
+
+	// TODO: try to use relative links? Or not because the _index.md thing breaks then?
 	let result = `${docPath}`;
 	if (anchor) {
 		result += `#${anchor}`;
