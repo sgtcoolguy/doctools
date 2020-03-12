@@ -167,9 +167,10 @@ async function manipulateHTMLFile(file, outputDir, showEditButton) {
  * Changes absolute links to relative
  * Replaces internal guide linsk to links supported by eventual end product
  * @param {CheerioStatic} dom 
+ * @param {string} filepath path of input file (used to track bad links)
  * @returns {CheerioStatic}
  */
-function fixLinks(dom) {
+function fixLinks(dom, filepath) {
 	dom('a').each(function (i, elem) {
 		let href = elem.attribs.href;
 		if (href) {
@@ -229,7 +230,7 @@ function fixLinks(dom) {
 
 						// TOFO: if link is of form: https://wiki.appcelerator.org/display/AB4/API+Builder+Getting+Started+Guide
 						// it's pointing to API Builder docs. Where are those now?
-						console.warn('Unconverted wiki link: ' + href);
+						console.warn(`Unconverted wiki link: ${href}, from page: ${filepath}`);
 					}
 				} else {
 					// Open external links in new windows/tabs
@@ -288,7 +289,7 @@ async function manipulateHTMLContent(contents, filepath, showEditButton = false)
 		$ = addInternalRedirect(filepath, $);
 		$ = addExternalRedirect(filepath, $);
 	}
-	$ = fixLinks($);
+	$ = fixLinks($, filepath);
 	if (showEditButton) {
 		$ = addEditButton($);
 	}
