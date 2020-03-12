@@ -14,6 +14,7 @@ const path = require('path');
 const promisify = require('util').promisify;
 const xml2js = promisify(require('xml2js').parseString);
 const TurndownService = require('turndown');
+const removeTrailingSpaces = require('remove-trailing-spaces');
 
 const manipulateHTMLContent = require('./htmlguides').manipulateHTMLContent;
 
@@ -131,6 +132,8 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 		await fs.ensureDir(outDir);
 		// recurse
 		await Promise.all(entry.items.map((child, childIndex) => handleEntry(child, childIndex, outDir, lookupTable)));
+	} else if (entry.name === 'Home') { // Treat top-level 'Home' page as index for all appc content
+		outputName = '_index.md';
 	} else {
 		outputName = `${entry.name}.md`;
 	}
@@ -148,8 +151,23 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 	// Skip the title since we put that in frontmatter
 	// FIXME: What if they don't match? Use the actual title tag value in preference? What does entry.title become? 'linkTitle'?
 	turndownService.remove(['head', 'title']);
+
+	// Most wiki pages have a header with the page title at the top of the content
+	// We should strip that (it ends up being duplicated)
+	turndownService.addRule('duplicate header', {
+		filter: function (node, options) {
+			if (node.nodeName !== 'H1') {
+				return false;
+			}
+			return node.textContent === entry.title;
+		},
+		replacement: () => ''
+	});
+
+	// TODO: Additionally the initial content/paragraph may make sense as the description in the frontmatter?
+	
 	// Convert the export HTML links to intra-docsy links if we can
-	turndownService.addRule('a', {
+	turndownService.addRule('links', {
 		filter: function (node, options) {
 			return (
 				options.linkStyle === 'inlined' &&
@@ -170,7 +188,7 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 	// Convert images to point at correct place!
 	// images/download/attachments/30083145/TabbedApplicationMain.png
 	// -> /Images/appc/download/attachments/30083145/TabbedApplicationMain.png
-	turndownService.addRule('img', {
+	turndownService.addRule('images', {
 		filter: 'img',
 		replacement: function (content, node) {
 			let alt = node.alt || ''
@@ -188,9 +206,33 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 			return src ? '![' + alt + ']' + '(' + src + titlePart + ')' : ''
 		}
 	});
+
+	// Alter turndown's conversion of list items to use single space instead of 3 spaces
+	// Was copied/altered from: https://github.com/domchristie/turndown/blob/master/src/commonmark-rules.js#L69
+	turndownService.addRule('listItem', {
+		filter: 'li',
+		replacement: function (content, node, options) {
+			content = content
+				.replace(/^\n+/, '') // remove leading newlines
+				.replace(/\n+$/, '\n') // replace trailing newlines with just a single one
+				.replace(/\n/gm, '\n  '); // indent (changed from 4 spaces to 2)
+			let prefix = options.bulletListMarker + ' '; // changed from original to do only 1 space!
+			const parent = node.parentNode;
+			if (parent.nodeName === 'OL') {
+				const start = parent.getAttribute('start');
+				const index = Array.prototype.indexOf.call(parent.children, node);
+				prefix = (start ? Number(start) + index : index + 1) + '. '; // changed from 2 spaces to 1
+			}
+			return (
+				prefix + content + (node.nextSibling && !/\n$/.test(content) ? '\n' : '')
+			);
+		}
+	});
+
 	const markdown = turndownService.turndown(modified);
-	const converted = `${JSON.stringify(frontmatter)}${markdown}`;
-	return fs.writeFile(path.join(outDir, outputName), converted);
+	// TODO: Avoid multiple empty newlines (probably empty after removing trailing spaces)
+	const converted = `${JSON.stringify(frontmatter)}${markdown}\n`;
+	return fs.writeFile(path.join(outDir, outputName), removeTrailingSpaces(converted));
 }
 
 /**
