@@ -147,7 +147,10 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 		weight: ((index + 1) * 10).toString() // Make the weight the (index + 1) * 10 as string
 	};
 	const thisDocWikiPath = lookupTable.get(entry.name);
-	const turndownService = new TurndownService({ headingStyle: 'atx' });
+	const turndownService = new TurndownService({
+		headingStyle: 'atx',
+		codeBlockStyle: 'fenced'
+	});
 	// Skip the title since we put that in frontmatter
 	// FIXME: What if they don't match? Use the actual title tag value in preference? What does entry.title become? 'linkTitle'?
 	turndownService.remove(['head', 'title']);
@@ -215,7 +218,7 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 			content = content
 				.replace(/^\n+/, '') // remove leading newlines
 				.replace(/\n+$/, '\n') // replace trailing newlines with just a single one
-				.replace(/\n/gm, '\n  '); // indent (changed from 4 spaces to 2)
+				.replace(/\n/gm, '\n    '); // indent
 			let prefix = options.bulletListMarker + ' '; // changed from original to do only 1 space!
 			const parent = node.parentNode;
 			if (parent.nodeName === 'OL') {
@@ -230,9 +233,9 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 	});
 
 	const markdown = turndownService.turndown(modified);
-	// TODO: Avoid multiple empty newlines (probably empty after removing trailing spaces)
 	const converted = `${JSON.stringify(frontmatter)}${markdown}\n`;
-	return fs.writeFile(path.join(outDir, outputName), removeTrailingSpaces(converted));
+	// Next we remove trailing spaces on liens and then merge multiple blank newlines into a single one
+	return fs.writeFile(path.join(outDir, outputName), removeTrailingSpaces(converted).replace(/(\n){3,}/gm, '\n\n'));
 }
 
 /**
