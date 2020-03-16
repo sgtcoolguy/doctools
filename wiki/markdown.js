@@ -15,6 +15,7 @@ const util = require('util');
 const promisify = util.promisify;
 const xml2js = promisify(require('xml2js').parseString);
 const TurndownService = require('turndown');
+const tables = require('turndown-plugin-gfm').tables
 const removeTrailingSpaces = require('remove-trailing-spaces');
 
 const manipulateHTMLContent = require('./htmlguides').manipulateHTMLContent;
@@ -136,7 +137,6 @@ class Page {
  * @param {Map<string, Page>} lookupTable
  */
 async function handleEntry(entry, index, outDir, lookupTable) {
-	// console.log(`Converting ${entry.title} to markdown`);
 	let outputName;
 	// if the entry has 'items' property, it's a parent! Need to recurse, and change filename to _index
 	if (entry.items) {
@@ -243,6 +243,25 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 		}
 	});
 
+	// Hack together something workable for tables
+	// Start with the plugin that does tables
+	turndownService.use(tables);
+
+	// But we have lost of newline/whitespace embedded inside, so we collapse that...
+	turndownService.addRule('collapse td', {
+		filter: node => node.nodeName === 'TD',
+		replacement: (content, node) => cell(content.trim(), node)
+	});
+
+	// Then we basically re-implement writing td cells
+	// Here we need to turn newlines back into <br /> tags so that the table doesn't break
+	function cell (content, node) {
+		const index = Array.prototype.indexOf.call(node.parentNode.childNodes, node);
+		let prefix = ' ';
+		if (index === 0) prefix = '| ';
+		return prefix + content.replace(/\n/g, '<br />') + ' |'
+	}
+
 	const markdown = turndownService.turndown(modified);
 	const converted = `${JSON.stringify(frontmatter)}${markdown}\n`;
 	// Next we remove trailing spaces on liens and then merge multiple blank newlines into a single one
@@ -280,8 +299,6 @@ function wikiLinkToMarkdown(href, lookupTable, thisDocPage) {
 			}
 		}
 	}
-
-	// console.log(`path: ${endPath}\npage: ${pageName}\nanchor: ${anchor}`);
 
 	if (!pageName) {
 		// couldn't extract the page name, so return the link as it was
@@ -327,6 +344,7 @@ async function convertHTMLFiles(inputFile, outputDir) {
 	const toc = parse(result.toc.topic);
 
 	const lookupTable = new Map();
+	console.log('Building hierarchy and lookup tables...');
 	await generateLookupTable('/docs/appc/', toc, lookupTable);
 
 	const docsDir = path.join(outputDir, 'content/en/docs/appc');
@@ -388,7 +406,6 @@ async function generatePageMetadata(pageName, generatedPath) {
 				if (parent.nodeName === 'DIV' && parent.getAttribute('id')) {
 					const legacyId = parent.getAttribute('id');
 					const generatedId = node.textContent.toLowerCase().replace(/\s/g, '-').replace(/[\(\)]/g, '');
-					// console.log(`${legacyId} => ${generatedId}`);
 					anchors.set(legacyId, generatedId);
 				}
 			}
