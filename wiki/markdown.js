@@ -11,7 +11,8 @@
 
 const fs = require('fs-extra');
 const path = require('path');
-const promisify = require('util').promisify;
+const util = require('util');
+const promisify = util.promisify;
 const xml2js = promisify(require('xml2js').parseString);
 const TurndownService = require('turndown');
 const removeTrailingSpaces = require('remove-trailing-spaces');
@@ -19,7 +20,7 @@ const removeTrailingSpaces = require('remove-trailing-spaces');
 const manipulateHTMLContent = require('./htmlguides').manipulateHTMLContent;
 
 // Regexp/Patterns used to match link styles to rewrite them to work in docsy!
-const DUMB_PATTERN = /^(.+?)-section-src-\d+(_(.+))?$/; // group 1 is the page name, group 2 is the full anchor name
+const DUMB_PATTERN = /^(.+?)-section-(src-\d+(_(.+))?)$/; // group 1 is the page name, group 2 is the full anchor name
 
 const WHITELIST = [
 	'https://wiki.appcelerator.org/display/community',
@@ -115,12 +116,24 @@ function processCommandLineArgs() {
 	}
 }
 
+class Page {
+	/**
+	 * 
+	 * @param {string} docsyPath path to document in docsy wiki
+	 * @param {Map<string, string>} anchors mapping from confluence anchors/ids to docsy anchors/ids
+	 */
+	constructor(docsyPath, anchors = new Map()) {
+		this.docsyPath = docsyPath;
+		this.anchors = anchors;
+	}
+}
+
 /**
  * 
  * @param {object} entry 
  * @param {number} index
  * @param {string} outDir 
- * @param {Map<string, string>} lookupTable
+ * @param {Map<string, Page>} lookupTable
  */
 async function handleEntry(entry, index, outDir, lookupTable) {
 	// console.log(`Converting ${entry.title} to markdown`);
@@ -146,7 +159,10 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 		title: entry.title,
 		weight: ((index + 1) * 10).toString() // Make the weight the (index + 1) * 10 as string
 	};
-	const thisDocWikiPath = lookupTable.get(entry.name);
+	const thisDocPage = lookupTable.get(entry.name);
+	if (!thisDocPage) {
+		console.warn(`WAS UNABLE TO FIND PAGE METADATA ENTRY FOR ${entry.name}`);
+	}
 	const turndownService = new TurndownService({
 		headingStyle: 'atx',
 		codeBlockStyle: 'fenced'
@@ -158,12 +174,7 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 	// Most wiki pages have a header with the page title at the top of the content
 	// We should strip that (it ends up being duplicated)
 	turndownService.addRule('duplicate header', {
-		filter: function (node, options) {
-			if (node.nodeName !== 'H1') {
-				return false;
-			}
-			return node.textContent === entry.title;
-		},
+		filter: node => node.nodeName === 'H1'&& node.textContent === entry.title,
 		replacement: () => ''
 	});
 
@@ -181,7 +192,7 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 		replacement: function (content, node) {
 			let href = node.getAttribute('href');
 			if (href.startsWith('#!/guide/')) {
-				href = wikiLinkToMarkdown(href, lookupTable, thisDocWikiPath);
+				href = wikiLinkToMarkdown(href, lookupTable, thisDocPage);
 			}
 
 			const title = node.title ? ' "' + node.title + '"' : ''
@@ -240,18 +251,22 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 
 /**
  * @param {string} href The original URL we're converting
- * @param {Map<string, String>} lookupTable The lookup table from entry names to wiki absolkute link/paths
- * @param {string} thisDocWikiPath the wiki url/path for the current document
+ * @param {Map<string, Page>} lookupTable The lookup table from entry names to wiki absolkute link/paths
+ * @param {Page} thisDocPage
  * @returns {string}
  */
-function wikiLinkToMarkdown(href, lookupTable, thisDocWikiPath) {
+function wikiLinkToMarkdown(href, lookupTable, thisDocPage) {
 	let anchor;
 	const endPath = href.replace('#!/guide/', '');
 	let pageName = endPath;
+	let legacyId;
 	const dumbMatch = endPath.match(DUMB_PATTERN);
 	if (dumbMatch) {
 		pageName = dumbMatch[1];
-		anchor = dumbMatch[3];
+		legacyId = dumbMatch[2];
+		anchor = dumbMatch[4];
+		// Here we try to extract the anchor to use as a last-resort fallback
+		// ideally we'd already have the mapping for the old anchor/id from Confluence to the expected auto-generated one from docsy
 		if (anchor) {
 			if (anchor.startsWith('safe-id-')) {
 				const buff = Buffer.from(anchor.substring(8), 'base64');
@@ -263,10 +278,6 @@ function wikiLinkToMarkdown(href, lookupTable, thisDocWikiPath) {
 			if (anchor.startsWith(anchorPageName)) {
 				anchor = anchor.substring(anchorPageName.length + 1); // drop the page name prefix plus the trailing '-'
 			}
-			// FIXME: I think the anchor links are busted anyways because they combined all spaces
-			// i.e. #Fixedissues should point to the heading "Fixed Issues" and should instead be #fixed-issues
-			// so how the hell do we fix this? Serach the page for all headings and remove spaces and find match and then convert?
-			// What about cross-page anchor links?!
 		}
 	}
 
@@ -277,24 +288,31 @@ function wikiLinkToMarkdown(href, lookupTable, thisDocWikiPath) {
 		return href;
 	}
 
-	const docPath = lookupTable.get(pageName);
-	if (!docPath) {
-		console.warn(`Unable to find path of page: ${pageName}, from: ${href} (linked in ${thisDocWikiPath})`);
+	const docPage = lookupTable.get(pageName);
+	if (!docPage) {
+		console.warn(`Unable to find page: ${pageName}, from: ${href} (linked in ${thisDocPage.docsyPath})`);
 		return href;
 	}
 
+	// Use our mapping from old confluence anchors to what should be an auto-generated docsy header id
+	if (legacyId) {
+		const possible = docPage.anchors.get(legacyId);
+		if (possible) {
+			anchor = possible;
+		}
+	}
+
 	// We're linking to another section of the page!
-	if (docPath === thisDocWikiPath) {
+	if (docPage.docsyPath === thisDocPage.docsyPath) {
 		// Drop the doc path and just return the anchor!
 		return `#${anchor}`;
 	}
 
 	// TODO: try to use relative links? Or not because the _index.md thing breaks then?
-	let result = `${docPath}`;
+	let result = `${docPage.docsyPath}`; // FIXME: What the fuck is going on here, this isn pointing to the input html file in my repo, not the docsy filepath!
 	if (anchor) {
 		result += `#${anchor}`;
 	}
-	// console.log(`${href} -> ${result}`);
 	return result;
 }
 
@@ -309,7 +327,7 @@ async function convertHTMLFiles(inputFile, outputDir) {
 	const toc = parse(result.toc.topic);
 
 	const lookupTable = new Map();
-	generateLookupTable('/docs/appc/', toc, lookupTable);
+	await generateLookupTable('/docs/appc/', toc, lookupTable);
 
 	const docsDir = path.join(outputDir, 'content/en/docs/appc');
 	await fs.ensureDir(docsDir);
@@ -329,17 +347,57 @@ async function copyImages(outputDir) {
 /**
  * @param {string} prefix
  * @param {object[]} entries 
- * @param {Map<string, string>} lookupTable 
+ * @param {Map<string, Page>} lookupTable 
  */
-function generateLookupTable(prefix, entries, lookupTable) {
+async function generateLookupTable(prefix, entries, lookupTable) {
+	// FIXME: do the recursion in parallel!
 	for (const entry of entries) {
 		const generatedPath = `${prefix}${entry.name}/`
-		lookupTable.set(entry.name, generatedPath);
+		const page = await generatePageMetadata(entry.name, generatedPath);
+		lookupTable.set(entry.name, page);
 		if (entry.items) {
 			// recurse inside items!
-			generateLookupTable(generatedPath, entry.items, lookupTable);
+			await generateLookupTable(generatedPath, entry.items, lookupTable);
 		}
 	}
+}
+
+/**
+ * Given an input page, this generates the metadat we need abotu the page:
+ * - the filepath it will live at in the docsy site
+ * - the mapping of confluence anchors to the docsy anchors
+ * @param {string} pageName 
+ * @param {string} generatedPath 
+ * @returns {Page}
+ */
+async function generatePageMetadata(pageName, generatedPath) {
+	const filepath = path.join(__dirname, 'htmlguides', `${pageName}.html`);
+	const content = await fs.readFile(filepath, 'utf8');
+	// FIXME: If we haven't manipulated the html already, we may not have the style of links we expect!
+	// Can we avoid this extra work?
+	const modified = await manipulateHTMLContent(content, filepath);
+	const anchors = new Map();
+	// Can we grab the first div with class "content" and then find all h1/2/3/4/5 tags with class "heading" - and grab parent div's id value to match?
+	const turndownService = new TurndownService();
+	// TODO: Don't use turndown, go straight to JSDOM? Becuase we don't actually want to convert anything
+	turndownService.addRule('log anchors', {
+		filter: node => {
+			if (['H1', 'H2', 'H3', 'H4', 'H5'].includes(node.nodeName) && node.classList.contains('heading')) {
+				const parent = node.parentElement;
+				// Record mapping of ids generated by Confluence versus ids auto-generated by Docsy
+				if (parent.nodeName === 'DIV' && parent.getAttribute('id')) {
+					const legacyId = parent.getAttribute('id');
+					const generatedId = node.textContent.toLowerCase().replace(/\s/g, '-').replace(/[\(\)]/g, '');
+					// console.log(`${legacyId} => ${generatedId}`);
+					anchors.set(legacyId, generatedId);
+				}
+			}
+			return false;
+		},
+		replacement: text => text
+	});
+	turndownService.turndown(modified);
+	return new Page(generatedPath, anchors);
 }
 
 /**
