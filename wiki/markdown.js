@@ -152,8 +152,14 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 	}
 	const filepath = path.join(__dirname, 'htmlguides', `${entry.name}.html`);
 	const content = await fs.readFile(filepath, 'utf8');
+	// if (content.includes('process(')) {
+	// 	console.log(content);
+	// }
 	// We need to alter the HTML like we do in htmlguides here: strip footer, etc.
-	const modified = await manipulateHTMLContent(content, filepath);
+	const modified = await manipulateHTMLContent(content, filepath, { minify: false }); // FIXME: The minifier is fucking up the spaces inside code tags!
+	if (content.includes('process(')) {
+		console.log(modified);
+	}
 	// Convert the html -> markdown prepend the frontmatter
 	const frontmatter = {
 		title: entry.title,
@@ -163,9 +169,20 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 	if (!thisDocPage) {
 		console.warn(`WAS UNABLE TO FIND PAGE METADATA ENTRY FOR ${entry.name}`);
 	}
+	// FIXME: We need a way to alter the collapseWhitespace internal to turndown! How can we pass in options.isPre function ourselevs to exclude CODE tags?!
 	const turndownService = new TurndownService({
 		headingStyle: 'atx',
-		codeBlockStyle: 'fenced'
+		codeBlockStyle: 'fenced',
+		// blankReplacement: (content, node, options) => {
+		// 	if (node.nodeName === 'CODE') {
+		// 		// console.log(`Retaining blank code content!!! :::${node.textContent}:::`);
+		// 		// console.log(node);
+		// 		// FIXME: This is somehow stripping out the actual whitespaces here!
+		// 		// How can we tell what was removed?! How can we avoid removing it?
+		// 		return `${node.flankingWhitespace.leading}${node.textContent}${node.flankingWhitespace.trailing}`;
+		// 	}
+		// 	return '';
+		// }
 	});
 	// Skip the title since we put that in frontmatter
 	// FIXME: What if they don't match? Use the actual title tag value in preference? What does entry.title become? 'linkTitle'?
@@ -261,6 +278,51 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 		if (index === 0) prefix = '| ';
 		return prefix + content.replace(/\n/g, '<br />') + ' |'
 	}
+
+	// TODO: Add special conversion of the DIV.warning and DIV.problem contents
+	// i.e. from https://wiki.appcelerator.org/display/guides2/Prerequisites
+	// warnings should ideally show the warning emoji, be shown in a yellow-ish box or something
+	// problems should show the red exclamation, have red background, (or maybe just this: https://www.docsy.dev/docs/adding-content/shortcodes/#alert)
+
+	turndownService.addRule('keep code', {
+		filter: 'code',
+		replacement: (content, node) => {
+			// if (content.trim().startsWith('process(')) {
+			// 	console.log(node);
+			// 	console.log(content);
+			// 	console.log(node.textContent);
+			// }
+			// console.log(node.flankingWhitespace);
+			return node.textContent;
+		}
+	});
+
+	// TODO: Fix up export of code blocks/examples. They're very messed up right now!
+	turndownService.addRule('code', {
+		filter: node => node.nodeName === 'DIV' && node.classList.contains('scroll-html-formatted-code') && !node.classList.contains('programlisting'),
+		replacement: (content, node, options) => {
+			const codeTitle = node.getAttribute('data-title');
+			const language = '';
+			// content = content.replace(/\n\n/g, '\n').trim();
+			// console.log(content); // FIXME: the content has extra newlines with leading and trailing ` chars on the ones with code...
+			// Many don't have a title. Not sure how to sniff the language....
+			// TODO: determine language from title? Typically it's JS or XML!
+			return (
+				'\n\n' + options.fence + language + '\n' +
+				content +
+				'\n' + options.fence + '\n\n'
+			  )
+		}
+	});
+
+	turndownService.addRule('div line', {
+		filter: node => node.nodeName === 'DIV' && node.classList.contains('line'),
+		replacement: (content, node) => {
+			// FIXME: If the line contents are basically empty (just a space), treat as newline!
+			// return content;
+			return `${content}\n`;
+		}
+	});
 
 	const markdown = turndownService.turndown(modified);
 	const converted = `${JSON.stringify(frontmatter)}${markdown}\n`;

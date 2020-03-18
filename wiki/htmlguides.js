@@ -278,10 +278,12 @@ function addEditButton(dom) {
 /**
  * @param {string} contents HTML contents
  * @param {string} [filepath]
- * @param {boolean} [showEditButton=false]
+ * @param {object} [options]
+ * @param {boolean} [options.showEditButton=false]
+ * @param {boolean} [options.minify=true]
  * @returns {string}
  */
-async function manipulateHTMLContent(contents, filepath, showEditButton = false) {
+async function manipulateHTMLContent(contents, filepath, options = { showEditButton: false, minify: true }) {
 	let $ = cheerio.load(contents); // add jquery-like features
 	$ = stripFooter($);
 	// $ = addBanner($); // Don't add migration banner yet!
@@ -292,6 +294,9 @@ async function manipulateHTMLContent(contents, filepath, showEditButton = false)
 	$ = fixLinks($, filepath);
 	if (showEditButton) {
 		$ = addEditButton($);
+	}
+	if (options.minify === false) {
+		return $.html();
 	}
 
 	return htmlMinify($);
