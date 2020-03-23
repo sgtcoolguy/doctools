@@ -68,18 +68,18 @@ function addBanner(node) {
 
 /**
  * [addInternalRedirect description]
- * @param {String} file [description]
  * @param {CheerioStatic} node [description]
+ * @param {String} filepath [description]
  * @returns {CheerioStatic}
  */
-function addInternalRedirect(file, node) {
-	const shortName = file.substring('htmlguides/'.length);
+function addInternalRedirect(node, filepath) {
+	const shortName = filepath.substring('htmlguides/'.length);
 	if (!INTERNAL_REDIRECTS.has(shortName)) {
 		return node;
 	}
 
 	if (node('meta[http-equiv*=refresh]').length <= 0) { // check if file already has a redirect meta element
-		console.log(`Adding a redirect to ${file} to point to ${INTERNAL_REDIRECTS.get(shortName)}`);
+		console.log(`Adding a redirect to ${filepath} to point to ${INTERNAL_REDIRECTS.get(shortName)}`);
 		node('head').append(`\t\t<meta http-equiv="refresh" content="0;URL=http://docs.appcelerator.com/platform/latest/#!/guide/${INTERNAL_REDIRECTS.get(shortName)}">\n`); // add redirect to source page
 	}
 
@@ -88,18 +88,19 @@ function addInternalRedirect(file, node) {
 
 /**
  * [addExternalRedirect description]
- * @param {String} file [description]
+ * 
  * @param {CheerioStatic} node [description]
+ * @param {String} filepath [description]
  * @returns {CheerioStatic}
  */
-function addExternalRedirect(file, node) {
-	const shortName = file.substring('htmlguides/'.length);
+function addExternalRedirect(node, filepath) {
+	const shortName = filepath.substring('htmlguides/'.length);
 	if (!INTERNAL_REDIRECTS.has(shortName)) {
 		return node;
 	}
 
 	if (node('meta[http-equiv*=refresh]').length <= 0) { // check if file already has a redirect meta element
-		console.log(`Adding a redirect to ${file} to point to ${EXTERNAL_REDIRECT_TARGET}`);
+		console.log(`Adding a redirect to ${filepath} to point to ${EXTERNAL_REDIRECT_TARGET}`);
 		node('head').append(`\t<meta http-equiv="refresh" content="0;${EXTERNAL_REDIRECT_TARGET}">`); // add redirect to source page
 	}
 
@@ -156,7 +157,7 @@ async function manipulateHTMLFile(file, outputDir, showEditButton) {
 	const shortname = path.basename(file, '.html');
 	console.log(shortname);
 	const contents = await fs.readFile(file, 'utf8');
-	const html = await manipulateHTMLContent(contents, file, showEditButton);
+	const html = manipulateHTMLContent(contents, file, showEditButton);
 	const dir = path.join(outputDir, 'guides', shortname);
 	await fs.ensureDir(dir);
 	return fs.writeFile(path.join(dir, 'README.html'), html);
@@ -283,13 +284,12 @@ function addEditButton(dom) {
  * @param {boolean} [options.minify=true]
  * @returns {string}
  */
-async function manipulateHTMLContent(contents, filepath, options = { showEditButton: false, minify: true }) {
-	let $ = cheerio.load(contents); // add jquery-like features
+function manipulateHTMLContent(contents, filepath, options = { showEditButton: false, minify: true }) {
+	let $ = generateDOM(contents); // add jquery-like features
 	$ = stripFooter($);
 	// $ = addBanner($); // Don't add migration banner yet!
 	if (filepath) {
-		$ = addInternalRedirect(filepath, $);
-		$ = addExternalRedirect(filepath, $);
+		$ = addRedirects($, filepath);
 	}
 	$ = fixLinks($, filepath);
 	if (showEditButton) {
@@ -300,6 +300,151 @@ async function manipulateHTMLContent(contents, filepath, options = { showEditBut
 	}
 
 	return htmlMinify($);
+}
+
+/**
+ * @param {string} contents html source of a file to parse
+ * @returns {CheerioStatic}
+ */
+function generateDOM(contents) {
+	return cheerio.load(contents, { decodeEntities: false });
+}
+
+/**
+ * 
+ * @param {CheerioStatic} dom 
+ * @param {string} filepath 
+ */
+function addRedirects(dom, filepath) {
+	const result = addInternalRedirect(dom, filepath);
+	return addExternalRedirect(result, filepath);
+}
+
+/**
+ * Replaces div code sample blocks with <pre><code class="language-whatever"></code></pre>
+ * that retain proper spacing and can be converted by turndown into correctly exported fenced markdown blocks
+ * @param {CheerioStatic} node 
+ * @returns {CheerioStatic} modified html dom
+ */
+function fixCodeBlocks(node) {
+	node('div[class="defaultnew syntaxhighlighter scroll-html-formatted-code"]').not('.programlisting')
+ 		.each(function (i, elem) {
+			try {
+				const domNode = node(elem);
+				const origCode = domNode.text();
+				const code = `<pre><code${sniffLanguage(domNode, origCode)}>${origCode.trim()}</code></pre>`.replace(/\t/g, '  ');
+				// console.log(`Replacing div with pre-formatted tags: ${code}`);
+				domNode.replaceWith(code);
+			} catch (error) {
+				console.error(`failed to replace in ${filepath}:`);
+				console.error(error);
+			}
+		 });
+	return node;
+}
+
+/**
+ * Give the code sample divs from exported HTMl, attempts to sniff the language used based on the code title and contents
+ * @param {Cheerio} codeDiv 
+ */
+function sniffLanguage(codeDiv, code) {
+	let title = codeDiv.data('data-title');
+	if (!title) {
+		const titleDiv = codeDiv.prev('div.title');
+		if (titleDiv) {
+			title = titleDiv.text().trim();
+		}
+	}
+
+	// Use title first (many times it may be a filename, so we can cheat and look for extensions)
+	if (title) {
+		if (title.endsWith('.cs')) {
+			return ' class="language-csharp"';
+		}
+		if (title.endsWith('.css')) {
+			return ' class="language-css"';
+		}
+		if (title.endsWith('.cpp')) {
+			return ' class="language-cpp"';
+		}
+		if (title.endsWith('.h')) {
+			return ' class="language-objc"';
+		}
+		if (title.endsWith('.hpp')) {
+			return ' class="language-hpp"';
+		}
+		if (title.endsWith('.html')) {
+			return ' class="language-html"';
+		}
+		if (title.endsWith('.java')) {
+			return ' class="language-java"';
+		}
+		if (title.endsWith('.js'))
+		{
+			return ' class="language-javascript"';
+		}
+		if (title.endsWith('.json'))
+		{
+			return ' class="language-json"';
+		}
+		if (title.endsWith('.m')) {
+			return ' class="language-objc"';
+		}
+		if (title.endsWith('.py')) {
+			return ' class="language-python"';
+		}
+		if (title.endsWith('.rb') || title.includes('Podfile'))
+		{
+			return ' class="language-ruby"';
+		}
+		if (title.endsWith('.sh')) {
+			return ' class="language-bash"';
+		}
+		if (title.endsWith('.swift')) {
+			return ' class="language-swift"';
+		}
+		if (title.endsWith('.ts')) {
+			return ' class="language-typescript"';
+		}
+		if (title.endsWith('.tss'))
+		{
+			return ''; // TSS isn't gonna be a supported language // TODO: Treat as json?
+		}
+		if (title.endsWith('.xml'))
+		{
+			return ' class="language-xml"';
+		}
+		if (title.endsWith('.yml')) {
+			return ' class="language-yml"';
+		}
+		// console.log(`Unhandled title language? ${title}`);
+	}
+
+	// Look for comon JS keywords
+	if (code.includes('var ') || code.includes('function ') || code.includes('const ') || code.includes('module.exports'))
+	{
+		return ' class="language-javascript"';
+	}
+	
+	// sniff shell commands
+	if (code.includes('sudo ') || code.includes('npm ') || code.includes('appc '))
+	{
+		return ' class="language-bash"';
+	}
+
+	// Sniff XML
+	if (code.trim().startsWith('&lt;')) {
+		return ' class="language-xml"';
+	}
+
+	// TODO: Assume json if starts with { and ends with } ?
+
+	// If we have both a title and code to look at we should maybe make some assumptions about what's falling through here!
+	// if (title) {
+	// 	console.log(`Failed to sniff language for code with title: ${title}`);
+	// 	console.log(code);
+	// }
+	return '';
 }
 
 function cliUsage() {
@@ -353,7 +498,13 @@ async function main() {
 }
 
 module.exports = {
-	manipulateHTMLContent
+	generateDOM,
+	stripFooter,
+	addRedirects,
+	fixLinks,
+	stripFooter,
+	htmlMinify,
+	fixCodeBlocks
 };
 
 if (require.main === module) {

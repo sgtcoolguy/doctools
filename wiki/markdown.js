@@ -18,7 +18,7 @@ const TurndownService = require('turndown');
 const tables = require('turndown-plugin-gfm').tables
 const removeTrailingSpaces = require('remove-trailing-spaces');
 
-const manipulateHTMLContent = require('./htmlguides').manipulateHTMLContent;
+const guides = require('./htmlguides');
 
 // Regexp/Patterns used to match link styles to rewrite them to work in docsy!
 const DUMB_PATTERN = /^(.+?)-section-(src-\d+(_(.+))?)$/; // group 1 is the page name, group 2 is the full anchor name
@@ -131,6 +131,21 @@ class Page {
 
 /**
  * 
+ * @param {string} html html source
+ * @param {string} filepath path to html input file
+ * @returns {string} modified html source
+ */
+function fixHTML(html, filepath) {
+	let dom = guides.generateDOM(html);
+	dom = guides.stripFooter(dom);
+	dom = guides.addRedirects(dom, filepath);
+	dom = guides.fixLinks(dom, filepath);
+	dom = guides.fixCodeBlocks(dom);
+	return dom.html();
+}
+
+/**
+ * 
  * @param {object} entry 
  * @param {number} index
  * @param {string} outDir 
@@ -152,14 +167,9 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 	}
 	const filepath = path.join(__dirname, 'htmlguides', `${entry.name}.html`);
 	const content = await fs.readFile(filepath, 'utf8');
-	// if (content.includes('process(')) {
-	// 	console.log(content);
-	// }
-	// We need to alter the HTML like we do in htmlguides here: strip footer, etc.
-	const modified = await manipulateHTMLContent(content, filepath, { minify: false }); // FIXME: The minifier is fucking up the spaces inside code tags!
-	if (content.includes('process(')) {
-		console.log(modified);
-	}
+
+	const modified = fixHTML(content, filepath);
+
 	// Convert the html -> markdown prepend the frontmatter
 	const frontmatter = {
 		title: entry.title,
@@ -172,17 +182,7 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 	// FIXME: We need a way to alter the collapseWhitespace internal to turndown! How can we pass in options.isPre function ourselevs to exclude CODE tags?!
 	const turndownService = new TurndownService({
 		headingStyle: 'atx',
-		codeBlockStyle: 'fenced',
-		// blankReplacement: (content, node, options) => {
-		// 	if (node.nodeName === 'CODE') {
-		// 		// console.log(`Retaining blank code content!!! :::${node.textContent}:::`);
-		// 		// console.log(node);
-		// 		// FIXME: This is somehow stripping out the actual whitespaces here!
-		// 		// How can we tell what was removed?! How can we avoid removing it?
-		// 		return `${node.flankingWhitespace.leading}${node.textContent}${node.flankingWhitespace.trailing}`;
-		// 	}
-		// 	return '';
-		// }
+		codeBlockStyle: 'fenced'
 	});
 	// Skip the title since we put that in frontmatter
 	// FIXME: What if they don't match? Use the actual title tag value in preference? What does entry.title become? 'linkTitle'?
@@ -284,44 +284,22 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 	// warnings should ideally show the warning emoji, be shown in a yellow-ish box or something
 	// problems should show the red exclamation, have red background, (or maybe just this: https://www.docsy.dev/docs/adding-content/shortcodes/#alert)
 
-	turndownService.addRule('keep code', {
-		filter: 'code',
-		replacement: (content, node) => {
-			// if (content.trim().startsWith('process(')) {
-			// 	console.log(node);
-			// 	console.log(content);
-			// 	console.log(node.textContent);
-			// }
-			// console.log(node.flankingWhitespace);
-			return node.textContent;
-		}
-	});
+	// turndownService.addRule('keep code', {
+	// 	filter: 'code',
+	// 	replacement: (content, node) => {
+	// 		// if (content.trim().startsWith('process(')) {
+	// 		// 	console.log(node);
+	// 		// 	console.log(content);
+	// 		// 	console.log(node.textContent);
+	// 		// }
+	// 		// console.log(node.flankingWhitespace);
+	// 		return node.textContent;
+	// 	}
+	// });
 
-	// TODO: Fix up export of code blocks/examples. They're very messed up right now!
-	turndownService.addRule('code', {
-		filter: node => node.nodeName === 'DIV' && node.classList.contains('scroll-html-formatted-code') && !node.classList.contains('programlisting'),
-		replacement: (content, node, options) => {
-			const codeTitle = node.getAttribute('data-title');
-			const language = '';
-			// content = content.replace(/\n\n/g, '\n').trim();
-			// console.log(content); // FIXME: the content has extra newlines with leading and trailing ` chars on the ones with code...
-			// Many don't have a title. Not sure how to sniff the language....
-			// TODO: determine language from title? Typically it's JS or XML!
-			return (
-				'\n\n' + options.fence + language + '\n' +
-				content +
-				'\n' + options.fence + '\n\n'
-			  )
-		}
-	});
-
-	turndownService.addRule('div line', {
-		filter: node => node.nodeName === 'DIV' && node.classList.contains('line'),
-		replacement: (content, node) => {
-			// FIXME: If the line contents are basically empty (just a space), treat as newline!
-			// return content;
-			return `${content}\n`;
-		}
+	turndownService.addRule('code sample titles', {
+		filter: node => node.nodeName === 'DIV' && node.className === 'title',
+		replacement: (content, node) => `*${content}*`
 	});
 
 	const markdown = turndownService.turndown(modified);
@@ -411,6 +389,7 @@ async function convertHTMLFiles(inputFile, outputDir) {
 
 	const docsDir = path.join(outputDir, 'content/en/docs/appc');
 	await fs.ensureDir(docsDir);
+	console.log('Converting HTML pages to markdown...');
 	return Promise.all(toc.map((entry, index) => handleEntry(entry, index, docsDir, lookupTable)));
 }
 
@@ -453,9 +432,13 @@ async function generateLookupTable(prefix, entries, lookupTable) {
 async function generatePageMetadata(pageName, generatedPath) {
 	const filepath = path.join(__dirname, 'htmlguides', `${pageName}.html`);
 	const content = await fs.readFile(filepath, 'utf8');
+
 	// FIXME: If we haven't manipulated the html already, we may not have the style of links we expect!
 	// Can we avoid this extra work?
-	const modified = await manipulateHTMLContent(content, filepath);
+	const dom = guides.generateDOM(content);
+	guides.fixLinks(dom, filepath);
+	const modified = dom.html();
+
 	const anchors = new Map();
 	// Can we grab the first div with class "content" and then find all h1/2/3/4/5 tags with class "heading" - and grab parent div's id value to match?
 	const turndownService = new TurndownService();
