@@ -432,36 +432,69 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 	turndownService.addRule('warnings', {
 		filter: node => node.nodeName === 'DIV' && node.classList.contains('information-macro'),
 		replacement: (content, node) => {
+			content = content.trim(); // trim the content!
+			const hasNoicon = node.classList.contains('has-no-icon');
+			
+			// Extract teh title if there is one (we'll use a default below if not)
+			let title;
+			const firstChild = node.childNodes && node.childNodes[0];
+			if (firstChild && firstChild.nodeName === 'DIV' && firstChild.className === 'title') {
+				title = firstChild.textContent;
+				// remove the leading **${title}** from content!
+				content = content.substring(title.length + 4).trim();
+			}
+			
+			let prefix = '';
+			let color = 'info';
 			// color can be 'primary', 'info', 'warning' or 'danger'. I think warning/danger are equivalent by default in our theme
 			if (node.classList.contains('problem')) {
-				return `{{% alert title="❗️ Warning" color="danger" %}}${content.trim()}{{% /alert %}}`;
+				prefix = '❗️ ';
+				title = title || 'Warning';
+				color = 'danger';
+			} else if (node.classList.contains('warning')) {
+				prefix = '⚠️ ';
+				title = title || 'Warning';
+				color = 'primary';
+			} else if (node.classList.contains('hint')) {
+				prefix = '💡 ';
+				title = title || 'Hint';
+			} else if (node.classList.contains('success')) {
+				prefix = '✅ ';
+				title = title || '';
+				color = 'success';
 			}
-			if (node.classList.contains('warning')) {
-				return `{{% alert title="⚠️ Warning" color="primary" %}}${content.trim()}{{% /alert %}}`;
+			if (hasNoicon) {
+				prefix = '';
 			}
-			if (node.classList.contains('hint')) {
-				return `{{% alert title="💡 Hint" color="info" %}}${content.trim()}{{% /alert %}}`;
-			}
-			if (node.classList.contains('success')) {
-				return `{{% alert title="✅" color="success" %}}${content.trim()}{{% /alert %}}`;
-			}
-			return content;
+			// FIXME: Can we have a nonexistent title (if no icon or title should be used)?
+			return `{{% alert title="${prefix}${title}" color="${color}" %}}${content}{{% /alert %}}`;
 		}
 	});
 
 	// TODO: Also handle div.panel. May have a child div.panelHeader; has div.panelContent child with contents
 	// Currently displays a grey box (very slightly lighter header) with a rounded corner black border
-	// turndownService.addRule('panels', {
-	// 	filter: node => node.nodeName === 'DIV' && node.className === 'panel',
-	// 	replacement: (content, node) => {
-			
-	// 		return content;
-	// 	}
-	// });
+	turndownService.addRule('panels', {
+		filter: node => node.nodeName === 'DIV' && node.classList.contains('panel'),
+		replacement: (content, node) => {
+			content = content.trim();
+			// Extract the title if there is one (we'll use a default below if not)
+			let title;
+			const firstChild = node.childNodes && node.childNodes[0];
+			if (firstChild && firstChild.nodeName === 'DIV' && firstChild.className === 'title') {
+				title = firstChild.textContent;
+				// remove the leading **${title}** from content!
+				content = content.substring(title.length + 4).trim();
+			}
+			if (title) {
+				return `{{% alert title="${title}" color="info" %}}${content}{{% /alert %}}`;
+			}
+			return `{{% alert color="info" %}}${content}{{% /alert %}}`;
+		}
+	});
 
 	turndownService.addRule('code sample titles', {
 		filter: node => node.nodeName === 'DIV' && node.className === 'title',
-		replacement: (content, node) => `*${content}*`
+		replacement: (content, node) => `**${content}**`
 	});
 
 	const markdown = turndownService.turndown(modified);
