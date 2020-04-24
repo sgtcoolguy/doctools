@@ -64,7 +64,7 @@ def MODULES = [
 	'titanium-web-dialog',
 	// 'ti.systemalert', // Removed since it has no apidoc folder
 	'appcelerator.aca',
-	// 'ti.barcode', // TODO: add once https://github.com/appcelerator-modules/ti.barcode/pull/112 is merged
+	'ti.barcode',
 	'titanium-apple-sign-in'
 ]
 
