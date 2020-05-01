@@ -57,7 +57,7 @@ function parse(node, topicsDone = new Set()) {
 }
 
 function cliUsage() {
-	console.log('Usage: node markdown --input htmlguides/toc.xml --output ./build/guides/');
+	console.log('Usage: node markdown --input htmlguides/toc.xml --output ../build/appc-open-docs/');
 }
 
 function processCommandLineArgs() {
@@ -307,6 +307,10 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 		title: entry.title,
 		weight: ((index + 1) * 10).toString() // Make the weight the (index + 1) * 10 as string
 	};
+	if (outputName === '_index.md') {
+		// add no_list: true to frontmatter to avoid re-listing children pages!
+		frontmatter.no_list = true;
+	}
 	const thisDocPage = lookupTable.get(entry.name);
 	if (!thisDocPage) {
 		console.warn(`WAS UNABLE TO FIND PAGE METADATA ENTRY FOR ${entry.name}`);
@@ -350,7 +354,7 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 	});
 	// Convert images to point at correct place!
 	// images/download/attachments/30083145/TabbedApplicationMain.png
-	// -> /Images/appc/download/attachments/30083145/TabbedApplicationMain.png
+	// -> /images/download/attachments/30083145/TabbedApplicationMain.png
 	turndownService.addRule('images', {
 		filter: 'img',
 		replacement: function (content, node) {
@@ -362,7 +366,7 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 				alt = path.basename(alt, path.extname(alt));
 			}
 			if (src.startsWith('images/')) {
-				src = '/Images/appc' + src.substring(6); // 'images/...' -> '/Images/appc/...'
+				src = '/images' + src.substring(6); // 'images/...' -> '/images/...'  // if pushing to axway-open-docs, should be '/Images/appc' 
 			}
 			const title = node.title || ''
 			const titlePart = title ? ' "' + title + '"' : ''
@@ -580,21 +584,21 @@ async function convertHTMLFiles(inputFile, outputDir) {
 
 	const lookupTable = new Map();
 	console.log('Building hierarchy and lookup tables...');
-	await generateLookupTable('/docs/appc/', toc, lookupTable);
+	await generateLookupTable('/docs/', toc, lookupTable);  // if pushing to axway-open-docs, should be '/docs/appc/' 
 
-	const docsDir = path.join(outputDir, 'content/en/docs/appc');
+	const docsDir = path.join(outputDir, 'content/en/docs'); // if pushing to axway-open-docs, should be 'content/en/docs/appc' 
 	await fs.ensureDir(docsDir);
 	console.log('Converting HTML pages to markdown...');
 	return Promise.all(toc.map((entry, index) => handleEntry(entry, index, docsDir, lookupTable)));
 }
 
 /**
- * Copy the images over to where we'd expect: htmlguides/images -> outputDir/static/Images/appc
+ * Copy the images over to where we'd expect: htmlguides/images -> outputDir/static/images
  * @param {string} outputDir root directory we're assembling our docsy content
  * @returns {Promise<void>}
  */
 async function copyImages(outputDir) {
-	const imagesDir = path.join(outputDir, 'static/Images/appc');
+	const imagesDir = path.join(outputDir, 'static/images'); // if pushing to axway-open-docs, should be 'static/Images/appc' 
 	return fs.copy(path.join(__dirname, 'htmlguides/images'), imagesDir);
 }
 
