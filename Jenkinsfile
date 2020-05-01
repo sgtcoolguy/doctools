@@ -102,7 +102,10 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				}
 				sh 'npm run wiki:unzip'
 				sh 'npm run wiki:redirects'
-				sh 'npm run wiki:finalize' // Massage the htmlguides: strip footer, add redirects, add banner, minify HTML
+				// Generate the markdown contents and update appc-open-docs!
+				sh 'node wiki/markdown.js --input wiki/htmlguides/toc.xml --output ./build/appc-open-docs/'
+				// Massage the htmlguides: strip footer, add redirects, add banner, minify HTML
+				sh 'npm run wiki:finalize'
 				// TODO: Allow addon guides?
 				sh 'npm run wiki:guides'
 				if (publish) {
@@ -225,49 +228,17 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				dir('dist') {
 					archiveArtifacts 'platform/'
 				} // dir('doctools/dist')
+				dir('build') {
+					archiveArtifacts 'appc-open-docs'
+				}
 			} // stage('Archive')
 		} // dir('doctools')
 
 		if (publish) {
 			stage('Publish') {
 				// when branch is "docs" check out appc_web_docs, then check in platform/latest to it!
-				sh 'mkdir -p appc_web_docs'
-				dir('appc_web_docs') {
-					// checkout appc_web_docs repo
-					checkout(changelog: false,
-						poll: false,
-						scm: [$class: 'GitSCM',
-							branches: [[name: '*/docs']],
-							doGenerateSubmoduleConfigurations: false,
-							extensions: [
-								[$class: 'CloneOption', depth: 1, honorRefspec: true, noTags: true, reference: '', shallow: true],
-								[$class: 'CleanBeforeCheckout'],
-								[$class: 'LocalBranch'] // so we can make changes and push them!
-							],
-							submoduleCfg: [],
-							userRemoteConfigs: [[credentialsId: 'f63e8a0a-536e-4695-aaf1-7a0098147b59', url: "git@github.com:appcelerator/appc_web_docs.git", refspec: '+refs/heads/docs:refs/remotes/origin/docs']]
-						]
-					)
-					sh 'rm -rf platform/data'
-					sh 'rm -rf platform/landing'
-					sh 'rm -rf platform/latest'
-					sh 'rm -rf platform/release-notes'
-					// copy what we generated into repo
-					sh 'cp -R ../doctools/dist/platform/data platform/data'
-					sh 'cp -R ../doctools/dist/platform/landing platform/landing'
-					sh 'cp -R ../doctools/dist/platform/latest platform/latest'
-					sh 'cp -R ../doctools/dist/platform/release-notes platform/release-notes'
-					// add all our changes to staged in git
-					sh 'git add platform'
-					//  Add details of any changes to this build of doctools into our commit message here!
-					// https://support.cloudbees.com/hc/en-us/articles/217630098-How-to-access-Changelogs-in-a-Pipeline-Job-
-					def changes = getChangeString()
-					writeFile file: 'commit.txt', text: "chore(release): update platform docs\n\n${changes}"
-					def status = sh returnStatus: true, script: 'git commit -F commit.txt' // commit it!
-					if (status == 0) {
-						pushGit(name: 'docs') // push 'docs' branch to github
-					}
-				}
+				updateDocsAppceleratorCom()
+				updateAppcOpenDocs()
 			} // stage('Publish')
 
 			// Upload the solr index files to the server!
@@ -284,6 +255,83 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 		} // if 'docs' branch
 	} // nodejs
 } // node
+
+def updateAppcOpenDocs() {
+	sh 'mkdir -p appc-open-docs'
+	dir('appc-open-docs') {
+		// checkout appc-open-docs repo
+		checkout(changelog: false,
+			poll: false,
+			scm: [$class: 'GitSCM',
+				branches: [[name: '*/master']],
+				doGenerateSubmoduleConfigurations: false,
+				extensions: [
+					[$class: 'CloneOption', depth: 1, honorRefspec: true, noTags: true, reference: '', shallow: true],
+					[$class: 'CleanBeforeCheckout'],
+					[$class: 'LocalBranch'] // so we can make changes and push them!
+				],
+				submoduleCfg: [],
+				userRemoteConfigs: [[credentialsId: 'f63e8a0a-536e-4695-aaf1-7a0098147b59', url: "git@github.com:appcelerator/appc-open-docs.git", refspec: '+refs/heads/master:refs/remotes/origin/master']]
+			]
+		)
+		sh 'rm -rf content/en/docs'
+		sh 'rm -rf static/images'
+		// copy what we generated into repo
+		sh 'cp -R ../doctools/build/appc-open-docs/content/en/docs content/en/docs'
+		sh 'cp -R ../doctools/build/appc-open-docs/static/images static-images'
+		// add all our changes to staged in git
+		sh 'git add content/en/docs'
+		sh 'git add static/images'
+		//  Add details of any changes to this build of doctools into our commit message here!
+		// https://support.cloudbees.com/hc/en-us/articles/217630098-How-to-access-Changelogs-in-a-Pipeline-Job-
+		def changes = getChangeString()
+		writeFile file: 'commit.txt', text: "chore(release): update platform docs\n\n${changes}"
+		def status = sh returnStatus: true, script: 'git commit -F commit.txt' // commit it!
+		if (status == 0) {
+			pushGit(name: 'master') // push 'master' branch to github
+		}
+	}
+}
+
+def updateDocsAppceleratorCom() {
+	sh 'mkdir -p appc_web_docs'
+	dir('appc_web_docs') {
+		// checkout appc_web_docs repo
+		checkout(changelog: false,
+			poll: false,
+			scm: [$class: 'GitSCM',
+				branches: [[name: '*/docs']],
+				doGenerateSubmoduleConfigurations: false,
+				extensions: [
+					[$class: 'CloneOption', depth: 1, honorRefspec: true, noTags: true, reference: '', shallow: true],
+					[$class: 'CleanBeforeCheckout'],
+					[$class: 'LocalBranch'] // so we can make changes and push them!
+				],
+				submoduleCfg: [],
+				userRemoteConfigs: [[credentialsId: 'f63e8a0a-536e-4695-aaf1-7a0098147b59', url: "git@github.com:appcelerator/appc_web_docs.git", refspec: '+refs/heads/docs:refs/remotes/origin/docs']]
+			]
+		)
+		sh 'rm -rf platform/data'
+		sh 'rm -rf platform/landing'
+		sh 'rm -rf platform/latest'
+		sh 'rm -rf platform/release-notes'
+		// copy what we generated into repo
+		sh 'cp -R ../doctools/build/platform/data platform/data'
+		sh 'cp -R ../doctools/dist/platform/landing platform/landing'
+		sh 'cp -R ../doctools/dist/platform/latest platform/latest'
+		sh 'cp -R ../doctools/dist/platform/release-notes platform/release-notes'
+		// add all our changes to staged in git
+		sh 'git add platform'
+		//  Add details of any changes to this build of doctools into our commit message here!
+		// https://support.cloudbees.com/hc/en-us/articles/217630098-How-to-access-Changelogs-in-a-Pipeline-Job-
+		def changes = getChangeString()
+		writeFile file: 'commit.txt', text: "chore(release): update platform docs\n\n${changes}"
+		def status = sh returnStatus: true, script: 'git commit -F commit.txt' // commit it!
+		if (status == 0) {
+			pushGit(name: 'docs') // push 'docs' branch to github
+		}
+	}
+}
 
 @NonCPS
 def getChangeString() {
