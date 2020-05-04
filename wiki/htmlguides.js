@@ -110,9 +110,10 @@ function addExternalRedirect(node, filepath) {
 /**
  * [minify description]
  * @param  {CheerioStatic} node [description]
+ * @param {string} [filepath] path to html file (for context when there's an error)
  * @return {String}      [description]
  */
-function htmlMinify(node) {
+function htmlMinify(node, filepath) {
 	// TODO Also do some custom massaging here, to remove stuff that's useless that minifier wont:
 	// - <meta content="Scroll EclipseHelp Exporter" name="generator">
 	// - class attribute with single blank space, i.e.: '<li class=" ">'
@@ -138,7 +139,14 @@ function htmlMinify(node) {
 	html = html.replace(' xmlns="http://www.w3.org/1999/xhtml"', '');
 	// drop xml tag
 	html = html.replace('<?xml version="1.0" encoding="UTF-8" ?>', '');
-	return minify(html, MINIFY_CONFIG);
+	try {
+		return minify(html, MINIFY_CONFIG);
+	} catch (err) {
+		if (filepath) {
+			console.error(`Error minifying file ${filepath}: ${err}`);
+		}
+		throw err;
+	}
 }
 
 /**
@@ -247,7 +255,7 @@ function fixLinks(dom, filepath) {
 					href = '#!/guide/' + href.replace('.html', '').replace('#', '-section-');
 				}
 			}
-			elem.attribs.href = href;
+			elem.attribs.href = encodeURIComponent(href);
 		}
 	});
 
@@ -299,7 +307,7 @@ function manipulateHTMLContent(contents, filepath, options = { showEditButton: f
 		return $.html();
 	}
 
-	return htmlMinify($);
+	return htmlMinify($, filepath);
 }
 
 /**
