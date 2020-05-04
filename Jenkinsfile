@@ -100,14 +100,8 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				dir('wiki') {
 					copyArtifacts fingerprintArtifacts: true, projectName: '../wiki-export/master'
 				}
-				sh 'npm run wiki:unzip'
-				sh 'npm run wiki:redirects'
-				// Generate the markdown contents and update appc-open-docs!
-				sh 'node wiki/markdown.js --input wiki/htmlguides/toc.xml --output ./build/appc-open-docs/'
-				// Massage the htmlguides: strip footer, add redirects, add banner, minify HTML
-				sh 'npm run wiki:finalize'
-				// TODO: Allow addon guides?
-				sh 'npm run wiki:guides'
+				// Generate the jsduck-compatible html contents and markdown contents
+				sh 'npm run wiki:post-export'
 				if (publish) {
 					// Trigger Zoomin to sync up
 					withCredentials([sshUserPrivateKey(credentialsId: '190db4ff-79b3-459d-8cec-20048b3e91d5', keyFileVariable: 'SSH_KEY', passphraseVariable: 'PASSPHRASE', usernameVariable: 'USERNAME')]) {
