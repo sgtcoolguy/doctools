@@ -15,6 +15,8 @@ const path = require('path');
 const url = require('url');
 const fs = require('fs-extra');
 const cheerio = require('cheerio');
+const promisify = require('util').promisify;
+const xml2js = promisify(require('xml2js').parseString);
 
 const minify = require('html-minifier').minify;
 const MINIFY_CONFIG = require('./html-minifier.json');
@@ -29,11 +31,7 @@ const INTERNAL_REDIRECTS = new Map([
 	['JIRA_Ticket_Template', 'How_to_Report_a_Bug_or_Make_a_Feature_Request'],
 	['How_to_Submit_a_Bug_Report', 'How_to_Report_a_Bug_or_Make_a_Feature_Request']
 ]);
-// guide pages that need redirection externally
-const EXTERNAL_REDIRECTS = new Set([
-	'Titanium SDK Open Source Attribution Notice',
-	'Titanium Studio Open Source Attribution Notice'
-]);
+
 const EXTERNAL_REDIRECT_TARGET = 'http://www.appcelerator.com/opensource/';
 const WHITELIST = [
 	'https://wiki.appcelerator.org/display/community',
@@ -273,7 +271,7 @@ function manipulateHTMLContent(contents, filepath, options = { showEditButton: f
 		$ = addRedirects($, filepath);
 	}
 	$ = fixLinks($, filepath);
-	if (showEditButton) {
+	if (options.showEditButton) {
 		$ = addEditButton($);
 	}
 	if (options.minify === false) {
@@ -301,13 +299,60 @@ function addRedirects(dom, filepath) {
 	return addExternalRedirect(result, filepath);
 }
 
+/**
+ * Parses the toc.xml file
+ * @param {string} tocFilepath
+ * @returns {Promise<object[]>}
+ */
+async function parseTOC(tocFilepath) {
+	const contents = await fs.readFile(tocFilepath, 'utf8');
+	const result = await xml2js(contents);
+	return parse(result.toc.topic);
+}
+
+/**
+ * Parses the toc.xml file and generates a JS object reproducing the hierarchy
+ * @param {object[]} node parsed toc.xml xmldom elements? 
+ * @param {Set<string>} topicsDone memo to keep track of pages/nodes already done
+ * @return {object}
+ */
+function parse(node, topicsDone = new Set()) {
+	const rv = [];
+	for (let x = 0; x < node.length; x++) {
+		const child = node[x];
+		const hashIndex = child.$.href.indexOf('#');
+		const htmlFilename = hashIndex === -1 ? child.$.href : child.$.href.substring(0, hashIndex);
+		const shortname = htmlFilename.replace('.html', '');
+
+		// If we're already done this file, no need to re-process the HTML!
+		if (!topicsDone.has(shortname)) {
+			topicsDone.add(shortname);
+
+			const res = {
+				name: shortname,
+				title: child.$.label
+			};
+			if ('topic' in child) {
+				res.items = parse(child.topic, topicsDone);
+				if (res.items.length <= 0) {
+					delete res.items;
+				}
+			}
+			rv.push(res);
+		}
+	}
+	return rv;
+}
+
 module.exports = {
 	generateDOM,
 	stripFooter,
 	addRedirects,
 	fixLinks,
 	stripFooter,
-	htmlMinify
+	htmlMinify,
+	parseTOC,
+	manipulateHTMLContent
 };
 
 if (require.main === module) {

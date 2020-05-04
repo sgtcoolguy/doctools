@@ -9,105 +9,15 @@
 
 const fs = require('fs-extra');
 const path = require('path');
-const util = require('util');
-const promisify = util.promisify;
-const xml2js = promisify(require('xml2js').parseString);
+
 const TurndownService = require('turndown');
 const tables = require('turndown-plugin-gfm').tables
 const removeTrailingSpaces = require('remove-trailing-spaces');
 
-const guides = require('./util');
+const utils = require('./util');
 
 // Regexp/Patterns used to match link styles to rewrite them to work in docsy!
 const DUMB_PATTERN = /^(.+?)-section-(src-\d+(_(.+))?)$/; // group 1 is the page name, group 2 is the full anchor name
-
-// FIXME: Move to processCommandLineArgs, return in an object!
-let inputFile = null;
-let outputDir = null;
-
-// TODO: Rewrite to be async!
-function parse(node, topicsDone = new Set()) {
-	const rv = [];
-	for (let x = 0; x < node.length; x++) {
-		const child = node[x];
-		const hashIndex = child.$.href.indexOf('#');
-		const htmlFilename = hashIndex === -1 ? child.$.href : child.$.href.substring(0, hashIndex);
-		const shortname = htmlFilename.replace('.html', '');
-
-		// If we're already done this file, no need to re-process the HTML!
-		if (!topicsDone.has(shortname)) {
-			topicsDone.add(shortname);
-
-			const res = {
-				name: shortname,
-				title: child.$.label
-			};
-			if ('topic' in child) {
-				res.items = parse(child.topic, topicsDone);
-				if (res.items.length <= 0) {
-					delete res.items;
-				}
-			}
-			rv.push(res);
-		}
-	}
-	return rv;
-}
-
-function cliUsage() {
-	console.log('Usage: node markdown --input htmlguides/toc.xml --output ../build/appc-open-docs/');
-}
-
-function processCommandLineArgs() {
-	const cwd = process.cwd();
-	const argc = process.argv.length;
-	if (argc > 2) {
-		for (var x = 2; x < argc; x++) {
-			switch (process.argv[x]) {
-				case "--input":
-					if (++x >= argc) {
-						console.error('Specify an XML input file!');
-						cliUsage();
-						process.exit(1);
-					}
-					// Try to take the filename as-is, if doesn't exist try to resolve relative to cwd, then try relative to this file
-					inputFile = process.argv[x];
-					if (!fs.existsSync(inputFile)) {
-						inputFile = path.resolve(cwd, inputFile);
-						if (!fs.existsSync(inputFile)) {
-							inputFile = path.resolve(__dirname, inputFile);
-							if (!fs.existsSync(inputFile)) {
-								console.error(`Input file does not exist: ${process.argv[x]}`);
-								process.exit(1);
-							}
-						}
-					}
-					break;
-				case "--output":
-					if (++x >= argc) {
-						console.error('Specify an output directory!');
-						cliUsage();
-						process.exit(1);
-					}
-					outputDir = path.resolve(cwd, process.argv[x]);
-					break;
-				default:
-					console.warn(`unknown option: ${process.argv[x]}`);
-			}
-		}
-	}
-
-	if (!inputFile) {
-		console.error('Input file required.');
-		cliUsage();
-		process.exit(1);
-	}
-	if (!outputDir) {
-		console.error('Output directory required.');
-		cliUsage();
-		process.exit(1);
-	}
-}
 
 class Page {
 	/**
@@ -128,10 +38,10 @@ class Page {
  * @returns {string} modified html source
  */
 function fixHTML(html, filepath) {
-	let dom = guides.generateDOM(html);
-	dom = guides.stripFooter(dom);
-	dom = guides.addRedirects(dom, filepath);
-	dom = guides.fixLinks(dom, filepath);
+	let dom = utils.generateDOM(html);
+	dom = utils.stripFooter(dom);
+	dom = utils.addRedirects(dom, filepath);
+	dom = utils.fixLinks(dom, filepath);
 	dom = fixCodeBlocks(dom);
 	return dom.html();
 }
@@ -275,13 +185,14 @@ function sniffLanguage(codeDiv, code) {
  * Given an entry for a page in the table of contenst hierarchy, this will recursively iterate on all children (if any)
  * and then will conver this entry's exported HTML contents to an equivalent docsy-compatible markdown file.
  * The ultimate destination of the generated filepath is taken from  the hierarchical structure of the contents in the TOC.
+ * @param {string} inputDir path to unzipped wiki export dir
  * @param {TOCEntry} entry the entry from the TOC (holding the name, title and possibly it's childen)
  * @param {number} index the index of the entry in it's parent's listing (used to specify weighting to retain same order in huge/docsy)
  * @param {string} outDirthe destination directory under which to place the generated markdown file
  * @param {Map<string, Page>} lookupTable lookup table from the unique entry name in the TOC to the Page metadat for that entry
  * @returns {Promise<void>}
  */
-async function handleEntry(entry, index, outDir, lookupTable) {
+async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 	let outputName;
 	// if the entry has 'items' property, it's a parent! Need to recurse, and change filename to _index
 	if (entry.items) {
@@ -289,13 +200,13 @@ async function handleEntry(entry, index, outDir, lookupTable) {
 		outputName = '_index.md';
 		await fs.ensureDir(outDir);
 		// recurse
-		await Promise.all(entry.items.map((child, childIndex) => handleEntry(child, childIndex, outDir, lookupTable)));
+		await Promise.all(entry.items.map((child, childIndex) => handleEntry(inputDir, child, childIndex, outDir, lookupTable)));
 	} else if (entry.name === 'Home') { // Treat top-level 'Home' page as index for all appc content
 		outputName = '_index.md';
 	} else {
 		outputName = `${entry.name}.md`;
 	}
-	const filepath = path.join(__dirname, 'htmlguides', `${entry.name}.html`);
+	const filepath = path.join(inputDir, `${entry.name}.html`);
 	const content = await fs.readFile(filepath, 'utf8');
 
 	const modified = fixHTML(content, filepath);
@@ -571,49 +482,49 @@ function wikiLinkToMarkdown(href, lookupTable, thisDocPage) {
 }
 
 /**
- * @param {string} inputFile toc.xml file exported from wiki
+ * @param {string} inputDir path to wiki export contents (from zipfile, expects a toc.xml file)
  * @param {string} outputDir root directory we're assembling our docsy content
  * @returns {Promise<void>}
  */
-async function convertHTMLFiles(inputFile, outputDir) {
-	const contents = await fs.readFile(inputFile, 'utf8');
-	const result = await xml2js(contents);
-	const toc = parse(result.toc.topic);
+async function convertHTMLFiles(inputDir, outputDir) {	
+	const toc = await utils.parseTOC(path.join(inputDir, 'toc.xml'));
 
 	const lookupTable = new Map();
 	console.log('Building hierarchy and lookup tables...');
-	await generateLookupTable('/docs/', toc, lookupTable);  // if pushing to axway-open-docs, should be '/docs/appc/' 
+	await generateLookupTable(inputDir, '/docs/', toc, lookupTable);  // if pushing to axway-open-docs, should be '/docs/appc/' 
 
 	const docsDir = path.join(outputDir, 'content/en/docs'); // if pushing to axway-open-docs, should be 'content/en/docs/appc' 
 	await fs.ensureDir(docsDir);
 	console.log('Converting HTML pages to markdown...');
-	return Promise.all(toc.map((entry, index) => handleEntry(entry, index, docsDir, lookupTable)));
+	return Promise.all(toc.map((entry, index) => handleEntry(inputDir, entry, index, docsDir, lookupTable)));
 }
 
 /**
  * Copy the images over to where we'd expect: htmlguides/images -> outputDir/static/images
+ * @param {string} inputDir path to extracted zipfile of wiki export
  * @param {string} outputDir root directory we're assembling our docsy content
  * @returns {Promise<void>}
  */
-async function copyImages(outputDir) {
+async function copyImages(inputDir, outputDir) {
 	const imagesDir = path.join(outputDir, 'static/images'); // if pushing to axway-open-docs, should be 'static/Images/appc' 
-	return fs.copy(path.join(__dirname, 'htmlguides/images'), imagesDir);
+	return fs.copy(path.join(inputDir, 'images'), imagesDir);
 }
 
 /**
+ * @param {string} inputDir path to unzipped wiki export
  * @param {string} prefix
  * @param {object[]} entries 
  * @param {Map<string, Page>} lookupTable 
  */
-async function generateLookupTable(prefix, entries, lookupTable) {
+async function generateLookupTable(inputDir, prefix, entries, lookupTable) {
 	// FIXME: do the recursion in parallel!
 	for (const entry of entries) {
 		const generatedPath = `${prefix}${entry.name}/`
-		const page = await generatePageMetadata(entry.name, generatedPath);
+		const page = await generatePageMetadata(inputDir, entry.name, generatedPath);
 		lookupTable.set(entry.name, page);
 		if (entry.items) {
 			// recurse inside items!
-			await generateLookupTable(generatedPath, entry.items, lookupTable);
+			await generateLookupTable(inputDir, generatedPath, entry.items, lookupTable);
 		}
 	}
 }
@@ -622,18 +533,19 @@ async function generateLookupTable(prefix, entries, lookupTable) {
  * Given an input page, this generates the metadat we need abotu the page:
  * - the filepath it will live at in the docsy site
  * - the mapping of confluence anchors to the docsy anchors
+ * @param {string} path to unzipped wiki export dir
  * @param {string} pageName 
  * @param {string} generatedPath 
  * @returns {Page}
  */
-async function generatePageMetadata(pageName, generatedPath) {
-	const filepath = path.join(__dirname, 'htmlguides', `${pageName}.html`);
+async function generatePageMetadata(inputDir, pageName, generatedPath) {
+	const filepath = path.join(inputDir, `${pageName}.html`);
 	const content = await fs.readFile(filepath, 'utf8');
 
 	// FIXME: If we haven't manipulated the html already, we may not have the style of links we expect!
 	// Can we avoid this extra work?
-	const dom = guides.generateDOM(content);
-	guides.fixLinks(dom, filepath);
+	const dom = utils.generateDOM(content);
+	utils.fixLinks(dom, filepath);
 	const modified = dom.html();
 
 	const anchors = new Map();
@@ -663,10 +575,16 @@ async function generatePageMetadata(pageName, generatedPath) {
  * @returns {Promise<void>}
  */
 async function main() {
-	processCommandLineArgs();
+	const program = require('commander');
+	program
+		.option('-i, --input <dir>', 'Path to unzipped wiki html export directory', path.join(__dirname, '../htmlguides'))
+		.option('-o, --output <dir>', 'Path to directory to place final files', path.join(__dirname, '../../build/guides'))
+		.parse(process.argv);
+
+	await fs.ensureDir(program.output);
 	return Promise.all([
-		convertHTMLFiles(inputFile, outputDir),
-		copyImages(outputDir)
+		convertHTMLFiles(program.input, program.output),
+		copyImages(program.input, program.output)
 	]);
 }
 

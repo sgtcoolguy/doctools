@@ -10,39 +10,8 @@
 
 const fs = require('fs-extra');
 const path = require('path');
-const promisify = require('util').promisify;
 
-const xml2js = promisify(require('xml2js').parseString);
 const utils = require('./util');
-
-// TODO: Rewrite to be async!
-function parse(node, topicsDone = new Set()) {
-	const rv = [];
-	for (let x = 0; x < node.length; x++) {
-		const child = node[x];
-		const hashIndex = child.$.href.indexOf('#');
-		const htmlFilename = hashIndex === -1 ? child.$.href : child.$.href.substring(0, hashIndex);
-		const shortname = htmlFilename.replace('.html', '');
-
-		// If we're already done this file, no need to re-process the HTML!
-		if (!topicsDone.has(shortname)) {
-			topicsDone.add(shortname);
-
-			const res = {
-				name: shortname,
-				title: child.$.label
-			};
-			if ('topic' in child) {
-				res.items = parse(child.topic, topicsDone);
-				if (res.items.length <= 0) {
-					delete res.items;
-				}
-			}
-			rv.push(res);
-		}
-	}
-	return rv;
-}
 
 /**
  * Given a path to an HTML file we will:
@@ -58,7 +27,6 @@ function parse(node, topicsDone = new Set()) {
  */
 async function manipulateHTMLFile(file, outputDir, showEditButton) {
 	const shortname = path.basename(file, '.html');
-	console.log(shortname);
 	const contents = await fs.readFile(file, 'utf8');
 	const html = utils.manipulateHTMLContent(contents, file, showEditButton);
 	const dir = path.join(outputDir, 'guides', shortname);
@@ -66,78 +34,24 @@ async function manipulateHTMLFile(file, outputDir, showEditButton) {
 	return fs.writeFile(path.join(dir, 'README.html'), html);
 }
 
-function cliUsage() {
-	console.log('Usage: node html --input ../htmlguides/toc.xml --output ../../build/guides/');
-}
-
-// FIXME: Move to processCommandLineArgs, return in an object!
-let inputDir = null;
-let outputDir = null;
-function processCommandLineArgs() {
-	const cwd = process.cwd();
-	const argc = process.argv.length;
-	if (argc > 2) {
-		for (var x = 2; x < argc; x++) {
-			switch (process.argv[x]) {
-				case "--input":
-					if (++x >= argc) {
-						console.error('Specify an XML input file!');
-						cliUsage();
-						process.exit(1);
-					}
-					// Try to take the filename as-is, if doesn't exist try to resolve relative to cwd, then try relative to this file
-					inputFile = process.argv[x];
-					if (!fs.existsSync(inputFile)) {
-						inputFile = path.resolve(cwd, inputFile);
-						if (!fs.existsSync(inputFile)) {
-							inputFile = path.resolve(__dirname, inputFile);
-							if (!fs.existsSync(inputFile)) {
-								console.error(`Input file does not exist: ${process.argv[x]}`);
-								process.exit(1);
-							}
-						}
-					}
-					break;
-				case "--output":
-					if (++x >= argc) {
-						console.error('Specify an output directory!');
-						cliUsage();
-						process.exit(1);
-					}
-					outputDir = path.resolve(cwd, process.argv[x]);
-					break;
-				default:
-					console.warn(`unknown option: ${process.argv[x]}`);
-			}
-		}
-	}
-
-	if (!inputFile) {
-		console.error('Input file required.');
-		cliUsage();
-		process.exit(1);
-	}
-	if (!outputDir) {
-		console.error('Output directory required.');
-		cliUsage();
-		process.exit(1);
-	}
-}
-
+/**
+ * Generates a guides.json from the table of contents XML in the wiki export
+ * @param {string} htmlGuidesDir path to input dir (exported wiki zipfiule contents unzipped)
+ * @param {string} outputDir path to where to generate the guides.json file
+ */
 async function convertTOC(inputDir, outputDir) {
-	const contents = await fs.readFile(path.join(inputDir, 'toc.xml'), 'utf8');
-	const result = await xml2js(contents);
-	const toc = parse(result.toc.topic);
+	const toc = await utils.parseTOC(path.join(inputDir, 'toc.xml'));
 	return fs.writeFile(path.join(outputDir, 'guides.json'), JSON.stringify(toc, null, 4));
 }
 
-async function main() {
-	processCommandLineArgs();
-	// TOOD: Also write out all the guides!
-	return convertTOC(inputDir, outputDir);
-
+/**
+ * Generates modified HTML files from the original raw exported wiki contents
+ * @param {string} htmlGuidesDir path to input dir (exported wiki zipfiule contents unzipped)
+ * @param {string} outputDir path to where to generate the converted files
+ * @param {boolean} [showEditButton=false] whether to show an edit button in the exported files
+ */
+async function convertHTMLFiles(htmlGuidesDir, outputDir, showEditButton) {
 	// loop through all HTML documents found in the htmlguides directory
-	const htmlGuidesDir = inputDir;
 	const files = await fs.readdir(htmlGuidesDir);
 	const htmlFiles = files.filter(f => f.endsWith('.html'));
 	// Do them in parallel
@@ -145,6 +59,21 @@ async function main() {
 		const filepath = path.join(htmlGuidesDir, filename);
 		return manipulateHTMLFile(filepath, outputDir, showEditButton);
 	}));
+}
+
+async function main() {
+	const program = require('commander');
+	program
+		.option('-i, --input <dir>', 'Path to unzipped wiki html export directory', path.join(__dirname, '../htmlguides'))
+		.option('-o, --output <dir>', 'Path to directory to place final files', path.join(__dirname, '../../build/guides'))
+		.option('-s, --show-edit-button', 'show an edit button in the output file', false)
+		.parse(process.argv);
+
+	await fs.ensureDir(program.output);
+	return Promise.all([
+		convertTOC(program.input, program.output),
+		convertHTMLFiles(program.input, program.output, program.showEditButton)
+	]);
 }
 
 main().then(() => process.exit(0)).catch(err => {
