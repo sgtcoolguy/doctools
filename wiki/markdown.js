@@ -539,7 +539,7 @@ function wikiLinkToMarkdown(href, lookupTable, thisDocPage) {
 		}
 	}
 
-	if (!pageName) {
+	if (!pageName || pageName.startsWith('mailto:')) {
 		// couldn't extract the page name, so return the link as it was
 		return href;
 	}

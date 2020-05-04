@@ -12,6 +12,7 @@
 'use strict';
 
 const path = require('path');
+const url = require('url');
 const fs = require('fs-extra');
 const cheerio = require('cheerio');
 
@@ -183,79 +184,73 @@ function fixLinks(dom, filepath) {
 	dom('a').each(function (i, elem) {
 		let href = elem.attribs.href;
 		if (href) {
-			href = decodeURIComponent(href);
-			if (href.indexOf('http://') === 0 || href.indexOf('https://') === 0) {
-				if (~href.indexOf('apidoc/mobile/latest')) {
-					// Convert old HTML site links to JSDuck
-					var token = href.substring(href.lastIndexOf('/') + 1),
-						api = token.substring(0, token.indexOf('-')),
-						type = token.substring(token.indexOf('-') + 1).replace('.html', '');
-					if (api === 'latest') {
-						href = '#!/api/';
-					} else if (type.indexOf('object') === 0 || type.indexOf('module') === 0) {
-						href = '#!/api/' + api;
-					} else if (~['event', 'method', 'property'].indexOf(type)){
-						href = '#!/api/' + api.substring(0, api.lastIndexOf('.')) + '-' + type + '-' + api.substring(api.lastIndexOf('.') + 1);
-					} else if (!api && type) {
-						href = '#!/api/' + type;
-					} else {
-						console.log('Uncoverted wiki link: ' + href);
-					}
-				} else if (~href.search(/http:\/\/docs\.appcelerator\.com\/titanium\/.*\#/)) {
-					// Make absolute links referencing JSDuck site relative
-					href = href.replace(/http:\/\/docs\.appcelerator\.com\/titanium\/.*#/, '');
-					if (href.indexOf('!') === 0) {
-						href = '#' + href;
-					}
-				} else if (~href.search(/http:\/\/docs\.appcelerator\.com\/platform\/.*\#/)) {
-					href = href.replace(/http:\/\/docs\.appcelerator\.com\/platform\/.*\#/, '');
-					if (href.indexOf('!') === 0) {
-						href = '#' + href;
-					}
-				} else if (~href.search(/http:\/\/docs\.appcelerator\.com\/cloud\/.*\#/)) {
-					href = href.replace(/http:\/\/docs\.appcelerator\.com\/cloud\/.*\#/, '');
-					if (href.indexOf('!') === 0) {
-						href = '/arrowdb/latest/#' + href;
-					}
-				} else if (~href.search(/http:\/\/docs\.appcelerator\.com\/arrowdb\/.*\#/)) {
-					href = href.replace(/http:\/\/docs\.appcelerator\.com\/arrowdb\/.*\#/, '');
-					if (href.indexOf('!') === 0) {
-						href = '/arrowdb/latest/#' + href;
-					}
-				} else if (href.indexOf('https://wiki.appcelerator.org') === 0) {
-					// Check for unconverted wiki URLs
-					let inList = false;
-					WHITELIST.forEach(function (whiteUrl) {
-						if (href.indexOf(whiteUrl) === 0) {
-							inList = true;
+			const urlObj = url.parse(href);
+			if (urlObj.protocol === 'http:' || urlObj.protocol === 'https:') {
+				if (urlObj.hostname === 'docs.appcelerator.com') {
+					if (urlObj.pathname.includes('apidoc/mobile/latest')) {
+						// Convert old HTML site links to JSDuck
+						const token = href.substring(href.lastIndexOf('/') + 1);
+						const api = token.substring(0, token.indexOf('-'));
+						const type = token.substring(token.indexOf('-') + 1).replace('.html', '');
+						if (api === 'latest') {
+							href = '#!/api/';
+						} else if (type.indexOf('object') === 0 || type.indexOf('module') === 0) {
+							href = '#!/api/' + api;
+						} else if (~['event', 'method', 'property'].indexOf(type)){
+							href = '#!/api/' + api.substring(0, api.lastIndexOf('.')) + '-' + type + '-' + api.substring(api.lastIndexOf('.') + 1);
+						} else if (!api && type) {
+							href = '#!/api/' + type;
+						} else {
+							console.log('Uncoverted wiki link: ' + href);
 						}
-					});
+					} else if (urlObj.hash) {
+						// turn to relative hashes for absolute URLs to docs site (or URLs pointing to old doc site layout)
+						if (urlObj.pathname.startsWith('/titanium') ||
+							urlObj.pathname.startsWith('/platform')) {
+								href = urlObj.hash;
+						} else if (urlObj.pathname.startsWith('/cloud') ||
+							urlObj.pathname.startsWith('/arrowd')) {
+							href = '/arrowdb/latest/' + urlObj.hash;
+						}
+					}
+				} else if (urlObj.hostname === 'wiki.appcelerator.org') {
+					// FIXME: Treat same as relative links? Basically can we "strip" the host name and treat equivalent to a relative link?
+					// Check for unconverted wiki URLs
+					const inList = WHITELIST.some(whitelisted => href.startsWith(whitelisted))
 					if (!inList) {
 						// TODO: if link is of form https://wiki.appcelerator.org/display/guides2/Appcelerator+CLI+7.1.2.GA+Release+Note
 						// then convert to #!/guide/Appcelerator+CLI+7.1.2.GA+Release+Note
 
-						// TODO: If link is of form https://wiki.appcelerator.org/display/DB/AMPLIFY+CLI+Package+Manager
+						// If link is of form https://wiki.appcelerator.org/display/DB/AMPLIFY+CLI+Package+Manager
 						// then it's pointing to the beta docs site! fix to point to guides2 equivalent? Warn?
-
-						// TOFO: if link is of form: https://wiki.appcelerator.org/display/AB4/API+Builder+Getting+Started+Guide
+						if (urlObj.pathname.startsWith('/display/DB/')) {
+							console.error(`Wiki page at ${filepath} pointing at a Doc beta space: ${href} - Fix the original link in the wiki!`);
+						}
+						// if link is of form: https://wiki.appcelerator.org/display/AB4/API+Builder+Getting+Started+Guide
 						// it's pointing to API Builder docs. Where are those now?
-						console.warn(`Unconverted wiki link: ${href}, from page: ${filepath}`);
+						// https://docs.axway.com/bundle/API_Builder_4x_allOS_en/page/api_builder_getting_started_guide.html
+						else if (urlObj.pathname.startsWith('/display/AB4/')) {
+							const modifiedName = urlObj.pathname.substring(13).toLowerCase().replace(/\+/g, '_');
+							href = `https://docs.axway.com/bundle/API_Builder_4x_allOS_en/page/${modifiedName}.html`;
+						} else {
+							console.warn(`Unconverted wiki link: ${href}, from page: ${filepath}`);
+						}
 					}
 				} else {
 					// Open external links in new windows/tabs
 					elem.attribs.target = '_blank';
 				}
-			} else if (href.indexOf('attachment') === 0) {
+			} else if (url.protocol === 'mailto:') {
+				// If it's a mailto: link, then don't change it!
+			} else if (urlObj.pathname && urlObj.pathname.includes('attachment')) {
+				// relative path to an attachment file
 				href = './' + href;
 			} else {
-				// If it's a mailto: link, then don't change it!
-				if (!href.startsWith('mailto:')) {
-					// Replace internal guide links to JSDuck style links
-					href = href.replace(' ', '_');
-					href = '#!/guide/' + href.replace('.html', '').replace('#', '-section-');
-				}
+				// Replace internal guide links to JSDuck style links
+				href = href.replace(' ', '_');
+				href = '#!/guide/' + href.replace('.html', '').replace('#', '-section-');
 			}
-			elem.attribs.href = encodeURIComponent(href);
+			elem.attribs.href = href;
 		}
 	});
 
