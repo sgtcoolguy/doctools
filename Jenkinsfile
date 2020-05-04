@@ -229,7 +229,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 					archiveArtifacts 'platform/'
 				} // dir('doctools/dist')
 				dir('build') {
-					archiveArtifacts 'appc-open-docs'
+					archiveArtifacts 'appc-open-docs/'
 				}
 			} // stage('Archive')
 		} // dir('doctools')
