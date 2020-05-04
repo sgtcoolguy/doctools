@@ -28,6 +28,7 @@
 	"scripts": {
 		"docgen": "docgen",
 		"jsduck": "node apidocs/jsduck dist/platform/latest apidocs/add-ons",
+		"lint": "npm run lint:js",
 		"lint:js": "eslint .",
 		"sdk-release-note": "node generate-sdk-release-note",
 		"release-notes": "node release-notes",
@@ -37,9 +38,8 @@
 		"wiki:unzip": "unzip -o wiki/wiki_export.zip -d wiki/htmlguides",
 		"wiki:redirects": "cp wiki/page_redirects/htmlguides/*.html wiki/htmlguides",
 		"wiki:convert": "npm run wiki:convert:html && npm run wiki:convert:markdown",
-		"wiki:convert:html": "node wiki/convert/html.js --input wiki/htmlguides --output ./build/guides",
-		"wiki:convert:markdown": "node wiki/convert/markdown --input wiki/htmlguides --output ./build/guides",
-		"wiki:finalize": "node wiki/htmlguides.js --output ./build/guides",
+		"wiki:convert:html": "node wiki/convert/html --input wiki/htmlguides --output ./build/guides",
+		"wiki:convert:markdown": "node wiki/convert/markdown --input wiki/htmlguides --output ./build/appc-open-docs",
 		"wiki:post-export": "npm run wiki:unzip && npm run wiki:redirects && npm run wiki:convert",
 		"wiki": "func() { npm run wiki:export -- \"-u\" \"$1\" \"-p\" \"$2\" && npm run wiki:post-export; }; func",
 		"wiki:zoomin": "node wiki/zoomin"
