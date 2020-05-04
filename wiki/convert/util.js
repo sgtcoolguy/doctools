@@ -151,28 +151,6 @@ function htmlMinify(node, filepath) {
 }
 
 /**
- * Given a path to an HTML file we will:
- * - parse the html
- * - strip the footer
- * - add some redirects if necessary
- * - run through a minifier
- * - write the modified contents back to the file
- * @param {string} file 
- * @param {string} outputDir
- * @param {boolean} showEditButton
- * @returns {Promise<void>}
- */
-async function manipulateHTMLFile(file, outputDir, showEditButton) {
-	const shortname = path.basename(file, '.html');
-	console.log(shortname);
-	const contents = await fs.readFile(file, 'utf8');
-	const html = manipulateHTMLContent(contents, file, showEditButton);
-	const dir = path.join(outputDir, 'guides', shortname);
-	await fs.ensureDir(dir);
-	return fs.writeFile(path.join(dir, 'README.html'), html);
-}
-
-/**
  * Converts old HTML site links to new site relative links
  * Changes absolute links to relative
  * Replaces internal guide linsk to links supported by eventual end product
@@ -321,56 +299,6 @@ function generateDOM(contents) {
 function addRedirects(dom, filepath) {
 	const result = addInternalRedirect(dom, filepath);
 	return addExternalRedirect(result, filepath);
-}
-
-function cliUsage() {
-	console.log('Usage: node htmlguides --output ./build/guides/ [--show_edit_button]');
-}
-
-let outputDir = null;
-let showEditButton = false;
-function processCommandLineArgs() {
-	const cwd = process.cwd();
-	const argc = process.argv.length;
-	if (argc > 2) {
-		for (var x = 2; x < argc; x++) {
-			switch (process.argv[x]) {
-				case "--output":
-					if (++x >= argc) {
-						console.error('Specify an output directory!');
-						cliUsage();
-						process.exit(1);
-					}
-					outputDir = path.resolve(cwd, process.argv[x]);
-					break;
-				case "--show_edit_button":
-					showEditButton = true;
-					break;
-				default:
-					console.warn(`unknown option: ${process.argv[x]}`);
-			}
-		}
-	}
-
-	if (!outputDir) {
-		console.error('Output directory required.');
-		cliUsage();
-		process.exit(1);
-	}
-}
-
-async function main() {
-	processCommandLineArgs();
-
-	// loop through all HTML documents found in the htmlguides directory
-	const htmlGuidesDir = path.join(__dirname, 'htmlguides');
-	const files = await fs.readdir(htmlGuidesDir);
-	const htmlFiles = files.filter(f => f.endsWith('.html'));
-	// Do them in parallel
-	return Promise.all(htmlFiles.map(async filename => {
-		const filepath = path.join(htmlGuidesDir, filename);
-		return manipulateHTMLFile(filepath, outputDir, showEditButton);
-	}));
 }
 
 module.exports = {

@@ -35,9 +35,11 @@
 		"wiki:export": "wiki-export -o wiki/wiki_export.zip",
 		"wiki:unzip": "unzip -o wiki/wiki_export.zip -d wiki/htmlguides",
 		"wiki:redirects": "cp wiki/page_redirects/htmlguides/*.html wiki/htmlguides",
+		"wiki:convert": "npm run wiki:convert:html && npm run wiki:convert:markdown",
+		"wiki:convert:html": "node wiki/convert/html.js --input wiki/htmlguides --output ./build/guides",
+		"wiki:convert:markdown": "node wiki/convert/markdown --input wiki/htmlguides --output ./build/guides",
 		"wiki:finalize": "node wiki/htmlguides.js --output ./build/guides",
-		"wiki:guides": "mkdir -p build/guides && node wiki/guides_parser --input wiki/htmlguides/toc.xml --output ./build/guides",
-		"wiki:post-export": "npm run wiki:unzip && npm run wiki:redirects && npm run wiki:finalize && npm run wiki:guides",
+		"wiki:post-export": "npm run wiki:unzip && npm run wiki:redirects && npm run wiki:convert",
 		"wiki": "func() { npm run wiki:export -- \"-u\" \"$1\" \"-p\" \"$2\" && npm run wiki:post-export; }; func",
 		"wiki:zoomin": "node wiki/zoomin"
 	}

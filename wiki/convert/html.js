@@ -1,3 +1,4 @@
+// "wiki:guides": "mkdir -p build/guides && node wiki/guides_parser --input wiki/htmlguides/toc.xml --output ./build/guides",
 /*
  * Copyright (c) 2015-Present Appcelerator, Inc. All Rights Reserved.
  * Licensed under the terms of the Apache Public License.
@@ -12,11 +13,7 @@ const path = require('path');
 const promisify = require('util').promisify;
 
 const xml2js = promisify(require('xml2js').parseString);
-
-
-// FIXME: Move to processCommandLineArgs, return in an object!
-let inputFile = null;
-let outputDir = null;
+const utils = require('./util');
 
 // TODO: Rewrite to be async!
 function parse(node, topicsDone = new Set()) {
@@ -47,10 +44,35 @@ function parse(node, topicsDone = new Set()) {
 	return rv;
 }
 
-function cliUsage() {
-	console.log('Usage: node guides_parser --input htmlguides/toc.xml --output ./build/guides/');
+/**
+ * Given a path to an HTML file we will:
+ * - parse the html
+ * - strip the footer
+ * - add some redirects if necessary
+ * - run through a minifier
+ * - write the modified contents back to the file
+ * @param {string} file 
+ * @param {string} outputDir
+ * @param {boolean} showEditButton
+ * @returns {Promise<void>}
+ */
+async function manipulateHTMLFile(file, outputDir, showEditButton) {
+	const shortname = path.basename(file, '.html');
+	console.log(shortname);
+	const contents = await fs.readFile(file, 'utf8');
+	const html = utils.manipulateHTMLContent(contents, file, showEditButton);
+	const dir = path.join(outputDir, 'guides', shortname);
+	await fs.ensureDir(dir);
+	return fs.writeFile(path.join(dir, 'README.html'), html);
 }
 
+function cliUsage() {
+	console.log('Usage: node html --input ../htmlguides/toc.xml --output ../../build/guides/');
+}
+
+// FIXME: Move to processCommandLineArgs, return in an object!
+let inputDir = null;
+let outputDir = null;
 function processCommandLineArgs() {
 	const cwd = process.cwd();
 	const argc = process.argv.length;
@@ -102,8 +124,8 @@ function processCommandLineArgs() {
 	}
 }
 
-async function convertTOC(inputFile, outputDir) {
-	const contents = await fs.readFile(inputFile, 'utf8');
+async function convertTOC(inputDir, outputDir) {
+	const contents = await fs.readFile(path.join(inputDir, 'toc.xml'), 'utf8');
 	const result = await xml2js(contents);
 	const toc = parse(result.toc.topic);
 	return fs.writeFile(path.join(outputDir, 'guides.json'), JSON.stringify(toc, null, 4));
@@ -111,7 +133,18 @@ async function convertTOC(inputFile, outputDir) {
 
 async function main() {
 	processCommandLineArgs();
-	return convertTOC(inputFile, outputDir);
+	// TOOD: Also write out all the guides!
+	return convertTOC(inputDir, outputDir);
+
+	// loop through all HTML documents found in the htmlguides directory
+	const htmlGuidesDir = inputDir;
+	const files = await fs.readdir(htmlGuidesDir);
+	const htmlFiles = files.filter(f => f.endsWith('.html'));
+	// Do them in parallel
+	return Promise.all(htmlFiles.map(async filename => {
+		const filepath = path.join(htmlGuidesDir, filename);
+		return manipulateHTMLFile(filepath, outputDir, showEditButton);
+	}));
 }
 
 main().then(() => process.exit(0)).catch(err => {

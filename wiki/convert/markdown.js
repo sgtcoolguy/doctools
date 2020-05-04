@@ -2,10 +2,8 @@
  * Copyright (c) 2020-Present Appcelerator, Inc. All Rights Reserved.
  * Licensed under the terms of the Apache Public License.
  *
- * Script to convert Wiki-exported content for JSDuck site.
- * This will generated a guides.json with the tree of the guides;
- * as well as modifies the html contents of each guide in-place mainly to manipulate links
- * and possibly add an "edit" button/link.
+ * This takes a wiki export (zipfile unzipped and possible pre-processed)
+ * and generates markdown files for use in Hugo/docsy "Docs as Code" site.
  */
 'use strict';
 
@@ -18,7 +16,7 @@ const TurndownService = require('turndown');
 const tables = require('turndown-plugin-gfm').tables
 const removeTrailingSpaces = require('remove-trailing-spaces');
 
-const guides = require('./htmlguides');
+const guides = require('./util');
 
 // Regexp/Patterns used to match link styles to rewrite them to work in docsy!
 const DUMB_PATTERN = /^(.+?)-section-(src-\d+(_(.+))?)$/; // group 1 is the page name, group 2 is the full anchor name
@@ -673,6 +671,6 @@ async function main() {
 }
 
 main().then(() => process.exit(0)).catch(err => {
-	console.error(`Error converting XML to JSON: ${err}`);
+	console.error(err);
 	process.exit(1);
 });
