@@ -310,7 +310,7 @@ def updateDocsAppceleratorCom() {
 		sh 'rm -rf platform/latest'
 		sh 'rm -rf platform/release-notes'
 		// copy what we generated into repo
-		sh 'cp -R ../doctools/build/platform/data platform/data'
+		sh 'cp -R ../doctools/dist/platform/data platform/data'
 		sh 'cp -R ../doctools/dist/platform/landing platform/landing'
 		sh 'cp -R ../doctools/dist/platform/latest platform/latest'
 		sh 'cp -R ../doctools/dist/platform/release-notes platform/release-notes'
