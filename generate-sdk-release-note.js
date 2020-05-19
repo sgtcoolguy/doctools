@@ -4,7 +4,7 @@
  */
 const path = require('path');
 const fs = require('fs-extra');
-const manipulateHTMLContent = require('./wiki/htmlguides').manipulateHTMLContent;
+const manipulateHTMLContent = require('./wiki/convert/util').manipulateHTMLContent;
 const massageNoteHTML = require('./release-notes').massageNoteHTML;
 const exportPage = require('wiki-export').exportPage;
 
