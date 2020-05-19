@@ -272,7 +272,7 @@ def updateAppcOpenDocs() {
 		sh 'rm -rf static/images'
 		// copy what we generated into repo
 		sh 'cp -R ../doctools/build/appc-open-docs/content/en/docs content/en/docs'
-		sh 'cp -R ../doctools/build/appc-open-docs/static/images static-images'
+		sh 'cp -R ../doctools/build/appc-open-docs/static/images static/images'
 		// add all our changes to staged in git
 		sh 'git add content/en/docs'
 		sh 'git add static/images'
