@@ -41,7 +41,9 @@ function fixHTML(html, filepath) {
 	dom = utils.addRedirects(dom, filepath);
 	dom = utils.fixLinks(dom, filepath);
 	dom = fixCodeBlocks(dom, filepath);
-	return dom.html();
+	const modified = dom.html();
+	// Double escape &lt; and &gt; so it doesn't get converted to < and > by turndown
+	return modified.replace(/&([gl])t;/gm, '&amp;$1t;');
 }
 
 /**
@@ -419,7 +421,7 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 
 	const markdown = turndownService.turndown(modified);
 	const converted = `${JSON.stringify(frontmatter)}${markdown}\n`;
-	// Next we remove trailing spaces on liens and then merge multiple blank newlines into a single one
+	// Next we remove trailing spaces on lines and then merge multiple blank newlines into a single one
 	return fs.writeFile(path.join(outDir, outputName), removeTrailingSpaces(converted).replace(/(\n){3,}/gm, '\n\n'));
 }
 
