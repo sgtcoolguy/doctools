@@ -301,7 +301,7 @@ function addRedirects(dom, filepath) {
 
 /**
  * Parses the toc.xml file
- * @param {string} tocFilepath
+ * @param {string} tocFilepath input toc.xml filepath
  * @returns {Promise<object[]>}
  */
 async function parseTOC(tocFilepath) {
@@ -314,7 +314,7 @@ async function parseTOC(tocFilepath) {
  * Parses the toc.xml file and generates a JS object reproducing the hierarchy
  * @param {object[]} node parsed toc.xml xmldom elements? 
  * @param {Set<string>} topicsDone memo to keep track of pages/nodes already done
- * @return {object}
+ * @return {object[]}
  */
 function parse(node, topicsDone = new Set()) {
 	const rv = [];
@@ -349,17 +349,7 @@ module.exports = {
 	stripFooter,
 	addRedirects,
 	fixLinks,
-	stripFooter,
 	htmlMinify,
 	parseTOC,
 	manipulateHTMLContent
 };
-
-if (require.main === module) {
-	main().then(() => {
-		process.exit(0);
-	}).catch (err => {
-		console.error(err);
-		process.exit(1);
-	});
-}

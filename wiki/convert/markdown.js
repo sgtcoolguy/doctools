@@ -11,7 +11,7 @@ const fs = require('fs-extra');
 const path = require('path');
 
 const TurndownService = require('turndown');
-const tables = require('turndown-plugin-gfm').tables
+const tables = require('turndown-plugin-gfm').tables;
 const removeTrailingSpaces = require('remove-trailing-spaces');
 
 const utils = require('./util');
@@ -21,7 +21,6 @@ const DUMB_PATTERN = /^(.+?)-section-(src-\d+(_(.+))?)$/; // group 1 is the page
 
 class Page {
 	/**
-	 * 
 	 * @param {string} docsyPath path to document in docsy wiki
 	 * @param {Map<string, string>} anchors mapping from confluence anchors/ids to docsy anchors/ids
 	 */
@@ -32,7 +31,6 @@ class Page {
 }
 
 /**
- * 
  * @param {string} html html source
  * @param {string} filepath path to html input file
  * @returns {string} modified html source
@@ -42,19 +40,20 @@ function fixHTML(html, filepath) {
 	dom = utils.stripFooter(dom);
 	dom = utils.addRedirects(dom, filepath);
 	dom = utils.fixLinks(dom, filepath);
-	dom = fixCodeBlocks(dom);
+	dom = fixCodeBlocks(dom, filepath);
 	return dom.html();
 }
 
 /**
  * Replaces div code sample blocks with <pre><code class="language-whatever"></code></pre>
  * that retain proper spacing and can be converted by turndown into correctly exported fenced markdown blocks
- * @param {CheerioStatic} node 
+ * @param {CheerioStatic} node parsed dom
+ * @param {string} filepath path to source file
  * @returns {CheerioStatic} modified html dom
  */
-function fixCodeBlocks(node) {
+function fixCodeBlocks(node, filepath) {
 	node('div[class="defaultnew syntaxhighlighter scroll-html-formatted-code"]').not('.programlisting')
- 		.each(function (i, elem) {
+		.each(function (i, elem) {
 			try {
 				const domNode = node(elem);
 				const origCode = domNode.text();
@@ -65,13 +64,15 @@ function fixCodeBlocks(node) {
 				console.error(`failed to replace in ${filepath}:`);
 				console.error(error);
 			}
-		 });
+		});
 	return node;
 }
 
 /**
- * Give the code sample divs from exported HTMl, attempts to sniff the language used based on the code title and contents
- * @param {Cheerio} codeDiv 
+ * Give the code sample divs from exported HTML, attempts to sniff the language used based on the code title and contents
+ * @param {Cheerio} codeDiv div element
+ * @param {string} code the source code
+ * @returns {string}
  */
 function sniffLanguage(codeDiv, code) {
 	let title = codeDiv.data('data-title');
@@ -105,12 +106,10 @@ function sniffLanguage(codeDiv, code) {
 		if (title.endsWith('.java')) {
 			return ' class="language-java"';
 		}
-		if (title.endsWith('.js'))
-		{
+		if (title.endsWith('.js')) {
 			return ' class="language-javascript"';
 		}
-		if (title.endsWith('.json'))
-		{
+		if (title.endsWith('.json')) {
 			return ' class="language-json"';
 		}
 		if (title.endsWith('.m')) {
@@ -119,8 +118,7 @@ function sniffLanguage(codeDiv, code) {
 		if (title.endsWith('.py')) {
 			return ' class="language-python"';
 		}
-		if (title.endsWith('.rb') || title.includes('Podfile'))
-		{
+		if (title.endsWith('.rb') || title.includes('Podfile')) {
 			return ' class="language-ruby"';
 		}
 		if (title.endsWith('.sh')) {
@@ -132,12 +130,10 @@ function sniffLanguage(codeDiv, code) {
 		if (title.endsWith('.ts')) {
 			return ' class="language-typescript"';
 		}
-		if (title.endsWith('.tss'))
-		{
+		if (title.endsWith('.tss')) {
 			return ''; // TSS isn't gonna be a supported language // TODO: Treat as json?
 		}
-		if (title.endsWith('.xml'))
-		{
+		if (title.endsWith('.xml')) {
 			return ' class="language-xml"';
 		}
 		if (title.endsWith('.yml')) {
@@ -147,14 +143,12 @@ function sniffLanguage(codeDiv, code) {
 	}
 
 	// Look for comon JS keywords
-	if (code.includes('var ') || code.includes('function ') || code.includes('const ') || code.includes('module.exports'))
-	{
+	if (code.includes('var ') || code.includes('function ') || code.includes('const ') || code.includes('module.exports')) {
 		return ' class="language-javascript"';
 	}
-	
+
 	// sniff shell commands
-	if (code.includes('sudo ') || code.includes('npm ') || code.includes('appc '))
-	{
+	if (code.includes('sudo ') || code.includes('npm ') || code.includes('appc ')) {
 		return ' class="language-bash"';
 	}
 
@@ -188,8 +182,8 @@ function sniffLanguage(codeDiv, code) {
  * @param {string} inputDir path to unzipped wiki export dir
  * @param {TOCEntry} entry the entry from the TOC (holding the name, title and possibly it's childen)
  * @param {number} index the index of the entry in it's parent's listing (used to specify weighting to retain same order in huge/docsy)
- * @param {string} outDirthe destination directory under which to place the generated markdown file
- * @param {Map<string, Page>} lookupTable lookup table from the unique entry name in the TOC to the Page metadat for that entry
+ * @param {string} outDir the destination directory under which to place the generated markdown file
+ * @param {Map<string, Page>} lookupTable lookup table from the unique entry name in the TOC to the Page metadata for that entry
  * @returns {Promise<void>}
  */
 async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
@@ -231,25 +225,25 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 	});
 	// Skip the title since we put that in frontmatter
 	// FIXME: What if they don't match? Use the actual title tag value in preference? What does entry.title become? 'linkTitle'?
-	turndownService.remove(['head', 'title']);
+	turndownService.remove([ 'head', 'title' ]);
 
 	// Most wiki pages have a header with the page title at the top of the content
 	// We should strip that (it ends up being duplicated)
 	turndownService.addRule('duplicate header', {
-		filter: node => node.nodeName === 'H1'&& node.textContent === entry.title,
+		filter: node => node.nodeName === 'H1' && node.textContent === entry.title,
 		replacement: () => ''
 	});
 
 	// TODO: Additionally the initial content/paragraph may make sense as the description in the frontmatter?
-	
+
 	// Convert the export HTML links to intra-docsy links if we can
 	turndownService.addRule('links', {
 		filter: function (node, options) {
 			return (
-				options.linkStyle === 'inlined' &&
-				node.nodeName === 'A' &&
-				node.getAttribute('href')
-			)
+				options.linkStyle === 'inlined'
+				&& node.nodeName === 'A'
+				&& node.getAttribute('href')
+			);
 		},
 		replacement: function (content, node) {
 			let href = node.getAttribute('href');
@@ -257,7 +251,7 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 				href = wikiLinkToMarkdown(href, lookupTable, thisDocPage);
 			}
 
-			const title = node.title ? ' "' + node.title + '"' : ''
+			const title = node.title ? ' "' + node.title + '"' : '';
 			return '[' + content + '](' + href + title + ')';
 		}
 	});
@@ -267,19 +261,19 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 	turndownService.addRule('images', {
 		filter: 'img',
 		replacement: function (content, node) {
-			let alt = node.alt || ''
-			let src = node.getAttribute('src') || ''
+			let alt = node.alt || '';
+			let src = node.getAttribute('src') || '';
 			if (alt && src === alt) {
 				// the alt text is literally just the path to the image.
 				// Best we can do here is strip it to the base filename without the extension, I suppose.
 				alt = path.basename(alt, path.extname(alt));
 			}
 			if (src.startsWith('images/')) {
-				src = '/images' + src.substring(6); // 'images/...' -> '/images/...'  // if pushing to axway-open-docs, should be '/Images/appc' 
+				src = '/images' + src.substring(6); // 'images/...' -> '/images/...'  // if pushing to axway-open-docs, should be '/Images/appc'
 			}
-			const title = node.title || ''
-			const titlePart = title ? ' "' + title + '"' : ''
-			return src ? '![' + alt + ']' + '(' + src + titlePart + ')' : ''
+			const title = node.title || '';
+			const titlePart = title ? ' "' + title + '"' : '';
+			return src ? `![${alt}](${src}${titlePart})` : '';
 		}
 	});
 
@@ -304,7 +298,7 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 				const last = content.substring(end).replace(/\n/gm, '\n    '); // indent
 				content = first + middle + last;
 			} else {
-				content = content.replace(/\n/gm, '\n    '); // indent 
+				content = content.replace(/\n/gm, '\n    '); // indent
 			}
 			let prefix = options.bulletListMarker + ' '; // changed from original to do only 1 space!
 			const parent = node.parentNode;
@@ -334,8 +328,10 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 	function cell (content, node) {
 		const index = Array.prototype.indexOf.call(node.parentNode.childNodes, node);
 		let prefix = ' ';
-		if (index === 0) prefix = '| ';
-		return prefix + content.replace(/\n/g, '<br />') + ' |'
+		if (index === 0) {
+			prefix = '| ';
+		}
+		return prefix + content.replace(/\n/g, '<br />') + ' |';
 	}
 
 	// Add special conversion of the warning/problem/info/hint
@@ -347,7 +343,7 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 		replacement: (content, node) => {
 			content = content.trim(); // trim the content!
 			const hasNoicon = node.classList.contains('has-no-icon');
-			
+
 			// Extract teh title if there is one (we'll use a default below if not)
 			let title;
 			const firstChild = node.childNodes && node.childNodes[0];
@@ -356,7 +352,7 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 				// remove the leading **${title}** from content!
 				content = content.substring(title.length + 4).trim();
 			}
-			
+
 			let prefix = '';
 			let color = 'info';
 			// color can be 'primary', 'info', 'warning' or 'danger'. I think warning/danger are equivalent by default in our theme
@@ -407,7 +403,7 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 
 	turndownService.addRule('code sample titles', {
 		filter: node => node.nodeName === 'DIV' && node.className === 'title',
-		replacement: (content, node) => `**${content}**`
+		replacement: (content, _node) => `**${content}**`
 	});
 
 	const markdown = turndownService.turndown(modified);
@@ -419,7 +415,7 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 /**
  * @param {string} href The original URL we're converting
  * @param {Map<string, Page>} lookupTable The lookup table from entry names to wiki absolkute link/paths
- * @param {Page} thisDocPage
+ * @param {Page} thisDocPage the current page
  * @returns {string}
  */
 function wikiLinkToMarkdown(href, lookupTable, thisDocPage) {
@@ -486,14 +482,14 @@ function wikiLinkToMarkdown(href, lookupTable, thisDocPage) {
  * @param {string} outputDir root directory we're assembling our docsy content
  * @returns {Promise<void>}
  */
-async function convertHTMLFiles(inputDir, outputDir) {	
+async function convertHTMLFiles(inputDir, outputDir) {
 	const toc = await utils.parseTOC(path.join(inputDir, 'toc.xml'));
 
 	const lookupTable = new Map();
 	console.log('Building hierarchy and lookup tables...');
-	await generateLookupTable(inputDir, '/docs/', toc, lookupTable);  // if pushing to axway-open-docs, should be '/docs/appc/' 
+	await generateLookupTable(inputDir, '/docs/', toc, lookupTable);  // if pushing to axway-open-docs, should be '/docs/appc/'
 
-	const docsDir = path.join(outputDir, 'content/en/docs'); // if pushing to axway-open-docs, should be 'content/en/docs/appc' 
+	const docsDir = path.join(outputDir, 'content/en/docs'); // if pushing to axway-open-docs, should be 'content/en/docs/appc'
 	await fs.ensureDir(docsDir);
 	console.log('Converting HTML pages to markdown...');
 	return Promise.all(toc.map((entry, index) => handleEntry(inputDir, entry, index, docsDir, lookupTable)));
@@ -506,20 +502,20 @@ async function convertHTMLFiles(inputDir, outputDir) {
  * @returns {Promise<void>}
  */
 async function copyImages(inputDir, outputDir) {
-	const imagesDir = path.join(outputDir, 'static/images'); // if pushing to axway-open-docs, should be 'static/Images/appc' 
+	const imagesDir = path.join(outputDir, 'static/images'); // if pushing to axway-open-docs, should be 'static/Images/appc'
 	return fs.copy(path.join(inputDir, 'images'), imagesDir);
 }
 
 /**
  * @param {string} inputDir path to unzipped wiki export
- * @param {string} prefix
- * @param {object[]} entries 
- * @param {Map<string, Page>} lookupTable 
+ * @param {string} prefix prefix of generated file (based on TOC tree)
+ * @param {TOCEntry[]} entries table of contents entries
+ * @param {Map<string, Page>} lookupTable lookup table from the unique entry name in the TOC to the Page metadat for that entry
  */
 async function generateLookupTable(inputDir, prefix, entries, lookupTable) {
 	// FIXME: do the recursion in parallel!
 	for (const entry of entries) {
-		const generatedPath = `${prefix}${entry.name}/`
+		const generatedPath = `${prefix}${entry.name}/`;
 		const page = await generatePageMetadata(inputDir, entry.name, generatedPath);
 		lookupTable.set(entry.name, page);
 		if (entry.items) {
@@ -533,9 +529,9 @@ async function generateLookupTable(inputDir, prefix, entries, lookupTable) {
  * Given an input page, this generates the metadat we need abotu the page:
  * - the filepath it will live at in the docsy site
  * - the mapping of confluence anchors to the docsy anchors
- * @param {string} path to unzipped wiki export dir
- * @param {string} pageName 
- * @param {string} generatedPath 
+ * @param {string} inputDir to unzipped wiki export dir
+ * @param {string} pageName page base filename
+ * @param {string} generatedPath the output path
  * @returns {Page}
  */
 async function generatePageMetadata(inputDir, pageName, generatedPath) {
@@ -554,12 +550,12 @@ async function generatePageMetadata(inputDir, pageName, generatedPath) {
 	// TODO: Don't use turndown, go straight to JSDOM? Becuase we don't actually want to convert anything
 	turndownService.addRule('log anchors', {
 		filter: node => {
-			if (['H1', 'H2', 'H3', 'H4', 'H5'].includes(node.nodeName) && node.classList.contains('heading')) {
+			if ([ 'H1', 'H2', 'H3', 'H4', 'H5' ].includes(node.nodeName) && node.classList.contains('heading')) {
 				const parent = node.parentElement;
 				// Record mapping of ids generated by Confluence versus ids auto-generated by Docsy
 				if (parent.nodeName === 'DIV' && parent.getAttribute('id')) {
 					const legacyId = parent.getAttribute('id');
-					const generatedId = node.textContent.toLowerCase().replace(/\s/g, '-').replace(/[\(\)]/g, '');
+					const generatedId = node.textContent.toLowerCase().replace(/\s/g, '-').replace(/[()]/g, '');
 					anchors.set(legacyId, generatedId);
 				}
 			}
