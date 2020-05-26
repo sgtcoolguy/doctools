@@ -411,6 +411,12 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 		replacement: (content, _node) => '`' + content + '`'
 	});
 
+	turndownService.addRule('strip in-page TOC', {
+		// NOTE: The class is 'toc-indentation ' with the trailing space, feels better to just match this way instead...
+		filter: node => node.nodeName === 'UL' && node.classList.contains('toc-indentation'),
+		replacement: () => ''
+	});
+
 	const markdown = turndownService.turndown(modified);
 	const converted = `${JSON.stringify(frontmatter)}${markdown}\n`;
 	// Next we remove trailing spaces on liens and then merge multiple blank newlines into a single one
