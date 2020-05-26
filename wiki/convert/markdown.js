@@ -317,7 +317,7 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 	// Start with the plugin that does tables
 	turndownService.use(tables);
 
-	// But we have lost of newline/whitespace embedded inside, so we collapse that...
+	// But we have lots of newline/whitespace embedded inside, so we collapse that...
 	turndownService.addRule('collapse td', {
 		filter: node => node.nodeName === 'TD',
 		replacement: (content, node) => cell(content.trim(), node)
@@ -404,6 +404,11 @@ async function handleEntry(inputDir, entry, index, outDir, lookupTable) {
 	turndownService.addRule('code sample titles', {
 		filter: node => node.nodeName === 'DIV' && node.className === 'title',
 		replacement: (content, _node) => `**${content}**`
+	});
+
+	turndownService.addRule('tt as inline code', {
+		filter: node => node.nodeName === 'TT',
+		replacement: (content, _node) => '`' + content + '`'
 	});
 
 	const markdown = turndownService.turndown(modified);
