@@ -43,6 +43,8 @@ function fixHTML(html, filepath) {
 	dom = fixCodeBlocks(dom, filepath);
 	const modified = dom.html();
 	// Double escape &lt; and &gt; so it doesn't get converted to < and > by turndown
+	// FIXME: This is leading to escaped content inside code blocks!
+	// See https://appc-open-docs.netlify.app/docs/appcelerator_cli/appcelerator_cli_how-tos/appcelerator_command-line_interface_reference/
 	return modified.replace(/&([gl])t;/gm, '&amp;$1t;');
 }
 

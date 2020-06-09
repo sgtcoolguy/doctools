@@ -20,9 +20,9 @@ const utils = require('./util');
  * - add some redirects if necessary
  * - run through a minifier
  * - write the modified contents back to the file
- * @param {string} file 
- * @param {string} outputDir
- * @param {boolean} showEditButton
+ * @param {string} file full filepath
+ * @param {string} outputDir path to output directory
+ * @param {boolean} showEditButton whether to show an edit button in the generated page
  * @returns {Promise<void>}
  */
 async function manipulateHTMLFile(file, outputDir, showEditButton) {
@@ -36,7 +36,7 @@ async function manipulateHTMLFile(file, outputDir, showEditButton) {
 
 /**
  * Generates a guides.json from the table of contents XML in the wiki export
- * @param {string} htmlGuidesDir path to input dir (exported wiki zipfiule contents unzipped)
+ * @param {string} inputDir path to input dir (exported wiki zipfile contents unzipped)
  * @param {string} outputDir path to where to generate the guides.json file
  */
 async function convertTOC(inputDir, outputDir) {

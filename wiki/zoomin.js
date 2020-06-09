@@ -2,6 +2,7 @@
 
 const path = require('path');
 const promisify = require('util').promisify;
+// eslint-disable-next-line security/detect-child-process
 const exec = promisify(require('child_process').exec);
 const fs = require('fs-extra');
 
@@ -45,10 +46,11 @@ async function main(args = []) {
 }
 
 // TODO: Use commander to process args, allow specifying staging or production
+// eslint-disable-next-line promise/always-return
 main(process.argv.slice(2)).then(() => {
 	console.log('Successfully uploaded zoomin zips to sync content');
 	process.exit(0);
-}).catch (err => {
+}).catch(err => {
 	console.error(err);
 	process.exit(1);
 });
