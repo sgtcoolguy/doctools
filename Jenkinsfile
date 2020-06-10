@@ -350,7 +350,8 @@ def getChangeString() {
 }
 
 def sparseCheckout(orgName, dirName, branchName, paths) {
-	sh "mkdir -p ${dirName}"
+	sh "rm -rf ${dirName}" // forcibly wipe it
+	sh "mkdir -p ${dirName}" // recreate it
 	dir(dirName) {
 		checkout(changelog: false,
 			poll: false,
@@ -358,8 +359,7 @@ def sparseCheckout(orgName, dirName, branchName, paths) {
 				branches: [[name: "*/${branchName}"]],
 				doGenerateSubmoduleConfigurations: false,
 				extensions: [
-					[$class: 'CloneOption', depth: 0, honorRefspec: true, noTags: true, reference: '', shallow: true],
-					[$class: 'CleanBeforeCheckout'],
+					[$class: 'CloneOption', depth: 1, honorRefspec: true, noTags: true, reference: '', shallow: true],
 					[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: paths.collect { p -> [path: p] }]
 				],
 				submoduleCfg: [],
