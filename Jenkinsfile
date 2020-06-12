@@ -137,6 +137,9 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				} // dir('titanium_mobile_windows/apidoc')
 			} // dir('titanium_mobile_windows')
 
+			// Titanium Docs (Vuepress)
+			shallowClone('titanium-docs', 'master')
+
 			// Arrow
 			sparseCheckout('appcelerator', 'arrow', ARROW_BRANCH, [ 'apidoc/', 'lib/' ])
 
@@ -150,19 +153,41 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 			} // MODULES.each
 		} // stage('APIDocs Repos')
 
+		stage('APIDocs') {
+			// TODO: Move this knowledge into titanium-docs itself!
+			dir('titanium-docs') {
+				sh 'rm -rf docs/api/global'
+				sh 'rm -rf docs/api/structs'
+				sh 'rm -rf docs/api/titanium'
+				sh 'rm -f docs/api/global.md'
+				sh 'rm -f docs/api/titanium.md'
+				sh "npm run docs:metadata -- ${moduleArgs}" // this will generate an api.json file from all of our apidocs
+				sh 'node scripts/migrate.js' // this will generate new markdown files from the api.json file
+				// TODO: Update docs/.vuepress/api.json with generated files! This is the sidebar/navigation!
+				// add all our changes to staged in git
+				sh 'git add docs'
+				// TODO: Also generate the guides section of the site and update that!
+				def changes = getChangeString()
+				writeFile file: 'commit.txt', text: "docs: update api docs\n\n${changes}"
+				def status = sh returnStatus: true, script: 'git commit -F commit.txt' // commit it!
+				if (status == 0) {
+					pushGit(name: 'master') // push 'master' branch to github
+				}
+			}
+
+			dir('doctools') {
+				sh 'mkdir -p dist'
+				// run docgen to generate build/titanium.js
+				// First we generate APIdocs for titanium_mobile, modules, windows
+				sh "npm run docgen -- -f jsduck -o ./build/ ${SDK_DOC_DIR} ${moduleArgs} ${windowsArgs}" // generates build/titanium.js
+				// TODO: Can we specify multiple formats at once and get solr output too? Looks like it does work (though the output for result filenames is busted and repeats last format)
+			}
+		} // stage('APIDocs')
+
 		def outputDir = './dist/platform/latest'
 		// FIXME: Don't include solr index files in the dist/platform folder, appc_web_docs doesn't need them since we upload them in this job
 		def solrDir = "${outputDir}/../data/solr"
 		dir('doctools') {
-			sh 'mkdir -p dist'
-
-			// run docgen to generate build/titanium.js
-			stage('APIDocs') {
-				// First we generate APIdocs for titanium_mobile, modules, windows
-				sh "npm run docgen -- -f jsduck -o ./build/ ${SDK_DOC_DIR} ${moduleArgs} ${windowsArgs}" // generates build/titanium.js
-				// TODO: Can we specify multiple formats at once and get solr output too? Looks like it does work (though the output for result filenames is busted and repeats last format)
-			} // stage('APIDocs')
-
 			// run jsduck on that to generate html output (as well as point it at Alloy/Arrow JS files)
 			stage('JSDuck') {
 				dir('apidocs') {
@@ -261,23 +286,8 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 } // node
 
 def updateAppcOpenDocs() {
-	sh 'mkdir -p appc-open-docs'
+	shallowClone('appc-open-docs', 'master')
 	dir('appc-open-docs') {
-		// checkout appc-open-docs repo
-		checkout(changelog: false,
-			poll: false,
-			scm: [$class: 'GitSCM',
-				branches: [[name: '*/master']],
-				doGenerateSubmoduleConfigurations: false,
-				extensions: [
-					[$class: 'CloneOption', depth: 1, honorRefspec: true, noTags: true, reference: '', shallow: true],
-					[$class: 'CleanBeforeCheckout'],
-					[$class: 'LocalBranch'] // so we can make changes and push them!
-				],
-				submoduleCfg: [],
-				userRemoteConfigs: [[credentialsId: 'f63e8a0a-536e-4695-aaf1-7a0098147b59', url: "git@github.com:appcelerator/appc-open-docs.git", refspec: '+refs/heads/master:refs/remotes/origin/master']]
-			]
-		)
 		sh 'rm -rf content/en/docs'
 		sh 'rm -rf static/images'
 		// copy what we generated into repo
@@ -297,14 +307,14 @@ def updateAppcOpenDocs() {
 	}
 }
 
-def updateDocsAppceleratorCom() {
-	sh 'mkdir -p appc_web_docs'
-	dir('appc_web_docs') {
-		// checkout appc_web_docs repo
+def shallowClone(reponame, branchName) {
+	sh "mkdir -p ${reponame}"
+	dir(reponame) {
+		// checkout repo
 		checkout(changelog: false,
 			poll: false,
 			scm: [$class: 'GitSCM',
-				branches: [[name: '*/docs']],
+				branches: [[name: "*/${branchName}"]],
 				doGenerateSubmoduleConfigurations: false,
 				extensions: [
 					[$class: 'CloneOption', depth: 1, honorRefspec: true, noTags: true, reference: '', shallow: true],
@@ -315,6 +325,13 @@ def updateDocsAppceleratorCom() {
 				userRemoteConfigs: [[credentialsId: 'f63e8a0a-536e-4695-aaf1-7a0098147b59', url: "git@github.com:appcelerator/appc_web_docs.git", refspec: '+refs/heads/docs:refs/remotes/origin/docs']]
 			]
 		)
+	}
+}
+
+def updateDocsAppceleratorCom() {
+	shallowClone('appc_web_docs', 'docs')
+
+	dir('appc_web_docs') {
 		sh 'rm -rf platform/data'
 		sh 'rm -rf platform/landing'
 		sh 'rm -rf platform/latest'
