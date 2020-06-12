@@ -322,7 +322,7 @@ def shallowClone(reponame, branchName) {
 					[$class: 'LocalBranch'] // so we can make changes and push them!
 				],
 				submoduleCfg: [],
-				userRemoteConfigs: [[credentialsId: 'f63e8a0a-536e-4695-aaf1-7a0098147b59', url: "git@github.com:appcelerator/appc_web_docs.git", refspec: '+refs/heads/docs:refs/remotes/origin/docs']]
+				userRemoteConfigs: [[credentialsId: 'f63e8a0a-536e-4695-aaf1-7a0098147b59', url: "git@github.com:appcelerator/${reponame}.git", refspec: "+refs/heads/${branchName}:refs/remotes/origin/${branchName}"]]
 			]
 		)
 	}
