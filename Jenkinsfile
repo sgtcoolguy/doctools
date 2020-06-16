@@ -114,6 +114,8 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 						sh 'npm run wiki:zoomin -- -i $SSH_KEY -oStrictHostKeyChecking=no'
 					}
 				}
+				// Generate the vuepress docs
+				sh 'npm run wiki:convert:vuepress' // goes to build/titanium-docs
 			} // stage('Wiki')
 		} // dir('doctools')
 
@@ -156,12 +158,22 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 		stage('APIDocs') {
 			// TODO: Move this knowledge into titanium-docs itself!
 			dir('titanium-docs') {
+				sh 'npm ci'
+
+				// Copy converted wiki guides
+				sh 'rm -rf docs/guide'
+				sh 'cp -R ../doctools/build/titanium-docs/docs/guide docs/guide'
+				sh 'rm -rf docs/.vuepress/public/images/guide'
+				sh 'cp -R ../doctools/build/titanium-docs/docs/.vupress/public/images/guide docs/.vuepress/public/images/guide'
+				sh 'rm -f docs/.vuepress/guide.json'
+				sh 'cp -R ../doctools/build/titanium-docs/docs/.vuepress/guide.json docs/.vuepress/guide.json'
+
+				// Re-generate API docs
 				sh 'rm -rf docs/api/global'
 				sh 'rm -rf docs/api/structs'
 				sh 'rm -rf docs/api/titanium'
 				sh 'rm -f docs/api/global.md'
 				sh 'rm -f docs/api/titanium.md'
-				sh 'npm ci'
 				sh "npm run docs:metadata -- ${moduleArgs}" // this will generate an api.json file from all of our apidocs
 				sh 'node scripts/migrate.js' // this will generate new markdown files from the api.json file
 				// TODO: Update docs/.vuepress/api.json with generated files! This is the sidebar/navigation!
