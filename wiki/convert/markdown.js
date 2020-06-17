@@ -27,11 +27,13 @@ const VUEPRESS_TARGET = 'vuepress';
 class Page {
 	/**
 	 * @param {string} docsyPath path to document in docsy wiki
-	 * @param {Map<string, string>} anchors mapping from confluence anchors/ids to docsy anchors/ids
+	 * @param {Map<string, string>} [anchors=new Map()] mapping from confluence anchors/ids to docsy anchors/ids
+	 * @param {boolean} [isParent=false] if this page is a parent (folder)
 	 */
-	constructor(docsyPath, anchors = new Map()) {
+	constructor(docsyPath, anchors = new Map(), isParent = false) {
 		this.docsyPath = docsyPath;
 		this.anchors = anchors;
+		this.isParent = isParent;
 	}
 }
 
@@ -266,7 +268,7 @@ function wikiLinkToMarkdown(href, lookupTable, thisDocPage) {
 	}
 
 	// TODO: try to use relative links? Or not because the _index.md thing breaks then?
-	let result = `${docPage.docsyPath}`; // FIXME: What the fuck is going on here, this isn pointing to the input html file in my repo, not the docsy filepath!
+	let result = `${docPage.docsyPath}`; // FIXME: What the fuck is going on here, this is pointing to the input html file in my repo, not the docsy filepath!
 	if (anchor) {
 		result += `#${anchor}`;
 	}
@@ -285,12 +287,15 @@ class Converter {
 		this.inputDir = program.input;
 		this.outputDir = program.output;
 		this.target = program.target || HUGO_TARGET;
+		this.imgMap = new Map();
 	}
 
 	async convert() {
 		if (this.target === VUEPRESS_TARGET) {
 			await this.generateSidebar();
 		}
+
+		await this.lookupTable(); // force it to generate our image mappings!
 
 		await fs.ensureDir(this.outputDir);
 		return Promise.all([
@@ -325,7 +330,7 @@ class Converter {
 		]);
 		for (const entry of toc) {
 			if (relevantTopics.has(entry.title)) {
-				this.printEntry(entry);
+				// this.printEntry(entry);
 				if (entry.items) { // top-level directory, so generate url path
 					const value = this.gatherSidebarChildren(relevantTopics.get(entry.title), entry, lookupTable);
 					// TODO: Merge each "Guide" subgrouping up into the top-level?
@@ -397,7 +402,9 @@ class Converter {
 
 	/**
 	 * Lazily generate a Mapping from TOC entry names to metadata about the page (such as the output path)
-	 * @return  {Promise<Map<string, Page>>} lookup table from the unique entry name in the TOC to the Page metadat for that entry
+	 * This will also record all references to images from the wiki. We then narrow the set of images to
+	 * copy based on this, and if an image is referenced by only one page, we move it as a sibling of the page.
+	 * @return  {Promise<Map<string, Page>>} lookup table from the unique entry name in the TOC to the Page metadata for that entry
 	 */
 	async lookupTable() {
 		if (!this.pageMap) {
@@ -418,11 +425,9 @@ class Converter {
 		const toc = await this.tableOfContents();
 		const lookupTable = await this.lookupTable();
 
-		const docsDir = path.join(this.outputDir, this.target === HUGO_TARGET
-			? 'content/en/docs' : 'docs/guide'); // if pushing to axway-open-docs, should be 'content/en/docs/appc'
-		await fs.ensureDir(docsDir);
+		await fs.ensureDir(this.docsDir);
 		console.log('Converting HTML pages to markdown...');
-		return Promise.all(toc.map((entry, index) => this.handleEntry(entry, index, docsDir, lookupTable)));
+		return Promise.all(toc.map((entry, index) => this.handleEntry(entry, index, this.docsDir, lookupTable)));
 	}
 
 	/**
@@ -430,10 +435,9 @@ class Converter {
 	 * @param {TOCEntry[]} entries table of contents entries
 	 */
 	async generateLookupTable(prefix, entries) {
-		// FIXME: do the recursion in parallel!
 		return Promise.all(entries.map(async entry => {
 			const generatedPath = `${prefix}${entry.name}/`;
-			const page = await this.generatePageMetadata(entry.name, generatedPath);
+			const page = await this.generatePageMetadata(entry.name, generatedPath, entry.items && entry.items.length !== 0);
 			this.pageMap.set(entry.name, page);
 			if (entry.items) {
 				// recurse inside items!
@@ -448,9 +452,10 @@ class Converter {
 	 * - the mapping of confluence anchors to the docsy anchors
 	 * @param {string} pageName page base filename
 	 * @param {string} generatedPath the output path
+	 * @param {boolean} isParent is this page a parent (does it have children pages?)
 	 * @returns {Page}
 	 */
-	async generatePageMetadata(pageName, generatedPath) {
+	async generatePageMetadata(pageName, generatedPath, isParent) {
 		const filepath = path.join(this.inputDir, `${pageName}.html`);
 		const content = await fs.readFile(filepath, 'utf8');
 
@@ -461,6 +466,7 @@ class Converter {
 		const modified = dom.html();
 
 		const anchors = new Map();
+		const page = new Page(generatedPath, anchors, isParent);
 		// Can we grab the first div with class "content" and then find all h1/2/3/4/5 tags with class "heading" - and grab parent div's id value to match?
 		const turndownService = new TurndownService();
 		// TODO: Don't use turndown, go straight to JSDOM? Because we don't actually want to convert anything
@@ -479,8 +485,25 @@ class Converter {
 			},
 			replacement: text => text
 		});
+		// Record all the image references so we can cull down the images to only those referenced
+		// and soe we can copy/move images to live alongside their referring page (if they're the only reference!)
+		turndownService.addRule('images', {
+			filter: node => {
+				if (node.nodeName === 'IMG') {
+					const src = node.getAttribute('src') || '';
+					if (src.startsWith('images/')) {
+						// Record the image reference!
+						const value = this.imgMap.get(src) || new Set();
+						value.add(page);
+						this.imgMap.set(src, value);
+					}
+				}
+				return false;
+			},
+			replacement: text => text
+		});
 		turndownService.turndown(modified);
-		return new Page(generatedPath, anchors);
+		return page;
 	}
 
 	/**
@@ -580,13 +603,11 @@ class Converter {
 				if (href.startsWith('#!/guide/')) {
 					href = wikiLinkToMarkdown(href, lookupTable, thisDocPage);
 				}
-
 				const title = node.title ? ' "' + node.title + '"' : '';
 				return '[' + content + '](' + href + title + ')';
 			}
 		});
-		// FIXME: Can we push images to live next to the pages that refer to them?
-		// Seems like if it's an attachment, it should be able to be moved over
+
 		// Convert images to point at correct place!
 		// images/download/attachments/30083145/TabbedApplicationMain.png
 		// -> /images/download/attachments/30083145/TabbedApplicationMain.png
@@ -601,7 +622,22 @@ class Converter {
 					alt = path.basename(alt, path.extname(alt));
 				}
 				if (src.startsWith('images/')) {
-					src = (this.target === VUEPRESS_TARGET ? '/images/guide' : '/images') + src.substring(6); // 'images/...' -> '/images/...'  // if pushing to axway-open-docs, should be '/Images/appc'
+					// if this is the only reference to this image, make relative!
+					if (this.imgMap.get(src).size === 1 && !src.endsWith('.bmp')) { // not bitmaps!
+						src = `./${path.basename(src)}`;
+					} else {
+						src = (this.target === VUEPRESS_TARGET ? '/images/guide' : '/images') + src.substring(6); // 'images/...' -> '/images/...'  // if pushing to axway-open-docs, should be '/Images/appc'
+					}
+					src = decodeURIComponent(src); // unescape things like %2C for ','; %20 for ' '
+					// If ends in JPG/PNG (uppercase) make lowercase
+					if (src.endsWith('.PNG')) {
+						src = src.slice(0, -3) + 'png';
+					} else if (src.endsWith('.JPG')) {
+						src = src.slice(0, -3) + 'jpg';
+					} else if (src.endsWith('.dat')) {
+						// .dat file is actually a png found in 8.3.0.GA release notes page
+						src = src.slice(0, -3) + 'png';
+					}
 				}
 				const title = node.title || '';
 				const titlePart = title ? ' "' + title + '"' : '';
@@ -768,14 +804,63 @@ class Converter {
 		return fs.writeFile(path.join(outDir, outputName), removeTrailingSpaces(converted).replace(/(\n){3,}/gm, '\n\n'));
 	}
 
+	get imagesDir() {
+		return path.join(this.outputDir, this.target === HUGO_TARGET
+			? 'static/images' : 'docs/.vuepress/public/images/guide');
+	}
+
+	get docsDir() {
+		return path.join(this.outputDir, this.target === HUGO_TARGET
+			? 'content/en/docs' : 'docs/guide'); // if pushing to axway-open-docs, should be 'content/en/docs/appc'
+	}
+
 	/**
 	 * Copy the images over to where we'd expect: htmlguides/images -> outputDir/static/images (hugo) or 'docs/.vuepress/public/images' (vuepress)
+	 *
+	 * NOTE: this now uses the imgMap mapping to narrow the set of images copied to only those referenced. We also will copy an image
+	 * to be a sibling of the only page referencing it if there's only one reference.
 	 * @returns {Promise<void>}
 	 */
 	async copyImages() {
-		const imagesDir = path.join(this.outputDir, this.target === HUGO_TARGET
-			? 'static/images' : 'docs/.vuepress/public/images/guide');
-		return fs.copy(path.join(this.inputDir, 'images'), imagesDir);
+		const copies = [];
+		const docsDirPrefix = this.docsDir.split('/').slice(0, -1).join('/'); // drop duplicate leading 'guide' segment already in page paths
+		for (const [ imgPath, referencesSet ] of this.imgMap) {
+			copies.push(this.copyImage(imgPath, referencesSet, docsDirPrefix));
+		}
+		return Promise.all(copies);
+	}
+
+	/**
+	 * async copy a single image
+	 * @param {string} imgPath the img src path
+	 * @param {Set<string>} referencesSet the Set of page paths that reference it
+	 * @param {string} docsDirPrefix the folder containing the generated markdown files
+	 */
+	async copyImage(imgPath, referencesSet, docsDirPrefix) {
+		const decoded = decodeURIComponent(imgPath);
+		// if decoded ends in PNG or JPG, fix to lowercase (Vuepress doesn't like caps extensions)
+		let destImage = decoded;
+		if (destImage.endsWith('.PNG')) {
+			destImage = destImage.slice(0, -3) + 'png';
+		} else if (destImage.endsWith('.JPG')) {
+			destImage = destImage.slice(0, -3) + 'jpg';
+		} else if (destImage.endsWith('.dat')) { // handle special case .dat file which is really a png
+			destImage = destImage.slice(0, -3) + 'png';
+		}
+		// copy images with single reference to live side-by-side with page
+		if (referencesSet.size === 1 && !destImage.endsWith('.bmp')) { // But not bitmap! Vuepress can't handle that!
+			const page = referencesSet.values().next().value;
+			// Strip last page path segment, we want it to live next to the page, not in a folder whose name matches the page
+			let outDir = page.docsyPath;
+			if (!page.isParent) {
+				outDir = path.dirname(outDir);
+			}
+			const dir = path.join(docsDirPrefix, outDir);
+			await fs.ensureDir(dir);
+			return fs.copy(path.join(this.inputDir, decoded), path.join(dir, path.basename(destImage)), { overwrite: false });
+		}
+		// Referenced by 2+ pages, so stick in as "static" image asset
+		return fs.copy(path.join(this.inputDir, decoded), path.join(this.imagesDir, ...destImage.split('/').slice(1))); // Drop first segment
 	}
 }
 
