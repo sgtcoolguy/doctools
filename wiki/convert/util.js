@@ -238,7 +238,7 @@ function fixLinks(dom, filepath) {
 }
 
 /**
- * @param {CheerioStatic} dom
+ * @param {CheerioStatic} dom the DOM element we can use to manipulate the HTML
  * @returns {CheerioStatic}
  */
 function addEditButton(dom) {
@@ -256,10 +256,10 @@ function addEditButton(dom) {
 
 /**
  * @param {string} contents HTML contents
- * @param {string} [filepath]
- * @param {object} [options]
- * @param {boolean} [options.showEditButton=false]
- * @param {boolean} [options.minify=true]
+ * @param {string} [filepath] the path to the original HTML file
+ * @param {object} [options] export options
+ * @param {boolean} [options.showEditButton=false] show a button to edit the original contents?
+ * @param {boolean} [options.minify=true] minify the resulting HTML?
  * @returns {string}
  */
 function manipulateHTMLContent(contents, filepath, options = { showEditButton: false, minify: true }) {
@@ -270,6 +270,7 @@ function manipulateHTMLContent(contents, filepath, options = { showEditButton: f
 		$ = addRedirects($, filepath);
 	}
 	$ = fixLinks($, filepath);
+	$ = fixCodeForHTML($, filepath); // This fixes code blocks specifically only for HTML exports!
 	if (options.showEditButton) {
 		$ = addEditButton($);
 	}
@@ -289,9 +290,33 @@ function generateDOM(contents) {
 }
 
 /**
+ * In code blocks we wrap each line in a <pre> tag to retain spacing/formatting
+ * (But also retain the individual code tags inside so the CSS can do syntax coloring by the varying class values on each separate tag)
+ * @param {CheerioStatic} node the DOM element we can use to manipulate the HTML
+ * @param {string} filepath the path to the original HTML file
+ * @returns {CheerioStatic}
+ */
+function fixCodeForHTML(node, filepath) {
+	node('div[class="line"]')
+		.each(function (i, elem) {
+			try {
+				const domNode = node(elem);
+				const origCode = domNode.html();
+				const code = `<div class="line"><pre>${origCode}</pre></div>`.replace(/\t/g, '  ');
+				// console.log(`Replacing div with pre-formatted tags: ${code}`);
+				domNode.replaceWith(code);
+			} catch (error) {
+				console.error(`failed to replace in ${filepath}:`);
+				console.error(error);
+			}
+		});
+	return node;
+}
+
+/**
  *
- * @param {CheerioStatic} dom
- * @param {string} filepath
+ * @param {CheerioStatic} dom the DOM element we can use to manipulate the HTML
+ * @param {string} filepath the path to the original HTML file
  * @returns {CheerioStatic}
  */
 function addRedirects(dom, filepath) {
