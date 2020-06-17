@@ -163,6 +163,14 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				// Copy converted wiki guides
 				// TODO: just run: sh 'npm run clean:guide', then do copies
 				sh 'rm -rf docs/guide'
+				// Remove sections we don't want in vuepress
+				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/AMPLIFY_Appcelerator_Services'
+				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/AMPLIFY_Appcelerator_Services_Overview'
+				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/AMPLIFY_CLI'
+				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/AMPLIFY_Runtime_Services'
+				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/Appcelerator_Dashboard'
+				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/Axway_API_Builder'
+				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/Mobile_Backend_Services'
 				sh 'cp -R ../doctools/build/titanium-docs/docs/guide docs/guide'
 				sh 'rm -rf docs/.vuepress/public/images/guide'
 				sh 'cp -R ../doctools/build/titanium-docs/docs/.vupress/public/images/guide docs/.vuepress/public/images/guide'
