@@ -161,6 +161,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				sh 'npm ci'
 
 				// Copy converted wiki guides
+				// TODO: just run: sh 'npm run clean:guide', then do copies
 				sh 'rm -rf docs/guide'
 				sh 'cp -R ../doctools/build/titanium-docs/docs/guide docs/guide'
 				sh 'rm -rf docs/.vuepress/public/images/guide'
@@ -169,6 +170,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				sh 'cp -R ../doctools/build/titanium-docs/docs/.vuepress/guide.json docs/.vuepress/guide.json'
 
 				// Re-generate API docs
+				// TODO: just run: sh 'npm run clean:api', then do copies
 				sh 'rm -rf docs/api/global'
 				sh 'rm -rf docs/api/structs'
 				sh 'rm -rf docs/api/titanium'
@@ -179,7 +181,6 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				// TODO: Update docs/.vuepress/api.json with generated files! This is the sidebar/navigation!
 				// add all our changes to staged in git
 				sh 'git add docs'
-				// TODO: Also generate the guides section of the site and update that!
 				def changes = getChangeString()
 				writeFile file: 'commit.txt', text: "docs: update api docs\n\n${changes}"
 				def status = sh returnStatus: true, script: 'git commit -F commit.txt' // commit it!
