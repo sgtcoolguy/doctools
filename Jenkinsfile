@@ -41,6 +41,9 @@ properties(buildProperties)
 
 // Publish only on the 'docs' branch
 def publish = isMainBranch
+// FIXME: Sounds like zoomin uploads on production are busted, so temporarily turning off
+// def pushToZoomin = publish
+def pushToZoomin = false
 
 // Variables to tune to grab different branches of products
 def SDK_BRANCH = 'master' // change to target branch to use for APIDoc generation: i.e. 7_4_X, master, 8_0_X
@@ -102,7 +105,7 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				}
 				// Generate the jsduck-compatible html contents and markdown contents
 				sh 'npm run wiki:post-export'
-				if (publish) {
+				if (pushToZoomin) {
 					// Trigger Zoomin to sync up
 					withCredentials([sshUserPrivateKey(credentialsId: '190db4ff-79b3-459d-8cec-20048b3e91d5', keyFileVariable: 'SSH_KEY', passphraseVariable: 'PASSPHRASE', usernameVariable: 'USERNAME')]) {
 						// Use our special keypair installed on Jenkins and set up with zoomin
