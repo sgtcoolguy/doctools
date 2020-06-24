@@ -24,6 +24,15 @@ const DUMB_PATTERN = /^(.+?)-section-(src-\d+(_(.+))?)$/; // group 1 is the page
 const HUGO_TARGET = 'hugo';
 const VUEPRESS_TARGET = 'vuepress';
 
+// Filtering for Vuepress
+const relevantTopics = new Map([
+	[ 'Titanium SDK', 'Titanium SDK' ],
+	[ 'Alloy Framework', 'Alloy' ],
+	[ 'Appcelerator CLI', 'Appcelerator CLI' ],
+	[ 'Axway Appcelerator Studio', 'Axway Appcelerator Studio' ],
+	// TODO: What about Dashboard? Appc Services? MBAAS?
+]);
+
 class Page {
 	/**
 	 * @param {string} docsyPath path to document in docsy wiki
@@ -321,13 +330,6 @@ class Converter {
 		const sidebar = {};
 		const toc = await this.tableOfContents();
 		const lookupTable = await this.lookupTable(); // FiXME: Avoid using lookup table!
-		const relevantTopics = new Map([
-			[ 'Titanium SDK', 'Titanium SDK' ],
-			[ 'Alloy Framework', 'Alloy' ],
-			[ 'Appcelerator CLI', 'Appcelerator CLI' ],
-			[ 'Axway Appcelerator Studio', 'Axway Appcelerator Studio' ],
-			// TODO: What about Dashboard? Appc Services? MBAAS?
-		]);
 		for (const entry of toc) {
 			if (relevantTopics.has(entry.title)) {
 				// this.printEntry(entry);
@@ -422,8 +424,13 @@ class Converter {
 	 * @returns {Promise<void>}
 	 */
 	async convertHTMLFiles() {
-		const toc = await this.tableOfContents();
+		let toc = await this.tableOfContents();
 		const lookupTable = await this.lookupTable();
+
+		// filter Vuepress to only sections we care about
+		if (this.target === VUEPRESS_TARGET) {
+			toc = toc.filter(entry => !entry.items || relevantTopics.has(entry.title));
+		}
 
 		await fs.ensureDir(this.docsDir);
 		console.log('Converting HTML pages to markdown...');
@@ -517,6 +524,7 @@ class Converter {
 	 * @returns {Promise<void>}
 	 */
 	async handleEntry(entry, index, outDir, lookupTable) {
+		// TODO: do filtering for vuepress to not go into the sections we don't want!
 		let outputName;
 		// if the entry has 'items' property, it's a parent! Need to recurse, and change filename to _index
 		if (entry.items) {
@@ -554,20 +562,20 @@ class Converter {
 			codeBlockStyle: 'fenced'
 		});
 		const escapes = [
-			[/\\/g, '\\\\'],
-			[/\*/g, '\\*'],
-			[/^-/g, '\\-'],
-			[/^\+ /g, '\\+ '],
-			[/^(=+)/g, '\\$1'],
-			[/^(#{1,6}) /g, '\\$1 '],
-			[/`/g, '\\`'],
-			[/^~~~/g, '\\~~~'],
-			[/\[/g, '\\['],
-			[/\]/g, '\\]'],
-			[/^>/g, '\\>'],
-			[/_/g, '\\_'],
-			[/^(\d+)\. /g, '$1\\. '],
-			[/&lt;/g, '&amp;lt;'] // Added by cwilliams - to escape < in non-code
+			[ /\\/g, '\\\\' ],
+			[ /\*/g, '\\*' ],
+			[ /^-/g, '\\-' ],
+			[ /^\+ /g, '\\+ ' ],
+			[ /^(=+)/g, '\\$1' ],
+			[ /^(#{1,6}) /g, '\\$1 ' ],
+			[ /`/g, '\\`' ],
+			[ /^~~~/g, '\\~~~' ],
+			[ /\[/g, '\\[' ],
+			[ /\]/g, '\\]' ],
+			[ /^>/g, '\\>' ],
+			[ /_/g, '\\_' ],
+			[ /^(\d+)\. /g, '$1\\. ' ],
+			[ /&lt;/g, '&amp;lt;' ] // Added by cwilliams - to escape < in non-code
 		];
 		// Double escape &lt; and &gt; so it doesn't get converted to < and > by turndown
 		// See https://appc-open-docs.netlify.app/docs/appcelerator_cli/appcelerator_cli_how-tos/appcelerator_command-line_interface_reference/
@@ -837,6 +845,7 @@ class Converter {
 	 * @param {string} docsDirPrefix the folder containing the generated markdown files
 	 */
 	async copyImage(imgPath, referencesSet, docsDirPrefix) {
+		// TODO: Filter references to not include sections we don't care about for Vuepress!
 		const decoded = decodeURIComponent(imgPath);
 		// if decoded ends in PNG or JPG, fix to lowercase (Vuepress doesn't like caps extensions)
 		let destImage = decoded;
