@@ -44,6 +44,7 @@ def publish = isMainBranch
 // FIXME: Sounds like zoomin uploads on production are busted, so temporarily turning off
 // def pushToZoomin = publish
 def pushToZoomin = false
+def updateVuepress = publish
 
 // Variables to tune to grab different branches of products
 def SDK_BRANCH = 'master' // change to target branch to use for APIDoc generation: i.e. 7_4_X, master, 8_0_X
@@ -54,10 +55,10 @@ def MODULES = [
 	'ti.map',
 	'ti.facebook',
 	'ti.nfc',
-	'ti.newsstand',
+	// 'ti.newsstand', // This is archived and not useful anymore!
 	'ti.coremotion',
 	'ti.urlsession',
-	'ti.touchid',
+	'ti.touchid', // TODO: Eventually remove since deprecated in favor of ti.identity
 	'titanium-identity',
 	'Ti.SafariDialog',
 	'ti.playservices',
@@ -69,6 +70,14 @@ def MODULES = [
 	'appcelerator.aca',
 	'ti.barcode',
 	'titanium-apple-sign-in'
+	// TODO: add other modules?
+	// 'ti.admob',
+	// 'ti.crypto',
+	// 'ti.compression',
+	// 'titanium-socketio',
+	// 'ti.ldap',
+	// 'ti.framemetrics',
+	// 'ti.airprint'
 ]
 
 
@@ -81,6 +90,32 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 
 	nodejs(nodeJSInstallationName: 'node 8.11.4') {
 		ensureNPM('latest')
+
+	// Can we do some stages like:
+	// Checkout
+	// Setup
+	//   - Wiki
+	//     - copy artifacts
+	//     - npm run wiki:unzip
+	//   - APIDocs
+	//     - clone a bunch of repos
+	// Build
+	//   - Vuepress
+	//     - npm run wiki:convert:vuepress
+	//     - various scripts/copying to update
+	//     - push to repo
+	//   - docs.appcelerator.com
+	//     - npm run wiki:redirects
+	//     - npm run wiki:convert:html
+	//     - docgen jsduck/JSDuck stuff
+	//     - SOLR stuff
+	//     - various asset copies/manipulation
+	//     - upload to SOLR
+	//     - push to appc_web_docs repo
+	//   - appc-open-docs
+	//     - npm run wiki:convert:markdown
+	//     - various scripts/copying to update
+	//     - push to repo
 
 		sh 'mkdir -p doctools'
 		dir('doctools') {
@@ -98,15 +133,14 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				sh 'npm ci'
 			} // stage('Setup')
 
-			// run the wiki export/conversion (to generate build/guides/guides.json)
+			// run the wiki export/conversion
 			stage('Wiki') {
 				dir('wiki') {
 					copyArtifacts fingerprintArtifacts: true, projectName: '../wiki-export/master'
 				}
-				// Generate the jsduck-compatible html contents and markdown contents
-				sh 'npm run wiki:post-export'
+
+				// Trigger Zoomin to sync up
 				if (pushToZoomin) {
-					// Trigger Zoomin to sync up
 					withCredentials([sshUserPrivateKey(credentialsId: '190db4ff-79b3-459d-8cec-20048b3e91d5', keyFileVariable: 'SSH_KEY', passphraseVariable: 'PASSPHRASE', usernameVariable: 'USERNAME')]) {
 						// Use our special keypair installed on Jenkins and set up with zoomin
 						// (see https://axway.jiveon.com/docs/DOC-99675#jive_content_id_Connecting_to_Zoomins_SFTP_server for details on who to give public key to)
@@ -114,8 +148,12 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 						sh 'npm run wiki:zoomin -- -i $SSH_KEY -oStrictHostKeyChecking=no'
 					}
 				}
-				// Generate the vuepress docs
-				sh 'npm run wiki:convert:vuepress' // goes to build/titanium-docs
+
+				// Generate the various formats: html for jsduck/docs.appc.com; markdown for appc-open-docs; markdown for vuepress
+				// build/guides for jsduck/docs.appc.com
+				// build/appc-open-docs for appc-open-docs
+				// build/titanium-docs for Vuepress
+				sh 'npm run wiki:post-export'
 			} // stage('Wiki')
 		} // dir('doctools')
 
@@ -156,44 +194,46 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 		} // stage('APIDocs Repos')
 
 		stage('APIDocs') {
-			// TODO: Move this knowledge into titanium-docs itself!
 			dir('titanium-docs') {
 				sh 'npm ci'
 
 				// Copy converted wiki guides
-				// TODO: just run: sh 'npm run clean:guide', then do copies
-				sh 'rm -rf docs/guide'
-				// Remove sections we don't want in vuepress
+				sh 'npm run clean:guide'
+				// Remove sections we don't want in vuepress TODO: Have the markdown convert script do all the work to avoid this!
 				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/AMPLIFY_Appcelerator_Services'
 				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/AMPLIFY_Appcelerator_Services_Overview'
 				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/AMPLIFY_CLI'
 				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/AMPLIFY_Runtime_Services'
 				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/Appcelerator_Dashboard'
+				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/AMPLIFY_Dashboard'
 				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/Axway_API_Builder'
 				sh 'rm -rf ../doctools/build/titanium-docs/docs/guide/Mobile_Backend_Services'
 				sh 'cp -R ../doctools/build/titanium-docs/docs/guide docs/guide'
 				sh 'rm -rf docs/.vuepress/public/images/guide'
-				sh 'cp -R ../doctools/build/titanium-docs/docs/.vupress/public/images/guide docs/.vuepress/public/images/guide'
+				sh 'cp -R ../doctools/build/titanium-docs/docs/.vuepress/public/images/guide docs/.vuepress/public/images/guide'
 				sh 'rm -f docs/.vuepress/guide.json'
 				sh 'cp -R ../doctools/build/titanium-docs/docs/.vuepress/guide.json docs/.vuepress/guide.json'
 
 				// Re-generate API docs
-				// TODO: just run: sh 'npm run clean:api', then do copies
-				sh 'rm -rf docs/api/global'
-				sh 'rm -rf docs/api/structs'
-				sh 'rm -rf docs/api/titanium'
-				sh 'rm -f docs/api/global.md'
-				sh 'rm -f docs/api/titanium.md'
+				// sh 'npm run clean:api'// TODO: just run: sh 'npm run clean:api', then do copies. Can't do this until we generate the api.json sidebar file
+				sh 'rm -rf docs/api'
+				sh 'git checkout -- docs/api/README.md' // add back the index page
 				sh "npm run docs:metadata -- ${moduleArgs}" // this will generate an api.json file from all of our apidocs
-				sh 'node scripts/migrate.js' // this will generate new markdown files from the api.json file
+				sh "npm run docs:migrate -- ${moduleArgs}" // this will generate new markdown files from the api.json file
 				// TODO: Update docs/.vuepress/api.json with generated files! This is the sidebar/navigation!
-				// add all our changes to staged in git
-				sh 'git add docs'
-				def changes = getChangeString()
-				writeFile file: 'commit.txt', text: "docs: update api docs\n\n${changes}"
-				def status = sh returnStatus: true, script: 'git commit -F commit.txt' // commit it!
-				if (status == 0) {
-					pushGit(name: 'master') // push 'master' branch to github
+
+				if (updateVuepress) {
+					// add all our changes to staged in git
+					sh 'git add docs'
+					def changes = getChangeString()
+					writeFile file: 'commit.txt', text: "docs: update based on latest apidocs and guides\n\n${changes}"
+					def status = sh returnStatus: true, script: 'git commit -F commit.txt' // commit it!
+					if (status == 0) {
+						pushGit(name: 'master') // push 'master' branch to github
+					}
+				} else {
+					// Archive the results
+					archiveArtifacts 'docs/'
 				}
 			}
 
@@ -255,12 +295,12 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 				sh "cp -r wiki/htmlguides/images ${outputDir}/images"
 
 				// Copy API doc images
+				// TODO: Do this for the modules too!
 				// Copy apidoc/images to platform/latest/images
 				sh "cp -r ${SDK_DOC_DIR}/images ${outputDir}/."
 				// Copy all images inside the apidocs folder tree flattened into platform/latest
 				// This will allow iamges to live alongside the yml files
 				// (rather than separated into a distinct images folder with invalid relative path references)
-				// TODO: Do this for the modules too!
 				sh "find ${SDK_DOC_DIR} -type f -iname '*.png' -exec cp \\{\\} ${outputDir}/ \\;"
 				sh "find ${SDK_DOC_DIR} -type f -iname '*.gif' -exec cp \\{\\} ${outputDir}/ \\;"
 
