@@ -38,7 +38,7 @@
 		"wiki:export": "wiki-export -o wiki/wiki_export.zip",
 		"wiki:unzip": "unzip -o wiki/wiki_export.zip -d wiki/htmlguides",
 		"wiki:redirects": "cp wiki/page_redirects/htmlguides/*.html wiki/htmlguides",
-		"wiki:convert": "npm run wiki:convert:html && npm run wiki:convert:markdown",
+		"wiki:convert": "npm run wiki:convert:html && npm run wiki:convert:markdown && npm run wiki:convert:vuepress",
 		"wiki:convert:html": "node wiki/convert/html --input wiki/htmlguides --output ./build/guides",
 		"wiki:convert:markdown": "node wiki/convert/markdown --input wiki/htmlguides --output ./build/appc-open-docs",
 		"wiki:convert:vuepress": "node wiki/convert/markdown --input wiki/htmlguides --output ./build/titanium-docs --target vuepress",
