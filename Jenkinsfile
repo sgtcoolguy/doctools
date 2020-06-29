@@ -296,10 +296,8 @@ node('osx') { // Need to use osx, because our sencha command zip is for osx righ
 
 				// Copy API doc images
 				// TODO: Do this for the modules too!
-				// Copy apidoc/images to platform/latest/images
-				sh "cp -r ${SDK_DOC_DIR}/images ${outputDir}/."
 				// Copy all images inside the apidocs folder tree flattened into platform/latest
-				// This will allow iamges to live alongside the yml files
+				// This will allow images to live alongside the yml files
 				// (rather than separated into a distinct images folder with invalid relative path references)
 				sh "find ${SDK_DOC_DIR} -type f -iname '*.png' -exec cp \\{\\} ${outputDir}/ \\;"
 				sh "find ${SDK_DOC_DIR} -type f -iname '*.gif' -exec cp \\{\\} ${outputDir}/ \\;"
