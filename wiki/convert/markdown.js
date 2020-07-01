@@ -173,6 +173,9 @@ function sniffLanguage(codeDiv, code) {
 		if (title.endsWith('.yml')) {
 			return ' class="language-yml"';
 		}
+		if (title.endsWith('.jmk')) {
+			return ' class="language-javascript"';
+		}
 		// console.log(`Unhandled title language? ${title}`);
 	}
 
