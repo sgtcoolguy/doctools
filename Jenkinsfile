@@ -80,8 +80,12 @@ def MODULES = [
 	// 'ti.airprint'
 ]
 
-
-node('osx') { // Need to use osx, because our sencha command zip is for osx right now!
+// FIXME: Newer build nodes are failing to install jsduck related stuff via bundler
+// Not sure what specifically it needs that soem have but others do not!
+//def nodeLabels = 'osx' // Need to use osx, because our sencha command zip is for osx right now!
+// we need to use macos 10.13/10.14 or else the install of jsduck dependency v8 fails
+def nodeLabels = 'osx-10.13 || osx-10.14'
+node(nodeLabels) { 
 	def SDK_DOC_DIR = '../titanium_mobile/apidoc'
 	def alloyDirs = '../alloy/Alloy/lib ../alloy/docs/apidoc ../alloy/Alloy/builtins'
 	def arrowDirs = '../arrow-orm/apidoc ../arrow-orm/lib/connector/capabilities/index.js ../arrow-orm/lib/collection.js ../arrow-orm/lib/connector.js ../arrow-orm/lib/error.js ../arrow-orm/lib/instance.js ../arrow-orm/lib/model.js ../arrow/apidoc ../arrow/lib/engines ../arrow/lib/api.js ../arrow/lib/arrow.js ../arrow/lib/block.js ../arrow/lib/middleware.js ../arrow/lib/router.js'
