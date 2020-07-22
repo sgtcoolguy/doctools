@@ -180,7 +180,7 @@ function sniffLanguage(codeDiv, code) {
 	}
 
 	// objective-c methods: line starting with '- (' or '+ (', i.e. '- (void)whatever {}' '+ (id)methodName:(id)arg {}'
-	if (code.match(/^[\-+]\s+\(/m) || code.includes('NSString') || code.includes('alloc]') || code.includes('autorelease]')) {
+	if (code.match(/^[-+]\s+\(/m) || code.includes('NSString') || code.includes('alloc]') || code.includes('autorelease]')) {
 		return ' class="language-objectivec"';
 	}
 

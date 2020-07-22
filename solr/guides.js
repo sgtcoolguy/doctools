@@ -18,12 +18,12 @@ async function uploadGuide(guideDir) {
 	const url = dir;
 	const form = new FormData();
 	const htmlFile = fs.createReadStream(path.join(guideDir, 'README.html'));
-	form.append('myfile', htmlFile); 
+	form.append('myfile', htmlFile);
 	return throttledPost(
 		`${BASE_URL}/update/extract?literal.id=${id}&literal.url=${url}&literal.type=${TYPE}&commitWithin=600000&commit=true`,
 		form,
 		{ headers: form.getHeaders() }
-  	);
+	);
 }
 
 // TODO: Use Promise.all to run all files in parallel? We should probably limit the number of uploads simultaneously though!

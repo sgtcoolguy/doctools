@@ -1,9 +1,10 @@
 const path = require('path');
 const util = require('util');
 const yuicompressor = require('yuicompressor');
+// eslint-disable-next-line security/detect-child-process
 const child_process = require('child_process');
+// eslint-disable-next-line security/detect-child-process
 const exec = util.promisify(child_process.exec);
-// const spawn = util.promisify(child_process.spawn);
 const fs = require('fs-extra');
 const crypto = require('crypto');
 const os = require('os');
@@ -233,10 +234,10 @@ async function removeUnusedGeneratedAssets(outputDir) {
 async function main(outputDir, additionalDirs) {
 	// Do some sanity checks on necessary input files
 	if (!(await fs.exists(path.join(ROOT_DIR, 'build/guides/guides.json')))) {
-		throw new Error(`JSDuck requires that build/guides/guides.json has already been generated from a Wiki export`);
+		throw new Error('JSDuck requires that build/guides/guides.json has already been generated from a Wiki export');
 	}
 	if (!(await fs.exists(path.join(ROOT_DIR, 'build/titanium.js')))) {
-		throw new Error(`JSDuck requires that build/titanium.js has already been generated from Titanium Mobile SDK and/or Windows SDK and modules.`);
+		throw new Error('JSDuck requires that build/titanium.js has already been generated from Titanium Mobile SDK and/or Windows SDK and modules.');
 	}
 
 	// convert the additional directories based on path.resolve(process.cwd(), dir) for each!
@@ -262,9 +263,9 @@ if (process.argv.length < 4) {
 	process.exit(1);
 }
 
-main(process.argv[2], process.argv.slice(3)).then(() => {
-	process.exit(0);
-}).catch(err => {
-	console.error(err);
-	process.exit(1);
-});
+main(process.argv[2], process.argv.slice(3))
+	.then(() => process.exit(0))
+	.catch(err => {
+		console.error(err);
+		process.exit(1);
+	});

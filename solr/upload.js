@@ -19,13 +19,13 @@ const workingDir = process.cwd();
  * @param chunkSize {Integer} Size of every group
  */
 function chunkArray(myArray, chunk_size) {
-    let results = [];
+	let results = [];
 
-    while (myArray.length) {
-        results.push(myArray.splice(0, chunk_size))
-    }
+	while (myArray.length) {
+		results.push(myArray.splice(0, chunk_size));
+	}
 
-    return results;
+	return results;
 }
 async function postJSON(json) {
 	return axios.post(`${BASE_URL}/update?commit=true`, json);

@@ -26,7 +26,7 @@ const REPLACEMENTS = new Map([
 ]);
 
 /**
- * 
+ *
  * @param {string} wikiFile filepath to wiki input file with release notes content
  * @param {string} outputDir path to directroy generated release note html file shoudl be written
  * @param {object} [options] options object
@@ -38,7 +38,7 @@ async function generateReleaseNote(wikiFile, outputDir, options) {
 	let version = basename.slice('Titanium_SDK_'.length, end);
 	// if no suffix, assume it's a GA (older release notes)
 	if (!version.endsWith('.GA') && !version.endsWith('.RC') && !version.endsWith('Beta')) {
-		version = version + '.GA';
+		version += '.GA';
 	}
 
 	const outputFilePath = path.join(outputDir, `${version}.html`);
@@ -103,7 +103,6 @@ function massageNoteHTML(contents) {
 	// Drop empty class attributes
 	node('*[class=""]').removeAttr('class');
 
-
 	// Fix absolute links in the ToC with relative links
 	// TODO: Remove if we're dropping ToC now?
 	// node(`a[href^="${basename}"]`).each(function () {
@@ -115,7 +114,7 @@ function massageNoteHTML(contents) {
 
 	// Combine </code><code> to become nothing!
 	let wikiPage = node.html();
-	for (const [key, value] of REPLACEMENTS) {
+	for (const [ key, value ] of REPLACEMENTS) {
 		const re = new RegExp(key, 'g');
 		wikiPage = wikiPage.replace(re, value);
 	}
@@ -127,7 +126,7 @@ module.exports = {
 };
 
 /**
- * @param {string[]} args 
+ * @param {string[]} args
  */
 async function main(args) {
 	const htmlGuidesDir = path.join(__dirname, 'wiki/htmlguides');

@@ -37,7 +37,8 @@ if (require.main === module) {
 	// TODO: do some validation of the version passed in!
 	generateSDKReleaseNote(process.argv.slice(2)).then(outputFile => {
 		console.log(`Release note generated at: ${outputFile}`);
-		process.exit(0);}
+		return process.exit(0);
+	}
 	).catch(err => {
 		console.error(err);
 		process.exit(1);

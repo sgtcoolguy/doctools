@@ -2,7 +2,7 @@
 
 /**
  * @class Alloy.Collections
- * @editurl https://github.com/appcelerator/alloy/edit/master/docs/apidoc/collection.js 
+ * @editurl https://github.com/appcelerator/alloy/edit/master/docs/apidoc/collection.js
 */
 
 /**
@@ -22,7 +22,7 @@
 
 /**
  * @class Alloy.builtins.dialogs
- * @editurl https://github.com/appcelerator/alloy/edit/master/Alloy/builtins/dialogs.js  
+ * @editurl https://github.com/appcelerator/alloy/edit/master/Alloy/builtins/dialogs.js
 */
 
 /**
