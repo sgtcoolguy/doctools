@@ -1,6 +1,8 @@
 #! groovy
 library 'pipeline-library'
 
+def nodeVersion = '10.19.0'
+
 def isMainBranch = env.BRANCH_NAME.equals('docs')
 def buildProperties = [
 	// Keep logs/reports/etc of last 30 builds, only keep build artifacts of last 3 builds
@@ -92,7 +94,7 @@ node(nodeLabels) {
 	def windowsArgs = '-a ../titanium_mobile_windows/apidoc/WindowsOnly -a ../titanium_mobile_windows/apidoc/Titanium'
 	def moduleArgs = ''
 
-	nodejs(nodeJSInstallationName: 'node 8.11.4') {
+	nodejs(nodeJSInstallationName: "node ${nodeVersion}") {
 		ensureNPM('latest')
 
 	// Can we do some stages like:
