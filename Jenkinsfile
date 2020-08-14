@@ -187,10 +187,10 @@ node(nodeLabels) {
 			shallowClone('titanium-docs', 'master')
 
 			// Arrow
-			sparseCheckout('appcelerator', 'arrow', ARROW_BRANCH, [ 'apidoc/', 'lib/' ])
+			sparseCheckout('appcelerator-archive', 'arrow', ARROW_BRANCH, [ 'apidoc/', 'lib/' ])
 
 			// Arrow ORM
-			sparseCheckout('appcelerator', 'arrow-orm', ARROW_BRANCH, [ 'apidoc/', 'lib/' ])
+			sparseCheckout('appcelerator-archive', 'arrow-orm', ARROW_BRANCH, [ 'apidoc/', 'lib/' ])
 
 			// Check out a series of native modules
 			MODULES.each { mod ->
