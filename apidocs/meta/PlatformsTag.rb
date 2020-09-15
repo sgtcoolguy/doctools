@@ -13,6 +13,7 @@ class PlatformTag < JsDuck::MetaTag
       'blackberry' => 'BlackBerry',
       'iphone' => 'iPhone',
       'ipad' => 'iPad',
+      'macos' => 'macOS',
       'mobileweb' => 'Mobile Web',
       'windowsphone' => 'Window Phone',
       'tizen' => 'Tizen'
