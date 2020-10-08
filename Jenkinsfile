@@ -459,5 +459,6 @@ def sparseCheckout(orgName, dirName, branchName, paths) {
 				userRemoteConfigs: [[credentialsId: 'f63e8a0a-536e-4695-aaf1-7a0098147b59', url: "git@github.com:${orgName}/${dirName}.git", refspec: "+refs/heads/${branchName}:refs/remotes/origin/${branchName}"]]
 			]
 		)
+		sh 'git config --get remote.origin.url'
 	}
 }
