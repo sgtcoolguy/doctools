@@ -58,6 +58,7 @@ def MODULES = [
 	'ti.facebook',
 	'ti.nfc',
 	// 'ti.newsstand', // This is archived and not useful anymore!
+	'ti.cloud',
 	'ti.coremotion',
 	'ti.urlsession',
 	'ti.touchid', // TODO: Eventually remove since deprecated in favor of ti.identity
