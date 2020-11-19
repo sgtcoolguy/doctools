@@ -59,6 +59,7 @@ def MODULES = [
 	'ti.nfc',
 	// 'ti.newsstand', // This is archived and not useful anymore!
 	'ti.cloud',
+	'cloudpush',
 	'ti.coremotion',
 	'ti.urlsession',
 	'ti.touchid', // TODO: Eventually remove since deprecated in favor of ti.identity
