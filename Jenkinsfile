@@ -61,6 +61,7 @@ def MODULES = [
 	'ti.cloud',
 	'cloudpush',
 	'ti.coremotion',
+	'ti.crypto',
 	'ti.urlsession',
 	// 'ti.touchid', // Removed as deprecated/removed from SDK
 	'titanium-identity',
@@ -76,7 +77,6 @@ def MODULES = [
 	'titanium-apple-sign-in'
 	// TODO: add other modules?
 	// 'ti.admob',
-	// 'ti.crypto',
 	// 'ti.compression',
 	// 'titanium-socketio',
 	// 'ti.ldap',
