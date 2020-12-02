@@ -62,9 +62,9 @@ def MODULES = [
 	'cloudpush',
 	'ti.coremotion',
 	'ti.urlsession',
-	'ti.touchid', // TODO: Eventually remove since deprecated in favor of ti.identity
+	// 'ti.touchid', // Removed as deprecated/removed from SDK
 	'titanium-identity',
-	'Ti.SafariDialog',
+	// 'Ti.SafariDialog', // Removed as deprecated/removed from SDK
 	'ti.playservices',
 	'ti.geofence',
 	'appcelerator.https',
