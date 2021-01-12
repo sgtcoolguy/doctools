@@ -810,7 +810,7 @@ class Converter {
 
 		const markdown = turndownService.turndown(modified);
 		// Use YAML frontmatter! It's supported by Hugo/Docsy *and* Vuepress
-		const converted = `---\n${jsYaml.safeDump(frontmatter)}---\n${markdown}\n`;
+		const converted = `---\n${jsYaml.dump(frontmatter)}---\n${markdown}\n`;
 		// Next we remove trailing spaces on lines and then merge multiple blank newlines into a single one
 		return fs.writeFile(path.join(outDir, outputName), removeTrailingSpaces(converted).replace(/(\n){3,}/gm, '\n\n'));
 	}
