@@ -1,6 +1,5 @@
 const fs = require('fs');
-const Entities = require('html-entities').AllHtmlEntities;
-const entities = new Entities();
+const decode = require('html-entities').decode;
 const solrCategory = 'platform';
 
 /**
@@ -10,7 +9,7 @@ const solrCategory = 'platform';
  */
 function u2a (str) {
 	// eslint-disable-next-line no-control-regex
-	return entities.decode(str).replace(/[^\x00-\x7F]/g, '');
+	return decode(str).replace(/[^\x00-\x7F]/g, '');
 }
 
 /**
