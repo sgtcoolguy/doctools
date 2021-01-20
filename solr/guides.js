@@ -10,7 +10,7 @@ const workingDir = process.cwd();
 
 // Throttle calls to server to only 2 per second to try and avoid overloading it
 // This does seem to work. It'd be good to try and see if we can't do more per-second and still avoid time outs
-const throttledPost = pThrottle(axios.post, 2, 1000);
+const throttledPost = pThrottle({ limit: 2, interval: 1000 })(axios.post);
 
 async function uploadGuide(guideDir) {
 	const dir = path.basename(guideDir);
