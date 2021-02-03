@@ -68,6 +68,7 @@ def MODULES = [
 	// 'Ti.SafariDialog', // Removed as deprecated/removed from SDK
 	'ti.playservices',
 	'ti.geofence',
+	'appcelerator.ble',
 	'appcelerator.bluetooth',
 	'appcelerator.https',
 	'appcelerator.encrypteddatabase',
