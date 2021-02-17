@@ -13,7 +13,7 @@ const path = require('path');
 const jsYaml = require('js-yaml');
 
 const TurndownService = require('turndown');
-const tables = require('turndown-plugin-gfm').tables;
+const tables = require('./markdown/tables').tables;
 const removeTrailingSpaces = require('remove-trailing-spaces');
 
 const utils = require('./util');
@@ -626,6 +626,9 @@ class Converter {
 			filter: 'img',
 			replacement: (content, node) => {
 				let alt = node.alt || '';
+				// FIXME: If image has width or height specified, don't use shorthand syntax!
+				// Or dynamically resize the image using jimp package?
+				// if only one dimension specified, use jimp.AUTO as other size
 				let src = node.getAttribute('src') || '';
 				if (alt && src === alt) {
 					// the alt text is literally just the path to the image.
