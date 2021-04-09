@@ -76,12 +76,12 @@ def MODULES = [
 	// 'ti.systemalert', // Removed since it has no apidoc folder
 	'appcelerator.aca',
 	'ti.barcode',
-	'titanium-apple-sign-in'
+	'titanium-apple-sign-in',
 	// TODO: add other modules?
 	// 'ti.admob',
 	// 'ti.compression',
 	// 'titanium-socketio',
-	// 'ti.ldap',
+	'ti.ldap'
 	// 'ti.framemetrics',
 	// 'ti.airprint'
 ]
